@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>施術参加者募集 | ゆらゆら</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 2;
+      color: #333;
+      background: #f8f7f4;
+      font-weight: 500;
+    }
+
+    .recruit-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }
+
+    .recruit-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .recruit-header .sub-title {
+      display: inline-block;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      color: #8a7f74;
+      margin-bottom: 12px;
+    }
+
+    .recruit-header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      color: #4a433d;
+      letter-spacing: 0.05em;
+    }
+
+    .intro {
+      background: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 32px 24px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      margin-bottom: 32px;
+    }
+
+    .section {
+      background: #ffffff;
+      padding: 32px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 20px;
+      font-size: 1.35rem;
+      color: #5b5047;
+      border-left: 4px solid #b9a99a;
+      padding-left: 12px;
+    }
+
+    .info-list,
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .info-list li,
+    .check-list li {
+      font-size: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee7e1;
+    }
+
+    .info-list li:last-child,
+    .check-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: bold;
+      color: #5b5047;
+      display: inline-block;
+      min-width: 90px;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #6d6258;
+    }
+
+    .message {
+      background: linear-gradient(0deg, #f8f5f1, #fcfbf9);
+    }
+
+    .apply-box {
+      text-align: center;
+      margin-top: 40px;
+      padding: 32px 20px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .apply-box p {
+      font-weight: 600;
+      margin: 0 0 20px;
+      color: #5b5047;
+    }
+
+    .apply-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #7d6b5d;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: 0.3s ease;
+    }
+
+    .apply-btn:hover {
+      background: #68584c;
+    }
+
+    @media (max-width: 768px) {
+      .recruit-page {
+        padding: 40px 16px 80px;
+      }
+
+      .section,
+      .intro {
+        padding: 24px 18px;
+      }
+
+      .info-label {
+        display: block;
+        min-width: auto;
+        margin-bottom: 4px;
+      }
+    }
+
+    .message-dropdown {
+      margin-top: 28px;
+      border: 1px solid #e8ddd3;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .message-dropdown summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #5b5047;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    .message-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .message-dropdown summary::after {
+      content: "＋";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: #7d6b5d;
+      transition: transform 0.3s ease;
+    }
+
+    .message-dropdown[open] summary::after {
+      content: "－";
+    }
+
+    .message-dropdown summary:hover {
+      background: rgba(245, 239, 232, 0.8);
+    }
+
+    .dropdown-content {
+      padding: 10px 40px 30px;
+      border-top: 1px solid #eee7e1;
+    }
+
+    .dropdown-content p {
+      font-size: 16px;
+      margin: 18px 0 0;
+    }
+
+    .small {
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="recruit-page">
+    <header class="recruit-header">
+      <span class="sub-title">GROUP EXHIBITION「ゆらゆら」</span>
+      <h1>施術参加者募集</h1>
+    </header>
+
+    <section class="intro">
+      <p>
+        10月開催予定のグループ展「ゆらゆら」では、
+        土日祝限定で施術参加してくださる方を募集しています。
+      </p>
+      <p>
+        本企画では、作品を鑑賞するだけでなく、
+        空間の中で感覚がやわらぎ、心地よい時間が流れる体験も大切にしたいと考えています。
+      </p>
+      <p>
+        そのため今回は、展示空間や作品の世界観と調和しながら、
+        来場者に寄り添う施術を行ってくださる方を募集いたします。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>募集概要</h2>
+      <ul class="info-list">
+        <li><span class="info-label">実施日</span>10/9~11 土日祝（3日間）</li>
+        <li><span class="info-label">参加費</span>1日 10,000円</li>
+        <li><span class="info-label">会場</span>Gallery Studio CHARLOTTE.USAGI</li>
+        <li><span class="info-label">最寄り駅</span>JR石川町駅（元町口）より徒歩1分</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>募集対象</h2>
+      <ul class="check-list">
+        <li>施術経験のある方</li>
+        <li>実際に施術・セッション・体験提供などの活動経験がある方</li>
+        <li>スピリチュアルな要素を含む施術ができる方</li>
+        <li>展示空間の雰囲気や世界観を大切にできる方</li>
+        <li>来場者に落ち着いた対応ができる方</li>
+      </ul>
+      <p class="note">
+        ※今回は経験者限定での募集となります。<br>
+        ※経験年数や実績だけでなく、空間との相性や雰囲気の調和も大切にしています。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>このような方を歓迎します</h2>
+      <ul class="check-list">
+        <li>リラクゼーションや癒しに関わる施術を行っている方</li>
+        <li>来場者に落ち着いた時間や体験を届けたい方</li>
+        <li>展示やアート空間の中で施術を行うことに関心がある方</li>
+        <li>世界観を大切にした場づくりに共感してくださる方</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>施術内容について</h2>
+      <p>
+        施術内容は、会場や企画の雰囲気に合うものを想定しています。
+        来場者が安心して体験できる内容であり、
+        空間や他の展示の妨げにならない範囲での実施をお願いしています。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>ご応募にあたって</h2>
+      <p>
+        お申し込みはGoogleフォームよりお願いいたします。<br>
+        あわせて、以下の内容をご共有いただけますとスムーズです。
+        <br>
+        ※場所が限られているので、
+        参加人数次第で必要スペースが確保できない場合がありますので
+        必要品、必要スペース（施術用ベッド）などが必要な際は必ずご記入ください。
+      </p>
+      <ul class="check-list">
+        <li>お名前</li>
+        <li>SNSアカウント</li>
+        <li>施術内容</li>
+        <li>活動歴・経験</li>
+        <li>希望参加日</li>
+        <li>必要備品、必要スペース</li>
+        <li>雰囲気や活動内容がわかる資料や写真</li>
+      </ul>
+
+    <div class="img-box">
+      <a href="https://drive.google.com/drive/folders/1EvGyYunNn7oBp2jOQZG20WqpHg-0s7ZH?usp=drive_link" class="img-drive">
+        会場の写真はこちら
+      </a>
+    </div>
+    </section>
+
+    <section class="section">
+      <h2>選考について</h2>
+      <p>
+        ご応募いただいた内容をもとに、
+        施術経験に加え、展示空間との相性・雰囲気・企画との調和をふまえてご案内いたします。
+      </p>
+      <p>
+        先着順ではなく、
+        空間全体のバランスを見ながら調整させていただく場合がございます。
+        あらかじめご了承ください。
+      </p>
+    </section>
+
+    <section class="section message">
+      <h2>メッセージ</h2>
+      <p>
+        「ゆらゆら」は、作品だけでなく、
+        その場に流れる感覚や空気も含めて楽しんでいただける展示を目指しています。
+      </p>
+      <p>
+        来場者にそっと寄り添い、
+        空間の一部として心地よい時間を届けてくださる方との出会いを楽しみにしております。
+      </p>
+
+      <details class="message-dropdown">
+        <summary>この展示に込めている想い</summary>
+        <div class="dropdown-content">
+
+          <p>
+            こんにちは。
+            この度は、グループ展「ゆらゆら」を企画している小山瑞樹と申します。
+            まずは、ここまで読んでくださりありがとうございます。
+            <br>
+            初めての展示企画で、至らない点も多いかと思いますが、
+            どうぞよろしくお願いいたします。
+            この企画は、ただ作品を飾るだけでなく、作品や空間を通して、
+            参加してくださったみなさま、来てくださった方の心や感覚に、
+            何か良い変化が生まれるような場にしたいと思い、
+            みなさまにお声がけさせていただきました。
+            <br>
+            少し長くなりますが、僕がこの展示に込めている想いをお伝えできればと思います。
+          </p>
+          <p>
+            この展示は、ただ作品を飾るための場ではなく、
+            作品や空間にふれることで、
+            心や感覚に静かな変化が生まれる場にしたいと考えています。
+          </p>
+
+          <p>
+            僕が目指しているのは、
+            目が見えない人でも何かを感じ取れること、
+            耳が聴こえない人でも音のようなものを感じられること。
+            言葉や説明がなくても、
+            その場にある作品のエネルギーで、
+            人の内側に変化が生まれるような空間です。
+          </p>
+
+          <p>
+            作品を飾ることで空間のエネルギーがやわらぎ、
+            自然の中にいるように心が落ち着いたり、
+            ゆとりが生まれたり、
+            思考のモヤや苦しさが少しずつほどけていく。
+            そんな体験につながる場をつくりたいと思っています。
+          </p>
+
+          <p>
+            見た瞬間、感じた瞬間に、
+            自分の内側で何かが変わることがあります。
+            そして、その小さな変化に気づくためには、
+            立ち止まり、自分の感覚に耳を澄ませる余白が必要だと思っています。
+          </p>
+
+          <p>
+            この展示では、
+            考えることよりも、感じることを大切にしたいです。
+            無理に答えを出す必要はなく、
+            ただ作品や空間にふれながら、
+            自分自身と静かに向き合う時間になれば嬉しく思います。
+          </p>
+
+          <p>
+            また、この展示を企画しようと思った理由は、
+            最近、素敵だと思える人たちとたくさん出逢えるようになったこと、
+            障害のない世界を創りたい想いがあり。
+            その人たちに作品を見てもらいたい、
+            そして可能であれば、一緒にこの空間をつくりたい。
+            参加する方にも、来てくださる方にも、
+            この場を通して何か良い変化を感じてもらえたらと願っています。
+          </p>
+
+          <p>
+            この企画は、僕自身にとっても、
+            心を整え、浄化し、より良い方向へ変化していくための場です。
+            人それぞれにある苦しさや不安、言葉にならない生きづらさが、
+            少しでもやわらぎ、
+            本来の感覚や自分らしさを取り戻すきっかけになればと思っています。
+          </p>
+
+          <p>
+            この展示が、
+            誰かにとって心が軽くなる時間になったり、
+            自分の内側にある感覚を思い出すきっかけになったり、
+            新しい変化の入口になることを願っています。
+          </p>
+
+          <p>
+            最後まで読んでくださり、ありがとうございました。
+            <br>
+            小山 瑞樹
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <div class="apply-box">
+      <p>ご興味のある方は、Googleフォームよりお申し込みください。
+        <br>
+        <span class="small">※質問などは主催（小山瑞樹）までお気軽にご連絡ください。</span>
+      </p>
+      <a href="ここにGoogleフォームURLを入れる" class="apply-btn" target="_blank" rel="noopener noreferrer">
+        Googleフォームから申し込む
+      </a>
+    </div>
+  </main>
+
+</body>
+
+</html>
