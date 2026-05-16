@@ -1,22 +1,28 @@
 @charset "UTF-8";
 
-.sp {
-   display: none;
+/* ========================================
+   1. 変数
+   サイト全体で使う色・フォント
+======================================== */
+:root {
+  --color-txt: #303A05;
+  --color-bg: #F8FAEC;
+  --color-shadow-green: #3c4606;
+  --font-base: "Shippori Mincho", serif;
+  --font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
 }
 
-/*リセット*/
+/* ========================================
+   2. リセット
+======================================== */
 *,
 *::before,
-*::after,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
-main,
-nav,
-footer,
-header,
-section,
-article,
-aside,
 h1,
 h2,
 h3,
@@ -31,156 +37,930 @@ a,
 button,
 div,
 span,
-input,
-select,
-textarea,
-table,
-thead,
 figure,
 blockquote,
 dl,
-dd {
-   box-sizing: border-box;
-   font-size: normal;
-   width: fit-content;
-   margin: 0;
-   padding: 0;
-   border: 0;
-   list-style: none;
+dd,
+dt {
+  margin: 0;
+  padding: 0;
 }
 
+ul,
+ol {
+  list-style: none;
+}
 
 a {
-   text-decoration: none;
-   color: inherit;
+  color: inherit;
+  text-decoration: none;
 }
 
 img,
 picture,
 video,
-canvas,
 svg {
-   display: block;
-   max-width: 100%;
-   height: auto;
-}
-
-img {
-   object-fit: cover;
-   vertical-align: middle;
-   font-style: italic;
-   background-repeat: no-repeat;
-   background-size: cover;
-   filter: blur(0px) grayscale(45%);
-   transition: all 1s ease;
-   shape-margin: 0.75rem;
-   box-shadow: inset 0 0px 10px 0px #242424;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 button,
 input,
 select,
 textarea {
-   font-family: inherit;
-   font-size: inherit;
-   color: inherit;
-   background: none;
-   border: none;
-   padding: 0;
-   margin: 0;
-   outline: none;
-   box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+  font: inherit;
 }
 
 table {
-   border-collapse: collapse;
-   border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-button {
-   border: 0;
-   background: none;
-   padding: 0;
-}
-
-blockquote,
-q {
-   quotes: none;
-}
-
-blockquote::before,
-blockquote::after,
-q::before,
-q::after {
-   content: '';
-}
-
-address {
-   font-style: normal;
-}
-
-img,
-canvas {
-   -webkit-user-drag: none;
-   user-select: none;
-   pointer-events: none;
-}
-
+/* ========================================
+   3. ベース
+   全体に適用する設定
+======================================== */
 html,
 body {
-   font-family: 'jost', sans-serif;
-   font-weight: 400;
-   font-style: normal;
-   width: 100%;
-   height: 100vh;
+  width: 100vw;
+  color: var(--color-txt);
+  background-color: var(--color-bg);
+  font-family: var(--font-base);
+  font-weight: 300;
+  font-style: normal;
+  overflow-x: hidden;
 }
 
-
-/* ========== Custom Cursor ========== */
-* {
-   cursor: none !important;
+main {
+  position: relative;
 }
-
-#cursor,
-#stalker {
-   position: fixed;
-   border-radius: 50%;
-   pointer-events: none;
-   transform: translate(-50%, -50%);
-   mix-blend-mode: difference;
-   z-index: 9999;
-}
-
-#cursor {
-   width: 8px;
-   height: 8px;
-   background-color: rgb(5, 58, 8);
-   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-#stalker {
-   width: 15px;
-   height: 15px;
-   background-color: rgb(5, 58, 8);
-   transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
-   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.cursor--hover {
-   width: 40px !important;
-   height: 40px !important;
-   box-shadow: 0 0 20px rgba(46, 46, 46, 0.5);
-}
-
-.stalker--hover {
-   width: 50px !important;
-   height: 50px !important;
-   box-shadow: 0 0 20px rgba(46, 46, 46, 0.5);
-}
-
 
 section {
-   width: 100vw;
-   height: 100vh;
-   background: url("/img/main-bgimg.jpg");
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 60px 20px;
+  overflow: hidden;
+  background: url("../img/bg-img.jpg") center / cover no-repeat;
+}
+
+h1 {
+  filter: blur(3px);
+  mix-blend-mode: color-burn;
+}
+
+h2.ttl {
+  z-index: 1;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: var(--font-base);
+  letter-spacing: 0.5rem;
+}
+
+.btn {
+  z-index: 1;
+  padding: 2rem 4rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.h2-bt-txt {
+  z-index: 1;
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: 0;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+}
+
+.ttl-small {
+  font-size: 14px;
+}
+
+.ttl-top-txt {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+}
+
+/* ========================================
+   4. スクロールバー
+   全体共通UI
+======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(245, 242, 232, 0.75);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(245, 242, 232, 0.75);
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(80, 90, 70, 0.75),
+    rgba(45, 55, 40, 0.85)
+  );
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(70, 85, 60, 0.9),
+    rgba(35, 45, 32, 0.95)
+  );
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ========================================
+   5. Header
+======================================== */
+.header-frame {
+  position: fixed;
+  top: 3.5rem;
+  left: 6rem;
+  z-index: 100;
+}
+
+.header-menu {
+  display: grid;
+  align-items: center;
+  justify-content: left;
+  gap: 50px;
+  letter-spacing: 30%;
+}
+
+.head-link {
+  font-family: var(--font-jp);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+span.head-sub-txt {
+  font-family: var(--font-base);
+  font-size: 14px;
+}
+
+.head-dd {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 40px;
+  width: fit-content;
+  font-size: 18px;
+  writing-mode: vertical-rl;
+}
+
+.menu-list {
+  position: relative;
+}
+
+.menu-list .small-txt {
+  margin-top: 80px;
+  font-size: 14px;
+}
+
+.menu-list .menu-border {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 1px;
+  height: 30px;
+  background: var(--color-txt);
+  content: "";
+}
+
+/* ========================================
+   6. Scroll Guide
+======================================== */
+.scroll-guide {
+  position: fixed;
+  right: 4rem;
+  bottom: 4rem;
+  z-index: 10;
+  display: block;
+  align-items: center;
+  gap: 1.2rem;
+  color: #2f382a;
+  pointer-events: none;
+}
+
+.scroll-guide__text {
+  font-family: var(--font-base);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+}
+
+.scroll-guide__bar {
+  position: relative;
+  left: 40%;
+  display: block;
+  width: 1px;
+  height: 8rem;
+  overflow: hidden;
+  background: rgba(47, 56, 42, 0.25);
+}
+
+.scroll-guide__bar::before {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-txt);
+  content: "";
+  animation: scrollGuideBar 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollGuideBar {
+  0% { top: -100%; }
+  45% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* ========================================
+   7. FV
+======================================== */
+h1.ttl,
+.consept h2.ttl {
+  font-family: var(--font-jp);
+  writing-mode: vertical-rl;
+}
+
+.fv {
+  display: grid;
+  place-items: center;
+}
+
+.fv .ttl {
+  grid-area: 1 / 1;
+  z-index: 1;
+  font-size: clamp(80px, 12vw, 140px);
+  letter-spacing: 2.4rem;
+}
+
+.h1-bt-txt {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 2;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 3;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%);
+}
+
+/* ========================================
+   8. Concept
+======================================== */
+.consept h2.ttl {
+  z-index: 1;
+  font-size: clamp(24px, 5vw, 32px);
+  letter-spacing: 0.8rem;
+}
+
+/* ========================================
+   9. Introduction
+======================================== */
+.introduction img {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+}
+
+.introduction .ttl {
+  writing-mode: initial;
+}
+
+/* --- 作家スライダー --- */
+.member-list {
+  display: flex;
+  gap: 15px;
+  overflow-y: scroll;
+}
+
+.member-slider-section {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.member-slider {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.member-slider::before,
+.member-slider::after {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  width: 12%;
+  height: 100%;
+  content: "";
+  pointer-events: none;
+}
+
+.member-slider::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.member-slider::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.member-slider.white-bg::before {
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.member-slider.white-bg::after {
+  background: linear-gradient(to left, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.member-track {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+  will-change: transform;
+}
+
+.img-box {
+  position: relative;
+  flex: 0 0 auto;
+  width: 420px;
+  height: 280px;
+  overflow: hidden;
+  background: url("../img/202326.jpg") center / cover no-repeat;
+}
+
+.img-box:nth-child(1) {
+  background: url("../img/202337.jpg") center / cover no-repeat;
+}
+
+.img-box:nth-child(2) {
+  background: url("../img/202339.jpg") center / cover no-repeat;
+}
+
+.img-box:nth-child(3) {
+  background: url("../img/202402.jpg") center / cover no-repeat;
+}
+
+.img-box:nth-child(4) {
+  background: url("../img/202501.jpg") center / cover no-repeat;
+}
+
+.works-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.img-btn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 90px;
+  height: 100%;
+  padding: 1.4rem;
+  font-family: var(--font-base);
+  font-size: 16px;
+  font-weight: bold;
+  background: url("../img/yurayura-head-second.png") center / cover no-repeat;
+  mix-blend-mode: plus-lighter;
+  transition:
+    width 0.45s ease,
+    right 0.45s ease,
+    opacity 0.3s ease;
+}
+
+.works-link:hover .img-btn {
+  opacity: 0.72;
+}
+
+.img-btn.is-expand {
+  right: 0;
+  width: 100%;
+}
+
+/* ========================================
+   10. Contact
+======================================== */
+.contact,
+.faq,
+.access {
+  display: block;
+  min-height: auto;
+  padding: 8rem 1rem 8rem;
+  overflow: visible;
+}
+
+.contact .inner,
+.faq .inner,
+.access .inner {
+  width: min(100%, 740px);
+  margin: 0 auto;
+}
+
+.contact .ttl,
+.faq .ttl,
+.access .ttl {
+  margin: 0 0 1rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-family: var(--font-base);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  writing-mode: initial;
+}
+
+.contact .h2-bt-txt,
+.faq .h2-bt-txt,
+.access .h2-bt-txt {
+  width: 100%;
+  margin: 0 auto 2rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  white-space: normal;
+  writing-mode: initial;
+}
+
+.contact-sub-ttl,
+.faq-ttl {
+  margin: 2.5rem 0 1.5rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.contact h2.ttl,
+.faq h2.ttl,
+.contact .h2-bt-txt,
+.faq .h2-bt-txt {
+  writing-mode: initial;
+}
+
+/* --- フォーム --- */
+.contact-form {
+  margin-top: 1rem;
+}
+
+.contact-check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  gap: 0.6rem 2rem;
+  max-width: 380px;
+  margin: 1.8rem 0 1.8rem;
+}
+
+.check-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-txt);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.check-item input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fake-check {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  background: var(--color-bg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.check-item input:checked + .fake-check::after {
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 6px;
+  height: 11px;
+  border-right: 2px solid var(--color-txt);
+  border-bottom: 2px solid var(--color-txt);
+  content: "";
+  transform: rotate(45deg);
+}
+
+.form-row {
+  margin-bottom: 1.35rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 1.55rem 1.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--color-txt);
+  font-size: 1rem;
+  outline: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
+    radial-gradient(circle at 20% 20%, rgba(120, 120, 120, 0.04), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(120, 120, 120, 0.05), transparent 26%),
+    #ecece5;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.12),
+    0 5px 0 var(--color-shadow-green);
+}
+
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
+.contact-form textarea::placeholder {
+  color: #9f9b8e;
+}
+
+.contact-form textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.form-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 0.8rem;
+}
+
+.consent-item {
+  flex-wrap: wrap;
+}
+
+.send-btn {
+  min-width: 310px;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f4f2ea;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06), transparent 25%),
+    linear-gradient(135deg, #6c7131 0%, #55591f 45%, #6b6e2d 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.send-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   11. FAQ
+======================================== */
+.faq-box {
+  margin-top: 4rem;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.faq-list-item {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: url("../img/main-bgimg.jpg") center / cover;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  color: #f6f4ee;
+  text-align: left;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  background: var(--color-txt);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-right: 0.2rem;
+  border-right: 2px solid var(--color-bg);
+  border-bottom: 2px solid var(--color-bg);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.faq-list-item.is-open .faq-icon {
+  margin-top: 0.3rem;
+  transform: rotate(-135deg);
+}
+
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  background: var(--color-bg);
+  transition: grid-template-rows 0.35s ease;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0 1.5rem;
+  overflow: hidden;
+  color: var(--color-txt);
+}
+
+.faq-list-item.is-open .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-list-item.is-open .faq-answer p {
+  padding: 1rem 1.5rem 1.2rem;
+}
+
+/* ========================================
+   12. Access
+======================================== */
+.access {
+  padding-top: 1rem;
+}
+
+.map-box {
+  width: min(100%, 740px);
+  margin: 0 auto 3.5rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+}
+
+.map-box iframe {
+  width: 100%;
+  border: 0;
+  aspect-ratio: 2.7 / 1;
+}
+
+.access-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  width: min(100%, 900px);
+  margin: 0 auto;
+}
+
+.access-info {
+  padding-left: 2rem;
+  border-left: 1px solid var(--color-txt);
+}
+
+.access-info h3 {
+  margin: 0 0 0.7rem;
+  color: var(--color-txt);
+  font-size: 1.2rem;
+  font-family: var(--font-jp);
+}
+
+.access-txt {
+  margin: 0 0 1rem;
+  color: var(--color-txt);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ========================================
+   13. Footer補助
+======================================== */
+.sp {
+  display: none;
+}
+
+/* ========================================
+   14. アニメーション・エフェクト
+======================================== */
+
+/* --- ノイズアニメーション --- */
+body::before {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  z-index: 9998;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  opacity: 0.08;
+  content: "";
+  pointer-events: none;
+  animation: noise 0.2s steps(2) infinite;
+}
+
+@keyframes noise {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- カスタムカーソル --- */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  #cursor,
+  #stalker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  #cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  #stalker {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+  }
+
+  #stalker.is-active {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ========================================
+   15. レスポンシブ
+======================================== */
+@media screen and (max-width: 1024px) {
+  .member-slider {
+    width: 90%;
+  }
+
+  .img-box {
+    width: 420px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .access-box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .access-info {
+    padding-left: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .scroll-guide {
+    right: 2rem;
+    bottom: 3rem;
+    gap: 1rem;
+  }
+
+  .scroll-guide__text {
+    font-size: 1rem;
+  }
+
+  .scroll-guide__bar {
+    height: 6rem;
+  }
+
+  .sp {
+    display: block;
+  }
+
+  .h1-bt-txt {
+    transform: translate(-40px, 30px);
+  }
+}
+
+@media (max-width: 767px) {
+  .member-slider {
+    width: 94%;
+  }
+
+  .img-box {
+    width: 280px;
+    height: 220px;
+  }
+
+  .img-btn {
+    min-width: 70px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-check-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .faq-question {
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+  }
+
+  .contact,
+  .access {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    padding: 1.2rem 1rem;
+  }
 }

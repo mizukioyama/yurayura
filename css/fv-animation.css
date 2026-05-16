@@ -1,0 +1,147 @@
+@charset "UTF-8";
+/* ==============================
+   VANTA Smoke Twist Background
+================================ */
+
+.vanta-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #fafffc;
+}
+
+/* VANTAは薄い霧のベース */
+#vanta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 煙のねじれレイヤー共通 */
+.smoke-twist {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+
+  width: 42vmin;
+  height: 105vmin;
+
+  transform: translate(-50%, -50%) rotate(0deg) skewY(-8deg);
+  transform-origin: center center;
+
+  opacity: 0.42;
+  filter: blur(10px);
+  mix-blend-mode: multiply;
+
+  will-change: transform, opacity;
+
+  border-radius: 48% 52% 46% 54% / 60% 44% 56% 40%;
+
+  background:
+    radial-gradient(
+      ellipse at 52% 18%,
+      rgba(255, 180, 135, 0.16) 0%,
+      rgba(255, 180, 135, 0.08) 18%,
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 38% 42%,
+      rgba(145, 220, 190, 0.14) 0%,
+      rgba(145, 220, 190, 0.06) 22%,
+      transparent 46%
+    ),
+    radial-gradient(
+      ellipse at 60% 64%,
+      rgba(255, 215, 125, 0.16) 0%,
+      rgba(255, 215, 125, 0.07) 22%,
+      transparent 48%
+    ),
+    conic-gradient(
+      from 210deg at 50% 50%,
+      transparent 0deg,
+      rgba(255, 170, 120, 0.13) 42deg,
+      transparent 86deg,
+      rgba(150, 220, 190, 0.12) 138deg,
+      transparent 185deg,
+      rgba(255, 220, 135, 0.12) 238deg,
+      transparent 310deg,
+      rgba(255, 140, 120, 0.08) 360deg
+    );
+}
+
+/* 煙の細い線 */
+.smoke-twist::before {
+  content: "";
+  position: absolute;
+  inset: 4% 18%;
+
+  border-radius: 50%;
+
+  opacity: 0.45;
+  filter: blur(7px);
+
+  background:
+    conic-gradient(
+      from 30deg,
+      transparent 0deg,
+      rgba(120, 160, 150, 0.12) 35deg,
+      transparent 80deg,
+      rgba(255, 165, 120, 0.14) 130deg,
+      transparent 190deg,
+      rgba(255, 220, 130, 0.12) 250deg,
+      transparent 330deg,
+      rgba(160, 210, 190, 0.1) 360deg
+    );
+}
+
+/* 中心の上昇ライン */
+.smoke-twist::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 52%;
+
+  width: 26%;
+  height: 115%;
+
+  transform: translate(-50%, -50%) rotate(-5deg);
+  border-radius: 999px;
+
+  opacity: 0.28;
+  filter: blur(9px);
+
+  background:
+    linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(160, 230, 200, 0.12) 20%,
+      rgba(255, 220, 140, 0.15) 46%,
+      rgba(255, 170, 130, 0.13) 70%,
+      transparent 100%
+    );
+}
+
+/* 個別差分 */
+.smoke-twist--01 {
+  width: 44vmin;
+  height: 112vmin;
+  opacity: 0.45;
+}
+
+.smoke-twist--02 {
+  width: 52vmin;
+  height: 96vmin;
+  opacity: 0.24;
+  filter: blur(18px);
+  mix-blend-mode: screen;
+}
+
+.smoke-twist--03 {
+  width: 34vmin;
+  height: 120vmin;
+  opacity: 0.28;
+  filter: blur(14px);
+}

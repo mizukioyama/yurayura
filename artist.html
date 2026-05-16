@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>出展者募集 | ゆらゆら</title>
+   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 2;
+      color: #333;
+      background: #f8f7f4;
+      font-weight: 500;
+    }
+
+    /* ==== txt size */
+    .intro,
+    .info-list li,
+    .check-list li,
+    .dropdown-content p {
+      font-size: 16px;
+    }
+
+    .recruit-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }
+
+    .recruit-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .recruit-header .sub-title {
+      display: inline-block;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      color: #8a7f74;
+      margin-bottom: 12px;
+    }
+
+    .recruit-header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      color: #4a433d;
+      letter-spacing: 0.05em;
+    }
+
+    .intro {
+      background: #ffffff;
+      font-weight: bold;
+      padding: 32px 24px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      margin-bottom: 32px;
+    }
+
+    .section {
+      background: #ffffff;
+      padding: 32px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 20px;
+      font-size: 1.35rem;
+      color: #5b5047;
+      border-left: 4px solid #b9a99a;
+      padding-left: 12px;
+    }
+
+    .info-list,
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .info-list li,
+    .check-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee7e1;
+    }
+
+    .info-list li:last-child,
+    .check-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: bold;
+      color: #5b5047;
+      display: inline-block;
+      min-width: 90px;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #6d6258;
+    }
+
+    .message {
+      background: linear-gradient(0deg, #f8f5f1, #fcfbf9);
+    }
+
+    .apply-box {
+      text-align: center;
+      margin-top: 40px;
+      padding: 32px 20px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .apply-box p {
+      font-weight: 600;
+      margin: 0 0 20px;
+      color: #5b5047;
+    }
+
+    /*===== btn */
+    .apply-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #7d6b5d;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: 0.3s ease;
+    }
+
+    .apply-btn:hover {
+      background: #68584c;
+    }
+
+    .message-dropdown {
+      margin-top: 28px;
+      border: 1px solid #e8ddd3;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .message-dropdown summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #5b5047;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    .message-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .message-dropdown summary::after {
+      content: "＋";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: #7d6b5d;
+      transition: transform 0.3s ease;
+    }
+
+    .message-dropdown[open] summary::after {
+      content: "－";
+    }
+
+    .message-dropdown summary:hover {
+      background: rgba(245, 239, 232, 0.8);
+    }
+
+    .dropdown-content {
+      padding: 10px 40px 30px;
+      border-top: 1px solid #eee7e1;
+    }
+
+    .dropdown-content p {
+      margin: 18px 0 0;
+    }
+
+    .small {
+      font-size: 12px;
+    }
+
+    .profile-section h3 {
+      margin: 0 0 16px;
+      font-size: 1.15rem;
+      color: #5b5047;
+    }
+
+    .profile-name {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-block {
+      margin-bottom: 36px;
+    }
+
+    .profile-block p {
+      margin: 0 0 18px;
+    }
+
+    .profile-history {
+      border-top: 1px solid #eee7e1;
+      padding-top: 28px;
+    }
+
+    .history-group+.history-group {
+      margin-top: 28px;
+    }
+
+    .history-group h4 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: #6a5d53;
+    }
+
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .history-list li {
+      display: flex;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee7e1;
+      align-items: flex-start;
+    }
+
+    .history-list li span {
+      min-width: 90px;
+      font-weight: 600;
+      color: #7d6b5d;
+      flex-shrink: 0;
+    }
+
+        .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .plan-card {
+      background: #fcfaf7;
+      border: 1px solid #eee7e1;
+      border-radius: 16px;
+      padding: 20px 18px;
+    }
+
+    @media (max-width: 900px) {
+      .plan-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 768px) {
+      .recruit-page {
+        padding: 40px 16px 80px;
+      }
+
+      .section,
+      .intro {
+        padding: 24px 18px;
+      }
+
+      .info-label {
+        display: block;
+        min-width: auto;
+        margin-bottom: 4px;
+      }
+
+      .dropdown-content {
+        padding: 10px 20px;
+        box-shadow: inset 0 0 4px rgba(25, 25, 25, 0.5);
+      }
+
+      /* ==== txt size */
+      .intro,
+      .info-list li,
+      .check-list li,
+      .dropdown-content p {
+        font-size: 14px;
+      }
+
+      /* ====btn */
+      .apply-btn {
+        display: inline-block;
+        padding: 14px 24px;
+      }
+
+      .history-list li {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .history-list li span {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="recruit-page">
+    <header class="recruit-header">
+      <span class="sub-title">GROUP EXHIBITION「ゆらゆら」</span>
+      <h1>出展者募集</h1>
+    </header>
+
+    <section class="intro">
+      <p>
+        10月開催予定のグループ展「ゆらゆら」では、
+        <strong>展示にご参加いただける出展者の方</strong>を募集しています。
+      </p>
+      <p>
+        本企画は、ただ作品を飾るだけではなく、
+        作品や空間を通して、参加される方や来場される方の心や感覚に、
+        やさしい変化が生まれる場を目指しています。
+      </p>
+      <p>
+        そのため今回は、作品の技術や実績だけでなく、
+        <strong>展示空間や企画の世界観に調和すること</strong>も大切にしながら、
+        出展者の方をご案内したいと考えています。
+      </p>
+    </section>
+
+    <section class="section host-message">
+      <h2>主催者からのメッセージ</h2>
+      <p>
+        こんにちは。<br>
+        グループ展「ゆらゆら」を企画している小山瑞樹です。<br>
+        このページを見てくださり、ありがとうございます。
+      </p>
+      <p>
+        この展示は、ただ作品を飾るだけの場ではなく、
+        作品や空間にふれることで、参加してくださる方や来場される方の心や感覚に、
+        やさしい変化が生まれる場にしたいと思い企画しました。
+      </p>
+      <p>
+        僕が目指しているのは、
+        目が見えない人でも何かを感じ取れること、
+        耳が聴こえない人でも音のようなものを感じられること、
+        言葉や説明がなくても、その場にある作品や空間のエネルギーによって、
+        人の内側に変化が生まれるような場です。
+      </p>
+      <p>
+        作品を飾ることで空間のエネルギーがやわらぎ、
+        自然の中にいるように心が落ち着いたり、
+        思考のモヤや苦しさが少しずつほどけていく。
+        そんな体験につながる展示を目指しています。
+      </p>
+      <p>
+        また、この企画は、参加してくださる方にとっても、
+        次につながるきっかけになる場にしたいと考えています。
+        自分をより深く知り、知ってもらう練習の場としても
+        使っていただけたら嬉しいです。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>募集概要</h2>
+      <ul class="info-list">
+        <li><span class="info-label">会場</span>Gallery Studio CHARLOTTE.USAGI</li>
+        <li><span class="info-label">最寄り駅</span>JR石川町駅（元町口）より徒歩1分</li>
+        <li><span class="info-label">開催時期</span>10月予定</li>
+        <li><span class="info-label">募集対象</span>展示に参加してくださる方</li>
+        <li><span class="info-label">経験</span>不問</li>
+        <li><span class="info-label">展示数</span>1名あたり最大3点まで</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>出展プラン・参加費</h2>
+
+      <div class="plan-grid">
+        <div class="plan-card">
+          <h3>1階展示</h3>
+          <p class="price">30,000円</p>
+          <p>展示期間：3日間</p>
+        </div>
+
+        <div class="plan-card">
+          <h3>2階展示</h3>
+          <p class="price">20,000円</p>
+        </div>
+
+        <div class="plan-card">
+          <h3>2階から1階へ移動するプラン</h3>
+          <p class="price">40,000円</p>
+          <p>展示期間：7日間</p>
+          <p>※うち、1階展示は3日間です</p>
+        </div>
+      </div>
+
+      <p class="note">
+        ※参加費の集金は8月中旬頃を予定しています。<br>
+        ※詳細は参加確定後にご案内いたします。
+        ※学割検討中です。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>展示について</h2>
+
+      <div class="display-box">
+        <h3>2階展示可能数（3部屋）</h3>
+        <ul class="history-list">
+          <li>大広間：F4サイズ 9点〜12点</li>
+          <li>小部屋：F4サイズ 3点〜6点</li>
+          <li>小部屋：F4サイズ 3点〜6点</li>
+        </ul>
+      </div>
+
+      <div class="display-box">
+        <h3>1階展示可能数</h3>
+        <ul class="history-list">
+          <li>ワンフロア（両壁）：F4サイズ 6点〜8点</li>
+        </ul>
+      </div>
+
+      <div class="display-box">
+        <h3>ゲスト展示数</h3>
+        <ul class="history-list">
+          <li>1名あたり最大3点まで</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>このような方を歓迎します</h2>
+      <ul class="check-list">
+        <li>自分の作品を誰かに届けたいと思っている方</li>
+        <li>空間全体の雰囲気を大切にした展示に共感してくださる方</li>
+        <li>作品を通して、人の感覚や心に働きかけたい方</li>
+        <li>他の参加者と一緒に場をつくることを楽しめる方</li>
+      </ul>
+      <p class="note">
+        ※今回は<strong>経験不問</strong>で募集いたします。<br>
+        ただし、作品の完成度や経歴だけではなく、
+        <strong>企画との相性、空間との調和、雰囲気のつながり</strong>も
+        大切にしながらご案内いたします。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>選考について</h2>
+      <p>
+        ご応募いただいた内容をもとに、
+        作品の内容に加えて、<strong>展示空間との相性や企画全体のバランス</strong>を
+        見ながらご案内いたします。
+      </p>
+      <p>
+        なお、<strong>こちらからお声がけした方については先着順でご案内</strong>いたします。
+      </p>
+    </section>
+
+    <section class="section profile-section">
+      <h2>主催者プロフィール</h2>
+
+      <div class="profile-block">
+        <h3 class="profile-name">小山瑞樹</h3>
+
+        <p>
+          1998年、宮城県仙台市出身。<br>
+          現在は千葉県で施工管理に携わっています。
+        </p>
+
+        <p>
+          Art活動と並行して、2021年からGPTを活用しながら、
+          Webサイト制作・デザイン・マーケティングを独学で学んできました。
+          2024年には約1年間、デザイン講師として初心者向けのレクチャーや添削にも携わりました。
+        </p>
+
+        <p>
+          来年からWeb制作を本格的に始めたいと思い、現在準備を進めています。
+          また、個人事業をしている方に向けた、
+          小規模な目標達成支援アプリの開発も少しずつ進めています。
+        </p>
+      </div>
+
+      <div class="profile-history">
+        <h3>Art活動・出展歴</h3>
+
+        <div class="history-group">
+          <ul class="history-list">
+            <li><span>2025年3月</span>日台の絆展 / 台湾</li>
+            <li><span>2023年6月</span>第2回日仏友好オリジナル切手展 / フランス</li>
+            <li><span>2022年11月</span>芸術の虎展 / 日光東照宮美術館</li>
+            <li><span>2022年4月</span>日アセアン友好文化交流展 / 東京アセアンセンター</li>
+            <li><span>2021年11月</span>サロン・ド・アール・ジャポネ / フランス</li>
+            <li><span>2021年8月</span>OASISU2021 / 大阪あべのハルカス</li>
+            <li><span>2021年4月</span>チャリティアート展 / 東京</li>
+            <li><span>2021年・2022年</span>文展 作品掲載</li>
+          </ul>
+        </div>
+
+        <div class="history-group">
+          <h4>認定・受賞歴</h4>
+          <ul class="history-list">
+            <li><span>2025年</span>日仏友好貢献親善大賞</li>
+            <li><span>2022年</span>徳川家康作家之賞</li>
+            <li><span>2022年</span>日本・モンゴル外交関係樹立50周年記念事業認定</li>
+            <li><span>2021年</span>TAJO認定「残照と白日の芸術家」</li>
+            <li><span>2016年</span>第67回宮城県高等学校美術展 優秀賞</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>僕にできること</h2>
+      <p>
+        僕はArt作品の制作だけでなく、約5年間、
+        趣味として独学でWeb制作を続けてきました。
+        また、約1年間デザイン講師として、
+        デザインの考え方や見せ方、伝え方をお伝えしてきた経験があります。
+      </p>
+      <p>
+        そのため、作品をつくることだけでなく、
+        <strong>どう見せるか・どう伝えるか・どう次につなげるか</strong>という視点でも、
+        少しでもお力になれたらと思っています。
+      </p>
+      <p>
+        Web制作は有料にはなりますが、ご相談いただければ対応可能です。<br>
+        悩んでいる方は、相談だけでも、お気軽にご連絡ください。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>ご応募にあたって</h2>
+      <p>
+        ご応募の際は、以下の内容をご共有いただけますとスムーズです。
+      </p>
+      <ul class="check-list">
+        <li>活動名</li>
+        <li>お名前</li>
+        <li>メールアドレス</li>
+        <li>SNSアカウント</li>
+        <li>希望プラン</li>
+        <li>作品数</li>
+        <li>作品内容</li>
+        <li>作品画像や活動がわかる資料</li>
+        <li>参加したい理由</li>
+        <li>会場や企画との相性について感じていること</li>
+      </ul>
+    </section>
+
+    <section class="section message">
+      <h2>メッセージ</h2>
+      <p>
+        「ゆらゆら」は、
+        作品をただ並べるための展示ではなく、
+        作品や空間を通して、人の内側に静かな変化が生まれる場を目指しています。
+      </p>
+      <p>
+        参加してくださる方にとっても、
+        来場してくださる方にとっても、
+        この場が何か良い変化や気づきにつながる時間になれば嬉しく思います。
+      </p>
+      <p>
+        空間そのものを一緒につくってくださる方との出会いを楽しみにしています。
+      </p>
+    </section>
+
+    <div class="apply-box">
+      <p>ご興味のある方は、Googleフォームよりご応募ください。</p>
+      <a href="#" class="apply-btn">Googleフォームで応募する</a>
+    </div>
+  </main>
+
+</body>
+</html>
