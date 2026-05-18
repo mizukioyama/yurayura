@@ -1,44 +1,102 @@
-memo
+# =========================
 
-# ① 初回だけ
+# Mac版 Git / npm 基本操作
 
-git config --global user.name "m.oyama"
-git config --global user.email "oyamawprks24@gmail.com"
+# =========================
 
-# ② クローン
+# -------------------------
 
-git clone https://github.com/mizukioyama/website.git
+# ① 初回設定（最初の1回だけ）
 
-# ③ 移動
+# -------------------------
 
-cd website
+git config --global user.name "oy-mizuki"
+git config --global user.email "o.mizuki.art@gmail.com"
 
-# ④ 依存
+# 確認
+
+git config --global --list
+
+# -------------------------
+
+# ② GitHubからクローン
+
+# -------------------------
+
+git clone https://github.com/oy-mizuki/yurayura.git
+
+# -------------------------
+
+# ③ フォルダへ移動
+
+# -------------------------
+
+cd ~/05\_デザイン・自主制作/web/yurayura
+
+# -------------------------
+
+# ④ パッケージインストール
+
+# -------------------------
 
 npm install
 
+# -------------------------
+
 # ⑤ ビルド
+
+# -------------------------
 
 npm run build
 
-# ⑥ 反映
+# -------------------------
+
+# ⑥ Gitへ反映
+
+# -------------------------
 
 git add .
-git commit -m "memo up date"
+git commit -m "img up"
 git push origin main
+
+# -------------------------
+
+# 状態確認
+
+# -------------------------
 
 git status
 
-ls -a
+# 隠しファイル含め確認
+
+ls -la
+
+# -------------------------
+
+# 一つ上の階層へ戻る
+
+# -------------------------
 
 cd ..
 
-git rm --cached website
+# =========================
 
-rmdir /s /q website\.git
+# Git管理解除（Mac版）
 
-↓調べる
-$ rmdir /s /q website\.git
-rmdir: failed to remove '/s': No such file or directory
-rmdir: failed to remove '/q': No such file or directory
-rmdir: failed to remove 'website.git': No such file or directory
+# =========================
+
+# Git管理を解除
+
+git rm --cached -r website
+
+# .git を削除（Mac/Linux）
+
+rm -rf website/.git
+
+# -------------------------
+
+# 削除確認
+
+# -------------------------
+
+ls -la website
