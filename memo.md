@@ -56,7 +56,7 @@ npm run build
 # -------------------------
 
 git add .
-git commit -m "img up"
+git commit -m "traget"
 git push origin main
 
 # -------------------------

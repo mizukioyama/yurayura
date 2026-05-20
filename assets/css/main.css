@@ -114,7 +114,8 @@ section {
   background: url("../img/bg-img.jpg") center / cover no-repeat;
 }
 
-h1 {
+.hero__ttl {
+  font-size: var(--font-jp);
   filter: blur(3px);
   mix-blend-mode: color-burn;
 }
@@ -198,7 +199,7 @@ h2.ttl {
   z-index: 100;
 }
 
-.header-menu {
+.header-menu,.bt-menu {
   display: grid;
   align-items: center;
   justify-content: left;
@@ -250,6 +251,28 @@ span.head-sub-txt {
   height: 30px;
   background: var(--color-txt);
   content: "";
+}
+
+/* ========================================
+  footer
+======================================== */
+
+.bt-menu {
+  justify-content: center;
+  align-content: center;
+  padding: 10rem 0 4rem;
+}
+
+.bt-menu .menu {
+  justify-content: center;
+}
+
+.copy {
+  font-size: 12px;
+  color: var(--color-txt);
+  text-align-last: center;
+  z-index: 1;
+  margin-top: 10rem;
 }
 
 /* ========================================
@@ -748,15 +771,15 @@ h1.ttl,
 }
 
 .map-box {
-  width: min(100%, 740px);
   margin: 0 auto 3.5rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+  object-fit: cover;
 }
 
 .map-box iframe {
   width: 100%;
+  object-fit: cover;
   border: 0;
-  aspect-ratio: 2.7 / 1;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
 }
 
 .access-box {
@@ -791,6 +814,360 @@ h1.ttl,
 ======================================== */
 .sp {
   display: none;
+}
+
+/* ========================================
+   top.html 基本コードクラス対応
+======================================== */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-bg);
+  background: var(--color-txt);
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.inner {
+  width: 100%;
+}
+
+.main {
+  position: relative;
+}
+
+.header {
+  position: fixed;
+  top: 3.5rem;
+  left: 6rem;
+  z-index: 100;
+}
+
+.header__inner {
+  display: grid;
+  align-items: center;
+  justify-content: left;
+  gap: 50px;
+}
+
+.header__logo-link,
+.header__logo {
+  font-family: var(--font-jp);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+.header__lead,
+.footer__lead {
+  font-family: var(--font-base);
+  font-size: 14px;
+}
+
+.header__date,
+.footer__date {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.header__list,
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 40px;
+  width: fit-content;
+  font-size: 18px;
+  writing-mode: vertical-rl;
+}
+
+.header__item,
+.footer__item {
+  position: relative;
+}
+
+.header__link,
+.footer__link {
+  display: inline-block;
+}
+
+.header__small,
+.footer__small {
+  margin-top: 80px;
+  font-size: 14px;
+}
+
+.header__border,
+.footer__border {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 1px;
+  height: 30px;
+  background: var(--color-txt);
+  content: "";
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+}
+
+.hero__inner {
+  display: grid;
+  grid-area: 1 / 1;
+  place-items: center;
+  height: 100%;
+}
+
+.hero__ttl,
+.section--concept .section__ttl {
+  z-index: 1;
+  font-family: var(--font-jp);
+  writing-mode: vertical-rl;
+}
+
+.hero__ttl {
+  grid-area: 1 / 1;
+  font-size: clamp(80px, 12vw, 140px);
+  letter-spacing: 2.4rem;
+  filter: blur(3px);
+  mix-blend-mode: color-burn;
+}
+
+.hero__txt {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 2;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 3;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%);
+}
+
+.section__inner {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.section__ttl {
+  z-index: 1;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: var(--font-base);
+  letter-spacing: 0.5rem;
+}
+
+.section__txt {
+  z-index: 1;
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: 0;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+}
+
+.section__ttl-small {
+  font-size: 14px;
+}
+
+.section__ttl-top {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+}
+
+.section--concept .section__ttl {
+  font-size: clamp(24px, 5vw, 32px);
+  letter-spacing: 0.8rem;
+}
+
+.section--artists .section__ttl {
+  writing-mode: initial;
+}
+
+.section__bg-img {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 420px;
+  height: 280px;
+  overflow: hidden;
+  background: url("../img/202326.jpg") center / cover no-repeat;
+}
+
+.card:nth-child(1) {
+  background-image: url("../img/202337.jpg");
+}
+
+.card:nth-child(2) {
+  background-image: url("../img/202339.jpg");
+}
+
+.card:nth-child(3) {
+  background-image: url("../img/202402.jpg");
+}
+
+.card:nth-child(4) {
+  background-image: url("../img/202501.jpg");
+}
+
+.card__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__btn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 90px;
+  height: 100%;
+  padding: 1.4rem;
+  font-family: var(--font-base);
+  font-size: 16px;
+  font-weight: bold;
+  background: url("../img/yurayura-head-second.png") center / cover no-repeat;
+  mix-blend-mode: plus-lighter;
+  transition:
+    width 0.45s ease,
+    right 0.45s ease,
+    opacity 0.3s ease;
+}
+
+.card__link:hover .card__btn {
+  opacity: 0.72;
+}
+
+.card__btn.is-expand {
+  right: 0;
+  width: 100%;
+}
+
+.section--contact,
+.section--faq,
+.section--access {
+  display: block;
+  min-height: auto;
+  padding: 8rem 1rem 8rem;
+  overflow: visible;
+}
+
+.section--contact .section__inner,
+.section--faq .section__inner,
+.section--access .section__inner {
+  display: block;
+  width: min(100%, 740px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.section--contact .section__ttl,
+.section--faq .section__ttl,
+.section--access .section__ttl {
+  margin: 0 0 1rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-family: var(--font-base);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  writing-mode: initial;
+}
+
+.section--contact .section__txt,
+.section--faq .section__txt,
+.section--access .section__txt {
+  width: 100%;
+  margin: 0 auto 2rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  white-space: normal;
+  writing-mode: initial;
+}
+
+.section__subttl {
+  margin: 2.5rem 0 1.5rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.section--access {
+  padding-top: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 10rem 0 4rem;
+  background: url("../img/bg-img.jpg") center / cover no-repeat;
+}
+
+.footer__inner {
+  display: grid;
+  justify-items: center;
+}
+
+.footer__logo {
+  font-family: var(--font-jp);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+.footer__list {
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.footer__copy {
+  z-index: 1;
+  margin-top: 10rem;
+  color: var(--color-txt);
+  text-align-last: center;
+}
+
+.footer__small-copy {
+  font-size: 12px;
 }
 
 /* ========================================
@@ -874,7 +1251,8 @@ body::before {
     width: 90%;
   }
 
-  .img-box {
+  .img-box,
+  .card {
     width: 420px;
     height: 300px;
   }
@@ -920,7 +1298,8 @@ body::before {
     display: block;
   }
 
-  .h1-bt-txt {
+  .h1-bt-txt,
+  .hero__txt {
     transform: translate(-40px, 30px);
   }
 }
@@ -930,12 +1309,14 @@ body::before {
     width: 94%;
   }
 
-  .img-box {
+  .img-box,
+  .card {
     width: 280px;
     height: 220px;
   }
 
-  .img-btn {
+  .img-btn,
+  .card__btn {
     min-width: 70px;
     padding: 1rem;
   }
