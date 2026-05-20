@@ -32,6 +32,7 @@ git clone https://github.com/oy-mizuki/yurayura.git
 # -------------------------
 
 cd ~/05\_デザイン・自主制作/web/yurayura
+cd ~/package-lock
 
 # -------------------------
 

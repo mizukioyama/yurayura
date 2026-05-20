@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MacでGitHubを使うための基本コマンドを初心者向けにまとめた早見表ページです。初回設定、clone、add、commit、push、pull、エラー対策まで掲載。" />
+  <title>Mac版 GitHubコマンド早見表</title>
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --main: #111827;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --code-bg: #0f172a;
+      --code-text: #e5e7eb;
+      --warning: #fff7ed;
+      --warning-border: #fed7aa;
+      --radius: 18px;
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Segoe UI", sans-serif;
+      line-height: 1.75;
+      color: var(--text);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 280px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.86);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--main);
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .nav a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+    }
+
+    .nav a:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 72px 20px 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 64px);
+      line-height: 1.08;
+      margin: 0 0 20px;
+      letter-spacing: -0.05em;
+      color: var(--main);
+    }
+
+    .hero-text {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #fff;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--main);
+      color: #fff;
+      border-color: var(--main);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+    }
+
+    .side-menu {
+      position: sticky;
+      top: 86px;
+      align-self: start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .side-menu p {
+      margin: 0 0 10px;
+      font-weight: 800;
+      color: var(--main);
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .side-menu a:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .content {
+      display: grid;
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(20px, 4vw, 32px);
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 4vw, 32px);
+      line-height: 1.25;
+      color: var(--main);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      color: var(--main);
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .note {
+      background: var(--accent-light);
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+
+    .warning {
+      background: var(--warning);
+      border: 1px solid var(--warning-border);
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+
+    .command-box {
+      position: relative;
+      margin: 14px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .command-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      color: var(--code-text);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    .copy-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--main);
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+      margin: 16px 0 0;
+    }
+
+    .checklist li {
+      padding: 12px 14px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .search-area {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .search-area input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0 18px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    .search-area input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-light);
+    }
+
+    .search-area button {
+      min-width: 88px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--main);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .search-result {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hidden-by-search {
+      display: none;
+    }
+
+    .error-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .error-table th,
+    .error-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    .error-table th {
+      background: #f9fafb;
+      color: var(--main);
+      white-space: nowrap;
+    }
+
+    .error-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding: 36px 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .search-area {
+        flex-direction: column;
+      }
+
+      .search-area button {
+        min-height: 46px;
+      }
+
+      .error-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side-menu {
+        position: static;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" class="logo">Mac GitHub Commands</a>
+      <nav class="nav" aria-label="ページ内ナビゲーション">
+        <a href="#setup">初回設定</a>
+        <a href="#basic">基本操作</a>
+        <a href="#static">静的サイト</a>
+        <a href="#npm">npm</a>
+        <a href="#search">検索</a>
+        <a href="#error-list">エラー一覧</a>
+        <a href="#error">エラー対策</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="badge">Mac専用・初心者向け</div>
+      <h1>GitHubコマンド<br />早見表</h1>
+      <p class="hero-text">
+        MacのターミナルでGitHubへ反映するための基本コマンドをまとめたページです。
+        HTML/CSS/JSだけの静的サイトと、npmを使うプロジェクトの違いも確認できます。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#basic">基本操作を見る</a>
+        <a class="btn" href="#error">エラー対策を見る</a>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="side-menu" aria-label="目次">
+        <p>目次</p>
+        <a href="#search">検索</a>
+        <a href="#setup">① 初回設定</a>
+        <a href="#clone">② クローン</a>
+        <a href="#basic">③ Git反映</a>
+        <a href="#static">④ 静的サイトの場合</a>
+        <a href="#npm">⑤ npmを使う場合</a>
+        <a href="#check">⑥ 確認コマンド</a>
+        <a href="#remove">⑦ Git管理解除</a>
+        <a href="#error-list">⑧ エラー一覧</a>
+        <a href="#error">⑨ よくあるエラー</a>
+      </aside>
+
+      <div class="content">
+        <section id="search" class="card">
+          <h2>検索</h2>
+          <p>コマンド名、エラー名、目的を入力すると、該当する項目だけを表示できます。</p>
+
+          <div class="search-area">
+            <input id="commandSearch" type="search" placeholder="例：push / package.json / ENOENT / cd / build" aria-label="ページ内検索" />
+            <button id="clearSearch" type="button">クリア</button>
+          </div>
+
+          <p id="searchResult" class="search-result">検索キーワードを入力してください。</p>
+        </section>
+        <section id="setup" class="card">
+          <h2>① 初回設定</h2>
+          <p>GitHubへアップする前に、最初の1回だけユーザー名とメールアドレスを設定します。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>初回設定</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>git config --global user.name "あなたの名前"
+git config --global user.email "your@email.com"
+
+# 設定確認
+git config --global --list</code></pre>
+          </div>
+
+          <div class="note">
+            すでに設定済みの場合は、毎回実行しなくて大丈夫です。
+          </div>
+        </section>
+
+        <section id="clone" class="card">
+          <h2>② GitHubからクローンする場合</h2>
+          <p>GitHub上にあるリポジトリをMacへコピーする場合に使います。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>クローン</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>git clone https://github.com/ユーザー名/リポジトリ名.git
+cd リポジトリ名</code></pre>
+          </div>
+
+          <div class="warning">
+            すでにローカルフォルダを作成して使っている場合は、cloneは不要です。
+          </div>
+        </section>
+
+        <section id="basic" class="card">
+          <h2>③ ローカル変更をGitHubへ反映</h2>
+          <p>普段いちばん使う基本の流れです。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>基本の反映コマンド</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code># 状態確認
+git status
+
+# 変更を追加
+git add .
+
+# 変更内容を記録
+git commit -m "update"
+
+# GitHubへ反映
+git push origin main</code></pre>
+          </div>
+
+          <div class="note">
+            ブランチ名が main ではなく master の場合は、最後を <strong>git push origin master</strong> に変更します。
+          </div>
+        </section>
+
+        <section id="static" class="card">
+          <h2>④ HTML / CSS / JSだけの静的サイトの場合</h2>
+          <p>以下のような構成なら、基本的にnpmやbuildは不要です。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>静的サイトの例</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>yurayura/
+├── index.html
+├── style.css
+├── script.js
+└── images/</code></pre>
+          </div>
+
+          <p>この場合は、そのままGitへ反映します。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>静的サイトのアップロード</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>git status
+git add .
+git commit -m "update"
+git push origin main</code></pre>
+          </div>
+        </section>
+
+        <section id="npm" class="card">
+          <h2>⑤ npmを使うプロジェクトの場合</h2>
+          <p>React、Vite、Next.jsなどの場合は、package.jsonがある場所でnpmコマンドを実行します。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>npmプロジェクト確認</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code># 現在地確認
+pwd
+
+# 中身確認
+ls -la
+
+# package.jsonがあるか確認
+ls package.json</code></pre>
+          </div>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>npm install / build</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>npm install
+npm run build</code></pre>
+          </div>
+
+          <div class="warning">
+            package.json がない場所で npm install や npm run build を実行すると、ENOENTエラーになります。
+          </div>
+        </section>
+
+        <section id="check" class="card">
+          <h2>⑥ Macでよく使う確認コマンド</h2>
+
+          <div class="grid-2">
+            <div class="mini-card">
+              <strong>現在地を確認</strong>
+              <span>pwd</span>
+            </div>
+            <div class="mini-card">
+              <strong>フォルダ内を確認</strong>
+              <span>ls -la</span>
+            </div>
+            <div class="mini-card">
+              <strong>Finderで開く</strong>
+              <span>open .</span>
+            </div>
+            <div class="mini-card">
+              <strong>VSCodeで開く</strong>
+              <span>code .</span>
+            </div>
+          </div>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>まとめて確認</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>pwd
+ls -la
+git status
+open .</code></pre>
+          </div>
+        </section>
+
+        <section id="remove" class="card">
+          <h2>⑦ Git管理を解除したい場合</h2>
+          <p>MacではWindowsの rmdir /s /q は使いません。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>Mac版 .git 削除</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code># 指定フォルダのGit管理を解除
+rm -rf website/.git
+
+# 現在のフォルダのGit管理を解除
+rm -rf .git</code></pre>
+          </div>
+
+          <div class="warning">
+            rm -rf は強力な削除コマンドです。実行前に必ず pwd と ls -la で場所を確認してください。
+          </div>
+        </section>
+
+        <section id="error-list" class="card">
+          <h2>⑧ エラー一覧</h2>
+          <p>MacでGitHubやnpmを使う時によく出るエラーを、原因と対処法で一覧化しています。</p>
+
+          <table class="error-table">
+            <thead>
+              <tr>
+                <th>エラー</th>
+                <th>主な原因</th>
+                <th>対処法</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag">npm</span><br />ENOENT</td>
+                <td>package.json がない場所で npm コマンドを実行している。</td>
+                <td><code>pwd</code> と <code>ls -la</code> で現在地を確認。package.json がある場所へ移動。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">cd</span><br />no such file or directory</td>
+                <td>フォルダ名が違う。日本語パスや濁点の文字コードがずれている。</td>
+                <td>Finderからフォルダをターミナルへドラッグ＆ドロップする。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">git</span><br />not a git repository</td>
+                <td>.git がないフォルダで git コマンドを実行している。</td>
+                <td><code>ls -la</code> で .git を確認。なければ正しいリポジトリへ移動。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">git</span><br />nothing to commit</td>
+                <td>変更がない、またはすでにcommit済み。</td>
+                <td><code>git status</code> で状態確認。問題なければpushへ進む。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">git</span><br />rejected / non-fast-forward</td>
+                <td>GitHub側にローカルより新しい変更がある。</td>
+                <td><code>git pull origin main</code> で取り込んでから再度push。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">git</span><br />src refspec main does not match any</td>
+                <td>mainブランチがない、またはまだcommitしていない。</td>
+                <td><code>git branch</code> でブランチ名確認。必要なら初回commitを作成。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">auth</span><br />Authentication failed</td>
+                <td>GitHubの認証情報が古い、または権限がない。</td>
+                <td>GitHub Desktop、gh CLI、またはPersonal Access Tokenで再認証。</td>
+              </tr>
+              <tr>
+                <td><span class="tag">Mac</span><br />rmdir: failed to remove '/s'</td>
+                <td>Windows用コマンドをMacで実行している。</td>
+                <td>Macでは <code>rm -rf フォルダ名</code> を使う。</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="error" class="card">
+          <h2>⑧ よくあるエラーと原因</h2>
+
+          <h3>npm error ENOENT</h3>
+          <p>package.json がない場所で npm コマンドを実行しています。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>確認方法</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>pwd
+ls -la
+ls package.json</code></pre>
+          </div>
+
+          <h3>cd: no such file or directory</h3>
+          <p>指定したフォルダが存在しない、または日本語パスの入力がずれている可能性があります。</p>
+
+          <div class="note">
+            Macでは、Finderのフォルダをターミナルへドラッグ＆ドロップすると正確なパスを入力できます。
+          </div>
+
+          <h3>git push できない</h3>
+          <p>リモート接続、ブランチ名、ログイン認証のどれかが原因になっていることが多いです。</p>
+
+          <div class="command-box">
+            <div class="command-title">
+              <span>確認コマンド</span>
+              <button class="copy-btn" type="button">コピー</button>
+            </div>
+            <pre><code>git remote -v
+git branch
+git status</code></pre>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>作業前チェックリスト</h2>
+          <ul class="checklist">
+            <li>今いる場所を <strong>pwd</strong> で確認した</li>
+            <li>フォルダ内を <strong>ls -la</strong> で確認した</li>
+            <li>npmを使う場合は <strong>package.json</strong> がある場所で実行した</li>
+            <li>HTML/CSS/JSだけなら <strong>npm run build は不要</strong></li>
+            <li>GitHubへ反映前に <strong>git status</strong> を確認した</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Mac GitHub Commands. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const searchInput = document.getElementById('commandSearch');
+    const clearSearchButton = document.getElementById('clearSearch');
+    const searchResult = document.getElementById('searchResult');
+    const searchableSections = document.querySelectorAll('.content > .card:not(#search)');
+
+    function filterSections() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      let matchCount = 0;
+
+      searchableSections.forEach((section) => {
+        const text = section.innerText.toLowerCase();
+        const isMatched = keyword === '' || text.includes(keyword);
+        section.classList.toggle('hidden-by-search', !isMatched);
+        if (isMatched && keyword !== '') matchCount += 1;
+      });
+
+      if (keyword === '') {
+        searchResult.textContent = '検索キーワードを入力してください。';
+        return;
+      }
+
+      searchResult.textContent = matchCount === 0
+        ? '該当する項目が見つかりませんでした。別のキーワードで検索してください。'
+        : `${matchCount}件の項目が見つかりました。`;
+    }
+
+    searchInput.addEventListener('input', filterSections);
+
+    clearSearchButton.addEventListener('click', () => {
+      searchInput.value = '';
+      filterSections();
+      searchInput.focus();
+    });
+
+    const copyButtons = document.querySelectorAll('.copy-btn');
+
+    copyButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const commandBox = button.closest('.command-box');
+        const code = commandBox.querySelector('code').innerText;
+
+        try {
+          await navigator.clipboard.writeText(code);
+          const defaultText = button.textContent;
+          button.textContent = 'コピー済み';
+          setTimeout(() => {
+            button.textContent = defaultText;
+          }, 1400);
+        } catch (error) {
+          button.textContent = '失敗';
+          console.error('コピーに失敗しました:', error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
