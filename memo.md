@@ -32,7 +32,6 @@ git clone https://github.com/oy-mizuki/yurayura.git
 # -------------------------
 
 cd ~/05\_デザイン・自主制作/web/yurayura
-cd ~/package-lock
 
 # -------------------------
 
@@ -57,7 +56,7 @@ npm run build
 # -------------------------
 
 git add .
-git commit -m "traget"
+git commit -m "index"
 git push origin main
 
 # -------------------------
