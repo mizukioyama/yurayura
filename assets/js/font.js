@@ -1,4 +1,4 @@
-  (function(d) {
+(function(d) {
     var config = {
       kitId: 'ayw7iuy',
       scriptTimeout: 3000,

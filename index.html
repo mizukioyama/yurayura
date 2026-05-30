@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no">
-   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
    <title>ゆらゆら | 体感するArt展</title>
    <meta name="description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
    <link rel="canonical" href="https://example.com/">
@@ -20,16 +20,21 @@
    <link rel="icon" href="./assets/img/favicon.ico">
    <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
 
+   <!-- font -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
+
 
    <link rel="stylesheet" href="./assets/css/reset.css">
+   <link rel="stylesheet" href="./assets/css/menu-style.css">
    <link rel="stylesheet" href="./assets/css/main.css">
    <link rel="stylesheet" href="./assets/css/fog-hole.css">
    <link rel="stylesheet" href="./assets/css/fv-animation.css">
 
    <script src="./assets/js/font.js"></script>
+   <script src="./assets/js/allmenu.js" defer></script>
    <script src="./assets/js/slide.js" defer></script>
    <script src="./assets/js/faq.js" defer></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
@@ -39,8 +44,6 @@
 </head>
 
 <body>
-   <a class="skip-link" href="#main">本文へ移動</a>
-
    <div id="fog-scene">
       <div id="fog-blur-layer"></div>
       <div id="fog-hole">
@@ -51,25 +54,8 @@
    <div id="cursor"></div>
    <div id="stalker"></div>
 
-   <header class="header">
-      <div class="header__inner inner">
-         <div class="header__txt">
-            <p class="header__logo">
-               <a class="header__logo-link" href="./top.html" aria-label="トップページへ">ゆらゆら</a>
-            </p>
-            <p class="header__lead">感覚を解放するArt展</p>
-            <p class="header__date">展示期間：10/06(火)～10/12(月)</p>
-         </div>
-
-         <nav class="header__nav" aria-label="グローバルナビゲーション">
-            <ul class="header__list">
-               <li class="header__item"><a class="header__link" href="#concept">展示<span class="header__border"></span><span class="header__small">Exhibition</span></a></li>
-               <li class="header__item"><a class="header__link" href="#artists">作品<span class="header__border"></span><span class="header__small">Artworks</span></a></li>
-               <li class="header__item"><a class="header__link" href="#contact">問合<span class="header__border"></span><span class="header__small">Contact</span></a></li>
-            </ul>
-         </nav>
-      </div>
-   </header>
+ <!-- Header -->
+   <div id="js-header"></div>
 
    <main class="main" id="main">
       <div class="vanta-wrap">
@@ -107,8 +93,8 @@
                初めての展示企画。
                <br>
                この展示は、
-               作品を「理解する」のではなく、
-               「体感する」ことを大切にしています。
+               作品を<b>「理解する」</b>のではなく、
+               <b>「体感する」</b>ことを大切にしています。
                <br>
                作品の前でふと立ち止まり、
                呼吸が少し変わる。
@@ -143,7 +129,9 @@
                感じていただけたら嬉しいです。
             </p>
 
+<div class="artists-bg-igm">
             <img class="section__bg-img" src="./assets/img/yurayura-head-second.png" alt="">
+</div>
 
             <div class="cards member-slider" id="memberSlider">
                <div class="cards__track member-track" id="memberTrack">
@@ -370,44 +358,10 @@
       </section>
    </main>
 
-   <footer class="footer">
-      <div class="footer__inner inner">
-         <div class="footer__txt">
-            <p class="footer__logo">ゆらゆら</p>
-            <p class="footer__lead">感覚を解放するArt展</p>
-            <p class="footer__date">展示期間：10/06(火)～10/12(月)</p>
-         </div>
+   <!-- Footer -->
+   <div id="js-footer"></div>
 
-         <nav class="footer__nav" aria-label="フッターナビゲーション">
-            <ul class="footer__list">
-               <li class="footer__item"><a class="footer__link" href="#concept">展示<span class="footer__border"></span><span class="footer__small">Exhibition</span></a></li>
-               <li class="footer__item"><a class="footer__link" href="#artists">作品<span class="footer__border"></span><span class="footer__small">Artworks</span></a></li>
-               <li class="footer__item"><a class="footer__link" href="#contact">問合<span class="footer__border"></span><span class="footer__small">Contact</span></a></li>
-            </ul>
-         </nav>
 
-         <p class="footer__copy"><small class="footer__small-copy">&copy; <span id="js-year"></span> ゆらゆら - 体感するArt展</small></p>
-      </div>
-   </footer>
-
-   <script>
-      const year = document.getElementById("js-year");
-      if (year) year.textContent = new Date().getFullYear();
-
-      const cursor = document.getElementById("cursor");
-      const stalker = document.getElementById("stalker");
-      if (cursor && stalker) {
-         document.addEventListener("mousemove", (event) => {
-            cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px) translate(-50%, -50%)`;
-            stalker.style.transform = `translate(${event.clientX}px, ${event.clientY}px) translate(-50%, -50%)`;
-         });
-
-         document.querySelectorAll("a, button, .card__btn").forEach((target) => {
-            target.addEventListener("mouseenter", () => stalker.classList.add("is-active"));
-            target.addEventListener("mouseleave", () => stalker.classList.remove("is-active"));
-         });
-      }
-   </script>
 </body>
 
 </html>

@@ -100,3 +100,5 @@ rm -rf website/.git
 # -------------------------
 
 ls -la website
+
+bg img 調整中

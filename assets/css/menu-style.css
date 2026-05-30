@@ -1,0 +1,113 @@
+.is-current {
+   opacity: 0.6;
+   pointer-events: none;
+}
+
+body.is-loaded {
+   opacity: 1;
+}
+
+/* ====== menu */
+
+/*.inner {
+  width: 100%;
+}*/
+
+.header {
+  position: fixed;
+  top: 3.5rem;
+  left: 6rem;
+  z-index: 100;
+}
+
+.header__inner,
+.footer__inner {
+  display: grid;
+  align-items: center;
+  justify-content: left;
+  gap: 50px;
+}
+
+.header__logo-link,
+.footer__logo-link,
+.header__logo {
+  font-family: var(--font-jp);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+.header__lead,
+.footer__lead {
+  font-family: var(--font-base);
+  font-size: 1rem;
+}
+
+.header__date,
+.footer__date {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.header__list,
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 40px;
+  width: fit-content;
+  font-size: 2rem;
+  writing-mode: vertical-rl;
+}
+
+.header__item,
+.footer__item {
+  position: relative;
+}
+
+.header__link,
+.footer__link {
+  display: inline-block;
+}
+
+.menu__small {
+  margin-top: 80px;
+  font-size: 14px;
+}
+
+.menu__border {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 1px;
+  height: 30px;
+  background: var(--color-txt);
+  content: "";
+}
+
+
+/* ========================================
+  footer
+======================================== */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem 0 4rem;
+}
+
+.footer__list {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bottom-txt {
+  font-size: 1rem;
+  color: var(--color-txt);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+  z-index: 1;
+  margin-top: 10rem;
+}
