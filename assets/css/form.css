@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/* =========================
+   Form
+========================= */
+
+.contact-form {
+   width: min(100%, 60rem);
+   margin: 3rem auto 0;
+}
+
+/* =========================
+   Row
+========================= */
+
+.form-row {
+   position: relative;
+   margin-top: 2.4rem;
+}
+
+/* =========================
+   Input
+========================= */
+
+.form-row input,
+.form-row textarea {
+   width: 100%;
+   border: none;
+   backdrop-filter: blur(10px);
+   transition:
+      border-color .3s ease,
+      box-shadow .3s ease,
+      background .3s ease;
+}
+
+/* textarea */
+
+.form-row textarea {
+   resize: vertical;
+}
+
+/* =========================
+   Focus
+========================= */
+
+.form-row input:focus,
+.form-row textarea:focus {
+   outline: none;
+   box-shadow:
+      inset 0 1px 4px rgba(0, 0, 0, 1),
+      0 0 0 1px var(--accent);
+}
+
+/* =========================
+   Floating Label
+========================= */
+
+.form-label {
+   position: absolute;
+
+   top: 50%;
+   left: 14px;
+
+   transform: translateY(-50%);
+
+   pointer-events: none;
+
+   transition:
+      transform .3s ease,
+      font-size .3s ease,
+      color .3s ease,
+      opacity .3s ease;
+}
+
+/* textarea */
+
+.form-label--textarea {
+   top: .4rem;
+   transform: translateY(0);
+}
+
+/* ラベル上昇 */
+
+.form-row input:focus + .form-label,
+.form-row input:not(:placeholder-shown) + .form-label,
+.form-row textarea:focus + .form-label,
+.form-row textarea:not(:placeholder-shown) + .form-label {
+   top: .8rem;
+   transform: translateY(-26px);
+   opacity: .75;
+}
+
+/* =========================
+   Checkbox
+========================= */
+
+.check-item {
+   display: flex;
+   align-items: center;
+   gap: .8rem;
+   cursor: pointer;
+}
+
+.check-item input {
+   display: none;
+}
+
+/* =========================
+   shadow
+========================= */
+.form-row input,
+.form-row textarea,
+.fake-check {
+      box-shadow:
+      inset 0 1px 4px rgba(0, 0, 0, 1);
+}

@@ -14,76 +14,6 @@
 }
 
 /* ========================================
-   2. リセット
-======================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li,
-a,
-button,
-div,
-span,
-figure,
-blockquote,
-dl,
-dd,
-dt {
-  margin: 0;
-  padding: 0;
-  align-content: center;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img,
-picture,
-video,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-button,
-input,
-select,
-textarea {
-  border: none;
-  outline: none;
-  background: none;
-  color: inherit;
-  font: inherit;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* ========================================
    3. ベース
    全体に適用する設定
 ======================================== */
@@ -111,7 +41,7 @@ section {
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  padding: 60px 20px;
+  padding: 8rem 0;
   overflow: hidden;
   background: url("../img/bg-img.jpg") center / cover no-repeat;
 }
@@ -124,21 +54,9 @@ h2.ttl {
   letter-spacing: 0.5rem;
 }
 
-#artists .btn {
-  font-size: 1.8rem;
-  color: var(--color-bg);
-  border-radius: 50px;
-  background-color: var(--color-shadow-green);
-  z-index: 1;
-  padding: 8px 18px;
-  font-size: 1.4rem;
-  text-align: center;
-  font-family: var(--font-btn);
-}
-
 .h2-bt-txt {
   z-index: 1;
-  font-size: 16px;
+  font-size: 1.4rem;
   line-height: 2;
   letter-spacing: 0;
   writing-mode: vertical-rl;
@@ -146,12 +64,12 @@ h2.ttl {
 }
 
 .ttl-small {
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-.ttl-top-txt {
+.ttl-artists-txt {
   display: block;
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0.1rem;
 }
 
@@ -160,9 +78,18 @@ h2.ttl {
   artist-img
 ======================================== */
 .artists-bg-igm {
-  mix-blend-mode: difference;
+    position: absolute;
+  z-index: 0;
+  background: url("../img/bg-img.jpg");
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.section__bg-img {
+  mix-blend-mode: lighten;
+
+}
 
 /* ========================================
    4. スクロールバー
@@ -237,7 +164,7 @@ h2.ttl {
   height: 100%;
   background: var(--color-txt);
   content: "";
-  animation: scrollGuideBar 1.8s ease-in-out infinite;
+  animation: scrollGuideBar 5.8s ease-in-out infinite;
 }
 
 @keyframes scrollGuideBar {
@@ -257,25 +184,20 @@ h2.ttl {
 /* ========================================
    7. FV
 ======================================== */
-h1.ttl,
-.consept h2.ttl {
-  font-family: var(--font-jp);
-  writing-mode: vertical-rl;
-}
 
 .fv {
   display: grid;
   place-items: center;
 }
 
-.fv .ttl {
+.fv__ttl {
   grid-area: 1 / 1;
   z-index: 1;
   font-size: clamp(80px, 12vw, 140px);
   letter-spacing: 2.4rem;
 }
 
-.h1-bt-txt {
+.fv-bt-txt {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -299,15 +221,6 @@ h1.ttl,
 /* ========================================
    9. Introduction
 ======================================== */
-.introduction img {
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen;
-}
 
 .introduction .ttl {
   writing-mode: initial;
@@ -395,16 +308,41 @@ h1.ttl,
   background: url("../img/202501.jpg") center / cover no-repeat;
 }
 
+/*================ btn ================*/
+
+.btn,
+.send-btn,
+.faq-question {
+  background: url("../img/btn-bg-img.jpg");
+  background-size: cover;
+}
+
+#artists .btn {
+  position: relative;
+  color: var(--color-bg);
+  z-index: 1;
+  text-align: center;
+  font-family: var(--font-btn);
+  width: 100%;
+}
+
+#artists .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-shadow-green);
+}
+
+
 .works-link {
   position: relative;
   display: block;
-  width: 100%;
-  height: 100%;
-  color: inherit;
   text-decoration: none;
+  font-size: 1.2rem;
+    padding: 0.4rem 0;
 }
 
-.img-btn {
+/* .img-btn {
   position: absolute;
   top: 0;
   right: 20px;
@@ -418,15 +356,51 @@ h1.ttl,
   height: 100%;
   padding: 1.4rem;
   font-family: var(--font-base);
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: bold;
-  background: url("../img/yurayura-head-second.png") center / cover no-repeat;
+  background: url("../img/artists-bg.png") center / cover no-repeat;
+  mix-blend-mode: plus-lighter;
+  transition:
+    width 0.45s ease,
+    right 0.45s ease,
+    opacity 0.3s ease;
+} */
+
+.card__btn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100px;
+  height: 100%;
+  min-height: 280px;
+  padding: 1.4rem;
+  font-family: var(--font-base);
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: var(--color-bg);
   mix-blend-mode: plus-lighter;
   transition:
     width 0.45s ease,
     right 0.45s ease,
     opacity 0.3s ease;
 }
+
+.card__link:hover .card__btn {
+  opacity: 0.72;
+}
+
+.card__btn.is-expand {
+  right: 0;
+  width: 100%;
+}
+
+
 
 .works-link:hover .img-btn {
   opacity: 0.72;
@@ -436,6 +410,25 @@ h1.ttl,
   right: 0;
   width: 100%;
 }
+
+.send-btn {
+  min-width: 310px;
+  padding: 4px 0 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f4f2ea;
+  font-size: 1.2rem;
+  font-family: var(--font-btn);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.send-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+}
+
 
 /* ========================================
    10. Contact
@@ -486,10 +479,10 @@ h1.ttl,
 
 .contact-sub-ttl,
 .faq-ttl {
-  margin: 2.5rem 0 1.5rem;
   color: var(--color-txt);
   text-align: center;
   font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.06em;
 }
@@ -502,9 +495,6 @@ h1.ttl,
 }
 
 /* --- フォーム --- */
-.contact-form {
-  margin-top: 1rem;
-}
 
 .contact-check-grid {
   display: grid;
@@ -537,9 +527,6 @@ h1.ttl,
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 6px;
   background: var(--color-bg);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.22);
 }
 
 .check-item input:checked+.fake-check::after {
@@ -555,26 +542,30 @@ h1.ttl,
 }
 
 .form-row {
-  margin-bottom: 1.35rem;
+  margin-bottom: 14px;
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
-  padding: 1.55rem 1.8rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 8px 14px;
+  /* border: 1px solid rgba(0, 0, 0, 0.06); */
+  border-bottom: 3px solid;
+  border-image: url("../img/btn-bg-img.jpg") 100;
   color: var(--color-txt);
   font-size: 1rem;
   outline: none;
-  background:
+  /* background:
     linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
     radial-gradient(circle at 20% 20%, rgba(120, 120, 120, 0.04), transparent 30%),
     radial-gradient(circle at 80% 70%, rgba(120, 120, 120, 0.05), transparent 26%),
-    #ecece5;
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.12),
-    0 5px 0 var(--color-shadow-green);
+    #ecece5; */
+    background:
+    linear-gradient(rgb(255 255 255 / 22%), rgb(255 255 255 / 34%)),
+    radial-gradient(circle at 20% 20%, rgb(120 120 120 / 10%), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgb(120 120 120 / 18%), transparent 26%),
+    #ecece540;
 }
 
 .contact-form input[type="text"]::placeholder,
@@ -584,7 +575,7 @@ h1.ttl,
 }
 
 .contact-form textarea {
-  min-height: 180px;
+  min-height: 220px;
   resize: vertical;
 }
 
@@ -593,49 +584,31 @@ h1.ttl,
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  margin-top: 0.8rem;
 }
 
 .consent-item {
   flex-wrap: wrap;
 }
 
-.send-btn {
-  min-width: 310px;
-  padding: 1.2rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #f4f2ea;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.08), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06), transparent 25%),
-    linear-gradient(135deg, #6c7131 0%, #55591f 45%, #6b6e2d 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.send-btn:hover {
-  opacity: 0.95;
-  transform: translateY(-2px);
-}
-
 /* ========================================
    11. FAQ
 ======================================== */
-.faq-box {
+/* .faq-box {
   margin-top: 4rem;
-}
+} */
 
 .faq-list {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  overflow-y: scroll;
+  height: 380px;
+  align-content: flex-start;
 }
 
 .faq-list-item {
+  height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: url("../img/main-bgimg.jpg") center / cover;
+  background: url("../img/bg-img.jpg") center / cover;
 }
 
 .faq-question {
@@ -646,19 +619,20 @@ h1.ttl,
   width: 100%;
   padding: 1rem 1.5rem;
   color: #f6f4ee;
+  color: var(--color-bg);
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-family: var(--font-jp);
   letter-spacing: 0.05em;
   cursor: pointer;
-  background: var(--color-txt);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .faq-icon {
   flex-shrink: 0;
-  width: 14px;
-  height: 14px;
-  margin-right: 0.2rem;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
   border-right: 2px solid var(--color-bg);
   border-bottom: 2px solid var(--color-bg);
   transform: rotate(45deg);
@@ -695,8 +669,15 @@ h1.ttl,
 /* ========================================
    12. Access
 ======================================== */
-.access {
-  padding-top: 1rem;
+
+.acs-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section--access .section__txt {
+text-align: left;
 }
 
 .map-box {
@@ -754,26 +735,26 @@ h1.ttl,
 
 
 
-.hero {
+.fv {
   display: grid;
   place-items: center;
 }
 
-.hero__inner {
+.fv__inner {
   display: grid;
   grid-area: 1 / 1;
   place-items: center;
   height: 100%;
 }
 
-.hero__ttl,
-.section--concept .section__ttl {
+.fv__ttl,
+.section--concept .h2_ttl {
   z-index: 1;
-  font-family: var(--font-jp);
   writing-mode: vertical-rl;
 }
 
-.hero__ttl {
+.fv__ttl {
+  font-family: var(--font-jp);
   grid-area: 1 / 1;
   font-size: clamp(80px, 12vw, 140px);
   letter-spacing: 2.4rem;
@@ -781,7 +762,8 @@ h1.ttl,
   mix-blend-mode: color-burn;
 }
 
-.hero__txt {
+.fv__txt {
+  font-family: var(--font-jp);
   position: absolute;
   top: 40%;
   left: 50%;
@@ -802,51 +784,37 @@ h1.ttl,
   height: 100%;
 }
 
-.section__ttl {
+.h2_ttl {
   z-index: 1;
   margin-bottom: 30px;
   text-align: center;
-  font-family: var(--font-base);
+  font-family: var(--font-jp);
   letter-spacing: 0.5rem;
 }
 
-.section__txt {
-  z-index: 1;
-  font-size: 16px;
-  line-height: 2;
-  letter-spacing: 0;
-  writing-mode: vertical-rl;
-  white-space: pre-line;
+.h2_ttl-small {
+  font-size: 1rem;
+  font-family: var(--font-jp);
 }
 
-.section__ttl-small {
-  font-size: 14px;
-}
-
-.section__ttl-top {
+.h2_ttl-artists {
+  font-size: 1rem;
   display: block;
-  font-size: 14px;
   letter-spacing: 0.1rem;
 }
 
-.section--concept .section__ttl {
-  font-size: clamp(24px, 5vw, 32px);
+.section--concept .h2_ttl {
+  font-size: 1.8rem;
   letter-spacing: 0.8rem;
 }
 
-.section--artists .section__ttl {
+.section--artists .h2_ttl {
   writing-mode: initial;
 }
 
-.section__bg-img {
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen;
-}
+
+/*================ card ================*/
+
 
 .card {
   position: relative;
@@ -873,55 +841,10 @@ h1.ttl,
   background-image: url("../img/202501.jpg");
 }
 
-.card__link {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
 
-.card__btn {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: auto;
-  min-width: 90px;
-  height: 100%;
-  padding: 1.4rem;
-  font-family: var(--font-base);
-  font-size: 16px;
-  font-weight: bold;
-  background: url("../img/yurayura-head-second.png") center / cover no-repeat;
-  mix-blend-mode: plus-lighter;
-  transition:
-    width 0.45s ease,
-    right 0.45s ease,
-    opacity 0.3s ease;
-}
-
-.card__link:hover .card__btn {
-  opacity: 0.72;
-}
-
-.card__btn.is-expand {
-  right: 0;
-  width: 100%;
-}
-
-.section--contact,
-.section--faq,
-.section--access {
-  display: block;
-  min-height: auto;
-  padding: 8rem 1rem 8rem;
-  overflow: visible;
+.section--faq {
+min-height: auto;
+height: fit-content;
 }
 
 .section--contact .section__inner,
@@ -933,46 +856,58 @@ h1.ttl,
   margin: 0 auto;
 }
 
-.section--contact .section__ttl,
-.section--faq .section__ttl,
-.section--access .section__ttl {
+.section--contact .h2_ttl,
+.section--faq .h2_ttl,
+.section--access .h2_ttl {
   margin: 0 0 1rem;
   color: var(--color-txt);
   text-align: center;
-  font-family: var(--font-base);
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.08em;
   writing-mode: initial;
 }
 
+.section__txt {
+  z-index: 1;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.section--concept .section__txt,
+.section--artists .section__txt {
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+}
+
+.section--artists .section__txt {
+  height: 220px;
+  padding-bottom: 25px;
+}
+
+.section--access .section__txt {
+  width: 100%;
+}
+
 .section--contact .section__txt,
 .section--faq .section__txt,
 .section--access .section__txt {
-  width: 100%;
+  width: fit-content;
   margin: 0 auto 2rem;
-  color: var(--color-txt);
-  text-align: center;
-  font-size: 1rem;
-  line-height: 2;
   letter-spacing: 0.08em;
   white-space: normal;
   writing-mode: initial;
 }
 
-.section__subttl {
-  margin: 2.5rem 0 1.5rem;
+/* .section__subttl {
+  margin-bottom: 1.5rem;
   color: var(--color-txt);
   text-align: center;
   font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.06em;
-}
-
-.section--access {
-  padding-top: 1rem;
-}
+} */
 
 
 /* ========================================
@@ -1080,6 +1015,23 @@ body::before {
   }
 }
 
+/* 初期状態 */
+.h1_fade {
+   opacity: 0;
+   transform: translateY(0.1rem);
+
+   transition:
+      opacity 3.4s ease,
+      transform 3.2s ease;
+}
+
+/* 表示状態 */
+.h1_fade.is-show {
+   opacity: 0.35;
+   transform: translateY(0);
+}
+
+
 /* ========================================
    15. レスポンシブ
 ======================================== */
@@ -1135,8 +1087,8 @@ body::before {
     display: block;
   }
 
-  .h1-bt-txt,
-  .hero__txt {
+  .fv-bt-txt,
+  .fv__txt {
     transform: translate(-40px, 30px);
   }
 }

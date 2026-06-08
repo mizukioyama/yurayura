@@ -75,3 +75,34 @@ document.addEventListener("DOMContentLoaded", function () {
     track.style.transform = `translate3d(-${position}px, 0, 0)`;
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+   const targets = document.querySelectorAll('.h1_fade');
+
+   const observer = new IntersectionObserver(
+      (entries) => {
+
+         entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+               entry.target.classList.add('is-show');
+
+               observer.unobserve(entry.target);
+            }
+
+         });
+
+      },
+      {
+         threshold: 0
+      }
+   );
+
+   targets.forEach((target) => {
+      observer.observe(target);
+   });
+
+});

@@ -5,7 +5,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no">
-   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
+   <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
    <title>ゆらゆら | 体感するArt展</title>
    <meta name="description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
    <link rel="canonical" href="https://example.com/">
@@ -24,12 +25,13 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
 
 
    <link rel="stylesheet" href="./assets/css/reset.css">
    <link rel="stylesheet" href="./assets/css/menu-style.css">
    <link rel="stylesheet" href="./assets/css/main.css">
+   <link rel="stylesheet" href="./assets/css/form.css">
    <link rel="stylesheet" href="./assets/css/fog-hole.css">
    <link rel="stylesheet" href="./assets/css/fv-animation.css">
 
@@ -41,6 +43,7 @@
    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
    <script src="./assets/js/fv-animation.js" defer></script>
    <script src="./assets/js/fog-hole.js" defer></script>
+
 </head>
 
 <body>
@@ -54,7 +57,7 @@
    <div id="cursor"></div>
    <div id="stalker"></div>
 
- <!-- Header -->
+   <!-- Header -->
    <div id="js-header"></div>
 
    <main class="main" id="main">
@@ -65,10 +68,10 @@
          <div class="smoke-twist smoke-twist--03" aria-hidden="true"></div>
       </div>
 
-      <section class="hero">
-         <div class="hero__inner inner">
-            <h1 class="hero__ttl">ゆらゆら</h1>
-            <p class="hero__txt">
+      <section class="fv">
+         <div class="fv__inner inner">
+            <h1 class="fv__ttl h1_fade">ゆらゆら</h1>
+            <p class="fv__txt">
                ゆらぎの間で
                <br>
                理解するのではなく、
@@ -85,7 +88,7 @@
 
       <section class="section section--concept" id="concept">
          <div class="section__inner inner">
-            <h2 class="section__ttl">～ ゆらぎの間で ～</h2>
+            <h2 class="h2_ttl">～ ゆらぎの間で ～</h2>
             <p class="section__txt">
                「ゆらゆら」は、
                主催者の考えや想いを大切に、
@@ -112,26 +115,27 @@
 
       <section class="section section--artists" id="artists">
          <div class="section__inner inner">
-            <h2 class="section__ttl">
-               <span class="section__ttl-top">出展者の紹介</span>
-               作家<span class="section__ttl-small">と</span>作品
+            <h2 class="h2_ttl">
+               作家
+               <span class="h2_ttl-small">と</span>
+               作品
+               <span class="h2_ttl-artists">
+                  出展者紹介
+               </span>
             </h2>
             <p class="section__txt">
-               作品と作家については、
+               作品と作家については、それぞれのページでご覧いただけます。
                <br>
-               それぞれのページでご覧いただけます。
-               ひとつひとつの表現や、
+               ひとつひとつの表現、
                <br>
-               その奥にある感覚にふれながら、
+               その奥にある感覚にふれ、
                <br>
-               「ゆらゆら」の世界を
-               <br>
-               感じていただけたら嬉しいです。
+               「ゆらゆら」の世界を感じていただけたら嬉しいです。
             </p>
 
-<div class="artists-bg-igm">
-            <img class="section__bg-img" src="./assets/img/yurayura-head-second.png" alt="">
-</div>
+            <div class="artists-bg-igm">
+               <img class="section__bg-img" src="./assets/img/artists-bg.png" alt="">
+            </div>
 
             <div class="cards member-slider" id="memberSlider">
                <div class="cards__track member-track" id="memberTrack">
@@ -169,15 +173,14 @@
 
       <section class="section section--contact" id="contact">
          <div class="section__inner inner">
-            <h2 class="section__ttl">お問い合せ Form</h2>
+            <h2 class="h2_ttl">お問い合せ</h2>
             <p class="section__txt">
                作品や展示会については、よくある質問に記載していますので、<br>
                記載のないことがありましたら下記Fromからお問い合わせください。
             </p>
 
-            <h3 class="section__subttl contact-sub-ttl">お問い合わせ内容</h3>
-
             <form action="" class="contact-form">
+               <h3 class="section__subttl contact-sub-ttl">お問い合わせForm</h3>
                <div class="contact-check-grid">
                   <label class="check-item">
                      <input type="checkbox" name="type" value="展示について">
@@ -205,19 +208,35 @@
                </div>
 
                <div class="form-row">
-                  <input type="text" id="subject" name="subject" placeholder="件名（その他の問合せの方は件名を記入してください）" required>
+                  <input type="text" id="subject" name="subject" placeholder=" " required>
+
+                  <label for="subject" class="form-label">
+                     件名
+                  </label>
                </div>
 
                <div class="form-row">
-                  <input type="text" id="name" name="name" placeholder="お名前（フルネーム、ふりがなも記入してください）" required>
+                  <input type="text" id="name" name="name" placeholder=" " required>
+
+                  <label for="name" class="form-label">
+                     お名前
+                  </label>
                </div>
 
                <div class="form-row">
-                  <input type="email" id="email" name="email" placeholder="ご連絡先（折り返し先の電話番号もしくはメールアドレスを記入ください）" required>
+                  <input type="email" id="email" name="email" placeholder=" " required>
+
+                  <label for="email" class="form-label">
+                     メールアドレス・電話番号
+                  </label>
                </div>
 
                <div class="form-row">
-                  <textarea id="message" name="message" placeholder="本文（お問い合せ内容、質問したいことを記入してください）" required></textarea>
+                  <textarea id="message" name="message" placeholder=" " required></textarea>
+
+                  <label for="message" class="form-label form-label--textarea">
+                     お問い合わせ内容
+                  </label>
                </div>
 
                <div class="form-bottom">
@@ -317,19 +336,24 @@
 
       <section class="section section--access">
          <div class="section__inner inner">
-            <h2 class="section__ttl">会場情報</h2>
-            <p class="section__txt">
-               ◎JR京浜東北根岸線<br>
-               「石川町駅」元町口出口から徒歩約1分
-            </p>
+            <h2 class="h2_ttl">会場情報</h2>
 
-            <p class="section__txt">
-               ◎みなとみらい線<br>
-               「元町・中華街駅」5番出口・元町口から徒歩約13分
-            </p>
+            <div class="acs-box">
+               <p class="section__txt">
+                  ◎JR京浜東北根岸線<br>
+                  「石川町駅」元町口出口から徒歩約1分
+               </p>
+
+               <p class="section__txt">
+                  ◎みなとみらい線<br>
+                  「元町・中華街駅」5番出口・元町口から徒歩約13分
+               </p>
+            </div>
 
             <div class="map-box">
-               <iframe src="https://www.google.com/maps?q=Gallery%20Charlotte.Usagi&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" width="60%" height="350" style="border: 0;"></iframe>
+               <iframe src="https://www.google.com/maps?q=Gallery%20Charlotte.Usagi&output=embed" loading="lazy"
+                  allowfullscreen referrerpolicy="no-referrer-when-downgrade" width="60%" height="350"
+                  style="border: 0;"></iframe>
             </div>
 
             <ul class="access-box">
