@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="format-detection" content="telephone=no">
+   <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
+   <title>ゆらゆら | 体感するArt展</title>
+   <meta name="description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
+   <link rel="canonical" href="https://example.com/">
+   <meta property="og:type" content="website">
+   <meta property="og:site_name" content="ゆらゆら">
+   <meta property="og:title" content="ゆらゆら | 体感するArt展">
+   <meta property="og:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
+   <meta property="og:url" content="https://example.com/">
+   <meta property="og:image" content="https://example.com/assets/img/ogp.jpg">
+   <meta name="twitter:card" content="summary_large_image">
+
+   <link rel="icon" href="./assets/img/favicon.ico">
+   <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+
+   <!-- font -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
+
+
+   <link rel="stylesheet" href="./assets/css/reset.css">
+   <link rel="stylesheet" href="./assets/css/main.css">
+   <link rel="stylesheet" href="./assets/css/works-list.css">
+   <link rel="stylesheet" href="./assets/css/form.css">
+   <link rel="stylesheet" href="./assets/css/fog-hole.css">
+   <link rel="stylesheet" href="./assets/css/fv-animation.css">
+
+   <script src="./assets/js/font.js"></script>
+   <script src="./assets/js/slide.js" defer></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
+   <script src="./assets/js/fv-animation.js" defer></script>
+   <script src="./assets/js/fog-hole.js" defer></script>
+
+</head>
+<body>
+   <header class="header">
+      <div class="header__inner inner">
+         <p class="header__logo"><a class="header__logo-link" href="./" aria-label="トップページへ">出展者作品集</a></p>
+         <nav class="header__nav" aria-label="グローバルナビゲーション">
+            <ul class="header__list">
+               <li class="header__item"><a class="header__link" href="./">Home</a></li>
+               <li class="header__item"><a class="header__link" href="./about.html">About</a></li>
+               <li class="header__item"><a class="header__link" href="./works.html">Works</a></li>
+               <li class="header__item"><a class="header__link" href="./contact.html">Contact</a></li>
+            </ul>
+         </nav>
+         <button class="header__btn js-menu" type="button" aria-label="メニューを開く" aria-controls="drawer" aria-expanded="false">
+            <span class="header__btn-line"></span>
+            <span class="header__btn-line"></span>
+            <span class="header__btn-line"></span>
+         </button>
+      </div>
+
+   <div class="drawer js-drawer" id="drawer" aria-hidden="true">
+      <nav class="drawer__nav" aria-label="スマートフォンナビゲーション">
+         <ul class="drawer__list">
+            <li class="drawer__item"><a class="drawer__link" href="./">Home</a></li>
+            <li class="drawer__item"><a class="drawer__link" href="./about.html">About</a></li>
+            <li class="drawer__item"><a class="drawer__link" href="./works.html">Works</a></li>
+            <li class="drawer__item"><a class="drawer__link" href="./contact.html">Contact</a></li>
+         </ul>
+      </nav>
+   </div>
+</header>
+
+   <main class="main" id="main">
+      <section class="fv">
+         <div class="fv__inner inner">
+            <p class="fv__lead">ゆらゆら｜体感するArt展</p>
+            <h1 class="fv__ttl">出展者<span class="fv-small-txt">と</span>作品</h1>
+         </div>
+      </section>
+
+      <section class="section">
+         <div class="section__inner inner">
+            <h2 class="section__ttl">セクション見出し</h2>
+            <p class="section__txt">セクション本文</p>
+            <div class="cards">
+               <article class="card">
+                  <figure class="card__img"><img src="./assets/img/sample.jpg" alt="画像の説明" width="640" height="420" loading="lazy"></figure>
+                  <div class="card__body">
+                     <h3 class="card__ttl">小見出し</h3>
+                     <p class="card__txt">本文を入力します。</p>
+                  </div>
+               </article>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <footer class="footer">
+      <div class="footer__inner inner">
+         <nav class="footer__nav" aria-label="フッターナビゲーション">
+            <ul class="footer__list">
+               <li class="footer__item"><a class="footer__link" href="./">Home</a></li>
+               <li class="footer__item"><a class="footer__link" href="./privacy.html">Privacy Policy</a></li>
+               <li class="footer__item"><a class="footer__link" href="./contact.html">Contact</a></li>
+            </ul>
+         </nav>
+         <p class="footer__copy"><small class="footer__small">&copy; <span id="js-year"></span>ゆらゆら体感するArt展</small></p>
+      </div>
+   </footer>
+</body>
+</html>

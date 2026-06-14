@@ -39,6 +39,7 @@
    <script src="./assets/js/allmenu.js" defer></script>
    <script src="./assets/js/slide.js" defer></script>
    <script src="./assets/js/faq.js" defer></script>
+   <script src="./assets/js/form.js" defer></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
    <script src="./assets/js/fv-animation.js" defer></script>
@@ -175,12 +176,15 @@
          <div class="section__inner inner">
             <h2 class="h2_ttl">お問い合せ</h2>
             <p class="section__txt">
-               作品や展示会については、よくある質問に記載していますので、<br>
-               記載のないことがありましたら下記Fromからお問い合わせください。
+               作品や展示会については、よくある質問に記載していますが、<br>
+               質問したいことがありましたらお気軽に下記Fromからお問い合わせください。
             </p>
 
-            <form action="" class="contact-form">
+            <form
+               action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
+               method="POST" class="contact-form" id="contactForm">
                <h3 class="section__subttl contact-sub-ttl">お問い合わせForm</h3>
+
                <div class="contact-check-grid">
                   <label class="check-item">
                      <input type="checkbox" name="type" value="展示について">
@@ -209,39 +213,27 @@
 
                <div class="form-row">
                   <input type="text" id="subject" name="subject" placeholder=" " required>
-
-                  <label for="subject" class="form-label">
-                     件名
-                  </label>
+                  <label for="subject" class="form-label">件名</label>
                </div>
 
                <div class="form-row">
                   <input type="text" id="name" name="name" placeholder=" " required>
-
-                  <label for="name" class="form-label">
-                     お名前
-                  </label>
+                  <label for="name" class="form-label">お名前</label>
                </div>
 
                <div class="form-row">
-                  <input type="email" id="email" name="email" placeholder=" " required>
-
-                  <label for="email" class="form-label">
-                     メールアドレス・電話番号
-                  </label>
+                  <input type="text" id="email" name="email" placeholder=" " required>
+                  <label for="email" class="form-label">メールアドレス・電話番号</label>
                </div>
 
                <div class="form-row">
                   <textarea id="message" name="message" placeholder=" " required></textarea>
-
-                  <label for="message" class="form-label form-label--textarea">
-                     お問い合わせ内容
-                  </label>
+                  <label for="message" class="form-label form-label--textarea">お問い合わせ内容</label>
                </div>
 
                <div class="form-bottom">
                   <label class="check-item consent-item">
-                     <input type="checkbox" id="consent" required>
+                     <input type="checkbox" id="consent" name="consent" value="同意済み" required>
                      <span class="fake-check"></span>
                      <span class="check-text">
                         <a href="#">プライバシーポリシー</a>に同意する
@@ -251,6 +243,9 @@
                   <button type="submit" class="send-btn">Send</button>
                </div>
             </form>
+
+            <p id="formMessage" class="form-message"></p>
+
          </div>
       </section>
 
@@ -262,11 +257,15 @@
                <ul class="faq-list">
                   <li class="faq-list-item">
                      <button class="faq-question" type="button">
-                        <span>展示（期間と場所と時間）</span>
+                        <span>期間と場所と時間</span>
                         <span class="faq-icon"></span>
                      </button>
                      <div class="faq-answer">
-                        <p>展示期間、会場、開催時間などの詳細をここに記載します。</p>
+                        <p>
+                           展示期間：10/06（火）～10/12（月）
+                           <br>
+                           開催時間：11:30〜20:00 / 20:00〜21:00の間に外観のライトアップを予定しています。
+                        </p>
                      </div>
                   </li>
 
@@ -276,7 +275,17 @@
                         <span class="faq-icon"></span>
                      </button>
                      <div class="faq-answer">
-                        <p>アクセス方法、最寄り駅、駐車場の有無などをここに記載します。</p>
+                        <p>
+                           ◎JR京浜東北根岸線
+                           <br>
+                           「石川町駅」元町口出口から徒歩約1分
+                           <br>
+                           ◎みなとみらい線
+                           <br>
+                           「元町・中華街駅」5番出口・元町口から徒歩約13分
+                           <br>
+                           駐車場は近隣にコインパーキングが複数あります。
+                        </p>
                      </div>
                   </li>
 
@@ -286,7 +295,25 @@
                         <span class="faq-icon"></span>
                      </button>
                      <div class="faq-answer">
-                        <p>購入方法や支払方法、発送対応、領収書についてここに記載します。</p>
+                        <p>
+                           購入方法
+                           <br>
+                           現地もしくはオンライン（オンラインで購入される場合はArtistと直接のやり取りをお願いしております。）
+                           <br>
+                           支払い方法
+                           <br>
+                           会場ではスクエアでの決済（クレジット、PayPay）もしくは、現金（口座振り込み）に対応しています。
+                           <br>
+                           発送について
+                           <br>
+                           お支払いが確認でき、展示が終わり次第い発送準備を行いますので、最短2週間〜1ヶ月以内にお届けを予定しております。
+                           <br>
+                           領収書について
+                           <br>
+                           会場でご購入された場合はその場で発行いたします。
+                           <br>
+                           オンラインで購入された場合の領収書の発行はやり取りをしているArtistに直接お伝えください。
+                        </p>
                      </div>
                   </li>
 
@@ -296,17 +323,12 @@
                         <span class="faq-icon"></span>
                      </button>
                      <div class="faq-answer">
-                        <p>企画の背景やコンセプト、主催者情報をここに記載します。</p>
-                     </div>
-                  </li>
-
-                  <li class="faq-list-item">
-                     <button class="faq-question" type="button">
-                        <span>ゲストの作品（展示作品、出展日）</span>
-                        <span class="faq-icon"></span>
-                     </button>
-                     <div class="faq-answer">
-                        <p>ゲスト作品の展示日程、展示作品の内容をここに記載します。</p>
+                        <p>
+                           ただ作品を飾るだけではなく、
+                           作品や空間を通して、参加される方や来場される方の心や感覚に、
+                           やさしい変化が生まれる場にしたいという想いをコンセプトにしています。
+                           安らかなひと時を体感していただければ幸いです。
+                        </p>
                      </div>
                   </li>
 
@@ -316,19 +338,14 @@
                         <span class="faq-icon"></span>
                      </button>
                      <div class="faq-answer">
-                        <p>作品やグッズの販売場所、販売方法をここに記載します。</p>
+                        <p>
+                           作品やグッズの購入は会場もしくはオンラインでご購入いただけます。
+                           お支払い方法、発送についてなどはECサイト（オンラインショップ）の方に掲載していますので、そちらをご確認ください。
+                           ECサイトURL
+                        </p>
                      </div>
                   </li>
 
-                  <li class="faq-list-item">
-                     <button class="faq-question" type="button">
-                        <span>購入について（支払方法、発送、領収書）</span>
-                        <span class="faq-icon"></span>
-                     </button>
-                     <div class="faq-answer">
-                        <p>購入関連の補足事項をここに記載します。</p>
-                     </div>
-                  </li>
                </ul>
             </div>
          </div>

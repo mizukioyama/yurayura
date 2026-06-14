@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       baseColor: 0xfafffc,
 
       blurFactor: 0.75,
-      speed: 0.22,
+      speed: 0.82,
       zoom: 0.58
     });
   } catch (e) {
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       /*
         竜巻・煙のようなねじれ感
       */
-      const skew = Math.sin(t * 0.00035 + index) * 10;
+      const skew = Math.sin(t * 0.0035 + index) * 10;
       const pulse = 1 + Math.sin(t * 0.00045 + index) * 0.04;
 
       layer.style.left = `calc(50% + ${x}vw)`;

@@ -44,7 +44,6 @@ body.is-loaded {
 
 .header-date,
 .footer-date {
-  margin-top: 10px;
   font-size: 1.2rem;
   opacity: 0.8;
 }
@@ -56,7 +55,6 @@ body.is-loaded {
   justify-content: left;
   gap: 40px;
   width: fit-content;
-  font-size: 2rem;
   writing-mode: vertical-rl;
 }
 
@@ -68,6 +66,7 @@ body.is-loaded {
 .header-link,
 .footer-link {
   font-size: 1rem;
+  padding: 1rem;
 }
 
 .menu-small {
@@ -94,7 +93,7 @@ body.is-loaded {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 0 4rem;
+  padding-top: 120px;
 }
 
 .footer-list {
@@ -103,7 +102,8 @@ body.is-loaded {
 }
 
 .bottom-txt {
-  font-size: 1rem;
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
   color: var(--color-txt);
   position: absolute;
   left: 50%;
