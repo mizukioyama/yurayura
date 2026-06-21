@@ -1,8 +1,6 @@
 @charset "UTF-8";
-
 /* ========================================
-   1. 変数
-   サイト全体で使う色・フォント
+  変数（サイト全体で使う色・フォント）
 ======================================== */
 :root {
   --color-txt: #303A05;
@@ -14,8 +12,7 @@
 }
 
 /* ========================================
-   3. ベース
-   全体に適用する設定
+   ベース（全体に適用する設定）
 ======================================== */
 html,
 body {
@@ -74,8 +71,7 @@ h2.ttl {
 }
 
 /* ========================================
-  igm
-  artist-img
+  igm（artist-img）
 ======================================== */
 .artists-bg-igm {
   position: absolute;
@@ -92,8 +88,7 @@ h2.ttl {
 }
 
 /* ========================================
-   4. スクロールバー
-   全体共通UI
+  スクロールバー（全体共通UI）
 ======================================== */
 ::-webkit-scrollbar {
   width: 8px;
@@ -122,9 +117,35 @@ h2.ttl {
   background: transparent;
 }
 
+/* ========================================
+  FV（全体）
+======================================== */
+.fv {
+  display: grid;
+  place-items: center;
+}
+
+.fv__ttl {
+  grid-area: 1 / 1;
+  z-index: 1;
+  font-size: clamp(80px, 12vw, 140px);
+  letter-spacing: 2.4rem;
+}
+
+.fv-bt-txt {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 2;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 3;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%);
+}
 
 /* ========================================
-   6. Scroll Guide
+  FV（Scroll bar）
 ======================================== */
 .scroll-guide {
   position: fixed;
@@ -182,48 +203,45 @@ h2.ttl {
 }
 
 /* ========================================
-   7. FV
+  Concept
 ======================================== */
-
-.fv {
-  display: grid;
-  place-items: center;
-}
-
-.fv__ttl {
-  grid-area: 1 / 1;
-  z-index: 1;
-  font-size: clamp(80px, 12vw, 140px);
-  letter-spacing: 2.4rem;
-}
-
-.fv-bt-txt {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  z-index: 2;
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 3;
-  letter-spacing: 0.25em;
-  writing-mode: vertical-rl;
-  transform: translateX(-50%);
-}
-
-/* ========================================
-   8. Concept
-======================================== */
-.consept h2.ttl {
+.concept .ttl {
   z-index: 1;
   font-size: clamp(24px, 5vw, 32px);
   letter-spacing: 0.8rem;
 }
 
 /* ========================================
-   9. Introduction
+  Introduction
 ======================================== */
-
 .introduction .ttl {
   writing-mode: initial;
+}
+
+/*================ btn ================*/
+.btn,
+.send-btn,
+.faq-question {
+  background: url("../img/btn-bg-img.jpg");
+  background-size: cover;
+}
+
+/*================ artists ================*/
+#artists .btn {
+  position: relative;
+  color: var(--color-bg);
+  z-index: 1;
+  text-align: center;
+  font-family: var(--font-btn);
+  width: 100%;
+  padding: 10px 0;
+}
+
+#artists .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-shadow-green);
 }
 
 /* --- 作家スライダー --- */
@@ -282,57 +300,6 @@ h2.ttl {
   width: max-content;
   will-change: transform;
 }
-
-.img-box {
-  position: relative;
-  flex: 0 0 auto;
-  width: 420px;
-  height: 280px;
-  overflow: hidden;
-  background: url("../img/202326.jpg") center / cover no-repeat;
-}
-
-.img-box:nth-child(1) {
-  background: url("../img/202337.jpg") center / cover no-repeat;
-}
-
-.img-box:nth-child(2) {
-  background: url("../img/202339.jpg") center / cover no-repeat;
-}
-
-.img-box:nth-child(3) {
-  background: url("../img/202402.jpg") center / cover no-repeat;
-}
-
-.img-box:nth-child(4) {
-  background: url("../img/202501.jpg") center / cover no-repeat;
-}
-
-/*================ btn ================*/
-
-.btn,
-.send-btn,
-.faq-question {
-  background: url("../img/btn-bg-img.jpg");
-  background-size: cover;
-}
-
-#artists .btn {
-  position: relative;
-  color: var(--color-bg);
-  z-index: 1;
-  text-align: center;
-  font-family: var(--font-btn);
-  width: 100%;
-}
-
-#artists .btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-shadow-green);
-}
-
 
 .works-link {
   position: relative;
@@ -652,7 +619,7 @@ h2.ttl {
   transition: grid-template-rows 0.35s ease;
 }
 
-.faq-answer p {
+.faq-answer .faq-txt {
   margin: 0;
   padding: 0 1.5rem;
   overflow: hidden;
@@ -775,7 +742,6 @@ h2.ttl {
 }
 
 .section__inner {
-  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

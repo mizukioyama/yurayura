@@ -200,6 +200,10 @@ font-weight: 700;
    gap: 2.4rem;
 }
 
+id {
+   
+}
+
 .footer__list {
    display: flex;
    justify-content: center;
