@@ -5,8 +5,18 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no">
-   <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
+   <!-- CSP -->
+   <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    img-src 'self' data: https:;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net;
+    font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net;
+    script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net;
+    connect-src 'self' https://script.google.com https://script.googleusercontent.com https://p.typekit.net https://use.typekit.net;
+    frame-src https://www.google.com;
+    base-uri 'self';
+    form-action 'self';
+  ">
    <title>ゆらゆら | 体感するArt展</title>
    <meta name="description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
    <link rel="canonical" href="https://example.com/">
@@ -126,7 +136,8 @@
                </span>
             </h2>
             <p class="section__txt">
-               作品と作家については、それぞれのページでご覧いただけます。
+               作品と作家については、
+               紹介ページでご覧いただけます。
                <br>
                ひとつひとつの表現、
                <br>
@@ -135,7 +146,7 @@
                「ゆらゆら」の世界を感じていただけたら嬉しいです。
             </p>
 
-            <div class="artists-bg-igm">
+            <div class="artists-bg-img">
                <img class="section__bg-img" src="./assets/img/artists-bg.png" alt="">
             </div>
 
@@ -234,12 +245,9 @@
                </div>
 
                <div class="form-bottom">
-                  <label class="check-item consent-item">
+                  <label class="consent-label">
                      <input type="checkbox" id="consent" name="consent" value="同意済み" required>
-                     <span class="fake-check"></span>
-                     <span class="check-text">
-                        <a href="#">プライバシーポリシー</a>に同意する
-                     </span>
+                     個人情報の取り扱いに同意します
                   </label>
 
                   <button type="submit" class="send-btn">Send</button>
@@ -280,8 +288,8 @@
                      </button>
                      <div class="faq-answer">
                         <p class="faq-txt">
-                           <span class="faq-ttl">&#9632; 展示期間：10/06（火）～10/12（月）</span>
-                           <br>
+                           <span class="faq-ans-txt">▪︎展示期間：10/06（火）～10/12（月）</span>
+
                            開催時間：11:30〜20:00 / 20:00〜21:00の間に外観のライトアップを予定しています。
                         </p>
                      </div>
@@ -294,14 +302,14 @@
                      </button>
                      <div class="faq-answer">
                         <p class="faq-txt">
-                           <span class="faq-ttl">◎JR京浜東北根岸線</span>
-                           <br>
+                           <span class="faq-ans-txt">▪︎JR京浜東北根岸線</span>
+
                            「石川町駅」元町口出口から徒歩約1分
-                           <br>
-                           <span class="faq-ttl">◎みなとみらい線</span>
-                           <br>
+
+                           <span class="faq-ans-txt">▪︎みなとみらい線</span>
+
                            「元町・中華街駅」5番出口・元町口から徒歩約13分
-                           <br>
+
                            駐車場は近隣にコインパーキングが複数あります。
                         </p>
                      </div>
@@ -314,22 +322,22 @@
                      </button>
                      <div class="faq-answer">
                         <p class="faq-txt">
-                           <span class="faq-ttl">購入方法</span>
-                           <br>
+                           <span class="faq-ans-txt">▪︎購入方法</span>
+
                            現地もしくはオンライン（オンラインで購入される場合はArtistと直接のやり取りをお願いしております。）
-                           <br>
-                           <span class="faq-ttl">支払い方法</span>
-                           <br>
+
+                           <span class="faq-ans-txt">▪︎支払い方法</span>
+
                            会場ではスクエアでの決済（クレジット、PayPay）もしくは、現金（口座振り込み）に対応しています。
-                           <br>
-                           <span class="faq-ttl">発送について</span>
-                           <br>
+
+                           <span class="faq-ans-txt">▪︎発送について</span>
+
                            お支払いが確認でき、展示が終わり次第い発送準備を行いますので、最短2週間〜1ヶ月以内にお届けを予定しております。
-                           <br>
-                           <span class="faq-ttl">領収書について</span>
-                           <br>
+
+                           <span class="faq-ans-txt">▪︎領収書について</span>
+
                            会場でご購入された場合はその場で発行いたします。
-                           <br>
+
                            オンラインで購入された場合の領収書の発行はやり取りをしているArtistに直接お伝えください。
                         </p>
                      </div>

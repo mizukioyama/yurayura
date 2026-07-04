@@ -1,7 +1,9 @@
 @charset "UTF-8";
+
 /* ========================================
-  変数（サイト全体で使う色・フォント）
+=変数（サイト全体で使う色・フォント）
 ======================================== */
+
 :root {
   --color-txt: #303A05;
   --color-bg: #F8FAEC;
@@ -12,84 +14,9 @@
 }
 
 /* ========================================
-   ベース（全体に適用する設定）
+=scroll =bar
 ======================================== */
-html,
-body {
-  width: 100vw;
-  color: var(--color-txt);
-  background-color: var(--color-bg);
-  font-family: var(--font-base);
-  font-weight: 300;
-  font-style: normal;
-  overflow-x: hidden;
-}
 
-main {
-  position: relative;
-}
-
-section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
-  padding: 8rem 0;
-  overflow: hidden;
-  background: url("../img/bg-img.jpg") center / cover no-repeat;
-}
-
-h2.ttl {
-  z-index: 1;
-  margin-bottom: 30px;
-  text-align: center;
-  font-family: var(--font-base);
-  letter-spacing: 0.5rem;
-}
-
-.h2-bt-txt {
-  z-index: 1;
-  font-size: 1.4rem;
-  line-height: 2;
-  letter-spacing: 0;
-  writing-mode: vertical-rl;
-  white-space: pre-line;
-}
-
-.ttl-small {
-  font-size: 1rem;
-}
-
-.ttl-artists-txt {
-  display: block;
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-}
-
-/* ========================================
-  igm（artist-img）
-======================================== */
-.artists-bg-igm {
-  position: absolute;
-  z-index: 0;
-  background: url("../img/bg-img.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.section__bg-img {
-  mix-blend-mode: lighten;
-  opacity: 0.4;
-}
-
-/* ========================================
-  スクロールバー（全体共通UI）
-======================================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -118,18 +45,400 @@ h2.ttl {
 }
 
 /* ========================================
-  FV（全体）
+=cursor
 ======================================== */
-.fv {
-  display: grid;
-  place-items: center;
+
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  #cursor,
+  #stalker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 10000;
+  }
+
+  #cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  #stalker {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+  }
+
+  #stalker.is-active {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
-.fv__ttl {
-  grid-area: 1 / 1;
+/* ========================================
+sp
+======================================== */
+
+.sp {
+  display: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .sp {
+    display: block;
+  }
+}
+
+/* ========================================
+=base =body =main
+======================================== */
+
+html,
+body {
+  width: 100vw;
+  color: var(--color-txt);
+  background-color: var(--color-bg);
+  font-family: var(--font-base);
+  font-weight: 300;
+  font-style: normal;
+  overflow-x: hidden;
+}
+
+/* ========================================
+アニメーション
+=noise
+======================================== */
+
+body::before {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  z-index: 9998;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  opacity: 0.08;
+  content: "";
+  pointer-events: none;
+  animation: noise 0.2s steps(2) infinite;
+}
+
+@keyframes noise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -5%);
+  }
+
+  20% {
+    transform: translate(-10%, 5%);
+  }
+
+  30% {
+    transform: translate(5%, -10%);
+  }
+
+  40% {
+    transform: translate(-5%, 15%);
+  }
+
+  50% {
+    transform: translate(-10%, 5%);
+  }
+
+  60% {
+    transform: translate(15%, 0);
+  }
+
+  70% {
+    transform: translate(0, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+main {
+  position: relative;
+}
+
+/* ========================================
+=section
+======================================== */
+
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 8rem 0;
+  overflow: hidden;
+  background: url("../img/bg-img.jpg") center / cover no-repeat;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  section {
+    justify-content: start;
+    padding: 120px 40px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  section + section {
+    margin-top: 100px;
+  }
+}
+
+.section--contact,
+.section--faq,
+.section--access {
+  display: block;
+  min-height: auto;
+  padding: 8rem 1rem 8rem;
+  overflow: visible;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .section--contact,
+  .section--access {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* ========================================
+=inner
+======================================== */
+
+.section__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.contact .inner,
+.faq .inner,
+.access .inner {
+  width: min(100%, 740px);
+  margin: 0 auto;
+}
+
+.section--contact .section__inner,
+.section--faq .section__inner,
+.section--access .section__inner {
+  display: block;
+  width: min(100%, 740px);
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ========================================
+=ttl
+======================================== */
+
+.h2_ttl {
+  font-family: var(--font-jp);
+  color: var(--color-txt);
   z-index: 1;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 0.5rem;
+}
+
+.section--contact .h2_ttl,
+.section--faq .h2_ttl,
+.section--access .h2_ttl {
+  margin: 0 0 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  writing-mode: initial;
+}
+
+/* ========================================
+=h2-bt-txt
+======================================== */
+
+.h2-bt-txt {
+  z-index: 1;
+  font-size: 1.4rem;
+  line-height: 2;
+  letter-spacing: 0;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+}
+
+.contact .h2-bt-txt,
+.faq .h2-bt-txt,
+.access .h2-bt-txt {
+  width: 100%;
+  margin: 0 auto 2rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  white-space: normal;
+  writing-mode: initial;
+}
+
+/* ========================================
+=txt
+======================================== */
+
+.section__txt {
+  z-index: 1;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.section--concept .section__txt,
+.section--artists .section__txt {
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+  line-height: 2.4;
+  letter-spacing: 0.4rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .section--concept .section__txt,
+  .section--artists .section__txt {
+    writing-mode: initial;
+    white-space: normal;
+  }
+}
+
+.section--access .section__txt {
+  width: 100%;
+  font-weight: bold;
+}
+
+.section--contact .section__txt,
+.section--faq .section__txt,
+.section--access .section__txt {
+  width: fit-content;
+  margin: 0 auto 2rem;
+  letter-spacing: 0.08em;
+  white-space: normal;
+  writing-mode: initial;
+}
+
+/* ========================================
+=small
+======================================== */
+
+.h2_ttl-small {
+  font-size: 1rem;
+  font-family: var(--font-jp);
+}
+
+.ttl-small {
+  font-size: 1rem;
+}
+
+/* ========================================
+=sub-txt
+======================================== */
+
+/* .section__subttl {
+  margin-bottom: 1.5rem;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+} */
+
+
+/* ========================================
+=FV
+======================================== */
+
+.fv__ttl {
+  font-family: var(--font-jp);
+  grid-area: 1 / 1;
   font-size: clamp(80px, 12vw, 140px);
   letter-spacing: 2.4rem;
+  filter: blur(2px);
+  color: var(--color-bg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.fv {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+}
+
+.fv__inner {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+/* 初期状態 */
+.h1_fade {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 3.4s ease,
+    transform 3.2s ease;
+}
+
+/* 表示状態 */
+.h1_fade.is-show {
+  opacity: 0.35;
+  transform: translate(0%, 0%);
+  mix-blend-mode: color-burn;
+}
+
+.fv__ttl,
+.section--concept .h2_ttl {
+  writing-mode: vertical-rl;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .section--concept .h2_ttl {
+    writing-mode: initial;
+  }
 }
 
 .fv-bt-txt {
@@ -144,36 +453,73 @@ h2.ttl {
   transform: translateX(-50%);
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .fv-bt-txt,
+  .fv__txt {
+    transform: translate(-50%, -20%);
+  }
+}
+
+.fv__txt {
+  font-family: var(--font-jp);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 2;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 3;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%);
+}
+
 /* ========================================
-  FV（Scroll bar）
+=FV（Scroll bar）
 ======================================== */
+
 .scroll-guide {
   position: fixed;
-  right: 4rem;
-  bottom: 4rem;
+  right: 6%;
+  bottom: 60px;
   z-index: 10;
   display: block;
   align-items: center;
-  gap: 1.2rem;
-  color: #2f382a;
+  color: var(--color-txt);
   pointer-events: none;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .scroll-guide {
+    right: 20px;
+    bottom: 30px;
+  }
+}
+
+
 .scroll-guide__text {
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.4rem;
   writing-mode: vertical-rl;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .scroll-guide__text {
+    font-size: 0.6rem;
+    letter-spacing: 0.4rem;
+  }
 }
 
 .scroll-guide__bar {
   position: relative;
   left: 40%;
+  bottom: 0;
   display: block;
   width: 1px;
-  height: 8rem;
+  height: 14vh;
   overflow: hidden;
+  margin-top: 6px;
   background: rgba(47, 56, 42, 0.25);
 }
 
@@ -203,22 +549,19 @@ h2.ttl {
 }
 
 /* ========================================
-  Concept
+=Concept
 ======================================== */
-.concept .ttl {
-  z-index: 1;
-  font-size: clamp(24px, 5vw, 32px);
+
+.section--concept .h2_ttl {
+  font-size: 1.4rem;
   letter-spacing: 0.8rem;
+  z-index: 1;
 }
 
 /* ========================================
-  Introduction
+=btn
 ======================================== */
-.introduction .ttl {
-  writing-mode: initial;
-}
 
-/*================ btn ================*/
 .btn,
 .send-btn,
 .faq-question {
@@ -226,7 +569,82 @@ h2.ttl {
   background-size: cover;
 }
 
-/*================ artists ================*/
+/* ========================================
+=artists
+======================================== */
+
+.section--artists .h2_ttl {
+  writing-mode: initial;
+}
+
+.h2_ttl-artists {
+  font-size: 1rem;
+  display: block;
+  letter-spacing: 0.1rem;
+}
+
+.ttl-artists-txt {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.section--artists .section__txt {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+=card
+======================================== */
+
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 420px;
+  height: 280px;
+  overflow: hidden;
+  background: url("../img/202326.jpg") center / cover no-repeat;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1239px) {
+    .img-box,
+  .card {
+    width: 420px;
+    height: 300px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .img-box,
+  .card {
+    width: 280px;
+    height: 220px;
+  }
+
+  .img-btn,
+  .card__btn {
+    min-width: 70px;
+    padding: 1rem;
+  }
+}
+
+.card:nth-child(1) {
+  background-image: url("../img/202337.jpg");
+}
+
+.card:nth-child(2) {
+  background-image: url("../img/202339.jpg");
+}
+
+.card:nth-child(3) {
+  background-image: url("../img/202402.jpg");
+}
+
+.card:nth-child(4) {
+  background-image: url("../img/202501.jpg");
+}
+
 #artists .btn {
   position: relative;
   color: var(--color-bg);
@@ -244,7 +662,7 @@ h2.ttl {
   background: var(--color-shadow-green);
 }
 
-/* --- 作家スライダー --- */
+/* --- スライダー --- */
 .member-list {
   display: flex;
   gap: 15px;
@@ -263,6 +681,18 @@ h2.ttl {
   width: 80%;
   margin: 0 auto;
   overflow: hidden;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1239px) {
+  .member-slider {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .member-slider {
+    width: 94%;
+  }
 }
 
 .member-slider::before,
@@ -367,8 +797,6 @@ h2.ttl {
   width: 100%;
 }
 
-
-
 .works-link:hover .img-btn {
   opacity: 0.72;
 }
@@ -378,80 +806,49 @@ h2.ttl {
   width: 100%;
 }
 
-.send-btn {
-  min-width: 310px;
-  padding: 4px 0 6px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #f4f2ea;
-  font-size: 1.2rem;
-  font-family: var(--font-btn);
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+/* ========================================
+=img（artist-img）
+======================================== */
+
+.artists-bg-img {
+  position: absolute;
+  z-index: 0;
+  background: url("../img/bg-img.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.send-btn:hover {
-  opacity: 0.95;
-  transform: translateY(-2px);
+.section__bg-img {
+  mix-blend-mode: lighten;
+  opacity: 0.4;
 }
-
 
 /* ========================================
-   10. Contact
+Contact
 ======================================== */
-.contact,
-.faq,
-.access {
-  display: block;
-  min-height: auto;
-  padding: 8rem 1rem 8rem;
-  overflow: visible;
-}
-
-.contact .inner,
-.faq .inner,
-.access .inner {
-  width: min(100%, 740px);
-  margin: 0 auto;
-}
-
-.contact .ttl,
-.faq .ttl,
-.access .ttl {
-  margin: 0 0 1rem;
-  color: var(--color-txt);
-  text-align: center;
-  font-family: var(--font-base);
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  writing-mode: initial;
-}
-
-.contact .h2-bt-txt,
-.faq .h2-bt-txt,
-.access .h2-bt-txt {
-  width: 100%;
-  margin: 0 auto 2rem;
-  color: var(--color-txt);
-  text-align: center;
-  font-size: 1rem;
-  line-height: 2;
-  letter-spacing: 0.08em;
-  white-space: normal;
-  writing-mode: initial;
-}
 
 .contact-sub-ttl,
-.faq-ttl {
+h3.faq-ttl {
   color: var(--color-txt);
   text-align: center;
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.06em;
+}
+
+.faq-ans-txt {
+  display: block;
+  text-align: left;
+    font-weight: 600;
+}
+
+.faq-ans-txt + .faq-ans-txt {
+  margin: 14px 0 4px;
+}
+
+.faq-txt {
+  font-size: 0.8rem;
 }
 
 .contact h2.ttl,
@@ -461,104 +858,8 @@ h2.ttl {
   writing-mode: initial;
 }
 
-/* --- フォーム --- */
-
-.contact-check-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(170px, 1fr));
-  gap: 0.6rem 2rem;
-  max-width: 380px;
-  margin: 1.8rem 0 1.8rem;
-}
-
-.check-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  color: var(--color-txt);
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.check-item input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.fake-check {
-  position: relative;
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  background: var(--color-bg);
-}
-
-.check-item input:checked+.fake-check::after {
-  position: absolute;
-  top: 3px;
-  left: 7px;
-  width: 6px;
-  height: 11px;
-  border-right: 2px solid var(--color-txt);
-  border-bottom: 2px solid var(--color-txt);
-  content: "";
-  transform: rotate(45deg);
-}
-
-.form-row {
-  margin-bottom: 14px;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 8px 14px;
-  /* border: 1px solid rgba(0, 0, 0, 0.06); */
-  border-bottom: 3px solid;
-  border-image: url("../img/btn-bg-img.jpg") 100;
-  color: var(--color-txt);
-  font-size: 1rem;
-  outline: none;
-  /* background:
-    linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
-    radial-gradient(circle at 20% 20%, rgba(120, 120, 120, 0.04), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgba(120, 120, 120, 0.05), transparent 26%),
-    #ecece5; */
-  background:
-    linear-gradient(rgb(255 255 255 / 22%), rgb(255 255 255 / 34%)),
-    radial-gradient(circle at 20% 20%, rgb(120 120 120 / 10%), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgb(120 120 120 / 18%), transparent 26%),
-    #ecece540;
-}
-
-.contact-form input[type="text"]::placeholder,
-.contact-form input[type="email"]::placeholder,
-.contact-form textarea::placeholder {
-  color: #9f9b8e;
-}
-
-.contact-form textarea {
-  min-height: 220px;
-  resize: vertical;
-}
-
-.form-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.consent-item {
-  flex-wrap: wrap;
-}
-
 /* ========================================
-   11. FAQ
+FAQ
 ======================================== */
 /* .faq-box {
   margin-top: 4rem;
@@ -596,6 +897,13 @@ h2.ttl {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .faq-question {
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+  }
+}
+
 .faq-icon {
   flex-shrink: 0;
   width: 10px;
@@ -619,6 +927,11 @@ h2.ttl {
   transition: grid-template-rows 0.35s ease;
 }
 
+.section--faq {
+  min-height: auto;
+  height: fit-content;
+}
+
 .faq-answer .faq-txt {
   margin: 0;
   padding: 0 1.5rem;
@@ -635,7 +948,7 @@ h2.ttl {
 }
 
 /* ========================================
-   12. Access
+Access
 ======================================== */
 
 .acs-box {
@@ -665,12 +978,25 @@ h2.ttl {
   gap: 2rem;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .access-box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 .access-info {
   width: 100%;
   max-width: 228px;
   align-content: start;
   padding: 0.5rem 2rem;
   border-left: 1px solid var(--color-txt);
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+    .access-info {
+    padding-left: 1.3rem;
+  }
 }
 
 .access-info h3 {
@@ -685,418 +1011,3 @@ h2.ttl {
   line-height: 1.8;
 }
 
-/* ========================================
-   13. Footer補助
-======================================== */
-.sp {
-  display: none;
-}
-
-/* ========================================
-   top.html 基本コードクラス対応
-======================================== */
-.main {
-  position: relative;
-}
-
-
-
-.fv {
-  display: grid;
-  place-items: center;
-}
-
-.fv__inner {
-  display: grid;
-  grid-area: 1 / 1;
-  place-items: center;
-  height: 100%;
-}
-
-.fv__ttl,
-.section--concept .h2_ttl {
-  z-index: 1;
-  writing-mode: vertical-rl;
-}
-
-.fv__ttl {
-  font-family: var(--font-jp);
-  grid-area: 1 / 1;
-  font-size: clamp(80px, 12vw, 140px);
-  letter-spacing: 2.4rem;
-  filter: blur(2px);
-  mix-blend-mode: color-burn;
-}
-
-.fv__txt {
-  font-family: var(--font-jp);
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  z-index: 2;
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 3;
-  letter-spacing: 0.25em;
-  writing-mode: vertical-rl;
-  transform: translateX(-50%);
-}
-
-.section__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.h2_ttl {
-  z-index: 1;
-  margin-bottom: 30px;
-  text-align: center;
-  font-family: var(--font-jp);
-  letter-spacing: 0.5rem;
-}
-
-.h2_ttl-small {
-  font-size: 1rem;
-  font-family: var(--font-jp);
-}
-
-.h2_ttl-artists {
-  font-size: 1rem;
-  display: block;
-  letter-spacing: 0.1rem;
-}
-
-.section--concept .h2_ttl {
-  font-size: 1.8rem;
-  letter-spacing: 0.8rem;
-}
-
-.section--artists .h2_ttl {
-  writing-mode: initial;
-}
-
-
-/*================ card ================*/
-
-
-.card {
-  position: relative;
-  flex: 0 0 auto;
-  width: 420px;
-  height: 280px;
-  overflow: hidden;
-  background: url("../img/202326.jpg") center / cover no-repeat;
-}
-
-.card:nth-child(1) {
-  background-image: url("../img/202337.jpg");
-}
-
-.card:nth-child(2) {
-  background-image: url("../img/202339.jpg");
-}
-
-.card:nth-child(3) {
-  background-image: url("../img/202402.jpg");
-}
-
-.card:nth-child(4) {
-  background-image: url("../img/202501.jpg");
-}
-
-
-.section--faq {
-  min-height: auto;
-  height: fit-content;
-}
-
-.section--contact .section__inner,
-.section--faq .section__inner,
-.section--access .section__inner {
-  display: block;
-  width: min(100%, 740px);
-  height: auto;
-  margin: 0 auto;
-}
-
-.section--contact .h2_ttl,
-.section--faq .h2_ttl,
-.section--access .h2_ttl {
-  margin: 0 0 1rem;
-  color: var(--color-txt);
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  writing-mode: initial;
-}
-
-.section__txt {
-  z-index: 1;
-  font-size: 1rem;
-  line-height: 2;
-}
-
-.section--concept .section__txt,
-.section--artists .section__txt {
-  writing-mode: vertical-rl;
-  white-space: pre-line;
-}
-
-.section--artists .section__txt {
-  height: 220px;
-  padding-bottom: 25px;
-}
-
-.section--access .section__txt {
-  width: 100%;
-}
-
-.section--contact .section__txt,
-.section--faq .section__txt,
-.section--access .section__txt {
-  width: fit-content;
-  margin: 0 auto 2rem;
-  letter-spacing: 0.08em;
-  white-space: normal;
-  writing-mode: initial;
-}
-
-/* .section__subttl {
-  margin-bottom: 1.5rem;
-  color: var(--color-txt);
-  text-align: center;
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-} */
-
-
-/* ========================================
-   14. アニメーション・エフェクト
-======================================== */
-
-/* --- ノイズアニメーション --- */
-body::before {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  z-index: 9998;
-  width: 200%;
-  height: 200%;
-  background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-  opacity: 0.08;
-  content: "";
-  pointer-events: none;
-  animation: noise 0.2s steps(2) infinite;
-}
-
-@keyframes noise {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-5%, -5%);
-  }
-
-  20% {
-    transform: translate(-10%, 5%);
-  }
-
-  30% {
-    transform: translate(5%, -10%);
-  }
-
-  40% {
-    transform: translate(-5%, 15%);
-  }
-
-  50% {
-    transform: translate(-10%, 5%);
-  }
-
-  60% {
-    transform: translate(15%, 0);
-  }
-
-  70% {
-    transform: translate(0, 15%);
-  }
-
-  80% {
-    transform: translate(3%, 35%);
-  }
-
-  90% {
-    transform: translate(-10%, 10%);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-/* --- カスタムカーソル --- */
-@media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-
-  #cursor,
-  #stalker {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    border-radius: 50%;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    z-index: 10000;
-  }
-
-  #cursor {
-    width: 8px;
-    height: 8px;
-    background-color: #fff;
-    transform: translate(-50%, -50%);
-  }
-
-  #stalker {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #fff;
-    background-color: transparent;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
-  }
-
-  #stalker.is-active {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-/* 初期状態 */
-.h1_fade {
-  opacity: 0;
-  transform: translateY(0.1rem);
-
-  transition:
-    opacity 3.4s ease,
-    transform 3.2s ease;
-}
-
-/* 表示状態 */
-.h1_fade.is-show {
-  opacity: 0.35;
-  transform: translateY(0);
-}
-
-
-/* ========================================
-   15. レスポンシブ
-======================================== */
-@media screen and (max-width: 1024px) {
-  .member-slider {
-    width: 90%;
-  }
-
-  .img-box,
-  .card {
-    width: 420px;
-    height: 300px;
-  }
-}
-
-@media (max-width: 900px) {
-  .form-bottom {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .send-btn {
-    width: 100%;
-    min-width: auto;
-  }
-
-  .access-box {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .access-info {
-    padding-left: 1.3rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .scroll-guide {
-    right: 2rem;
-    bottom: 3rem;
-    gap: 1rem;
-  }
-
-  .scroll-guide__text {
-    font-size: 1rem;
-  }
-
-  .scroll-guide__bar {
-    height: 6rem;
-  }
-
-  .sp {
-    display: block;
-  }
-
-  .fv-bt-txt,
-  .fv__txt {
-    transform: translate(-40px, 30px);
-  }
-}
-
-@media (max-width: 767px) {
-  .member-slider {
-    width: 94%;
-  }
-
-  .img-box,
-  .card {
-    width: 280px;
-    height: 220px;
-  }
-
-  .img-btn,
-  .card__btn {
-    min-width: 70px;
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .contact-check-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-
-  .faq-question {
-    padding: 0.95rem 1rem;
-    font-size: 1rem;
-  }
-
-  .contact,
-  .access {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .contact-form input[type="text"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    padding: 1.2rem 1rem;
-  }
-}

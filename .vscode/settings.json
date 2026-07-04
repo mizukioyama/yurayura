@@ -3,7 +3,7 @@
 
   "material-icon-theme.showUpdateMessage": false, // Material Icon Themeの更新通知を表示しない設定。設定場所：Extensions > Material Icon Theme
 
-  "material-icon-theme.folders.theme": "classic", // フォルダアイコンをクラシックデザインにする設定。設定場所：Extensions > Material Icon Theme > Folder Theme
+  "material-icon-theme.folders.theme": "specific", // フォルダアイコンをクラシックデザインにする設定。設定場所：Extensions > Material Icon Theme > Folder Theme
 
   "material-icon-theme.hidesExplorerArrows": false // フォルダ横の開閉矢印を表示する設定。設定場所：Extensions > Material Icon Theme
 }
