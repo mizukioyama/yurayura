@@ -201,7 +201,9 @@ section {
   min-height: 100vh;
   padding: 8rem 0;
   overflow: hidden;
-  background: url("../img/bg-img.jpg") center / cover no-repeat;
+  /* background: url("../img/bg-img.jpg") center / cover no-repeat; */
+  background: rgba(221, 221, 221, 0.25);
+  backdrop-filter: blur(10px);
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {

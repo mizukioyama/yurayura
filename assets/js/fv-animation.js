@@ -12,7 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   let vantaEffect = null;
+  let animationId = null;
 
   try {
     vantaEffect = VANTA.FOG({
@@ -21,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       touchControls: true,
       gyroControls: false,
 
-      minHeight: 200.0,
-      minWidth: 200.0,
+      minHeight: 200,
+      minWidth: 200,
 
       highlightColor: 0xffffff,
       midtoneColor: 0xf5d6bd,
@@ -30,118 +35,127 @@ document.addEventListener("DOMContentLoaded", () => {
       baseColor: 0xfafffc,
 
       blurFactor: 0.75,
-      speed: 0.82,
-      zoom: 0.58
+      speed: 0.22,
+      zoom: 0.56
     });
-  } catch (e) {
-    console.error("Vanta.jsの初期化に失敗しました", e);
+  } catch (error) {
+    console.error("Vanta.jsの初期化に失敗しました", error);
     return;
   }
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (prefersReducedMotion) return;
-
-  /*
-    重要：
-    rotateDirection = -1 → 反時計回り
-    rotateDirection =  1 → 時計回り
-  */
-  const rotateDirection = -1;
+  if (prefersReducedMotion || smokeLayers.length === 0) return;
 
   const settings = [
     {
-      moveDuration: 90000,
-      rotateDuration: 42000,
-      moveRange: 42,
-      xRange: 5,
-      startTop: 74,
+      duration: 90000,
+      startTop: 76,
+      endTop: 22,
+      centerX: 50,
+      driftX: 5,
+      angleX: -8,
       delay: 0,
-      rotateOffset: 0,
+      rotateBase: -8,
       scaleX: 0.82,
-      scaleY: 1.16
+      scaleY: 1.16,
+      opacity: 0.36
     },
     {
-      moveDuration: 120000,
-      rotateDuration: 68000,
-      moveRange: 34,
-      xRange: 8,
-      startTop: 66,
+      duration: 120000,
+      startTop: 70,
+      endTop: 18,
+      centerX: 53,
+      driftX: 7,
+      angleX: 6,
       delay: 18000,
-      rotateOffset: 80,
+      rotateBase: 6,
       scaleX: 1.08,
-      scaleY: 0.92
+      scaleY: 0.92,
+      opacity: 0.2
     },
     {
-      moveDuration: 105000,
-      rotateDuration: 52000,
-      moveRange: 48,
-      xRange: 3,
-      startTop: 78,
+      duration: 105000,
+      startTop: 80,
+      endTop: 24,
+      centerX: 47,
+      driftX: 4,
+      angleX: -4,
       delay: 32000,
-      rotateOffset: -60,
-      scaleX: 0.68,
-      scaleY: 1.28
+      rotateBase: -4,
+      scaleX: 0.7,
+      scaleY: 1.28,
+      opacity: 0.26
     }
   ];
 
+  const clamp = (value, min, max) => {
+    return Math.min(Math.max(value, min), max);
+  };
+
+  const easeInOutSine = (value) => {
+    return -(Math.cos(Math.PI * value) - 1) / 2;
+  };
+
   function animateSmoke(now) {
     smokeLayers.forEach((layer, index) => {
-      const s = settings[index];
+      const s = settings[index % settings.length];
+      const time = now + s.delay;
 
-      const t = now + s.delay;
+      const rawProgress = (time % s.duration) / s.duration;
+      const progress = easeInOutSine(rawProgress);
 
-      const moveProgress = (t % s.moveDuration) / s.moveDuration;
-      const rotateProgress = (t % s.rotateDuration) / s.rotateDuration;
+      const verticalY = s.startTop - progress * (s.startTop - s.endTop);
 
-      /*
-        下から上へ移動
-        startTopから上へ抜ける
-      */
-      const y = s.startTop - moveProgress * s.moveRange;
+      const naturalWave =
+        Math.sin(time * 0.00018 + index * 1.7) * s.driftX +
+        Math.sin(time * 0.00041 + index * 2.4) * (s.driftX * 0.35);
 
-      /*
-        煙らしい左右の揺れ
-      */
-      const x = Math.sin(t * 0.00025 + index) * s.xRange;
+      const angledDrift = progress * s.angleX;
 
-      /*
-        回転方向を明確に制御
-        -360 = 反時計回り
-        +360 = 時計回り
-      */
+      const x = clamp(
+        s.centerX + naturalWave + angledDrift,
+        12,
+        88
+      );
+
+      const y = clamp(
+        verticalY + Math.sin(time * 0.00026 + index) * 1.8,
+        16,
+        84
+      );
+
       const rotate =
-        s.rotateOffset + rotateProgress * 360 * rotateDirection;
+        s.rotateBase +
+        Math.sin(time * 0.00022 + index) * 12;
 
-      /*
-        竜巻・煙のようなねじれ感
-      */
-      const skew = Math.sin(t * 0.0035 + index) * 10;
-      const pulse = 1 + Math.sin(t * 0.00045 + index) * 0.04;
+      const skew =
+        Math.sin(time * 0.0012 + index * 1.3) * 3;
 
-      layer.style.left = `calc(50% + ${x}vw)`;
+      const scale =
+        0.88 + progress * 0.28 + Math.sin(time * 0.00035 + index) * 0.035;
+
+      const opacity =
+        clamp(
+          s.opacity * (1 - progress * 0.55) +
+            Math.sin(time * 0.00032 + index) * 0.03,
+          0.06,
+          s.opacity
+        );
+
+      layer.style.left = `${x}%`;
       layer.style.top = `${y}%`;
+      layer.style.opacity = opacity.toFixed(3);
 
       layer.style.transform = `
         translate(-50%, -50%)
-        rotate(${rotate}deg)
-        skewY(${skew}deg)
-        scale(${pulse})
+        rotate(${rotate.toFixed(2)}deg)
+        skewY(${skew.toFixed(2)}deg)
+        scale(${scale.toFixed(3)})
         scaleX(${s.scaleX})
         scaleY(${s.scaleY})
       `;
-
-      layer.style.opacity =
-        index === 0
-          ? 0.38 + Math.sin(t * 0.0004) * 0.05
-          : index === 1
-            ? 0.18 + Math.sin(t * 0.00035) * 0.04
-            : 0.24 + Math.sin(t * 0.00032) * 0.04;
     });
 
-    if (vantaEffect && vantaEffect.options) {
+    if (vantaEffect?.options) {
       vantaEffect.options.speed =
         0.2 + Math.sin(now * 0.0002) * 0.025;
 
@@ -149,19 +163,23 @@ document.addEventListener("DOMContentLoaded", () => {
         0.56 + Math.sin(now * 0.00025) * 0.02;
     }
 
-    requestAnimationFrame(animateSmoke);
+    animationId = requestAnimationFrame(animateSmoke);
   }
 
-  requestAnimationFrame(animateSmoke);
+  animationId = requestAnimationFrame(animateSmoke);
 
   window.addEventListener("resize", () => {
-    if (vantaEffect && typeof vantaEffect.resize === "function") {
+    if (typeof vantaEffect?.resize === "function") {
       vantaEffect.resize();
     }
   });
 
   window.addEventListener("beforeunload", () => {
-    if (vantaEffect && typeof vantaEffect.destroy === "function") {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+
+    if (typeof vantaEffect?.destroy === "function") {
       vantaEffect.destroy();
     }
   });
