@@ -5,10 +5,10 @@
 ======================================== */
 
 :root {
-  --color-txt: #303A05;
-  --color-bg: #F8FAEC;
+  --color-txt: #303a05;
+  --color-bg: #f8faec;
   --color-shadow-green: #3c4606;
-  --font-base: 'Shippori Mincho', serif;
+  --font-base: "Shippori Mincho", serif;
   --font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
   --font-btn: "Akaya Kanadaka", system-ui;
 }
@@ -29,15 +29,19 @@
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(245, 242, 232, 0.75);
   border-radius: 999px;
-  background: linear-gradient(180deg,
-      rgba(80, 90, 70, 0.75),
-      rgba(45, 55, 40, 0.85));
+  background: linear-gradient(
+    180deg,
+    rgba(80, 90, 70, 0.75),
+    rgba(45, 55, 40, 0.85)
+  );
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg,
-      rgba(70, 85, 60, 0.9),
-      rgba(35, 45, 32, 0.95));
+  background: linear-gradient(
+    180deg,
+    rgba(70, 85, 60, 0.9),
+    rgba(35, 45, 32, 0.95)
+  );
 }
 
 ::-webkit-scrollbar-corner {
@@ -78,7 +82,10 @@
     border: 1px solid #fff;
     background-color: transparent;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition:
+      width 0.3s,
+      height 0.3s,
+      background-color 0.3s;
   }
 
   #stalker.is-active {
@@ -97,7 +104,7 @@ sp
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .sp {
+  .sp {
     display: block;
   }
 }
@@ -182,6 +189,13 @@ body::before {
   }
 }
 
+body::before,
+body::after,
+#cursor,
+#stalker {
+  pointer-events: none;
+}
+
 main {
   position: relative;
 }
@@ -214,16 +228,14 @@ section {
     min-height: 100vh;
   }
 
-  section + section {
+  /* section + section {
     margin-top: 100px;
-  }
+  } */
 }
 
 .section--contact,
 .section--faq,
 .section--access {
-  display: block;
-  min-height: auto;
   padding: 8rem 1rem 8rem;
   overflow: visible;
 }
@@ -231,8 +243,8 @@ section {
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .section--contact,
   .section--access {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
   }
 }
 
@@ -338,14 +350,11 @@ section {
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .section--concept .section__txt,
   .section--artists .section__txt {
-    writing-mode: initial;
     white-space: normal;
   }
-}
-
-.section--access .section__txt {
-  width: 100%;
-  font-weight: bold;
+  .section--concept .section__txt {
+    height: 65vh;
+  }
 }
 
 .section--contact .section__txt,
@@ -384,6 +393,27 @@ section {
   letter-spacing: 0.06em;
 } */
 
+/* ========================================
+=br
+======================================== */
+
+.pc-br {
+  display: inline;
+}
+
+.sp-br {
+  display: none;
+}
+
+@media screen and (max-width: 699px) {
+  .pc-br {
+    display: none;
+  }
+
+  .sp-br {
+    display: inline;
+  }
+}
 
 /* ========================================
 =FV
@@ -395,8 +425,8 @@ section {
   font-size: clamp(80px, 12vw, 140px);
   letter-spacing: 2.4rem;
   filter: blur(2px);
-  color: var(--color-bg);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  color: var(--color-shadow-green);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .fv {
@@ -427,7 +457,7 @@ section {
 
 /* 表示状態 */
 .h1_fade.is-show {
-  opacity: 0.35;
+  opacity: 0.04;
   transform: translate(0%, 0%);
   mix-blend-mode: color-burn;
 }
@@ -437,11 +467,11 @@ section {
   writing-mode: vertical-rl;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+/* @media screen and (min-width: 320px) and (max-width: 699px) {
   .section--concept .h2_ttl {
     writing-mode: initial;
   }
-}
+} */
 
 .fv-bt-txt {
   position: absolute;
@@ -481,7 +511,7 @@ section {
 
 .scroll-guide {
   position: fixed;
-  right: 6%;
+  right: 8vmin;
   bottom: 60px;
   z-index: 10;
   display: block;
@@ -497,7 +527,6 @@ section {
   }
 }
 
-
 .scroll-guide__text {
   font-family: var(--font-base);
   font-size: 0.9rem;
@@ -507,7 +536,7 @@ section {
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .scroll-guide__text {
+  .scroll-guide__text {
     font-size: 0.6rem;
     letter-spacing: 0.4rem;
   }
@@ -610,7 +639,7 @@ section {
 }
 
 @media screen and (min-width: 700px) and (max-width: 1239px) {
-    .img-box,
+  .img-box,
   .card {
     width: 420px;
     height: 300px;
@@ -618,7 +647,7 @@ section {
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .img-box,
+  .img-box,
   .card {
     width: 280px;
     height: 220px;
@@ -822,6 +851,7 @@ section {
 }
 
 .section__bg-img {
+  height: 120vh;
   mix-blend-mode: lighten;
   opacity: 0.4;
 }
@@ -842,7 +872,7 @@ h3.faq-ttl {
 .faq-ans-txt {
   display: block;
   text-align: left;
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .faq-ans-txt + .faq-ans-txt {
@@ -870,8 +900,6 @@ FAQ
 .faq-list {
   display: grid;
   gap: 0.5rem;
-  overflow-y: scroll;
-  height: 380px;
   align-content: flex-start;
 }
 
@@ -880,6 +908,7 @@ FAQ
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: url("../img/bg-img.jpg") center / cover;
   background-repeat: no-repeat;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 }
 
 .faq-question {
@@ -900,9 +929,9 @@ FAQ
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .faq-question {
+  .faq-question {
     padding: 0.95rem 1rem;
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -929,11 +958,6 @@ FAQ
   transition: grid-template-rows 0.35s ease;
 }
 
-.section--faq {
-  min-height: auto;
-  height: fit-content;
-}
-
 .faq-answer .faq-txt {
   margin: 0;
   padding: 0 1.5rem;
@@ -955,9 +979,17 @@ Access
 
 .acs-box {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+    gap: 2rem;
 }
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .acs-box {
+    display: block;
+  }
+}
+
 
 .section--access .section__txt {
   text-align: left;
@@ -975,15 +1007,15 @@ Access
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
 }
 
-.access-box {
-  display: flex;
-  gap: 2rem;
+.section--access .section__txt {
+  width: 100%;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .access-box {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .section--access .section__txt {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -996,8 +1028,19 @@ Access
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
-    .access-info {
-    padding-left: 1.3rem;
+  .access-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 120px;
+    padding: 1rem 0.75rem;
+    border-width: 0;
+    border-top: 1px solid var(--color-txt);
+    max-width: 100%;
+  }
+  .access-info:nth-last-of-type(1) {
+    border-bottom: 1px solid var(--color-txt);
   }
 }
 
@@ -1007,9 +1050,32 @@ Access
   font-family: var(--font-jp);
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .access-info h3 {
+    font-size: 1rem;
+  }
+}
+
 .access-txt {
   color: var(--color-txt);
   font-size: 1rem;
   line-height: 1.8;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .access-txt {
+    font-size: 0.8rem;
+  }
+}
+
+.map {
+  width: 60%;
+  height:350px;
+  border: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .map {
+    height: 200px;
+  }
+}
