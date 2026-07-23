@@ -1,0 +1,76 @@
+/* ========================================
+  Three.js Liquid Background
+======================================== */
+
+.liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /*
+   * WebGLが表示できない場合の
+   * フォールバック背景
+   */
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), transparent 45%),
+    linear-gradient(135deg, #f2eee5, #e5dfd2);
+}
+
+/*
+ * Three.jsのcanvas
+ */
+
+.liquid-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+/*
+ * 光と紙の薄い質感
+ */
+
+.liquid::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.16),
+    transparent 35%,
+    rgba(255, 255, 255, 0.08) 65%,
+    transparent
+  );
+
+  content: "";
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+/*
+ * section内のコンテンツを
+ * canvasより前面に表示
+ */
+
+.liquid > :not(.liquid-canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+ * 動きを減らす設定
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-canvas {
+    display: none;
+  }
+}

@@ -57,7 +57,7 @@ class LiquidButton extends HTMLElement {
 
   --dark-bg:
     rgba(25,25,25,.18);
-  
+
   --btn-color: #F8FAEC;
 
   display:inline-block;
