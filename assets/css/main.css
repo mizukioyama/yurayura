@@ -642,7 +642,6 @@ section {
   .img-box,
   .card {
     width: 420px;
-    height: 300px;
   }
 }
 
@@ -650,13 +649,7 @@ section {
   .img-box,
   .card {
     width: 280px;
-    height: 220px;
-  }
-
-  .img-btn,
-  .card__btn {
-    min-width: 70px;
-    padding: 1rem;
+    height: 200px;
   }
 }
 
@@ -762,14 +755,6 @@ section {
   will-change: transform;
 }
 
-.works-link {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 0.4rem 0;
-}
-
 /* .img-btn {
   position: absolute;
   top: 0;
@@ -819,20 +804,20 @@ section {
     opacity 0.3s ease;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .card__btn {
+    min-width: 70px;
+    height: min-content;
+    min-height: 100%;
+    padding: 1rem;
+  }
+}
+
 .card__link:hover .card__btn {
   opacity: 0.72;
 }
 
 .card__btn.is-expand {
-  right: 0;
-  width: 100%;
-}
-
-.works-link:hover .img-btn {
-  opacity: 0.72;
-}
-
-.img-btn.is-expand {
   right: 0;
   width: 100%;
 }
@@ -1022,8 +1007,9 @@ Access
 .access-info {
   width: 100%;
   max-width: 228px;
+  height: -webkit-fill-available;
   align-content: start;
-  padding: 0.5rem 2rem;
+  padding: 10px 0 12px 20px;
   border-left: 1px solid var(--color-txt);
 }
 
