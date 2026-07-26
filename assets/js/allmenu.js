@@ -6,7 +6,6 @@
  */
 
 document.addEventListener("DOMContentLoaded", async () => {
-
   /**
    * ==========================
    * 設定
@@ -43,20 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      const html = await response.text();
-
-      target.innerHTML = html;
-
+      target.innerHTML = await response.text();
     } catch (error) {
       console.error(error);
 
       target.innerHTML = `
-        <div style="
-          padding: 16px;
-          color: red;
-          border: 1px solid red;
-          font-size: 14px;
-        ">
+        <div class="parts-load-error">
           パーツ読み込みエラー: ${url}
         </div>
       `;
@@ -76,60 +67,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   /**
    * ==========================
-   * スクロールメニュー初期化
-   * Header読み込み後に実行
+   * 各機能の初期化
    * ==========================
    */
 
   initializeHeaderMenu();
-
-  /**
-   * ==========================
-   * 現在年 自動更新
-   * ==========================
-   */
-
-  const year = document.querySelector("#js-year");
-
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
-
-  /**
-   * ==========================
-   * 現在ページ active付与
-   * ==========================
-   */
-
-  const currentPath =
-    location.pathname.split("/").pop() || "index.html";
-
-  const links = document.querySelectorAll("a");
-
-  links.forEach((link) => {
-    const href = link.getAttribute("href");
-
-    if (!href) return;
-
-    /*
-     * ページ内リンクには
-     * is-currentを付けない
-     */
-    if (href.startsWith("#")) return;
-
-    const hrefPath = href.split("#")[0];
-
-    if (hrefPath === currentPath) {
-      link.classList.add("is-current");
-    }
-  });
-
-  /**
-   * ==========================
-   * カスタムカーソル
-   * ==========================
-   */
-
+  initializeCurrentYear();
+  initializeCurrentPage();
   initializeCustomCursor();
 
   /**
@@ -143,45 +87,94 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 /**
  * ==========================================
- * スクロールメニュー
+ * ヘッダーメニュー
  * ==========================================
  */
 
 function initializeHeaderMenu() {
   const header = document.querySelector(".header");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menuLinks = document.querySelectorAll(".header-link");
+  const menuToggle = header?.querySelector(".menu-toggle");
 
   if (!header || !menuToggle) {
     console.warn("メニュー要素が見つかりません");
     return;
   }
 
+  const menuLinks = header.querySelectorAll(".header-link");
+
   const mobileMedia = window.matchMedia(
     "(min-width: 320px) and (max-width: 699px)"
   );
 
   /**
-   * メニューを閉じる
+   * ==========================
+   * 背景スクロール状態を更新
+   * ==========================
    */
 
-  function closeMenu() {
-    header.classList.remove("is-open");
+  function setScrollLock(isLocked) {
+    document.documentElement.classList.toggle(
+      "is-menu-open",
+      isLocked
+    );
 
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "メニューを開く");
-
-    document.body.classList.remove("is-menu-open");
+    document.body.classList.toggle(
+      "is-menu-open",
+      isLocked
+    );
   }
 
   /**
-   * スクロール位置を確認
+   * ==========================
+   * メニュー開閉状態を更新
+   * ==========================
+   */
+
+  function setMenuState(isOpen) {
+    header.classList.toggle("is-open", isOpen);
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "メニューを閉じる" : "メニューを開く"
+    );
+
+    setScrollLock(isOpen);
+  }
+
+  /**
+   * ==========================
+   * メニューを閉じる
+   * ==========================
+   */
+
+  function closeMenu() {
+    setMenuState(false);
+  }
+
+  /**
+   * ==========================
+   * ヘッダー表示状態を更新
+   * ==========================
    */
 
   function updateHeaderState() {
     if (!mobileMedia.matches) {
       header.classList.remove("is-compact");
       closeMenu();
+      return;
+    }
+
+    /*
+     * メニューを開いている間は
+     * スクロール状態を更新しない
+     */
+
+    if (header.classList.contains("is-open")) {
       return;
     }
 
@@ -194,7 +187,7 @@ function initializeHeaderMenu() {
     );
 
     /*
-     * 100vh未満へ戻った場合は閉じる
+     * ファーストビューへ戻った場合は閉じる
      */
 
     if (!hasScrolledOneView) {
@@ -203,30 +196,29 @@ function initializeHeaderMenu() {
   }
 
   /**
-   * ボタンクリック
+   * ==========================
+   * メニューボタン
+   * ==========================
    */
 
-  menuToggle.addEventListener("click", () => {
-    const isOpen = header.classList.toggle("is-open");
+  menuToggle.addEventListener("click", (event) => {
+    /*
+     * menu-toggleがaタグの場合でも
+     * href="#"によるトップ移動を防ぐ
+     */
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(isOpen)
-    );
+    event.preventDefault();
 
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "メニューを閉じる" : "メニューを開く"
-    );
+    const isOpen =
+      !header.classList.contains("is-open");
 
-    document.body.classList.toggle(
-      "is-menu-open",
-      isOpen
-    );
+    setMenuState(isOpen);
   });
 
   /**
-   * メニューリンククリック後に閉じる
+   * ==========================
+   * メニューリンク
+   * ==========================
    */
 
   menuLinks.forEach((link) => {
@@ -234,29 +226,136 @@ function initializeHeaderMenu() {
   });
 
   /**
-   * Escキーで閉じる
+   * ==========================
+   * Escキー
+   * ==========================
    */
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
+    if (
+      event.key !== "Escape" ||
+      !header.classList.contains("is-open")
+    ) {
+      return;
     }
+
+    closeMenu();
+    menuToggle.focus();
   });
 
   /**
-   * スクロール・画面幅変更
+   * ==========================
+   * スクロール
+   * ==========================
    */
 
-  window.addEventListener("scroll", updateHeaderState, {
-    passive: true,
-  });
+  window.addEventListener(
+    "scroll",
+    updateHeaderState,
+    {
+      passive: true,
+    }
+  );
+
+  /**
+   * ==========================
+   * 画面幅変更
+   * ==========================
+   */
 
   mobileMedia.addEventListener(
     "change",
     updateHeaderState
   );
 
+  /**
+   * ==========================
+   * 初期状態
+   * ==========================
+   */
+
+  menuToggle.setAttribute("aria-expanded", "false");
+
+  if (!menuToggle.hasAttribute("aria-label")) {
+    menuToggle.setAttribute(
+      "aria-label",
+      "メニューを開く"
+    );
+  }
+
   updateHeaderState();
+}
+
+/**
+ * ==========================================
+ * 現在年 自動更新
+ * ==========================================
+ */
+
+function initializeCurrentYear() {
+  const year = document.querySelector("#js-year");
+
+  if (!year) return;
+
+  year.textContent = new Date().getFullYear();
+}
+
+/**
+ * ==========================================
+ * 現在ページ active付与
+ * ==========================================
+ */
+
+function initializeCurrentPage() {
+  const currentPath = normalizePath(location.pathname);
+
+  document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (!href) return;
+
+    /*
+     * ページ内リンクを除外
+     */
+
+    if (href.startsWith("#")) return;
+
+    try {
+      const linkURL = new URL(href, location.href);
+
+      /*
+       * 外部リンクを除外
+       */
+
+      if (linkURL.origin !== location.origin) return;
+
+      const linkPath = normalizePath(linkURL.pathname);
+
+      link.classList.toggle(
+        "is-current",
+        linkPath === currentPath
+      );
+    } catch (error) {
+      console.warn(`無効なリンクです: ${href}`, error);
+    }
+  });
+}
+
+/**
+ * ==========================================
+ * パスを比較用に統一
+ * ==========================================
+ */
+
+function normalizePath(pathname) {
+  let normalizedPath = pathname.replace(/\/+$/, "");
+
+  normalizedPath = normalizedPath.replace(
+    /\/index\.html$/,
+    ""
+  );
+
+  return normalizedPath || "/";
 }
 
 /**
@@ -266,29 +365,78 @@ function initializeHeaderMenu() {
  */
 
 function initializeCustomCursor() {
+  /**
+   * マウス操作がない端末では実行しない
+   */
+
+  const canUseCustomCursor = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  if (!canUseCustomCursor.matches) return;
+
   const cursor = document.getElementById("cursor");
   const stalker = document.getElementById("stalker");
 
   if (!cursor || !stalker) return;
 
-  document.addEventListener("mousemove", (event) => {
-    cursor.style.transform =
-      `translate(${event.clientX}px, ${event.clientY}px) ` +
+  let mouseX = 0;
+  let mouseY = 0;
+  let animationFrameId = null;
+
+  /**
+   * ==========================
+   * カーソル位置を反映
+   * ==========================
+   */
+
+  function updateCursorPosition() {
+    const transform =
+      `translate(${mouseX}px, ${mouseY}px) ` +
       "translate(-50%, -50%)";
 
-    stalker.style.transform =
-      `translate(${event.clientX}px, ${event.clientY}px) ` +
-      "translate(-50%, -50%)";
-  });
+    cursor.style.transform = transform;
+    stalker.style.transform = transform;
+
+    animationFrameId = null;
+  }
+
+  /**
+   * ==========================
+   * カーソル移動
+   * ==========================
+   */
+
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+
+      if (animationFrameId !== null) return;
+
+      animationFrameId =
+        requestAnimationFrame(updateCursorPosition);
+    },
+    {
+      passive: true,
+    }
+  );
+
+  /**
+   * ==========================
+   * リンク・ボタンへのホバー
+   * ==========================
+   */
 
   document
     .querySelectorAll("a, button, .card__btn")
     .forEach((target) => {
-      target.addEventListener("mouseenter", () => {
+      target.addEventListener("pointerenter", () => {
         stalker.classList.add("is-active");
       });
 
-      target.addEventListener("mouseleave", () => {
+      target.addEventListener("pointerleave", () => {
         stalker.classList.remove("is-active");
       });
     });
