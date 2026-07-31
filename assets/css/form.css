@@ -1,95 +1,213 @@
 @charset "utf-8";
 
 /* ========================================
-Form
+  Contact Form
+======================================== */
+
+.contact-form {
+  width: min(100%, 60rem);
+}
+
+/* ========================================
+  Inquiry Kinds
+======================================== */
+
+.kinds {
+  position: relative;
+
+  font-size: 16px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.kinds::after {
+  position: absolute;
+  top: 0;
+  right: -8px;
+
+  color: #b61515;
+  font-size: 14px;
+
+  content: "*";
+}
+
+/* ========================================
+  Contact Check Grid
 ======================================== */
 
 .contact-check-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 20px;
+
   max-width: 380px;
-  margin: 1.8rem 0;
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .contact-check-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 8px;
   }
 }
 
+/* ========================================
+  Checkbox
+======================================== */
+
 .check-item {
+  position: relative;
+
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
+
   color: var(--color-txt);
   font-size: 1rem;
+
   cursor: pointer;
 }
 
-.check-item input {
+/* 実際のcheckboxは視覚的に隠す */
+.check-item__input {
   position: absolute;
-  opacity: 0;
-  pointer-events: none;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+
+  border: 0;
 }
 
-.fake-check {
+/* カスタムチェックボックス */
+.check-item__box {
   position: relative;
+
   flex-shrink: 0;
+
   width: 22px;
   height: 22px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+
   border-radius: 6px;
+
   background: var(--color-bg);
-}
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .fake-check {
-    width: 18px;
-    height: 18px;
-  }
+
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.4s ease-out;
 }
 
-.check-item input:checked + .fake-check::after {
+/* チェックマーク */
+.check-item__box::after {
   position: absolute;
   top: 3px;
   left: 7px;
+
   width: 6px;
   height: 11px;
+
   border-right: 2px solid var(--color-txt);
   border-bottom: 2px solid var(--color-txt);
+
   content: "";
-  transform: rotate(45deg);
+
+  opacity: 0;
+
+  transform: rotate(45deg) scale(0.8);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* 選択時のチェックマーク */
+.check-item__input:checked + .check-item__box::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+/* 選択時の影 */
+.check-item__input:checked + .check-item__box,
+/* キーボード操作時 */
+.check-item__input:focus-visible + .check-item__box,
+/* マウスを重ねたとき */
+.check-item:hover .check-item__box {
+    box-shadow:
+    1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* チェックボックスのテキスト */
+.check-item__text {
+  line-height: 2;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .check-item__box {
+    width: 18px;
+    height: 18px;
+  }
+
+  .check-item__box::after {
+    top: 2px;
+    left: 5px;
+
+    width: 5px;
+    height: 9px;
+  }
+}
+
+/* ========================================
+  Form Row
+======================================== */
+
+.form-row {
+  position: relative;
+
+  margin-bottom: 14px;
+}
+
+/* ========================================
+  Input / Textarea
+======================================== */
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
   padding: 8px 14px;
-  /* border: 1px solid rgba(0, 0, 0, 0.06); */
+
+  border: none;
   border-bottom: 3px solid;
+  border-radius: 4px 4px 0 0;
   border-image: url("../img/btn-bg-img.jpg") 100;
+
   color: var(--color-txt);
   font-size: 1rem;
-  outline: none;
-  /* background:
-    linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
-    radial-gradient(circle at 20% 20%, rgba(120, 120, 120, 0.04), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgba(120, 120, 120, 0.05), transparent 26%),
-    #ecece5; */
-  background:
-    linear-gradient(rgb(255 255 255 / 22%), rgb(255 255 255 / 34%)),
-    radial-gradient(circle at 20% 20%, rgb(120 120 120 / 10%), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgb(120 120 120 / 18%), transparent 26%), #ecece540;
-}
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .contact-form input[type="text"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    padding: 8px 10px;
-  }
+  background: var(--color-bg);
+
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.4s ease-out,
+    background 0.3s ease;
 }
 
 .contact-form input[type="text"]::placeholder,
@@ -100,8 +218,79 @@ Form
 
 .contact-form textarea {
   min-height: 220px;
+
   resize: vertical;
 }
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    padding: 8px 10px;
+  }
+}
+
+input:focus {
+  background-color: #ffffff;
+}
+
+/* ========================================
+  Input Focus
+======================================== */
+
+.form-row input[type="text"]:focus,
+.form-row input[type="email"]:focus,
+.form-row textarea:focus {
+  outline: none;
+
+  box-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+  Floating Label
+======================================== */
+
+.form-label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+
+  transition:
+    top 0.3s ease,
+    transform 0.3s ease,
+    font-size 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Textarea label */
+.form-label--textarea {
+  top: 0.4rem;
+
+  transform: translateY(0);
+}
+
+/* 入力・フォーカス時にラベルを上へ移動 */
+.form-row input:focus + .form-label,
+.form-row input:not(:placeholder-shown) + .form-label,
+.form-row textarea:focus + .form-label,
+.form-row textarea:not(:placeholder-shown) + .form-label {
+  font-size: 12px;
+  top: 0.8rem;
+
+  opacity: 0.5;
+
+  transform: translateY(-26px);
+}
+
+/* ========================================
+  Form Bottom
+======================================== */
 
 .form-bottom {
   display: flex;
@@ -117,23 +306,54 @@ Form
   }
 }
 
+/* HTMLにclass="consent-item"を付ける場合のみ適用 */
 .consent-item {
   flex-wrap: wrap;
 }
 
+/* ========================================
+  Submit Button
+======================================== */
+
 .send-btn {
   min-width: 310px;
-  padding: 4px 0 6px;
+  padding: 4px 0 8px;
+
   border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+
   color: #f4f2ea;
-  font-size: 1.2rem;
-  font-family: var(--font-btn);
-  letter-spacing: 0.08em;
+  font-family: var(--font-jp);
+  font-size: 18px;
+  letter-spacing: 4px;
+
   cursor: pointer;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.25);
+
   transition:
     transform 0.25s ease,
     opacity 0.25s ease;
+}
+
+.send-btn:hover,
+.send-btn:focus-visible {
+  opacity: 0.95;
+
+  transform: translateY(-4px);
+}
+
+.send-btn:focus-visible {
+  outline: 2px solid var(--color-txt);
+  outline-offset: 3px;
+}
+
+.send-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+  transform: none;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
@@ -143,128 +363,15 @@ Form
   }
 }
 
-.send-btn:hover {
-  opacity: 0.95;
-  transform: translateY(-2px);
-}
+/* ========================================
+  Modal
+======================================== */
 
-.contact-form {
-  width: min(100%, 60rem);
-}
-
-/* =========================
-   Row
-========================= */
-
-.form-row {
-  position: relative;
-  margin-bottom: 14px;
-}
-
-/* =========================
-   Input
-========================= */
-
-.form-row input,
-.form-row textarea {
-  width: 100%;
-  border: none;
-  backdrop-filter: blur(10px);
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
-}
-
-/* textarea */
-
-.form-row textarea {
-  resize: vertical;
-}
-
-/* =========================
-   Focus
-========================= */
-
-.form-row input:focus,
-.form-row textarea:focus {
-  outline: none;
-  box-shadow:
-    inset 0 1px 4px rgba(0, 0, 0, 1),
-    0 0 0 1px var(--accent);
-}
-
-/* =========================
-   Floating Label
-========================= */
-
-.form-label {
-  position: absolute;
-
-  top: 50%;
-  left: 14px;
-
-  transform: translateY(-50%);
-
-  pointer-events: none;
-
-  transition:
-    transform 0.3s ease,
-    font-size 0.3s ease,
-    color 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/* textarea */
-
-.form-label--textarea {
-  top: 0.4rem;
-  transform: translateY(0);
-}
-
-/* ラベル上昇 */
-
-.form-row input:focus + .form-label,
-.form-row input:not(:placeholder-shown) + .form-label,
-.form-row textarea:focus + .form-label,
-.form-row textarea:not(:placeholder-shown) + .form-label {
-  top: 0.8rem;
-  transform: translateY(-26px);
-  opacity: 0.75;
-}
-
-/* =========================
-   Checkbox
-========================= */
-
-.check-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  cursor: pointer;
-}
-
-.check-item input {
-  display: none;
-}
-
-/* =========================
-   shadow
-========================= */
-.form-row input,
-.form-row textarea,
-.fake-check {
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 1);
-}
-
-.consent-label {
-   font-size: 0.8rem;
-}
-
-/*================ modal ================*/
 .modal {
   position: fixed;
+  z-index: 9999;
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,8 +384,6 @@ Form
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
-
-  z-index: 9999;
 }
 
 .modal.active {
@@ -286,57 +391,79 @@ Form
   visibility: visible;
 }
 
+/* ========================================
+  Modal Content
+======================================== */
+
 .modal-content {
+  position: relative;
+
   width: min(90%, 50rem);
-
-  background: #fff;
-  border-radius: 1.6rem;
-
   padding: 3rem;
 
-  position: relative;
+  border-radius: 1.6rem;
+
+  background: #fff;
 
   text-align: center;
 
   transform: translateY(2rem);
-  transition: transform 0.3s ease;
+
+  transition:
+    transform 0.3s ease;
 }
 
 .modal.active .modal-content {
   transform: translateY(0);
 }
 
+/* ========================================
+  Modal Title
+======================================== */
+
 .modal-title {
-  font-size: 2.2rem;
   margin-bottom: 1.5rem;
+
+  font-size: 2.2rem;
 }
+
+/* ========================================
+  Modal Message
+======================================== */
 
 .modal-message {
   font-size: 1.6rem;
   line-height: 1.8;
 }
 
+/* ========================================
+  Modal Button
+======================================== */
+
 .modal-btn {
   margin-top: 2rem;
-
   padding: 1rem 2rem;
 
   border: none;
-  cursor: pointer;
-
   border-radius: 0.8rem;
+
+  cursor: pointer;
 }
+
+/* ========================================
+  Modal Close
+======================================== */
 
 .modal-close {
   position: absolute;
-
   top: 1rem;
   right: 1rem;
 
-  background: none;
   border: none;
 
-  cursor: pointer;
+  background: none;
 
   font-size: 2.4rem;
+
+  cursor: pointer;
 }

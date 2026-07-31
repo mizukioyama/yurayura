@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="format-detection" content="telephone=no" />
-    <!-- CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <!-- CSP -->
+  <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     img-src 'self' data: https:;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net;
@@ -17,424 +16,391 @@
     frame-src https://www.google.com;
     base-uri 'self';
     form-action 'self';
-  "
-    />
-    <title>ゆらゆら | 体感するArt展</title>
-    <meta
-      name="description"
-      content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。"
-    />
-    <link rel="canonical" href="https://example.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ゆらゆら" />
-    <meta property="og:title" content="ゆらゆら | 体感するArt展" />
-    <meta
-      property="og:description"
-      content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。"
-    />
-    <meta property="og:url" content="https://example.com/" />
-    <meta property="og:image" content="https://example.com/assets/img/ogp.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+  " />
+  <title>ゆらゆら | 体感するArt展</title>
+  <meta name="description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。" />
+  <link rel="canonical" href="https://example.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ゆらゆら" />
+  <meta property="og:title" content="ゆらゆら | 体感するArt展" />
+  <meta property="og:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://example.com/assets/img/ogp.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" href="./assets/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+  <link rel="icon" href="./assets/img/favicon.ico" />
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
 
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap"
-      rel="stylesheet"
-    />
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="stylesheet" href="./assets/css/menu-style.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/form.css" />
-    <link rel="stylesheet" href="./assets/css/fog-hole.css" />
-    <link rel="stylesheet" href="./assets/css/fv-animation.css" />
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/menu-style.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/form.css" />
+  <link rel="stylesheet" href="./assets/css/fog-hole.css" />
+  <link rel="stylesheet" href="./assets/css/fv-animation.css" />
 
-    <script src="./assets/js/font.js" defer></script>
-    <script src="./assets/js/allmenu.js" defer></script>
-    <script src="./assets/js/slide.js" defer></script>
-    <script src="./assets/js/faq.js" defer></script>
-    <script src="./assets/js/form.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
-    <script src="./assets/js/fv-animation.js" defer></script>
-    <script src="./assets/js/fog-hole.js" defer></script>
-    <script src="./assets/js/liquid-button.js" defer></script>
-  </head>
+  <script src="./assets/js/font.js" defer></script>
+  <script src="./assets/js/allmenu.js" defer></script>
+  <script src="./assets/js/slide.js" defer></script>
+  <script src="./assets/js/faq.js" defer></script>
+  <script src="./assets/js/form.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
+  <script src="./assets/js/fv-animation.js" defer></script>
+  <script src="./assets/js/fog-hole.js" defer></script>
+  <script src="./assets/js/liquid-button.js" defer></script>
+</head>
 
-  <body>
-    <div id="fog-scene">
-      <div id="fog-blur-layer"></div>
-      <div id="fog-hole">
-        <canvas id="fogHoleCanvas"></canvas>
-      </div>
+<body>
+  <div id="fog-scene">
+    <div id="fog-blur-layer"></div>
+    <div id="fog-hole">
+      <canvas id="fogHoleCanvas"></canvas>
+    </div>
+  </div>
+
+  <div id="cursor"></div>
+  <div id="stalker"></div>
+
+  <!-- Header -->
+  <div id="js-header"></div>
+
+  <main class="main" id="main">
+    <div class="vanta-wrap">
+      <div id="vanta-bg"></div>
+      <div class="smoke-twist smoke-twist--01" aria-hidden="true"></div>
+      <div class="smoke-twist smoke-twist--02" aria-hidden="true"></div>
+      <div class="smoke-twist smoke-twist--03" aria-hidden="true"></div>
     </div>
 
-    <div id="cursor"></div>
-    <div id="stalker"></div>
-
-    <!-- Header -->
-    <div id="js-header"></div>
-
-    <main class="main" id="main">
-      <div class="vanta-wrap">
-        <div id="vanta-bg"></div>
-        <div class="smoke-twist smoke-twist--01" aria-hidden="true"></div>
-        <div class="smoke-twist smoke-twist--02" aria-hidden="true"></div>
-        <div class="smoke-twist smoke-twist--03" aria-hidden="true"></div>
+    <section class="fv">
+      <div class="fv__inner inner">
+        <h1 class="fv__ttl h1_fade">ゆらゆら</h1>
+        <p class="fv__txt">
+          ゆらぎの間で
+          <br />
+          理解するのではなく、
+          <br />
+          体感する。
+        </p>
       </div>
 
-      <section class="fv">
-        <div class="fv__inner inner">
-          <h1 class="fv__ttl h1_fade">ゆらゆら</h1>
-          <p class="fv__txt">
-            ゆらぎの間で
-            <br />
-            理解するのではなく、
-            <br />
-            体感する。
-          </p>
+      <div class="scroll-guide" aria-hidden="true">
+        <span class="scroll-guide__text">Scroll</span>
+        <span class="scroll-guide__bar"></span>
+      </div>
+    </section>
+
+    <section class="section section--concept" id="concept">
+      <div class="section__inner inner">
+        <h2 class="h2_ttl">～ ゆらぎの間で ～</h2>
+        <p class="section__txt">
+          「ゆらゆら」は、<br class="pc-br" />主催者の考えや想いを大切に、<br class="pc-br" />協力者の皆さまと共につくる、<br class="pc-br" />初めての展示企画。<br
+            class="pc-br" />この展示は、<br class="pc-br" />作品を<b>「理解する」</b>のではなく、<br
+            class="pc-br" /><b>「体感する」</b>ことを大切にしています。<br class="pc-br" />作品の前でふと立ち止まり、<br class="pc-br" />呼吸が少し変わる。<br
+            class="pc-br" />時間の流れがゆるやかになる。<br class="pc-br" />数秒前の自分との違いに気づく。<br class="pc-br" />小さな揺らぎ、<br
+            class="pc-br" />心の余白にふれるような時間を、<br class="pc-br" />それぞれの感覚で<br class="pc-br" />味わっていただけたら嬉しいです。
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--artists" id="artists">
+      <div class="section__inner inner">
+        <h2 class="h2_ttl">
+          作家
+          <span class="h2_ttl-small">と</span>
+          作品
+          <span class="h2_ttl-artists"> 出展者紹介 </span>
+        </h2>
+        <p class="section__txt">
+          作品と作家については、
+          <br />
+          紹介ページでご覧いただけます。
+          <br />
+          ひとつひとつの表現、
+          <br />
+          その奥にある感覚にふれ、
+          <br />
+          <b>ゆらゆら</b>の世界をご覧ください。
+        </p>
+
+        <div class="artists-bg-img">
+          <img class="section__bg-img" src="./assets/img/artists-bg.png" alt="" />
         </div>
 
-        <div class="scroll-guide" aria-hidden="true">
-          <span class="scroll-guide__text">Scroll</span>
-          <span class="scroll-guide__bar"></span>
-        </div>
-      </section>
+        <div class="cards member-slider" id="memberSlider">
+          <div class="cards__track member-track" id="memberTrack">
+            <article class="card">
+              <a href="artist-mizuki.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
 
-      <section class="section section--concept" id="concept">
-        <div class="section__inner inner">
-          <h2 class="h2_ttl">～ ゆらぎの間で ～</h2>
-          <p class="section__txt">
-            「ゆらゆら」は、<br class="pc-br" />主催者の考えや想いを大切に、<br
-              class="pc-br"
-            />協力者の皆さまと共につくる、<br class="pc-br" />初めての展示企画。<br
-              class="pc-br"
-            />この展示は、<br class="pc-br" />作品を<b>「理解する」</b>のではなく、<br
-              class="pc-br"
-            /><b>「体感する」</b>ことを大切にしています。<br
-              class="pc-br"
-            />作品の前でふと立ち止まり、<br class="pc-br" />呼吸が少し変わる。<br
-              class="pc-br"
-            />時間の流れがゆるやかになる。<br class="pc-br" />数秒前の自分との違いに気づく。<br
-              class="pc-br"
-            />小さな揺らぎ、<br class="pc-br" />心の余白にふれるような時間を、<br
-              class="pc-br"
-            />それぞれの感覚で<br class="pc-br" />味わっていただけたら嬉しいです。
-          </p>
-        </div>
-      </section>
+            <article class="card">
+              <a href="artist-mizuki2.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
 
-      <section class="section section--artists" id="artists">
-        <div class="section__inner inner">
-          <h2 class="h2_ttl">
-            作家
-            <span class="h2_ttl-small">と</span>
-            作品
-            <span class="h2_ttl-artists"> 出展者紹介 </span>
-          </h2>
-          <p class="section__txt">
-            作品と作家については、
-            <br />
-            紹介ページでご覧いただけます。
-            <br />
-            ひとつひとつの表現、
-            <br />
-            その奥にある感覚にふれ、
-            <br />
-            <b>ゆらゆら</b>の世界をご覧ください。
-          </p>
+            <article class="card">
+              <a href="artist-mizuki3.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
 
-          <div class="artists-bg-img">
-            <img class="section__bg-img" src="./assets/img/artists-bg.png" alt="" />
-          </div>
-
-          <div class="cards member-slider" id="memberSlider">
-            <div class="cards__track member-track" id="memberTrack">
-              <article class="card">
-                <a href="artist-mizuki.html" class="card__link">
-                  <span class="card__btn img-btn">Mizuki</span>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="artist-mizuki2.html" class="card__link">
-                  <span class="card__btn img-btn">Mizuki</span>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="artist-mizuki3.html" class="card__link">
-                  <span class="card__btn img-btn">Mizuki</span>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="artist-mizuki4.html" class="card__link">
-                  <span class="card__btn img-btn">Mizuki</span>
-                </a>
-              </article>
-            </div>
-          </div>
-
-          <div class="section__btn btn">
-            <liquid-button text="-View" href="https://example.com" size="md"> </liquid-button>
+            <article class="card">
+              <a href="artist-mizuki4.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
           </div>
         </div>
-      </section>
 
-      <section class="section section--contact" id="contact">
-        <div class="section__inner inner">
-          <h2 class="h2_ttl">お問い合せ</h2>
-          <p class="section__txt">
-            作品や展示会については、よくある質問に記載していますが、<br />
-            質問したいことがありましたらお気軽に下記Fromからお問い合わせください。
-          </p>
+        <div class="section__btn btn">
+          <liquid-button text="-View" href="https://example.com" size="md"> </liquid-button>
+        </div>
+      </div>
+    </section>
 
-          <form
-            action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
-            method="POST"
-            class="contact-form"
-            id="contactForm"
-          >
-            <h3 class="section__subttl contact-sub-ttl">お問い合わせForm</h3>
+    <section class="section section--contact" id="contact">
+      <div class="section__inner inner">
+        <h2 class="h2_ttl">お問い合せ</h2>
+        <p class="section__txt">
+          作品や展示会については、よくある質問に記載していますが、<br />
+          質問したいことがありましたらお気軽に下記Fromからお問い合わせください。
+        </p>
 
-            <div class="contact-check-grid">
-              <label class="check-item">
-                <input type="checkbox" name="type" value="展示について" />
-                <span class="fake-check"></span>
-                <span class="check-text">展示について</span>
-              </label>
+        <form
+          action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
+          method="POST" class="contact-form" id="contactForm">
 
-              <label class="check-item">
-                <input type="checkbox" name="type" value="作品について" />
-                <span class="fake-check"></span>
-                <span class="check-text">作品について</span>
-              </label>
+          <p class="kinds">お問い合わせ種別</p>
+          <div class="contact-check-grid">
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="展示について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">展示について</span>
+            </label>
 
-              <label class="check-item">
-                <input type="checkbox" name="type" value="購入について" />
-                <span class="fake-check"></span>
-                <span class="check-text">購入について</span>
-              </label>
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="作品について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">作品について</span>
+            </label>
 
-              <label class="check-item">
-                <input type="checkbox" name="type" value="その他" />
-                <span class="fake-check"></span>
-                <span class="check-text">その他</span>
-              </label>
-            </div>
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="購入について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">購入について</span>
+            </label>
 
-            <div class="form-row">
-              <input type="text" id="subject" name="subject" placeholder=" " required />
-              <label for="subject" class="form-label">件名</label>
-            </div>
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="その他" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">その他</span>
+            </label>
+          </div>
 
-            <div class="form-row">
-              <input type="text" id="name" name="name" placeholder=" " required />
-              <label for="name" class="form-label">お名前</label>
-            </div>
+          <div class="form-row">
+            <input type="text" id="subject" name="subject" placeholder=" " required />
+            <label for="subject" class="form-label">件名</label>
+          </div>
 
-            <div class="form-row">
-              <input type="text" id="email" name="email" placeholder=" " required />
-              <label for="email" class="form-label">メールアドレス・電話番号</label>
-            </div>
+          <div class="form-row">
+            <input type="text" id="name" name="name" placeholder=" " required />
+            <label for="name" class="form-label">お名前</label>
+          </div>
 
-            <div class="form-row">
-              <textarea id="message" name="message" placeholder=" " required></textarea>
-              <label for="message" class="form-label form-label--textarea">お問い合わせ内容</label>
-            </div>
+          <div class="form-row">
+            <input type="email" id="email" name="email" placeholder=" " required />
+            <label for="email" class="form-label">メールアドレス・電話番号</label>
+          </div>
 
-            <div class="form-bottom">
-              <label class="consent-label">
-                <input
-                  type="checkbox"
-                  class="fake-check"
-                  id="consent"
-                  name="consent"
-                  value="同意済み"
-                  required
-                />
+          <div class="form-row">
+            <textarea id="message" name="message" placeholder=" " required></textarea>
+            <label for="message" class="form-label form-label--textarea">お問い合わせ内容</label>
+          </div>
+
+          <div class="form-bottom">
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="consent" value="同意済み" required />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">
                 個人情報の取り扱いに同意します
-              </label>
+              </span>
+            </label>
 
-              <button type="submit" class="send-btn">Send</button>
-            </div>
-          </form>
+            <button type="submit" class="send-btn">内容を送信する</button>
+          </div>
+        </form>
 
-          <div id="modal" class="modal">
-            <div class="modal-content">
-              <button type="button" class="modal-close" id="modalClose" aria-label="閉じる">
-                ×
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <button type="button" class="modal-close" id="modalClose" aria-label="閉じる">
+              ×
+            </button>
+
+            <h3 id="modalTitle" class="modal-title"></h3>
+
+            <p id="modalMessage" class="modal-message"></p>
+
+            <button type="button" class="modal-btn" id="modalButton">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--faq" id="faq">
+      <div class="section__inner inner">
+        <div class="faq-box">
+          <h3 class="section__subttl faq-ttl">よくある質問</h3>
+
+          <ul class="faq-list">
+            <li class="faq-list-item">
+              <button class="faq-question" type="button">
+                <span>期間と場所と時間</span>
+                <span class="faq-icon"></span>
               </button>
+              <div class="faq-answer">
+                <p class="faq-txt">
+                  <span class="faq-ans-txt">▪︎展示期間：10/06（火）～10/12（月）</span>
 
-              <h3 id="modalTitle" class="modal-title"></h3>
-
-              <p id="modalMessage" class="modal-message"></p>
-
-              <button type="button" class="modal-btn" id="modalButton">閉じる</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--faq">
-        <div class="section__inner inner">
-          <div class="faq-box">
-            <h3 class="section__subttl faq-ttl">よくある質問</h3>
-
-            <ul class="faq-list">
-              <li class="faq-list-item">
-                <button class="faq-question" type="button">
-                  <span>期間と場所と時間</span>
-                  <span class="faq-icon"></span>
-                </button>
-                <div class="faq-answer">
-                  <p class="faq-txt">
-                    <span class="faq-ans-txt">▪︎展示期間：10/06（火）～10/12（月）</span>
-
-                    開催時間：11:30〜20:00 / 20:00〜21:00の間に外観のライトアップを予定しています。
-                  </p>
-                </div>
-              </li>
-
-              <li class="faq-list-item">
-                <button class="faq-question" type="button">
-                  <span>アクセス（駐車場と最寄り駅）</span>
-                  <span class="faq-icon"></span>
-                </button>
-                <div class="faq-answer">
-                  <p class="faq-txt">
-                    <span class="faq-ans-txt">▪︎JR京浜東北根岸線</span>
-
-                    「石川町駅」元町口出口から徒歩約1分
-
-                    <span class="faq-ans-txt">▪︎みなとみらい線</span>
-
-                    「元町・中華街駅」5番出口・元町口から徒歩約13分
-                    駐車場は近隣にコインパーキングが複数あります。
-                  </p>
-                </div>
-              </li>
-
-              <li class="faq-list-item">
-                <button class="faq-question" type="button">
-                  <span>購入（支払方法、発送、領収書）</span>
-                  <span class="faq-icon"></span>
-                </button>
-                <div class="faq-answer">
-                  <p class="faq-txt">
-                    <span class="faq-ans-txt">▪︎購入方法</span>
-
-                    現地もしくはオンライン（オンラインで購入される場合はArtistと直接のやり取りをお願いしております。）
-
-                    <span class="faq-ans-txt">▪︎支払い方法</span>
-
-                    会場ではスクエアでの決済（クレジット、PayPay）もしくは、現金（口座振り込み）に対応しています。
-
-                    <span class="faq-ans-txt">▪︎発送について</span>
-
-                    お支払いが確認でき、展示が終わり次第い発送準備を行いますので、最短2週間〜1ヶ月以内にお届けを予定しております。
-
-                    <span class="faq-ans-txt">▪︎領収書について</span>
-
-                    会場でご購入された場合はその場で発行いたします。
-                    オンラインで購入された場合の領収書の発行はやり取りをしているArtistに直接お伝えください。
-                  </p>
-                </div>
-              </li>
-
-              <li class="faq-list-item">
-                <button class="faq-question" type="button">
-                  <span>主催者（企画背景、コンセプト）</span>
-                  <span class="faq-icon"></span>
-                </button>
-                <div class="faq-answer">
-                  <p class="faq-txt">
-                    ただ作品を飾るだけではなく、
-                    作品や空間を通して、参加される方や来場される方の心や感覚に、
-                    やさしい変化が生まれる場にしたいという想いをコンセプトにしています。
-                    安らかなひと時を体感していただければ幸いです。
-                  </p>
-                </div>
-              </li>
-
-              <li class="faq-list-item">
-                <button class="faq-question" type="button">
-                  <span>販売する作品、グッズ（購入場所について）</span>
-                  <span class="faq-icon"></span>
-                </button>
-                <div class="faq-answer">
-                  <p class="faq-txt">
-                    作品やグッズの購入は会場もしくはオンラインでご購入いただけます。
-                    お支払い方法、発送についてなどはECサイト（オンラインショップ）の方に掲載していますので、そちらをご確認ください。
-                    ECサイトURL
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--access">
-        <div class="section__inner inner">
-          <h2 class="h2_ttl">会場情報</h2>
-
-          <div class="acs-box">
-            <p class="section__txt">
-              ◎JR京浜東北根岸線<br />
-              「石川町駅」元町口出口から徒歩約1分
-            </p>
-
-            <p class="section__txt">
-              ◎みなとみらい線<br />
-              「元町・中華街駅」5番出口・元町口から徒歩約13分
-            </p>
-          </div>
-
-          <div class="map-box">
-            <iframe
-              class="map"
-              src="https://www.google.com/maps?q=Gallery%20Charlotte.Usagi&output=embed"
-              loading="lazy"
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-
-          <ul class="acs-box">
-            <li class="access-info">
-              <h3>住所</h3>
-              <p class="access-txt">
-                〒231-0868 <br class="pc-br" /> 神奈川県横浜市中区石川町1丁目19-8
-                | Gallery Charlotte.Usagi</wbr>
-              </p>
+                  開催時間：11:30〜20:00 / 20:00〜21:00の間に外観のライトアップを予定しています。
+                </p>
+              </div>
             </li>
 
-            <li class="access-info">
-              <h3>問合せ</h3>
-              <p class="access-txt">o.mizuki.art@gmail.com <br class="p-br"><a href="https://www.instagram.com/o.mizuki_1998/" class="link" target="_blank">Instagram</a></p>
+            <li class="faq-list-item">
+              <button class="faq-question" type="button">
+                <span>アクセス（駐車場と最寄り駅）</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p class="faq-txt">
+                  <span class="faq-ans-txt">▪︎JR京浜東北根岸線</span>
+
+                  「石川町駅」元町口出口から徒歩約1分
+
+                  <span class="faq-ans-txt">▪︎みなとみらい線</span>
+
+                  「元町・中華街駅」5番出口・元町口から徒歩約13分
+                  駐車場は近隣にコインパーキングが複数あります。
+                </p>
+              </div>
             </li>
 
-            <li class="access-info">
-              <h3>営業時間</h3>
-              <p class="access-txt">全日：11:30〜20:00 / LightUp：20:00~21:00</p>
+            <li class="faq-list-item">
+              <button class="faq-question" type="button">
+                <span>購入（支払方法、発送、領収書）</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p class="faq-txt">
+                  <span class="faq-ans-txt">▪︎購入方法</span>
+
+                  現地もしくはオンライン（オンラインで購入される場合はArtistと直接のやり取りをお願いしております。）
+
+                  <span class="faq-ans-txt">▪︎支払い方法</span>
+
+                  会場ではスクエアでの決済（クレジット、PayPay）もしくは、現金（口座振り込み）に対応しています。
+
+                  <span class="faq-ans-txt">▪︎発送について</span>
+
+                  お支払いが確認でき、展示が終わり次第い発送準備を行いますので、最短2週間〜1ヶ月以内にお届けを予定しております。
+
+                  <span class="faq-ans-txt">▪︎領収書について</span>
+
+                  会場でご購入された場合はその場で発行いたします。
+                  オンラインで購入された場合の領収書の発行はやり取りをしているArtistに直接お伝えください。
+                </p>
+              </div>
+            </li>
+
+            <li class="faq-list-item">
+              <button class="faq-question" type="button">
+                <span>主催者（企画背景、コンセプト）</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p class="faq-txt">
+                  ただ作品を飾るだけではなく、
+                  作品や空間を通して、参加される方や来場される方の心や感覚に、
+                  やさしい変化が生まれる場にしたいという想いをコンセプトにしています。
+                  安らかなひと時を体感していただければ幸いです。
+                </p>
+              </div>
+            </li>
+
+            <li class="faq-list-item">
+              <button class="faq-question" type="button">
+                <span>販売する作品、グッズ（購入場所について）</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p class="faq-txt">
+                  作品やグッズの購入は会場もしくはオンラインでご購入いただけます。
+                  お支払い方法、発送についてなどはECサイト（オンラインショップ）の方に掲載していますので、そちらをご確認ください。
+                  ECサイトURL
+                </p>
+              </div>
             </li>
           </ul>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <div id="js-footer"></div>
-  </body>
+    <section class="section section--access" id="access">
+      <div class="section__inner inner">
+        <h2 class="h2_ttl">会場情報</h2>
+
+        <div class="acs-box">
+          <p class="section__txt">
+            ◎JR京浜東北根岸線<br />
+            「石川町駅」元町口出口から徒歩約1分
+          </p>
+
+          <p class="section__txt">
+            ◎みなとみらい線<br />
+            「元町・中華街駅」5番出口・元町口から徒歩約13分
+          </p>
+        </div>
+
+        <div class="map-box">
+          <iframe class="map" src="https://www.google.com/maps?q=Gallery%20Charlotte.Usagi&output=embed" loading="lazy"
+            allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <ul class="acs-box">
+          <li class="access-info">
+            <h3>住所</h3>
+            <p class="access-txt">
+              〒231-0868 <br class="pc-br" /> 神奈川県横浜市中区石川町1丁目19-8
+              | Gallery Charlotte.Usagi</wbr>
+            </p>
+          </li>
+
+          <li class="access-info">
+            <h3>問合せ</h3>
+            <p class="access-txt">o.mizuki.art@gmail.com <br class="p-br"><a
+                href="https://www.instagram.com/o.mizuki_1998/" class="link" target="_blank">Instagram</a></p>
+          </li>
+
+          <li class="access-info">
+            <h3>営業時間</h3>
+            <p class="access-txt">全日：11:30〜20:00 / LightUp：20:00~21:00</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="js-footer"></div>
+</body>
+
 </html>

@@ -6,7 +6,7 @@
 
 :root {
   --color-txt: #303a05;
-  --color-bg: #f8faec;
+  --color-bg: #f3f3ed;
   --color-shadow-green: #3c4606;
   --font-base: "Shippori Mincho", serif;
   --font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
@@ -844,6 +844,9 @@ section {
 /* ========================================
 Contact
 ======================================== */
+#contact,#faq, #access, #js-footer {
+  z-index: 1000;
+}
 
 .contact-sub-ttl,
 h3.faq-ttl {
