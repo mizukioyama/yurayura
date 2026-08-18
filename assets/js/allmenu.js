@@ -102,9 +102,7 @@ function initializeHeaderMenu() {
 
   const menuLinks = header.querySelectorAll(".header-link");
 
-  const mobileMedia = window.matchMedia(
-    "(min-width: 320px) and (max-width: 699px)"
-  );
+  let animationFrameId = null;
 
   /**
    * ==========================
@@ -131,19 +129,28 @@ function initializeHeaderMenu() {
    */
 
   function setMenuState(isOpen) {
-    header.classList.toggle("is-open", isOpen);
+    /*
+     * 縮小状態でない場合は開かない
+     */
+
+    const shouldOpen =
+      isOpen && header.classList.contains("is-compact");
+
+    header.classList.toggle("is-open", shouldOpen);
 
     menuToggle.setAttribute(
       "aria-expanded",
-      String(isOpen)
+      String(shouldOpen)
     );
 
     menuToggle.setAttribute(
       "aria-label",
-      isOpen ? "メニューを閉じる" : "メニューを開く"
+      shouldOpen
+        ? "メニューを閉じる"
+        : "メニューを開く"
     );
 
-    setScrollLock(isOpen);
+    setScrollLock(shouldOpen);
   }
 
   /**
@@ -163,36 +170,55 @@ function initializeHeaderMenu() {
    */
 
   function updateHeaderState() {
-    if (!mobileMedia.matches) {
-      header.classList.remove("is-compact");
-      closeMenu();
-      return;
-    }
-
     /*
      * メニューを開いている間は
-     * スクロール状態を更新しない
+     * スクロール判定を変更しない
      */
 
     if (header.classList.contains("is-open")) {
       return;
     }
 
-    const hasScrolledOneView =
-      window.scrollY >= window.innerHeight;
+    /*
+     * 画面の高さの半分を超えたら縮小
+     * PC・スマホ共通
+     */
+
+    const compactThreshold =
+      window.innerHeight * 0.9;
+
+    const shouldCompact =
+      window.scrollY >= compactThreshold;
 
     header.classList.toggle(
       "is-compact",
-      hasScrolledOneView
+      shouldCompact
     );
 
     /*
-     * ファーストビューへ戻った場合は閉じる
+     * 縮小位置より上へ戻った場合
      */
 
-    if (!hasScrolledOneView) {
+    if (!shouldCompact) {
       closeMenu();
     }
+  }
+
+  /**
+   * ==========================
+   * スクロール処理を軽量化
+   * ==========================
+   */
+
+  function requestHeaderUpdate() {
+    if (animationFrameId !== null) {
+      return;
+    }
+
+    animationFrameId = requestAnimationFrame(() => {
+      updateHeaderState();
+      animationFrameId = null;
+    });
   }
 
   /**
@@ -203,7 +229,7 @@ function initializeHeaderMenu() {
 
   menuToggle.addEventListener("click", (event) => {
     /*
-     * menu-toggleがaタグの場合でも
+     * aタグで作成されている場合も
      * href="#"によるトップ移動を防ぐ
      */
 
@@ -251,7 +277,7 @@ function initializeHeaderMenu() {
 
   window.addEventListener(
     "scroll",
-    updateHeaderState,
+    requestHeaderUpdate,
     {
       passive: true,
     }
@@ -259,13 +285,16 @@ function initializeHeaderMenu() {
 
   /**
    * ==========================
-   * 画面幅変更
+   * 画面サイズ変更
    * ==========================
    */
 
-  mobileMedia.addEventListener(
-    "change",
-    updateHeaderState
+  window.addEventListener(
+    "resize",
+    requestHeaderUpdate,
+    {
+      passive: true,
+    }
   );
 
   /**
@@ -274,14 +303,20 @@ function initializeHeaderMenu() {
    * ==========================
    */
 
-  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute(
+    "aria-expanded",
+    "false"
+  );
 
-  if (!menuToggle.hasAttribute("aria-label")) {
-    menuToggle.setAttribute(
-      "aria-label",
-      "メニューを開く"
-    );
-  }
+  menuToggle.setAttribute(
+    "aria-label",
+    "メニューを開く"
+  );
+
+  /*
+   * ページ再読み込み時も
+   * 現在のスクロール位置を反映
+   */
 
   updateHeaderState();
 }
@@ -312,13 +347,9 @@ function initializeCurrentPage() {
   document.querySelectorAll("a[href]").forEach((link) => {
     const href = link.getAttribute("href");
 
-    if (!href) return;
-
-    /*
-     * ページ内リンクを除外
-     */
-
-    if (href.startsWith("#")) return;
+    if (!href || href.startsWith("#")) {
+      return;
+    }
 
     try {
       const linkURL = new URL(href, location.href);
@@ -327,7 +358,9 @@ function initializeCurrentPage() {
        * 外部リンクを除外
        */
 
-      if (linkURL.origin !== location.origin) return;
+      if (linkURL.origin !== location.origin) {
+        return;
+      }
 
       const linkPath = normalizePath(linkURL.pathname);
 
@@ -373,12 +406,16 @@ function initializeCustomCursor() {
     "(hover: hover) and (pointer: fine)"
   );
 
-  if (!canUseCustomCursor.matches) return;
+  if (!canUseCustomCursor.matches) {
+    return;
+  }
 
   const cursor = document.getElementById("cursor");
   const stalker = document.getElementById("stalker");
 
-  if (!cursor || !stalker) return;
+  if (!cursor || !stalker) {
+    return;
+  }
 
   let mouseX = 0;
   let mouseY = 0;
@@ -413,7 +450,9 @@ function initializeCustomCursor() {
       mouseX = event.clientX;
       mouseY = event.clientY;
 
-      if (animationFrameId !== null) return;
+      if (animationFrameId !== null) {
+        return;
+      }
 
       animationFrameId =
         requestAnimationFrame(updateCursorPosition);

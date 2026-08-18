@@ -7,31 +7,22 @@ body.is-loaded {
   opacity: 1;
 }
 
-/* ====== menu */
-
-/*.inner {
-  width: 100%;
-}*/
+/* ========================================
+  Header / Footer
+======================================== */
 
 .header {
   position: fixed;
   top: 3.5rem;
   left: 6rem;
-  z-index: 100;
-}
-
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .header {
-    top: 10px;
-    left: 10px;
-  }
+  z-index: 1000;
 }
 
 .header-inner,
 .footer-inner {
   display: grid;
   align-items: center;
-  justify-content: left;
+  justify-content: start;
   gap: 30px;
 }
 
@@ -40,20 +31,7 @@ body.is-loaded {
 .header-logo {
   font-family: var(--font-jp);
   font-size: 1.4rem;
-  letter-spacing: 0.14rem;
   letter-spacing: 0.4rem;
-}
-
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .header-inner,
-  .footer-inner {
-    gap: 8px;
-  }
-  .header-logo-link,
-  .footer-logo-link,
-  .header-logo {
-    font-size: 1rem;
-  }
 }
 
 .header-lead,
@@ -68,33 +46,16 @@ body.is-loaded {
   opacity: 0.8;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .header-lead,
-  .footer-lead {
-    font-size: 0.8rem;
-  }
-  .header-date,
-  .footer-date {
-    font-size: 0.7rem;
-    letter-spacing: 0.165rem;
-  }
-}
-
 .header-list,
 .footer-list {
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  justify-content: flex-start;
   gap: 40px;
-  width: fit-content;
-  writing-mode: vertical-rl;
-}
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .header-list,
-  .footer-list {
-    gap: 10px;
-  }
+  width: fit-content;
+
+  writing-mode: vertical-rl;
 }
 
 .header-item,
@@ -104,44 +65,282 @@ body.is-loaded {
 
 .header-link,
 .footer-link {
-  font-size: 1rem;
   padding: 1rem;
+
+  font-size: 1rem;
   letter-spacing: 0.4rem;
 }
 
 .menu-small {
   margin-top: 100px;
-  font-size: 1rem;
-}
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  .header-link,
-  .footer-link {
-    font-size: 0.8rem;
-    padding: 4px;
-    letter-spacing: 0.2rem;
-  }
-  .menu-small {
-    font-size: 0.7rem;
-    margin-top: 40px;
-  }
+  font-size: 1rem;
 }
 
 .menu-border {
   position: absolute;
   top: 30%;
   left: 50%;
+
   width: 1px;
   height: 30px;
+
   background: var(--color-txt);
-  content: "";
 }
 
+/* ========================================
+  Scroll Menu
+  PC・スマホ共通
+======================================== */
+
+html.is-menu-open,
+body.is-menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.header-inner {
+  position: relative;
+}
+
+/* 通常時は非表示 */
+.menu-toggle {
+  position: fixed;
+  top: 3.5rem;
+  left: 6rem;
+  z-index: 10002;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  color: var(--color-txt);
+  background: transparent;
+  border: 0;
+
+  cursor: pointer;
+  appearance: none;
+
+  /* 初期状態：画面外 */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateX(-120px);
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
+}
+
+/* スクロール後：画面内へ */
+.header.is-compact .menu-toggle {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateX(0);
+}
+
+/* ハンバーガーの点 */
+.menu-toggle-dot {
+  display: block;
+
+  width: 10px;
+  height: 3px;
+
+  background: currentColor;
+
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    border-radius 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* 通常表示の収納アニメーション */
+.header-txt,
+.header-list {
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease,
+    transform 0.4s ease;
+}
+
+/* 半画面スクロール後 */
+.header.is-compact .header-txt,
+.header.is-compact .header-list {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100px);
+}
+
+.header.is-compact .menu-toggle {
+  display: flex;
+}
+
+/* ========================================
+  Open Menu
+======================================== */
+
+.header.is-open {
+  overscroll-behavior: contain;
+}
+
+.header.is-compact.is-open .header-list {
+  position: fixed;
+  z-index: 10001;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 100px;
+
+  width: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 20vmin 6rem 40px;
+
+  writing-mode: vertical-rl;
+
+  background: var(--color-bg);
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: none;
+}
+
+.header.is-compact.is-open .header-link {
+  letter-spacing: 1.2rem;
+}
+
+.header.is-compact.is-open .menu-border {
+  top: 110px;
+
+  height: 50px;
+}
+
+.header.is-compact.is-open .menu-small {
+  margin-top: 100px;
+}
+
+/* ========================================
+  Menu Toggle Animation
+======================================== */
+
+.header.is-open .menu-toggle-dot:nth-child(1) {
+  width: 24px;
+  height: 1px;
+
+  border-radius: 0;
+
+  transform: translateX(10px) rotate(0deg);
+}
+
+.header.is-open .menu-toggle-dot:nth-child(2) {
+  opacity: 0;
+}
+
+.header.is-open .menu-toggle-dot:nth-child(3) {
+  width: 24px;
+  height: 1px;
+
+  border-radius: 0;
+
+  transform: translateX(-17px) rotate(90deg);
+}
+
+/* ========================================
+  Click Prevention
+======================================== */
+
+#cursor,
+#stalker,
+body::before,
+body::after {
+  pointer-events: none;
+}
+
+/* ========================================
+  Smartphone
+======================================== */
+
 @media screen and (min-width: 320px) and (max-width: 699px) {
+  .header {
+    top: 10px;
+    left: 10px;
+  }
+
+  .header-inner,
+  .footer-inner {
+    gap: 8px;
+  }
+
+  .header-logo-link,
+  .footer-logo-link,
+  .header-logo {
+    font-size: 1rem;
+  }
+
+  .header-lead,
+  .footer-lead {
+    font-size: 0.8rem;
+  }
+
+  .header-date,
+  .footer-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.165rem;
+  }
+
+  .header-list,
+  .footer-list {
+    gap: 10px;
+  }
+
+  .header-link,
+  .footer-link {
+    padding: 4px;
+
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .menu-small {
+    margin-top: 40px;
+
+    font-size: 0.7rem;
+  }
+
   .menu-border {
-    height: 15px;
     top: 31.5%;
+
+    height: 15px;
+
     transform: translate(-50%, -50%);
+  }
+
+  .menu-toggle {
+    top: 10px;
+    left: 10px;
+  }
+
+  .header.is-compact.is-open .header-list {
+    padding: 80px 24px 40px;
+  }
+
+  .header.is-compact.is-open .menu-small {
+    margin-top: 100px;
   }
 }
 
@@ -154,6 +353,8 @@ body.is-loaded {
   justify-content: center;
   align-items: center;
   padding-top: 120px;
+  padding-bottom: 70px;
+  background: var(--color-shadow-green);
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
@@ -185,176 +386,11 @@ body.is-loaded {
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1;
-  margin-top: 10rem;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .bottom-txt {
     width: 100%;
     text-align: center;
-  }
-}
-
-/* ========================================
-  スクロール後メニュー
-======================================== */
-
-.menu-toggle {
-  display: none;
-}
-
-/* カスタムカーソルや装飾がクリックを遮らないようにする */
-#cursor,
-#stalker,
-body::before,
-body::after {
-  pointer-events: none;
-}
-
-/* ========================================
-= sp menu
-======================================== */
-@media screen and (min-width: 320px) and (max-width: 699px) {
-  html.is-menu-open,
-  body.is-menu-open {
-    overflow: hidden;
-    overscroll-behavior: none;
-  }
-
-  .header-inner {
-    position: relative;
-  }
-
-  .menu-toggle {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 10002;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-
-    width: 44px;
-    height: 44px;
-    padding: 0;
-
-    color: var(--color-txt);
-    background: transparent;
-    border: 0;
-
-    cursor: pointer;
-    pointer-events: auto;
-    appearance: none;
-  }
-
-  .menu-toggle-dot {
-    display: block;
-
-    width: 5px;
-    height: 5px;
-
-    background: currentColor;
-    border-radius: 50%;
-
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease;
-  }
-
-  /*
-   * 100vhスクロール後
-   * ロゴ・日付・通常メニューを収納
-   */
-
-  .header.is-compact .header-txt {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .header.is-compact .header-list {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .header.is-compact .menu-toggle {
-    display: flex;
-  }
-
-  /*
-   * メニューを開いた状態
-   */
-
-  .header.is-compact.is-open {
-    overscroll-behavior: contain;
-  }
-
-  .header.is-compact.is-open .header-list {
-    position: fixed;
-    inset: 0;
-    z-index: 10001;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 40px;
-
-    width: 100%;
-    height: 100dvh;
-    margin: 0;
-    padding: 80px 24px 40px;
-
-    writing-mode: vertical-rl;
-
-    background: var(--color-bg);
-
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .header.is-compact.is-open .header-link {
-    letter-spacing: 1.2rem;
-  }
-
-  .header.is-compact.is-open .menu-border {
-    top: 110px;
-
-    height: 50px;
-  }
-
-  .header.is-compact.is-open .menu-small {
-    margin-top: 100px;
-  }
-
-  /*
-   * 開いているときは中央の点を消して
-   * 左右の点を回転させる
-   */
-
-  .header.is-open .menu-toggle-dot:nth-child(1) {
-    width: 18px;
-    height: 1px;
-
-    border-radius: 0;
-
-    transform: translateX(10px) rotate(0deg);
-  }
-
-  .header.is-open .menu-toggle-dot:nth-child(2) {
-    opacity: 0;
-  }
-
-  .header.is-open .menu-toggle-dot:nth-child(3) {
-    width: 18px;
-    height: 1px;
-
-    border-radius: 0;
-
-    transform: translateX(-13px) rotate(90deg);
   }
 }

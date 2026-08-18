@@ -29,19 +29,11 @@
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(245, 242, 232, 0.75);
   border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    rgba(80, 90, 70, 0.75),
-    rgba(45, 55, 40, 0.85)
-  );
+  background: linear-gradient(180deg, rgba(80, 90, 70, 0.75), rgba(45, 55, 40, 0.85));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(70, 85, 60, 0.9),
-    rgba(35, 45, 32, 0.95)
-  );
+  background: linear-gradient(180deg, rgba(70, 85, 60, 0.9), rgba(35, 45, 32, 0.95));
 }
 
 ::-webkit-scrollbar-corner {
@@ -133,9 +125,9 @@ body::before {
   position: fixed;
   top: -50%;
   left: -50%;
-  z-index: 9998;
-  width: 200%;
-  height: 200%;
+  z-index: 100;
+  width: 150%;
+  height: 150%;
   background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
   opacity: 0.08;
   content: "";
@@ -191,6 +183,7 @@ body::before {
 
 body::before,
 body::after,
+main::after,
 #cursor,
 #stalker {
   pointer-events: none;
@@ -199,6 +192,55 @@ body::after,
 main {
   position: relative;
 }
+
+main::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 4vmin solid #f4f6f0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  box-shadow: inset 0 1px 6px var(--color-shadow-green);
+  border-image: url("../img/artists-bg.png") 300;
+}
+
+.bg-img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+
+  width: 85vw;
+  height: fit-content;
+
+  overflow: hidden;
+
+  transform: translate(-50%, -50%);
+}
+
+.body_bg-img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+/* .bg-img::after {
+  position: absolute;
+  inset: 0;
+
+  content: "";
+
+  pointer-events: none;
+
+  box-shadow:
+    inset 1px 2px 5px rgba(0, 0, 0, 0.5);
+} */
 
 /* ========================================
 =section
@@ -214,10 +256,11 @@ section {
   height: 100vh;
   min-height: 100vh;
   padding: 8rem 0;
+  padding: 80px 0;
   overflow: hidden;
-  /* background: url("../img/bg-img.jpg") center / cover no-repeat; */
+  /* background: url("../img/bg-img.jpg") center / cover no-repeat;
   background: rgba(221, 221, 221, 0.25);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);*/
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
@@ -343,7 +386,7 @@ section {
 .section--artists .section__txt {
   writing-mode: vertical-rl;
   white-space: pre-line;
-  line-height: 2.4;
+  line-height: 3.2;
   letter-spacing: 0.4rem;
 }
 
@@ -457,7 +500,7 @@ section {
 
 /* 表示状態 */
 .h1_fade.is-show {
-  opacity: 0.04;
+  opacity: 0.094;
   transform: translate(0%, 0%);
   mix-blend-mode: color-burn;
 }
@@ -510,7 +553,7 @@ section {
 ======================================== */
 
 .scroll-guide {
-  position: fixed;
+  position: absolute;
   right: 8vmin;
   bottom: 60px;
   z-index: 10;
@@ -621,7 +664,7 @@ section {
 }
 
 .section--artists .section__txt {
-  height: fit-content;
+  line-height: 2;
   margin-bottom: 20px;
 }
 
@@ -833,20 +876,19 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
 }
 
 .section__bg-img {
   height: 120vh;
   mix-blend-mode: lighten;
   opacity: 0.4;
+  width: 100%;
 }
 
 /* ========================================
 Contact
 ======================================== */
-#contact,#faq, #access, #js-footer {
-  z-index: 1000;
-}
 
 .contact-sub-ttl,
 h3.faq-ttl {
@@ -969,7 +1011,7 @@ Access
   display: flex;
   align-items: flex-start;
   justify-content: center;
-    gap: 2rem;
+  gap: 2rem;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
@@ -977,7 +1019,6 @@ Access
     display: block;
   }
 }
-
 
 .section--access .section__txt {
   text-align: left;
@@ -1059,7 +1100,7 @@ Access
 
 .map {
   width: 60%;
-  height:350px;
+  height: 350px;
   border: 0;
 }
 

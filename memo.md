@@ -1,6 +1,8 @@
 # ⑥ 反映
 
 git add .
-git commit -m "all"
+git commit -m "top"
 git push origin main
+
+
 
