@@ -230,6 +230,13 @@ main::after {
   object-position: center;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .body_bg-img {
+    width: 100vw;
+    height: 92vh;
+  }
+}
+
 /* .bg-img::after {
   position: absolute;
   inset: 0;
@@ -396,7 +403,7 @@ section {
     white-space: normal;
   }
   .section--concept .section__txt {
-    height: 65vh;
+    height: 80vh;
   }
 }
 
