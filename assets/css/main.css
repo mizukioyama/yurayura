@@ -189,11 +189,7 @@ main::after,
   pointer-events: none;
 }
 
-main {
-  position: relative;
-}
-
-main::after {
+body::after {
   content: "";
   position: fixed;
   top: 0;
@@ -204,6 +200,10 @@ main::after {
   z-index: 1000;
   box-shadow: inset 0 1px 6px var(--color-shadow-green);
   border-image: url("../img/artists-bg.png") 300;
+}
+
+main {
+  position: relative;
 }
 
 .bg-img {
@@ -930,9 +930,9 @@ h3.faq-ttl {
 /* ========================================
 FAQ
 ======================================== */
-/* .faq-box {
-  margin-top: 4rem;
-} */
+.faq-box {
+  padding: 0 10px;
+}
 
 .faq-list {
   display: grid;
@@ -967,8 +967,8 @@ FAQ
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .faq-question {
-    padding: 0.95rem 1rem;
-    font-size: 0.95rem;
+    padding: 8px 10px;
+    font-size: 14px;
   }
 }
 

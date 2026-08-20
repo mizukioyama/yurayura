@@ -220,6 +220,12 @@ body.is-menu-open {
   transform: none;
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .header.is-compact.is-open .header-list {
+    gap: 60px;
+  }
+}
+
 .header.is-compact.is-open .header-link {
   letter-spacing: 1.2rem;
 }
@@ -289,7 +295,7 @@ body::after {
   .header-logo-link,
   .footer-logo-link,
   .header-logo {
-    font-size: 1rem;
+    font-size: 14px;
   }
 
   .header-lead,
@@ -299,8 +305,8 @@ body::after {
 
   .header-date,
   .footer-date {
-    font-size: 0.7rem;
-    letter-spacing: 0.165rem;
+    font-size: 12px;
+    letter-spacing: 1px;
   }
 
   .header-list,
@@ -331,8 +337,8 @@ body::after {
   }
 
   .menu-toggle {
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
   }
 
   .header.is-compact.is-open .header-list {
@@ -359,7 +365,7 @@ body::after {
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .footer {
-    padding: 120px 0 80px;
+    padding: 120px 0 45px;
   }
   .footer-txt {
     text-align: center;
