@@ -194,12 +194,12 @@ body::after {
   position: fixed;
   top: 0;
   left: 0;
-  border: 4vmin solid #f4f6f0;
+  border: 2vmin solid #f4f6f0;
   width: 100%;
   height: 100vh;
   z-index: 1000;
   box-shadow: inset 0 1px 6px var(--color-shadow-green);
-  border-image: url("../img/artists-bg.png") 300;
+  border-image: url("../img/artists-bg.webp") 300;
 }
 
 main {
@@ -265,7 +265,7 @@ section {
   padding: 8rem 0;
   padding: 80px 0;
   overflow: hidden;
-  /* background: url("../img/bg-img.jpg") center / cover no-repeat;
+  /* background: url("../img/bg-img.webp") center / cover no-repeat;
   background: rgba(221, 221, 221, 0.25);
   backdrop-filter: blur(10px);*/
 }
@@ -646,7 +646,7 @@ section {
 .btn,
 .send-btn,
 .faq-question {
-  background: url("../img/btn-bg-img.jpg");
+  background: url("../img/btn-bg-img.webp");
   background-size: cover;
 }
 
@@ -685,7 +685,7 @@ section {
   width: 420px;
   height: 280px;
   overflow: hidden;
-  background: url("../img/202326.jpg") center / cover no-repeat;
+  background: url("../img/202326.webp") center / cover no-repeat;
 }
 
 @media screen and (min-width: 700px) and (max-width: 1239px) {
@@ -704,19 +704,19 @@ section {
 }
 
 .card:nth-child(1) {
-  background-image: url("../img/202337.jpg");
+  background-image: url("../img/202337.webp");
 }
 
 .card:nth-child(2) {
-  background-image: url("../img/202339.jpg");
+  background-image: url("../img/202339.webp");
 }
 
 .card:nth-child(3) {
-  background-image: url("../img/202402.jpg");
+  background-image: url("../img/202402.webp");
 }
 
 .card:nth-child(4) {
-  background-image: url("../img/202501.jpg");
+  background-image: url("../img/202501.webp");
 }
 
 #artists .btn {
@@ -879,7 +879,7 @@ section {
 .artists-bg-img {
   position: absolute;
   z-index: 0;
-  background: url("../img/bg-img.jpg");
+  background: url("../img/bg-img.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -943,7 +943,7 @@ FAQ
 .faq-list-item {
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: url("../img/bg-img.jpg") center / cover;
+  background: url("../img/bg-img.webp") center / cover;
   background-repeat: no-repeat;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 }

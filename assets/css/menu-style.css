@@ -16,6 +16,7 @@ body.is-loaded {
   top: 3.5rem;
   left: 6rem;
   z-index: 1000;
+  pointer-events: none;
 }
 
 .header-inner,
@@ -24,6 +25,10 @@ body.is-loaded {
   align-items: center;
   justify-content: start;
   gap: 30px;
+}
+
+.header-inner {
+  pointer-events: none;
 }
 
 .header-logo-link,
@@ -68,7 +73,7 @@ body.is-loaded {
   padding: 1rem;
 
   font-size: 1rem;
-  letter-spacing: 0.4rem;
+  letter-spacing: 0.8rem;
 }
 
 .menu-small {
