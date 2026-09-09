@@ -28,6 +28,8 @@ FV以外の全`section`は固定の`100vh`を解除して`height: auto; min-heig
 
 Concept/Artistsはさらに上下paddingをデスクトップで`clamp(56px, calc(3vw + 32px), 80px)`、スマホで`clamp(48px, calc(5vw + 32px), 72px)`に調整しました。Artistsの`artists-bg.webp`背景コンテナは非表示にし、カード画像とスライドショーは維持しています。
 
+Conceptは展示コンセプトに合わせ、上記共通値より広い上下paddingをデスクトップで`clamp(72px, calc(4vw + 48px), 104px)`、スマホで`clamp(72px, calc(5vw + 48px), 96px)`に設定しました。
+
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
 Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。`-View`ボタンは`fluid`属性をJSの監視対象に含め、Shadow DOM内でも背景ラッパーの幅を直接レスポンシブ適用しています。深緑背景を持つ親`.section__btn`は端末の画面幅100%に揃え、スマホでは親セクションの左右padding分を相殺しています。`padding-inline`でボタンだけをスマホ最大280px、PCでは `clamp(480px, 36vw, 520px)` の480〜520px程度に調整しています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。

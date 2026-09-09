@@ -314,10 +314,18 @@ section.section--artists {
   padding-block: clamp(56px, calc(3vw + 32px), 80px);
 }
 
+section.section--concept {
+  padding-block: clamp(72px, calc(4vw + 48px), 104px);
+}
+
 @media screen and (min-width: 320px) and (max-width: 699px) {
   section.section--concept,
   section.section--artists {
     padding-block: clamp(48px, calc(5vw + 32px), 72px);
+  }
+
+  section.section--concept {
+    padding-block: clamp(72px, calc(5vw + 48px), 96px);
   }
 }
 
