@@ -403,7 +403,8 @@ section {
     white-space: normal;
   }
   .section--concept .section__txt {
-    height: 80vh;
+    line-height: 2;
+    height: 60vh;
   }
 }
 
