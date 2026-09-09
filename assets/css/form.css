@@ -465,3 +465,18 @@ input:focus {
 
   cursor: pointer;
 }
+
+/* Form text: use the shared responsive section typography */
+.kinds,
+.check-item,
+.check-item__text,
+.form-label,
+.modal-title,
+.modal-message,
+.contact-form input,
+.contact-form textarea {
+  font-size: var(--responsive-copy-size);
+  line-height: 2;
+  text-align: left;
+  writing-mode: horizontal-tb;
+}

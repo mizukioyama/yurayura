@@ -1123,44 +1123,63 @@ Access
   }
 }
 
-/* Concept text: responsive horizontal typesetting */
+/* Section text: responsive horizontal typesetting */
+:root {
+  --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
+}
+
+.section--artists .section__inner {
+  width: 100%;
+  min-width: 0;
+}
+
 .section--concept .h2_ttl,
-.section--concept .section__txt {
+.section--concept .section__txt,
+.section--artists .h2_ttl,
+.section--artists .section__txt,
+.section--artists .h2_ttl-small,
+.section--artists .h2_ttl-artists,
+.section--contact .h2_ttl,
+.section--contact .section__txt,
+.section--faq .faq-ttl,
+.section--faq .faq-question,
+.section--faq .faq-txt,
+.section--faq .faq-ans-txt,
+.section--access .h2_ttl,
+.section--access .section__txt,
+.section--access .access-info h3,
+.section--access .access-txt {
   align-self: flex-start;
   width: 100%;
   height: auto;
   writing-mode: horizontal-tb;
   text-align: left;
   white-space: normal;
-  font-size: clamp(12px, calc(1vw + 10px), 14px);
+  font-size: var(--responsive-copy-size);
   line-height: 2;
   letter-spacing: 0.08em;
 }
 
 @media screen and (max-width: 375px) {
-  .section--concept .h2_ttl,
-  .section--concept .section__txt {
-    font-size: clamp(12px, calc(2vw + 6px), 14px);
+  :root {
+    --responsive-copy-size: clamp(12px, calc(2vw + 6px), 14px);
   }
 }
 
 @media screen and (min-width: 376px) and (max-width: 480px) {
-  .section--concept .h2_ttl,
-  .section--concept .section__txt {
-    font-size: clamp(12px, calc(1vw + 10px), 14px);
+  :root {
+    --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 1335px) {
-  .section--concept .h2_ttl,
-  .section--concept .section__txt {
-    font-size: clamp(12px, calc(0.5vw + 11.5px), 14px);
+  :root {
+    --responsive-copy-size: clamp(12px, calc(0.5vw + 11.5px), 14px);
   }
 }
 
 @media screen and (min-width: 1336px) {
-  .section--concept .h2_ttl,
-  .section--concept .section__txt {
-    font-size: clamp(12px, calc(0.25vw + 10.67px), 14px);
+  :root {
+    --responsive-copy-size: clamp(12px, calc(0.25vw + 10.67px), 14px);
   }
 }
