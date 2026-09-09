@@ -303,6 +303,12 @@ section:not(.fv) {
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  section:not(.fv) {
+    padding-block: clamp(72px, calc(7vw + 48px), 96px);
+  }
+}
+
 /* ========================================
 =inner
 ======================================== */
