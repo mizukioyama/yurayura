@@ -20,4 +20,6 @@ FVを除く全sectionの左右Paddingは44pxです。FVは既存レイアウト�
 
 Q&Aの`.faq-box`内側paddingは0pxに変更し、Contact・Q&A・Accessの左右余白を統一しています。
 
+FAQアコーディオンは`faq.js`で1項目ずつ開閉する仕様です。実機でのタップ確認は未実施です。
+
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。
