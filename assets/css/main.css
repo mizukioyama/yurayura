@@ -805,8 +805,15 @@ section {
 .member-track {
   display: flex;
   gap: 15px;
-  width: max-content;
+  width: 100%;
   will-change: transform;
+}
+
+/* Show one full-width slide at a time */
+.member-track .card {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* .img-btn {
