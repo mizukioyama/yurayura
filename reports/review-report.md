@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artists作家カードのギャラリーレイアウト
+- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artistsスライドショーの外部ギャラリーリンク、gallery.htmlのカードレイアウト
 - Non-target: Artists以外のHTML本文・構造、フォーム送信処理、既存の背景アニメーション・FAQ動作・ボタン実装
 - Recovery copy: `backups/` 内の作業前コピー（commit対象外）
 
@@ -12,7 +12,7 @@
 
 対象範囲の見出し・本文・FAQ・Access・フォーム文言を横書き・左寄せに統一しました。本文は `--responsive-copy-size`、見出し・UI文字は見出し用の `clamp()` を使用しています。h1、h2、h3、小見出し、モーダル、送信ボタン、ヘッダー／フッター文字まで、画面幅に応じて最小値・最大値の間で変化します。
 
-指定URLはこの環境から取得できなかったため、リポジトリ内の `gallery.html` と `assets/css/works-list.css` を参照し、Artistsを「見出し・説明文・画像付きカード一覧」の構成へ変更しました。PCは3列、タブレットは2列、スマホは1列です。既存の4画像・リンク先・Viewボタンは維持し、Artistsの背景画像非表示も維持しています。スライダー用IDを対象HTMLから外したため、既存 `slide.js` は対象なしで終了し、他のスライド処理は変更していません。
+指定URLはこの環境から取得できなかったため、リポジトリ内の `gallery.html` と `assets/css/works-list.css` を参照し、ギャラリーページを「見出し・説明文・画像付きカード一覧」の構成にしています。Artistsの背景画像非表示は維持し、`index.html` の既存スライドショー構造は変更していません。
 
 フォームの問い合わせ種別4項目は、既存のHTML順序を維持したまま `contact-check-grid` を2列のCSS Gridへ変更し、列・行位置も明示して2段で表示するようにしました。フォームCSSにはキャッシュバスターを付け、古いレイアウトの残存を防いでいます。フォーム送信処理とチェックボックス検証は変更していません。
 
@@ -28,17 +28,17 @@ FV以外の全`section`は固定の`100vh`を解除して`height: auto; min-heig
 
 スマホ幅ではFV以外の上下paddingを`clamp(72px, calc(7vw + 48px), 96px)`に調整し、従来の120〜128px相当の余白による過度な縦長化を抑えました。
 
-Concept/Artistsはさらに上下paddingをデスクトップで`clamp(56px, calc(3vw + 32px), 80px)`、スマホで`clamp(48px, calc(5vw + 32px), 72px)`に調整しました。Artistsの`artists-bg.webp`背景コンテナは非表示にし、カード画像とギャラリーグリッドを表示しています。
+Concept/Artistsはさらに上下paddingをデスクトップで`clamp(56px, calc(3vw + 32px), 80px)`、スマホで`clamp(48px, calc(5vw + 32px), 72px)`に調整しました。Artistsの`artists-bg.webp`背景コンテナは非表示にし、既存スライドショーを表示しています。
 
 Conceptは展示コンセプトに合わせ、上記共通値より大幅に広い上下paddingをデスクトップで`clamp(112px, calc(6vw + 80px), 176px)`、スマホで`clamp(96px, calc(8vw + 80px), 160px)`に設定しました。
 
-未反映対策として、`index.html`の`main.css`読み込みに`v=20260909-artists-gallery-layout`を付け、ブラウザキャッシュで旧CSSが残らないようにしました。
+未反映対策として、`index.html`の`main.css`読み込みに`v=20260909-slider-external-gallery`を付け、ブラウザキャッシュで旧CSSが残らないようにしました。
 
 Footerのリンククラスを`header-link`から`footer-link`へ分離し、Headerと同じ文字間隔（PC`0.8rem`、スマホ`0.2rem`）を明示しました。`menu-style.css`にもキャッシュバスターを付けています。
 
-Artistsのカードは `figure.card__img` と `card__body` を持つギャラリーカードへ変更し、`grid-template-columns` を3列・2列・1列へ切り替えます。深緑背景を持つ既存のViewボタンは変更していません。
+ギャラリーページのカードは `figure.card__img` と `card__body` を持ち、`works-list.css` の `grid-template-columns` で3列・2列・1列へ切り替えます。深緑背景を持つ既存のViewボタンは維持します。
 
-`gallery.html` を実際の作家紹介ページとして整備し、4作品の画像カードと `#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。ArtistsのMizukiカードは各アンカーへ、Viewボタンは `./gallery.html` へリンクします。
+`gallery.html` を実際の作家紹介ページとして整備し、4作品の画像カードと `#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。Artistsの既存スライド内Mizukiカード4件とViewボタンは、指定された `https://mizukioyama.github.io/website/gallery.html` へリンクします。
 
 ## Verification
 
@@ -53,18 +53,16 @@ Artistsのカードは `figure.card__img` と `card__body` を持つギャラリ
 | ブレイクポイント | PASS | 〜375、376〜480、481〜1335、1336〜の4帯を確認 |
 | フォントサイズ | PASS | 本文320px:12.4px、390px:13.9px、480px以上:最大14px。h2は18〜28px、h3は14〜20pxの範囲 |
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
-| Artistsギャラリー構造 | PASS | `artists-gallery`内に画像4枚と`card__body`を持つ4カードを確認。PC3列、タブレット2列、スマホ1列のCSSを追加 |
-| Artistsカード画像 | PASS | 既存の`202337.webp`、`202339.webp`、`202402.webp`、`202501.webp`を使用し、カード内画像は`width:100%`・`height:100%`・`object-fit:cover` |
+| Artistsスライダー | PASS | `memberSlider`/`memberTrack`と既存`slide.js`を維持。Mizukiカード4件のリンク先だけ指定URLへ変更 |
 | gallery.html | PASS | 作家見出し、説明文、4作品カード、`#mizuki-01`〜`#mizuki-04`を確認。全画像ファイルが存在 |
-| Mizuki / Viewリンク | PASS | indexの4カードは`./gallery.html#...`、Viewは`./gallery.html`を指定 |
-| Artists旧スライダー | PASS | `memberSlider`/`memberTrack`を対象HTMLから除外。`slide.js`は対象要素がない場合に終了し、ファイル自体は未変更 |
+| Mizuki / Viewリンク | PASS | indexの4カードとViewボタンが`https://mizukioyama.github.io/website/gallery.html`を指定 |
 | Viewボタン背景幅 | PASS | 既存の深緑背景・fluid指定・レスポンシブ幅ルールは変更していない |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | FAQアコーディオン | PASS | 外側の分類は`.faq-heading`、回答内の`.faq-sub-question`をJSで開閉し、`is-open`とARIA状態を同期。同時に複数項目を開かない |
 | セクション高さ | PASS | FV以外は`height:auto; min-height:0`、FVは`100vh`。既存のpadding・コンテンツ構造は維持 |
 | スマホsection高さ | PASS | 320〜699pxでFV以外の上下paddingを72〜96pxへレスポンシブ調整。FVは100vhのまま |
-| Concept/Artists高さと背景 | PASS | 両sectionの上下paddingを個別に縮小し、Artists背景画像だけを非表示。カード・ギャラリーグリッドを表示 |
-| CSS反映 | PASS | `main.css?v=20260909-artists-gallery-layout`で最新CSSを読み込む設定を確認 |
+| Concept/Artists高さと背景 | PASS | 両sectionの上下paddingを個別に縮小し、Artists背景画像だけを非表示。スライドショーを維持 |
+| CSS反映 | PASS | `main.css?v=20260909-slider-external-gallery`で最新CSSを読み込む設定を確認 |
 | Header/Footer文字間隔 | PASS | Footerリンクを`footer-link`へ統一し、Headerと同じPC/スマホの`letter-spacing`を適用 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
