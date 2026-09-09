@@ -764,12 +764,13 @@ section {
   overflow: hidden;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 699px) {
   .member-slider {
-    width: calc(100% + 80px);
-    max-width: calc(100% + 80px);
-    margin-left: -40px;
-    margin-right: -40px;
+    --artists-side-padding: 40px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-left: calc(-1 * var(--artists-side-padding));
+    margin-right: calc(-1 * var(--artists-side-padding));
   }
 }
 
@@ -804,7 +805,7 @@ section {
 
 .member-track {
   display: flex;
-  gap: 15px;
+  gap: 0;
   width: 100%;
   will-change: transform;
 }

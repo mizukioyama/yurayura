@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < originalItems.length; i++) {
       width += originalItems[i].offsetWidth;
     }
-    width += (originalItems.length - 1) * 15; // gapぶん
+
+    const trackStyles = getComputedStyle(track);
+    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+    width += (originalItems.length - 1) * gap;
+
     return width;
   }
 
