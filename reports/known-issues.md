@@ -12,6 +12,6 @@
 
 スライドショーはローカルブラウザで、スマホ時に親セクションへ設定された左右40px paddingを相殺し、表示領域と1枚のカードをviewport幅に揃えました。320/375/390/480/768/1336/1440pxでleft 0・right viewport、bodyの横スクロールなし、内部トラックの無限ループ動作を確認済みです。
 
-Artistsのカード上Mizukiボタン背景もカード幅100%、左右0に揃えました。Viewボタンは深緑背景の親`.section__btn`をwidth:100%にし、paddingでhost・Shadow DOM内wrapperをスマホ最大280px、PC480〜520px程度に調整しました。Galleryの既存ボタンは変更していません。
+Artistsのカード上Mizukiボタン背景もカード幅100%、左右0に揃えました。Viewボタンは深緑背景の親`.section__btn`を画面幅100%にし、スマホ時は親セクションの左右paddingを相殺、paddingでhost・Shadow DOM内wrapperをスマホ最大280px、PC480〜520px程度に調整しました。Galleryの既存ボタンは変更していません。
 
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。

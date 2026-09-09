@@ -755,9 +755,20 @@ section {
   padding-inline: max(0px, calc((100% - var(--view-button-width)) / 2));
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (min-width: 320px) and (max-width: 699px) {
   #artists .section__btn {
     --view-button-width: 280px;
+    --artists-side-padding: 40px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-left: calc(-1 * var(--artists-side-padding));
+    margin-right: calc(-1 * var(--artists-side-padding));
+    padding-inline: max(
+      0px,
+      calc(
+        (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+      )
+    );
   }
 }
 
