@@ -283,6 +283,11 @@ section {
   } */
 }
 
+section:not(.fv) {
+  height: auto;
+  min-height: 0;
+}
+
 .section--contact,
 .section--faq,
 .section--access {
@@ -489,7 +494,8 @@ section {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 100svh;
+  height: 100vh;
+  min-height: 100vh;
   padding-left: 0;
   padding-right: 0;
 }

@@ -22,6 +22,8 @@ FAQの`faq.js`を、確実な初期化・開閉状態の同期・`aria-expanded`
 
 外側の見出しは元のFAQ質問と同じ背景画像・内側の境界表現を維持しました。
 
+FV以外の全`section`は固定の`100vh`を解除して`height: auto; min-height: 0`とし、内容量と既存paddingに応じた自然な高さにしました。FVだけは`height: 100vh; min-height: 100vh`を維持しています。
+
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
 Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。`-View`ボタンは`fluid`属性をJSの監視対象に含め、Shadow DOM内でも背景ラッパーの幅を直接レスポンシブ適用しています。深緑背景を持つ親`.section__btn`は端末の画面幅100%に揃え、スマホでは親セクションの左右padding分を相殺しています。`padding-inline`でボタンだけをスマホ最大280px、PCでは `clamp(480px, 36vw, 520px)` の480〜520px程度に調整しています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
@@ -43,6 +45,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | ボタン背景幅 | PASS | 深緑背景の親`.section__btn`は320/375/390/480/699/700/1024/1336/1440/1600pxの全確認幅で画面幅100%。390pxでは親390px、左右55px padding、host・Shadow DOM内wrapper280px。700px以上ではpaddingでhost・wrapperを480〜520pxに調整。カード上`Mizuki`ボタンはカードと同じ幅、Galleryのmdボタンは従来どおり280px |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | FAQアコーディオン | PASS | 外側の分類は`.faq-heading`、回答内の`.faq-sub-question`をJSで開閉し、`is-open`とARIA状態を同期。同時に複数項目を開かない |
+| セクション高さ | PASS | FV以外は`height:auto; min-height:0`、FVは`100vh`。既存のpadding・コンテンツ構造は維持 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
 | Contact・Q&A・Accessの左右余白 | PASS | Q&Aの`.faq-box`内側paddingを0pxにし、3セクションの内容位置を統一 |
