@@ -742,6 +742,20 @@ section {
   background: var(--color-shadow-green);
 }
 
+#artists .section__btn liquid-button {
+  display: block;
+  width: 100%;
+}
+
+@media screen and (max-width: 699px) {
+  #artists .section__btn {
+    --artists-side-padding: 40px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-left: calc(-1 * var(--artists-side-padding));
+    margin-right: calc(-1 * var(--artists-side-padding));
+  }
+}
+
 /* --- スライダー --- */
 .member-list {
   display: flex;

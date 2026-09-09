@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artistsスライドショーの表示幅
+- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、ArtistsスライドショーとViewボタン背景の表示幅
 - Non-target: HTML本文・構造、画像、フォーム送信処理、アニメーションの動作・定義
 - Recovery copy: `backups/` 内の作業前コピー（commit対象外）
 
@@ -13,6 +13,8 @@
 対象範囲の見出し・本文・FAQ・Access・フォーム文言を横書き・左寄せに統一しました。本文は `--responsive-copy-size`、見出し・UI文字は見出し用の `clamp()` を使用しています。h1、h2、h3、小見出し、モーダル、送信ボタン、ヘッダー／フッター文字まで、画面幅に応じて最小値・最大値の間で変化します。Artistsの本文幅がスライダーの内部幅に引っ張られないよう、セクション内幅も補正しました。
 
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `40px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
+
+Artistsの `-View` ボタンは専用の `fluid` 属性で背景ラッパーを100%化しました。ボタンの親要素もスマホ時の左右 `40px` paddingを相殺するため、スライドショーと同じ画面端・画面幅に揃えています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
 
 ## Verification
 
@@ -28,8 +30,9 @@ Artistsのスライドショー表示領域は基本を `width: 100%` とし、�
 | フォントサイズ | PASS | 本文320px:12.4px、390px:13.9px、480px以上:最大14px。h2は18〜28px、h3は14〜20pxの範囲 |
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
 | スライドショー幅 | PASS | 320/375/390/480/768/1336/1440pxで親paddingを含めた表示領域が `left: 0`〜`right: viewport`、トラック・1枚のカードも各viewport幅。bodyの横スクロールなし、内部トラックの無限ループを維持 |
+| Viewボタン背景幅 | PASS | 390pxで親・host・Shadow DOM内wrapperが `left: 0`〜`right: 390`、Galleryのmdボタンは従来どおり280px |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
-| 差分範囲 | PASS | 実装差分は `assets/css/main.css` のスライダー幅・親padding補正、`assets/js/slide.js` のgap同期、既存の文字サイズルール、レビュー資料のみ。HTML本文は未変更 |
+| 差分範囲 | PASS | 実装差分は `assets/css/main.css` のスライダー・Viewボタン幅と親padding補正、`assets/js/slide.js` のgap同期、`assets/js/liquid-button.js` のfluid幅対応、indexのViewボタン属性、既存の文字サイズルール、レビュー資料のみ |
 
 ## Judgment
 

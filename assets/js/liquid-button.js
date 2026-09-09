@@ -35,6 +35,9 @@ class LiquidButton extends HTMLElement {
     const size =
       this.getAttribute("size") || "md";
 
+    const fluid =
+      this.hasAttribute("fluid");
+
     const theme =
       this.getAttribute("theme") || "light";
 
@@ -167,7 +170,7 @@ class LiquidButton extends HTMLElement {
 }
 
 .md{
-  width:280px;
+  width:${fluid ? "100%" : "280px"};
   height:32px;
   font-size:1.2rem;
 }
