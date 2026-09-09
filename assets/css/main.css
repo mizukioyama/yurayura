@@ -1122,3 +1122,45 @@ Access
     height: 200px;
   }
 }
+
+/* Concept text: responsive horizontal typesetting */
+.section--concept .h2_ttl,
+.section--concept .section__txt {
+  align-self: flex-start;
+  width: 100%;
+  height: auto;
+  writing-mode: horizontal-tb;
+  text-align: left;
+  white-space: normal;
+  font-size: clamp(12px, calc(1vw + 10px), 14px);
+  line-height: 2;
+  letter-spacing: 0.08em;
+}
+
+@media screen and (max-width: 375px) {
+  .section--concept .h2_ttl,
+  .section--concept .section__txt {
+    font-size: clamp(12px, calc(2vw + 6px), 14px);
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 480px) {
+  .section--concept .h2_ttl,
+  .section--concept .section__txt {
+    font-size: clamp(12px, calc(1vw + 10px), 14px);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
+  .section--concept .h2_ttl,
+  .section--concept .section__txt {
+    font-size: clamp(12px, calc(0.5vw + 11.5px), 14px);
+  }
+}
+
+@media screen and (min-width: 1336px) {
+  .section--concept .h2_ttl,
+  .section--concept .section__txt {
+    font-size: clamp(12px, calc(0.25vw + 10.67px), 14px);
+  }
+}
