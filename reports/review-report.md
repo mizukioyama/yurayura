@@ -14,7 +14,7 @@
 
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `40px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
-Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。さらに`-View`ボタンは専用の `fluid` 属性で背景ラッパーを100%化し、ボタンの親要素もスマホ時の左右 `40px` paddingを相殺するため、スライドショーと同じ画面端・画面幅に揃えています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
+Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。`-View`ボタンは専用の `fluid` 属性で背景ラッパーを100%化し、スマホでは最大280px、PCでは `clamp(480px, 36vw, 520px)` の480〜520px程度に調整しています。ボタンの親要素もスマホ時の左右 `40px` paddingを相殺するため、スライドショーと同じ画面端・画面幅に揃えています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
 
 ## Verification
 
@@ -30,7 +30,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | フォントサイズ | PASS | 本文320px:12.4px、390px:13.9px、480px以上:最大14px。h2は18〜28px、h3は14〜20pxの範囲 |
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
 | スライドショー幅 | PASS | 320/375/390/480/768/1336/1440pxで親paddingを含めた表示領域が `left: 0`〜`right: viewport`、トラック・1枚のカードも各viewport幅。bodyの横スクロールなし、内部トラックの無限ループを維持 |
-| ボタン背景幅 | PASS | 390pxでカード上`Mizuki`ボタンがカードと同じ390px、`-View`の親・host・Shadow DOM内wrapperも `left: 0`〜`right: 390`。Galleryのmdボタンは従来どおり280px |
+| ボタン背景幅 | PASS | スマホ320/375/390/480/699pxでは`-View`背景wrapperが最大280px、PC700/768/1024/1336/1440/1600pxでは480〜520px。カード上`Mizuki`ボタンはカードと同じ幅、Galleryのmdボタンは従来どおり280px |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | 差分範囲 | PASS | 実装差分は `assets/css/main.css` のスライダー・カード上ボタン・Viewボタン幅と親padding補正、`assets/js/slide.js` のgap同期、`assets/js/liquid-button.js` のfluid幅対応、indexのViewボタン属性、既存の文字サイズルール、レビュー資料のみ |
 

@@ -20,5 +20,6 @@
 - 320/375/390/480/768/1336/1440pxでsliderのleftが0、rightがviewport幅、bodyの横スクロールなしを確認
 - 390pxでViewボタンの親要素・host・Shadow DOM内背景wrapperのleftが0、rightがviewport幅を確認
 - 390pxでカード上Mizukiボタン背景がカードと同じ幅390px、right 0を確認
+- Viewボタンはスマホ最大280px、PC700px以上で480〜520pxの範囲になることを320〜1600pxで確認
 - Gallery側の既存liquid-buttonはfluid属性なし、md幅280pxを維持していることを確認
 - 表示時のJavaScript errorなし
