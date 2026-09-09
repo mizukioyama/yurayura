@@ -744,16 +744,19 @@ section {
 
 #artists .section__btn liquid-button {
   display: block;
+  width: 100%;
+}
+
+#artists .section__btn {
+  width: clamp(480px, 36vw, 520px);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 699px) {
   #artists .section__btn {
-    --artists-side-padding: 40px;
-    width: calc(100% + (2 * var(--artists-side-padding)));
-    margin-left: calc(-1 * var(--artists-side-padding));
-    margin-right: calc(-1 * var(--artists-side-padding));
+    width: min(100%, 280px);
   }
-
 }
 
 /* --- スライダー --- */

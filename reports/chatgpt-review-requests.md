@@ -18,7 +18,7 @@
 - h1/h2/h3、小見出し、フォーム、ヘッダー／フッターの計算後サイズを確認
 - Artistsスライドショーは、スマホ時の親セクション左右40px paddingを相殺したうえで、表示領域・1枚のカードが各viewport幅になり、内部トラックが無限ループ幅であることを確認
 - 320/375/390/480/768/1336/1440pxでsliderのleftが0、rightがviewport幅、bodyの横スクロールなしを確認
-- 390pxでViewボタンの親要素・host・Shadow DOM内背景wrapperのleftが0、rightがviewport幅を確認
+- 390pxでViewボタンの親要素・host・Shadow DOM内背景wrapperがすべて280pxで同一幅、中央配置を確認
 - 390pxでカード上Mizukiボタン背景がカードと同じ幅390px、right 0を確認
 - Viewボタンはスマホ最大280px、PC700px以上で480〜520pxの範囲になることを320〜1600pxで確認
 - `liquid-button.js`の`fluid`属性監視とShadow DOM内wrapperのレスポンシブ幅適用を確認
