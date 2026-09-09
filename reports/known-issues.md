@@ -34,4 +34,6 @@ Conceptは意図的に共通sectionより広い上下余白を設定し、展示
 
 `main.css`には`v=20260909-concept-spacing-v2`のキャッシュバスターを付けています。
 
+Footerリンクは`footer-link`クラスへ分離し、Headerと同じ文字間隔を指定しています。
+
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。
