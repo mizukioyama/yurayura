@@ -2,7 +2,7 @@
 
 ## Review target
 
-1. Concept、Artists、Contact、FAQ、Access、フォーム、ヘッダー／フッターの文字サイズとArtistsスライドショー・Viewボタン背景の表示幅だけが変更されていること
+1. Concept、Artists、Contact、FAQ、Access、フォーム、ヘッダー／フッターの文字サイズとArtistsスライドショー・ボタン背景の表示幅だけが変更されていること
 2. 指定文の句読点・表記が保持されていること
 3. 本文が12〜14px、h1/h2/h3等がそれぞれの範囲で `clamp()` になっていること
 4. HTML本文、アニメーション動作、フォーム送信処理、画像に変更がないこと
@@ -19,5 +19,6 @@
 - Artistsスライドショーは、スマホ時の親セクション左右40px paddingを相殺したうえで、表示領域・1枚のカードが各viewport幅になり、内部トラックが無限ループ幅であることを確認
 - 320/375/390/480/768/1336/1440pxでsliderのleftが0、rightがviewport幅、bodyの横スクロールなしを確認
 - 390pxでViewボタンの親要素・host・Shadow DOM内背景wrapperのleftが0、rightがviewport幅を確認
+- 390pxでカード上Mizukiボタン背景がカードと同じ幅390px、right 0を確認
 - Gallery側の既存liquid-buttonはfluid属性なし、md幅280pxを維持していることを確認
 - 表示時のJavaScript errorなし
