@@ -391,7 +391,7 @@ body::after {
 
 .bottom-txt {
   font-family: var(--font-jp);
-  font-size: 0.8rem;
+  font-size: clamp(12px, calc(0.3vw + 10px), 16px);
   color: var(--color-txt);
   position: absolute;
   left: 50%;
@@ -402,6 +402,23 @@ body::after {
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .bottom-txt {
     width: 100%;
-    text-align: center;
+  text-align: center;
   }
+}
+
+/* Header and footer text: responsive clamp scale */
+.header-logo-link,
+.footer-logo-link,
+.header-logo {
+  font-size: clamp(14px, calc(0.5vw + 12px), 22px);
+}
+
+.header-lead,
+.footer-lead,
+.header-date,
+.footer-date,
+.header-link,
+.footer-link,
+.menu-small {
+  font-size: clamp(12px, calc(0.4vw + 10px), 18px);
 }
