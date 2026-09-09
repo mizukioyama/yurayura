@@ -1403,3 +1403,92 @@ h3.faq-ttl,
 .card__btn {
   font-size: clamp(12px, calc(0.4vw + 10px), 16px);
 }
+
+/* ========================================
+=artists gallery layout
+======================================== */
+
+#artists .section__inner {
+  align-items: stretch;
+  gap: clamp(24px, 3vw, 48px);
+}
+
+#artists .h2_ttl {
+  align-self: flex-start;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+#artists .section__txt {
+  margin-bottom: 0;
+}
+
+#artists .artists-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 32px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#artists .artists-card {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid rgba(48, 58, 5, 0.18);
+  border-radius: 1.2rem;
+  background: rgba(243, 243, 237, 0.88);
+}
+
+#artists .artists-card .card__link {
+  display: grid;
+  height: 100%;
+}
+
+#artists .artists-card .card__img {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+#artists .artists-card .card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+#artists .artists-card .card__body {
+  display: grid;
+  gap: 0.75rem;
+  padding: clamp(16px, 1.25vw, 28px);
+}
+
+#artists .artists-card .card__ttl {
+  font-size: clamp(16px, calc(0.4vw + 14px), 22px);
+  line-height: 1.45;
+  text-align: left;
+}
+
+#artists .artists-card .card__link:hover .card__img img,
+#artists .artists-card .card__link:focus-visible .card__img img {
+  transform: scale(1.04);
+}
+
+@media screen and (max-width: 1024px) {
+  #artists .artists-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 699px) {
+  #artists .artists-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  #artists .artists-card .card__body {
+    padding: 14px 16px;
+  }
+}
