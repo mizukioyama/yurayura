@@ -262,8 +262,8 @@ section {
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  padding: 8rem 0;
-  padding: 80px 0;
+  padding: 8rem 44px;
+  padding: 80px 44px;
   overflow: hidden;
   /* background: url("../img/bg-img.webp") center / cover no-repeat;
   background: rgba(221, 221, 221, 0.25);
@@ -273,7 +273,7 @@ section {
 @media screen and (min-width: 320px) and (max-width: 699px) {
   section {
     justify-content: start;
-    padding: 120px 40px;
+    padding: 120px 44px;
     height: auto;
     min-height: 100vh;
   }
@@ -286,23 +286,13 @@ section {
 .section--contact,
 .section--faq,
 .section--access {
-  padding: 8rem 1rem 8rem;
+  padding: 8rem 44px 8rem;
   overflow: visible;
-}
-
-.section--contact {
-  padding-left: 44px;
-  padding-right: 44px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .section--contact,
   .section--access {
-    padding-left: 1.75rem;
-    padding-right: 1.75rem;
-  }
-
-  .section--contact {
     padding-left: 44px;
     padding-right: 44px;
   }
@@ -758,27 +748,24 @@ section {
 }
 
 #artists .section__btn {
+  --artists-side-padding: 44px;
   --view-button-width: clamp(480px, 36vw, 520px);
-  width: 100%;
-  max-width: none;
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
   margin: 0;
-  padding-inline: max(0px, calc((100% - var(--view-button-width)) / 2));
+  margin-left: calc(-1 * var(--artists-side-padding));
+  margin-right: calc(-1 * var(--artists-side-padding));
+  padding-inline: max(
+    0px,
+    calc(
+      (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+    )
+  );
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 699px) {
   #artists .section__btn {
     --view-button-width: 280px;
-    --artists-side-padding: 40px;
-    width: calc(100% + (2 * var(--artists-side-padding)));
-    max-width: calc(100% + (2 * var(--artists-side-padding)));
-    margin-left: calc(-1 * var(--artists-side-padding));
-    margin-right: calc(-1 * var(--artists-side-padding));
-    padding-inline: max(
-      0px,
-      calc(
-        (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
-      )
-    );
   }
 }
 
@@ -797,21 +784,12 @@ section {
 }
 
 .member-slider {
+  --artists-side-padding: 44px;
   position: relative;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
+  margin: 0 calc(-1 * var(--artists-side-padding));
   overflow: hidden;
-}
-
-@media screen and (max-width: 699px) {
-  .member-slider {
-    --artists-side-padding: 40px;
-    width: calc(100% + (2 * var(--artists-side-padding)));
-    max-width: calc(100% + (2 * var(--artists-side-padding)));
-    margin-left: calc(-1 * var(--artists-side-padding));
-    margin-right: calc(-1 * var(--artists-side-padding));
-  }
 }
 
 .member-slider::before,
