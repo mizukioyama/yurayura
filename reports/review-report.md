@@ -14,7 +14,7 @@
 
 フォームの問い合わせ種別4項目は、既存のHTML順序を維持したまま `contact-check-grid` を2列のCSS Gridへ変更し、列・行位置も明示して2段で表示するようにしました。フォームCSSにはキャッシュバスターを付け、古いレイアウトの残存を防いでいます。フォーム送信処理とチェックボックス検証は変更していません。
 
-全`section`（body内各セクション）の左右Paddingを44pxに統一しました。ArtistsのスライドショーとView背景の相殺値も44pxへ同期しています。
+FVを除く全`section`（body内各セクション）の左右Paddingを44pxに統一しました。FVは既存レイアウトを維持するため左右0pxとし、ArtistsのスライドショーとView背景の相殺値も44pxへ同期しています。
 
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
@@ -37,7 +37,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | ボタン背景幅 | PASS | 深緑背景の親`.section__btn`は320/375/390/480/699/700/1024/1336/1440/1600pxの全確認幅で画面幅100%。390pxでは親390px、左右55px padding、host・Shadow DOM内wrapper280px。700px以上ではpaddingでhost・wrapperを480〜520pxに調整。カード上`Mizuki`ボタンはカードと同じ幅、Galleryのmdボタンは従来どおり280px |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
-| 全section左右Padding | PASS | 320/390/699/700/1024/1440pxで全sectionの左右44px。bodyの横スクロールなし |
+| FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
 | 差分範囲 | PASS | 実装差分は `assets/css/main.css` のスライダー・カード上ボタン・Viewボタン幅と親padding補正、`assets/js/slide.js` のgap同期、`assets/js/liquid-button.js` のfluid幅対応、indexのViewボタン属性、既存の文字サイズルール、レビュー資料のみ |
 
 ## Judgment

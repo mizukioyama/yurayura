@@ -490,6 +490,8 @@ section {
   display: grid;
   place-items: center;
   min-height: 100svh;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .fv__inner {
