@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artistsスライドショーの外部ギャラリーリンク、gallery.htmlのカードレイアウト
+- Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artistsスライドショーのgallery.htmlリンク、gallery.htmlのカテゴリ・カード・ページネーション
 - Non-target: Artists以外のHTML本文・構造、フォーム送信処理、既存の背景アニメーション・FAQ動作・ボタン実装
 - Recovery copy: `backups/` 内の作業前コピー（commit対象外）
 
@@ -12,7 +12,7 @@
 
 対象範囲の見出し・本文・FAQ・Access・フォーム文言を横書き・左寄せに統一しました。本文は `--responsive-copy-size`、見出し・UI文字は見出し用の `clamp()` を使用しています。h1、h2、h3、小見出し、モーダル、送信ボタン、ヘッダー／フッター文字まで、画面幅に応じて最小値・最大値の間で変化します。
 
-指定URLはこの環境から取得できなかったため、リポジトリ内の `gallery.html` と `assets/css/works-list.css` を参照し、ギャラリーページを「見出し・説明文・画像付きカード一覧」の構成にしています。Artistsの背景画像非表示は維持し、`index.html` の既存スライドショー構造は変更していません。
+指定URLはこの環境から取得できなかったため、リポジトリ内の `gallery.html` と `assets/css/works-list.css` を参照し、ギャラリーページを「見出し・作家／ジャンルカテゴリ・画像付きカード一覧」の構成にしています。Artistsの背景画像非表示は維持し、`index.html` の既存スライドショー構造は変更していません。
 
 フォームの問い合わせ種別4項目は、既存のHTML順序を維持したまま `contact-check-grid` を2列のCSS Gridへ変更し、列・行位置も明示して2段で表示するようにしました。フォームCSSにはキャッシュバスターを付け、古いレイアウトの残存を防いでいます。フォーム送信処理とチェックボックス検証は変更していません。
 
@@ -36,9 +36,9 @@ Conceptは展示コンセプトに合わせ、上記共通値より大幅に広�
 
 Footerのリンククラスを`header-link`から`footer-link`へ分離し、Headerと同じ文字間隔（PC`0.8rem`、スマホ`0.2rem`）を明示しました。`menu-style.css`にもキャッシュバスターを付けています。
 
-ギャラリーページのカードは `figure.card__img` と `card__body` を持ち、`works-list.css` の `grid-template-columns` で3列・2列・1列へ切り替えます。深緑背景を持つ既存のViewボタンは維持します。
+ギャラリーページのカードは `figure.card__img` と `card__body` を持ち、`gallery.css` で2列に配置します。1ページ10件（2列×最大5行）を基準に、作品数に応じてページボタンを自動生成します。深緑背景を持つ既存のViewボタンは維持します。
 
-`gallery.html` を実際の作家紹介ページとして整備し、4作品の画像カードと `#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。Artistsの既存スライド内Mizukiカード4件とViewボタンは、指定された `https://mizukioyama.github.io/website/gallery.html` へリンクします。
+`gallery.html` を実際の作家紹介ページとして整備し、作家・ジャンルのカテゴリ絞り込み、4作品の画像カード、`#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。作品は10件を1ページ単位（2列×最大5行）として、`gallery.js`が作品数からページ数を自動生成します。Artistsの既存スライド内Mizukiカード4件とViewボタンは、指定された `https://mizukioyama.github.io/yurayura/gallery.html` へリンクします。
 
 ## Verification
 
@@ -55,7 +55,9 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
 | Artistsスライダー | PASS | `memberSlider`/`memberTrack`と既存`slide.js`を維持。Mizukiカード4件のリンク先だけ指定URLへ変更 |
 | gallery.html | PASS | 作家見出し、説明文、4作品カード、`#mizuki-01`〜`#mizuki-04`を確認。全画像ファイルが存在 |
-| Mizuki / Viewリンク | PASS | indexの4カードとViewボタンが`https://mizukioyama.github.io/website/gallery.html`を指定 |
+| カテゴリ | PASS | 作家「Mizuki」、ジャンル「作品」の絞り込みUIとARIA状態同期を確認 |
+| ページネーション | PASS | `pageSize=10`、作品数から`Math.ceil(filteredCards.length / pageSize)`でページ数を生成する実装を確認 |
+| Mizuki / Viewリンク | PASS | indexの4カードとViewボタンが`https://mizukioyama.github.io/yurayura/gallery.html`を指定 |
 | Viewボタン背景幅 | PASS | 既存の深緑背景・fluid指定・レスポンシブ幅ルールは変更していない |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | FAQアコーディオン | PASS | 外側の分類は`.faq-heading`、回答内の`.faq-sub-question`をJSで開閉し、`is-open`とARIA状態を同期。同時に複数項目を開かない |

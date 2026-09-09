@@ -2,11 +2,12 @@
 
 ## Review target
 
-1. Concept、Artists、Contact、FAQ、Access、フォーム、ヘッダー／フッターの文字サイズとArtists作家カードのギャラリーレイアウトだけが変更されていること
+1. Concept、Artists、Contact、FAQ、Access、フォーム、ヘッダー／フッターの文字サイズとArtistsからgallery.htmlへのリンク、gallery.htmlのカテゴリ／作品レイアウトだけが変更されていること
 2. 指定文の句読点・表記が保持されていること
 3. 本文が12〜14px、h1/h2/h3等がそれぞれの範囲で `clamp()` になっていること
 4. Artists以外のHTML本文、背景アニメーション、フォーム送信処理に変更がないこと。Artistsのスライドショー構造は維持すること
 5. 外部参照URLが取得できない場合も、ローカルの`gallery.html` / `works-list.css`と照合して設計していること
+6. ギャラリーが作家・ジャンルで絞り込め、作品数に応じて2列×最大5行単位のページ数を自動生成すること
 
 ## Review evidence
 
@@ -17,11 +18,12 @@
 - 375/376/480/481/1335/1336pxの境界を確認
 - 1440x900でも横書き・左寄せ・ページ横幅のはみ出しなし
 - h1/h2/h3、小見出し、フォーム、ヘッダー／フッターの計算後サイズを確認
-- indexのArtistsスライドショーが維持され、Mizukiカード4件だけが指定外部URLへリンクすることを確認
-- gallery.htmlはPC3列、タブレット2列、スマホ1列となり、画像とカード本文が参照レイアウトの構造になっていることを確認
+- indexのArtistsスライドショーが維持され、Mizukiカード4件とViewボタンが`https://mizukioyama.github.io/yurayura/gallery.html`へリンクすることを確認
+- gallery.htmlは2列の画像カードとカード本文が参照レイアウトの構造になっていることを確認
+- gallery.htmlは作家・ジャンルのカテゴリを表示し、2列×最大5行、作品数連動のページネーションを持つことを確認
 - 4枚のカード画像が既存の`assets/img/*.webp`から読み込まれることを確認
 - `gallery.html`が作家紹介ページとして取得でき、4作品カードと4つのアンカーが存在することを確認
-- indexのMizukiカードとViewボタンが`https://mizukioyama.github.io/website/gallery.html`へ遷移することを確認
+- `gallery.js`の`pageSize=10`とフィルタ後作品数によるページ数自動生成を確認
 - 既存のスライダーIDと`slide.js`を維持し、無限スライドショーを変更していないことを確認
 - Viewボタンの既存のfluid幅・背景ルールを変更していないことを確認
 - フォームの問い合わせ種別4項目は320/390/699/700/1024pxで2列2段、HTML順序は展示・作品／購入・その他のままであることを確認
