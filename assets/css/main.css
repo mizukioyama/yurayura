@@ -290,11 +290,21 @@ section {
   overflow: visible;
 }
 
+.section--contact {
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .section--contact,
   .section--access {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
+  }
+
+  .section--contact {
+    padding-left: 44px;
+    padding-right: 44px;
   }
 }
 
