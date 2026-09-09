@@ -1,14 +1,14 @@
 (function () {
   function initFaqAccordion() {
-    const items = Array.from(document.querySelectorAll(".faq-list-item"));
+    const items = Array.from(document.querySelectorAll(".faq-sub-item"));
 
     items.forEach((item, index) => {
-      const button = item.querySelector(".faq-question");
-      const answer = item.querySelector(".faq-answer");
+      const button = item.querySelector(".faq-sub-question");
+      const answer = item.querySelector(".faq-sub-answer");
 
       if (!button || !answer) return;
 
-      const answerId = answer.id || `faq-answer-${index + 1}`;
+      const answerId = answer.id || `faq-sub-answer-${index + 1}`;
       answer.id = answerId;
       button.setAttribute("aria-controls", answerId);
       button.setAttribute(
@@ -24,7 +24,7 @@
 
           otherItem.classList.remove("is-open");
           otherItem
-            .querySelector(".faq-question")
+            .querySelector(".faq-sub-question")
             ?.setAttribute("aria-expanded", "false");
         });
 
