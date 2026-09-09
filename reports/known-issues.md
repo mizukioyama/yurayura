@@ -6,11 +6,11 @@
 
 ## Acceptance boundary
 
-実機スマートフォンでのユーザー受入確認は未実施です。今回の外部参照URLもネットワーク名前解決により取得できなかったため、リポジトリ内の`gallery.html`と`works-list.css`を基準に実装しています。
+実機スマートフォンでのユーザー受入確認は未実施です。参照リポジトリはGit経由で取得し、`src/gallery.html`、`src/style/gallery.css`、`src/style/sidebar.css`、`src/public/gallery-sidebar.html`を基準に実装しています。
 
 320〜1440pxのブラウザ検証で、対象テキストの横書き・左寄せ・clamp計算値・横はみ出しなしを確認済みです。
 
-Artistsのスライドショーは維持しています。Mizukiカード4件とViewボタンは`https://mizukioyama.github.io/yurayura/gallery.html`へ遷移します。外部参照サイトの到達・表示はネットワーク制限により未確認です。
+Artistsのスライドショーは維持しています。Mizukiカード4件とViewボタンは`https://mizukioyama.github.io/yurayura/gallery.html`へ遷移します。公開URLでの実機表示は未確認です。
 
 フォームの問い合わせ種別チェックボックスは2列2段へ変更済みです。320px幅でも各項目が収まり、既存の`form.js`による選択・必須検証は維持しています。
 
@@ -36,4 +36,4 @@ Footerリンクは`footer-link`クラスへ分離し、Headerと同じ文字間�
 
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。
 
-作家紹介ページは`gallery.html`として追加しました。作家・ジャンル絞り込みと、作品10件単位の自動ページネーションを実装しています。現在の登録作品は4件のため、初期表示は2列×2行です。外部公開URLでの実機表示確認は未実施です。
+作家紹介ページは`gallery.html`として追加しました。作家・ジャンル（Digital）絞り込みと、作品10件単位の自動ページネーションを実装しています。現在の登録作品は4件のため、初期表示は2列×2行です。外部公開URLでの実機表示確認は未実施です。

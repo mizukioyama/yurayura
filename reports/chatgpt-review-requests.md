@@ -6,7 +6,7 @@
 2. 指定文の句読点・表記が保持されていること
 3. 本文が12〜14px、h1/h2/h3等がそれぞれの範囲で `clamp()` になっていること
 4. Artists以外のHTML本文、背景アニメーション、フォーム送信処理に変更がないこと。Artistsのスライドショー構造は維持すること
-5. 外部参照URLが取得できない場合も、ローカルの`gallery.html` / `works-list.css`と照合して設計していること
+5. 参照リポジトリの`src/gallery.html` / `src/style/gallery.css` / `src/style/sidebar.css` / `src/public/gallery-sidebar.html`と照合して設計していること
 6. ギャラリーが作家・ジャンルで絞り込め、作品数に応じて2列×最大5行単位のページ数を自動生成すること
 
 ## Review evidence
@@ -40,4 +40,4 @@
 - `main.css?v=20260909-slider-external-gallery`のキャッシュバスターにより最新CSSが読み込まれることを確認
 - Footerリンクの文字間隔がHeaderと同じPC`0.8rem`、スマホ`0.2rem`で読み込まれることを確認
 - 表示時のJavaScript errorなし
-- 外部URLの取得はネットワーク名前解決により未実施。ブラウザでの実機表示確認はレビュー時に実施する
+- 参照リポジトリはGit経由で取得して上記ファイルを確認済み。公開URLでのブラウザ実機表示確認はレビュー時に実施する

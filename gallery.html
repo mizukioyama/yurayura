@@ -57,7 +57,7 @@
     <script src="./assets/js/gallery.js" defer></script>
     <script src="./assets/js/liquid-button.js"></script>
   </head>
-  <body>
+  <body class="gallery-page">
     <header class="header">
       <div class="header__inner inner">
         <p class="header__logo">
@@ -100,37 +100,38 @@
       <section class="fv">
         <div class="fv__inner inner">
           <p class="fv__lead">ゆらゆら｜体感するArt展</p>
-          <h1 class="fv__ttl">作家<span class="fv-small-txt">と</span>作品</h1>
+          <h1 class="fv__ttl">Art Index</h1>
         </div>
       </section>
 
       <section class="section liquid gallery-section" id="works">
-        <div class="section__inner inner">
-          <p class="gallery-kicker">作家と作品</p>
-          <h2 class="section__ttl">Gallery</h2>
-          <p class="section__txt">「ゆらゆら」に出展する作品をご紹介します。</p>
-
-          <div class="gallery-filters" aria-label="作品カテゴリ">
-            <div class="gallery-filter-group">
-              <h3 class="gallery-filter-title">作家</h3>
-              <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-label="作家で絞り込む">
-                <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-                <button class="gallery-filter" type="button" data-filter-value="Mizuki" aria-pressed="false">Mizuki</button>
-              </div>
-            </div>
-            <div class="gallery-filter-group">
-              <h3 class="gallery-filter-title">ジャンル</h3>
-              <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-label="ジャンルで絞り込む">
-                <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-                <button class="gallery-filter" type="button" data-filter-value="作品" aria-pressed="false">作品</button>
-              </div>
+        <aside class="gallery-sidebar" aria-label="作品カテゴリ">
+          <p class="gallery-sidebar__label">Category</p>
+          <div class="gallery-filter-group">
+            <h2 class="gallery-filter-title">作家</h2>
+            <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-label="作家で絞り込む">
+              <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
+              <button class="gallery-filter" type="button" data-filter-value="Mizuki" aria-pressed="false">Mizuki</button>
             </div>
           </div>
+          <div class="gallery-filter-group">
+            <h2 class="gallery-filter-title">ジャンル</h2>
+            <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-label="ジャンルで絞り込む">
+              <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
+              <button class="gallery-filter" type="button" data-filter-value="Digital" aria-pressed="false">Digital</button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="section__inner inner">
+          <p class="gallery-kicker">作家と作品</p>
+          <h2 class="section__ttl">作品一覧</h2>
+          <p class="section__txt">「ゆらゆら」に出展する作品をご紹介します。</p>
 
           <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
 
           <div class="cards gallery-grid" aria-label="Mizukiの作品一覧">
-            <article class="card gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="作品">
+            <article class="card gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="Digital">
               <figure class="card__img">
                 <img
                   src="./assets/img/202337.webp"
@@ -141,12 +142,12 @@
                 />
               </figure>
               <div class="card__body">
-                <p class="card__meta">Mizuki / 作品</p>
+                <p class="card__meta">Mizuki / Digital</p>
                 <h3 class="card__ttl">作品 01</h3>
               </div>
             </article>
 
-            <article class="card gallery-card" id="mizuki-02" data-artist="Mizuki" data-genre="作品">
+            <article class="card gallery-card" id="mizuki-02" data-artist="Mizuki" data-genre="Digital">
               <figure class="card__img">
                 <img
                   src="./assets/img/202339.webp"
@@ -157,12 +158,12 @@
                 />
               </figure>
               <div class="card__body">
-                <p class="card__meta">Mizuki / 作品</p>
+                <p class="card__meta">Mizuki / Digital</p>
                 <h3 class="card__ttl">作品 02</h3>
               </div>
             </article>
 
-            <article class="card gallery-card" id="mizuki-03" data-artist="Mizuki" data-genre="作品">
+            <article class="card gallery-card" id="mizuki-03" data-artist="Mizuki" data-genre="Digital">
               <figure class="card__img">
                 <img
                   src="./assets/img/202402.webp"
@@ -173,12 +174,12 @@
                 />
               </figure>
               <div class="card__body">
-                <p class="card__meta">Mizuki / 作品</p>
+                <p class="card__meta">Mizuki / Digital</p>
                 <h3 class="card__ttl">作品 03</h3>
               </div>
             </article>
 
-            <article class="card gallery-card" id="mizuki-04" data-artist="Mizuki" data-genre="作品">
+            <article class="card gallery-card" id="mizuki-04" data-artist="Mizuki" data-genre="Digital">
               <figure class="card__img">
                 <img
                   src="./assets/img/202501.webp"
@@ -189,12 +190,14 @@
                 />
               </figure>
               <div class="card__body">
-                <p class="card__meta">Mizuki / 作品</p>
+                <p class="card__meta">Mizuki / Digital</p>
                 <h3 class="card__ttl">作品 04</h3>
               </div>
             </article>
           </div>
+          <div class="gallery-page-line" aria-hidden="true"></div>
           <nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav>
+          <div class="gallery-page-line" aria-hidden="true"></div>
         </div>
       </section>
     </main>
