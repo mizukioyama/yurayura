@@ -403,8 +403,13 @@ section {
     white-space: normal;
   }
   .section--concept .section__txt {
+    align-self: flex-start;
+    width: 100%;
+    height: auto;
+    font-size: 14px;
     line-height: 2;
-    height: 60vh;
+    text-align: left;
+    writing-mode: horizontal-tb;
   }
 }
 

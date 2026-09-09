@@ -10,7 +10,7 @@
 
 指定された文章へ差し替え、既存の `pc-br` の仕組みを維持しました。Concept 内の改行タグはすべて `<br class="pc-br" />` に統一しています。
 
-スマホで縦方向が長くなりすぎないよう、既存のモバイル用Concept本文だけを `height: 60vh` に変更し、320px幅でも列が切れないよう `line-height: 2` を追加しました。デスクトップ側の値は変更していません。
+スマホではConcept本文を横書き・左寄せに変更し、フォントサイズを14px（変更前より2px小さく）しました。モバイル専用の高さ指定は解除して自然な文章の高さにし、デスクトップ側の縦書き・16pxは変更していません。
 
 ## Verification
 
@@ -20,8 +20,8 @@
 | `br` 構造 | PASS | Concept内11個、無効タグ0個、全て `pc-br` |
 | HTMLのブラウザ解釈 | PASS | localhostで `document.readyState=complete`、対象要素を取得 |
 | Tidy構文確認 | PASS / 注意あり | 対象変更箇所に新規エラーなし。既存HTML5要素等の警告は Known Issues に記録 |
-| スマホ表示 | PASS | 390x844で本文高さ506px、320x568で本文高さ341px、両方とも `writing-mode: vertical-rl` と横はみ出しなし |
-| デスクトップ表示 | PASS | 1440x900、`writing-mode: vertical-rl`、ページ横はみ出しなし |
+| スマホ表示 | PASS | 390x844／320x568、`writing-mode: horizontal-tb`、左寄せ、14px、横はみ出しなし |
+| デスクトップ表示 | PASS | 1440x900、従来どおり `writing-mode: vertical-rl`・16px、ページ横はみ出しなし |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | 差分範囲 | PASS | 実装差分は `index.html` のConcept本文と `assets/css/main.css` のConceptモバイルルールのみ |
 
