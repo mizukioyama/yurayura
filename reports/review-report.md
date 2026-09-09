@@ -38,6 +38,8 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 
 Artistsのカードは `figure.card__img` と `card__body` を持つギャラリーカードへ変更し、`grid-template-columns` を3列・2列・1列へ切り替えます。深緑背景を持つ既存のViewボタンは変更していません。
 
+`gallery.html` を実際の作家紹介ページとして整備し、4作品の画像カードと `#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。ArtistsのMizukiカードは各アンカーへ、Viewボタンは `./gallery.html` へリンクします。
+
 ## Verification
 
 | Check | Result | Evidence |
@@ -53,6 +55,8 @@ Artistsのカードは `figure.card__img` と `card__body` を持つギャラリ
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
 | Artistsギャラリー構造 | PASS | `artists-gallery`内に画像4枚と`card__body`を持つ4カードを確認。PC3列、タブレット2列、スマホ1列のCSSを追加 |
 | Artistsカード画像 | PASS | 既存の`202337.webp`、`202339.webp`、`202402.webp`、`202501.webp`を使用し、カード内画像は`width:100%`・`height:100%`・`object-fit:cover` |
+| gallery.html | PASS | 作家見出し、説明文、4作品カード、`#mizuki-01`〜`#mizuki-04`を確認。全画像ファイルが存在 |
+| Mizuki / Viewリンク | PASS | indexの4カードは`./gallery.html#...`、Viewは`./gallery.html`を指定 |
 | Artists旧スライダー | PASS | `memberSlider`/`memberTrack`を対象HTMLから除外。`slide.js`は対象要素がない場合に終了し、ファイル自体は未変更 |
 | Viewボタン背景幅 | PASS | 既存の深緑背景・fluid指定・レスポンシブ幅ルールは変更していない |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
@@ -65,7 +69,7 @@ Artistsのカードは `figure.card__img` と `card__body` を持つギャラリ
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
 | Contact・Q&A・Accessの左右余白 | PASS | Q&Aの`.faq-box`内側paddingを0pxにし、3セクションの内容位置を統一 |
-| 差分範囲 | PASS | 今回の追加差分は `index.html` のArtistsカード構造・CSSキャッシュバスター、`assets/css/main.css` のArtistsギャラリー専用CSS、レビュー資料、作業前バックアップのみ。フォーム・FAQ・既存JSは変更なし |
+| 差分範囲 | PASS | 今回の追加差分は `index.html` のArtistsリンク、`gallery.html` の作家紹介ページ化、レビュー資料、作業前バックアップ。フォーム・FAQ・既存JSは変更なし |
 
 ## Judgment
 

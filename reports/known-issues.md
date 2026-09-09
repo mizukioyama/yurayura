@@ -36,4 +36,4 @@ Footerリンクは`footer-link`クラスへ分離し、Headerと同じ文字間�
 
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。
 
-Artistsの既存href（`artist-mizuki.html`〜`artist-mizuki4.html`）に対応するファイルは、この作業ツリーには存在しません。リンク先の追加・変更は今回のレイアウト作業の対象外です。
+作家紹介ページは`gallery.html`として追加しました。外部公開URLでの実機表示確認は未実施です。
