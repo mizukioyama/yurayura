@@ -309,6 +309,18 @@ section:not(.fv) {
   }
 }
 
+section.section--concept,
+section.section--artists {
+  padding-block: clamp(56px, calc(3vw + 32px), 80px);
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  section.section--concept,
+  section.section--artists {
+    padding-block: clamp(48px, calc(5vw + 32px), 72px);
+  }
+}
+
 /* ========================================
 =inner
 ======================================== */
@@ -923,6 +935,7 @@ section:not(.fv) {
 ======================================== */
 
 .artists-bg-img {
+  display: none;
   position: absolute;
   z-index: 0;
   background: url("../img/bg-img.webp");
