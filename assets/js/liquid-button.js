@@ -5,7 +5,8 @@ class LiquidButton extends HTMLElement {
       "text",
       "href",
       "size",
-      "theme"
+      "theme",
+      "fluid"
     ];
   }
 
@@ -64,6 +65,28 @@ class LiquidButton extends HTMLElement {
   --btn-color: #F8FAEC;
 
   display:inline-block;
+
+}
+
+:host([fluid]){
+
+  display:block;
+
+  width:clamp(480px, 36vw, 520px);
+
+  max-width:100%;
+
+  margin:0 auto;
+
+}
+
+@media screen and (max-width:699px){
+
+  :host([fluid]){
+
+    width:min(100%, 280px);
+
+  }
 
 }
 

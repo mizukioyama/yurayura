@@ -21,5 +21,6 @@
 - 390pxでViewボタンの親要素・host・Shadow DOM内背景wrapperのleftが0、rightがviewport幅を確認
 - 390pxでカード上Mizukiボタン背景がカードと同じ幅390px、right 0を確認
 - Viewボタンはスマホ最大280px、PC700px以上で480〜520pxの範囲になることを320〜1600pxで確認
+- `liquid-button.js`の`fluid`属性監視とShadow DOM内wrapperのレスポンシブ幅適用を確認
 - Gallery側の既存liquid-buttonはfluid属性なし、md幅280pxを維持していることを確認
 - 表示時のJavaScript errorなし

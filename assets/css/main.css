@@ -744,9 +744,6 @@ section {
 
 #artists .section__btn liquid-button {
   display: block;
-  width: clamp(480px, 36vw, 520px);
-  max-width: 100%;
-  margin: 0 auto;
 }
 
 @media screen and (max-width: 699px) {
@@ -757,9 +754,6 @@ section {
     margin-right: calc(-1 * var(--artists-side-padding));
   }
 
-  #artists .section__btn liquid-button {
-    width: min(100%, 280px);
-  }
 }
 
 /* --- スライダー --- */
