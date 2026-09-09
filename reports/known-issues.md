@@ -32,4 +32,6 @@ Concept/Artistsは専用のclamp値で上下paddingをさらに縮小してい�
 
 Conceptは意図的に共通sectionより広い上下余白を設定し、展示コンセプトの静かな見せ方を優先しています。
 
+`main.css`には`v=20260909-concept-spacing`のキャッシュバスターを付けています。
+
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。

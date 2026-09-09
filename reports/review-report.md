@@ -30,6 +30,8 @@ Concept/Artistsはさらに上下paddingをデスクトップで`clamp(56px, cal
 
 Conceptは展示コンセプトに合わせ、上記共通値より広い上下paddingをデスクトップで`clamp(72px, calc(4vw + 48px), 104px)`、スマホで`clamp(72px, calc(5vw + 48px), 96px)`に設定しました。
 
+未反映対策として、`index.html`の`main.css`読み込みに`v=20260909-concept-spacing`を付け、ブラウザキャッシュで旧CSSが残らないようにしました。
+
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
 Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。`-View`ボタンは`fluid`属性をJSの監視対象に含め、Shadow DOM内でも背景ラッパーの幅を直接レスポンシブ適用しています。深緑背景を持つ親`.section__btn`は端末の画面幅100%に揃え、スマホでは親セクションの左右padding分を相殺しています。`padding-inline`でボタンだけをスマホ最大280px、PCでは `clamp(480px, 36vw, 520px)` の480〜520px程度に調整しています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
@@ -54,6 +56,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | セクション高さ | PASS | FV以外は`height:auto; min-height:0`、FVは`100vh`。既存のpadding・コンテンツ構造は維持 |
 | スマホsection高さ | PASS | 320〜699pxでFV以外の上下paddingを72〜96pxへレスポンシブ調整。FVは100vhのまま |
 | Concept/Artists高さと背景 | PASS | 両sectionの上下paddingを個別に縮小し、Artists背景画像だけを非表示。カード・スライドショーは維持 |
+| CSS反映 | PASS | `main.css?v=20260909-concept-spacing`で最新CSSを読み込む設定を確認 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
 | Contact・Q&A・Accessの左右余白 | PASS | Q&Aの`.faq-box`内側paddingを0pxにし、3セクションの内容位置を統一 |
