@@ -34,5 +34,5 @@
 - スマホ幅のFV以外の上下余白が`clamp()`/`calc()`で72〜96pxに収まり、縦長化が抑えられていることを確認
 - Concept/Artistsの上下余白が追加で縮小され、Artists背景画像だけが非表示で、カード画像・スライドショーが残っていることを確認
 - Conceptのみ、展示の雰囲気に合わせて上下余白を共通sectionより広いレスポンシブ値に調整したことを確認
-- `main.css`のキャッシュバスターによりConcept余白の最新CSSが読み込まれることを確認
+- `main.css?v=20260909-concept-spacing-v2`のキャッシュバスターによりConcept余白の最新CSSが読み込まれることを確認
 - 表示時のJavaScript errorなし
