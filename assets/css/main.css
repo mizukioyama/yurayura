@@ -964,7 +964,7 @@ h3.faq-ttl {
 FAQ
 ======================================== */
 .faq-box {
-  padding: 0 10px;
+  padding: 0;
 }
 
 .faq-list {

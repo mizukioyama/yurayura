@@ -18,4 +18,6 @@ Artistsのカード上Mizukiボタン背景もカード幅100%、左右0に揃�
 
 FVを除く全sectionの左右Paddingは44pxです。FVは既存レイアウト維持のため左右0pxです。320px幅でも横スクロールは発生していません。
 
+Q&Aの`.faq-box`内側paddingは0pxに変更し、Contact・Q&A・Accessの左右余白を統一しています。
+
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。

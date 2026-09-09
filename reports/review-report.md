@@ -16,6 +16,8 @@
 
 FVを除く全`section`（body内各セクション）の左右Paddingを44pxに統一しました。FVは既存レイアウトを維持するため左右0pxとし、ArtistsのスライドショーとView背景の相殺値も44pxへ同期しています。
 
+Q&Aの`.faq-box`内側10pxを解除し、Contact・Q&A・Accessの内容左右位置を揃えました。
+
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
 Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃えました。`-View`ボタンは`fluid`属性をJSの監視対象に含め、Shadow DOM内でも背景ラッパーの幅を直接レスポンシブ適用しています。深緑背景を持つ親`.section__btn`は端末の画面幅100%に揃え、スマホでは親セクションの左右padding分を相殺しています。`padding-inline`でボタンだけをスマホ最大280px、PCでは `clamp(480px, 36vw, 520px)` の480〜520px程度に調整しています。Galleryの既存ボタンには `fluid` を付けず、固定幅を維持しています。
@@ -38,6 +40,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | JavaScript console error | PASS | 表示確認時の error 0件 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
+| Contact・Q&A・Accessの左右余白 | PASS | Q&Aの`.faq-box`内側paddingを0pxにし、3セクションの内容位置を統一 |
 | 差分範囲 | PASS | 実装差分は `assets/css/main.css` のスライダー・カード上ボタン・Viewボタン幅と親padding補正、`assets/js/slide.js` のgap同期、`assets/js/liquid-button.js` のfluid幅対応、indexのViewボタン属性、既存の文字サイズルール、レビュー資料のみ |
 
 ## Judgment
