@@ -748,14 +748,16 @@ section {
 }
 
 #artists .section__btn {
-  width: clamp(480px, 36vw, 520px);
-  max-width: 100%;
-  margin: 0 auto;
+  --view-button-width: clamp(480px, 36vw, 520px);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: max(0px, calc((100% - var(--view-button-width)) / 2));
 }
 
 @media screen and (max-width: 699px) {
   #artists .section__btn {
-    width: min(100%, 280px);
+    --view-button-width: 280px;
   }
 }
 

@@ -72,11 +72,11 @@ class LiquidButton extends HTMLElement {
 
   display:block;
 
-  width:clamp(480px, 36vw, 520px);
+  width:100%;
 
   max-width:100%;
 
-  margin:0 auto;
+  margin:0;
 
 }
 
@@ -84,7 +84,7 @@ class LiquidButton extends HTMLElement {
 
   :host([fluid]){
 
-    width:min(100%, 280px);
+    width:100%;
 
   }
 
