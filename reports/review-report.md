@@ -36,9 +36,9 @@ Conceptは展示コンセプトに合わせ、上記共通値より大幅に広�
 
 Footerのリンククラスを`header-link`から`footer-link`へ分離し、Headerと同じ文字間隔（PC`0.8rem`、スマホ`0.2rem`）を明示しました。`menu-style.css`にもキャッシュバスターを付けています。
 
-ギャラリーページのカードは `figure.card__img` と `card__body` を持ち、`gallery.css` で2列に配置します。1ページ10件（2列×最大5行）を基準に、作品数に応じてページボタンを自動生成します。深緑背景を持つ既存のViewボタンは維持します。
+ギャラリーページは参照元と同じ `gallery-containt` → `content` → `.work` → `.work-img` の構造に変更しました。作品は1件ごとの横配置、スマホでは縦積みとし、1ページ10件を基準に作品数からページボタンを自動生成します。画像ファイルの差し替えは行っていません。
 
-`gallery.html` を実際の作家紹介ページとして整備し、作家・ジャンルのカテゴリ絞り込み、4作品の画像カード、`#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。既存画像の参照元に合わせ、ジャンルはDigitalとして登録しています。作品は10件を1ページ単位（2列×最大5行）として、`gallery.js`が作品数からページ数を自動生成します。Artistsの既存スライド内Mizukiカード4件とViewボタンは、指定された `https://mizukioyama.github.io/yurayura/gallery.html` へリンクします。
+`gallery.html` を実際の作家紹介ページとして整備し、作家・ジャンルのカテゴリ絞り込み、4作品の `.work` レイアウト、`#mizuki-01`〜`#mizuki-04` のアンカーを追加しました。既存画像はそのまま使用し、ジャンルはDigitalとして登録しています。作品は10件を1ページ単位として、`gallery.js`が作品数からページ数を自動生成します。Artistsの既存スライド内Mizukiカード4件とViewボタンは、指定された `https://mizukioyama.github.io/yurayura/gallery.html` へリンクします。
 
 ## Verification
 
@@ -54,9 +54,9 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 | フォントサイズ | PASS | 本文320px:12.4px、390px:13.9px、480px以上:最大14px。h2は18〜28px、h3は14〜20pxの範囲 |
 | レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
 | Artistsスライダー | PASS | `memberSlider`/`memberTrack`と既存`slide.js`を維持。Mizukiカード4件のリンク先だけ指定URLへ変更 |
-| gallery.html | PASS | 作家見出し、説明文、4作品カード、`#mizuki-01`〜`#mizuki-04`を確認。全画像ファイルが存在 |
+| gallery.html | PASS | Art Index、左側カテゴリ、`gallery-containt` / `content` / `.work` 構造、4作品、`#mizuki-01`〜`#mizuki-04`を確認。画像ファイルは変更なし |
 | カテゴリ | PASS | 作家「Mizuki」、ジャンル「Digital」の絞り込みUIとARIA状態同期を確認 |
-| ページネーション | PASS | `pageSize=10`、作品数から`Math.ceil(filteredCards.length / pageSize)`でページ数を生成する実装を確認 |
+| ページネーション | PASS | `pageSize=10`、作品数から`Math.ceil(filteredCards.length / pageSize)`でページ数を生成する実装を確認。参照元同様の1作品1行レイアウト |
 | Mizuki / Viewリンク | PASS | indexの4カードとViewボタンが`https://mizukioyama.github.io/yurayura/gallery.html`を指定 |
 | Viewボタン背景幅 | PASS | 既存の深緑背景・fluid指定・レスポンシブ幅ルールは変更していない |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
