@@ -95,7 +95,7 @@ sp
   display: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .sp {
     display: block;
   }
@@ -230,7 +230,7 @@ main {
   object-position: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .body_bg-img {
     width: 100vw;
     height: 92vh;
@@ -270,7 +270,7 @@ section {
   backdrop-filter: blur(10px);*/
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   section {
     justify-content: start;
     padding: 120px 44px;
@@ -295,7 +295,7 @@ section:not(.fv) {
   overflow: visible;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .section--contact,
   .section--access {
     padding-left: 44px;
@@ -303,7 +303,7 @@ section:not(.fv) {
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   section:not(.fv) {
     padding-block: clamp(72px, calc(7vw + 48px), 96px);
   }
@@ -318,7 +318,7 @@ section.section--concept {
   padding-block: clamp(112px, calc(6vw + 80px), 176px);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   section.section--concept,
   section.section--artists {
     padding-block: clamp(48px, calc(5vw + 32px), 72px);
@@ -428,7 +428,7 @@ section.section--concept {
   letter-spacing: 0.4rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .section--concept .section__txt,
   .section--artists .section__txt {
     white-space: normal;
@@ -492,7 +492,7 @@ section.section--concept {
   display: none;
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .pc-br {
     display: none;
   }
@@ -557,7 +557,7 @@ section.section--concept {
   writing-mode: vertical-rl;
 }
 
-/* @media screen and (min-width: 320px) and (max-width: 699px) {
+/* @media screen and (max-width: 480px) {
   .section--concept .h2_ttl {
     writing-mode: initial;
   }
@@ -575,7 +575,7 @@ section.section--concept {
   transform: translateX(-50%);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .fv-bt-txt,
   .fv__txt {
     transform: translate(-50%, -20%);
@@ -610,7 +610,7 @@ section.section--concept {
   pointer-events: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .scroll-guide {
     right: 20px;
     bottom: 30px;
@@ -625,7 +625,7 @@ section.section--concept {
   writing-mode: vertical-rl;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .scroll-guide__text {
     font-size: 0.6rem;
     letter-spacing: 0.4rem;
@@ -729,14 +729,14 @@ section.section--concept {
   background: url("../img/202326.webp") center / cover no-repeat;
 }
 
-@media screen and (min-width: 700px) and (max-width: 1239px) {
+@media screen and (min-width: 481px) and (max-width: 1335px) {
   .img-box,
   .card {
     width: 420px;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .img-box,
   .card {
     width: 280px;
@@ -798,7 +798,7 @@ section.section--concept {
   );
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   #artists .section__btn {
     --view-button-width: 280px;
   }
@@ -920,7 +920,7 @@ section.section--concept {
     opacity 0.3s ease;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .card__btn {
     min-width: 70px;
     height: min-content;
@@ -1046,7 +1046,7 @@ FAQ
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .faq-question,
   .faq-heading {
     padding: 8px 10px;
@@ -1169,7 +1169,7 @@ FAQ
   padding: 0.75rem 1.5rem 1rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .faq-sub-question {
     padding: 8px 10px;
   }
@@ -1194,7 +1194,7 @@ Access
   gap: 2rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .acs-box {
     display: block;
   }
@@ -1221,7 +1221,7 @@ Access
   font-weight: bold;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .section--access .section__txt {
     font-size: 0.8rem;
     margin-bottom: 1rem;
@@ -1237,7 +1237,7 @@ Access
   border-left: 1px solid var(--color-txt);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .access-info {
     display: flex;
     flex-direction: column;
@@ -1260,7 +1260,7 @@ Access
   font-family: var(--font-jp);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .access-info h3 {
     font-size: 1rem;
   }
@@ -1272,7 +1272,7 @@ Access
   line-height: 1.8;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .access-txt {
     font-size: 0.8rem;
   }
@@ -1284,7 +1284,7 @@ Access
   border: 0;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .map {
     height: 200px;
   }
@@ -1402,4 +1402,397 @@ h3.faq-ttl,
 
 .card__btn {
   font-size: clamp(12px, calc(0.4vw + 10px), 16px);
+}
+
+/* ========================================
+  Canonical responsive layout
+  <=375 / 376-480 / 481-1335 / >=1336
+======================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section__inner,
+.section__txt,
+.contact-form,
+.faq-box,
+.acs-box,
+.map-box {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.section__inner {
+  width: 100%;
+}
+
+.card {
+  width: clamp(280px, 60vw, 420px);
+  height: clamp(200px, 40vw, 280px);
+}
+
+.card__btn {
+  min-height: 100%;
+}
+
+.map {
+  height: clamp(200px, 24vw, 350px);
+}
+
+@media screen and (max-width: 375px) {
+  section {
+    justify-content: flex-start;
+    padding-block: clamp(72px, calc(7vw + 48px), 96px);
+  }
+
+  section.section--concept {
+    padding-block: clamp(96px, calc(8vw + 80px), 160px);
+  }
+
+  .sp {
+    display: block;
+  }
+
+  .pc-br {
+    display: none;
+  }
+
+  .sp-br {
+    display: inline;
+  }
+
+  .section__inner {
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .card {
+    width: 280px;
+    height: 200px;
+  }
+
+  .card__btn {
+    min-width: 70px;
+    min-height: 100%;
+    height: min-content;
+    padding: 1rem;
+  }
+
+  .map {
+    width: 100%;
+    height: 200px;
+  }
+
+  .acs-box {
+    display: block;
+  }
+
+  .access-info {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 480px) {
+  section {
+    justify-content: flex-start;
+    padding-block: clamp(72px, calc(7vw + 48px), 96px);
+  }
+
+  section.section--concept {
+    padding-block: clamp(96px, calc(8vw + 80px), 160px);
+  }
+
+  .sp {
+    display: block;
+  }
+
+  .pc-br {
+    display: none;
+  }
+
+  .sp-br {
+    display: inline;
+  }
+
+  .section__inner {
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .card {
+    width: 280px;
+    height: 200px;
+  }
+
+  .card__btn {
+    min-width: 70px;
+    min-height: 100%;
+    height: min-content;
+    padding: 1rem;
+  }
+
+  .map {
+    width: 100%;
+    height: 200px;
+  }
+
+  .acs-box {
+    display: block;
+  }
+
+  .access-info {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
+  section {
+    justify-content: center;
+    padding-block: 80px;
+  }
+
+  section.section--concept {
+    padding-block: clamp(112px, calc(6vw + 80px), 176px);
+  }
+
+  .sp {
+    display: none;
+  }
+
+  .pc-br {
+    display: inline;
+  }
+
+  .sp-br {
+    display: none;
+  }
+
+  .section__inner {
+    height: auto;
+    justify-content: center;
+  }
+
+  .card__btn {
+    min-height: 100%;
+    height: 100%;
+    padding: 1.4rem;
+  }
+
+  .map {
+    width: 60%;
+  }
+
+  .acs-box {
+    display: flex;
+  }
+
+  .access-info {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .header {
+    top: clamp(20px, 3.5vw, 56px);
+    left: clamp(20px, 6vw, 96px);
+  }
+
+  .header-link,
+  .footer-link {
+    letter-spacing: 0.8rem;
+  }
+
+  .header-list,
+  .footer-list {
+    gap: 40px;
+  }
+
+  .footer {
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+
+  .footer-list {
+    width: 100%;
+  }
+
+  .header.is-compact.is-open .header-list {
+    gap: 100px;
+    padding: 20vmin 6rem 40px;
+  }
+
+  .contact-check-grid {
+    gap: 10px 20px;
+  }
+
+  .check-item__box {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    padding: 8px 14px;
+  }
+
+  .form-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .send-btn {
+    width: auto;
+    min-width: 310px;
+  }
+}
+
+@media screen and (min-width: 1336px) {
+  section {
+    justify-content: center;
+  }
+
+  .section__inner {
+    height: auto;
+  }
+
+  .map {
+    width: 60%;
+  }
+}
+
+/* ========================================
+  Tablet refinement: 481px〜1335px
+======================================== */
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
+  section:not(.fv) {
+    padding-block: clamp(64px, calc(3vw + 48px), 96px);
+  }
+
+  section.section--concept {
+    padding-block: clamp(96px, calc(3vw + 80px), 144px);
+  }
+
+  section.section--artists {
+    padding-block: clamp(64px, calc(4vw + 40px), 104px);
+  }
+
+  section.section--contact,
+  section.section--faq,
+  section.section--access {
+    padding-block: clamp(72px, calc(5vw + 48px), 120px);
+  }
+
+  .section__txt {
+    line-height: clamp(1.8, calc(0.2vw + 1.7), 2.1);
+  }
+
+  .h2_ttl,
+  .section--concept .h2_ttl,
+  .section--artists .h2_ttl,
+  .section--contact .h2_ttl,
+  .section--faq .h2_ttl,
+  .section--access .h2_ttl {
+    margin-bottom: clamp(20px, calc(1.5vw + 12px), 32px);
+    font-size: clamp(20px, calc(1vw + 16px), 28px);
+  }
+
+  .section--contact .h2_ttl,
+  .section--faq .h2_ttl,
+  .section--access .h2_ttl {
+    margin-bottom: clamp(12px, calc(1vw + 6px), 20px);
+  }
+
+  section.section--artists .card {
+    height: clamp(220px, calc(14vw + 150px), 320px);
+  }
+
+  #artists .section__btn {
+    --view-button-width: clamp(360px, 56vw, 520px);
+  }
+
+  .faq-heading,
+  .faq-question {
+    padding-block: clamp(10px, calc(1vw + 5px), 16px);
+    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
+  }
+
+  .faq-sub-question {
+    padding-block: clamp(8px, calc(0.8vw + 4px), 14px);
+    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
+  }
+
+  .faq-sub-txt,
+  .faq-sub-item.is-open .faq-sub-txt {
+    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
+  }
+
+  .section--access > .section__inner > .acs-box:first-of-type {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, calc(2vw + 4px), 32px);
+  }
+
+  .section--access > .section__inner > ul.acs-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(12px, calc(2vw + 2px), 24px);
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info {
+    max-width: none;
+    min-height: clamp(120px, calc(5vw + 64px), 180px);
+    height: auto;
+    padding: clamp(10px, calc(1vw + 5px), 20px) 0;
+  }
+
+  .map {
+    width: min(100%, clamp(360px, 72vw, 960px));
+    height: clamp(240px, 32vw, 420px);
+  }
+
+  .header {
+    top: clamp(20px, 3.5vw, 56px);
+    left: clamp(20px, 6vw, 96px);
+  }
+
+  .header-link,
+  .footer-link {
+    letter-spacing: clamp(0.2rem, 0.8vw, 0.8rem);
+  }
+
+  .header-list,
+  .footer-list {
+    gap: clamp(20px, calc(2vw + 8px), 40px);
+  }
 }

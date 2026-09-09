@@ -73,7 +73,7 @@
   grid-row: 2;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .contact-check-grid {
     gap: 8px;
   }
@@ -182,7 +182,7 @@
   line-height: 2;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .check-item__box {
     width: 18px;
     height: 18px;
@@ -250,7 +250,7 @@
   resize: vertical;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .contact-form input[type="text"],
   .contact-form input[type="email"],
   .contact-form textarea {
@@ -327,7 +327,7 @@ input:focus {
   gap: 2rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .form-bottom {
     flex-direction: column;
     align-items: stretch;
@@ -382,7 +382,7 @@ input:focus {
   transform: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .send-btn {
     width: 100%;
     min-width: auto;
@@ -522,4 +522,86 @@ input:focus {
 
 .modal-btn {
   font-size: clamp(12px, calc(0.4vw + 11px), 16px);
+}
+
+/* ========================================
+  Canonical responsive form layout
+  <=375 / 376-480 / 481-1335 / >=1336
+======================================== */
+
+@media screen and (max-width: 375px),
+  screen and (min-width: 376px) and (max-width: 480px) {
+  .contact-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+  }
+
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px),
+  screen and (min-width: 1336px) {
+  .contact-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 10px 20px;
+  }
+
+  .check-item__box {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    padding: 8px 14px;
+  }
+
+  .form-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .send-btn {
+    width: auto;
+    min-width: 310px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
+  .contact-form input[type="text"],
+  .contact-form input[type="email"] {
+    min-height: clamp(42px, 4vw, 52px);
+  }
+
+  .contact-form textarea {
+    min-height: clamp(180px, 22vw, 260px);
+  }
+
+  .form-bottom {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(16px, 3vw, 32px);
+  }
+
+  .form-bottom > .check-item {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+
+  .form-bottom .send-btn {
+    flex: 0 1 clamp(280px, 30vw, 310px);
+    min-width: clamp(280px, 30vw, 310px);
+    max-width: 100%;
+  }
 }

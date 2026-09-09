@@ -32,11 +32,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&amp;display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
 
@@ -44,7 +48,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="stylesheet" href="./assets/css/works-list.css" />
-    <link rel="stylesheet" href="./assets/css/gallery.css" />
+    <link rel="stylesheet" href="./assets/css/gallery.css?v=20260909-figma-frame" />
     <link rel="stylesheet" href="./assets/css/fog-hole.css" />
     <link rel="stylesheet" href="./assets/css/fv-animation.css" />
 
@@ -54,7 +58,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
     <script src="./assets/js/fv-animation.js" defer></script>
     <script src="./assets/js/fog-hole.js" defer></script>
-    <script src="./assets/js/gallery.js" defer></script>
+    <script src="./assets/js/gallery.js?v=20260909-figma-frame" defer></script>
     <script src="./assets/js/liquid-button.js"></script>
   </head>
   <body class="gallery-page">
@@ -100,7 +104,7 @@
       <section class="fv">
         <div class="fv__inner inner">
           <p class="fv__lead">ゆらゆら｜体感するArt展</p>
-          <h1 class="fv__ttl">Art Index</h1>
+          <h1 class="fv__ttl">作家紹介</h1>
         </div>
       </section>
 
@@ -123,10 +127,21 @@
           </div>
         </aside>
 
-        <div class="gallery-containt">
-          <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
+        <div class="gallery-main">
+          <div class="gallery-intro">
+            <p>このページでは、このWebサイトに作品を掲載している作家の紹介をしています。</p>
+            <p>作品に対しての想い、考えなどを文字や雰囲気でお伝えします。</p>
+          </div>
 
-          <div class="content gallery-content" id="gallery-container" aria-label="Mizukiの作品一覧">
+          <div class="gallery-taxonomy">
+            <p>ジャンル：抽象・風景・自然</p>
+            <p>アクリル・油彩・水彩・レジン・インクアート</p>
+          </div>
+
+          <div class="gallery-containt">
+            <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
+
+            <div class="content gallery-content" id="gallery-container" aria-label="Mizukiの作品一覧">
             <article class="work gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="Digital">
               <p class="gallery-card__category">Category | Digital</p>
               <div class="work-img">
@@ -186,10 +201,11 @@
                 </a>
               </div>
             </article>
+            </div>
+            <div class="gallery-page-line" aria-hidden="true"></div>
+            <nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav>
+            <div class="gallery-page-line" aria-hidden="true"></div>
           </div>
-          <div class="gallery-page-line" aria-hidden="true"></div>
-          <nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav>
-          <div class="gallery-page-line" aria-hidden="true"></div>
         </div>
       </section>
     </main>

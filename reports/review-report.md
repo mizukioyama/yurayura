@@ -1,5 +1,9 @@
 # Review report
 
+## Loading animation audit (2026-09-09)
+
+初期表示時の霧ローディングを対象に、通常時の`holdDuration`を550ms、穴の拡大を2600ms、拡大後の保持を300ms、フェードを1400msへ調整しました。合計時間は約3.4秒から約4.85秒へ延長され、動きを緩やかにしています。`prefers-reduced-motion`時の短縮設定と、その他のアニメーション・JavaScriptは変更していません。CSS／JSのキャッシュバスターも更新しました。
+
 ## Scope
 
 - Target: Concept、Artists、Contact、FAQ、Access の見出し・本文、フォーム文言、ヘッダー／フッター文字、Artistsスライドショーのgallery.htmlリンク、gallery.htmlのカテゴリ・カード・ページネーション
@@ -50,9 +54,9 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 | Tidy構文確認 | PASS / 注意あり | 対象変更箇所に新規エラーなし。既存HTML5要素等の警告は Known Issues に記録 |
 | 対象テキスト表示 | PASS | Concept、Artists、Contact、FAQ、Access、フォーム文言が `writing-mode: horizontal-tb`、左寄せ |
 | 見出しサイズ | PASS | h1、h2、h3、小見出しが `clamp()` の計算値で表示 |
-| ブレイクポイント | PASS | 〜375、376〜480、481〜1335、1336〜の4帯を確認 |
+| ブレイクポイント | PENDING | CSSは4帯へ整理済み。今回の変更後の画面境界確認はMacロック中のため未完了 |
 | フォントサイズ | PASS | 本文320px:12.4px、390px:13.9px、480px以上:最大14px。h2は18〜28px、h3は14〜20pxの範囲 |
-| レスポンシブ表示 | PASS | 320〜1440pxでページ横はみ出しなし |
+| レスポンシブ表示 | PENDING | 変更前の確認記録はあるが、今回のCSS変更後の画面確認は未完了 |
 | Artistsスライダー | PASS | `memberSlider`/`memberTrack`と既存`slide.js`を維持。Mizukiカード4件のリンク先だけ指定URLへ変更 |
 | gallery.html | PASS | Art Index、左側カテゴリ、`gallery-containt` / `content` / `.work` 構造、4作品、`#mizuki-01`〜`#mizuki-04`を確認。画像ファイルは変更なし |
 | カテゴリ | PASS | 作家「Mizuki」、ジャンル「Digital」の絞り込みUIとARIA状態同期を確認 |
@@ -64,7 +68,7 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 | セクション高さ | PASS | FV以外は`height:auto; min-height:0`、FVは`100vh`。既存のpadding・コンテンツ構造は維持 |
 | スマホsection高さ | PASS | 320〜699pxでFV以外の上下paddingを72〜96pxへレスポンシブ調整。FVは100vhのまま |
 | Concept/Artists高さと背景 | PASS | 両sectionの上下paddingを個別に縮小し、Artists背景画像だけを非表示。スライドショーを維持 |
-| CSS反映 | PASS | `main.css?v=20260909-slider-external-gallery`で最新CSSを読み込む設定を確認 |
+| CSS反映 | PASS | `main.css?v=20260909-responsive-breakpoints`で今回のCSSを読み込む設定を確認 |
 | Header/Footer文字間隔 | PASS | Footerリンクを`footer-link`へ統一し、Headerと同じPC/スマホの`letter-spacing`を適用 |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
@@ -73,4 +77,45 @@ Footerのリンククラスを`header-link`から`footer-link`へ分離し、Hea
 
 ## Judgment
 
-実装・構文確認に問題はありません。参照リポジトリのソースを取得して確認し、その構造・スタイルを基準に実装しました。ブラウザ実機での最終表示確認は未実施です。復元用コピーはローカルの `backups/` に保持し、commit対象から除外します。
+実装・静的検証を完了しました。参照リポジトリ側のギャラリーレイアウトは今回の対象外として保留しています。
+
+## Responsive breakpoint audit (2026-09-09)
+
+今回の追加監査で、従来のCSSには `320〜699px` と `700〜1239px` の境界が残っており、指定された4区分と一致していないことを確認しました。以下を修正しました。
+
+- `〜375px`、`376〜480px`、`481〜1335px`、`1336px〜` の4区分をレスポンシブ設計の基準に統一
+- 旧 `699px` 境界を `480px` 境界へ整理
+- `section`、`section__inner`、カード、フォーム、Accessの地図・情報欄の最小幅／最大幅を調整
+- スマホ幅の地図を幅100%にし、Viewボタンの既存の280px／480〜520pxルールを維持
+- `slide.js`、`faq.js`、`form.js`、`allmenu.js`は変更せず、CSS読み込みのキャッシュバスターのみ更新
+
+タブレット幅では、共通sectionの上下余白を`64〜96px`、Conceptを`96〜144px`、Artistsを`64〜104px`、Contact／FAQ／Accessを`72〜120px`で補間します。Artistsカードは`220〜320px`、Viewボタンは`360〜520px`、地図は内側幅に合わせて最大740px相当、フォームの入力欄と送信欄は狭いタブレットでも折り返せる設定にしました。Accessの駅情報と詳細情報は、幅に応じて2列／自動調整グリッドになります。
+
+静的検証では、旧 `699px`／`1239px` の有効なメディアクエリが残っていないこと、JavaScript構文、差分空白を確認しました。HTMLの `tidy` は既存のHTML5要素と `&display` 表記に関する警告を継続して出力します。また、Access内の既存の `</wbr>` は今回の対象外として変更していません。
+
+Macがロック中で、ブラウザのヘッドレス起動も終了したため、今回のCSS変更後の実機・ブラウザ画面確認は未完了です。そのため、commit / pushは表示確認後まで保留しています。復元用コピーはローカルの `backups/` に保持し、commit対象から除外します。
+
+## Figma gallery frame implementation (2026-09-09)
+
+ユーザー共有のFigma作家紹介フレーム（デスクトップ `18:1600`、モバイル `607:291`）を基準に、`gallery.html`のページ形状を更新しました。Figmaの一時アセットURLはコミット用コードへ持ち込まず、既存ローカル画像と既存機能を維持しています。
+
+- ヒーローを「作家紹介」とし、白い半透明・ぼかし背景、PC中央配置、スマホ左寄せを実装
+- ヒーロー下に紹介文とジャンル情報を追加
+- PCは作品画像を2列、スマホは1列にし、PC画像幅340px／スマホ画像246×320pxを基準にレスポンシブ化
+- 作品下のタイトル・作家情報、Figmaの余白感、Akaya Kanadakaのページ番号表記（`1P`）を反映
+- 作家・ジャンル絞り込み、既存4作品、作品数連動のページングは維持
+- Zen Maru Gothicを追加し、`gallery.css`のページ固有オーバーライドとして実装
+- 編集前に`backups/gallery.html.before-figma-frame-20260909.html`、`backups/gallery.css.before-figma-frame-20260909.css`、`backups/gallery.js.before-figma-frame-20260909.js`を作成
+
+### Verification update
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| HTMLタグ構造 | PASS | 自作タグスタック検査で`HTML_TAG_STACK_OK` |
+| `br`タグ | PASS | 4箇所すべて`<br />`の正しい空要素 |
+| JavaScript構文 | PASS | `node --check assets/js/gallery.js` |
+| PC表示 | PASS | ローカルブラウザでヒーロー、2列カード、メタ情報、1P、フッターを目視確認 |
+| スマホ相当表示 | PASS | ローカルブラウザで左寄せタイトル、1列カード、246×320px画像、メタ情報を目視確認 |
+| 絞り込み・ページングDOM | PASS | Category、作家／ジャンルボタン、`galleryPagination`、`1ページ目を表示`を確認 |
+| index.htmlスライドショー | NOT TOUCHED | 今回の変更対象外 |
+| 公開URL | NOT TESTED | 公開・pushはこの作業では実行していない |

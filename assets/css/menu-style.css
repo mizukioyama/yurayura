@@ -229,7 +229,7 @@ body.is-menu-open {
   transform: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .header.is-compact.is-open .header-list {
     gap: 60px;
   }
@@ -290,7 +290,7 @@ body::after {
   Smartphone
 ======================================== */
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .header {
     top: 20px;
     left: 20px;
@@ -376,7 +376,7 @@ body::after {
   background: var(--color-shadow-green);
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .footer {
     padding: 120px 0 45px;
   }
@@ -390,7 +390,7 @@ body::after {
   width: 100%;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .footer-list {
     width: 80%;
     margin: 0 auto;
@@ -407,7 +407,7 @@ body::after {
   z-index: 1;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (max-width: 480px) {
   .bottom-txt {
     width: 100%;
   text-align: center;

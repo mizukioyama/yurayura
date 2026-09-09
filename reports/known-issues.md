@@ -1,5 +1,21 @@
 # Known issues
 
+## Loading animation status (2026-09-09)
+
+通常時の霧ローディングは約4.85秒へ延長し、穴の拡大とフェードを緩やかにしました。画面上での体感確認はMacロック中のため未実施です。`prefers-reduced-motion`時は短縮設定を維持しています。
+
+## Current responsive audit status (2026-09-09)
+
+`index.html`、`assets/css/main.css`、`assets/css/form.css`、`assets/css/menu-style.css`のブレイクポイントを、`〜375px`、`376〜480px`、`481〜1335px`、`1336px〜`を基準に整理しました。旧 `699px`／`1239px` の有効な境界は削除・置換しています。
+
+タブレット範囲には、section上下余白、見出し、Artistsカード、Viewボタン、FAQ内側余白、Accessのグリッドと地図、フォーム入力欄／送信欄のclamp調整を追加しました。今回の変更後の画面確認は未完了です。
+
+今回の変更後のブラウザ画面確認は未完了です。Macがロック中で、ヘッドレスChromeも起動時に終了したためです。CSSとJavaScriptの静的確認は完了していますが、画面崩れなし・タップ操作・スライダーの実動作は未確認です。
+
+`tidy`のHTML4互換検査では既存の`canvas`、`main`、`section`、`article`等のHTML5要素と、Google Fonts URLの`&display`表記が警告・エラーになります。Access内の既存の`</wbr>`も今回のレスポンシブ対象外のため残しています。
+
+ギャラリーのレイアウトはデザインカンプ待ちで保留です。今回のレスポンシブ監査ではギャラリーHTML・CSSを変更していません。
+
 ## Existing validation notices
 
 `tidy` のHTML4互換検査では、既存コードの `canvas`、`main`、`section`、`article` などのHTML5要素と、既存の `&display` 表記が警告・エラーとして出力されます。今回の変更による新規警告ではありません。
@@ -8,7 +24,7 @@
 
 実機スマートフォンでのユーザー受入確認は未実施です。参照リポジトリはGit経由で取得し、`src/gallery.html`、`src/style/gallery.css`、`src/style/sidebar.css`、`src/public/gallery-sidebar.html`を基準に実装しています。
 
-320〜1440pxのブラウザ検証で、対象テキストの横書き・左寄せ・clamp計算値・横はみ出しなしを確認済みです。
+前回変更時点では320〜1440pxの確認記録がありますが、今回のブレイクポイント変更後の画面確認は未完了です。
 
 Artistsのスライドショーは維持しています。Mizukiカード4件とViewボタンは`https://mizukioyama.github.io/yurayura/gallery.html`へ遷移します。公開URLでの実機表示は未確認です。
 
@@ -30,10 +46,20 @@ Concept/Artistsは専用のclamp値で上下paddingをさらに縮小してい�
 
 Conceptは意図的に共通sectionより広い上下余白を設定し、展示コンセプトの静かな見せ方を優先しています。
 
-`main.css`には`v=20260909-slider-external-gallery`のキャッシュバスターを付けています。
+`main.css`には`v=20260909-responsive-breakpoints`のキャッシュバスターを付けています。
 
 Footerリンクは`footer-link`クラスへ分離し、Headerと同じ文字間隔を指定しています。
 
 今回の作業ではファイル削除を行っていません。復元用コピーは `backups/` に保持しています。
 
 作家紹介ページは`gallery.html`として追加しました。参照元と同じ`gallery-containt` / `content` / `.work`構造の作品レイアウト、作家・ジャンル（Digital）絞り込み、作品10件単位の自動ページネーションを実装しています。現在の登録作品は4件のため、初期表示は4作品の縦積み表示です。画像ファイルの差し替えは行っていません。外部公開URLでの実機表示確認は未実施です。
+
+## Figma gallery frame update (2026-09-09)
+
+gallery.htmlの形をFigma作家紹介フレームに合わせて更新しました。Figma側の一時画像URLは使用せず、ローカルの既存作品画像を利用しています。そのため、ヒーロー画像の色味・作品画像の内容はFigmaカンプのプレースホルダーと完全一致しませんが、ページ構造、余白、カード寸法、タイポグラフィ、レスポンシブ配置を優先しています。
+
+作品数は現在4件で、10件単位の設定によりページ番号は1Pのみです。作品追加時は`gallery.js`が自動的にページ数を増やします。
+
+ローカルブラウザでPC幅とスマホ相当幅を確認済みです。実機スマートフォン、GitHub Pagesの公開URL、実際のFigmaデスクトップ／モバイル幅との完全なピクセル一致は未確認です。
+
+今回もファイル削除、課金、公開、pushは行っていません。編集前コピーは`backups/`に保持しています。

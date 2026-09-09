@@ -646,3 +646,451 @@ body.gallery-page .gallery-page-line {
     letter-spacing: 0;
   }
 }
+
+/* ========================================
+   Figma 作家紹介フレーム
+   gallery.html専用の表示調整
+======================================== */
+
+body.gallery-page {
+  --gallery-ink: #111;
+  --gallery-muted: #666;
+  --gallery-paper: #fff;
+  --gallery-work-width: clamp(246px, 25.45vw, 340px);
+  --gallery-column-gap: clamp(40px, 10.48vw, 140px);
+  color: var(--gallery-ink);
+  background: var(--gallery-paper);
+  font-family: "Zen Maru Gothic", sans-serif;
+  overflow-x: hidden;
+}
+
+body.gallery-page::after,
+body.gallery-page main::after,
+body.gallery-page .vanta-wrap,
+body.gallery-page #fog-scene {
+  display: none !important;
+}
+
+body.gallery-page .main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+body.gallery-page .header {
+  color: var(--gallery-ink);
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 0;
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+}
+
+body.gallery-page .header__logo-link,
+body.gallery-page .header__link,
+body.gallery-page .header__btn {
+  color: var(--gallery-ink);
+}
+
+body.gallery-page .fv {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: clamp(766px, 63.62vw, 850px);
+  min-height: 766px;
+  padding: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)),
+    url("../img/head-bg.webp") center / cover no-repeat;
+}
+
+body.gallery-page .fv::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+body.gallery-page .fv__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  translate: none;
+  transform: none;
+}
+
+body.gallery-page .fv__lead {
+  display: none;
+}
+
+body.gallery-page .fv__ttl {
+  grid-area: auto;
+  color: var(--gallery-ink);
+  font-family: "Shippori Mincho", serif;
+  font-size: clamp(32px, 4.8vw, 64px);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  writing-mode: horizontal-tb !important;
+  white-space: nowrap;
+  filter: none;
+  text-shadow: none;
+}
+
+body.gallery-page .gallery-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 0 0 160px;
+  color: var(--gallery-ink);
+  background: var(--gallery-paper);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body.gallery-page .gallery-main {
+  width: min(100%, calc(2 * var(--gallery-work-width) + var(--gallery-column-gap)));
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+body.gallery-page .gallery-intro {
+  width: min(100%, 665px);
+  margin: 0 auto 100px;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: left;
+}
+
+body.gallery-page .gallery-intro p,
+body.gallery-page .gallery-taxonomy p {
+  margin: 0;
+}
+
+body.gallery-page .gallery-taxonomy {
+  width: 100%;
+  margin: 0 0 40px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+body.gallery-page .gallery-containt {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body.gallery-page .gallery-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, var(--gallery-work-width)));
+  column-gap: var(--gallery-column-gap);
+  row-gap: 180px;
+  align-items: start;
+  width: 100%;
+  margin: 0;
+}
+
+body.gallery-page .gallery-content .work {
+  display: block;
+  width: var(--gallery-work-width);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+body.gallery-page .gallery-card__category {
+  display: none;
+}
+
+body.gallery-page .gallery-content .work-img {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  gap: 10px;
+  filter: none;
+}
+
+body.gallery-page .gallery-content .work-img img {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 34.43vw, 460px);
+  aspect-ratio: 17 / 23;
+  object-fit: cover;
+  clip-path: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+body.gallery-page .gallery-work-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  width: 100%;
+  min-height: 56px;
+  height: auto;
+  padding: 0;
+  color: var(--gallery-ink);
+  background: none;
+  text-decoration: none;
+}
+
+body.gallery-page .gallery-work-link::before {
+  display: none;
+}
+
+body.gallery-page .gallery-work-link h2,
+body.gallery-page .gallery-work-link p {
+  width: auto;
+  margin: 0;
+  color: var(--gallery-ink);
+  background: none;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+body.gallery-page .gallery-work-link h2 {
+  grid-column: 1;
+  text-align: left;
+}
+
+body.gallery-page .gallery-work-link p {
+  grid-column: 2;
+  white-space: nowrap;
+  text-align: right;
+}
+
+body.gallery-page .gallery-page-line {
+  display: none;
+}
+
+body.gallery-page .gallery-pagination {
+  display: flex;
+  justify-content: center;
+  gap: clamp(40px, 7.49vw, 100px);
+  min-height: 32px;
+  margin: 24px 0;
+}
+
+body.gallery-page .gallery-page-button {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--gallery-muted);
+  background: transparent;
+  font-family: "Akaya Kanadaka", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+}
+
+body.gallery-page .gallery-page-button[aria-current="page"],
+body.gallery-page .gallery-page-button:hover,
+body.gallery-page .gallery-page-button:focus-visible {
+  color: var(--gallery-ink);
+  background: transparent;
+}
+
+body.gallery-page .gallery-sidebar {
+  position: absolute;
+  top: 120px;
+  left: clamp(24px, 4.4vw, 64px);
+  z-index: 10;
+  display: grid;
+  gap: 16px;
+  width: max-content;
+  margin: 0;
+  color: var(--gallery-ink);
+}
+
+body.gallery-page .gallery-sidebar__label,
+body.gallery-page .gallery-filter-title,
+body.gallery-page .gallery-sidebar .gallery-filter {
+  color: var(--gallery-ink);
+  text-shadow: none;
+}
+
+body.gallery-page .gallery-sidebar__label,
+body.gallery-page .gallery-filter-title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+body.gallery-page .gallery-sidebar .gallery-filter-group,
+body.gallery-page .gallery-sidebar .gallery-filter-options {
+  display: grid;
+  gap: 4px;
+}
+
+body.gallery-page .gallery-sidebar .gallery-filter {
+  width: max-content;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.45;
+}
+
+body.gallery-page .gallery-sidebar .gallery-filter:hover,
+body.gallery-page .gallery-sidebar .gallery-filter:focus-visible,
+body.gallery-page .gallery-sidebar .gallery-filter.is-active {
+  border-color: var(--gallery-ink);
+  color: var(--gallery-ink);
+  background: transparent;
+  opacity: 1;
+}
+
+body.gallery-page .footer {
+  color: var(--gallery-ink);
+  background: var(--gallery-paper);
+}
+
+body.gallery-page .footer__link,
+body.gallery-page .footer__small {
+  color: var(--gallery-ink);
+}
+
+@media screen and (max-width: 767px) {
+  body.gallery-page .header__inner {
+    padding-inline: 20px;
+  }
+
+  body.gallery-page .fv {
+    height: 766px;
+    min-height: 766px;
+    background-position: center;
+  }
+
+  body.gallery-page .fv__inner {
+    position: static;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    translate: none;
+  }
+
+  body.gallery-page .fv__ttl {
+    position: absolute;
+    top: 160px;
+    left: 40px;
+    font-size: 32px;
+    writing-mode: horizontal-tb !important;
+    white-space: nowrap;
+  }
+
+  body.gallery-page .gallery-section {
+    padding-bottom: 120px;
+  }
+
+  body.gallery-page .gallery-sidebar {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    left: auto;
+    gap: 8px;
+    padding: 0;
+  }
+
+  body.gallery-page .gallery-sidebar__label,
+  body.gallery-page .gallery-filter-title,
+  body.gallery-page .gallery-sidebar .gallery-filter {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  body.gallery-page .gallery-main {
+    width: 300px;
+    max-width: calc(100% - 76px);
+    padding-top: 120px;
+  }
+
+  body.gallery-page .gallery-intro {
+    width: 300px;
+    max-width: 100%;
+    margin-bottom: 100px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  body.gallery-page .gallery-taxonomy {
+    margin-bottom: 80px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  body.gallery-page .gallery-containt {
+    width: 100%;
+  }
+
+  body.gallery-page .gallery-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 246px;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 80px;
+  }
+
+  body.gallery-page .gallery-content .work,
+  body.gallery-page .gallery-content .work-img {
+    width: 246px;
+    max-width: 100%;
+  }
+
+  body.gallery-page .gallery-content .work-img img {
+    width: 246px;
+    height: 320px;
+  }
+
+  body.gallery-page .gallery-work-link {
+    min-height: 46px;
+  }
+
+  body.gallery-page .gallery-work-link h2,
+  body.gallery-page .gallery-work-link p {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  body.gallery-page .gallery-page-line {
+    margin-top: 80px;
+  }
+
+  body.gallery-page .gallery-pagination {
+    gap: 40px;
+    margin: 12px 0;
+  }
+
+  body.gallery-page .gallery-page-button {
+    font-size: 16px;
+    letter-spacing: 0.1em;
+  }
+}

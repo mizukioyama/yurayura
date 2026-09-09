@@ -12,11 +12,11 @@
   ).matches;
 
   var SETTINGS = {
-    holdDuration: prefersReducedMotion ? 80 : 420,
-    holeDuration: prefersReducedMotion ? 420 : 1900,
-    holdAfterHole: prefersReducedMotion ? 0 : 220,
-    fadeDuration: prefersReducedMotion ? 300 : 900,
-    removeDelay: 80,
+    holdDuration: prefersReducedMotion ? 80 : 550,
+    holeDuration: prefersReducedMotion ? 420 : 2600,
+    holdAfterHole: prefersReducedMotion ? 0 : 300,
+    fadeDuration: prefersReducedMotion ? 300 : 1400,
+    removeDelay: 120,
     blurEdgeSize: 72,
     targetRadiusScale: 0.22,
     frameInterval: 1000 / 30

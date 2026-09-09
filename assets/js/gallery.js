@@ -24,15 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderPagination(totalPages) {
     pagination.replaceChildren();
-    pagination.hidden = totalPages <= 1;
-
-    if (totalPages <= 1) return;
+    pagination.hidden = false;
 
     for (let page = 1; page <= totalPages; page += 1) {
       const button = document.createElement("button");
       button.className = "gallery-page-button";
       button.type = "button";
-      button.textContent = String(page);
+      button.textContent = `${page}P`;
       button.setAttribute("aria-label", `${page}ページ目を表示`);
 
       if (page === state.page) {
