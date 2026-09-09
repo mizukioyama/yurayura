@@ -1,20 +1,14 @@
 (function () {
-  function initAccordion({
-    itemSelector,
-    buttonSelector,
-    answerSelector,
-    answerIdPrefix,
-    resetNestedItems = false,
-  }) {
-    const items = Array.from(document.querySelectorAll(itemSelector));
+  function initFaqAccordion() {
+    const items = Array.from(document.querySelectorAll(".faq-list-item"));
 
     items.forEach((item, index) => {
-      const button = item.querySelector(buttonSelector);
-      const answer = item.querySelector(answerSelector);
+      const button = item.querySelector(".faq-question");
+      const answer = item.querySelector(".faq-answer");
 
       if (!button || !answer) return;
 
-      const answerId = answer.id || `${answerIdPrefix}-${index + 1}`;
+      const answerId = answer.id || `faq-answer-${index + 1}`;
       answer.id = answerId;
       button.setAttribute("aria-controls", answerId);
       button.setAttribute(
@@ -30,17 +24,8 @@
 
           otherItem.classList.remove("is-open");
           otherItem
-            .querySelector(buttonSelector)
+            .querySelector(".faq-question")
             ?.setAttribute("aria-expanded", "false");
-
-          if (resetNestedItems) {
-            otherItem.querySelectorAll(".faq-sub-item").forEach((subItem) => {
-              subItem.classList.remove("is-open");
-              subItem
-                .querySelector(".faq-sub-question")
-                ?.setAttribute("aria-expanded", "false");
-            });
-          }
         });
 
         if (isOpening) {
@@ -48,23 +33,6 @@
           button.setAttribute("aria-expanded", "true");
         }
       });
-    });
-  }
-
-  function initFaqAccordion() {
-    initAccordion({
-      itemSelector: ".faq-list-item",
-      buttonSelector: ".faq-question",
-      answerSelector: ".faq-answer",
-      answerIdPrefix: "faq-answer",
-      resetNestedItems: true,
-    });
-
-    initAccordion({
-      itemSelector: ".faq-sub-item",
-      buttonSelector: ".faq-sub-question",
-      answerSelector: ".faq-sub-answer",
-      answerIdPrefix: "faq-sub-answer",
     });
   }
 

@@ -18,7 +18,7 @@ FVを除く全`section`（body内各セクション）の左右Paddingを44pxに
 
 Q&Aの`.faq-box`内側10pxを解除し、Contact・Q&A・Accessの内容左右位置を揃えました。
 
-FAQの`faq.js`を、確実な初期化・開閉状態の同期・`aria-expanded`/`aria-controls`設定に対応させました。トップレベルFAQと各回答内の詳細項目を個別のアコーディオンにし、各階層で開く項目を1つに絞りました。質問順は展示概要、アクセス、販売作品・グッズ、購入、主催者の自然な順に整理しました。
+FAQの`faq.js`を、確実な初期化・開閉状態の同期・`aria-expanded`/`aria-controls`設定に対応させました。トップレベルFAQだけをアコーディオンにし、各回答内の「展示期間」「発送について」「領収書について」などは通常の見出しとして表示します。質問順は展示概要、アクセス、販売作品・グッズ、購入、主催者の自然な順に整理しました。
 
 Artistsのスライドショー表示領域は基本を `width: 100%` とし、スマホでは親セクションの左右 `44px` paddingを `--artists-side-padding` で相殺して画面幅に揃えました。さらに各 `.card` を `flex-basis: 100%`、トラックのgapを `0` とし、1枚のスライドを画面幅いっぱいに揃えました。無限ループ用のトラックと既存アニメーションは維持し、ループ幅のgap計算もCSSの実値から取得するよう同期しています。
 
@@ -40,7 +40,7 @@ Artistsのカード上`Mizuki`ボタン背景はカード幅100%、左右0に揃
 | スライドショー幅 | PASS | 320/375/390/480/768/1336/1440pxで親paddingを含めた表示領域が `left: 0`〜`right: viewport`、トラック・1枚のカードも各viewport幅。bodyの横スクロールなし、内部トラックの無限ループを維持 |
 | ボタン背景幅 | PASS | 深緑背景の親`.section__btn`は320/375/390/480/699/700/1024/1336/1440/1600pxの全確認幅で画面幅100%。390pxでは親390px、左右55px padding、host・Shadow DOM内wrapper280px。700px以上ではpaddingでhost・wrapperを480〜520pxに調整。カード上`Mizuki`ボタンはカードと同じ幅、Galleryのmdボタンは従来どおり280px |
 | JavaScript console error | PASS | 表示確認時の error 0件 |
-| FAQアコーディオン | PASS | `.faq-question`と各回答内の`.faq-sub-question`をJSで開閉し、各階層で`is-open`とARIA状態を同期。複数項目を同時に開かない |
+| FAQアコーディオン | PASS | `.faq-question`だけをJSで開閉し、`is-open`とARIA状態を同期。同じ階層で複数項目を同時に開かない。回答内の詳細項目は通常見出し |
 | フォームチェックボックス | PASS | 320/390/699/700/1024pxで問い合わせ種別4項目が2列2段。HTML順序、選択状態、必須検証は維持 |
 | FVを除く全section左右Padding | PASS | 320/390/699/700/1024/1440pxでConcept/Artists/Contact/FAQ/Accessの左右44px、FVは左右0px。bodyの横スクロールなし |
 | Contact・Q&A・Accessの左右余白 | PASS | Q&Aの`.faq-box`内側paddingを0pxにし、3セクションの内容位置を統一 |
