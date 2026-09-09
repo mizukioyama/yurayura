@@ -36,8 +36,8 @@
 ======================================== */
 
 .contact-check-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px 20px;
 
   max-width: 380px;
@@ -46,7 +46,6 @@
 
 @media screen and (min-width: 320px) and (max-width: 699px) {
   .contact-check-grid {
-    flex-direction: column;
     gap: 8px;
   }
 }
