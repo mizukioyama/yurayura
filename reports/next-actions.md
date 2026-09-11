@@ -2,9 +2,8 @@
 
 ## Current task (2026-09-12)
 
-1. GitHub Pagesへのpush後、`/yurayura/concept.html` を確認する。
-2. 公開Topの `Conceptを読む` と、TOP / CONCEPT / GALLERY の3ページ遷移を確認する。
-3. 可能なら実機スマートフォンでConceptの横はみ出しと画像表示を受入確認する。
+1. 可能なら実機スマートフォンでConceptの横はみ出しと画像表示を受入確認する。
+2. 作品追加時に、既存Galleryの絞り込みとページネーションを確認する。
 
 1. 必要に応じて、実機スマートフォンとGitHub Pages公開URLでgallery.htmlを受入確認する。
 2. 作品追加時に、10件単位の自動ページングと作家／ジャンル絞り込みの組み合わせを確認する。

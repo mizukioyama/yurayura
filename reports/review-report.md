@@ -29,6 +29,14 @@
 
 実装とローカル表示確認は完了しています。公開後はGitHub Pagesの `concept.html` とTop/Galleryのナビを実機で最終確認してください。
 
+## Publication update (2026-09-12)
+
+- Commit: `e3ebc34` (`Add dedicated yurayura concept page`)
+- Remote: `origin/main` を確認済み
+- Public URL: `https://mizukioyama.github.io/yurayura/concept.html`
+- Public HTTP response: 200
+- 公開ブラウザでConcept本文、作品画像2点、Gallery導線、Top / Concept / Galleryナビを確認
+
 ## Loading animation audit (2026-09-09)
 
 初期表示時の霧ローディングを対象に、通常時の`holdDuration`を550ms、穴の拡大を2600ms、拡大後の保持を300ms、フェードを1400msへ調整しました。合計時間は約3.4秒から約4.85秒へ延長され、動きを緩やかにしています。`prefers-reduced-motion`時の短縮設定と、その他のアニメーション・JavaScriptは変更していません。CSS／JSのキャッシュバスターも更新しました。

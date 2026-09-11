@@ -14,6 +14,13 @@
 - `node --check` と `git diff --check` を実行
 - 編集前コピーを `backups/` に保存
 
+### Publication evidence
+
+- `https://mizukioyama.github.io/yurayura/concept.html` はHTTP 200で取得できる
+- 公開Topの `Conceptを読む` は `concept.html` を指す
+- 公開ConceptのGallery導線は `gallery.html` を指す
+- 公開ページのDOMで既存画像2点と本文を確認済み
+
 ## Loading animation review
 
 - 初期表示時の霧ローディングが急に完了せず、約4.85秒かけて緩やかに進むこと
