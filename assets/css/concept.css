@@ -12,6 +12,11 @@
   text-transform: uppercase;
 }
 
+.concept-page .h2_ttl {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+
 .concept-fv__lead {
   position: absolute;
   top: 28%;
@@ -51,7 +56,6 @@
 
 .concept-texture__copy .h2_ttl {
   margin-bottom: 2rem;
-  writing-mode: vertical-rl;
 }
 
 .concept-texture__copy .section__txt {

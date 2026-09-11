@@ -21,6 +21,11 @@
 - 公開ConceptのGallery導線は `gallery.html` を指す
 - 公開ページのDOMで既存画像2点と本文を確認済み
 
+### Clarification review
+
+- Concept内のh2などの見出しが横書きであること
+- Conceptのヘッダー／フッターがTopと同じ共通パーツ・表示であること
+
 ## Loading animation review
 
 - 初期表示時の霧ローディングが急に完了せず、約4.85秒かけて緩やかに進むこと

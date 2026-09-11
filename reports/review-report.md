@@ -37,6 +37,12 @@
 - Public HTTP response: 200
 - 公開ブラウザでConcept本文、作品画像2点、Gallery導線、Top / Concept / Galleryナビを確認
 
+## Clarification update (2026-09-12)
+
+- Conceptページのh2見出しをすべて横書きに変更
+- Conceptページのヘッダー／フッターはTopと同じ共通パーツを継続使用
+- Conceptページの共通 `menu-style.css` / `main.css` 参照をTopと同じバージョン指定に統一
+
 ## Loading animation audit (2026-09-09)
 
 初期表示時の霧ローディングを対象に、通常時の`holdDuration`を550ms、穴の拡大を2600ms、拡大後の保持を300ms、フェードを1400msへ調整しました。合計時間は約3.4秒から約4.85秒へ延長され、動きを緩やかにしています。`prefers-reduced-motion`時の短縮設定と、その他のアニメーション・JavaScriptは変更していません。CSS／JSのキャッシュバスターも更新しました。

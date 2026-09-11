@@ -4,6 +4,8 @@
 
 - [ ] 公開URLの `/yurayura/concept.html` が表示される
 - [ ] ConceptのHero、本文、余白、霧・揺らぎ演出がTopと調和している
+- [ ] Conceptのh2などの見出しが横書きで表示される
+- [ ] ConceptのヘッダーとフッターがTopと同じ表示になる
 - [ ] Concept内に既存作品写真が2点表示される
 - [ ] Topの `Conceptを読む` からConceptへ移動できる
 - [ ] TOP / CONCEPT / GALLERY が各ページで正しく遷移する
