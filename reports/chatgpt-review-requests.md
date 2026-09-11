@@ -11,6 +11,8 @@
 ### Evidence already checked
 
 - ローカルブラウザでTopのConcept導線、Artistsの中央寄せ配置、作品画像、View導線を確認
+- 公開ブラウザでTopのConcept導線、Artistsの中央寄せ配置、作品画像、カード幅内のViewボタンを確認
+- 公開ブラウザでTOP / CONCEPT / GALLERYのナビゲーションとGalleryリンクを確認
 - `git diff --check` と `node --check assets/js/slide.js` を実行
 - Topだけに適用する専用CSSとし、既存のHTML本文・画像・スライダーJSを保持
 

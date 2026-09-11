@@ -29,6 +29,13 @@ TopページのConcept／Artistsセクションを、既存の文章・画像・
 
 今回の変更はTopの2セクションに限定した表示調整です。公開後はGitHub PagesのTopをスマートフォン実機でも最終確認してください。
 
+### Public verification update (2026-09-12)
+
+- GitHub Pagesの公開Topをキャッシュ更新URLで再読込し、TopのConcept導線を確認
+- 公開ブラウザでArtistsの見出し・紹介文の中央寄せ、作品画像、カード幅内のViewボタンを確認
+- 公開ブラウザでTOP / CONCEPT / GALLERYのナビゲーションと既存Galleryリンクを確認
+- `git ls-remote origin HEAD` は `5b7e1cd4621c6f1528be1c4658adc2eba607c8e5` と一致
+
 ## Current task update (2026-09-12)
 
 既存Topのトーンを維持したConceptページを新規作成し、Topからの導線と3ページ共通ナビを追加しました。既存Galleryの作品一覧、フォーム、FAQ、背景アニメーション、既存画像は変更していません。
