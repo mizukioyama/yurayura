@@ -1,5 +1,16 @@
 # User checklist
 
+## Current task (2026-09-12)
+
+- [ ] 公開URLの `/yurayura/concept.html` が表示される
+- [ ] ConceptのHero、本文、余白、霧・揺らぎ演出がTopと調和している
+- [ ] Concept内に既存作品写真が2点表示される
+- [ ] Topの `Conceptを読む` からConceptへ移動できる
+- [ ] TOP / CONCEPT / GALLERY が各ページで正しく遷移する
+- [ ] Galleryの既存4作品、絞り込み、ページネーションが維持されている
+- [ ] 320〜480px相当で横スクロールや文字・画像の重なりがない
+- [ ] 実機スマートフォンで最終確認する
+
 ## Loading animation
 
 - [ ] 初期表示時のローディングが約4.85秒で緩やかに完了する

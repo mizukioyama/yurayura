@@ -1,5 +1,12 @@
 # Known issues
 
+## Current task update (2026-09-12)
+
+- 既存サイトが参照している `assets/img/favicon.ico` と `assets/img/apple-touch-icon.png` はcheckout内に存在しないため、Conceptでも同じ参照を維持しています。今回の対象外です。
+- 実機スマートフォンでの受入確認は未実施です。ローカルブラウザでの表示・DOM確認は完了しています。
+- GitHub Pagesはpush直後に反映待ちが発生する可能性があります。公開URLでの最終確認を残しています。
+- 今回、ファイル削除・課金・フォーム送信・外部サービスへのデータ送信は行っていません。
+
 ## Loading animation status (2026-09-09)
 
 通常時の霧ローディングは約4.85秒へ延長し、穴の拡大とフェードを緩やかにしました。画面上での体感確認はMacロック中のため未実施です。`prefers-reduced-motion`時は短縮設定を維持しています。

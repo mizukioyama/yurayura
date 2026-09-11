@@ -1,5 +1,19 @@
 # ChatGPT review requests
 
+## Current task review (2026-09-12)
+
+1. `concept.html` のHero、コンセプト本文、作品写真2点、Gallery導線がTopと同じトーンで見えるか。
+2. 320〜480pxのスマホ幅で、縦組みHero、本文、作品写真、ボタンに横はみ出しがないか。
+3. Topの `Conceptを読む` と、全ページの `TOP / CONCEPT / GALLERY` が正しいページへ遷移するか。
+4. 既存Galleryの4作品、絞り込み、ページネーション、フォーム、FAQ、背景アニメーションが従来どおりか。
+
+### Evidence already checked
+
+- ローカルブラウザでConceptの本文、2枚の既存作品画像、Galleryリンクを確認
+- ローカルブラウザでTopのConcept導線とGalleryの4作品・ナビを確認
+- `node --check` と `git diff --check` を実行
+- 編集前コピーを `backups/` に保存
+
 ## Loading animation review
 
 - 初期表示時の霧ローディングが急に完了せず、約4.85秒かけて緩やかに進むこと

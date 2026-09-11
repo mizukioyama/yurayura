@@ -1,5 +1,34 @@
 # Review report
 
+## Current task update (2026-09-12)
+
+既存Topのトーンを維持したConceptページを新規作成し、Topからの導線と3ページ共通ナビを追加しました。既存Galleryの作品一覧、フォーム、FAQ、背景アニメーション、既存画像は変更していません。
+
+### Implemented
+
+- `concept.html` と `assets/css/concept.css` を追加
+- Topと同じ紙質背景、霧・揺らぎ演出、縦組み見出し、フォント、余白感、レスポンシブ設計を再利用
+- 既存作品画像 `202337.webp` / `202402.webp` をConcept内の視覚要素として使用
+- TopのConceptセクションに `Conceptを読む` 導線を追加
+- 共通パーツとGalleryのナビを `TOP / CONCEPT / GALLERY` に統一
+- 既存ファイルは編集前に `backups/` へ退避
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| JavaScript構文 | PASS | `node --check` で既存アニメーション・メニューJSを確認 |
+| 差分空白 | PASS | `git diff --check` |
+| Concept DOM | PASS | ローカルブラウザで見出し、本文、画像2点、Gallery導線を確認 |
+| Top導線 | PASS | TopのConceptセクション内に `Conceptを読む` を確認 |
+| Gallery保全 | PASS | ローカルブラウザで4作品、カテゴリ、ページネーション、3ページナビを確認 |
+| レスポンシブCSS | PASS | 480px以下の専用レイアウトと既存clamp設計を確認 |
+| 公開先 | PASS | `origin` は `https://github.com/mizukioyama/yurayura.git`、push前HEADを確認 |
+
+### Review judgment
+
+実装とローカル表示確認は完了しています。公開後はGitHub Pagesの `concept.html` とTop/Galleryのナビを実機で最終確認してください。
+
 ## Loading animation audit (2026-09-09)
 
 初期表示時の霧ローディングを対象に、通常時の`holdDuration`を550ms、穴の拡大を2600ms、拡大後の保持を300ms、フェードを1400msへ調整しました。合計時間は約3.4秒から約4.85秒へ延長され、動きを緩やかにしています。`prefers-reduced-motion`時の短縮設定と、その他のアニメーション・JavaScriptは変更していません。CSS／JSのキャッシュバスターも更新しました。
