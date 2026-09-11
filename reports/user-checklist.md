@@ -1,5 +1,15 @@
 # User checklist
 
+## Top section layout update (2026-09-12)
+
+- [ ] TopのConceptが見出しと本文の2列で表示され、右側の過剰な空白が抑えられている
+- [ ] `Conceptを読む` が本文側にあり、Conceptページへ遷移できる
+- [ ] TopのArtistsの見出し・紹介文・作品カードが中央にまとまっている
+- [ ] Artistsの作品画像が見え、`Mizuki` ラベルが画像全体を覆っていない
+- [ ] Viewボタンが作品カードと同程度の幅に収まっている
+- [ ] スマートフォン幅で横はみ出しやレイアウト崩れがない
+- [ ] 公開Topで最終確認する
+
 ## Current task (2026-09-12)
 
 - [ ] 公開URLの `/yurayura/concept.html` が表示される

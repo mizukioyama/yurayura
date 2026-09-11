@@ -1,5 +1,13 @@
 # Known issues
 
+## Top section layout update (2026-09-12)
+
+- ローカルブラウザではConceptの2列配置、Artistsの中央寄せ、作品画像の表示、Viewボタンのまとまりを確認済みです。
+- 実機スマートフォンとGitHub Pages反映後のTop表示は未確認です。
+- 作品名は現状のHTMLどおり `Mizuki` を維持しています。作品名・作家情報そのものの追加変更は今回の対象外です。
+- 既存 `slide.js` のクリック処理は `.works-link` を対象にしており、Topカードの既存リンク構造は今回変更していません。
+- 今回、ファイル削除・課金・フォーム送信・外部サービスへのデータ送信は行っていません。
+
 ## Current task update (2026-09-12)
 
 - 既存サイトが参照している `assets/img/favicon.ico` と `assets/img/apple-touch-icon.png` はcheckout内に存在しないため、Conceptでも同じ参照を維持しています。今回の対象外です。

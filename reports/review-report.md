@@ -1,5 +1,34 @@
 # Review report
 
+## Top section layout update (2026-09-12)
+
+TopページのConcept／Artistsセクションを、既存の文章・画像・スライダー構造・アニメーションを維持したまま調整しました。
+
+### Changes
+
+- `assets/css/top-sections.css` を追加し、`body.top-page` のTopページだけに適用
+- Conceptを見出しと本文の2列構成にし、左寄せに偏っていた余白を整理
+- Conceptの `Conceptを読む` 導線を本文側に配置
+- Artistsの見出し・紹介文を中央に揃え、作品カードを中央の読みやすい幅に整理
+- 作品カードの作家名ボタンを全体覆いから小さなラベルへ変更し、作品画像を見える状態に復元
+- Viewボタンをカード幅に合わせた最大520px（スマホ最大280px）へ調整
+- `slide.js`、既存画像、Gallery、共通ヘッダー／フッターは変更なし
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 差分空白 | PASS | `git diff --check` |
+| JavaScript構文 | PASS | `node --check assets/js/slide.js` |
+| Top導線 | PASS | ローカルブラウザAXツリーでConcept導線とGallery導線を確認 |
+| Concept配置 | PASS | ローカルブラウザで見出し・本文・導線の2列配置を確認 |
+| Artists配置 | PASS | ローカルブラウザで中央寄せ見出し・紹介文・作品画像を確認 |
+| 既存ページ保全 | PASS | Top専用CSSとして適用し、Concept／GalleryのCSS・JSは未変更 |
+
+### Review judgment
+
+今回の変更はTopの2セクションに限定した表示調整です。公開後はGitHub PagesのTopをスマートフォン実機でも最終確認してください。
+
 ## Current task update (2026-09-12)
 
 既存Topのトーンを維持したConceptページを新規作成し、Topからの導線と3ページ共通ナビを追加しました。既存Galleryの作品一覧、フォーム、FAQ、背景アニメーション、既存画像は変更していません。

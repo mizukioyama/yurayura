@@ -1,5 +1,19 @@
 # ChatGPT review requests
 
+## Top section layout review (2026-09-12)
+
+1. TopのConceptが、見出しと本文の2列構成で読みやすく、右側の過剰な空白が抑えられているか。
+2. Conceptの `Conceptを読む` が本文側の自然な位置にあり、Conceptページへ遷移できるか。
+3. TopのArtistsで、見出し・紹介文・作品カード・Viewボタンが中央のまとまりとして表示されるか。
+4. Artistsの作品画像が作家名ラベルに覆われず、既存スライダーの自動移動とGallery遷移が維持されているか。
+5. 320〜480px相当で、Concept／Artists／Viewボタンに横はみ出しがなく、既存のヘッダー・フッターと調和しているか。
+
+### Evidence already checked
+
+- ローカルブラウザでTopのConcept導線、Artistsの中央寄せ配置、作品画像、View導線を確認
+- `git diff --check` と `node --check assets/js/slide.js` を実行
+- Topだけに適用する専用CSSとし、既存のHTML本文・画像・スライダーJSを保持
+
 ## Current task review (2026-09-12)
 
 1. `concept.html` のHero、コンセプト本文、作品写真2点、Gallery導線がTopと同じトーンで見えるか。
