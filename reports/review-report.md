@@ -950,3 +950,20 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Existing links / layout | PASS | Concept／Gallery導線、Contact、FAQ、共通ナビを確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## CSS chevron arrow correction (2026-09-12)
+
+- `＞`の文字や外周の正方形枠ではなく、同じ幅・高さの正方形領域に右辺・下辺の2本のボーダーを描き、`rotate(-45deg)`で右向きシェブロンを作る方式へ修正しました。
+- ホバー／フォーカス時は回転角を維持したまま右へ移動します。
+- 矢印は装飾要素として`aria-hidden`にし、ボタンの読み上げ名に文字矢印を重複させません。
+- 編集前コピーを`backups/20260912_before_css-chevron-arrow/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| CSS chevron construction | PASS | ローカルおよび公開Topで2辺ボーダー＋回転の右向き矢印を目視確認 |
+| Top Concept copy | PASS | 公開Topで追加済みのConcept本文を確認 |
+| Existing links / behavior | PASS | 共通ナビ、Concept／Gallery導線、Contact、FAQ構造を確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
