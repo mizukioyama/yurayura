@@ -180,3 +180,14 @@
 - 公開Topを再読込し、デスクトップの左側に `TOP / CONCEPT / GALLERY` のHeader本体が表示されることを確認
 - ページ末尾で中央の縦型Footerナビとコピーライトを確認
 - 公開ブラウザのコンソールエラーは0件
+
+## Navigation label update review (2026-09-12)
+
+1. `TOP / トップページ`、`GALLERY / 作品`、`CONCEPT / 世界観` が縦書きで表示されるか。
+2. 英語名から日本語説明までが各リンク1つの選択・クリック範囲になっているか。
+3. Top・Concept・Galleryの本文と既存リンク先が変更されていないか。
+
+### Local evidence
+
+- Header / Footerの6リンクで、文言、`display: inline-block`、`writing-mode: vertical-rl` を確認
+- 各リンクの矩形範囲に英語名と日本語説明が含まれることをDOMで確認

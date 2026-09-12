@@ -286,3 +286,25 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 - ページ末尾でFooterの中央縦型ナビとコピーライトを確認
 - 公開ブラウザのコンソールエラーは0件
 - Concept本体とGalleryの既存表示・導線は今回のHeader復元で変更していない
+
+## Navigation label update (2026-09-12)
+
+### Scope
+
+Header / Footerの共通ナビだけを対象に、英語名と日本語説明の表記を指定どおりに統一しました。Top・Concept本文、Gallery本文、リンク先は変更していません。
+
+### Changes
+
+- `Home` を `トップページ` に変更
+- `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` の組み合わせに統一
+- 既存の `writing-mode: vertical-rl` を維持し、各リンクを `inline-block` 化して英語名から日本語説明までを1つの選択・クリック範囲に設定
+- 編集前コピーを `backups/20260912_before_nav_label_update/` に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| ナビ文言 | PASS | ローカルDOMで3項目の表示名を確認 |
+| 縦書き | PASS | 6リンクすべて `writing-mode: vertical-rl` |
+| 選択範囲 | PASS | 各英語名＋日本語説明が1つの `inline-block` リンク範囲 |
+| Concept / Gallery保全 | PASS | 本文HTML・関連CSS・JSに差分なし |
