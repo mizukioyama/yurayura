@@ -242,3 +242,10 @@
 
 - 実効`pointer-events`を確認し、3つのHeaderリンクすべて`auto`
 - Headerの「世界観」リンクを実際にクリックし、`concept.html`への遷移を確認
+
+### Public evidence
+
+- 公開Topのキャッシュ更新URLでHeaderの `トップ` / `世界観` / `作品` とhrefを確認
+- 公開TopのHeader「世界観」をクリックし、`https://mizukioyama.github.io/yurayura/concept.html` への遷移を確認
+- 公開Topのアクセシビリティツリーで、Header / Footerの3リンクが表示されることを確認
+- スマートフォン実機のタップ操作は未確認

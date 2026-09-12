@@ -13,6 +13,7 @@
 - 既存サイトが参照している `assets/img/favicon.ico` と `assets/img/apple-touch-icon.png` はcheckout内に存在しないため、Conceptでも同じ参照を維持しています。今回の対象外です。
 - 実機スマートフォンでの受入確認は未実施です。ローカルブラウザでの表示・DOM確認は完了しています。
 - GitHub Pagesはpush直後に反映待ちが発生しましたが、現在は公開URLのHTTP 200とブラウザ表示を確認済みです。
+- 公開TopではHeaderの「世界観」クリックから公開Conceptへの遷移を確認済みです。Header / Footer全リンクの実機クリック・タップ確認は未完了です。
 - 今回、ファイル削除・課金・フォーム送信・外部サービスへのデータ送信は行っていません。
 
 ## Loading animation status (2026-09-09)

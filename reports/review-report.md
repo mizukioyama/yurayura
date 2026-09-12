@@ -369,6 +369,12 @@ Headerのリンククリックだけを復旧しました。Headerの親要素�
 | Top / Concept / Gallery保全 | PASS | 本文と既存hrefは変更なし |
 | ブラウザエラー | PASS | 遷移後のローカルブラウザでエラー0件 |
 
+### Public verification
+
+- 公開Topをキャッシュ更新URLで再読込し、Headerの `トップ` / `世界観` / `作品` と既存のhrefを確認
+- 公開TopのHeader「世界観」をクリックし、公開 `concept.html` へ遷移することを確認
+- スマートフォン実機での物理タップは未確認
+
 ## Navigation label update (2026-09-12)
 
 ### Scope
