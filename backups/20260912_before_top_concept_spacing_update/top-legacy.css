@@ -22,34 +22,30 @@
 
 .top-page .section--concept .h2_ttl {
   align-self: center;
-  width: min(100%, 720px);
+  width: auto;
   height: auto;
-  margin: 0 0 clamp(20px, 2.2vw, 32px);
-  font-size: clamp(22px, calc(0.55vw + 20px), 32px);
-  line-height: 1.45;
-  letter-spacing: clamp(0.12em, 0.55vw, 0.28em);
-  writing-mode: horizontal-tb;
+  margin-bottom: 30px;
+  writing-mode: vertical-rl;
   text-align: center;
   white-space: normal;
 }
 
 .top-page .section--concept .section__txt {
   align-self: center;
-  width: min(100%, 680px);
+  width: auto;
   height: auto;
   margin: 0;
-  font-size: var(--responsive-copy-size);
-  writing-mode: horizontal-tb;
-  white-space: normal;
-  line-height: clamp(1.9, calc(0.12vw + 1.82), 2.05);
-  letter-spacing: 0.08em;
-  text-align: center;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+  line-height: 3.2;
+  letter-spacing: 0.4rem;
+  text-align: initial;
 }
 
 .top-page .section--concept .concept-link-wrap {
   align-self: center;
   width: auto;
-  margin: clamp(24px, 3vw, 40px) 0 0;
+  margin: 2.4rem 0 0;
   writing-mode: initial;
 }
 
@@ -151,12 +147,7 @@
   }
 
   .top-page .section--concept .h2_ttl {
-    width: 100%;
-    margin-bottom: clamp(18px, 5vw, 24px);
-    font-size: clamp(20px, 5.7vw, 26px);
-    line-height: 1.45;
-    letter-spacing: 0.14em;
-    writing-mode: horizontal-tb;
+    writing-mode: initial;
   }
 
   .top-page .section--concept .section__txt,
@@ -165,14 +156,13 @@
     height: auto;
     writing-mode: horizontal-tb;
     white-space: normal;
-    line-height: clamp(1.8, calc(0.35vw + 1.68), 1.95);
+    line-height: 2;
     letter-spacing: 0.08em;
-    text-align: center;
+    text-align: left;
   }
 
   .top-page .section--concept .concept-link-wrap {
     align-self: center;
-    margin-top: clamp(20px, 6vw, 32px);
   }
 
   .top-page .member-slider {
