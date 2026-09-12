@@ -221,8 +221,8 @@ Macがロック中で、ブラウザのヘッドレス起動も終了したた�
 | Concept / Gallery保全 | PASS | `concept.html` / `gallery.html` と関連CSS・JSは未変更 |
 | JavaScript構文 | PASS | `node --check assets/js/slide.js`、`node --check assets/js/gallery.js` |
 | 公開main基点 | PASS | `origin/main` は `b92d12b5c49b494512ce3fa23b60f773dab22d7b` |
-| 公開Topレイアウト | PENDING | push後にGitHub Pagesの反映を待って確認 |
+| 公開Topレイアウト | PASS | 公開Topでrollback版CSS、JPEG上書きなし、カード8件、横スクロールなし、Concept / Gallery導線を確認 |
 
 ### Judgment
 
-Topのレイアウト変更原因に対する最小の巻き戻しです。公開反映後にTopの作品カード、Concept、Artists、3ページ導線を再確認します。
+Topのレイアウト変更原因に対する最小の巻き戻しです。公開Topの作品カード、Concept、Artists、3ページ導線を確認済みです。公開Concept / Galleryも表示・導線・横スクロールなしを確認しました。

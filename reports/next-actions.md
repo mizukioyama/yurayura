@@ -19,7 +19,7 @@
 ## Top layout rollback (2026-09-12)
 
 1. 対象ファイルとレビュー資料をcommitする。
-2. `main` へ反映後、GitHub PagesのTopをキャッシュ更新URLで確認する。
-3. 公開Topの作品カード、Concept、Artists、3ページナビを確認する。
-4. 公開Concept / Galleryの表示と導線に影響がないことを確認する。
+2. [完了] `main` へ反映後、GitHub PagesのTopをキャッシュ更新URLで確認する。
+3. [完了] 公開Topの作品カード、Concept、Artists、3ページナビを確認する。
+4. [完了] 公開Concept / Galleryの表示と導線に影響がないことを確認する。
 5. 実機スマートフォンの確認はユーザー受入項目として別途行う。

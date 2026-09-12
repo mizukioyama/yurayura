@@ -81,8 +81,8 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 
 ## Top layout rollback (2026-09-12)
 
-- 公開mainの先頭は `b92d12b`。Top巻き戻しコミットはpush前です。
-- GitHub Pagesはpush後のデプロイ反映待ちがあるため、公開Topの最終確認は反映後に行います。
+- 公開mainの巻き戻しコミットは `11bd8fbd8559cd0387a9d6b1a83f9d59f1d0df06`。公開Topの反映を確認済みです。
+- GitHub Pagesの公開Topはrollback版CSS、JPEG上書きなし、横スクロールなしを確認済みです。
 - 実機スマートフォンでの受入確認は未実施です。
-- Concept / Galleryの後続変更は保持していますが、公開反映後に両ページの導線を再確認します。
+- Concept / Galleryの後続変更は保持され、公開表示・導線・横スクロールなしを確認済みです。
 - 今回、ソース削除・課金・フォーム送信・外部サービスへのデータ送信は行っていません。

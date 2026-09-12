@@ -135,3 +135,11 @@
 - c90eeef追加分17行を対象に限定して巻き戻し
 - `git diff --check`、JavaScript構文確認を実施
 - 公開URL確認はpushおよびGitHub Pages反映後に実施
+
+### Public verification result
+
+- 公開Topで `top-sections.css?v=20260912-top-sections-rollback` の読み込みを確認
+- 公開TopでJPEG背景上書きなし、作品カード8件、横スクロールなし、Concept / Gallery導線を確認
+- 公開Conceptで本文、作品画像3点、Gallery導線、横スクロールなしを確認
+- 公開Galleryで4作品、ページネーション、3ページナビ、横スクロールなしを確認
+- Top / Concept / Galleryの公開コンソールエラーは0件
