@@ -212,3 +212,8 @@
 
 - ローカルDOMでHeader / Footerの6リンクのラベル、左右座標、`inline-block`、`vertical-rl`を確認
 - `index.html` / `concept.html` / 動的パーツ取得のキャッシュバスターを`20260912-nav-top`へ更新
+
+### Public evidence
+
+- `main`へのpush成功は確認済み（`fc50724`）
+- 公開URLの最終表示確認は一時的なDNS解決エラーのため`PENDING`

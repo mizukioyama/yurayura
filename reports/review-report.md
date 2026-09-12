@@ -311,6 +311,12 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 | 選択範囲 | PASS | 6リンクすべて`inline-block`で英語名＋日本語説明を包含 |
 | Concept / Gallery保全 | PASS | 本文・構造・関連CSS・JSは変更せず、共通読み込みURLのみ更新 |
 
+### Public verification
+
+- `main`へのpushは`fc50724`で成功
+- 公開URLの再確認は一時的なDNS解決エラーにより`PENDING`（公開ブラウザ接続・curlの双方で名前解決不可）
+- 公開反映の確認は、DNS回復後に一意の確認URLで再実施する
+
 ## Navigation label update (2026-09-12)
 
 ### Scope
