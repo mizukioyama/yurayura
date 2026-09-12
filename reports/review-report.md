@@ -933,3 +933,20 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | FAQ flat surface | PASS | FAQボタンを共通ガラス処理から除外した状態をローカル／公開で確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## Square arrow and extended Top Concept copy (2026-09-12)
+
+- CTAの`＞`を正方形の枠内に配置し、ガラスボタンのホバー時の右移動を維持しました。
+- TopのConceptセクションに、作品と空間の重なりや内側の変化を説明する3行を追加しました。
+- `liquid-button.js`の共通表示に反映し、Top／Concept／Galleryのキャッシュバスターを更新しました。
+- 編集前のHTML・JSコピーは既存バックアップを保持しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Square arrow | PASS | ローカルおよび公開Topで正方形枠内の`＞`を目視確認 |
+| Top Concept copy | PASS | ローカルおよび公開TopのAXツリー・画面で追加文を確認 |
+| Existing links / layout | PASS | Concept／Gallery導線、Contact、FAQ、共通ナビを確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |

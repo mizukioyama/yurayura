@@ -594,3 +594,16 @@
 - `--mx`／`--my`を使用したContactホバー背景をソースで確認
 - ローカルおよび公開TopのContact／FAQを確認
 - スマートフォン実機の表示・タップは未確認
+
+## Square arrow and extended Top Concept copy (2026-09-12)
+
+1. CTAの`＞`が正方形の枠内に表示されていること。
+2. TopのConcept本文が追加文を含み、読みやすく表示されていること。
+3. Concept／Galleryのボタン、共通ナビ、FAQ、Contactフォームの機能が維持されていること。
+
+### Evidence
+
+- ローカルTopで正方形矢印と追加文を確認
+- 公開Topで正方形矢印と追加文を確認
+- 公開Topのリンク、FAQ、Contact構造を確認
+- スマートフォン実機の表示・タップは未確認
