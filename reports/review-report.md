@@ -431,3 +431,12 @@ Topページの作品（Artists）セクションだけを対象に、見出し�
 | 背景維持 | PASS | 作品セクションの背景画像URLが変更前と同じであることを確認 |
 | 横はみ出し | PASS | ローカル表示で `scrollWidth` と `clientWidth` が一致 |
 | 他ページ保全 | PASS | 追加CSSは `.top-page .section--artists` と `#artists` に限定 |
+
+### Public verification
+
+- 公開Topで `top-artists.css?v=20260912-top-artists-center` の読み込みを確認
+- 公開Topで説明文の横書き・中央寄せ、幅520pxを確認
+- 公開TopでViewボタンの幅520px、中央配置を確認
+- 公開Topで背景URLが既存の `assets/img/bg-img.webp` のままであることを確認
+- 公開Concept / Galleryでは `top-artists.css` が読み込まれていないことを確認
+- スマートフォン実機での最終受入確認は未実施
