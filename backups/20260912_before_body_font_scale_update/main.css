@@ -1718,33 +1718,3 @@ h2 {
 .section--faq .faq-ttl {
   text-align: center;
 }
-
-/* ========================================
-  Type scale calibration
-  Mobile <=767 / Tablet 768-1199 / Desktop >=1200
-======================================== */
-
-:root {
-  --responsive-copy-size: clamp(14px, calc(0.14vw + 13.32px), 16px);
-  --responsive-heading-2: clamp(24px, calc(0.4vw + 24.2px), 32px);
-  --responsive-heading-3: clamp(18px, calc(0.25vw + 15px), 22px);
-  --responsive-small-heading: clamp(15px, calc(0.2vw + 12.6px), 18px);
-}
-
-@media screen and (max-width: 767px) {
-  :root {
-    --responsive-copy-size: clamp(12px, calc(0.45vw + 10.5px), 14px);
-    --responsive-heading-2: clamp(20px, calc(0.9vw + 17px), 26px);
-    --responsive-heading-3: clamp(16px, calc(0.5vw + 14px), 20px);
-    --responsive-small-heading: clamp(13px, calc(0.35vw + 11.5px), 16px);
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1199px) {
-  :root {
-    --responsive-copy-size: clamp(13px, calc(0.23vw + 12.25px), 15px);
-    --responsive-heading-2: clamp(22px, calc(0.7vw + 20px), 29px);
-    --responsive-heading-3: clamp(17px, calc(0.35vw + 15.5px), 21px);
-    --responsive-small-heading: clamp(14px, calc(0.25vw + 12px), 17px);
-  }
-}

@@ -670,3 +670,31 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16px、h2 6件の中央寄せを確認
 - 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施
+
+## Body font-size range update (2026-09-12)
+
+### Changes
+
+- 本文を3段階の`clamp()`へ変更
+  - モバイル：`12px〜14px`
+  - タブレット：`13px〜15px`
+  - デスクトップ：`14px〜16px`
+- h2、h3、補助見出しも本文との比率を保った流動サイズへ調整
+- Galleryのタイトル、カテゴリ、ページタイトル、ページャーも固定値を縮小・流動化
+- 編集前コピーを`backups/20260912_before_body_font_scale_update/`に保存
+- CSSキャッシュバスターを`font-scale-v2`へ更新
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Top | PASS | 本文15.1px、h2 29.3px、FAQ見出し18.2pxを確認 |
+| Concept | PASS | 本文・h2の流動サイズと中央寄せを確認 |
+| Gallery | PASS | カテゴリ、紹介文、作品情報の流動サイズを確認 |
+| Existing behavior | PASS | FAQ11項目、h2中央寄せ、横はみ出しなしを確認 |
+| JavaScript | PASS | 関連JavaScriptの構文確認 |
+
+### Public verification
+
+- `main`反映後、公開3ページで`font-scale-v2`の読み込みと表示を確認する
+- スマートフォン実機での表示・タップ確認は未実施
