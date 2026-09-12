@@ -243,3 +243,14 @@
 - [x] 公開Topで本文・導線・後続コンテンツを確認した
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で行間・折り返し・タップを確認する
+
+## Concept horizontal text and liquid button update (2026-09-12)
+
+- [x] ConceptページFVの縦書きを削除した
+- [x] FVのラベル・ロゴ・説明文を横書きにした
+- [x] Conceptページ内の文字を中央寄せにした
+- [x] 「Galleryへ」ボタンをTopのViewと同じ`liquid-button`にした
+- [x] 既存の文章・画像・リンク・共通Header／Footerを維持した
+- [x] 公開Conceptで反映を確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機で表示・タップを確認する

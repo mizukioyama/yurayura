@@ -671,6 +671,28 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 - 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施
 
+## Concept horizontal text and liquid button update (2026-09-12)
+
+### Changes
+
+- ConceptページのFVに残っていた縦書き（`CONCEPT`ラベル、ロゴ、説明文）を横書きへ変更
+- Conceptページ内の見出し、本文、説明ラベル、導線を中央寄せへ統一
+- Conceptページ内のCTA「Galleryへ」をTopのViewと同じ`liquid-button`へ置換
+- `liquid.css`と`liquid-button.js`をConceptページへ追加し、既存のGalleryリンクを維持
+- Headerのハンバーガー操作ボタンは機能維持のため変更なし
+- 編集前コピーを`backups/20260912_before_concept_horizontal_liquid_button/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Concept local | PASS | FV横書き、全体中央寄せ、`Galleryへ ↗`のカスタム要素を確認 |
+| Concept public | PASS | `concept-horizontal-liquid-v1` URLで公開ページのFV、本文、導線を確認 |
+| Liquid button | PASS | 公開AXツリーで`Galleryへ ↗`リンクを確認。Top Viewと同じ`liquid-button`を使用 |
+| Existing content | PASS | 既存の文章、画像2点、共通Header／Footer、Galleryリンクを維持 |
+| JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Top Concept spacing update (2026-09-12)
 
 ### Changes

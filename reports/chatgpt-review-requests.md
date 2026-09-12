@@ -432,6 +432,21 @@
 - 公開Topの本文15.7px、公開Galleryのカテゴリ15px・紹介文18px・作品情報15.7pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## Concept horizontal text and liquid button update (2026-09-12)
+
+1. ConceptページのFVに縦書きが残っておらず、ラベル・ロゴ・説明文が横書きで中央に揃っていること。
+2. Conceptページ内の見出し・本文・説明ラベル・導線が中央寄せであること。
+3. 「Galleryへ」ボタンがTopのViewと同じリキッドグラスの見た目・動作であること。
+4. Conceptページの既存文章・画像・共通Header／Footer・Galleryリンクが維持されていること。
+5. ハンバーガーの開閉とページ遷移を壊していないこと。
+
+### Evidence
+
+- ローカルConceptで横書き、中央寄せ、`liquid-button`を確認
+- 公開Conceptで`Galleryへ ↗`リンク、既存コンテンツ、共通ナビを確認
+- `liquid.css`、`liquid-button.js`の読み込み、JavaScript構文、差分空白を確認
+- スマートフォン実機の表示・タップ確認は未確認
+
 ## Top Concept spacing update (2026-09-12)
 
 1. TOPのConcept見出しが本文ブロックに対して中央に配置されていること。

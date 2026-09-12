@@ -197,6 +197,14 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開3ページで今回の`font-scale-v2`の読み込みと表示を確認済みです。
 - スマートフォン実機での表示・タップ確認は未実施です。
 
+## Concept horizontal text and liquid button update (2026-09-12)
+
+- ConceptページのFV・本文・見出しを横書き／中央寄せへ統一しました。
+- Conceptページの「Galleryへ」導線はTopのViewと同じ`liquid-button`を使用しています。
+- Conceptページ内のCTAは1件です。Headerのハンバーガー操作ボタンは機能維持のため対象外です。
+- 公開Conceptで反映を確認済みです。
+- スマートフォン実機での表示・タップ確認は未実施です。
+
 ## Top Concept spacing update (2026-09-12)
 
 - TOPのConcept見出しと本文の間隔、本文行間、本文幅を調整しました。
