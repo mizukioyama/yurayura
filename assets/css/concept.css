@@ -211,7 +211,7 @@
 .concept-page .concept-fv__lead,
 .concept-page .concept-fv .fv__ttl,
 .concept-page .concept-fv .fv__txt {
-  writing-mode: horizontal-tb !important;
+  writing-mode: vertical-rl !important;
   text-orientation: mixed;
 }
 
@@ -221,37 +221,6 @@
 .concept-page main section:not(.fv) a {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
-}
-
-/* Concept page: horizontal, centered reading flow. */
-.concept-page .concept-fv .fv__inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vw, 48px);
-  align-items: center;
-  justify-content: center;
-}
-
-.concept-page .concept-fv .fv__ttl {
-  grid-area: auto;
-  position: static;
-  width: 100%;
-  font-size: clamp(56px, 10vw, 120px);
-  line-height: 1.2;
-  letter-spacing: 0.18em;
-  white-space: nowrap;
-  transform: none;
-}
-
-.concept-page .concept-fv .fv__txt {
-  position: static;
-  width: min(100%, 360px);
-  margin: 0;
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 2.1;
-  letter-spacing: 0.14em;
-  text-align: center;
-  transform: none;
 }
 
 .concept-page .concept-fv__lead {
@@ -294,21 +263,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .concept-page .concept-fv .fv__inner {
-    gap: 24px;
-  }
-
-  .concept-page .concept-fv .fv__ttl {
-    font-size: clamp(48px, 15vw, 72px);
-    letter-spacing: 0.12em;
-  }
-
-  .concept-page .concept-fv .fv__txt {
-    width: min(100% - 40px, 320px);
-    font-size: var(--responsive-copy-size);
-    line-height: 2;
-  }
-
   .concept-page .concept-fv__lead {
     top: 20%;
   }
