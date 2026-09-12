@@ -219,6 +219,14 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開3ページの読み込みとコンテンツ保全は確認済みです。
 - スマートフォン実機での縦書きFVの収まり、メニューの表示・タップは未確認です。
 
+## FAQ flat surface and Contact glass correction (2026-09-12)
+
+- Contact送信ボタンはガラス表現を維持し、無効状態で効果が埋もれないようにしています。
+- FAQアコーディオン行は共通液晶ガラス処理から除外し、平面表示に戻しています。
+- FAQの開閉機能は`faq.js`で維持しています。
+- 公開TopのContactとFAQ表示は確認済みです。
+- スマートフォン実機と各ブラウザのフォーカス表示は未確認です。
+
 ## Concept feeling copy and Contact glass update (2026-09-12)
 
 - 「A MOMENT TO FEEL／感じるということ」セクションのラベル・見出し・本文は左揃えにしています。

@@ -900,3 +900,20 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript | PASS | `allmenu.js`、`gallery.js`の構文確認。今回JS変更なし |
 | Diff / backup | PASS | `git diff --check`、編集前バックアップを確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## FAQ flat surface and Contact glass correction (2026-09-12)
+
+- Contact送信ボタンのガラス表現を明示的に維持し、無効状態でも効果が見えるよう透明度を調整しました。
+- FAQのアコーディオン行を共通液晶ガラス処理の対象外にし、FAQ本来の平面表示へ戻しました。
+- FAQの開閉処理、フォーム項目、共通ナビ、その他のCTAは維持しました。
+- 編集前コピーを`backups/20260912_before_faq_glass_removal_send_glass_fix/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Contact submit glass | PASS | ローカルおよび公開TopのContact下部で半透明・ぼかし・反射を目視確認 |
+| FAQ glass removal | PASS | ローカルおよび公開TopでFAQ行が平面表示になったことを確認 |
+| FAQ behavior | PASS | FAQの開閉状態とアクセシブルなボタン構造を確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |

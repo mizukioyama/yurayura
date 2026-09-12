@@ -234,6 +234,15 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## FAQ flat surface and Contact glass correction (2026-09-12)
+
+- [x] Contact送信ボタンのガラス効果を確認した
+- [x] FAQアコーディオン行のガラス効果を削除した
+- [x] FAQの開閉機能を維持した
+- [x] 公開TopのContactとFAQを確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機・キーボード操作で表示とフォーカスを確認する
+
 ## Concept feeling copy and Contact glass update (2026-09-12)
 
 - [x] 「A MOMENT TO FEEL／感じるということ」のラベル・見出し・本文を左揃えにした
