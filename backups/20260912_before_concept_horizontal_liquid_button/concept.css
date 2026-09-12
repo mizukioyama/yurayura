@@ -211,7 +211,7 @@
 .concept-page .concept-fv__lead,
 .concept-page .concept-fv .fv__ttl,
 .concept-page .concept-fv .fv__txt {
-  writing-mode: horizontal-tb !important;
+  writing-mode: vertical-rl;
   text-orientation: mixed;
 }
 
@@ -221,103 +221,4 @@
 .concept-page main section:not(.fv) a {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
-}
-
-/* Concept page: horizontal, centered reading flow. */
-.concept-page .concept-fv .fv__inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vw, 48px);
-  align-items: center;
-  justify-content: center;
-}
-
-.concept-page .concept-fv .fv__ttl {
-  grid-area: auto;
-  position: static;
-  width: 100%;
-  font-size: clamp(56px, 10vw, 120px);
-  line-height: 1.2;
-  letter-spacing: 0.18em;
-  white-space: nowrap;
-  transform: none;
-}
-
-.concept-page .concept-fv .fv__txt {
-  position: static;
-  width: min(100%, 360px);
-  margin: 0;
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 2.1;
-  letter-spacing: 0.14em;
-  text-align: center;
-  transform: none;
-}
-
-.concept-page .concept-fv__lead {
-  top: clamp(20%, 24vw, 28%);
-  margin-bottom: 0;
-  text-align: center;
-}
-
-.concept-page .concept-statement .concept-eyebrow {
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.concept-page main section:not(.fv) .h2_ttl,
-.concept-page main section:not(.fv) .section__txt,
-.concept-page main section:not(.fv) .concept-eyebrow,
-.concept-page main section:not(.fv) a {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-  text-align: center;
-}
-
-.concept-page main section:not(.fv) .section__txt {
-  width: min(100%, 680px);
-  margin-inline: auto;
-  line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
-}
-
-.concept-page .concept-texture__copy {
-  align-items: center;
-  width: 100%;
-  text-align: center;
-}
-
-.concept-page .concept-gallery-link liquid-button {
-  display: block;
-  width: min(100%, 520px);
-  margin: clamp(24px, 3vw, 40px) auto 0;
-}
-
-@media screen and (max-width: 767px) {
-  .concept-page .concept-fv .fv__inner {
-    gap: 24px;
-  }
-
-  .concept-page .concept-fv .fv__ttl {
-    font-size: clamp(48px, 15vw, 72px);
-    letter-spacing: 0.12em;
-  }
-
-  .concept-page .concept-fv .fv__txt {
-    width: min(100% - 40px, 320px);
-    font-size: var(--responsive-copy-size);
-    line-height: 2;
-  }
-
-  .concept-page .concept-fv__lead {
-    top: 20%;
-  }
-
-  .concept-page main section:not(.fv) .section__txt {
-    line-height: 1.9;
-  }
-
-  .concept-page .concept-gallery-link liquid-button {
-    width: min(100%, 320px);
-  }
 }
