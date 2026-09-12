@@ -214,8 +214,14 @@ class LiquidButton extends HTMLElement {
 }
 
 .arrow{
-  display:inline-block;
-  transition:transform var(--duration) ease;
+  display:inline-grid;
+  width:1.35em;
+  height:1.35em;
+  place-items:center;
+  border:1px solid currentColor;
+  border-radius:.08em;
+  line-height:1;
+  transition:transform var(--duration) ease, background-color var(--duration) ease;
 }
 
 .wrapper:hover .arrow,
