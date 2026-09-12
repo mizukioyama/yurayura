@@ -462,4 +462,12 @@ Topページの作品（Artists）セクションだけを対象に、見出し�
 | スライドショー | PASS | ローカル表示でスライドショーの左端・右端が画面表示領域に一致 |
 | 背景維持 | PASS | 既存 `btn-bg-img.webp` と `bg-img.webp` の指定を維持 |
 | 横はみ出し | PASS | ローカル表示で `scrollWidth` と `clientWidth` が一致 |
-| 公開Top | PENDING | push後のGitHub Pages反映を確認する |
+| 公開Top | PASS | 公開Topでボタン背景帯・スライドショーとも画面幅1702pxに一致することを確認 |
+
+### Public verification
+
+- 公開Topで `top-artists.css?v=20260912-top-artists-full-width` の読み込みを確認
+- ボタン背景帯とスライドショーの表示領域が、公開表示領域の左右端（1702px）に一致
+- ボタン背景画像が既存の `btn-bg-img.webp` のままであることを確認
+- 説明文の中央寄せと横書き表示を維持
+- 公開Topで横スクロールなしを確認
