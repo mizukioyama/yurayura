@@ -432,6 +432,22 @@
 - 公開Topの本文15.7px、公開Galleryのカテゴリ15px・紹介文18px・作品情報15.7pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## Top Concept spacing update (2026-09-12)
+
+1. TOPのConcept見出しが本文ブロックに対して中央に配置されていること。
+2. 本文の行間が広すぎず、PC／スマホで読みやすく保たれていること。
+3. 見出しサイズ・字間・見出し下余白が画面幅に応じて自然に変化すること。
+4. Concept導線、作品セクション、FAQ、Access、共通ナビに影響がないこと。
+5. TOPの横スクロールや本文の重なりが発生しないこと。
+
+### Evidence
+
+- 実効対象の`top-legacy.css`を更新し、TOPのConcept見出し・本文・導線をローカルで確認
+- 公開Topを`top-concept-spacing-v2`クエリで読み込み、本文・導線・後続コンテンツを確認
+- Concept／Galleryの公開コンテンツと共通ナビを確認
+- `git diff --check`、JavaScript構文、編集前バックアップ、レビューZIPを確認
+- スマートフォン実機の表示・タップ確認は未確認
+
 ## Writing direction update (2026-09-12)
 
 1. FVのロゴ・説明文・Conceptラベル・Galleryの「作家紹介」が縦書きになっていること。

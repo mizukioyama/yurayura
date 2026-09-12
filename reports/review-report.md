@@ -671,6 +671,29 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 - 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施
 
+## Top Concept spacing update (2026-09-12)
+
+### Changes
+
+- TOPページのConcept見出しを本文ブロックに対して中央配置
+- 見出しサイズ、行高、字間、見出し下の余白を画面幅に応じて調整
+- 本文幅を最大680pxに制御し、行間をPC`1.9〜2.05`、スマホ`1.8〜1.95`の`clamp()`で調整
+- 本文と見出しの中央揃えを維持し、Concept導線の余白も流動値へ調整
+- 作品セクション、Conceptページ本体、Galleryは変更なし
+- 編集前コピーを`backups/20260912_before_top_concept_spacing_update/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Active CSS target | PASS | 実際にTOPが読み込む`top-legacy.css`を修正。未使用の`top-sections.css`は変更前状態へ復元 |
+| Local Top | PASS | Conceptの見出し、本文、導線、共通ナビ、後続セクションをローカルブラウザで確認 |
+| Public Top | PASS | `top-concept-spacing-v2` URLで公開Topの本文、Concept導線、作品・FAQ・Accessを確認 |
+| Concept / Gallery保全 | PASS | 公開Concept／Galleryのコンテンツとリンク構成を確認 |
+| JavaScript | PASS | `allmenu.js`、`gallery.js`の構文確認。今回JS変更なし |
+| Diff / backup | PASS | `git diff --check`、編集前バックアップ、レビューZIPを確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Body font-size range update (2026-09-12)
 
 ### Changes
