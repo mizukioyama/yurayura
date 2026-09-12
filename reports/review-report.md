@@ -1004,3 +1004,21 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Existing Contact / links | PASS | Contactフォーム、Concept／Gallery導線、共通Header／Footerを確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## FAQ answer font-size reduction (2026-09-12)
+
+- FAQ回答（`.faq-sub-txt`）だけを、共通本文サイズから2px小さくしました。
+- レスポンシブ幅を維持するため、`clamp(10px, calc(var(--responsive-copy-size) - 2px), 14px)`を使用しました。
+- FAQの質問行、見出し、Contactフォーム、開閉構造は変更していません。
+- Topの`main.css`キャッシュバスターを更新し、編集前コピーを`backups/20260912_before_faq_answer_font_size/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| FAQ answer font size | PASS | 公開Topで回答13.714px、質問行15.714pxを実測し、2px差を確認 |
+| Responsive CSS | PASS | `.faq-sub-txt`に`clamp`と共通本文サイズからの`- 2px`を確認 |
+| FAQ display / behavior | PASS | 公開Topで回答を開き、説明文と開閉状態を確認 |
+| Existing structure | PASS | FAQ4カテゴリ、Contactフォーム、Concept／Gallery導線、共通Header／Footerを確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
