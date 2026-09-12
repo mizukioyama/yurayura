@@ -104,7 +104,7 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 ## Navigation label update (2026-09-12)
 
 - Header / Footerの共通ナビは `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` に更新し、縦書き表示を確認済みです。
-- 表示順は左から `TOP → CONCEPT → GALLERY`（トップ → 世界観 → 作品）です。
+- 表示順は公開Topでも左から `TOP → CONCEPT → GALLERY`（トップ → 世界観 → 作品）です。
 - 各リンクは英語名から日本語説明までを含む1つの選択・クリック範囲です。
 - `index.html` / `concept.html` と動的パーツ取得にナビ更新用のキャッシュバスターを付けています。
 - スマートフォン実機でのタップ範囲確認は未実施です。ローカルDOMでは6リンクの範囲を確認しています。

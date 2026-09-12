@@ -198,4 +198,5 @@
 ### Public evidence
 
 - 公開Topで `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` の縦書き表示を確認
+- 公開Topで左から `TOP → CONCEPT → GALLERY` の順を確認
 - キャッシュ更新URLで再読込後も公開ブラウザのコンソールエラーは0件
