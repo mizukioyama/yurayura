@@ -102,7 +102,9 @@ function initializeHeaderMenu() {
 
   const menuLinks = header.querySelectorAll(".header-link");
 
-  let animationFrameId = null;
+  const mobileMedia = window.matchMedia(
+    "(min-width: 320px) and (max-width: 699px)"
+  );
 
   /**
    * ==========================
@@ -129,28 +131,19 @@ function initializeHeaderMenu() {
    */
 
   function setMenuState(isOpen) {
-    /*
-     * 縮小状態でない場合は開かない
-     */
-
-    const shouldOpen =
-      isOpen && header.classList.contains("is-compact");
-
-    header.classList.toggle("is-open", shouldOpen);
+    header.classList.toggle("is-open", isOpen);
 
     menuToggle.setAttribute(
       "aria-expanded",
-      String(shouldOpen)
+      String(isOpen)
     );
 
     menuToggle.setAttribute(
       "aria-label",
-      shouldOpen
-        ? "メニューを閉じる"
-        : "メニューを開く"
+      isOpen ? "メニューを閉じる" : "メニューを開く"
     );
 
-    setScrollLock(shouldOpen);
+    setScrollLock(isOpen);
   }
 
   /**
@@ -170,55 +163,36 @@ function initializeHeaderMenu() {
    */
 
   function updateHeaderState() {
+    if (!mobileMedia.matches) {
+      header.classList.remove("is-compact");
+      closeMenu();
+      return;
+    }
+
     /*
      * メニューを開いている間は
-     * スクロール判定を変更しない
+     * スクロール状態を更新しない
      */
 
     if (header.classList.contains("is-open")) {
       return;
     }
 
-    /*
-     * 画面の高さの半分を超えたら縮小
-     * PC・スマホ共通
-     */
-
-    const compactThreshold =
-      window.innerHeight * 0.9;
-
-    const shouldCompact =
-      window.scrollY >= compactThreshold;
+    const hasScrolledOneView =
+      window.scrollY >= window.innerHeight;
 
     header.classList.toggle(
       "is-compact",
-      shouldCompact
+      hasScrolledOneView
     );
 
     /*
-     * 縮小位置より上へ戻った場合
+     * ファーストビューへ戻った場合は閉じる
      */
 
-    if (!shouldCompact) {
+    if (!hasScrolledOneView) {
       closeMenu();
     }
-  }
-
-  /**
-   * ==========================
-   * スクロール処理を軽量化
-   * ==========================
-   */
-
-  function requestHeaderUpdate() {
-    if (animationFrameId !== null) {
-      return;
-    }
-
-    animationFrameId = requestAnimationFrame(() => {
-      updateHeaderState();
-      animationFrameId = null;
-    });
   }
 
   /**
@@ -277,7 +251,7 @@ function initializeHeaderMenu() {
 
   window.addEventListener(
     "scroll",
-    requestHeaderUpdate,
+    updateHeaderState,
     {
       passive: true,
     }
@@ -285,16 +259,13 @@ function initializeHeaderMenu() {
 
   /**
    * ==========================
-   * 画面サイズ変更
+   * 画面幅変更
    * ==========================
    */
 
-  window.addEventListener(
-    "resize",
-    requestHeaderUpdate,
-    {
-      passive: true,
-    }
+  mobileMedia.addEventListener(
+    "change",
+    updateHeaderState
   );
 
   /**
@@ -303,20 +274,14 @@ function initializeHeaderMenu() {
    * ==========================
    */
 
-  menuToggle.setAttribute(
-    "aria-expanded",
-    "false"
-  );
+  menuToggle.setAttribute("aria-expanded", "false");
 
-  menuToggle.setAttribute(
-    "aria-label",
-    "メニューを開く"
-  );
-
-  /*
-   * ページ再読み込み時も
-   * 現在のスクロール位置を反映
-   */
+  if (!menuToggle.hasAttribute("aria-label")) {
+    menuToggle.setAttribute(
+      "aria-label",
+      "メニューを開く"
+    );
+  }
 
   updateHeaderState();
 }

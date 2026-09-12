@@ -255,3 +255,26 @@ Topのレイアウト変更原因に対する最小の巻き戻しです。公�
 ### Judgment
 
 Topの表示崩れに対して、共有ページへ波及しない復元用CSSで以前の構成へ戻しました。公開Topの縦組み・複数カード表示、公開Concept / Galleryの表示を確認し、今回の復元を完了とします。
+
+## Header / Footer restoration (2026-09-12)
+
+### Scope
+
+TopのHeader表示状態と共通Footerの構造だけを確認・復元しました。Concept本体には着手していません。
+
+### Changes
+
+- `assets/js/allmenu.js` を以前の動作へ戻し、デスクトップではスクロール後もHeader本体を表示
+- 縮小メニューは320〜699pxのスマートフォンで、1画面分スクロールした場合だけ有効化
+- `assets/parts/header.html` / `assets/parts/footer.html` は28f69fc時点と一致しているため変更なし
+- 作業前コピーを `backups/20260912_before_header_footer_restore/` に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Desktop header | PASS | ローカルブラウザでスクロール後も左側の縦型Headerを確認 |
+| Footer | PASS | ローカルブラウザで中央の縦型Footerナビとコピーを確認 |
+| JavaScript | PASS | `node --check assets/js/allmenu.js`、ブラウザエラー0件 |
+| Concept untouched | PASS | Concept関連HTML・CSS・JSに差分なし |
+| Public deployment | PENDING | Header変更をcommit / push後に公開Topを確認する |

@@ -163,3 +163,14 @@
 - `main` のコミット `2397dd1` を公開ブラウザで確認
 - 公開TopのConceptは縦組み、Artistsは複数カードの連続表示へ復元
 - 公開Conceptは表示確認、公開Galleryは作家紹介ヒーローとナビゲーションを確認
+
+## Header / Footer restoration review (2026-09-12)
+
+1. デスクトップのスクロール後もHeader本体が左側に表示され、＋ボタンだけにならないか。
+2. Footerの中央配置、縦型ナビ、コピーライト表示が維持されているか。
+3. Conceptページに不要な変更が入っていないか。
+
+### Local evidence
+
+- デスクトップ相当のローカル表示でHeader / Footerを目視確認
+- `node --check assets/js/allmenu.js` とブラウザコンソールエラー0件を確認
