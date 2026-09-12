@@ -206,19 +206,3 @@
 .concept-page .concept-texture__copy .h2_ttl {
   text-align: center;
 }
-
-/* Concept follows the shared direction policy: FV vertical, content horizontal. */
-.concept-page .concept-fv__lead,
-.concept-page .concept-fv .fv__ttl,
-.concept-page .concept-fv .fv__txt {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.concept-page main section:not(.fv) .h2_ttl,
-.concept-page main section:not(.fv) .section__txt,
-.concept-page main section:not(.fv) .concept-eyebrow,
-.concept-page main section:not(.fv) a {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-}

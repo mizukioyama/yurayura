@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/* Top-only layout refinement for the Concept and Artists sections. */
+.top-page .section--concept .section__inner,
+.top-page .section--artists .section__inner {
+  width: min(100%, 1080px);
+}
+
+.top-page .section--concept .section__inner {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.75fr) minmax(280px, 1fr);
+  grid-template-areas:
+    "title copy"
+    "title link";
+  gap: clamp(24px, 5vw, 72px) clamp(48px, 8vw, 128px);
+  align-items: center;
+}
+
+.top-page .section--concept .h2_ttl {
+  grid-area: title;
+  align-self: start;
+  margin: 0;
+  writing-mode: horizontal-tb;
+  text-align: left;
+}
+
+.top-page .section--concept .section__txt {
+  grid-area: copy;
+  width: 100%;
+  margin: 0;
+  writing-mode: horizontal-tb;
+  line-height: 2.2;
+  text-align: left;
+}
+
+.top-page .section--concept .concept-link-wrap {
+  grid-area: link;
+  justify-self: start;
+  margin: 0;
+}
+
+.top-page .section--artists .h2_ttl {
+  width: 100%;
+  margin: 0 0 clamp(20px, 3vw, 32px);
+  writing-mode: horizontal-tb;
+  text-align: center;
+}
+
+.top-page .section--artists .section__txt {
+  width: min(100%, 520px);
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  writing-mode: horizontal-tb;
+  line-height: 2.2;
+  text-align: center;
+}
+
+.top-page .member-slider {
+  width: min(100%, 760px);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.top-page .member-track .card {
+  height: clamp(220px, 30vw, 340px);
+}
+
+.top-page .member-track .card__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.top-page .member-track .card__btn {
+  top: 24px;
+  right: 24px;
+  width: auto;
+  max-width: 40%;
+  height: auto;
+  min-height: 0;
+  padding: 0.8rem 1.1rem;
+  background: rgba(243, 243, 237, 0.84);
+  mix-blend-mode: normal;
+}
+
+.top-page #artists .section__btn {
+  width: min(100%, 520px);
+  max-width: 100%;
+  margin: clamp(28px, 4vw, 48px) auto 0;
+  padding-inline: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .top-page .section--concept .section__inner {
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .top-page .section--concept .h2_ttl {
+    align-self: center;
+    text-align: center;
+  }
+
+  .top-page .section--concept .section__txt {
+    text-align: center;
+  }
+
+  .top-page .section--concept .concept-link-wrap {
+    align-self: center;
+  }
+
+  .top-page .section--artists .h2_ttl {
+    text-align: center;
+  }
+
+  .top-page .section--artists .section__txt {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .top-page .member-slider {
+    width: 100%;
+  }
+
+  .top-page .member-track .card {
+    height: clamp(200px, 58vw, 280px);
+  }
+
+  .top-page .member-track .card__btn {
+    top: 16px;
+    right: 16px;
+    max-width: none;
+  }
+
+  .top-page #artists .section__btn {
+    width: min(100%, 280px);
+    margin-top: 28px;
+  }
+}

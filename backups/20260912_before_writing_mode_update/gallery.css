@@ -739,8 +739,7 @@ body.gallery-page .fv__ttl {
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 0.02em;
-  writing-mode: vertical-rl !important;
-  text-orientation: mixed;
+  writing-mode: horizontal-tb !important;
   white-space: nowrap;
   filter: none;
   text-shadow: none;
@@ -1002,8 +1001,7 @@ body.gallery-page .footer__small {
     top: 160px;
     left: 40px;
     font-size: clamp(28px, 5vw, 40px);
-    writing-mode: vertical-rl !important;
-    text-orientation: mixed;
+    writing-mode: horizontal-tb !important;
     white-space: nowrap;
   }
 
@@ -1129,24 +1127,4 @@ body.gallery-page #js-header .menu-toggle {
 body.gallery-page .gallery-filter-title,
 body.gallery-page .gallery-work-link h2 {
   text-align: center;
-}
-
-/* Gallery follows the shared direction policy: FV vertical, content horizontal. */
-body.gallery-page .fv__ttl,
-body.gallery-page .fv__lead {
-  writing-mode: vertical-rl !important;
-  text-orientation: mixed;
-}
-
-body.gallery-page .gallery-section,
-body.gallery-page .gallery-section .gallery-sidebar,
-body.gallery-page .gallery-section .gallery-main,
-body.gallery-page .gallery-section .gallery-intro,
-body.gallery-page .gallery-section .gallery-taxonomy,
-body.gallery-page .gallery-section .gallery-containt,
-body.gallery-page .gallery-section .gallery-content,
-body.gallery-page .gallery-section .gallery-work-link,
-body.gallery-page .gallery-section .gallery-pagination {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
 }

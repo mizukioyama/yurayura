@@ -392,8 +392,8 @@ section.section--concept {
   font-size: 1.4rem;
   line-height: 2;
   letter-spacing: 0;
-  writing-mode: horizontal-tb;
-  white-space: normal;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
 }
 
 .contact .h2-bt-txt,
@@ -422,10 +422,10 @@ section.section--concept {
 
 .section--concept .section__txt,
 .section--artists .section__txt {
-  writing-mode: horizontal-tb;
-  white-space: normal;
-  line-height: 2;
-  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+  line-height: 3.2;
+  letter-spacing: 0.4rem;
 }
 
 @media screen and (max-width: 480px) {
@@ -552,7 +552,8 @@ section.section--concept {
   mix-blend-mode: color-burn;
 }
 
-.fv__ttl {
+.fv__ttl,
+.section--concept .h2_ttl {
   writing-mode: vertical-rl;
 }
 
@@ -733,30 +734,6 @@ section.section--concept {
   .card {
     width: 420px;
   }
-}
-
-/* Writing direction: only the FV and full navigation remain vertical. */
-.fv__ttl,
-.fv__txt,
-.fv-bt-txt,
-.fv__lead,
-.concept-fv__lead {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.main section:not(.fv) .h2_ttl,
-.main section:not(.fv) .h2-bt-txt,
-.main section:not(.fv) .section__txt,
-.main section:not(.fv) .section__subttl,
-.main section:not(.fv) .faq-ttl,
-.main section:not(.fv) .faq-question,
-.main section:not(.fv) .faq-txt,
-.main section:not(.fv) .faq-ans-txt,
-.main section:not(.fv) .access-info h3,
-.main section:not(.fv) .access-txt {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
 }
 
 @media screen and (max-width: 480px) {

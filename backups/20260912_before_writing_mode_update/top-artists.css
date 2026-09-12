@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* Scoped correction for the Top page's Artists section. */
+.top-page .section--artists .section__txt {
+  align-self: center;
+  width: min(100%, 520px);
+  height: auto;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  writing-mode: horizontal-tb;
+  white-space: normal;
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.top-page .section--artists .h2_ttl-artists {
+  display: block;
+  width: max-content;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.top-page #artists .section__btn {
+  --artists-side-padding: 44px;
+  --view-button-width: clamp(480px, 36vw, 520px);
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
+  margin-top: clamp(28px, 4vw, 48px);
+  margin-right: calc(-1 * var(--artists-side-padding));
+  margin-left: calc(-1 * var(--artists-side-padding));
+  padding-inline: max(
+    0px,
+    calc(
+      (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+    )
+  );
+}
+
+.top-page .member-slider {
+  --artists-side-padding: 44px;
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
+  margin-right: calc(-1 * var(--artists-side-padding));
+  margin-left: calc(-1 * var(--artists-side-padding));
+}
+
+@media screen and (max-width: 767px) {
+  .top-page .section--artists .section__txt {
+    width: 100%;
+    margin-bottom: 28px;
+    line-height: 2;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .top-page #artists .section__btn {
+    --artists-side-padding: 40px;
+    --view-button-width: 280px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-top: 28px;
+    margin-right: calc(-1 * var(--artists-side-padding));
+    margin-left: calc(-1 * var(--artists-side-padding));
+    padding-inline: max(
+      0px,
+      calc(
+        (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+      )
+    );
+  }
+
+  .top-page .member-slider {
+    --artists-side-padding: 40px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-right: calc(-1 * var(--artists-side-padding));
+    margin-left: calc(-1 * var(--artists-side-padding));
+  }
+}
