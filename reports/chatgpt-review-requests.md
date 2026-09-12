@@ -301,3 +301,22 @@
 - scrollY0pxへ戻し、アニメーション完了後のHeader一覧再表示とメニューボタン非表示を確認
 - 公開Topで横スクロールなし、Top本文と既存ナビゲーションを確認
 - スマートフォン実機の確認は未実施
+
+## Shared Header unification and exhibitor alignment (2026-09-12)
+
+1. Top / Concept / GalleryのHeader構成が共通パーツで統一されていること。
+2. 3ページでHeaderの固定位置、縦書きナビ、`TOP / トップ`、`CONCEPT / 世界観`、`GALLERY / 作品`が揃うこと。
+3. Topの作品セクションの「出展者紹介」が中央揃えであること。
+4. Galleryの4作品、既存フィルター、横はみ出しなしを維持すること。
+
+### Local evidence
+
+- ローカルGalleryで共通HeaderのDOM、3リンク、日本語ラベル、メニューボタンを確認
+- Top / Galleryで固定位置、縦書き、左76.8px・上44.8pxの一致を確認
+- Topで「出展者紹介」の中央位置と`text-align: center`を確認
+- Galleryの作家紹介見出し、4作品、既存フィルター、横はみ出しなしを確認
+
+### Public evidence
+
+- `main`反映後に公開Top / Concept / Galleryの共通HeaderとTopの中央揃えを確認予定
+- スマートフォン実機の確認は未実施

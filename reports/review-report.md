@@ -505,3 +505,33 @@ Header JSに残っていたスクロール連動の縮小処理を、PC・モバ
 - 公開TopをscrollY0pxへ戻し、アニメーション完了後に`is-compact=false`・Header一覧表示・メニューボタン非表示を確認
 - 公開Topで横スクロールなし、Top本文と既存ナビゲーションを確認
 - スマートフォン実機でのタップ・表示確認は未実施です
+
+## Shared Header unification and exhibitor alignment (2026-09-12)
+
+### Scope
+
+Top / Conceptで使用している共通HeaderをGalleryにも適用し、3ページのHeader構成・固定位置・縦書きナビ・ラベル表示を統一しました。Topの作品セクションでは「出展者紹介」を中央揃えにしました。
+
+### Changes
+
+- Galleryの独自横長Headerを削除し、`assets/parts/header.html`を動的に読み込む共通Headerへ統一
+- Galleryに`menu-style.css`と`allmenu.js`を追加し、60％スクロール時の縮小・メニュー動作を共通化
+- Galleryの既存スタイル上書きにより発生していたHeaderの上端・全幅化を解除し、Top / Conceptと同じ固定位置へ調整
+- Topの「出展者紹介」を中央配置するTop専用CSSを追加
+- 編集前コピーを`backups/20260912_before_gallery_header_unification/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Header構造 | PASS | ローカルGalleryで共通Headerの3リンク、日本語ラベル、メニューボタンを確認 |
+| Headerレイアウト | PASS | Top / Galleryで固定位置、縦書き、Header左位置76.8px・上位置44.8pxが一致 |
+| 出展者紹介 | PASS | Topで見出し内の「出展者紹介」中央がviewport中央636pxと一致（viewport中央640px、丸め差） |
+| Gallery保全 | PASS | 作家紹介見出し、4作品、既存フィルター、横はみ出しなしを確認 |
+| JavaScript / 差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を通過 |
+| 公開反映 | PENDING | push後に公開Top / Concept / Galleryで確認 |
+
+### Public verification
+
+- 今回の変更を`main`へ反映後、3ページのHeader統一とTopの「出展者紹介」中央揃えを公開URLで確認します
+- スマートフォン実機での表示・タップ確認は未実施です

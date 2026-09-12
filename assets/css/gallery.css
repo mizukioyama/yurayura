@@ -1094,3 +1094,32 @@ body.gallery-page .footer__small {
     letter-spacing: 0.1em;
   }
 }
+
+/* Keep Gallery on the same shared Header layout as Top and Concept. */
+body.gallery-page #js-header .header {
+  top: clamp(20px, 3.5vw, 56px);
+  left: clamp(20px, 6vw, 96px);
+  width: auto;
+  z-index: 1000;
+
+  color: var(--color-txt);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body.gallery-page #js-header .header-logo-link,
+body.gallery-page #js-header .header-lead,
+body.gallery-page #js-header .header-date,
+body.gallery-page #js-header .header-link,
+body.gallery-page #js-header .menu-toggle {
+  color: var(--color-txt);
+}
+
+@media screen and (max-width: 480px) {
+  body.gallery-page #js-header .header {
+    top: 20px;
+    left: 20px;
+  }
+}

@@ -13,6 +13,13 @@
   text-align: center;
 }
 
+.top-page .section--artists .h2_ttl-artists {
+  display: block;
+  width: max-content;
+  margin-inline: auto;
+  text-align: center;
+}
+
 .top-page #artists .section__btn {
   --artists-side-padding: 44px;
   --view-button-width: clamp(480px, 36vw, 520px);

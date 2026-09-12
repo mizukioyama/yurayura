@@ -49,48 +49,16 @@
     <link rel="stylesheet" href="./assets/css/liquid.css" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260912-header-unified" />
     <link rel="stylesheet" href="./assets/css/works-list.css" />
-    <link rel="stylesheet" href="./assets/css/gallery.css?v=20260909-figma-frame" />
+    <link rel="stylesheet" href="./assets/css/gallery.css?v=20260912-header-unified" />
 
     <script src="./assets/js/font.js" defer></script>
+    <script src="./assets/js/allmenu.js?v=20260912-header-unified" defer></script>
     <script src="./assets/js/gallery.js?v=20260912-mobile-menu" defer></script>
   </head>
   <body class="gallery-page">
-    <header class="header">
-      <div class="header__inner inner">
-        <p class="header__logo">
-          <a class="header__logo-link" href="./index.html" aria-label="トップページへ">ゆらゆら</a>
-        </p>
-        <nav class="header__nav" aria-label="グローバルナビゲーション">
-          <ul class="header__list">
-            <li class="header__item"><a class="header__link" href="./index.html">TOP</a></li>
-            <li class="header__item"><a class="header__link" href="./concept.html">CONCEPT</a></li>
-            <li class="header__item"><a class="header__link" href="./gallery.html">GALLERY</a></li>
-          </ul>
-        </nav>
-        <button
-          class="header__btn js-menu"
-          type="button"
-          aria-label="メニューを開く"
-          aria-controls="drawer"
-          aria-expanded="false"
-        >
-          <span class="header__btn-line"></span>
-          <span class="header__btn-line"></span>
-          <span class="header__btn-line"></span>
-        </button>
-      </div>
-
-      <div class="drawer js-drawer" id="drawer" aria-hidden="true">
-        <nav class="drawer__nav" aria-label="スマートフォンナビゲーション">
-          <ul class="drawer__list">
-            <li class="drawer__item"><a class="drawer__link" href="./index.html">TOP</a></li>
-            <li class="drawer__item"><a class="drawer__link" href="./concept.html">CONCEPT</a></li>
-            <li class="drawer__item"><a class="drawer__link" href="./gallery.html">GALLERY</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <div id="js-header"></div>
 
     <main class="main gallery" id="main">
       <section class="fv">
