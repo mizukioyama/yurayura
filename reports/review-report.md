@@ -986,3 +986,21 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Existing links and structure | PASS | Header／Footer、Concept／Gallery導線、Contactフォームを確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## FAQ answer wording and contact category removal (2026-09-12)
+
+- FAQの回答を、日付・交通・駐車場・住所を含めて主語と説明を備えた文章へ統一しました。
+- FAQ内の「お問い合わせ」カテゴリと、その質問・回答を削除しました。
+- FAQ内の期間・アクセス・展示・主催者の4カテゴリ、Contactフォーム、既存リンクとアコーディオン構造は維持しました。
+- 編集前コピーを`backups/20260912_before_faq_answer_expansion/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Explanatory FAQ answers | PASS | ローカルおよび公開TopのAXツリーで全回答を説明文として確認 |
+| Contact FAQ category removal | PASS | 公開TopのFAQに「お問い合わせ」カテゴリと質問がないことを確認 |
+| FAQ accordion behavior | PASS | 公開Topで「展示期間」を開き、`aria-expanded="true"`を確認 |
+| Existing Contact / links | PASS | Contactフォーム、Concept／Gallery導線、共通Header／Footerを確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
