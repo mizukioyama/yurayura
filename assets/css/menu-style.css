@@ -68,6 +68,22 @@ body.is-loaded {
   position: relative;
 }
 
+/* 縦書きの見た目を左から TOP / CONCEPT / GALLERY に揃える */
+.header-item--top,
+.footer-item--top {
+  order: 3;
+}
+
+.header-item--concept,
+.footer-item--concept {
+  order: 2;
+}
+
+.header-item--gallery,
+.footer-item--gallery {
+  order: 1;
+}
+
 .header-link,
 .footer-link {
   display: inline-block;

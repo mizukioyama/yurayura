@@ -184,12 +184,14 @@
 ## Navigation label update review (2026-09-12)
 
 1. `TOP / トップページ`、`GALLERY / 作品`、`CONCEPT / 世界観` が縦書きで表示されるか。
-2. 英語名から日本語説明までが各リンク1つの選択・クリック範囲になっているか。
-3. Top・Concept・Galleryの本文と既存リンク先が変更されていないか。
+2. 左から `TOP → CONCEPT → GALLERY`（トップ → 世界観 → 作品）の順になっているか。
+3. 英語名から日本語説明までが各リンク1つの選択・クリック範囲になっているか。
+4. Top・Concept・Galleryの本文と既存リンク先が変更されていないか。
 
 ### Local evidence
 
 - Header / Footerの6リンクで、文言、`display: inline-block`、`writing-mode: vertical-rl` を確認
+- Header / Footerの左右座標で左から `TOP → CONCEPT → GALLERY` の順を確認
 - 各リンクの矩形範囲に英語名と日本語説明が含まれることをDOMで確認
 - `menu-style.css` と `allmenu.js` のキャッシュバスターを確認
 

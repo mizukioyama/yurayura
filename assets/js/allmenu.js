@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
 
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "20260912-nav-labels";
+  const PARTS_VERSION = "20260912-nav-order";
 
   const selectors = {
     header: "#js-header",

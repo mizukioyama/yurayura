@@ -298,6 +298,7 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 - `Home` を `トップページ` に変更
 - `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` の組み合わせに統一
 - 既存の `writing-mode: vertical-rl` を維持し、各リンクを `inline-block` 化して英語名から日本語説明までを1つの選択・クリック範囲に設定
+- 縦書きの表示順を左から `TOP → CONCEPT → GALLERY`（トップ → 世界観 → 作品）に調整
 - `index.html` / `concept.html` のCSS・JSキャッシュバスターと、動的パーツ取得URLを更新して公開環境の古いラベル残りを防止
 - 編集前コピーを `backups/20260912_before_nav_label_update/` に保存
 
@@ -307,6 +308,7 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 | --- | --- | --- |
 | ナビ文言 | PASS | ローカルDOMで3項目の表示名を確認 |
 | 縦書き | PASS | 6リンクすべて `writing-mode: vertical-rl` |
+| 左右順 | PASS | Header / Footerともに左から `TOP → CONCEPT → GALLERY` の矩形位置を確認 |
 | 選択範囲 | PASS | 各英語名＋日本語説明が1つの `inline-block` リンク範囲 |
 | Concept / Gallery保全 | PASS | 本文・構造・関連CSS・JSに差分なし（`index.html` / `concept.html` は読み込みURLのみ更新） |
 
@@ -314,4 +316,5 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 
 - 公開Topをキャッシュ更新URLで再読込し、3項目の日本語ラベルが更新されていることを確認
 - 公開Topのスクリーンショットで、英語名と日本語説明が縦書きで表示されることを確認
+- 公開Topのスクリーンショットで、左から `TOP → CONCEPT → GALLERY` の順を確認
 - 公開ブラウザのコンソールエラーは0件
