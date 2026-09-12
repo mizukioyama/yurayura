@@ -411,6 +411,21 @@
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## Concept feeling copy and Contact glass update (2026-09-12)
+
+1. Conceptの「A MOMENT TO FEEL／感じるということ」で、ラベル・見出し・本文が左揃えになっていること。
+2. Contactの「内容を送信する」ボタンに、TopのViewと同じ液晶ガラス表現が適用されていること。
+3. Contactボタンの通常表示が半透明・ぼかし・反射・陰影を持ち、ホバー／フォーカス時に背景色が変化すること。
+4. Contactの入力項目、FAQ、共通Header／Footer、Concept／Galleryへのリンクが維持されていること。
+
+### Evidence
+
+- ローカルConceptで対象コピーの左揃えを確認
+- 公開Conceptで対象セクションを確認
+- ローカルおよび公開TopのContact下部で送信ボタンのガラス表示を目視確認
+- 公開Topのフォーム・FAQ・共通ナビをAXツリーで確認
+- スマートフォン実機の表示・タップは未確認
+
 ## Glass effect restore and arrow glyph update (2026-09-12)
 
 レビュー時に以下を確認してください。

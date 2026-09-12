@@ -234,6 +234,15 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## Concept feeling copy and Contact glass update (2026-09-12)
+
+- [x] 「A MOMENT TO FEEL／感じるということ」のラベル・見出し・本文を左揃えにした
+- [x] Contact送信ボタンに液晶ガラス効果を適用した
+- [x] 半透明、ぼかし、反射、陰影を確認した
+- [x] 公開Conceptと公開Contactを確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機・キーボード操作で表示とフォーカスを確認する
+
 ## Glass effect restore and arrow glyph update (2026-09-12)
 
 - [x] ボタンの液晶ガラス効果を維持した

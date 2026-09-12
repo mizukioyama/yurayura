@@ -693,6 +693,24 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Concept feeling copy and Contact glass update (2026-09-12)
+
+- Conceptページの「A MOMENT TO FEEL／感じるということ」セクションについて、ラベル・見出し・本文を左揃えに統一しました。
+- Contactの送信ボタンに、TopのViewと同系統の液晶ガラス表現（半透明、ぼかし、反射、陰影、ホバー／フォーカス時の色変化）を明示的に適用しました。
+- Concept／Contactのキャッシュバスターを更新し、公開環境で新しいCSSを確実に読み込むようにしました。
+- 既存のフォーム項目、FAQ、共通ナビ、Concept／Galleryへのリンクは維持しました。
+- 編集前コピーを`backups/20260912_before_concept-text-left-contact-glass/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Concept feeling copy alignment | PASS | ローカルおよび公開Conceptで対象セクションのラベル・見出し・本文を確認 |
+| Contact submit glass effect | PASS | ローカルおよび公開TopのContact下部で半透明・ぼかし・反射を目視確認 |
+| Existing Contact / FAQ structure | PASS | 公開Topのフォーム項目、送信ボタン、FAQ、共通ナビをAXツリーで確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Glass effect restore and arrow glyph update (2026-09-12)
 
 ### Changes
