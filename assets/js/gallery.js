@@ -1,4 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.querySelector(".js-menu");
+  const drawer = document.querySelector(".js-drawer");
+
+  if (menuButton && drawer) {
+    const setMenuState = (isOpen) => {
+      drawer.classList.toggle("is-open", isOpen);
+      menuButton.classList.toggle("is-open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "メニューを閉じる" : "メニューを開く"
+      );
+      drawer.setAttribute("aria-hidden", String(!isOpen));
+      document.documentElement.style.overflow = isOpen ? "hidden" : "";
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    };
+
+    menuButton.addEventListener("click", () => {
+      setMenuState(!drawer.classList.contains("is-open"));
+    });
+
+    drawer.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuState(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && drawer.classList.contains("is-open")) {
+        setMenuState(false);
+        menuButton.focus();
+      }
+    });
+  }
+
   const cards = Array.from(document.querySelectorAll(".gallery-card"));
   const pagination = document.getElementById("galleryPagination");
   const result = document.getElementById("galleryResult");
