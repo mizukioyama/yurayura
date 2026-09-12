@@ -11,6 +11,7 @@
   --font-base: "Shippori Mincho", serif;
   --font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
   --font-btn: "Akaya Kanadaka", system-ui;
+  --page-nav-button-margin-top: clamp(28px, 3.5vw, 40px);
 }
 
 /* ========================================
@@ -1760,6 +1761,7 @@ h2 {
     --responsive-heading-2: clamp(20px, calc(0.9vw + 17px), 26px);
     --responsive-heading-3: clamp(16px, calc(0.5vw + 14px), 20px);
     --responsive-small-heading: clamp(13px, calc(0.35vw + 11.5px), 16px);
+    --page-nav-button-margin-top: clamp(24px, 5.5vw, 32px);
   }
 }
 

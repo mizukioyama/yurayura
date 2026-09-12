@@ -21,11 +21,11 @@
 }
 
 .top-page #artists .section__btn {
-  --artists-side-padding: 44px;
+  --artists-side-padding: var(--top-section-inline-padding, 44px);
   --view-button-width: clamp(480px, 36vw, 520px);
   width: calc(100% + (2 * var(--artists-side-padding)));
   max-width: calc(100% + (2 * var(--artists-side-padding)));
-  margin-top: clamp(28px, 4vw, 48px);
+  margin-top: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px));
   margin-right: calc(-1 * var(--artists-side-padding));
   margin-left: calc(-1 * var(--artists-side-padding));
   padding-inline: max(
@@ -37,28 +37,52 @@
 }
 
 .top-page .member-slider {
-  --artists-side-padding: 44px;
+  --artists-side-padding: var(--top-section-inline-padding, 44px);
   width: calc(100% + (2 * var(--artists-side-padding)));
   max-width: calc(100% + (2 * var(--artists-side-padding)));
   margin-right: calc(-1 * var(--artists-side-padding));
   margin-left: calc(-1 * var(--artists-side-padding));
 }
 
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .top-page .section--artists .section__txt {
+    width: min(100%, 520px);
+    margin-bottom: clamp(24px, 3.2vw, 40px);
+    line-height: clamp(1.9, calc(0.15vw + 1.75), 2.05);
+  }
+
+  .top-page .member-track .card {
+    width: clamp(320px, 41vw, 420px);
+    height: clamp(220px, 27vw, 280px);
+  }
+
+  .top-page .member-track .card__btn {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .top-page #artists .section__btn {
+    --artists-side-padding: var(--top-section-inline-padding, 44px);
+    --view-button-width: clamp(360px, 56vw, 520px);
+    margin-top: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px));
+  }
+}
+
 @media screen and (max-width: 767px) {
   .top-page .section--artists .section__txt {
     width: 100%;
-    margin-bottom: 28px;
-    line-height: 2;
+    margin-bottom: clamp(24px, 6vw, 32px);
+    line-height: clamp(1.85, calc(0.35vw + 1.68), 2);
     letter-spacing: 0.08em;
     text-align: center;
   }
 
   .top-page #artists .section__btn {
-    --artists-side-padding: 40px;
-    --view-button-width: 280px;
+    --artists-side-padding: var(--top-section-inline-padding, 40px);
+    --view-button-width: min(280px, calc(100vw - 40px));
     width: calc(100% + (2 * var(--artists-side-padding)));
     max-width: calc(100% + (2 * var(--artists-side-padding)));
-    margin-top: 28px;
+    margin-top: var(--page-nav-button-margin-top, clamp(24px, 5.5vw, 32px));
     margin-right: calc(-1 * var(--artists-side-padding));
     margin-left: calc(-1 * var(--artists-side-padding));
     padding-inline: max(
@@ -70,7 +94,7 @@
   }
 
   .top-page .member-slider {
-    --artists-side-padding: 40px;
+    --artists-side-padding: var(--top-section-inline-padding, 40px);
     width: calc(100% + (2 * var(--artists-side-padding)));
     max-width: calc(100% + (2 * var(--artists-side-padding)));
     margin-right: calc(-1 * var(--artists-side-padding));

@@ -3,9 +3,11 @@
 /* Top-only restoration of the pre-refinement desktop composition. */
 .top-page section.section--concept,
 .top-page section.section--artists {
+  --top-section-inline-padding: 44px;
   height: 100vh;
   min-height: 100vh;
   padding-block: 80px;
+  padding-inline: var(--top-section-inline-padding);
 }
 
 .top-page .section--concept .section__inner,
@@ -50,9 +52,14 @@
   position: relative;
   align-self: center;
   width: min(100%, 320px);
-  margin: clamp(24px, 3vw, 40px) 0 0;
+  margin: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px)) 0 0;
   padding: 10px 0;
   writing-mode: initial;
+}
+
+/* #concept has an ID-based legacy rule, so keep the page CTA margin explicit. */
+.top-page #concept .concept-link-wrap {
+  margin-top: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px));
 }
 
 .top-page .section--concept .concept-link-wrap::before {
@@ -155,12 +162,37 @@
   display: none;
 }
 
+/* Tablet: let content define the section height so long copy and the slider do not clip. */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .top-page section.section--concept,
+  .top-page section.section--artists {
+    --top-section-inline-padding: clamp(32px, 4.3vw, 44px);
+    height: auto;
+    min-height: 100vh;
+    padding-block: clamp(72px, calc(4vw + 40px), 96px);
+    padding-inline: var(--top-section-inline-padding);
+  }
+
+  .top-page .section--concept .section__inner,
+  .top-page .section--artists .section__inner {
+    height: auto;
+    justify-content: center;
+  }
+
+  .top-page .section--concept .section__txt {
+    width: min(100%, 680px);
+    line-height: clamp(1.85, calc(0.15vw + 1.75), 2.05);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .top-page section.section--concept,
   .top-page section.section--artists {
+    --top-section-inline-padding: clamp(28px, 10.25vw, 40px);
     height: auto;
     min-height: 100vh;
-    padding: 120px 40px;
+    padding-block: clamp(88px, calc(8.5vw + 57px), 120px);
+    padding-inline: var(--top-section-inline-padding);
   }
 
   .top-page .section--concept .section__inner,
@@ -191,7 +223,7 @@
 
   .top-page .section--concept .concept-link-wrap {
     align-self: center;
-    margin-top: clamp(20px, 6vw, 32px);
+    margin-top: var(--page-nav-button-margin-top, clamp(24px, 5.5vw, 32px));
   }
 
   .top-page .member-slider {
@@ -199,8 +231,8 @@
   }
 
   .top-page .member-track .card {
-    width: 280px;
-    height: 200px;
+    width: min(280px, calc(100vw - 40px));
+    height: clamp(180px, 51.3vw, 200px);
   }
 
   .top-page .member-track .card__btn {
