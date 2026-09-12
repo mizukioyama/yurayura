@@ -1063,6 +1063,27 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff / package | PASS | `node --check`、`git diff --check`、`unzip -tq`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Page-navigation CTA margin unification and Top responsive refinement (2026-09-13)
+
+- 「マージントップを統一するボタン」は、ページ遷移を行うCTAに限定しました。対象はTopの「Conceptを読む」「View」とConceptページのGallery遷移ボタンです。
+- 送信ボタン、FAQアコーディオン、ハンバーガーメニュー、Galleryの絞り込み・作品操作など、ページ内操作のボタンは今回のマージン統一対象から除外しました。
+- 共通の`--page-nav-button-margin-top`を追加し、デスクトップ／タブレットは`clamp(28px, 3.5vw, 40px)`、スマートフォンは`clamp(24px, 5.5vw, 32px)`で調整しました。既存のガラス効果・ボタン構造は維持しています。
+- Topはタブレット幅（768〜1199px）でセクション高さ、左右余白、本文幅、作品カード、Viewボタンを流動調整し、スマートフォン幅では左右余白、カード高さ、CTA幅を画面幅に合わせるルールへ整理しました。
+- 編集前の対象ファイルは`backups/20260913_before_button_margin_and_top_responsive/`へコピーして保管しています。公開反映コミットは`3a42f4f`です。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Page-navigation CTA margin | PASS | ローカル狭幅（CSS viewport 734px）でTopのConcept／Viewが32px、広幅（1280px）でConcept／View／Concept Galleryが40pxになることを確認 |
+| Top narrow layout | PASS | ローカル狭幅でTopの左右余白・カード・CTAを確認し、`clientWidth`と`scrollWidth`が一致 |
+| Top tablet rules | PASS | 768〜1199pxの専用メディアクエリ、流動余白・カード・CTA幅をソースと差分で確認。実機タブレット表示は未実施 |
+| Public Top | PASS | 公開Topで新しいCSSキャッシュバスター、Concept／Viewの40px、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 公開ConceptのGallery遷移CTA（40px）、見出し・本文、公開Galleryのタイトル・4作品・共通ナビ、横方向オーバーフローなしを確認 |
+| Existing interaction scope | PASS | 今回はページ遷移用CTAのCSSとTopのレスポンシブCSSのみを変更し、送信・FAQ・メニュー・Gallery操作のJS／構造を変更していないことを確認 |
+| Diff / package | PASS | `git diff --check`および更新後の`unzip -tq`を確認 |
+| Physical tablet / smartphone acceptance | NOT TESTED | 実機の表示・タップ、キーボード操作は未実施 |
+
 ## Opening hours exception update (2026-09-13)
 
 - FAQの開催時間を、初日（10/06）は13:00から、最終日（10/12）は13:00まで、その他の日は11:30〜20:00として更新しました。
