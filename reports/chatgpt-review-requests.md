@@ -157,3 +157,9 @@
 - `assets/css/top-legacy.css` は `.top-page` 配下だけを対象
 - ローカルブラウザでConcept / Artistsの縦組みとカード表示を目視確認
 - Concept / GalleryのHTML・CSS・JSは今回の差分なし
+
+### Public verification result
+
+- `main` のコミット `2397dd1` を公開ブラウザで確認
+- 公開TopのConceptは縦組み、Artistsは複数カードの連続表示へ復元
+- 公開Conceptは表示確認、公開Galleryは作家紹介ヒーローとナビゲーションを確認

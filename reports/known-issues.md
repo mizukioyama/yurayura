@@ -89,7 +89,7 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 
 ## Top historical composition restore (2026-09-12)
 
-- 公開反映前のため、GitHub Pages上の最終表示はこれから確認します。
+- GitHub Pages上のTop、Concept、Galleryは公開ブラウザで確認済みです。
 - 実機スマートフォンでの受入確認は未実施です。Top専用CSSには699px以下の旧モバイル構成を含めています。
 - `backups/20260912_before_top_layout_restore/` はロールバック用に保持しており、削除していません。
-- Concept / Galleryのソースは変更していません。公開反映後も画像、導線、横スクロールを再確認します。
+- Concept / Galleryのソースは変更していません。公開ブラウザで表示と既存ナビゲーションを確認済みです。

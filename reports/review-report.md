@@ -250,8 +250,8 @@ Topのレイアウト変更原因に対する最小の巻き戻しです。公�
 | Local visual layout | PASS | Concept縦組み、Artists縦組み、連続カード、背景表示をブラウザで確認 |
 | Static checks | PASS | `git diff --check`、`node --check assets/js/slide.js`、`node --check assets/js/gallery.js` |
 | Concept / Gallery source preservation | PASS | 対象ページと関連CSS・JSに差分なし |
-| Public deployment | PENDING | commit / push後に公開TopとConcept / Galleryを再確認する |
+| Public deployment | PASS | `main` の `2397dd1` を公開ブラウザで確認。Top、Concept、Galleryを再読込 |
 
 ### Judgment
 
-Topの表示崩れに対して、共有ページへ波及しない復元用CSSで以前の構成へ戻しました。公開反映後のブラウザ確認を完了条件とします。
+Topの表示崩れに対して、共有ページへ波及しない復元用CSSで以前の構成へ戻しました。公開Topの縦組み・複数カード表示、公開Concept / Galleryの表示を確認し、今回の復元を完了とします。

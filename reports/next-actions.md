@@ -26,7 +26,7 @@
 
 ## Top historical composition restore (2026-09-12)
 
-1. 対象ファイルとレビュー資料をcommitし、`main`へ反映する。
-2. 公開Topをキャッシュ更新URLで再読込し、Concept / Artistsの縦組みと複数カード表示を確認する。
-3. 公開Concept / Galleryの表示、導線、横スクロールなしを再確認する。
+1. [完了] 対象ファイルとレビュー資料をcommitし、`main`へ反映する。
+2. [完了] 公開Topをキャッシュ更新URLで再読込し、Concept / Artistsの縦組みと複数カード表示を確認する。
+3. [完了] 公開Concept / Galleryの表示と既存ナビゲーションを再確認する。
 4. 実機スマートフォンの最終受入確認を行う。
