@@ -314,15 +314,11 @@ customElements.define(
 );
 
 function bindLiquidControls() {
-  document.querySelectorAll("button:not(.js-menu)").forEach((control) => {
+  document.querySelectorAll("button:not(.js-menu):not(.faq-sub-question)").forEach((control) => {
     control.classList.add("liquid-control");
 
     if (control.classList.contains("gallery-filter")) {
       control.classList.add("liquid-control--compact");
-    }
-
-    if (control.classList.contains("faq-sub-question")) {
-      control.classList.add("liquid-control--accordion");
     }
 
     if (control.classList.contains("modal-close")) {

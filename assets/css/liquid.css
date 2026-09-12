@@ -197,6 +197,7 @@ body.top-page .contact-form .send-btn.liquid-control {
     0 25px 40px rgba(0, 0, 0, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.95),
     inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+  opacity: 1;
 }
 
 body.top-page .contact-form .send-btn.liquid-control:hover,
@@ -204,6 +205,30 @@ body.top-page .contact-form .send-btn.liquid-control:focus-visible {
   color: #f8faec;
   background: rgba(60, 70, 6, 0.82);
   transform: translateY(-3px) scale(1.02);
+}
+
+/* FAQ rows keep the original flat surface; accordion behavior remains in faq.js. */
+.section--faq .faq-sub-question.liquid-control {
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+.section--faq .faq-sub-question.liquid-control::before,
+.section--faq .faq-sub-question.liquid-control::after {
+  display: none;
+}
+
+.section--faq .faq-sub-question.liquid-control:hover,
+.section--faq .faq-sub-question.liquid-control:focus-visible {
+  color: var(--color-txt, #303a05);
+  background: transparent;
+  transform: none;
+  outline-offset: 3px;
 }
 
 @media screen and (max-width: 480px) {
