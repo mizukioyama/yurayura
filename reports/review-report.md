@@ -496,9 +496,12 @@ Header JSに残っていたスクロール連動の縮小処理を、PC・モバ
 | Header再表示 | PASS | ページ上部へ戻した際に`is-compact`解除、Header一覧表示、メニューボタン非表示を確認 |
 | 既存導線 | PASS | Headerリンクの既存クリック修正を維持 |
 | Concept / Gallery保全 | PASS | Gallery本体は変更せず、ConceptはJSキャッシュバスターのみ更新 |
-| 公開Top | PENDING | push後に公開ページで同じスクロール確認を実施 |
+| 公開Top | PASS | 公開Topで新JSを読み込み、60％閾値で縮小・上部復帰を確認 |
 
 ### Public verification
 
-- 今回の変更を`main`へ反映後、公開Topの60％スクロール縮小と上部復帰を確認します
+- `main`のコミット`49ab314`反映後、公開Topで`allmenu.js?v=20260912-header-scroll-60`の読み込みを確認
+- 公開Topのviewport高929px、閾値557.4pxで、scrollY929px時に`is-compact=true`・メニューボタン表示を確認
+- 公開TopをscrollY0pxへ戻し、アニメーション完了後に`is-compact=false`・Header一覧表示・メニューボタン非表示を確認
+- 公開Topで横スクロールなし、Top本文と既存ナビゲーションを確認
 - スマートフォン実機でのタップ・表示確認は未実施です

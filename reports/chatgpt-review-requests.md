@@ -296,5 +296,8 @@
 
 ### Public evidence
 
-- `main`反映後に公開Topで60％スクロール、Header縮小、上部復帰を確認予定
+- `main`のコミット`49ab314`反映後、公開Topで`allmenu.js?v=20260912-header-scroll-60`の読み込みを確認
+- viewport高929px、閾値557.4pxでscrollY929px時のHeader縮小とメニューボタン表示を確認
+- scrollY0pxへ戻し、アニメーション完了後のHeader一覧再表示とメニューボタン非表示を確認
+- 公開Topで横スクロールなし、Top本文と既存ナビゲーションを確認
 - スマートフォン実機の確認は未実施
