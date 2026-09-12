@@ -198,3 +198,31 @@ Macがロック中で、ブラウザのヘッドレス起動も終了したた�
 | 絞り込み・ページングDOM | PASS | Category、作家／ジャンルボタン、`galleryPagination`、`1ページ目を表示`を確認 |
 | index.htmlスライドショー | NOT TOUCHED | 今回の変更対象外 |
 | 公開URL | NOT TESTED | 公開・pushはこの作業では実行していない |
+
+## Top layout rollback (2026-09-12)
+
+### Scope
+
+公開 `mizukioyama/yurayura` の `main` を基点に、軽量化コミット `c90eeef654916011c34c120baf25055757381885` が追加したTop専用CSSの作品JPEG背景指定4件だけを除去しました。Concept / Gallery の後続修正は維持しています。
+
+### Changes
+
+- `assets/css/top-sections.css`: c90eeefの17行追加分を削除
+- `index.html`: `top-sections.css` のキャッシュバスターを `v=20260912-top-sections-rollback` へ更新
+- 編集前のCSSとindexを `backups/20260912_before_top_layout_rollback/` に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 正常時点CSS一致 | PASS | 作業後blob `9822daa41968281a66bfcedc39da329ba6ea91e9` が `28f69fc:assets/css/top-sections.css` と一致 |
+| c90差分限定 | PASS | c90eeefはTop CSSの17行追加のみ。今回その逆差分を適用 |
+| 差分空白 | PASS | `git diff --check` |
+| Concept / Gallery保全 | PASS | `concept.html` / `gallery.html` と関連CSS・JSは未変更 |
+| JavaScript構文 | PASS | `node --check assets/js/slide.js`、`node --check assets/js/gallery.js` |
+| 公開main基点 | PASS | `origin/main` は `b92d12b5c49b494512ce3fa23b60f773dab22d7b` |
+| 公開Topレイアウト | PENDING | push後にGitHub Pagesの反映を待って確認 |
+
+### Judgment
+
+Topのレイアウト変更原因に対する最小の巻き戻しです。公開反映後にTopの作品カード、Concept、Artists、3ページ導線を再確認します。

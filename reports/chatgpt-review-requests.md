@@ -121,3 +121,17 @@
 - ローカルブラウザでスマホ相当幅の左寄せタイトル、1列作品、246×320px画像を目視確認
 - DOM上で作家／ジャンルカテゴリと自動生成された`1ページ目を表示`を確認
 - HTMLタグスタック検査、`node --check assets/js/gallery.js`、`git diff --check`を実行
+
+## Top layout rollback review (2026-09-12)
+
+1. 公開Topで軽量化前の作品カード画像とカードレイアウトへ戻っているか。
+2. TopのConcept / Artistsの見出し、本文、導線、スライダー表示が維持されているか。
+3. CSSキャッシュバスター更新後に旧Top CSSが残らず読み込まれているか。
+4. ConceptページとGalleryページの画像、ナビゲーション、既存導線が変更されていないか。
+
+### Evidence
+
+- `assets/css/top-sections.css` の作業後blobが28f69fc時点と一致
+- c90eeef追加分17行を対象に限定して巻き戻し
+- `git diff --check`、JavaScript構文確認を実施
+- 公開URL確認はpushおよびGitHub Pages反映後に実施

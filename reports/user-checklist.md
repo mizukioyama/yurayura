@@ -80,3 +80,13 @@
 - [x] 編集前バックアップを`backups/`に作成した
 - [ ] 実機スマートフォンと公開URLで最終確認する
 - [ ] 公開・commit・pushの要否を確認する
+
+## Top layout rollback (2026-09-12)
+
+- [x] `assets/css/top-sections.css` が28f69fc時点の内容と一致する
+- [x] c90eeef追加分のTop作品JPEG背景指定4件だけを除去する
+- [x] Top CSSのキャッシュバスターを更新する
+- [x] Concept / Galleryの後続変更を保持する
+- [ ] 公開Topで軽量化前のレイアウトへ戻ったことを確認する
+- [ ] 公開Concept / Galleryの表示と導線に影響がないことを確認する
+- [ ] 実機スマートフォンで最終確認する
