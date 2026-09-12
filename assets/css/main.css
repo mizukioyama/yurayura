@@ -1179,7 +1179,7 @@ FAQ
   padding: 0 1.5rem;
   overflow: hidden;
   color: var(--color-txt);
-  font-size: var(--responsive-copy-size);
+  font-size: clamp(10px, calc(var(--responsive-copy-size) - 2px), 14px);
   line-height: 2;
   letter-spacing: 0.08em;
 }
