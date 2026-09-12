@@ -318,6 +318,34 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 - 公開Topの本文、Concept導線、Gallery導線が表示され、既存構成が維持されていることを確認
 - 公開ブラウザ上の確認URLは`nav-top-verify-20260912-r4`
 
+## Header / Footer label alignment (2026-09-12)
+
+### Scope
+
+Header / Footerのナビ項目だけを対象に、英語ラベル・日本語ラベルの開始位置と区切り線の位置・高さを共通化しました。Top / Concept / Galleryの本文とリンク先は変更していません。
+
+### Changes
+
+- 3項目すべてのリンク領域を共通高さに固定し、デスクトップ371px、スマートフォン220pxへ調整
+- 英語ラベルと日本語ラベルを個別要素として同じ基準位置に配置
+- 区切り線を共通位置へ配置し、高さをデスクトップ30px、スマートフォン15pxで統一
+- 英語名＋日本語説明が1つの選択・クリック範囲になる構成を維持
+- 編集前コピーを`backups/20260912_before_nav_alignment_update/`に保存
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 文字の開始位置 | PASS | Header / Footerの6リンクで英語Y座標と日本語Y座標がそれぞれ一致 |
+| リンク領域の高さ | PASS | 6リンクすべて371px（デスクトップ相当） |
+| 線の位置・高さ | PASS | 6本すべて同一基準位置・高さ30px |
+| 既存導線 | PASS | `TOP / トップ`、`CONCEPT / 世界観`、`GALLERY / 作品`のhrefを維持 |
+| ブラウザエラー | PASS | ローカルブラウザのエラー0件 |
+
+### Public verification
+
+- `main`への反映後、公開Topの一意URLで最終配置を確認する
+
 ## Navigation label update (2026-09-12)
 
 ### Scope

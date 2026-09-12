@@ -218,3 +218,15 @@
 - `main`へのpush成功は確認済み（`fc50724`）
 - 公開TopのアクセシビリティツリーでHeader / Footerの`トップ`、`世界観`、`作品`を確認
 - 公開Topの本文とConcept / Galleryへの既存リンクが表示されることを確認
+
+## Header / Footer label alignment review (2026-09-12)
+
+1. `トップ - TOP`、`世界観 - CONCEPT`、`作品 - GALLERY`の英語・日本語ラベルの開始位置が揃っていること。
+2. 3項目の区切り線が同じ高さ・長さで揃っていること。
+3. 各項目が1つのリンク範囲で、Top / Concept / Galleryの既存リンク先を維持していること。
+4. Top / Concept / Gallery本文へ影響がないこと。
+
+### Local evidence
+
+- Header / Footerの6リンクで、リンク高さ、英語・日本語ラベルのY座標、線のY座標・高さを測定
+- ローカルブラウザのエラー0件を確認

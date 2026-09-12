@@ -66,6 +66,7 @@ body.is-loaded {
 .header-item,
 .footer-item {
   position: relative;
+  height: clamp(280px, 29vw, 372px);
 }
 
 /* 縦書きの見た目を左から TOP / CONCEPT / GALLERY に揃える */
@@ -86,8 +87,13 @@ body.is-loaded {
 
 .header-link,
 .footer-link {
-  display: inline-block;
+  position: relative;
 
+  display: block;
+
+  box-sizing: border-box;
+  width: 58px;
+  height: 100%;
   padding: 1rem;
 
   font-size: 1rem;
@@ -99,14 +105,31 @@ body.is-loaded {
 }
 
 .menu-small {
-  margin-top: 100px;
+  position: absolute;
+  top: 72%;
+  left: 50%;
+
+  margin-top: 0;
 
   font-size: 1rem;
+  white-space: nowrap;
+
+  transform: translateX(-50%);
+}
+
+.menu-en {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+
+  white-space: nowrap;
+
+  transform: translateX(-50%);
 }
 
 .menu-border {
   position: absolute;
-  top: 30%;
+  top: 56%;
   left: 50%;
 
   width: 1px;
@@ -264,7 +287,8 @@ body.is-menu-open {
 }
 
 .header.is-compact.is-open .menu-small {
-  margin-top: 100px;
+  top: 72%;
+  margin-top: 0;
 }
 
 /* ========================================
@@ -309,6 +333,11 @@ body::after {
 ======================================== */
 
 @media screen and (max-width: 480px) {
+  .header-item,
+  .footer-item {
+    height: 220px;
+  }
+
   .header {
     top: 20px;
     left: 20px;
@@ -343,6 +372,8 @@ body::after {
 
   .header-link,
   .footer-link {
+    width: 44px;
+    height: 220px;
     padding: 4px;
 
     font-size: 0.8rem;
@@ -354,8 +385,6 @@ body::after {
   }
 
   .menu-small {
-    margin-top: 40px;
-
     font-size: 0.7rem;
   }
 
@@ -377,7 +406,8 @@ body::after {
   }
 
   .header.is-compact.is-open .menu-small {
-    margin-top: 100px;
+    top: 72%;
+    margin-top: 0;
   }
 }
 
