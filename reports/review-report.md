@@ -967,3 +967,22 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Existing links / behavior | PASS | 共通ナビ、Concept／Gallery導線、Contact、FAQ構造を確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## FAQ content creation (2026-09-12)
+
+- FAQ内の購入・発送・領収書カテゴリと、その質問・回答を削除しました。Contactフォームにある既存の問い合わせ種別「購入について」は今回のFAQ範囲外のため維持しています。
+- 既存の展示期間・開催時間・会場アクセス・主催者情報を維持しました。
+- 「展示について」と「お問い合わせ」を追加し、展示の趣旨、Galleryへの案内、問い合わせ方法を説明しました。
+- FAQのHTML構造、アコーディオン開閉、既存のリンクとボタンを維持しました。
+- 編集前コピーを`backups/20260912_before_faq_content_creation/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| FAQ content | PASS | ローカルおよび公開Topで新しい5カテゴリと追加回答を確認 |
+| Purchase/goods FAQ removal | PASS | 公開TopのFAQに購入・支払い・発送・領収書のカテゴリ／質問がないことを確認 |
+| FAQ accordion behavior | PASS | 追加した「どのような展示ですか？」を開き、`aria-expanded="true"`を確認 |
+| Existing links and structure | PASS | Header／Footer、Concept／Gallery導線、Contactフォームを確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
