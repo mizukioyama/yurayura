@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const year = document.getElementById("js-year");
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
   const menuButton = document.querySelector(".js-menu");
   const drawer = document.querySelector(".js-drawer");
 
