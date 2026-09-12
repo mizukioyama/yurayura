@@ -602,3 +602,33 @@ Top / Concept / Galleryのすべての`h2`を中央寄せへ統一し、TopのQ&
 - 公開Concept / Galleryで全`h2`の中央寄せ、共通Header、横はみ出しなしを確認
 - 公開Topの検証後は通常表示へ戻した
 - スマートフォン実機での表示確認は未実施
+
+## FAQ title and answer revision (2026-09-12)
+
+### Scope
+
+Topの「よくある質問」を中央寄せにし、サイト内に既にある会場・開催・購入情報を基に回答を整理しました。グッズ関連FAQは追加せず、既存の購入FAQは作品購入に関する内容として維持しています。
+
+### Changes
+
+- 「よくある質問」の見出しを中央寄せに固定
+- アクセスFAQへ、サイト内の会場住所を追加
+- 開催時間、購入方法、支払い、発送、領収書、企画背景の回答を読みやすく修正
+- 「下記From」を「下記フォーム」へ修正
+- 編集前コピーを`backups/20260912_before_faq_copy_and_title_fix/`に保存
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| FAQ見出し | PASS | `よくある質問`の`text-align:center`を確認 |
+| FAQ構成 | PASS | 4分類、11項目の回答を確認 |
+| 追加情報 | PASS | 会場住所をアクセスFAQへ追加し、Access欄の既存情報と一致 |
+| 回答文 | PASS | 誤字修正と開催・購入関連回答の表示を確認 |
+| 既存内容 | PASS | グッズFAQなし、購入方法・発送・領収書FAQを維持 |
+| 横はみ出し | PASS | ローカルTopで横スクロールなしを確認 |
+
+### Public verification
+
+- `main`反映後、公開TopでFAQ見出し、分類、回答、会場住所を確認する
+- スマートフォン実機での表示確認は未実施
