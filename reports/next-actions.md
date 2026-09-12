@@ -172,6 +172,15 @@
 4. [完了] ローカル表示と公開表示を確認する。
 5. スマートフォン実機で縦書きFVの収まり、メニュー、CTAのタップを確認する。
 
+## All content buttons liquid unification (2026-09-12)
+
+1. [完了] TopのConcept導線をViewと同じ`liquid-button`へ統一する。
+2. [完了] Galleryの絞り込み・ページ移動へ液晶グラス表示を適用する。
+3. [完了] FAQ、問い合わせ、モーダル操作の見た目を統一し、機能を維持する。
+4. [完了] ローカル表示、構文、レビューZIPを確認する。
+5. [完了] push後に公開Top／Concept／Galleryの表示を確認する。
+6. スマートフォン実機で表示・タップを確認する。
+
 ## Concept FV label removal (2026-09-12)
 
 1. [完了] ConceptページFV中央の「Concept」ラベルを削除する。

@@ -234,6 +234,16 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## All content buttons liquid unification (2026-09-12)
+
+- [x] TopのConcept導線をViewと同じ`liquid-button`にした
+- [x] Galleryの絞り込み・ページ移動を液晶グラス表示にした
+- [x] FAQ・問い合わせ・モーダル操作の機能を維持した
+- [x] ConceptのGallery CTAと共通ナビを維持した
+- [x] 編集前バックアップとレビューZIPを更新した
+- [x] 公開Top／Concept／Galleryの最終表示を確認した
+- [ ] スマートフォン実機で表示・タップを確認する
+
 ## Concept FV label removal (2026-09-12)
 
 - [x] FV中央の「Concept」ラベルを削除した

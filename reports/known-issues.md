@@ -226,6 +226,14 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開ConceptのPCブラウザ表示は確認済みです。
 - スマートフォン実機での表示・タップは未確認です。
 
+## All content buttons liquid unification (2026-09-12)
+
+- ページ内のCTA・操作ボタンをTopのViewと同系統の液晶グラス表示へ統一しました。
+- ハンバーガーはメニュー専用の操作構造を維持するため、View型への置換対象外です。
+- ネイティブ操作ボタンは機能保持のため`button`要素のままです。
+- 公開TopのConcept導線と公開Galleryの絞り込みボタンをpush後に確認済みです。
+- スマートフォン実機での表示・タップは未確認です。
+
 ## Concept FV vertical restore (2026-09-12)
 
 - ConceptページのFVは縦書きへ戻しました。前回記録の「Concept FV横書き」は今回の修正で置き換えています。

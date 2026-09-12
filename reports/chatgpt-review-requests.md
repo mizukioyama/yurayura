@@ -411,6 +411,27 @@
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## All content buttons liquid unification (2026-09-12)
+
+1. TopのConcept導線がTopのViewと同じ`liquid-button`構成であること。
+2. Galleryの絞り込み・ページ移動が液晶グラス表示になっていること。
+3. FAQ開閉、問い合わせ送信、モーダル操作の機能が維持されていること。
+4. ConceptのGallery CTAと共通Header／Footerが維持されていること。
+5. ハンバーガーのメニュー開閉を含む既存の専用操作が壊れていないこと。
+
+### Evidence
+
+- ローカルTopのConcept導線・FAQ、Galleryの操作ボタンを表示確認
+- ローカル3ページでリンク、作品一覧、FAQ構造、共通ナビを確認
+- `liquid-button.js`でネイティブ操作ボタンへ共通反応を付与し、既存の操作要素は保持
+- `git diff --check`、JavaScript構文、編集前バックアップを確認
+- スマートフォン実機の表示・タップ確認は未確認
+
+### Public addendum
+
+- push後、公開TopのConcept導線と公開Galleryの絞り込みボタンを新しい液晶グラス表示で確認
+- 公開3ページのリンク、作品一覧、FAQ構造、共通ナビを確認
+
 ## Concept FV label removal (2026-09-12)
 
 1. ConceptページFV中央の「Concept」ラベルだけが削除されていること。

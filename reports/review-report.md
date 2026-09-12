@@ -693,6 +693,33 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+### Public addendum
+
+- push後、公開TopのConcept導線と公開Galleryの絞り込みボタンを新しい液晶グラス表示で確認しました。
+- 公開Top／Concept／Galleryのリンク、作品一覧、FAQ構造、共通ナビを確認しました。
+
+## All content buttons liquid unification (2026-09-12)
+
+### Changes
+
+- TopのConcept導線をTopのViewと同じ`liquid-button`構成へ統一しました。
+- Galleryの絞り込み・ページ移動、TopのFAQ・問い合わせ送信・モーダル操作を、Viewと同系統の液晶グラス表示へ統一しました。
+- ネイティブ操作が必要なボタンは`button`要素と既存JSを維持し、共通の液晶グラスCSS／マウス反応を適用しました。
+- ハンバーガーボタンは既存のメニュー開閉構造を維持するため対象外としました。
+- 編集前コピーを`backups/20260912_before_all_buttons_liquid_unification/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Top | PASS | Concept導線とViewの`liquid-button`、FAQ・問い合わせ系ボタンを確認 |
+| Concept | PASS | Gallery CTAの`liquid-button`と共通ナビを確認 |
+| Gallery | PASS | 絞り込み・ページ移動の液晶グラス表示、作品一覧、共通ナビを確認 |
+| Existing behavior | PASS | FAQ開閉、Galleryの初期作品表示、既存リンク構造を確認 |
+| JavaScript | PASS | `liquid-button.js`、`gallery.js`、`faq.js`、`form.js`の構文確認 |
+| Diff / package | PASS | `git diff --check`、レビューZIPの整合性、編集前バックアップを確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Concept FV label removal (2026-09-12)
 
 ### Changes
