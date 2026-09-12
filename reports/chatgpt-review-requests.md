@@ -427,5 +427,7 @@
 
 ### Public evidence
 
-- push後、公開3ページで`font-scale-v2`の読み込みと表示を確認する
+- `main`のコミット`b72deb2`反映後、公開3ページで`font-scale-v2`の読み込みを確認
+- 公開Top / Concept / Galleryで文字サイズ、h2中央寄せ、横幅を確認
+- 公開Topの本文15.7px、公開Galleryのカテゴリ15px・紹介文18px・作品情報15.7pxを確認
 - スマートフォン実機の表示・タップ確認は未確認

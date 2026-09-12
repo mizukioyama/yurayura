@@ -696,5 +696,9 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 
 ### Public verification
 
-- `main`反映後、公開3ページで`font-scale-v2`の読み込みと表示を確認する
+- `main`のコミット`b72deb2`反映後、公開3ページで`font-scale-v2`の読み込みを確認
+- 公開Topで本文15.7px、FAQ本文15.7px、h2 31px、FAQ見出し19.3pxを確認
+- 公開Conceptで本文15.7px、h2 3件の中央寄せを確認
+- 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報15.7pxを確認
+- 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施
