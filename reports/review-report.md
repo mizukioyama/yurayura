@@ -693,6 +693,26 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Concept FV vertical restore (2026-09-12)
+
+### Changes
+
+- ConceptページのFVを縦書きへ戻しました。
+- FV以外のConcept本文・見出し・CTAは、前回の横書き／中央寄せを維持しました。
+- ConceptページのCSSキャッシュバスターを`concept-fv-vertical-v1`へ更新しました。
+- 編集前コピーを`backups/20260912_before_concept_fv_vertical_restore/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Source direction | PASS | Concept FVの見出し・タイトル・本文を`vertical-rl`、FV以外を`horizontal-tb`で確認 |
+| Local Concept | PASS | FVの縦書き表示、共通ナビ、FV以外の本文、Gallery CTAを確認 |
+| Public Concept | PASS | 公開URLの安定表示でFVの縦書き、共通ナビ、Concept本文、Gallery CTAを確認 |
+| JavaScript | PASS | `liquid-button.js`、`allmenu.js`の構文確認 |
+| Diff / backup | PASS | `git diff --check`、編集前バックアップを確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Top Concept spacing update (2026-09-12)
 
 ### Changes

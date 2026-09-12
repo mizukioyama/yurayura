@@ -411,6 +411,21 @@
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## Concept FV vertical restore (2026-09-12)
+
+1. ConceptページのFV（CONCEPT、タイトル、FV本文）が縦書きであること。
+2. FV以外のConcept本文・見出し・Gallery CTAが横書き／中央寄せのままであること。
+3. 共通Header／Footerの縦書きメニューとリンクが維持されていること。
+4. Conceptページの既存文章・画像・Galleryリンクが維持されていること。
+5. 公開ページで新しいConcept CSSが読み込まれていること。
+
+### Evidence
+
+- ローカルConceptでFVの縦書き表示と、FV以外の本文・CTAを確認
+- 公開Conceptで安定表示後のFV、共通ナビ、本文、Gallery CTAを確認
+- `git diff --check`、JavaScript構文、編集前バックアップを確認
+- スマートフォン実機の表示・タップ確認は未確認
+
 ## Body font-size range update (2026-09-12)
 
 1. 本文の指定範囲がモバイル`12〜14px`、タブレット`13〜15px`、デスクトップ`14〜16px`であること。

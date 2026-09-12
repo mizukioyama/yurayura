@@ -234,6 +234,15 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## Concept FV vertical restore (2026-09-12)
+
+- [x] ConceptページのFVを縦書きへ戻した
+- [x] FV以外のConcept本文・見出し・CTAを横書き／中央寄せのまま維持した
+- [x] 共通Header／Footerの縦書きメニューを維持した
+- [x] 公開ConceptでFVの縦書き表示を確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機で表示・タップを確認する
+
 ## Top Concept spacing update (2026-09-12)
 
 - [x] TOP Conceptの見出しが本文に対して中央配置されている
