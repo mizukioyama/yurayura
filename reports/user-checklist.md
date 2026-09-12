@@ -23,6 +23,16 @@
 - [ ] 320〜480px相当で横スクロールや文字・画像の重なりがない
 - [ ] 実機スマートフォンで最終確認する
 
+## Top historical composition restore (2026-09-12)
+
+- [x] `assets/css/top-sections.css` が28f69fc時点の内容と一致する
+- [x] Top専用復元CSSでConceptの縦組みを復元する
+- [x] Top専用復元CSSでArtistsの縦組みと420×280pxカードを復元する
+- [x] Concept / Galleryのソース差分を発生させない
+- [ ] 公開Topで復元後のレイアウトを確認する
+- [ ] 公開Concept / Galleryに影響がないことを再確認する
+- [ ] 実機スマートフォンで最終確認する
+
 公開URLのHTTP 200、Concept表示、Top導線、3ページナビ、Gallery導線は確認済みです。上記チェック欄の未完了項目は、ユーザー側の実機受入確認用です。
 
 ## Loading animation

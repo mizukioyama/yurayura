@@ -143,3 +143,17 @@
 - 公開Conceptで本文、作品画像3点、Gallery導線、横スクロールなしを確認
 - 公開Galleryで4作品、ページネーション、3ページナビ、横スクロールなしを確認
 - Top / Concept / Galleryの公開コンソールエラーは0件
+
+## Top historical composition restore review (2026-09-12)
+
+1. 公開TopのConceptが以前の縦組みレイアウトへ戻っているか。
+2. 公開TopのArtistsが縦組み本文、420×280pxカード、複数カードの連続表示へ戻っているか。
+3. Top専用復元CSSがConcept / Galleryへ影響していないか。
+4. キャッシュバスターにより公開環境で最新のTop復元CSSが読み込まれているか。
+
+### Evidence
+
+- `assets/css/top-sections.css` は28f69fc時点と一致
+- `assets/css/top-legacy.css` は `.top-page` 配下だけを対象
+- ローカルブラウザでConcept / Artistsの縦組みとカード表示を目視確認
+- Concept / GalleryのHTML・CSS・JSは今回の差分なし

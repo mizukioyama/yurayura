@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/* Top-only restoration of the pre-refinement desktop composition. */
+.top-page section.section--concept,
+.top-page section.section--artists {
+  height: 100vh;
+  min-height: 100vh;
+  padding-block: 80px;
+}
+
+.top-page .section--concept .section__inner,
+.top-page .section--artists .section__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-page .section--concept .h2_ttl {
+  align-self: center;
+  width: auto;
+  height: auto;
+  margin-bottom: 30px;
+  writing-mode: vertical-rl;
+  text-align: center;
+  white-space: normal;
+}
+
+.top-page .section--concept .section__txt {
+  align-self: center;
+  width: auto;
+  height: auto;
+  margin: 0;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+  line-height: 3.2;
+  letter-spacing: 0.4rem;
+  text-align: initial;
+}
+
+.top-page .section--concept .concept-link-wrap {
+  align-self: center;
+  width: auto;
+  margin: 2.4rem 0 0;
+  writing-mode: initial;
+}
+
+.top-page .section--artists .h2_ttl {
+  align-self: center;
+  width: auto;
+  height: auto;
+  margin-bottom: 30px;
+  writing-mode: initial;
+  text-align: center;
+  white-space: normal;
+}
+
+.top-page .section--artists .section__txt {
+  align-self: center;
+  width: auto;
+  height: auto;
+  margin: 0 0 20px;
+  writing-mode: vertical-rl;
+  white-space: pre-line;
+  line-height: 2;
+  letter-spacing: 0.4rem;
+  text-align: initial;
+}
+
+.top-page .artists-bg-img {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  background: url("../img/bg-img.webp") center / cover no-repeat;
+}
+
+.top-page .artists-bg-img .section__bg-img {
+  width: 100%;
+  height: 120vh;
+  mix-blend-mode: lighten;
+  opacity: 0.4;
+}
+
+.top-page .member-slider {
+  position: relative;
+  width: 80%;
+  max-width: none;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.top-page .member-track {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+}
+
+.top-page .member-track .card {
+  flex: 0 0 auto;
+  width: 420px;
+  max-width: none;
+  height: 280px;
+}
+
+.top-page .member-track .card__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.top-page .member-track .card__btn {
+  top: 0;
+  right: 20px;
+  width: auto;
+  max-width: 100px;
+  height: 100%;
+  min-height: 280px;
+  padding: 1.4rem;
+  background: var(--color-bg);
+  mix-blend-mode: plus-lighter;
+}
+
+.top-page #artists .section__btn {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: 0;
+}
+
+@media screen and (max-width: 699px) {
+  .top-page section.section--concept,
+  .top-page section.section--artists {
+    height: auto;
+    min-height: 100vh;
+    padding: 120px 40px;
+  }
+
+  .top-page .section--concept .section__inner,
+  .top-page .section--artists .section__inner {
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .top-page .section--concept .h2_ttl {
+    writing-mode: initial;
+  }
+
+  .top-page .section--concept .section__txt,
+  .top-page .section--artists .section__txt {
+    width: 100%;
+    height: auto;
+    writing-mode: horizontal-tb;
+    white-space: normal;
+    line-height: 2;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+
+  .top-page .section--concept .concept-link-wrap {
+    align-self: center;
+  }
+
+  .top-page .member-slider {
+    width: 94%;
+  }
+
+  .top-page .member-track .card {
+    width: 280px;
+    height: 200px;
+  }
+
+  .top-page .member-track .card__btn {
+    min-width: 70px;
+    min-height: 100%;
+    height: min-content;
+    padding: 1rem;
+  }
+}

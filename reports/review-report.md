@@ -226,3 +226,32 @@ Macがロック中で、ブラウザのヘッドレス起動も終了したた�
 ### Judgment
 
 Topのレイアウト変更原因に対する最小の巻き戻しです。公開Topの作品カード、Concept、Artists、3ページ導線を確認済みです。公開Concept / Galleryも表示・導線・横スクロールなしを確認しました。
+
+## Top historical composition restore (2026-09-12)
+
+### Root cause
+
+前回の画像差し替え分を戻しても、`main.css` に残る全体向けレスポンシブ規則と `top-sections.css` のレイアウト上書きがTopへ適用され続けていました。そのため、Concept／Artistsが横組み・中央寄せの構成になり、Artistsのカードが一枚の大きな表示になっていました。
+
+### Changes
+
+- `assets/css/top-sections.css` は28f69fc時点の内容を保持し、c90eeefのJPEG背景指定も戻した状態を維持
+- `assets/css/top-legacy.css` を追加し、Topだけに以前の縦組み、100vhセクション、420×280pxカード、15px間隔の連続スライダーを適用
+- `index.html` はTop専用復元CSSのキャッシュバスターを追加し、`top-page`スコープを復元
+- Concept / GalleryのHTML・CSS・JSは変更なし
+- 編集前コピーは `backups/20260912_before_top_layout_restore/` に保持
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Historical Top CSS | PASS | `top-sections.css` が28f69fc時点のblobと一致 |
+| Top-only scope | PASS | 復元CSSの全セレクタを `.top-page` 配下に限定 |
+| Local visual layout | PASS | Concept縦組み、Artists縦組み、連続カード、背景表示をブラウザで確認 |
+| Static checks | PASS | `git diff --check`、`node --check assets/js/slide.js`、`node --check assets/js/gallery.js` |
+| Concept / Gallery source preservation | PASS | 対象ページと関連CSS・JSに差分なし |
+| Public deployment | PENDING | commit / push後に公開TopとConcept / Galleryを再確認する |
+
+### Judgment
+
+Topの表示崩れに対して、共有ページへ波及しない復元用CSSで以前の構成へ戻しました。公開反映後のブラウザ確認を完了条件とします。
