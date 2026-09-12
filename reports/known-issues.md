@@ -227,6 +227,12 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開TopのContactとFAQ表示は確認済みです。
 - スマートフォン実機と各ブラウザのフォーカス表示は未確認です。
 
+## Contact cursor-position hover correction (2026-09-12)
+
+- Contact送信ボタンは、他のガラスボタンと同じく`--mx`／`--my`に基づくホバー濃淡へ統一しています。
+- FAQアコーディオン行は引き続き平面表示です。
+- 公開ブラウザでの表示確認は済んでいますが、実機でのホバー相当操作は未確認です。
+
 ## Concept feeling copy and Contact glass update (2026-09-12)
 
 - 「A MOMENT TO FEEL／感じるということ」セクションのラベル・見出し・本文は左揃えにしています。

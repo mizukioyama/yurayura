@@ -917,3 +917,19 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | FAQ behavior | PASS | FAQの開閉状態とアクセシブルなボタン構造を確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## Contact cursor-position hover correction (2026-09-12)
+
+- Contact送信ボタンのホバー背景を、他のガラスボタンと同じカーソル位置基準の放射グラデーションへ修正しました。
+- `liquid-button.js`のポインター座標を利用し、ボタン上の位置に応じて濃淡が移動します。
+- FAQアコーディオン行は引き続きガラス処理の対象外です。
+- キャッシュバスターを`20260912-contact-faq-hover-v4`へ更新しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Contact hover gradient | PASS | カーソル位置変数を使うホバー背景をソースで確認し、公開Contact表示を確認 |
+| FAQ flat surface | PASS | FAQボタンを共通ガラス処理から除外した状態をローカル／公開で確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |

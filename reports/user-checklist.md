@@ -243,6 +243,14 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機・キーボード操作で表示とフォーカスを確認する
 
+## Contact cursor-position hover correction (2026-09-12)
+
+- [x] 送信ボタンのホバー背景をカーソル位置基準にした
+- [x] 送信ボタンのガラス効果を維持した
+- [x] FAQの平面表示を維持した
+- [x] 公開TopでContactとFAQを確認した
+- [ ] スマートフォン実機でホバー相当操作とフォーカスを確認する
+
 ## Concept feeling copy and Contact glass update (2026-09-12)
 
 - [x] 「A MOMENT TO FEEL／感じるということ」のラベル・見出し・本文を左揃えにした
