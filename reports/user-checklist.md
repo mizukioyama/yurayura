@@ -31,6 +31,7 @@
 - [x] 公開TopでHeader / Footerを確認する
 - [x] `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` を縦書きにする
 - [x] 英語名から日本語説明までを各リンクの選択範囲にする
+- [x] 公開Topでナビ文言と縦書き表示を確認する
 - [ ] スマートフォン実機でメニューを確認する
 
 ## Top historical composition restore (2026-09-12)

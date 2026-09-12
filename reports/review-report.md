@@ -309,3 +309,9 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 | 縦書き | PASS | 6リンクすべて `writing-mode: vertical-rl` |
 | 選択範囲 | PASS | 各英語名＋日本語説明が1つの `inline-block` リンク範囲 |
 | Concept / Gallery保全 | PASS | 本文・構造・関連CSS・JSに差分なし（`index.html` / `concept.html` は読み込みURLのみ更新） |
+
+### Public verification
+
+- 公開Topをキャッシュ更新URLで再読込し、3項目の日本語ラベルが更新されていることを確認
+- 公開Topのスクリーンショットで、英語名と日本語説明が縦書きで表示されることを確認
+- 公開ブラウザのコンソールエラーは0件
