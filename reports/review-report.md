@@ -277,4 +277,12 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 | Footer | PASS | ローカルブラウザで中央の縦型Footerナビとコピーを確認 |
 | JavaScript | PASS | `node --check assets/js/allmenu.js`、ブラウザエラー0件 |
 | Concept untouched | PASS | Concept関連HTML・CSS・JSに差分なし |
-| Public deployment | PENDING | Header変更をcommit / push後に公開Topを確認する |
+| Public deployment | PASS | push後の公開Topを再読込し、左側の縦型Header、中央のFooter、公開ブラウザのエラー0件を確認 |
+
+### Public verification
+
+- 公開URL `https://mizukioyama.github.io/yurayura/index.html` を再読込して確認
+- デスクトップ表示でHeader本体の `TOP / CONCEPT / GALLERY` が左側に表示され、＋ボタンだけにならないことを確認
+- ページ末尾でFooterの中央縦型ナビとコピーライトを確認
+- 公開ブラウザのコンソールエラーは0件
+- Concept本体とGalleryの既存表示・導線は今回のHeader復元で変更していない

@@ -28,7 +28,7 @@
 - [x] デスクトップでスクロール後もHeader本体が表示される
 - [x] Footerの中央縦型ナビとコピーライトを維持する
 - [x] Concept本体に変更を加えていない
-- [ ] 公開TopでHeader / Footerを確認する
+- [x] 公開TopでHeader / Footerを確認する
 - [ ] スマートフォン実機でメニューを確認する
 
 ## Top historical composition restore (2026-09-12)

@@ -174,3 +174,9 @@
 
 - デスクトップ相当のローカル表示でHeader / Footerを目視確認
 - `node --check assets/js/allmenu.js` とブラウザコンソールエラー0件を確認
+
+### Public evidence
+
+- 公開Topを再読込し、デスクトップの左側に `TOP / CONCEPT / GALLERY` のHeader本体が表示されることを確認
+- ページ末尾で中央の縦型Footerナビとコピーライトを確認
+- 公開ブラウザのコンソールエラーは0件
