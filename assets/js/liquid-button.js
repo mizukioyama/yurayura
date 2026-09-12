@@ -214,19 +214,20 @@ class LiquidButton extends HTMLElement {
 }
 
 .arrow{
-  display:inline-grid;
-  width:1.35em;
-  height:1.35em;
-  place-items:center;
-  border:1px solid currentColor;
-  border-radius:.08em;
-  line-height:1;
-  transition:transform var(--duration) ease, background-color var(--duration) ease;
+  display:inline-block;
+  width:.68em;
+  height:.68em;
+  flex:0 0 .68em;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);
+  transform-origin:center;
+  transition:transform var(--duration) ease;
 }
 
 .wrapper:hover .arrow,
 .wrapper:focus-visible .arrow{
-  transform:translateX(.35em);
+  transform:translateX(.35em) rotate(-45deg);
 }
 
 .highlight{
@@ -275,7 +276,7 @@ ${href ? `href="${href}"` : ""}>
 <div class="noise"></div>
 
 <span class="label">
-${labelText}${arrow ? `<span class="arrow">${arrow}</span>` : ""}
+${labelText}${arrow ? '<span class="arrow" aria-hidden="true"></span>' : ""}
 </span>
 
 </${tag}>
