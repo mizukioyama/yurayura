@@ -181,6 +181,15 @@
 5. [完了] push後に公開Top／Concept／Galleryの表示を確認する。
 6. スマートフォン実機で表示・タップを確認する。
 
+## Button background removal and hover update (2026-09-12)
+
+1. [完了] 通常時の全ページ内ボタン背景とガラス効果を削除する。
+2. [完了] Topの表示を`View →`へ変更する。
+3. [完了] ホバー／フォーカス時の背景色変化と矢印の右移動を追加する。
+4. [完了] FAQ、問い合わせ、モーダル、Gallery操作の既存機能を維持する。
+5. [完了] 公開Top／Concept／Galleryを確認する。
+6. スマートフォン実機で表示、ホバー相当のタップ、折り返しを確認する。
+
 ## Concept FV label removal (2026-09-12)
 
 1. [完了] ConceptページFV中央の「Concept」ラベルを削除する。

@@ -693,6 +693,32 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Button background removal and hover update (2026-09-12)
+
+### Changes
+
+- 全ページの通常時ボタン背景とガラス効果を削除し、背景なしの状態へ統一
+- Topの作品導線を`View →`へ変更
+- ホバー／キーボードフォーカス時のみ背景色を表示し、文字色を反転
+- 矢印付きCTAの矢印が右へ移動するアニメーションを追加
+- Galleryの選択中ボタンは背景を使わず、枠線と文字の強調で状態を表示
+- FAQ、問い合わせ、モーダル、Gallery絞り込み／ページ移動の既存機能を維持
+- ハンバーガーボタンは専用メニュー構造のため変更対象外
+- `button-hover-v1`へキャッシュバスターを更新し、編集前コピーを保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Source behavior | PASS | 通常時`background: transparent`、ホバー時背景色、矢印移動指定を確認 |
+| Local Top | PASS | `View →`表示、作品導線、Concept導線を確認 |
+| Local Concept / Gallery / FAQ | PASS | CTA、絞り込み、ページ移動、FAQボタンを確認 |
+| Public pages | PASS | 公開Top／Concept／Galleryを`button-hover-v1-verify-20260912-r2`で確認 |
+| Existing behavior | PASS | 共通ナビ、Galleryリンク、FAQの折りたたみ構造を確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Backup / review package | PASS | 編集前バックアップを保存し、レビュー資料を更新 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・ホバー／タップ確認は未実施 |
+
 ### Public addendum
 
 - push後、公開TopのConcept導線と公開Galleryの絞り込みボタンを新しい液晶グラス表示で確認しました。

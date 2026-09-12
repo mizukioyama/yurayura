@@ -234,6 +234,18 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## Button background removal and hover update (2026-09-12)
+
+- [x] 通常時の全ページ内ボタン背景とガラス効果を削除した
+- [x] Topの作品導線を`View →`へ変更した
+- [x] ホバー／フォーカス時の背景色変化を追加した
+- [x] 矢印が右へ移動するアニメーションを追加した
+- [x] Galleryの選択中状態を背景なしで表示した
+- [x] FAQ、問い合わせ、モーダル、Gallery操作を維持した
+- [x] 公開Top／Concept／Galleryで反映を確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機で表示、ホバー相当のタップ、折り返しを確認する
+
 ## All content buttons liquid unification (2026-09-12)
 
 - [x] TopのConcept導線をViewと同じ`liquid-button`にした
