@@ -566,5 +566,8 @@ Top / Conceptで使用している共通HeaderをGalleryにも適用し、3ペ�
 
 ### Public verification
 
-- `main`への反映後、公開Top / Concept / Galleryで展開レイアウト、開閉、リンク遷移を再確認する
+- `main`のコミット`d9d2c13`反映後、公開Top / Concept / Galleryで新しいCSS / JSキャッシュバスターの読み込みを確認
+- 公開3ページで展開時の`gap:40px`、`padding:0`、縦書き、3リンクの順序・文言を確認
+- 公開3ページでハンバーガー開閉、`aria-expanded`、スクロールロック、横はみ出しなしを確認
+- 公開Topの検証後は通常表示へ戻した
 - スマートフォン実機での表示・タップ確認は未実施
