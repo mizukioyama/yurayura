@@ -143,7 +143,14 @@
 
 .liquid-control:hover {
   color: #f8faec;
-  background: rgba(60, 70, 6, 0.82);
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(93, 105, 20, 0.88),
+      rgba(60, 70, 6, 0.82) 48%,
+      rgba(60, 70, 6, 0.72) 100%
+    ),
+    rgba(60, 70, 6, 0.82);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -203,7 +210,14 @@ body.top-page .contact-form .send-btn.liquid-control {
 body.top-page .contact-form .send-btn.liquid-control:hover,
 body.top-page .contact-form .send-btn.liquid-control:focus-visible {
   color: #f8faec;
-  background: rgba(60, 70, 6, 0.82);
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(93, 105, 20, 0.88),
+      rgba(60, 70, 6, 0.82) 48%,
+      rgba(60, 70, 6, 0.72) 100%
+    ),
+    rgba(60, 70, 6, 0.82);
   transform: translateY(-3px) scale(1.02);
 }
 
