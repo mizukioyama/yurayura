@@ -440,3 +440,26 @@ Topページの作品（Artists）セクションだけを対象に、見出し�
 - 公開Topで背景URLが既存の `assets/img/bg-img.webp` のままであることを確認
 - 公開Concept / Galleryでは `top-artists.css` が読み込まれていないことを確認
 - スマートフォン実機での最終受入確認は未実施
+
+## Artists full-width backgrounds (2026-09-12)
+
+### Scope
+
+作品セクションのボタン背景帯とスライドショー表示領域を、セクション左右余白の外側まで広げ、画面幅100%に合わせました。説明文の中央寄せ、カード内容、既存背景画像は維持しています。
+
+### Changes
+
+- `assets/css/top-artists.css` でボタン背景帯を画面幅いっぱいに設定
+- `assets/css/top-artists.css` でスライドショー表示領域を画面幅いっぱいに設定
+- ボタン本体はデスクトップ520px、スマートフォン280pxの中央配置を維持
+- 編集前コピーを `backups/20260912_before_artists_full_width_fix/` に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| ボタン背景帯 | PASS | ローカル表示で作品セクションの左端・右端が画面表示領域に一致 |
+| スライドショー | PASS | ローカル表示でスライドショーの左端・右端が画面表示領域に一致 |
+| 背景維持 | PASS | 既存 `btn-bg-img.webp` と `bg-img.webp` の指定を維持 |
+| 横はみ出し | PASS | ローカル表示で `scrollWidth` と `clientWidth` が一致 |
+| 公開Top | PENDING | push後のGitHub Pages反映を確認する |

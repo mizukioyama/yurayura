@@ -14,10 +14,27 @@
 }
 
 .top-page #artists .section__btn {
-  width: min(100%, 520px);
-  max-width: 100%;
-  margin: clamp(28px, 4vw, 48px) auto 0;
-  padding-inline: 0;
+  --artists-side-padding: 44px;
+  --view-button-width: clamp(480px, 36vw, 520px);
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
+  margin-top: clamp(28px, 4vw, 48px);
+  margin-right: calc(-1 * var(--artists-side-padding));
+  margin-left: calc(-1 * var(--artists-side-padding));
+  padding-inline: max(
+    0px,
+    calc(
+      (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+    )
+  );
+}
+
+.top-page .member-slider {
+  --artists-side-padding: 44px;
+  width: calc(100% + (2 * var(--artists-side-padding)));
+  max-width: calc(100% + (2 * var(--artists-side-padding)));
+  margin-right: calc(-1 * var(--artists-side-padding));
+  margin-left: calc(-1 * var(--artists-side-padding));
 }
 
 @media screen and (max-width: 699px) {
@@ -30,7 +47,26 @@
   }
 
   .top-page #artists .section__btn {
-    width: min(100%, 280px);
+    --artists-side-padding: 40px;
+    --view-button-width: 280px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
     margin-top: 28px;
+    margin-right: calc(-1 * var(--artists-side-padding));
+    margin-left: calc(-1 * var(--artists-side-padding));
+    padding-inline: max(
+      0px,
+      calc(
+        (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
+      )
+    );
+  }
+
+  .top-page .member-slider {
+    --artists-side-padding: 40px;
+    width: calc(100% + (2 * var(--artists-side-padding)));
+    max-width: calc(100% + (2 * var(--artists-side-padding)));
+    margin-right: calc(-1 * var(--artists-side-padding));
+    margin-left: calc(-1 * var(--artists-side-padding));
   }
 }
