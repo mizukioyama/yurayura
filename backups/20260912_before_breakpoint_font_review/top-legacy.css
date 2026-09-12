@@ -132,7 +132,7 @@
   padding-inline: 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 699px) {
   .top-page section.section--concept,
   .top-page section.section--artists {
     height: auto;

@@ -729,7 +729,7 @@ section.section--concept {
   background: url("../img/202326.webp") center / cover no-repeat;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 481px) and (max-width: 1335px) {
   .img-box,
   .card {
     width: 420px;
@@ -1290,12 +1290,9 @@ Access
   }
 }
 
-/* Section text: a readable fluid scale shared by all pages. */
+/* Section text: responsive horizontal typesetting */
 :root {
-  --responsive-copy-size: clamp(14px, calc(0.25vw + 13px), 16px);
-  --responsive-heading-2: clamp(20px, calc(0.8vw + 16px), 30px);
-  --responsive-heading-3: clamp(16px, calc(0.45vw + 14px), 22px);
-  --responsive-small-heading: clamp(14px, calc(0.25vw + 13px), 18px);
+  --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
 }
 
 .section--artists .section__inner {
@@ -1328,6 +1325,37 @@ Access
   font-size: var(--responsive-copy-size);
   line-height: 2;
   letter-spacing: 0.08em;
+}
+
+@media screen and (max-width: 375px) {
+  :root {
+    --responsive-copy-size: clamp(12px, calc(2vw + 6px), 14px);
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 480px) {
+  :root {
+    --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
+  :root {
+    --responsive-copy-size: clamp(12px, calc(0.5vw + 11.5px), 14px);
+  }
+}
+
+@media screen and (min-width: 1336px) {
+  :root {
+    --responsive-copy-size: clamp(12px, calc(0.25vw + 10.67px), 14px);
+  }
+}
+
+/* Heading text: responsive clamp scale */
+:root {
+  --responsive-heading-2: clamp(18px, calc(1vw + 14px), 28px);
+  --responsive-heading-3: clamp(14px, calc(0.6vw + 12px), 20px);
+  --responsive-small-heading: clamp(12px, calc(0.5vw + 10px), 16px);
 }
 
 h1.fv__ttl {
@@ -1378,7 +1406,7 @@ h3.faq-ttl,
 
 /* ========================================
   Canonical responsive layout
-  <=767 / 768-1199 / >=1200
+  <=375 / 376-480 / 481-1335 / >=1336
 ======================================== */
 
 html,
@@ -1419,12 +1447,7 @@ section {
   height: clamp(200px, 24vw, 350px);
 }
 
-@media screen and (max-width: 767px) {
-  .body_bg-img {
-    width: 100vw;
-    height: 92vh;
-  }
-
+@media screen and (max-width: 375px) {
   section {
     justify-content: flex-start;
     padding-block: clamp(72px, calc(7vw + 48px), 96px);
@@ -1488,7 +1511,71 @@ section {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 376px) and (max-width: 480px) {
+  section {
+    justify-content: flex-start;
+    padding-block: clamp(72px, calc(7vw + 48px), 96px);
+  }
+
+  section.section--concept {
+    padding-block: clamp(96px, calc(8vw + 80px), 160px);
+  }
+
+  .sp {
+    display: block;
+  }
+
+  .pc-br {
+    display: none;
+  }
+
+  .sp-br {
+    display: inline;
+  }
+
+  .section__inner {
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .card {
+    width: 280px;
+    height: 200px;
+  }
+
+  .card__btn {
+    min-width: 70px;
+    min-height: 100%;
+    height: min-content;
+    padding: 1rem;
+  }
+
+  .map {
+    width: 100%;
+    height: 200px;
+  }
+
+  .acs-box {
+    display: block;
+  }
+
+  .access-info {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1335px) {
   section {
     justify-content: center;
     padding-block: 80px;
@@ -1589,7 +1676,7 @@ section {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1336px) {
   section {
     justify-content: center;
   }
@@ -1604,10 +1691,10 @@ section {
 }
 
 /* ========================================
-  Tablet refinement: 768px〜1199px
+  Tablet refinement: 481px〜1335px
 ======================================== */
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 481px) and (max-width: 1335px) {
   section:not(.fv) {
     padding-block: clamp(64px, calc(3vw + 48px), 96px);
   }

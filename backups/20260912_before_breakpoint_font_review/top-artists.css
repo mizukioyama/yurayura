@@ -44,7 +44,7 @@
   margin-left: calc(-1 * var(--artists-side-padding));
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 699px) {
   .top-page .section--artists .section__txt {
     width: 100%;
     margin-bottom: 28px;

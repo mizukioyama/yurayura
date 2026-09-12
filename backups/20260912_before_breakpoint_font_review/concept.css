@@ -167,7 +167,7 @@
   .concept-texture__copy .section__txt,
   .concept-gallery-link .section__txt {
     width: 100%;
-    font-size: var(--responsive-copy-size);
+    font-size: 14px;
     line-height: 2;
     text-align: left;
   }

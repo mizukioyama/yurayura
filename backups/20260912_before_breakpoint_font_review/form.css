@@ -526,10 +526,11 @@ input:focus {
 
 /* ========================================
   Canonical responsive form layout
-  <=767 / 768-1199 / >=1200
+  <=375 / 376-480 / 481-1335 / >=1336
 ======================================== */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 375px),
+  screen and (min-width: 376px) and (max-width: 480px) {
   .contact-check-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, auto);
@@ -545,15 +546,10 @@ input:focus {
     width: 100%;
     min-width: 0;
   }
-
-  .contact-form input[type="text"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    padding: 8px 10px;
-  }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 1335px),
+  screen and (min-width: 1336px) {
   .contact-check-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, auto);
@@ -582,7 +578,7 @@ input:focus {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 481px) and (max-width: 1335px) {
   .contact-form input[type="text"],
   .contact-form input[type="email"] {
     min-height: clamp(42px, 4vw, 52px);

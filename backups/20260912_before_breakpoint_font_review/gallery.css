@@ -136,7 +136,7 @@
   color: var(--color-bg);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 699px) {
   .gallery-section .section__inner {
     padding-inline: 0;
   }
@@ -352,7 +352,7 @@ body.gallery-page .gallery-page-button[aria-current="page"] {
   color: #242424;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 700px) and (max-width: 1199px) {
   body.gallery-page .gallery-section .section__inner {
     margin: 12rem auto 0;
   }
@@ -363,7 +363,7 @@ body.gallery-page .gallery-page-button[aria-current="page"] {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 699px) {
   body.gallery-page .gallery-section {
     padding-inline: 1rem;
   }
@@ -578,7 +578,7 @@ body.gallery-page .gallery-page-line {
   margin-top: 5rem;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 701px) and (max-width: 1199px) {
   body.gallery-page .gallery-containt {
     width: min(100%, calc(100vw - 2rem));
     max-width: 100%;
@@ -591,7 +591,7 @@ body.gallery-page .gallery-page-line {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 700px) {
   body.gallery-page .gallery-section {
     padding: 5rem 2.5rem 15rem;
   }
@@ -766,7 +766,7 @@ body.gallery-page .gallery-main {
 body.gallery-page .gallery-intro {
   width: min(100%, 665px);
   margin: 0 auto 100px;
-  font-size: clamp(15px, calc(0.3vw + 14px), 18px);
+  font-size: 18px;
   line-height: 1.8;
   text-align: left;
 }
@@ -779,7 +779,7 @@ body.gallery-page .gallery-taxonomy p {
 body.gallery-page .gallery-taxonomy {
   width: 100%;
   margin: 0 0 40px;
-  font-size: clamp(15px, calc(0.3vw + 14px), 18px);
+  font-size: 18px;
   line-height: 1.8;
 }
 
@@ -861,7 +861,7 @@ body.gallery-page .gallery-work-link p {
   color: var(--gallery-ink);
   background: none;
   font-family: "Zen Maru Gothic", sans-serif;
-  font-size: var(--responsive-copy-size);
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: 0;
@@ -932,8 +932,8 @@ body.gallery-page .gallery-sidebar .gallery-filter {
 }
 
 body.gallery-page .gallery-sidebar__label,
-body.gallery-page .gallery-sidebar .gallery-filter-title {
-  font-size: clamp(13px, calc(0.2vw + 12px), 15px);
+body.gallery-page .gallery-filter-title {
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.8;
 }
@@ -951,7 +951,7 @@ body.gallery-page .gallery-sidebar .gallery-filter {
   border-bottom: 1px solid transparent;
   border-radius: 0;
   background: transparent;
-  font-size: clamp(13px, calc(0.2vw + 12px), 15px);
+  font-size: 14px;
   line-height: 1.8;
   opacity: 0.45;
 }
@@ -1035,13 +1035,13 @@ body.gallery-page .footer__small {
     width: 300px;
     max-width: 100%;
     margin-bottom: 100px;
-    font-size: clamp(13px, calc(0.8vw + 10px), 15px);
+    font-size: 12px;
     line-height: 1.8;
   }
 
   body.gallery-page .gallery-taxonomy {
     margin-bottom: 80px;
-    font-size: clamp(13px, calc(0.8vw + 10px), 15px);
+    font-size: 14px;
     line-height: 1.8;
   }
 
@@ -1076,7 +1076,7 @@ body.gallery-page .footer__small {
 
   body.gallery-page .gallery-work-link h2,
   body.gallery-page .gallery-work-link p {
-    font-size: clamp(13px, calc(0.8vw + 10px), 15px);
+    font-size: 14px;
     line-height: 1.3;
   }
 

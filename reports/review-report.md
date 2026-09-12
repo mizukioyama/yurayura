@@ -634,3 +634,35 @@ Topの「よくある質問」を中央寄せにし、サイト内に既にあ�
 - 公開TopでFAQ見出し中央寄せ、4分類・11項目、会場住所、修正文、グッズ関連FAQなしを確認
 - 公開Topで横スクロールなしを確認
 - スマートフォン実機での表示確認は未実施
+
+## Breakpoint and font-size calibration (2026-09-12)
+
+### Scope
+
+Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイズを確認し、既存レイアウトを保ったまま切り替え条件を整理しました。
+
+### Changes
+
+- モバイルを`767px以下`、タブレットを`768px〜1199px`、デスクトップを`1200px以上`に統一
+- TopのConcept / Artists、Galleryの旧`699px / 700px`境界を`767px / 768px`へ統一
+- `375px / 376px / 480px / 481px / 1335px / 1336px`で分割していた本文スケールを、共通`clamp()`へ整理
+- 共通本文を`14px〜16px`、h2を`20px〜30px`、h3を`16px〜22px`の範囲で画面幅に合わせて調整
+- Galleryのカテゴリ見出し、紹介文、作品名・作者名も流動値へ調整
+- 480px以下のHeaderなど、狭い画面専用の操作余白は維持
+- 編集前コピーを`backups/20260912_before_breakpoint_font_review/`に保存
+- CSSキャッシュバスターを`responsive-calibration`へ更新
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Top | PASS | 新キャッシュバスター、h2中央寄せ、FAQ11項目を確認 |
+| Concept | PASS | h2 3件の中央寄せ、本文16px、横はみ出しなしを確認 |
+| Gallery | PASS | h2 6件の中央寄せ、カテゴリ見出し約14.6px、本文約17.8px、横はみ出しなしを確認 |
+| JavaScript | PASS | `faq.js`、`allmenu.js`、`gallery.js`、`slide.js`の構文確認 |
+| Package | PASS | レビューZIPの整合性を確認 |
+
+### Public verification
+
+- `main`反映後、公開3ページで新キャッシュバスターと表示を確認する
+- スマートフォン実機での表示・タップ確認は未実施
