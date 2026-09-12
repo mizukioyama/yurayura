@@ -1062,3 +1062,22 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Concept / Gallery impact | PASS | 公開Concept／Galleryのタイトル、本文、作品一覧、共通ナビを確認 |
 | JavaScript / diff / package | PASS | `node --check`、`git diff --check`、`unzip -tq`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## Opening hours exception update (2026-09-13)
+
+- FAQの開催時間を、初日（10/06）は13:00から、最終日（10/12）は13:00まで、その他の日は11:30〜20:00として更新しました。
+- 下部の会場情報も「通常日」「初日」「最終日」「LightUp」の4行に整理し、FAQと同じ時間案内に統一しました。
+- 初日・最終日・通常日の時間は、既存方針どおり重要情報として太字を維持しました。LightUpは20:00〜21:00のままです。
+- 編集前コピーを`backups/20260913_before_opening_hours_update/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| FAQ opening hours | PASS | 公開Topの「開催時間」を開き、初日・最終日・通常日の説明文を確認 |
+| Venue information hours | PASS | 公開Topの会場情報で4行の営業時間表示を確認 |
+| Emphasis / accordion | PASS | 時間4箇所の`<strong>`と、開いた状態の`aria-expanded="true"`を確認 |
+| Existing content / structure | PASS | FAQ4カテゴリ、アクセス案内、FAQ内の「お問い合わせ」カテゴリなしを確認 |
+| Concept / Gallery impact | PASS | 変更対象外であること、および既存の公開表示を確認 |
+| JavaScript / diff / package | PASS | `node --check`、`git diff --check`、`unzip -tq`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
