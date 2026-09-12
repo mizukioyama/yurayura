@@ -75,7 +75,7 @@
   }
 }
 
-/* Native controls use the same liquid-glass treatment as Top's View button. */
+/* Native controls are quiet at rest and gain a color cue on interaction. */
 .liquid-control {
   --liquid-radius: 42px;
   position: relative;
@@ -89,64 +89,36 @@
   overflow: hidden;
   border: 0;
   border-radius: var(--liquid-radius);
-  color: #f8faec;
+  color: var(--color-txt, #303a05);
   font: inherit;
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  background: rgba(60, 70, 6, 0.68);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  box-shadow:
-    0 25px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
   isolation: isolate;
-  transition: transform 0.4s, box-shadow 0.4s;
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
 }
 
 .liquid-control::before {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.95),
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.05)
-  );
-  content: "";
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
+  display: none;
 }
 
 .liquid-control::after {
-  position: absolute;
-  right: 10%;
-  bottom: -20px;
-  left: 10%;
-  z-index: 0;
-  height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.9), transparent);
-  content: "";
-  filter: blur(15px);
-  opacity: 0.8;
-  pointer-events: none;
+  display: none;
 }
 
 .liquid-control:hover {
-  transform: translateY(-3px) scale(1.02);
+  color: #f8faec;
+  background: var(--color-shadow-green, #3c4606);
+  transform: translateY(-2px);
 }
 
 .liquid-control:focus-visible {
-  outline: 2px solid var(--color-txt, #303a05);
+  color: #f8faec;
+  background: var(--color-shadow-green, #3c4606);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -174,46 +146,67 @@
   border-color: currentColor;
 }
 
-/* Keep Gallery's sidebar controls in the same glass family despite its legacy overrides. */
+/* Keep Gallery's controls transparent at rest despite its legacy overrides. */
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control {
   width: 100%;
   min-width: 5rem;
   min-height: 2.4rem;
   padding: 0.6rem 1rem;
-  border: 0;
+  border: 1px solid currentColor;
   border-radius: var(--liquid-radius);
-  color: #f8faec;
+  color: var(--gallery-ink, var(--color-txt, #303a05));
   text-align: center;
-  background: rgba(60, 70, 6, 0.68);
+  background: transparent;
   opacity: 1;
   text-shadow: none;
 }
 
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:hover,
-body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible,
-body.gallery-page .gallery-sidebar .gallery-filter.liquid-control.is-active {
-  border-color: transparent;
+body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible {
+  border-color: var(--color-shadow-green, #3c4606);
   color: #f8faec;
-  background: rgba(60, 70, 6, 0.82);
+  background: var(--color-shadow-green, #3c4606);
   opacity: 1;
   text-shadow: none;
+}
+
+body.gallery-page .gallery-sidebar .gallery-filter.liquid-control.is-active {
+  border-color: var(--color-shadow-green, #3c4606);
+  color: var(--color-shadow-green, #3c4606);
+  background: transparent;
+  font-weight: 600;
 }
 
 body.gallery-page .gallery-page-button.liquid-control {
   min-width: 5rem;
   min-height: 2.4rem;
   padding: 0.6rem 1rem;
-  border: 0;
+  border: 1px solid currentColor;
   border-radius: var(--liquid-radius);
-  color: #f8faec;
-  background: rgba(60, 70, 6, 0.68);
+  color: var(--gallery-ink, var(--color-txt, #303a05));
+  background: transparent;
 }
 
 body.gallery-page .gallery-page-button.liquid-control:hover,
-body.gallery-page .gallery-page-button.liquid-control:focus-visible,
-body.gallery-page .gallery-page-button.liquid-control[aria-current="page"] {
+body.gallery-page .gallery-page-button.liquid-control:focus-visible {
   color: #f8faec;
-  background: rgba(60, 70, 6, 0.82);
+  background: var(--color-shadow-green, #3c4606);
+}
+
+body.gallery-page .gallery-page-button.liquid-control[aria-current="page"] {
+  color: var(--color-shadow-green, #3c4606);
+  background: transparent;
+  font-weight: 600;
+}
+
+.liquid-control--accordion:hover .faq-sub-icon,
+.liquid-control--accordion:focus-visible .faq-sub-icon {
+  transform: translateX(0.35rem) rotate(45deg);
+}
+
+.faq-sub-item.is-open .liquid-control--accordion:hover .faq-sub-icon,
+.faq-sub-item.is-open .liquid-control--accordion:focus-visible .faq-sub-icon {
+  transform: translateX(0.35rem) rotate(-135deg);
 }
 
 @media (prefers-reduced-motion: reduce) {

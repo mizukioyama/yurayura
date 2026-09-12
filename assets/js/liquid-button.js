@@ -25,10 +25,16 @@ class LiquidButton extends HTMLElement {
 
   render() {
 
-    const text =
+    const rawText =
       this.getAttribute("text") ||
       this.textContent ||
       "Button";
+
+    const arrowMatch = rawText.match(/(\s*)([→↗])$/);
+    const labelText = arrowMatch
+      ? rawText.slice(0, arrowMatch.index).trimEnd()
+      : rawText;
+    const arrow = arrowMatch ? arrowMatch[2] : "";
 
     const href =
       this.getAttribute("href");
@@ -55,14 +61,6 @@ class LiquidButton extends HTMLElement {
   --blur:30px;
 
   --duration:.4s;
-
-  --light-bg:
-    rgba(255,255,255,.18);
-
-  --dark-bg:
-    rgba(25,25,25,.18);
-
-  --btn-color: #F8FAEC;
 
   display:inline-block;
 
@@ -109,80 +107,36 @@ class LiquidButton extends HTMLElement {
 
   border-radius:var(--radius);
 
-  color:${theme === "dark" ? "#fff" : "var(--btn-color)"};
+  color:${theme === "dark" ? "#fff" : "var(--color-txt, #303a05)"};
 
-  backdrop-filter:
-    blur(var(--blur))
-    saturate(180%);
-
-  -webkit-backdrop-filter:
-    blur(var(--blur))
-    saturate(180%);
-
-  background:
-    ${theme === "dark"
-      ? "var(--dark-bg)"
-      : "var(--light-bg)"};
+  background:transparent;
 
   transition:
     transform var(--duration),
-    box-shadow var(--duration);
-
-  box-shadow:
-
-    0 25px 40px
-    rgba(0,0,0,.08),
-
-    inset 0 1px 1px
-    rgba(255,255,255,.95),
-
-    inset 0 -10px 20px
-    rgba(0,0,0,.05);
+    background-color var(--duration),
+    color var(--duration);
 
 }
 
 .wrapper::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  border-radius:inherit;
-
-  padding:2px;
-
-  background:
-
-  linear-gradient(
-
-    180deg,
-
-    rgba(255,255,255,.95),
-
-    rgba(255,255,255,.3),
-
-    rgba(255,255,255,.05)
-
-  );
-
-  -webkit-mask:
-    linear-gradient(#000 0 0)
-    content-box,
-
-    linear-gradient(#000 0 0);
-
-  -webkit-mask-composite:xor;
-
-  pointer-events:none;
+  display:none;
 }
 
 .wrapper:hover{
 
+  color:#f8faec;
+  background:var(--color-shadow-green, #3c4606);
+
   transform:
-    translateY(-3px)
-    scale(1.02);
+    translateY(-2px);
+}
+
+.wrapper:focus-visible{
+
+  color:#f8faec;
+  background:var(--color-shadow-green, #3c4606);
+  outline:2px solid currentColor;
+  outline-offset:4px;
 }
 
 .sm{
@@ -213,80 +167,32 @@ class LiquidButton extends HTMLElement {
   font-weight:300;
 
   letter-spacing:.05em;
+
+  display:inline-flex;
+  align-items:center;
+  gap:.55em;
+}
+
+.arrow{
+  display:inline-block;
+  transition:transform var(--duration) ease;
+}
+
+.wrapper:hover .arrow,
+.wrapper:focus-visible .arrow{
+  transform:translateX(.35em);
 }
 
 .highlight{
-
-  position:absolute;
-
-  inset:-50%;
-
-  background:
-
-  radial-gradient(
-
-    circle at var(--mx,50%)
-    var(--my,50%),
-
-    rgba(255,255,255,.95),
-
-    rgba(255,255,255,.3) 20%,
-
-    transparent 50%
-
-  );
-
-  filter:blur(20px);
-
-  pointer-events:none;
+  display:none;
 }
 
 .caustics{
-
-  position:absolute;
-
-  bottom:-20px;
-  left:10%;
-
-  width:80%;
-  height:60px;
-
-  background:
-
-  radial-gradient(
-
-    ellipse,
-
-    rgba(255,255,255,.9),
-
-    transparent
-
-  );
-
-  filter:blur(15px);
-
-  opacity:.8;
+  display:none;
 }
 
 .noise{
-
-  position:absolute;
-
-  inset:0;
-
-  opacity:.03;
-
-  background-image:
-
-  radial-gradient(
-    #fff 1px,
-    transparent 1px
-  );
-
-  background-size:
-    4px 4px;
-
-  mix-blend-mode:overlay;
+  display:none;
 }
 
 </style>
@@ -302,7 +208,7 @@ ${href ? `href="${href}"` : ""}>
 <div class="noise"></div>
 
 <span class="label">
-${text}
+${labelText}${arrow ? `<span class="arrow">${arrow}</span>` : ""}
 </span>
 
 </${tag}>

@@ -56,10 +56,7 @@
 }
 
 .top-page .section--concept .concept-link-wrap::before {
-  position: absolute;
-  inset: 0;
-  background: var(--color-shadow-green);
-  content: "";
+  display: none;
 }
 
 .top-page .section--concept .concept-link-wrap liquid-button {
@@ -151,6 +148,11 @@
   max-width: none;
   margin: 0;
   padding-inline: 0;
+  background: transparent;
+}
+
+.top-page #artists .section__btn::before {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
