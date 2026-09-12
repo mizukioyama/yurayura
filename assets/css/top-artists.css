@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/* Scoped correction for the Top page's Artists section. */
+.top-page .section--artists .section__txt {
+  align-self: center;
+  width: min(100%, 520px);
+  height: auto;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  writing-mode: horizontal-tb;
+  white-space: normal;
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.top-page #artists .section__btn {
+  width: min(100%, 520px);
+  max-width: 100%;
+  margin: clamp(28px, 4vw, 48px) auto 0;
+  padding-inline: 0;
+}
+
+@media screen and (max-width: 699px) {
+  .top-page .section--artists .section__txt {
+    width: 100%;
+    margin-bottom: 28px;
+    line-height: 2;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .top-page #artists .section__btn {
+    width: min(100%, 280px);
+    margin-top: 28px;
+  }
+}

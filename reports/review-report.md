@@ -407,3 +407,27 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 - 公開Topのスクリーンショットで、左から `TOP → CONCEPT → GALLERY` の順を確認
 - 公開TopのDOMで左座標が `トップページ → 世界観 → 作品` の順になることを確認
 - 公開ブラウザのコンソールエラーは0件
+
+## Artists section correction (2026-09-12)
+
+### Scope
+
+Topページの作品（Artists）セクションだけを対象に、見出し直下の説明文とViewボタンの幅を調整しました。背景画像・背景色・カード表示・Concept / Galleryは変更していません。
+
+### Changes
+
+- `assets/css/top-artists.css` を追加し、作品セクションの説明文を横書き・中央寄せに統一
+- 説明文の最大幅を520px、スマートフォンではセクション内100%に設定
+- Viewボタンの外枠をデスクトップ最大520px、スマートフォン最大280pxへ調整し、中央配置を維持
+- 作品セクションの既存背景指定は変更せず、Topページだけで読み込む構成に限定
+- 編集前コピーを `backups/20260912_before_artists_section_fix/` に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 説明文 | PASS | ローカルブラウザで `writing-mode: horizontal-tb`、`text-align: center`、幅520pxを確認 |
+| Viewボタン | PASS | ローカルブラウザで幅520px、中央配置を確認 |
+| 背景維持 | PASS | 作品セクションの背景画像URLが変更前と同じであることを確認 |
+| 横はみ出し | PASS | ローカル表示で `scrollWidth` と `clientWidth` が一致 |
+| 他ページ保全 | PASS | 追加CSSは `.top-page .section--artists` と `#artists` に限定 |

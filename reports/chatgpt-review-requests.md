@@ -249,3 +249,17 @@
 - 公開TopのHeader「世界観」をクリックし、`https://mizukioyama.github.io/yurayura/concept.html` への遷移を確認
 - 公開Topのアクセシビリティツリーで、Header / Footerの3リンクが表示されることを確認
 - スマートフォン実機のタップ操作は未確認
+
+## Artists section correction review (2026-09-12)
+
+1. 作品セクションの見出し直下の説明文が中央寄せで表示されること。
+2. Viewボタンが全幅に広がらず、中央の適切な幅で表示されること。
+3. 作品セクションの背景表示が現状のまま維持されること。
+4. Concept / Galleryと作品カード、スライダーの表示に影響がないこと。
+
+### Evidence
+
+- `assets/css/top-artists.css` をTopページだけへ追加
+- ローカル表示で説明文の中央寄せ、Viewボタン幅520px、背景URL維持を確認
+- ローカル表示で横スクロールなしを確認
+- スマートフォン実機での最終受入確認は未実施
