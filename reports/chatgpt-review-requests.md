@@ -318,5 +318,7 @@
 
 ### Public evidence
 
-- `main`反映後に公開Top / Concept / Galleryの共通HeaderとTopの中央揃えを確認予定
+- `main`のコミット`c5127ac`反映後、公開Top / Concept / Galleryで共通HeaderとTopの中央揃えを確認
+- 公開3ページで共通Headerの3リンク、日本語ラベル、縦書き表示を確認
+- 公開GalleryでHeader固定表示、4作品、横はみ出しなしを確認
 - スマートフォン実機の確認は未実施

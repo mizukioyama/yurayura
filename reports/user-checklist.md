@@ -154,7 +154,7 @@
 - [x] Headerの固定位置・縦書きナビ・ラベルを統一する
 - [x] Topの「出展者紹介」を中央揃えにする
 - [x] Galleryの4作品と既存フィルターを維持する
-- [ ] 公開Top / Concept / Galleryで今回の変更を確認する
+- [x] 公開Top / Concept / Galleryで今回の変更を確認する
 - [ ] スマートフォン実機で表示とタップを確認する
 
 ## Artists full-width backgrounds (2026-09-12)

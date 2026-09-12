@@ -529,9 +529,12 @@ Top / Conceptで使用している共通HeaderをGalleryにも適用し、3ペ�
 | 出展者紹介 | PASS | Topで見出し内の「出展者紹介」中央がviewport中央636pxと一致（viewport中央640px、丸め差） |
 | Gallery保全 | PASS | 作家紹介見出し、4作品、既存フィルター、横はみ出しなしを確認 |
 | JavaScript / 差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を通過 |
-| 公開反映 | PENDING | push後に公開Top / Concept / Galleryで確認 |
+| 公開反映 | PASS | 公開Top / Concept / Galleryで共通HeaderとTopの中央揃えを確認 |
 
 ### Public verification
 
-- 今回の変更を`main`へ反映後、3ページのHeader統一とTopの「出展者紹介」中央揃えを公開URLで確認します
+- `main`のコミット`c5127ac`反映後、公開Top / Concept / Galleryで`allmenu.js?v=20260912-header-unified`の読み込みを確認
+- 公開3ページでHeaderの3リンク、共通日本語ラベル、縦書き表示を確認
+- 公開Topで「出展者紹介」の中央位置がviewport中央851pxと一致（viewport中央855px、丸め差）することを確認
+- 公開GalleryでHeader固定表示、4作品、横はみ出しなしを確認
 - スマートフォン実機での表示・タップ確認は未実施です
