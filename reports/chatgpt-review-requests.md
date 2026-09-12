@@ -216,4 +216,5 @@
 ### Public evidence
 
 - `main`へのpush成功は確認済み（`fc50724`）
-- 公開URLの最終表示確認は一時的なDNS解決エラーのため`PENDING`
+- 公開TopのアクセシビリティツリーでHeader / Footerの`トップ`、`世界観`、`作品`を確認
+- 公開Topの本文とConcept / Galleryへの既存リンクが表示されることを確認

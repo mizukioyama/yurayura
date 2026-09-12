@@ -314,8 +314,9 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 ### Public verification
 
 - `main`へのpushは`fc50724`で成功
-- 公開URLの再確認は一時的なDNS解決エラーにより`PENDING`（公開ブラウザ接続・curlの双方で名前解決不可）
-- 公開反映の確認は、DNS回復後に一意の確認URLで再実施する
+- 公開TopのアクセシビリティツリーでHeader / Footerの表示が`トップ`、`世界観`、`作品`へ更新されたことを確認
+- 公開Topの本文、Concept導線、Gallery導線が表示され、既存構成が維持されていることを確認
+- 公開ブラウザ上の確認URLは`nav-top-verify-20260912-r4`
 
 ## Navigation label update (2026-09-12)
 
