@@ -154,6 +154,7 @@
 
   .concept-texture .section__inner {
     display: flex;
+    flex-direction: column;
     gap: 56px;
     align-items: stretch;
   }
