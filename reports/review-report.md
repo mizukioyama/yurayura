@@ -471,3 +471,34 @@ Topページの作品（Artists）セクションだけを対象に、見出し�
 - ボタン背景画像が既存の `btn-bg-img.webp` のままであることを確認
 - 説明文の中央寄せと横書き表示を維持
 - 公開Topで横スクロールなしを確認
+
+## Header scroll collapse restoration (2026-09-12)
+
+### Scope
+
+Header JSに残っていたスクロール連動の縮小処理を、PC・モバイル共通で画面高の60％地点から動作するよう復旧しました。Header / Footerの構造、ナビゲーション文言、リンク先、Topの既存レイアウトは維持しています。
+
+### Cause and changes
+
+- 現行JSはモバイル以外で`is-compact`を解除しており、PCでは縮小処理が無効でした
+- 判定位置が画面高100％になっていたため、60％へ変更しました
+- スクロール処理を`requestAnimationFrame`でまとめ、画面サイズ変更時にも再判定するようにしました
+- 縮小状態でのみメニューを開けるようにし、ページ上部へ戻るとHeaderを再表示します
+- `index.html` / `concept.html`のJSキャッシュバスターを更新しました
+- 編集前コピーを`backups/20260912_before_header_scroll_restore/`に保存しました
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 60％判定 | PASS | ローカル表示のviewport高720pxで閾値432pxを確認し、scrollY720pxで`is-compact`を確認 |
+| Header縮小 | PASS | 閾値超過時にHeader文字が縮小・非表示となり、メニューボタンが表示されることを確認 |
+| Header再表示 | PASS | ページ上部へ戻した際に`is-compact`解除、Header一覧表示、メニューボタン非表示を確認 |
+| 既存導線 | PASS | Headerリンクの既存クリック修正を維持 |
+| Concept / Gallery保全 | PASS | Gallery本体は変更せず、ConceptはJSキャッシュバスターのみ更新 |
+| 公開Top | PENDING | push後に公開ページで同じスクロール確認を実施 |
+
+### Public verification
+
+- 今回の変更を`main`へ反映後、公開Topの60％スクロール縮小と上部復帰を確認します
+- スマートフォン実機でのタップ・表示確認は未実施です

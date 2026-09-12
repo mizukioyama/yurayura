@@ -279,3 +279,22 @@
 - ローカル表示で両方の表示領域が画面幅と一致することを確認
 - 公開Topで新しいTop専用CSSの読み込み、ボタン背景帯・スライドショーの画面幅一致、背景画像維持を確認
 - 公開Topで横スクロールなしを確認
+
+## Header scroll collapse restoration (2026-09-12)
+
+1. 画面高の60％地点までスクロールするとHeaderが縮小・格納されること。
+2. ページ上部へ戻るとHeaderが元の表示へ戻ること。
+3. 縮小後にメニューボタンが表示され、メニュー開閉が維持されること。
+4. Header / Footerのリンク、Topレイアウト、Concept / Galleryに影響がないこと。
+
+### Local evidence
+
+- viewport高720px、閾値432pxで初期状態が展開されることを確認
+- scrollY720pxで`is-compact=true`、メニューボタン表示を確認
+- scrollY0pxへ戻した後、`is-compact=false`、Header一覧表示、メニューボタン非表示を確認
+- `node --check assets/js/allmenu.js` と`git diff --check`を通過
+
+### Public evidence
+
+- `main`反映後に公開Topで60％スクロール、Header縮小、上部復帰を確認予定
+- スマートフォン実機の確認は未実施
