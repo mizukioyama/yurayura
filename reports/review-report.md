@@ -1022,3 +1022,24 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Existing structure | PASS | FAQ4カテゴリ、Contactフォーム、Concept／Gallery導線、共通Header／Footerを確認 |
 | JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## Verified access information addition (2026-09-13)
+
+- 公開されている会場アクセス案内を確認し、横浜市営バスの案内を追加しました。
+- FAQの「アクセス（駐車場と最寄り駅）」に「横浜市営バスで行けますか？」を追加し、会場情報にも同じ交通手段を追加しました。
+- 「元町」停留所から徒歩約2分、21・101・105・106系統、来場前に運行状況・時刻を確認する注意書きを反映しました。
+- タクシー、駐輪場、バリアフリー、駐車料金・空き状況など、今回の検索で展示向けの十分な根拠を確認できなかった情報は追加していません。
+- 編集前コピーを`backups/20260913_before_access_faq_addition/`に保存しました。
+
+参照元： [CHARLOTTE.USAGIのアクセス案内](https://bizhorizon.sakura.ne.jp/charlotte.usagi/access/)
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Bus access content | PASS | 公開案内に基づく停留所・徒歩時間・4系統をFAQと会場情報へ反映 |
+| FAQ accordion | PASS | ローカルおよび公開Topでバス質問を開き、`aria-expanded="true"`を確認 |
+| Existing access / FAQ structure | PASS | 鉄道2項目・駐車場・住所、FAQ4カテゴリ、FAQ内の「お問い合わせ」カテゴリなしを確認 |
+| Concept / Gallery impact | PASS | 公開Concept／Galleryのタイトル、本文、作品一覧、共通ナビを確認 |
+| JavaScript / diff | PASS | `node --check assets/js/faq.js`、`git diff --check`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
