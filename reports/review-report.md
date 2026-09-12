@@ -702,3 +702,25 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報15.7pxを確認
 - 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施
+
+## Writing direction update (2026-09-12)
+
+### Changes
+
+- FV内のロゴ・説明文・Conceptラベル・Galleryの「作家紹介」を縦書きに統一
+- Header／Footerの全メニューは既存どおり縦書きを維持
+- FV以外のTop／Concept／Galleryの見出し、本文、FAQ、作品情報、ボタン類を横書きに統一
+- Galleryに残っていたFV見出しの横書き強制指定を縦書きへ修正
+- `writing-mode-v1`へキャッシュバスターを更新
+- 編集前コピーを`backups/20260912_before_writing_mode_update/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Writing direction source | PASS | FV／共通ナビの縦書き指定と、FV以外の横書き指定を確認 |
+| Local Top / Concept / Gallery | PASS | 3ページのHTML、共通ナビ、本文、作品一覧をローカルブラウザで確認 |
+| Public Top / Concept / Gallery | PASS | `writing-mode-v1` URLで3ページの公開表示、本文、作品、リンクを確認 |
+| JavaScript | PASS | `allmenu.js`、`gallery.js`の構文確認。今回JS変更なし |
+| Diff / backup | PASS | `git diff --check`、編集前バックアップを確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |

@@ -223,3 +223,13 @@
 - [x] Gallery固有文字を調整する
 - [x] 公開3ページで`font-scale-v2`の読み込みを確認する
 - [ ] スマートフォン実機で表示とタップを確認する
+
+## Writing direction update (2026-09-12)
+
+- [x] FVのロゴ・説明文・Conceptラベル・Galleryの「作家紹介」が縦書きになっている
+- [x] Header／Footerの全メニューが縦書きである
+- [x] FV以外のTop／Concept／Galleryの内容が横書きである
+- [x] GalleryのPC／スマホ相当幅用FV指定を更新した
+- [x] 公開Top／Concept／Galleryで内容とリンクを確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機で表示・タップを確認する

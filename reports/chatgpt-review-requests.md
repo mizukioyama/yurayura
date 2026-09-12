@@ -431,3 +431,18 @@
 - 公開Top / Concept / Galleryで文字サイズ、h2中央寄せ、横幅を確認
 - 公開Topの本文15.7px、公開Galleryのカテゴリ15px・紹介文18px・作品情報15.7pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
+
+## Writing direction update (2026-09-12)
+
+1. FVのロゴ・説明文・Conceptラベル・Galleryの「作家紹介」が縦書きになっていること。
+2. Header／Footerの全メニューが縦書きのまま維持されていること。
+3. FV以外のTop／Concept／Galleryの見出し・本文・FAQ・作品情報・ボタンが横書きになっていること。
+4. GalleryのPC／スマホ相当幅でFV見出しが画面内に収まり、本文のレイアウトが崩れないこと。
+5. 3ページのリンク、作品一覧、FAQ、既存JS動作に影響がないこと。
+
+### Evidence
+
+- ローカル3ページで新しいwriting-mode指定と共通ナビ・本文・作品一覧を確認
+- 公開3ページを`writing-mode-v1`クエリで読み込み、コンテンツとリンクを確認
+- `git diff --check`、JavaScript構文、編集前バックアップを確認
+- スマートフォン実機の表示・タップ確認は未確認
