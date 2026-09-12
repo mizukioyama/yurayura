@@ -75,7 +75,7 @@
   }
 }
 
-/* Native controls are quiet at rest and gain a color cue on interaction. */
+/* Native controls use the same liquid-glass treatment as the custom CTAs. */
 .liquid-control {
   --liquid-radius: 42px;
   position: relative;
@@ -94,30 +94,62 @@
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  background: transparent;
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   isolation: isolate;
-  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .liquid-control::before {
-  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.05)
+  );
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
 }
 
 .liquid-control::after {
-  display: none;
+  position: absolute;
+  right: 10%;
+  bottom: -20px;
+  left: 10%;
+  z-index: 0;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.9), transparent);
+  content: "";
+  filter: blur(15px);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .liquid-control:hover {
   color: #f8faec;
-  background: var(--color-shadow-green, #3c4606);
-  transform: translateY(-2px);
+  background: rgba(60, 70, 6, 0.82);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .liquid-control:focus-visible {
   color: #f8faec;
-  background: var(--color-shadow-green, #3c4606);
+  background: rgba(60, 70, 6, 0.82);
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
@@ -146,57 +178,44 @@
   border-color: currentColor;
 }
 
-/* Keep Gallery's controls transparent at rest despite its legacy overrides. */
+/* Keep Gallery's controls in the same glass family despite its legacy overrides. */
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control {
   width: 100%;
   min-width: 5rem;
   min-height: 2.4rem;
   padding: 0.6rem 1rem;
-  border: 1px solid currentColor;
+  border: 0;
   border-radius: var(--liquid-radius);
-  color: var(--gallery-ink, var(--color-txt, #303a05));
+  color: #f8faec;
   text-align: center;
-  background: transparent;
+  background: rgba(60, 70, 6, 0.68);
   opacity: 1;
   text-shadow: none;
 }
 
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:hover,
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible {
-  border-color: var(--color-shadow-green, #3c4606);
+  border-color: transparent;
   color: #f8faec;
-  background: var(--color-shadow-green, #3c4606);
+  background: rgba(60, 70, 6, 0.82);
   opacity: 1;
   text-shadow: none;
-}
-
-body.gallery-page .gallery-sidebar .gallery-filter.liquid-control.is-active {
-  border-color: var(--color-shadow-green, #3c4606);
-  color: var(--color-shadow-green, #3c4606);
-  background: transparent;
-  font-weight: 600;
 }
 
 body.gallery-page .gallery-page-button.liquid-control {
   min-width: 5rem;
   min-height: 2.4rem;
   padding: 0.6rem 1rem;
-  border: 1px solid currentColor;
+  border: 0;
   border-radius: var(--liquid-radius);
-  color: var(--gallery-ink, var(--color-txt, #303a05));
-  background: transparent;
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.68);
 }
 
 body.gallery-page .gallery-page-button.liquid-control:hover,
 body.gallery-page .gallery-page-button.liquid-control:focus-visible {
   color: #f8faec;
-  background: var(--color-shadow-green, #3c4606);
-}
-
-body.gallery-page .gallery-page-button.liquid-control[aria-current="page"] {
-  color: var(--color-shadow-green, #3c4606);
-  background: transparent;
-  font-weight: 600;
+  background: rgba(60, 70, 6, 0.82);
 }
 
 .liquid-control--accordion:hover .faq-sub-icon,
