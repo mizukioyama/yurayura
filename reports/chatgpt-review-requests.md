@@ -411,6 +411,21 @@
 - 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
 
+## Concept FV label removal (2026-09-12)
+
+1. ConceptページFV中央の「Concept」ラベルだけが削除されていること。
+2. 「ゆらゆら」とFV本文の縦書きが維持されていること。
+3. 左側の共通ナビにある「CONCEPT」とHeader／Footerのリンクが維持されていること。
+4. FV以外のConcept本文・見出し・CTAが維持されていること。
+5. 公開ページで削除後のHTMLが配信されていること。
+
+### Evidence
+
+- ローカルConceptのAXツリーでFV中央ラベルがなく、タイトル・本文・リンクが残ることを確認
+- 公開ConceptのAXツリーとスクリーンショットで同内容を確認
+- `git diff --check`、編集前バックアップを確認
+- スマートフォン実機の表示・タップ確認は未確認
+
 ## Concept FV vertical restore (2026-09-12)
 
 1. ConceptページのFV（CONCEPT、タイトル、FV本文）が縦書きであること。

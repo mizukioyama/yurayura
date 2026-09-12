@@ -234,6 +234,15 @@
 - [x] 編集前バックアップを保存した
 - [ ] スマートフォン実機で表示・タップを確認する
 
+## Concept FV label removal (2026-09-12)
+
+- [x] FV中央の「Concept」ラベルを削除した
+- [x] 「ゆらゆら」とFV本文の縦書きを維持した
+- [x] 共通ナビの「CONCEPT」とHeader／Footerを維持した
+- [x] 公開Conceptで削除状態を確認した
+- [x] 編集前バックアップを保存した
+- [ ] スマートフォン実機で表示・タップを確認する
+
 ## Concept FV vertical restore (2026-09-12)
 
 - [x] ConceptページのFVを縦書きへ戻した

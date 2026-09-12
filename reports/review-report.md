@@ -693,6 +693,24 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Concept FV label removal (2026-09-12)
+
+### Changes
+
+- ConceptページFV中央の「Concept」ラベルを削除しました。
+- FVタイトル「ゆらゆら」とFV本文の縦書き、共通Header／Footer、FV以外の本文・CTAは維持しました。
+- 編集前コピーを`backups/20260912_before_concept_fv_label_removal/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Source | PASS | FV内の`concept-fv__lead`要素を削除し、タイトル・本文を維持 |
+| Local Concept | PASS | FV中央ラベルなし、タイトル・本文・共通ナビ・下層コンテンツを確認 |
+| Public Concept | PASS | 公開URLでFV中央ラベルなし、縦書きFVと共通ナビを確認 |
+| Diff / backup | PASS | `git diff --check`、編集前バックアップを確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
 ## Concept FV vertical restore (2026-09-12)
 
 ### Changes
