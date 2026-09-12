@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let page = 1; page <= totalPages; page += 1) {
       const button = document.createElement("button");
-      button.className = "gallery-page-button";
+      button.className = "gallery-page-button liquid-control liquid-control--compact";
       button.type = "button";
       button.textContent = `${page}P`;
       button.setAttribute("aria-label", `${page}ページ目を表示`);

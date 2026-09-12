@@ -345,3 +345,40 @@ customElements.define(
   "liquid-button",
   LiquidButton
 );
+
+function bindLiquidControls() {
+  document.querySelectorAll("button:not(.js-menu)").forEach((control) => {
+    control.classList.add("liquid-control");
+
+    if (control.classList.contains("gallery-filter")) {
+      control.classList.add("liquid-control--compact");
+    }
+
+    if (control.classList.contains("faq-sub-question")) {
+      control.classList.add("liquid-control--accordion");
+    }
+
+    if (control.classList.contains("modal-close")) {
+      control.classList.add("liquid-control--icon");
+    }
+
+    if (control.dataset.liquidBound === "true") return;
+
+    control.dataset.liquidBound = "true";
+    control.addEventListener("pointermove", (event) => {
+      const rect = control.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+      control.style.setProperty("--mx", `${x}%`);
+      control.style.setProperty("--my", `${y}%`);
+    });
+    control.addEventListener("pointerleave", () => {
+      control.style.removeProperty("--mx");
+      control.style.removeProperty("--my");
+    });
+  });
+}
+
+window.bindLiquidControls = bindLiquidControls;
+document.addEventListener("DOMContentLoaded", bindLiquidControls);

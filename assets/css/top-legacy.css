@@ -47,10 +47,27 @@
 }
 
 .top-page .section--concept .concept-link-wrap {
+  position: relative;
   align-self: center;
-  width: auto;
+  width: min(100%, 320px);
   margin: clamp(24px, 3vw, 40px) 0 0;
+  padding: 10px 0;
   writing-mode: initial;
+}
+
+.top-page .section--concept .concept-link-wrap::before {
+  position: absolute;
+  inset: 0;
+  background: var(--color-shadow-green);
+  content: "";
+}
+
+.top-page .section--concept .concept-link-wrap liquid-button {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .top-page .section--artists .h2_ttl {
