@@ -538,3 +538,33 @@ Top / Conceptで使用している共通HeaderをGalleryにも適用し、3ペ�
 - 公開Topで「出展者紹介」の中央位置がviewport中央851pxと一致（viewport中央855px、丸め差）することを確認
 - 公開GalleryでHeader固定表示、4作品、横はみ出しなしを確認
 - スマートフォン実機での表示・タップ確認は未実施です
+
+## Hamburger menu layout correction (2026-09-12)
+
+### Scope
+
+ハンバーガーメニューの展開時だけ通常Headerと異なっていた余白・列間隔・文字間隔・区切り線を、常時表示Headerと同じ構成へ統一しました。Top / Concept / Galleryの既存リンク先と本文は変更していません。
+
+### Changes
+
+- 展開メニューを通常Headerと同じ3列・同じリンク寸法へ統一
+- 左から `TOP → CONCEPT → GALLERY` の順、縦書き、`トップ / 世界観 / 作品`を維持
+- タブレット幅用`main.css`の後勝ち指定も修正し、CSSの上書きによる再発を防止
+- 3ページのCSS / JSキャッシュバスターを更新
+- 編集前コピーを`backups/20260912_before_hamburger_menu_fix/`に保存
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| 展開レイアウト | PASS | 3ページで縦書き、`gap:40px`、`padding:0`、同一リンク寸法を確認 |
+| 順序・文言 | PASS | `TOP / トップ`、`CONCEPT / 世界観`、`GALLERY / 作品`を確認 |
+| 開閉 | PASS | 3ページで`aria-expanded`と`is-menu-open`の切替を確認 |
+| リンク遷移 | PASS | 展開中のConceptリンクで`concept.html`への遷移を確認 |
+| 横はみ出し | PASS | 3ページで横スクロールなしを確認 |
+| 静的確認 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+
+### Public verification
+
+- `main`への反映後、公開Top / Concept / Galleryで展開レイアウト、開閉、リンク遷移を再確認する
+- スマートフォン実機での表示・タップ確認は未実施

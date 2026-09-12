@@ -322,3 +322,23 @@
 - 公開3ページで共通Headerの3リンク、日本語ラベル、縦書き表示を確認
 - 公開GalleryでHeader固定表示、4作品、横はみ出しなしを確認
 - スマートフォン実機の確認は未実施
+
+## Hamburger menu layout correction (2026-09-12)
+
+1. ハンバーガー展開時のメニューが常時表示Headerと同じ構成・寸法・間隔であること。
+2. 左から`TOP → CONCEPT → GALLERY`、日本語ラベルが`トップ / 世界観 / 作品`の順であること。
+3. 開閉時の`aria-expanded`、スクロールロック、既存リンク遷移が正常であること。
+4. Top / Concept / Gallery本文、作品表示、横幅に影響がないこと。
+
+### Local evidence
+
+- 3ページで展開時の`gap:40px`、`padding:0`、`writing-mode:vertical-rl`を確認
+- 3ページで開閉後の`is-compact`、`is-open`、`aria-expanded`、スクロールロックを確認
+- 展開中のConceptリンクから`concept.html`への遷移を確認
+- 3ページで横スクロールなしを確認
+- `node --check assets/js/allmenu.js` と`git diff --check`を通過
+
+### Public evidence
+
+- push後、公開Top / Concept / Galleryで上記項目を再確認する
+- スマートフォン実機の表示・タップは未確認

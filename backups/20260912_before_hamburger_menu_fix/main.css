@@ -1646,8 +1646,8 @@ section {
   }
 
   .header.is-compact.is-open .header-list {
-    gap: 40px;
-    padding: 0;
+    gap: 100px;
+    padding: 20vmin 6rem 40px;
   }
 
   .contact-check-grid {

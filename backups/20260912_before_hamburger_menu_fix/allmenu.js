@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
 
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "20260912-hamburger-menu-unified";
+  const PARTS_VERSION = "20260912-header-scroll-60";
 
   const selectors = {
     header: "#js-header",
