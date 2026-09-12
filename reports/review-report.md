@@ -1043,3 +1043,22 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Concept / Gallery impact | PASS | 公開Concept／Galleryのタイトル、本文、作品一覧、共通ナビを確認 |
 | JavaScript / diff | PASS | `node --check assets/js/faq.js`、`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## FAQ emphasis and additional map guidance (2026-09-13)
+
+- FAQ回答のうち、来場判断に直結する展示日、開催時間、駅・出口・徒歩時間、駐車場の空き状況、住所、バス停・系統、Gallery導線などを`<strong>`で太字化しました。
+- FAQのアクセス欄に「地図や経路を確認できますか？」を追加し、ページ下部の会場情報の地図を案内しました。
+- 会場の検索結果で確認できなかった入場料・予約、撮影可否、車いす・ベビーカー対応、混雑・滞在時間などは、今回の展示向けの確定情報がないため追加していません。
+- 編集前コピーを`backups/20260913_before_faq_emphasis_and_map_question/`に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| FAQ emphasis | PASS | ローカルおよび公開Topで重要箇所を`<strong>`化し、公開ブラウザで計算フォントウェイト`700`を確認 |
+| Map FAQ | PASS | ローカルおよび公開Topで「地図や経路を確認できますか？」を確認 |
+| FAQ accordion | PASS | 公開Topで「展示期間」を開き、`aria-expanded="true"`を確認 |
+| Existing content / structure | PASS | FAQ4カテゴリ、鉄道・駐車場・住所・バス案内、FAQ内の「お問い合わせ」カテゴリなしを確認 |
+| Concept / Gallery impact | PASS | 公開Concept／Galleryのタイトル、本文、作品一覧、共通ナビを確認 |
+| JavaScript / diff / package | PASS | `node --check`、`git diff --check`、`unzip -tq`を確認 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
