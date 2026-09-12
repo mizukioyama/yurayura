@@ -571,3 +571,31 @@ Top / Conceptで使用している共通HeaderをGalleryにも適用し、3ペ�
 - 公開3ページでハンバーガー開閉、`aria-expanded`、スクロールロック、横はみ出しなしを確認
 - 公開Topの検証後は通常表示へ戻した
 - スマートフォン実機での表示・タップ確認は未実施
+
+## H2 centering and goods FAQ removal (2026-09-12)
+
+### Scope
+
+Top / Concept / Galleryのすべての`h2`を中央寄せへ統一し、TopのQ&Aからグッズ・ECサイト関連の項目一式を削除しました。その他のFAQ項目、購入方法・発送・領収書の項目は維持しています。
+
+### Changes
+
+- レスポンシブCSSとページ固有CSSの左寄せ上書きを解除し、全`h2`を中央寄せに設定
+- Galleryの作家・ジャンル見出しと作品見出しも中央寄せに設定
+- Q&Aの「販売する作品、グッズ（購入場所について）」項目を削除
+- キャッシュバスターを更新
+- 編集前コピーを`backups/20260912_before_h2_center_goods_faq_removal/`に保存
+
+### Local verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| h2中央寄せ | PASS | Top 4件、Concept 3件、Gallery 6件の計13件で`text-align:center`を確認 |
+| グッズFAQ削除 | PASS | グッズ、購入場所、ECサイト関連の表示がなく、FAQ見出しは4件を確認 |
+| FAQ保全 | PASS | 期間・アクセス・購入・主催者のFAQを確認 |
+| 横はみ出し | PASS | 3ページで横スクロールなしを確認 |
+
+### Public verification
+
+- `main`反映後、公開Top / Concept / Galleryで全`h2`の中央寄せとQ&A削除を確認する
+- スマートフォン実機での表示確認は未実施

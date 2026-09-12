@@ -1796,8 +1796,3 @@ section {
     gap: clamp(20px, calc(2vw + 8px), 40px);
   }
 }
-
-/* Keep every page heading centered, including responsive overrides. */
-h2 {
-  text-align: center;
-}

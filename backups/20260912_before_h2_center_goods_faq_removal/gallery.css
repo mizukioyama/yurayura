@@ -1123,8 +1123,3 @@ body.gallery-page #js-header .menu-toggle {
     left: 20px;
   }
 }
-
-body.gallery-page .gallery-filter-title,
-body.gallery-page .gallery-work-link h2 {
-  text-align: center;
-}

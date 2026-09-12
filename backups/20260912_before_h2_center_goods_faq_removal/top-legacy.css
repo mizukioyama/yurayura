@@ -181,10 +181,3 @@
     padding: 1rem;
   }
 }
-
-.top-page h2,
-.top-page .section--concept .h2_ttl,
-.top-page .section--contact .h2_ttl,
-.top-page .section--access .h2_ttl {
-  text-align: center;
-}
