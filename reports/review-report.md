@@ -597,5 +597,8 @@ Top / Concept / Galleryのすべての`h2`を中央寄せへ統一し、TopのQ&
 
 ### Public verification
 
-- `main`反映後、公開Top / Concept / Galleryで全`h2`の中央寄せとQ&A削除を確認する
+- `main`のコミット`a7d6d99`反映後、公開Top / Concept / Galleryで新しいCSSキャッシュバスターの読み込みを確認
+- 公開Topで全`h2`の中央寄せ、グッズ・購入場所・ECサイト関連の非表示、残り4件のFAQを確認
+- 公開Concept / Galleryで全`h2`の中央寄せ、共通Header、横はみ出しなしを確認
+- 公開Topの検証後は通常表示へ戻した
 - スマートフォン実機での表示確認は未実施
