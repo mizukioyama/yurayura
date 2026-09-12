@@ -664,5 +664,9 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 
 ### Public verification
 
-- `main`反映後、公開3ページで新キャッシュバスターと表示を確認する
+- `main`のコミット`6c49c2f`反映後、公開3ページで`responsive-calibration`の読み込みを確認
+- 公開Topで本文16px、FAQ本文16px、h2約29.7px、FAQ見出し約21.7pxを確認
+- 公開Conceptで本文16px、h2 3件の中央寄せを確認
+- 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16px、h2 6件の中央寄せを確認
+- 公開3ページで横スクロールなしを確認
 - スマートフォン実機での表示・タップ確認は未実施

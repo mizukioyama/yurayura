@@ -406,5 +406,7 @@
 
 ### Public evidence
 
-- push後、公開3ページで新キャッシュバスターと表示を確認する
+- `main`のコミット`6c49c2f`反映後、公開3ページで`responsive-calibration`の読み込みを確認
+- 公開Top / Concept / Galleryで文字サイズ、h2中央寄せ、横幅を確認
+- 公開Galleryでカテゴリ見出し15px、紹介文18px、作品情報16pxを確認
 - スマートフォン実機の表示・タップ確認は未確認
