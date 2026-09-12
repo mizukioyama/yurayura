@@ -230,3 +230,15 @@
 
 - Header / Footerの6リンクで、リンク高さ、英語・日本語ラベルのY座標、線のY座標・高さを測定
 - ローカルブラウザのエラー0件を確認
+
+## Header link interaction fix review (2026-09-12)
+
+1. HeaderのTOP / CONCEPT / GALLERYがクリック可能であること。
+2. Headerの「世界観」クリックで`concept.html`へ遷移すること。
+3. 縦書き・文字位置・線位置・既存リンク先が維持されていること。
+4. Top / Concept / Gallery本文へ影響がないこと。
+
+### Local evidence
+
+- 実効`pointer-events`を確認し、3つのHeaderリンクすべて`auto`
+- Headerの「世界観」リンクを実際にクリックし、`concept.html`への遷移を確認

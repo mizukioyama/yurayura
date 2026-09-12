@@ -346,6 +346,29 @@ Header / Footerのナビ項目だけを対象に、英語ラベル・日本語�
 
 - `main`への反映後、公開Topの一意URLで最終配置を確認する
 
+## Header link interaction fix (2026-09-12)
+
+### Scope
+
+Headerのリンククリックだけを復旧しました。Headerの親要素に設定されていた`pointer-events: none`は維持し、実際のHeader / Footerリンクへ`pointer-events: auto`を設定しています。
+
+### Changes
+
+- `.header-link, .footer-link`をクリック可能に復旧
+- `allmenu.js`のパーツ取得バージョンを`20260912-nav-link-fix`へ更新
+- `index.html` / `concept.html`の共通ナビ読み込みキャッシュバスターを更新
+- 編集前コピーを`backups/20260912_before_header_link_fix/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| クリック受付 | PASS | Headerリンクの実効`pointer-events`が`auto`になったことを確認 |
+| Header遷移 | PASS | ローカルHeaderの「世界観」をクリックし、`concept.html`へ遷移 |
+| ラベル整列 | PASS | 縦書き、文字位置、線位置・高さの整列を維持 |
+| Top / Concept / Gallery保全 | PASS | 本文と既存hrefは変更なし |
+| ブラウザエラー | PASS | 遷移後のローカルブラウザでエラー0件 |
+
 ## Navigation label update (2026-09-12)
 
 ### Scope

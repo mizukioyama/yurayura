@@ -90,6 +90,7 @@ body.is-loaded {
   position: relative;
 
   display: block;
+  pointer-events: auto;
 
   box-sizing: border-box;
   width: 58px;

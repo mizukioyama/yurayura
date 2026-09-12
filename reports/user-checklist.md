@@ -40,6 +40,13 @@
 - [x] Top / Concept / Galleryの既存リンク先を維持する
 - [ ] 公開Topで最終配置を確認する
 
+## Header link interaction fix (2026-09-12)
+
+- [x] Headerリンクをクリック可能にする
+- [x] Headerの「世界観」から`concept.html`へ遷移する
+- [x] 既存の縦書き・左右順・リンク先を維持する
+- [ ] 公開Topで各リンクのクリック遷移を確認する
+
 ## Header / Footer restoration (2026-09-12)
 
 - [x] デスクトップでスクロール後もHeader本体が表示される
