@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
 
   const PARTS_PATH = "./assets/parts/";
+  const PARTS_VERSION = "20260912-nav-labels";
 
   const selectors = {
     header: "#js-header",
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(`${url}?v=${PARTS_VERSION}`);
 
       if (!response.ok) {
         throw new Error(

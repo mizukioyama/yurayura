@@ -191,3 +191,4 @@
 
 - Header / Footerの6リンクで、文言、`display: inline-block`、`writing-mode: vertical-rl` を確認
 - 各リンクの矩形範囲に英語名と日本語説明が含まれることをDOMで確認
+- `menu-style.css` と `allmenu.js` のキャッシュバスターを確認

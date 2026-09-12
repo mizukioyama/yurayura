@@ -276,7 +276,7 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 | Desktop header | PASS | ローカルブラウザでスクロール後も左側の縦型Headerを確認 |
 | Footer | PASS | ローカルブラウザで中央の縦型Footerナビとコピーを確認 |
 | JavaScript | PASS | `node --check assets/js/allmenu.js`、ブラウザエラー0件 |
-| Concept untouched | PASS | Concept関連HTML・CSS・JSに差分なし |
+| Concept body untouched | PASS | Concept本文・構造・関連CSS・JSに差分なし（読み込みURLの更新のみ） |
 | Public deployment | PASS | push後の公開Topを再読込し、左側の縦型Header、中央のFooter、公開ブラウザのエラー0件を確認 |
 
 ### Public verification
@@ -298,6 +298,7 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 - `Home` を `トップページ` に変更
 - `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` の組み合わせに統一
 - 既存の `writing-mode: vertical-rl` を維持し、各リンクを `inline-block` 化して英語名から日本語説明までを1つの選択・クリック範囲に設定
+- `index.html` / `concept.html` のCSS・JSキャッシュバスターと、動的パーツ取得URLを更新して公開環境の古いラベル残りを防止
 - 編集前コピーを `backups/20260912_before_nav_label_update/` に保存
 
 ### Verification
@@ -307,4 +308,4 @@ Header / Footerの共通ナビだけを対象に、英語名と日本語説明�
 | ナビ文言 | PASS | ローカルDOMで3項目の表示名を確認 |
 | 縦書き | PASS | 6リンクすべて `writing-mode: vertical-rl` |
 | 選択範囲 | PASS | 各英語名＋日本語説明が1つの `inline-block` リンク範囲 |
-| Concept / Gallery保全 | PASS | 本文HTML・関連CSS・JSに差分なし |
+| Concept / Gallery保全 | PASS | 本文・構造・関連CSS・JSに差分なし（`index.html` / `concept.html` は読み込みURLのみ更新） |
