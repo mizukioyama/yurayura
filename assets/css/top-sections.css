@@ -64,6 +64,23 @@
   height: clamp(220px, 30vw, 340px);
 }
 
+/* The paired JPEG artwork files are materially smaller than the current WebP exports. */
+.top-page .member-track .card:nth-child(1) {
+  background-image: url("../img/202337.jpg");
+}
+
+.top-page .member-track .card:nth-child(2) {
+  background-image: url("../img/202339.jpg");
+}
+
+.top-page .member-track .card:nth-child(3) {
+  background-image: url("../img/202402.jpg");
+}
+
+.top-page .member-track .card:nth-child(4) {
+  background-image: url("../img/202501.jpg");
+}
+
 .top-page .member-track .card__link {
   display: block;
   width: 100%;
