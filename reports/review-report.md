@@ -693,6 +693,28 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | JavaScript / diff | PASS | `liquid-button.js`、`allmenu.js`構文と`git diff --check`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
 
+## Glass effect restore and arrow glyph update (2026-09-12)
+
+### Changes
+
+- ボタンの液晶ガラス効果（半透明、ぼかし、反射枠、陰影）を維持する構成へ戻しました。
+- Top／Concept／Galleryの矢印付きCTAを`＞`表記へ統一しました。
+- ホバー／キーボードフォーカス時の濃色化と矢印の右移動は維持しています。
+- FAQ、問い合わせ、モーダル、Gallery絞り込み／ページ移動の既存機能を維持しました。
+- `glass-arrow-v1`へキャッシュバスターを更新し、編集前コピーを保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Glass button styling | PASS | Top／Galleryで半透明背景、ぼかし、反射枠、陰影を確認 |
+| Arrow glyph | PASS | `View ＞`、`Conceptを読む ＞`、`Galleryへ ＞`を確認 |
+| Local behavior | PASS | Top／Concept／Gallery／FAQを確認 |
+| Public pages | PASS | 公開Top／Concept／Galleryを`glass-arrow-v1-verify-20260912-r2`で確認 |
+| JavaScript / diff | PASS | `node --check`、`git diff --check`を確認 |
+| Backup / review package | PASS | 編集前バックアップとレビュー資料を更新 |
+| Smartphone physical acceptance | NOT TESTED | 実機での表示・ホバー／タップ確認は未実施 |
+
 ## Button background removal and hover update (2026-09-12)
 
 ### Changes
