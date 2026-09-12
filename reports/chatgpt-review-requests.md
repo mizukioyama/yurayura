@@ -200,3 +200,15 @@
 - 公開Topで `TOP / トップページ`、`CONCEPT / 世界観`、`GALLERY / 作品` の縦書き表示を確認
 - 公開Topで左から `TOP → CONCEPT → GALLERY` の順を確認
 - キャッシュ更新URLで再読込後も公開ブラウザのコンソールエラーは0件
+
+## Top label correction review (2026-09-12)
+
+1. Header / Footerの表示が左から`トップ - TOP`、`世界観 - CONCEPT`、`作品 - GALLERY`の順であること。
+2. 日本語ラベルが`トップ`であり、`トップページ`が現行ナビに残っていないこと。
+3. 3項目が縦書きで、英語名から日本語説明まで各リンク1つの選択・クリック範囲であること。
+4. Concept / Galleryの本文と既存リンク先に影響がないこと。
+
+### Local evidence
+
+- ローカルDOMでHeader / Footerの6リンクのラベル、左右座標、`inline-block`、`vertical-rl`を確認
+- `index.html` / `concept.html` / 動的パーツ取得のキャッシュバスターを`20260912-nav-top`へ更新

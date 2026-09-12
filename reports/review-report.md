@@ -285,7 +285,31 @@ TopのHeader表示状態と共通Footerの構造だけを確認・復元しま�
 - デスクトップ表示でHeader本体の `TOP / CONCEPT / GALLERY` が左側に表示され、＋ボタンだけにならないことを確認
 - ページ末尾でFooterの中央縦型ナビとコピーライトを確認
 - 公開ブラウザのコンソールエラーは0件
-- Concept本体とGalleryの既存表示・導線は今回のHeader復元で変更していない
+
+## Top label correction (2026-09-12)
+
+### Scope
+
+共通Header / Footerの日本語ラベルだけを、指定どおり`トップページ`から`トップ`へ変更しました。Concept / Galleryのラベル、本文、リンク先、縦書き、左右順は維持しています。
+
+### Changes
+
+- Header / Footerの表示ラベルとaria-labelを`トップ`へ変更
+- `CONCEPT / 世界観`、`GALLERY / 作品`は変更なし
+- 各リンクの英語名＋日本語説明が1つの選択・クリック範囲になる構成を維持
+- 左から`TOP → CONCEPT → GALLERY`の表示順を維持
+- キャッシュバスターを`20260912-nav-top`へ更新
+- 編集前コピーを`backups/20260912_before_top_label_update/`に保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| ラベル | PASS | ローカルDOMでHeader / Footerの日本語ラベルが`トップ`、`世界観`、`作品`であることを確認 |
+| 縦書き | PASS | 6リンクすべて`writing-mode: vertical-rl`を維持 |
+| 左右順 | PASS | Header / Footerともに左から`TOP → CONCEPT → GALLERY`を確認 |
+| 選択範囲 | PASS | 6リンクすべて`inline-block`で英語名＋日本語説明を包含 |
+| Concept / Gallery保全 | PASS | 本文・構造・関連CSS・JSは変更せず、共通読み込みURLのみ更新 |
 
 ## Navigation label update (2026-09-12)
 
