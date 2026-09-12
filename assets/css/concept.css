@@ -262,6 +262,21 @@
   margin: clamp(24px, 3vw, 40px) auto 0;
 }
 
+/* The "A MOMENT TO FEEL / 感じるということ" copy is left aligned. */
+.concept-page .concept-texture__copy {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+.concept-page .concept-texture__copy .concept-eyebrow,
+.concept-page .concept-texture__copy .h2_ttl,
+.concept-page .concept-texture__copy .section__txt {
+  align-self: flex-start;
+  width: 100%;
+  margin-inline: 0;
+  text-align: left !important;
+}
+
 @media screen and (max-width: 767px) {
   .concept-page .concept-fv__lead {
     top: 20%;

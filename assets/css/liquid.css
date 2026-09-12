@@ -178,6 +178,41 @@
   border-color: currentColor;
 }
 
+/* Keep the Contact submit control on the same glass surface as every other button. */
+body.top-page .contact-form .send-btn.liquid-control {
+  min-width: 310px;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.25rem;
+  border: 0;
+  border-radius: var(--liquid-radius);
+  color: var(--color-txt, #303a05);
+  appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.top-page .contact-form .send-btn.liquid-control:hover,
+body.top-page .contact-form .send-btn.liquid-control:focus-visible {
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.82);
+  transform: translateY(-3px) scale(1.02);
+}
+
+@media screen and (max-width: 480px) {
+  body.top-page .contact-form .send-btn.liquid-control {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 /* Keep Gallery's controls in the same glass family despite its legacy overrides. */
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control {
   width: 100%;
