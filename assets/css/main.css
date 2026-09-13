@@ -1914,6 +1914,7 @@ h2 {
 
 :root {
   --menu-label-jp-size: clamp(12px, calc(0.4vw + 10px), 18px);
+  --menu-label-en-size: clamp(9px, calc(0.4vw + 7px), 15px);
   --menu-label-jp-top: clamp(12px, calc(0.4vw + 10px), 16px);
   --menu-label-border-top: 43.5%;
   --menu-label-en-top: 59%;
@@ -1930,7 +1931,7 @@ h2 {
 
 .menu-en {
   top: var(--menu-label-en-top);
-  font-size: calc(var(--menu-label-jp-size) - 3px);
+  font-size: var(--menu-label-en-size);
 }
 
 .header.is-compact.is-open .menu-small {
@@ -1944,18 +1945,20 @@ h2 {
 
 .header.is-compact.is-open .menu-en {
   top: var(--menu-label-en-top);
-  font-size: calc(var(--menu-label-jp-size) - 3px);
+  font-size: var(--menu-label-en-size);
 }
 
 @media screen and (max-width: 480px) {
   :root {
     --menu-label-jp-size: var(--site-nav-meta-size);
+    --menu-label-en-size: clamp(9px, calc(0.4vw + 7.5px), 11px);
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 1199px) {
   :root {
     --menu-label-jp-size: var(--site-tablet-nav-meta-size);
+    --menu-label-en-size: clamp(10px, calc(0.35vw + 7.8px), 12px);
   }
 }
 
