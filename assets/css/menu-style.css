@@ -682,3 +682,21 @@ body::after {
     font-size: var(--menu-label-en-size) !important;
   }
 }
+
+/* ========================================
+  iPhone SE alignment
+  Keep the compact menu's visible labels aligned
+  with the left edge of the header/footer text.
+======================================== */
+
+@media screen and (max-width: 375px) {
+  .header .menu-small,
+  .header .menu-border,
+  .header .menu-en,
+  .footer .menu-small,
+  .footer .menu-border,
+  .footer .menu-en {
+    left: 0;
+    transform: none;
+  }
+}
