@@ -625,23 +625,36 @@ body::after {
 
 :root {
   --menu-label-jp-size: clamp(12px, calc(0.4vw + 10px), 18px);
+  --menu-label-jp-top: clamp(12px, calc(0.4vw + 10px), 16px);
+  --menu-label-border-top: 43.5%;
+  --menu-label-en-top: 59%;
 }
 
 .menu-small {
-  top: 1rem;
+  top: var(--menu-label-jp-top);
+}
+
+.menu-border {
+  top: var(--menu-label-border-top);
+  transform: translate(-50%, -50%);
 }
 
 .menu-en {
-  top: 72%;
+  top: var(--menu-label-en-top);
   font-size: calc(var(--menu-label-jp-size) - 3px);
 }
 
 .header.is-compact.is-open .menu-small {
-  top: 1rem;
+  top: var(--menu-label-jp-top);
+}
+
+.header.is-compact.is-open .menu-border {
+  top: var(--menu-label-border-top);
+  transform: translate(-50%, -50%);
 }
 
 .header.is-compact.is-open .menu-en {
-  top: 72%;
+  top: var(--menu-label-en-top);
   font-size: calc(var(--menu-label-jp-size) - 3px);
 }
 
