@@ -1280,3 +1280,29 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public Concept / Gallery | PASS | 公開Concept／GalleryのHeader・Footer共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
 | Public effective font range | NOTE | 確認用Chromeプロファイルの最小フォントサイズが12pxのため、公開計算値は各幅12px。ソースとローカル通常環境ではmin10px/max12pxを確認 |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
+## Smartphone menu spacing tightened (2026-09-13)
+
+### Correction
+
+画像で指定されたスマホ表示のメニューについて、項目間の余白だけを狭めました。タップ領域としての各リンクの`width`は維持し、PC／タブレットの配置やメニュー内容は変更していません。
+
+- スマホ帯の`--site-nav-gap`を`clamp(8px, 2.667vw, 10px)`から`clamp(4px, 1.067vw, 6px)`へ変更
+- `menu-style.css`のスマホ用フォールバックも同じ流動値へ統一
+- Header／Footerと収納後ハンバーガーの項目間隔へ同じ値を適用
+- 3ページの共通CSSキャッシュバスターを`20260913-menu-padding-v8`へ更新
+- 編集前コピーを`backups/20260913_before_mobile_menu_spacing/`へ保存
+- 公開反映コミットは`df3adc7`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local smartphone spacing | PASS | 320px=4px、375px=4.00125px、480px=5.1216px。メニュー幅は128px／139.976px／142.234pxへ縮小 |
+| Local smartphone layout | PASS | ラベル順、中央線、リンク幅、横方向オーバーフローなしを確認 |
+| Local hamburger menu | PASS | 375pxで収納後に開閉し、gap約4px、3リンク、横方向オーバーフローなしを確認 |
+| Public v8 smartphone spacing | PASS | 公開Topの320／375／480pxでv8 CSS、縮小後のgap、ラベル順、横方向オーバーフローなしを確認 |
+| Public hamburger menu | PASS | 公開Topの375pxで収納後に開閉し、gap約4px、3リンク、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 公開Concept／Galleryの375pxでv8 CSS、共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
+| Public desktop regression | PASS | 公開Topの1280pxで既存gap40pxと横方向オーバーフローなしを確認 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
