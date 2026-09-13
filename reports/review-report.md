@@ -1355,3 +1355,29 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 | Public Concept / Gallery | PASS | 公開v9の375pxで共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
 | Public desktop regression | PASS | 公開v9の1280pxで既存リンク幅58px、gap40px、横方向オーバーフローなしを確認 |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
+## iPhone SE whole-li menu alignment correction (2026-09-13)
+
+### Correction
+
+前回のSE専用指定では子要素だけを左へ移動していたため、ボーダーだけが左へ寄って見える状態になっていました。子要素への個別移動を取り除き、375px以下では`ul > li`全体へ相対位置の左オフセットを適用しました。
+
+- `.header-list > .header-item`と`.footer-list > .footer-item`へ`left: clamp(-10px, -2.667vw, -8px)`を適用
+- 日本語ラベル、`.menu-border`、英語ラベルを同じ`li`グループとして移動し、相対関係を維持
+- 文字サイズ、リンク幅・高さ、gap、タップ領域、リンク先は変更なし
+- 376px以上ではSE専用ルールを適用せず、従来の配置を維持
+- 3ページの共通CSSキャッシュバスターを`20260913-se-menu-li-align-v11`へ更新
+- 編集前コピーを`backups/20260913_before_se_menu_li_left_alignment/`へ保存
+- ソース反映コミットは`cbd6393`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local SE whole-li alignment | PASS | 375pxで各`li`が約10px左へ移動し、内部の日本語・ボーダー・英字も同じ量だけ移動。横方向オーバーフローなし |
+| Local responsive regression | PASS | 320／375／376／480／768／1280pxを確認。376px以上は従来配置、全幅で横方向オーバーフローなし |
+| Local Concept / Gallery | PASS | 375pxでv11 CSS、共通メニュー、見出し・本文・作品表示を確認。横方向オーバーフローなし |
+| Public Top | PASS | 公開v11 CSSを読み込み、375pxで`li`全体の左移動、ラベル順、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 公開v11の375pxで共通メニュー、見出し・本文・作品表示、横方向オーバーフローなしを確認 |
+| Backup / package | PASS | 編集前コピーを保存し、確認用ZIPを更新・検査した |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
