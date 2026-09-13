@@ -1254,3 +1254,29 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public v6 load | PASS | 3ページの共通CSS／JSがv6を読み込むことを確認 |
 | Public responsive layout | PASS | 公開Topの375／630／1024／1280pxでラベル、中央線、余白、画面内収まり、横方向オーバーフローなしを確認 |
 | Public effective font size | NOTE | 確認用Chromeプロファイルの最小フォントサイズ12pxにより、狭幅では3px差より下限が優先される。CSSの相対指定は読み込み済み |
+
+## Menu English size range 10–12px (2026-09-13)
+
+### Correction
+
+最新指定に合わせ、英語メニュー文字を「日本語から3px下げる」相対指定ではなく、全端末共通で最小10px・最大12pxの`clamp()`へ変更しました。
+
+- `assets/css/main.css`と`assets/css/menu-style.css`を`clamp(10px, calc(0.4vw + 8px), 12px)`へ統一
+- スマートフォン／タブレットの直接指定も同じ共通変数を参照
+- 日本語、`.menu-border`、ラベル順、余白、リンク先、本文、Concept／Galleryは維持
+- キャッシュバスターと`allmenu.js`の共通部品バージョンをv7へ更新
+- 編集前コピーを`backups/20260913_before_menu_label_min10_max12/`へ保存
+- 公開反映コミットは`b7cdec8`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local English range | PASS | 375px=10px、630px=10.52px、1024px=12px、1280px=12px。全幅でmin10px/max12pxを確認 |
+| Local menu layout | PASS | ラベル順、`作　品`、日本語→線→英語のDOM順、中央線、横方向オーバーフローなし |
+| Public v7 load | PASS | 公開Top／Concept／Galleryがv7の共通CSS／JSを読み込むことを確認 |
+| Public menu layout | PASS | 公開Topの375／630／1024／1280pxでラベル、中央線、余白、画面内収まり、横方向オーバーフローなし |
+| Public hamburger menu | PASS | 公開Topの630pxで収納後に開閉し、`aria-expanded`、3リンクの順序、中央線、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 公開Concept／GalleryのHeader・Footer共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
+| Public effective font range | NOTE | 確認用Chromeプロファイルの最小フォントサイズが12pxのため、公開計算値は各幅12px。ソースとローカル通常環境ではmin10px/max12pxを確認 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
