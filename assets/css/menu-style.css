@@ -667,7 +667,7 @@ body::after {
 
   .menu-en,
   .header.is-compact.is-open .menu-en {
-    font-size: clamp(9px, calc(0.4vw + 7.5px), 11px);
+    font-size: clamp(9px, calc(0.4vw + 7.5px), 11px) !important;
   }
 }
 
@@ -679,6 +679,6 @@ body::after {
 
   .menu-en,
   .header.is-compact.is-open .menu-en {
-    font-size: clamp(10px, calc(0.35vw + 7.8px), 12px);
+    font-size: clamp(10px, calc(0.35vw + 7.8px), 12px) !important;
   }
 }
