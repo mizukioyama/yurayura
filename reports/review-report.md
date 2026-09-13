@@ -1204,3 +1204,31 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Source checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を確認。今回JS本体は変更していません |
 | Review package | PASS | レビュー資料と確認用ZIPを更新し、`unzip -tq`で検査 |
 | Physical smartphone / tablet acceptance | NOT TESTED | 実機の表示・タップ、各OS・ブラウザのフォントレンダリングは未実施 |
+
+## Menu Japanese-first labels, centered borders, and compact spacing (2026-09-13)
+
+### Scope
+
+常時表示のHeader／Footer、スクロール収納後に開くハンバーガーメニュー、Top・Concept・Galleryの共通メニューを対象にしました。ページ本文、画像、作品一覧、FAQ、Contactの内容は変更していません。
+
+### Implemented
+
+- 表示ラベルを左から「トップ - TOP」「世界観 - CONCEPT」「作　品 - GALLERY」に統一しました。
+- 各リンクのDOM順を日本語、`.menu-border`、英語に統一し、装飾線を日本語と英語の間の中央位置へ配置しました。
+- 日本語と英語の上下位置を共通値へ揃え、上段・下段の余白を少し詰めました。
+- 既存要件の英語3px縮小は、共通CSSの`clamp()`に加えてスマートフォン／タブレット帯へ直接適用し、CSS変数の継承競合を防止しました。
+- `allmenu.js`と3ページの共通CSS／JSキャッシュバスターをv5へ更新しました。
+- 編集前コピーを`backups/20260913_before_menu_border_center_spacing/`、`backups/20260913_before_menu_label_scale_fix/`、`backups/20260913_before_menu_label_scale_cascade_fix/`、`backups/20260913_before_menu_label_scale_important_fix/`へ保存しました。
+- 公開反映コミットは`86a62db`、`43d4a3d`、`8df6bed`、`65f4c5c`です。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local Top all widths | PASS | 375／630／1024／1280pxで、ラベル順、`作　品`、日本語→線→英語のDOM順、線の中央配置、英語3px、横方向オーバーフローなしを確認 |
+| Public Top all widths | PASS（レイアウト） | 公開v5の375／630／1024／1280pxでラベル、中央配置、余白、画面内収まり、横方向オーバーフローなしを確認 |
+| Public English scale | NOTE | 公開確認に使用したChromeプロファイルの最小フォントサイズが12pxのため、375／630／1024pxでは英語が12px未満へ縮小されず、実効差分は0／1.005／2.384px。1280pxでは3px差。ソースとローカル通常環境では3px差を確認 |
+| Public hamburger menu | PASS | 630pxでスクロール収納後に開閉し、`aria-expanded="true"`、3リンクのラベル順、DOM順、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | v5で両ページのHeader・Footer各3リンク、ラベル順、DOM順、本文・作品表示の継続、横方向オーバーフローなしを確認 |
+| Source checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を確認 |
+| Physical smartphone / tablet acceptance | NOT TESTED | 実機の表示・タップ、各OS・ブラウザのフォントレンダリングは未実施 |
