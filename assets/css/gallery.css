@@ -976,7 +976,36 @@ body.gallery-page .footer__small {
   color: var(--gallery-ink);
 }
 
+/* Gallery uses the same shared Footer structure as Top and Concept. */
+body.gallery-page #js-footer .footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 120px 0 70px;
+
+  color: var(--gallery-ink);
+  background: var(--gallery-paper);
+}
+
+body.gallery-page #js-footer .footer-inner {
+  width: auto;
+}
+
+body.gallery-page #js-footer .footer-link,
+body.gallery-page #js-footer .footer-logo-link,
+body.gallery-page #js-footer .footer-lead,
+body.gallery-page #js-footer .footer-date,
+body.gallery-page #js-footer .bottom-txt {
+  color: var(--gallery-ink);
+}
+
 @media screen and (max-width: 767px) {
+  body.gallery-page #js-footer .footer {
+    padding-top: var(--site-footer-padding-top, clamp(72px, 21vw, 100px));
+    padding-bottom: var(--site-footer-padding-bottom, clamp(32px, 10.667vw, 48px));
+  }
+
   body.gallery-page .header__inner {
     padding-inline: 20px;
   }
