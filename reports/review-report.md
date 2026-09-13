@@ -1102,3 +1102,23 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Concept / Gallery impact | PASS | 変更対象外であること、および既存の公開表示を確認 |
 | JavaScript / diff / package | PASS | `node --check`、`git diff --check`、`unzip -tq`を確認 |
 | Smartphone physical acceptance | NOT TESTED | 実機での表示・タップは未実施 |
+
+## Mobile header/footer shared layout and mobile-first calibration (2026-09-13)
+
+- Top・Concept・GalleryのHeader／Footerを、同じ共有パーツ・同じナビ順序（左から「トップ - TOP」「世界観 - CONCEPT」「作品 - GALLERY」）で表示する構成へ統一しました。
+- Galleryに残っていた旧専用Footerを`#js-footer`へ置き換え、Top／Conceptと同じ動的Footerを使用するようにしました。Gallery固有の配色はページ側のCSSで維持しています。
+- `assets/css/menu-style.css`の`max-width:767px`に、ナビ位置・リンク幅／高さ・文字サイズ・字間・線の高さ・Footer余白を`clamp()`で調整するモバイルファースト設定を追加しました。
+- スマートフォンでは、先頭時に共通ナビを表示し、既存のスクロール収納後はハンバーガーへ切り替わる構成を維持しました。開いたメニューは画面内に収まるよう高さを調整しています。
+- 編集前コピーを`backups/20260913_before_mobile_header_footer_unification/`に保存しました。公開反映コミットは`90bc9a8`です。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local smartphone layout | PASS | 375x667でTop・Concept・Galleryの共通Header／Footer、3リンクの順序、縦書き、横方向オーバーフローなしを確認 |
+| Local desktop layout | PASS | 1280x720で3ページのHeader／Footerの幅・高さ・リンク間隔・順序を確認 |
+| Public smartphone layout | PASS | 公開Topを375px幅で確認し、先頭ナビ、スクロール後の収納、Footer、横方向オーバーフローなしを確認 |
+| Public desktop layout | PASS | 公開Top・Concept・Galleryで共通CSS、3リンク、Footer寸法、Gallery旧Footer不在を確認 |
+| Hamburger interaction | PASS | 公開Topを375px幅で開閉し、`aria-expanded`、3項目の画面内配置、横幅一致を確認 |
+| Source and package checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`、更新後のZIP検査を確認 |
+| Physical smartphone/tablet acceptance | NOT TESTED | 実機の表示・タップ、各OSのフォントレンダリングは未実施 |

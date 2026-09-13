@@ -714,6 +714,23 @@
 - Concept／Galleryの公開表示を確認
 - スマートフォン実機とキーボード操作は未確認
 
+## Mobile header/footer shared layout and mobile-first calibration (2026-09-13)
+
+1. Top・Concept・Galleryすべてで、Header／Footerが同じ共有構造になっていること。
+2. スマートフォン幅で、左から「トップ - TOP」「世界観 - CONCEPT」「作品 - GALLERY」の順に縦書き表示され、文字の高さ・線の位置・余白が揃っていること。
+3. 先頭では共通ナビ、スクロール後は既存の収納とハンバーガーが表示され、開いたメニューの3項目が375px幅の画面内に収まること。
+4. Footerのロゴ・会期・ナビ・コピーライトがスマートフォンで切れず、横方向スクロールが発生しないこと。
+5. PC幅では既存のHeader／Footerの位置・寸法・縦書き構成が変わらず、Galleryにも旧専用Footerが残っていないこと。
+6. `clamp()`による文字サイズ・余白の流動調整が、狭い画面で過度に詰まらず、広い画面でPC構成を崩さないこと。
+7. 実機スマートフォン／タブレット、各ブラウザのフォント表示、キーボード操作は別途確認すること。
+
+### Evidence
+
+- ローカル375px幅および1280px幅で計算寸法・横方向オーバーフロー・ナビ順序を確認
+- 公開Topを375px幅で表示し、スクロール収納・ハンバーガー開閉・Footerを確認
+- 公開Top・Concept・Galleryの共有Header／FooterとCSSキャッシュバスターを確認
+- 実機スマートフォン／タブレットの表示・タップは未確認
+
 ## Page-navigation CTA margin unification and Top responsive refinement (2026-09-13)
 
 1. ページ遷移用CTAだけ（Topの「Conceptを読む」「View」、ConceptのGallery遷移）の上マージンが同じ基準で揃っていること。
