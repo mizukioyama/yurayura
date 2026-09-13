@@ -1178,3 +1178,29 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 ### Judgment
 
 タブレットのアクセス部分は、スマートフォンと同じ縦積み構成へ修正し、公開Topでも反映を確認しました。PC幅の既存構成は維持しています。実機確認は別途必要です。
+
+## Menu label order and English scale (2026-09-13)
+
+### Scope
+
+常時表示のHeader／Footer、スクロール後に開くハンバーガーメニュー、Top・Concept・Galleryの全メニュー表示を対象にしました。既存のページ遷移先、線の区切り、共有部品の構成は維持しています。
+
+### Implemented
+
+- メニューをすべて「トップ - TOP」「世界観 - CONCEPT」「作品 - GALLERY」の順に統一しました。DOM上も日本語、区切り線、英語の順です。
+- 日本語を上段、英語を下段に配置し、英語は同じ表示対象の日本語より3px小さくなるよう共通CSSで指定しました。
+- `clamp()`と既存のスマートフォン／タブレット用サイズ変数を使い、375px・タブレット幅・PC幅で同じ関係を保つようにしました。
+- `index.html`、`concept.html`、`gallery.html`の共通CSSキャッシュバスターを`20260913-menu-label-order-scale-v1`へ更新しました。
+- 編集前コピーを`backups/20260913_before_menu_label_order_and_scale/`へ保存しました。公開反映コミットは`891c6ed`（`Unify menu label order and English scale`）です。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local all menu targets | PASS | 375／630／1024／1280pxでHeader・Footerの3リンクを確認。日本語→線→英語の順序、英語-3px、横方向オーバーフローなし |
+| Public Top all widths | PASS | 公開Topの375／630／1024／1280pxで同じ順序と文字サイズ差を確認。計算値は日本語12〜15.12px、英語9〜12.12px |
+| Public hamburger menu | PASS | 公開Topの630pxでスクロール収納後に開閉し、`aria-expanded="true"`、3リンクの順序、英語-3px、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 630pxで両ページのHeader・Footer各3リンク、順序、英語-3px、横方向オーバーフローなしを確認 |
+| Source checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を確認。今回JS本体は変更していません |
+| Review package | PASS | レビュー資料と確認用ZIPを更新し、`unzip -tq`で検査 |
+| Physical smartphone / tablet acceptance | NOT TESTED | 実機の表示・タップ、各OS・ブラウザのフォントレンダリングは未実施 |
