@@ -1908,6 +1908,45 @@ h2 {
 }
 
 /* ========================================
+  Shared menu labels: Japanese first, English second
+  English labels are 3px smaller on every display target.
+======================================== */
+
+:root {
+  --menu-label-jp-size: clamp(12px, calc(0.4vw + 10px), 18px);
+}
+
+.menu-small {
+  top: 1rem;
+}
+
+.menu-en {
+  top: 72%;
+  font-size: calc(var(--menu-label-jp-size) - 3px);
+}
+
+.header.is-compact.is-open .menu-small {
+  top: 1rem;
+}
+
+.header.is-compact.is-open .menu-en {
+  top: 72%;
+  font-size: calc(var(--menu-label-jp-size) - 3px);
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --menu-label-jp-size: var(--site-nav-meta-size);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1199px) {
+  :root {
+    --menu-label-jp-size: var(--site-tablet-nav-meta-size);
+  }
+}
+
+/* ========================================
   Access tablet layout: match smartphone stacking
   481px〜1199px
 ======================================== */
