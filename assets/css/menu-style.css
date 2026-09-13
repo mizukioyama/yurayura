@@ -684,19 +684,18 @@ body::after {
 }
 
 /* ========================================
-  iPhone SE alignment
-  Keep the compact menu's visible labels aligned
-  with the left edge of the header/footer text.
+  iPhone SE whole-item alignment
+  Move each menu item as one group so the Japanese label,
+  separator, and English label keep their relative positions.
 ======================================== */
 
 @media screen and (max-width: 375px) {
-  .header .menu-small,
-  .header .menu-border,
-  .header .menu-en,
-  .footer .menu-small,
-  .footer .menu-border,
-  .footer .menu-en {
-    left: 0;
-    transform: none;
+  :root {
+    --site-nav-se-li-offset: clamp(-10px, -2.667vw, -8px);
+  }
+
+  .header-list > .header-item,
+  .footer-list > .footer-item {
+    left: var(--site-nav-se-li-offset);
   }
 }
