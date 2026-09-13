@@ -1179,3 +1179,119 @@ body.gallery-page .gallery-section .gallery-pagination {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
 }
+
+/*
+  Keep Gallery's shared Header / Footer identical to the tablet composition
+  used by Top and Concept. main.css supplies the tablet variables; these
+  scoped rules come last so Gallery's page-specific rules cannot widen them.
+*/
+@media screen and (min-width: 481px) and (max-width: 1199px) {
+  body.gallery-page #js-header .header {
+    top: var(--site-tablet-nav-top);
+    left: var(--site-tablet-nav-side);
+  }
+
+  body.gallery-page #js-header .header-inner,
+  body.gallery-page #js-footer .footer-inner {
+    gap: var(--site-tablet-nav-inner-gap);
+  }
+
+  body.gallery-page #js-header .header-item,
+  body.gallery-page #js-footer .footer-item {
+    height: var(--site-tablet-nav-item-height);
+  }
+
+  body.gallery-page #js-header .header-list,
+  body.gallery-page #js-footer .footer-list {
+    gap: var(--site-tablet-nav-gap);
+  }
+
+  body.gallery-page #js-header .header-link,
+  body.gallery-page #js-footer .footer-link {
+    width: var(--site-tablet-nav-link-width);
+    height: var(--site-tablet-nav-item-height);
+    padding: var(--site-tablet-nav-link-padding);
+    font-size: var(--site-tablet-nav-meta-size);
+    letter-spacing: var(--site-tablet-nav-letter-spacing);
+  }
+
+  body.gallery-page #js-header .header-logo-link,
+  body.gallery-page #js-footer .footer-logo-link,
+  body.gallery-page #js-header .header-logo {
+    font-size: var(--site-tablet-nav-logo-size);
+  }
+
+  body.gallery-page #js-header .header-lead,
+  body.gallery-page #js-footer .footer-lead,
+  body.gallery-page #js-header .header-date,
+  body.gallery-page #js-footer .footer-date,
+  body.gallery-page #js-header .menu-small {
+    font-size: var(--site-tablet-nav-meta-size);
+  }
+
+  body.gallery-page #js-header .header-date,
+  body.gallery-page #js-footer .footer-date {
+    letter-spacing: clamp(0.04rem, 0.267vw, 0.1rem);
+  }
+
+  body.gallery-page #js-header .menu-border {
+    top: 56%;
+    height: var(--site-tablet-nav-border-height);
+    transform: none;
+  }
+
+  body.gallery-page #js-header .menu-toggle {
+    top: var(--site-tablet-nav-top);
+    left: var(--site-tablet-nav-side);
+    width: var(--site-tablet-nav-link-width);
+    height: var(--site-tablet-nav-link-width);
+  }
+
+  body.gallery-page #js-header .header.is-compact.is-open .header-list {
+    gap: var(--site-tablet-nav-gap);
+    padding: 0;
+  }
+
+  body.gallery-page #js-header .header.is-compact.is-open .header-item {
+    height: min(
+      var(--site-tablet-nav-item-height),
+      calc((100dvh - 2 * var(--site-tablet-nav-gap)) / 3)
+    );
+  }
+
+  body.gallery-page #js-header .header.is-compact.is-open .header-link {
+    height: 100%;
+    letter-spacing: var(--site-tablet-nav-letter-spacing);
+  }
+
+  body.gallery-page #js-header .header.is-compact.is-open .menu-border {
+    top: 56%;
+    height: var(--site-tablet-nav-border-height);
+  }
+
+  body.gallery-page #js-header .header.is-compact.is-open .menu-small {
+    top: 72%;
+    margin-top: 0;
+  }
+
+  body.gallery-page #js-footer .footer {
+    padding-top: var(--site-tablet-footer-padding-top);
+    padding-bottom: var(--site-tablet-footer-padding-bottom);
+  }
+
+  body.gallery-page #js-footer .footer-txt {
+    text-align: left;
+  }
+
+  body.gallery-page #js-footer .footer-list {
+    width: 100%;
+    margin: 0;
+  }
+
+  body.gallery-page #js-footer .bottom-txt {
+    width: max-content;
+    max-width: calc(100vw - 64px);
+    font-size: var(--site-tablet-nav-meta-size);
+    text-align: center;
+  }
+}
