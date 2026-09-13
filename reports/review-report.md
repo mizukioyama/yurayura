@@ -1281,6 +1281,30 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public effective font range | NOTE | 確認用Chromeプロファイルの最小フォントサイズが12pxのため、公開計算値は各幅12px。ソースとローカル通常環境ではmin10px/max12pxを確認 |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
 
+## iPhone SE menu left alignment (2026-09-13)
+
+### Correction
+
+SE幅（375px以下）でメニューが大きく見える要因になっていた、リンク幅内の中央配置を見直しました。日本語ラベル、区切り線、英語ラベルの左端を、メニュー上部のHeader／Footerテキストの左端に揃えています。
+
+- SE幅だけ`.menu-small`、`.menu-border`、`.menu-en`を左寄せに変更
+- メニュー項目のwidth／height、gap、文字サイズ、リンク先、タップ領域は変更なし
+- 376px以上のスマートフォン、タブレット、PCは従来の中央配置を維持
+- 3ページの共通CSSキャッシュバスターを`20260913-se-menu-align-v10`へ更新
+- 編集前コピーを`backups/20260913_before_se_menu_left_alignment/`へ保存
+- 公開反映コミットは`9630580`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local SE alignment | PASS | 375pxでHeaderテキスト、メニュー、各ラベル／線の左端が約19.99pxで一致 |
+| Local responsive regression | PASS | 376／480／768／1280pxで従来の配置、width、gap、横方向オーバーフローなしを確認 |
+| Public SE alignment | PASS | 公開Topのv10 CSSを読み込み、375pxで各ラベル／線の左端とHeaderテキストが約19.99pxで一致 |
+| Public Concept / Gallery | PASS | 公開v10の375pxで共通メニュー、本文／作品表示、横方向オーバーフローなしを確認 |
+| Backup / package | PASS | 編集前コピー、レビュー資料、確認用ZIPを更新し、ZIP検査を実施 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
 ## Smartphone menu spacing tightened (2026-09-13)
 
 ### Correction

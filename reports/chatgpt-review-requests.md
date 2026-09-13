@@ -874,6 +874,23 @@
 - 公開Topの1280pxで既存gap40pxの回帰を確認
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は追加確認が必要
 
+## iPhone SE menu left alignment (2026-09-13)
+
+### Acceptance criteria
+
+1. SE幅（375px以下）で、メニュー上部のHeader／Footerテキストと日本語ラベル、区切り線、英語ラベルの左端が揃うこと。
+2. メニュー項目のwidth／height、gap、文字サイズ、リンク先、タップ領域を変更しないこと。
+3. 376／480／768／1280pxでは従来の中央配置を維持し、横方向オーバーフローを発生させないこと。
+4. Concept／Galleryの共通メニュー、本文、画像、作品一覧に影響がないこと。
+
+### Evidence
+
+- ローカル375pxでHeaderテキストと各メニュー要素の左端が約19.99pxで一致し、横方向オーバーフローなしを確認
+- ローカル376／480／768／1280pxで既存配置、width、gap、横方向オーバーフローなしを確認
+- 公開Topで`menu-style.css?v=20260913-se-menu-align-v10`と`main.css?v=20260913-se-menu-align-v10`の読み込み、左端一致、ラベル順を確認
+- 公開Concept／Galleryでv10共通メニュー、本文／作品表示、横方向オーバーフローなしを確認
+- 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は追加確認が必要
+
 ## Smartphone menu width adjusted (2026-09-13)
 
 ### Acceptance criteria
