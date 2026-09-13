@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
 
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "20260913-menu-border-center-spacing-v5";
+  const PARTS_VERSION = "20260913-menu-border-center-spacing-v6";
 
   const selectors = {
     header: "#js-header",
