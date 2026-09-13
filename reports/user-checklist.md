@@ -547,6 +547,17 @@
 - [x] 編集前バックアップを保存した
 - [ ] 実機／主要ブラウザでスマホ表示とタップを確認する
 
+## Menu link padding removed (2026-09-13)
+
+- [x] Header／Footerのメニューリンク内側paddingを0にした
+- [x] width・height・gap・タップ領域を維持した
+- [x] 375px以下の`ul > li`全体移動とラベル配置を維持した
+- [x] ローカル375／1280pxで表示と横方向オーバーフローなしを確認した
+- [x] ローカルConcept／Galleryの375pxを確認した
+- [x] 公開Top／Concept／Galleryの375pxでv12 CSSとpadding0pxを確認した
+- [x] 編集前バックアップを保存した
+- [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
+
 ## iPhone SE whole-li menu alignment correction (2026-09-13)
 
 - [x] 375px以下で`ul > li`全体を左へ移動した

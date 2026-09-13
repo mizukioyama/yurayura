@@ -1381,3 +1381,28 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 | Public Concept / Gallery | PASS | 公開v11の375pxで共通メニュー、見出し・本文・作品表示、横方向オーバーフローなしを確認 |
 | Backup / package | PASS | 編集前コピーを保存し、確認用ZIPを更新・検査した |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
+## Menu link padding removed (2026-09-13)
+
+### Correction
+
+メニューの`width`に十分な余裕があるため、Header／Footerのリンク内側`padding`を削除しました。リンクの外形サイズは維持し、文字・ボーダー・英字の配置とSE専用の`li`全体移動は変更していません。
+
+- `.header-link`と`.footer-link`の通常・スマホ用`padding`を`0`へ統一
+- 不要になった`--site-nav-link-padding`変数を削除
+- デスクトップのwidth58px、スマホのwidth`clamp(36px, 10.667vw, 40px)`、height、gap、タップ領域を維持
+- 3ページの共通CSSキャッシュバスターを`20260913-se-menu-no-padding-v12`へ更新
+- 編集前コピーを`backups/20260913_before_menu_link_padding_removal/`へ保存
+- ソース反映コミットは`617e42e`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local SE | PASS | 375pxでpadding0px、リンクwidth40px・height220px、SEの`li`位置、ラベル・ボーダー、横方向オーバーフローなしを確認 |
+| Local desktop regression | PASS | 1280pxでpadding0px、リンクwidth58px、height・配置、横方向オーバーフローなしを確認 |
+| Local Concept / Gallery | PASS | 375pxでv12 CSS、padding0px、見出し・本文・作品表示、横方向オーバーフローなしを確認 |
+| Public Top | PASS | 公開v12 CSSを読み込み、375pxでpadding0px、リンク外形とラベル配置を確認 |
+| Public Concept / Gallery | PASS | 公開v12の375pxでpadding0px、共通メニュー、見出し・作品表示、横方向オーバーフローなしを確認 |
+| Backup / package | PASS | 編集前コピーを保存し、確認用ZIPを更新・検査した |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |

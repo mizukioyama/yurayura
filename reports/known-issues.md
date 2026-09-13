@@ -418,6 +418,13 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開v9のTop／Concept／Gallery、収納後ハンバーガー、1280px PC幅は確認済みです。
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は未確認です。
 
+## Menu link padding removed (2026-09-13)
+
+- Header／Footerのメニューリンク内側`padding`は全幅で0pxです。width・height・gap・タップ領域は維持しています。
+- 375px以下の`ul > li`全体の左移動、文字・ボーダー・英字の相対配置は維持しています。
+- ローカル／公開の375pxとローカル1280pxでpadding、配置、本文・画像・作品表示、横方向オーバーフローなしを確認済みです。
+- 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は未確認です。
+
 ## iPhone SE whole-li menu alignment correction (2026-09-13)
 
 - 375px以下だけ、Header／Footerの各`ul > li`へ`clamp(-10px, -2.667vw, -8px)`の左オフセットを適用しています。ボーダーや文字だけを個別に動かす指定は残していません。

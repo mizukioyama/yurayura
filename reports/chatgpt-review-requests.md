@@ -909,6 +909,23 @@
 - 公開v9の1280pxで既存リンク幅58pxとgap40pxを確認
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は追加確認が必要
 
+## Menu link padding removed (2026-09-13)
+
+### Acceptance criteria
+
+1. Header／Footerのメニューリンク内側`padding`が0になり、`width`と`height`は維持されること。
+2. 日本語ラベル、中央ボーダー、英語ラベルの配置、SE幅の`li`全体移動、リンク先、タップ領域を維持すること。
+3. 375px以下、376px以上の各幅で横方向オーバーフローがないこと。
+4. Top／Concept／GalleryでCSS v12が読み込まれ、本文・画像・作品表示に影響がないこと。
+
+### Evidence
+
+- ローカル375pxでHeaderリンクのcomputed paddingが`0px`、width40px・height220px、SEの`li`位置と横方向オーバーフローなしを確認
+- ローカル1280pxでcomputed paddingが`0px`、width58px、既存配置と横方向オーバーフローなしを確認
+- ローカルConcept／Galleryの375pxでv12 CSS、padding0px、見出し・本文・作品表示を確認
+- 公開Top／Concept／Galleryの375pxでv12 CSS、padding0px、共通メニュー、横方向オーバーフローなしを確認
+- 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は追加確認が必要
+
 ## iPhone SE whole-li menu alignment correction (2026-09-13)
 
 ### Acceptance criteria
