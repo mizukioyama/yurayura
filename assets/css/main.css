@@ -1906,3 +1906,56 @@ h2 {
     text-align: center;
   }
 }
+
+/* ========================================
+  Access tablet layout: match smartphone stacking
+  481px〜1199px
+======================================== */
+
+@media screen and (min-width: 481px) and (max-width: 1199px) {
+  .section--access > .section__inner > .acs-box:first-of-type,
+  .section--access > .section__inner > ul.acs-box {
+    display: block;
+    width: 100%;
+    grid-template-columns: none;
+    gap: 0;
+  }
+
+  .section--access > .section__inner > .acs-box:first-of-type {
+    margin-bottom: clamp(28px, calc(2.5vw + 12px), 48px);
+  }
+
+  .section--access > .section__inner > .map-box {
+    width: 100%;
+    margin-bottom: clamp(40px, calc(4vw + 16px), 68px);
+  }
+
+  .section--access > .section__inner > .map-box .map {
+    width: 100%;
+    max-width: none;
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: clamp(132px, calc(2.4vw + 112px), 160px);
+    padding: clamp(16px, calc(1.2vw + 8px), 24px)
+      clamp(14px, calc(1.2vw + 6px), 22px);
+    border-width: 0;
+    border-top: 1px solid var(--color-txt);
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info:last-child {
+    border-bottom: 1px solid var(--color-txt);
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info h3,
+  .section--access > .section__inner > ul.acs-box .access-info .access-txt {
+    width: 100%;
+  }
+}
