@@ -1122,3 +1122,26 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Hamburger interaction | PASS | 公開Topを375px幅で開閉し、`aria-expanded`、3項目の画面内配置、横幅一致を確認 |
 | Source and package checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`、更新後のZIP検査を確認 |
 | Physical smartphone/tablet acceptance | NOT TESTED | 実機の表示・タップ、各OSのフォントレンダリングは未実施 |
+
+## Tablet header/footer smartphone-equivalent layout and spacing (2026-09-13)
+
+- 提示画像の630px幅を含む481〜1199pxをタブレット帯として扱い、Top・Concept・Galleryの共通Header／Footerをスマートフォンと同じ縦書き3列構成へ揃えました。
+- タブレット帯ではリンク幅44px、リンク高さは`clamp(220px, 29vw, 260px)`、ナビ間隔は`clamp(10px, 1.2vw, 14px)`とし、PC用の大きなリンク幅・字間へ戻らないようにしました。
+- 画面端からの位置、Header／Footer内部の間隔、Footer上下の余白はスマートフォンより広めに`clamp()`で調整しました。ページ本文やConcept／Gallery固有のレイアウトは変更していません。
+- Top／Conceptは`assets/css/main.css`、Galleryはページ固有CSSの後段にある`assets/css/gallery.css`で同じ値を適用し、Galleryの旧Footer構造は発生しない状態を維持しました。
+- 3ページのCSSキャッシュバスターを`20260913-tablet-header-footer-v1`へ更新しました。
+- 編集前コピーを`backups/20260913_before_tablet_header_footer_spacing/`へ保存しました。公開反映コミットは`4631a32`です。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local 630px tablet layout | PASS | Top・Concept・Galleryで縦書き3列、44px幅、Top位置約34.6px、Footer上下126px／63px、横方向オーバーフローなしを確認 |
+| Local 768px / 1024px tablet layout | PASS | Topでスマートフォン相当の縦書き3列を維持し、リンク高さ222.7px／260px、外側余白が段階的に広がることを確認 |
+| Local 375px smartphone regression | PASS | 375x667で既存の20px位置、44px幅、220px高さ、Footer上下78.75px／40pxを維持 |
+| Local 1280px desktop regression | PASS | 1280x720で既存の58px幅、371.2px高さ、40px間隔、横方向オーバーフローなしを確認 |
+| Public 630px Top / Concept / Gallery | PASS | 3ページで新CSSを読み込み、縦書き3列、Footer余白、横方向オーバーフローなしを確認。Gallery旧Footer数は0 |
+| Public 630px hamburger | PASS | スクロール収納後に`aria-expanded="true"`、画面高898px内のメニュー、横幅一致を確認 |
+| Public 768px / 1280px regression | PASS | 公開Topでタブレットの同構成、PCの既存構成、横方向オーバーフローなしを確認 |
+| Concept / Gallery content impact | PASS | Concept本文・画像、Gallery見出し・4作品・共通Footerを確認 |
+| Physical tablet / smartphone acceptance | NOT TESTED | 実機の表示・タップ、各OSのフォントレンダリングは未実施 |
