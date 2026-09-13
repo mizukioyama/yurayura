@@ -1306,3 +1306,28 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public Concept / Gallery | PASS | 公開Concept／Galleryの375pxでv8 CSS、共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
 | Public desktop regression | PASS | 公開Topの1280pxで既存gap40pxと横方向オーバーフローなしを確認 |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
+## Smartphone menu width adjusted (2026-09-13)
+
+### Correction
+
+追加指定に合わせ、スマホ表示のメニュー項目幅（`width`）を狭めました。前回調整した項目間gapはそのままにし、タブレット／PCの幅、ラベル内容、中央線、リンク先は維持しています。
+
+- スマホ帯の`--site-nav-link-width`を`clamp(40px, 11.733vw, 44px)`から`clamp(36px, 10.667vw, 40px)`へ変更
+- 320pxでは36px、375px／480pxでは40pxになる流動値を採用
+- 収納後ハンバーガーにも同じリンク幅を適用
+- 3ページの共通CSSキャッシュバスターを`20260913-menu-width-v9`へ更新
+- 編集前コピーを`backups/20260913_before_mobile_menu_width/`へ保存
+- 公開反映コミットは`0d09f1b`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local smartphone width | PASS | 320px=36px、375px=40px、480px=40px。メニュー全体幅は116px／128px／130.234px |
+| Local smartphone layout | PASS | gap4／4.00125／5.1216px、ラベル順、中央線、横方向オーバーフローなし |
+| Local hamburger menu | PASS | 375pxで収納後に開閉し、リンク幅40px、gap約4px、横方向オーバーフローなし |
+| Public v9 smartphone width | PASS | 公開Topの320／375／480pxでv9 CSS、width、gap、ラベル順、横方向オーバーフローなしを確認 |
+| Public Concept / Gallery | PASS | 公開v9の375pxで共通メニュー、本文・作品表示、横方向オーバーフローなしを確認 |
+| Public desktop regression | PASS | 公開v9の1280pxで既存リンク幅58px、gap40px、横方向オーバーフローなしを確認 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
