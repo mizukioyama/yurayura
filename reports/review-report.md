@@ -1232,3 +1232,25 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public Concept / Gallery | PASS | v5で両ページのHeader・Footer各3リンク、ラベル順、DOM順、本文・作品表示の継続、横方向オーバーフローなしを確認 |
 | Source checks | PASS | `node --check assets/js/allmenu.js`、`git diff --check`を確認 |
 | Physical smartphone / tablet acceptance | NOT TESTED | 実機の表示・タップ、各OS・ブラウザのフォントレンダリングは未実施 |
+
+## Relative English menu sizing correction (2026-09-13)
+
+### Correction
+
+「英語を3pxにする」のではなく「日本語の現在サイズから3px下げる」という指定に合わせ、英語のサイズを固定した`clamp()`から`calc(var(--menu-label-jp-size) - 3px)`へ変更しました。スマートフォン／タブレット帯と通常表示の両方で、日本語サイズの現在値を基準にします。
+
+- `assets/css/main.css`と`assets/css/menu-style.css`の英語サイズ指定を相対計算へ統一
+- 既存の日本語サイズ、中央の`.menu-border`、ラベル順、余白、ページ本文は維持
+- 3ページのキャッシュバスターと`allmenu.js`の共通部品バージョンをv6へ更新
+- 編集前コピーを`backups/20260913_before_menu_label_relative_scale/`へ保存
+- 公開反映コミットは`d11f7d3`です
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local relative sizing | PASS | 375／630／1024／1280pxで、各項目の英語計算値が日本語の現在値−3pxになることを確認 |
+| Local menu layout | PASS | ラベル順、`作　品`、日本語→線→英語のDOM順、中央線、横方向オーバーフローなしを再確認 |
+| Public v6 load | PASS | 3ページの共通CSS／JSがv6を読み込むことを確認 |
+| Public responsive layout | PASS | 公開Topの375／630／1024／1280pxでラベル、中央線、余白、画面内収まり、横方向オーバーフローなしを確認 |
+| Public effective font size | NOTE | 確認用Chromeプロファイルの最小フォントサイズ12pxにより、狭幅では3px差より下限が優先される。CSSの相対指定は読み込み済み |
