@@ -1145,3 +1145,36 @@ Top / Concept / Gallery / Contact Formのレスポンシブ境界と文字サイ
 | Public 768px / 1280px regression | PASS | 公開Topでタブレットの同構成、PCの既存構成、横方向オーバーフローなしを確認 |
 | Concept / Gallery content impact | PASS | Concept本文・画像、Gallery見出し・4作品・共通Footerを確認 |
 | Physical tablet / smartphone acceptance | NOT TESTED | 実機の表示・タップ、各OSのフォントレンダリングは未実施 |
+
+## Tablet access layout matched to smartphone (2026-09-13)
+
+### Scope
+
+提示画像で確認された、タブレット幅のアクセスセクションだけを対象にしました。Header／Footer、Topの他セクション、Concept、Galleryの本文・画像・JavaScriptは変更していません。
+
+### Implemented
+
+- 481〜1199pxでは、アクセスの経路案内と住所・問合せ・営業時間をスマートフォンと同じ1列へ変更
+- 地図はアクセス内側の幅100%に統一
+- 住所・問合せ・営業時間はスマートフォンと同じ上下線の区切りに変更
+- タブレットの内側余白と情報欄の最小高さは`clamp()`で広めに調整
+- `index.html`、`concept.html`、`gallery.html`の`main.css`キャッシュバスターを更新
+- 編集前コピーを`backups/20260913_before_access_tablet_mobile_layout/`に保存
+- 公開反映コミットは`2986a7f`（`Match tablet access layout to mobile`）
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local tablet 630px / 768px / 1024px | PASS | 経路案内・情報リストが`display:block`、情報3件の同一x座標・縦方向配置を確認 |
+| Local smartphone 375px regression | PASS | スマホの1列配置、既存の地図・情報欄、横方向オーバーフローなしを確認 |
+| Local desktop 1280px regression | PASS | PCの3列情報欄と既存の地図幅を維持、横方向オーバーフローなしを確認 |
+| Public Top tablet 630px / 768px / 1024px | PASS | 更新後`main.css?v=20260913-access-tablet-mobile-v1`を読み込み、情報3件の縦積みと横方向オーバーフローなしを確認 |
+| Public Top smartphone / desktop regression | PASS | 公開375px／1280pxでスマホ1列・PC既存3列と横方向オーバーフローなしを確認 |
+| Concept / Gallery impact | PASS | アクセス指定を`.section--access`内に限定し、Concept／Galleryのアクセス外DOMとページ固有CSS・JSを変更していないことを確認 |
+| Diff / package | PASS | `git diff --check`と更新後のレビューZIP検査を確認 |
+| Physical tablet / smartphone acceptance | NOT TESTED | 実機の表示・タップ、各OSのフォントレンダリングは未実施 |
+
+### Judgment
+
+タブレットのアクセス部分は、スマートフォンと同じ縦積み構成へ修正し、公開Topでも反映を確認しました。PC幅の既存構成は維持しています。実機確認は別途必要です。
