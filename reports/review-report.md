@@ -1441,3 +1441,26 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 ### Judgment
 
 ボタンの文字サイズ・余白は全端末で`clamp()`により調整され、矢印は2辺ボーダーの正方形を保ったまま文字より4px小さくなっています。公開Top／Concept／Galleryとタブレット幅まで確認済みです。実機での最終受入だけが未確認です。
+
+## MD button and arrow size correction (2026-09-14)
+
+### Correction
+
+指定に合わせ、ページ遷移CTAの`.md`文字サイズを`clamp(14px, calc(0.5vw + 12px), 16px)`へ変更しました。矢印は幅・高さを`clamp(10px, calc(0.5vw + 8px), 12px)`、右辺・下辺のボーダーを`1px`へ変更し、`.md`文字サイズとの差分4pxを維持しています。キャッシュバスターは`liquid-button.js`のv8へ更新しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local `.md` size | PASS | 320／375px=14px、480px=14.4px、768px=15.84px、1024／1280px=16px |
+| Local arrow size | PASS | 320／375px=10px、480px=10.3984px、768px=11.8359px、1024／1280px=12px。各幅で差分約4px |
+| Local arrow border | PASS | 右辺・下辺ともに計算値1px |
+| Local / public regression | PASS | Local 320〜1280px、公開Top／Concept／Galleryの375pxで横方向オーバーフローなし。公開Topの768pxも確認 |
+| Cache busting | PASS | 3ページで`20260914-arrow-md-size-v8`を読み込み |
+| JavaScript／差分 | PASS | `node --check assets/js/liquid-button.js`、`git diff --check` |
+| Backup / package | PASS | `backups/20260914_before_arrow_md_size/`を保存し、確認用ZIPを更新・`unzip -tq`検査 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+`.md`の文字サイズは14〜16px、矢印は10〜12px、ボーダーは1pxで公開版へ反映済みです。ページ遷移ボタンの「文字サイズより4px小さい矢印」も維持しています。
