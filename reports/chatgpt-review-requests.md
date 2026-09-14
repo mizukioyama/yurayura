@@ -986,6 +986,26 @@
 
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
+## Header menu right alignment (2026-09-15)
+
+### Review points
+
+1. タイトル・開催期間を含む`.header`本体が左側に残り、ナビゲーションの`.header-list`だけが右端基準になっているか。
+2. Top／Concept／Galleryで、タイトル領域と右側メニューが重ならないか。
+3. 375／768／1280pxで左右の配置が画面内に収まり、横方向オーバーフローがないか。
+4. 収納後のハンバーガーが右側に表示され、開閉と全画面メニューに影響がないか。
+
+### Evidence prepared
+
+- ローカルTop／Concept／Galleryの375／768／1280pxでヘッダー本体の左端、メニューの右端、重なり、横方向オーバーフローを確認。
+- 公開Top／Concept／Galleryの375／768px、および公開Topの1280pxでv18／v6を確認。
+- 公開Topの375pxでスクロール収納後の右側ハンバーガー、開閉、全画面メニューを確認。
+- 編集前バックアップは`backups/20260915_before_menu_right_only/`に保存。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Header menu right alignment and Concept mobile refinement (2026-09-14)
 
 ### Review points
