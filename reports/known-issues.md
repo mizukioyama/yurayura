@@ -458,6 +458,12 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - ローカル確認では「最終日（10/12）：13:00まで」が不自然な1文字折り返しにならないことを確認しています。
 - 公開反映後のChrome確認、実機スマートフォン／タブレット、Safari・Firefox・Edge、キーボード操作とフォント描画差は最終確認対象です。
 
+## Section width 780px and mobile menu spacing adjustment (2026-09-15)
+
+- contact／faq／accessの`.section__inner`は`min(100%, 780px)`です。アクセス欄のデスクトップ3列も780px内で均等配置します。
+- 添付画像を対象に、スマホ用メニュー項目間隔を従来より10px広げ、実効値を14〜16pxにしています。タブレット／デスクトップの既存間隔は変更していません。
+- ローカル確認は完了していますが、GitHub公開反映後の表示、実機、Safari・Firefox・Edge、キーボード操作、端末ごとのフォント描画差は未確認です。
+
 ## Access width and menu top alignment correction (2026-09-15)
 
 - `1200px以上`ではアクセス直下の住所・問合せ・営業時間を`flex: 1 1 0`で均等配置し、`228px`の固定上限を解除しています。

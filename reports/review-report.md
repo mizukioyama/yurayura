@@ -1705,3 +1705,30 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 アクセス欄のデスクトップ表示を必要な範囲だけ横へ広げ、均等3列と自然な改行を両立しました。タブレット／スマホの縦積み、ヘッダーとメニューの配置、Concept／Galleryの表示は維持しています。
+
+## Section width 780px and mobile menu spacing adjustment (2026-09-15)
+
+### Scope
+
+- `.section--contact .section__inner`、`.section--faq .section__inner`、`.section--access .section__inner`の幅を`min(100%, 780px)`へ統一しました。
+- 既存のアクセス欄デスクトップ用上書きも`780px`に揃え、3列均等配置を維持しました。
+- 添付スクリーンショットのスマホ用メニュー項目間隔を、従来の`4〜6px`から`14〜16px`へ10px広げました。通常表示と収納後メニューの両方に適用しています。
+- 3ページのキャッシュバスターを、`main.css?v=20260915-section-width-780-menu-gap-v22`および`menu-style.css?v=20260915-section-width-780-menu-gap-v16`へ更新しました。
+- 編集前コピーは`backups/20260915_before_section_width_780_menu_gap/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Section widths | PASS | ローカルTopでcontact／faq／accessの`.section__inner`実効幅が各780pxになることを確認 |
+| Access columns | PASS | アクセス欄の住所・問合せ・営業時間が780px内で均等配置されることを確認 |
+| Mobile menu spacing rule | PASS | スマホ帯のCSS変数を14〜16pxへ変更し、通常表示・収納後の両方が同じ変数を参照することを確認 |
+| Header / menu layout | PASS | `.header`左側配置、右側メニュー、上端基準は変更していないことを確認 |
+| Concept / Gallery impact | PASS | 共通幅とメニュー間隔の範囲以外の固有レイアウト・文言・リンクは変更していないことを確認 |
+| Cache / source diff | PASS | v22／v16参照、`git diff --check`、ソースコミット`80c8be63ddf7fa8c60405da347f04562f0a02df6`を確認 |
+| Backup / package | PASS | 編集前コピーを保存し、レポート反映後に確認用ZIPを更新・検査 |
+| Public / physical devices | NOT TESTED | GitHub公開push、実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+指定された3セクションの最大幅を780pxへ揃え、スマホ用メニューの項目間隔だけを10px拡張しました。公開反映と実機確認は、公開許可後の確認対象です。

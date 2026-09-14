@@ -985,6 +985,26 @@
 
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
+## Section width 780px and mobile menu spacing adjustment (2026-09-15)
+
+### Review points
+
+1. contact／faq／accessの`.section__inner`が`min(100%, 780px)`で揃っているか。
+2. デスクトップのアクセス欄が780px内で3列均等を保ち、本文が不自然に折り返されていないか。
+3. 添付画像のスマホ用メニューで、項目同士の余白が従来より10px広がっているか。
+4. 通常表示と収納後メニューの間隔、ヘッダーの左配置、右側メニューの上端基準に差異がないか。
+5. Concept／Galleryの固有レイアウト、リンク、本文、ボタンに意図しない変更がないか。
+
+### Evidence prepared
+
+- ローカルTopのcontact／faq／accessの実効幅、アクセス3列、共通メニューCSSを確認しました。
+- キャッシュバスターをTop／Concept／Galleryの3ページで更新しました。
+- 編集前バックアップは`backups/20260915_before_section_width_780_menu_gap/`に保存しています。
+
+### Remaining owner acceptance
+
+- GitHub `main`への公開反映後のTop／Concept／Gallery確認、実機スマートフォン／タブレット、主要ブラウザ、キーボード操作。
+
 ## Access width and menu top alignment correction (2026-09-15)
 
 ### Review requests
