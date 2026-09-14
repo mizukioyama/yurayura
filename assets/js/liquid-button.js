@@ -98,6 +98,10 @@ class LiquidButton extends HTMLElement {
 
 .wrapper{
 
+  --button-font-size: clamp(13px, calc(0.45vw + 11px), 16px);
+
+  box-sizing:border-box;
+
   position:relative;
 
   display:flex;
@@ -106,6 +110,12 @@ class LiquidButton extends HTMLElement {
   align-items:center;
 
   overflow:hidden;
+
+  min-height:clamp(36px, calc(0.8vw + 33px), 44px);
+
+  padding:
+    clamp(6px, calc(0.35vw + 5px), 9px)
+    clamp(12px, calc(0.9vw + 8px), 24px);
 
   cursor:pointer;
 
@@ -116,6 +126,10 @@ class LiquidButton extends HTMLElement {
   border-radius:var(--radius);
 
   color:${theme === "dark" ? "#fff" : "var(--color-txt, #303a05)"};
+
+  font-family:inherit;
+  font-size:var(--button-font-size);
+  line-height:1.2;
 
   backdrop-filter:
     blur(var(--blur))
@@ -181,21 +195,27 @@ class LiquidButton extends HTMLElement {
 
 .sm{
 
+  --button-font-size:clamp(12px, calc(0.4vw + 10.5px), 15px);
+
   width:180px;
-  height:40px;
-  font-size:1rem;
+  min-height:40px;
 }
 
 .md{
+
+  --button-font-size:clamp(13px, calc(0.45vw + 11px), 16px);
+
   width:${fluid ? "100%" : "280px"};
-  height:32px;
-  font-size:1.2rem;
+  min-height:clamp(36px, calc(0.8vw + 33px), 44px);
 }
 
 .lg{
+
+  --button-font-size:clamp(24px, calc(1vw + 20px), 40px);
+
   width:420px;
-  height:140px;
-  font-size:2.5rem;
+  min-height:140px;
+  padding:clamp(20px, 3vw, 48px) clamp(24px, 4vw, 64px);
 }
 
 .label{
@@ -210,14 +230,16 @@ class LiquidButton extends HTMLElement {
 
   display:inline-flex;
   align-items:center;
-  gap:.55em;
+  gap:clamp(6px, .55em, 10px);
+  white-space:nowrap;
 }
 
 .arrow{
+  box-sizing:border-box;
   display:inline-block;
-  width:.68em;
-  height:.68em;
-  flex:0 0 .68em;
+  width:calc(var(--button-font-size) - 4px);
+  height:calc(var(--button-font-size) - 4px);
+  flex:0 0 calc(var(--button-font-size) - 4px);
   border-right:1.5px solid currentColor;
   border-bottom:1.5px solid currentColor;
   transform:rotate(-45deg);

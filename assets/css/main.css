@@ -1788,7 +1788,6 @@ h2 {
     --site-tablet-nav-gap: clamp(10px, 1.2vw, 14px);
     --site-tablet-nav-item-height: clamp(220px, 29vw, 260px);
     --site-tablet-nav-link-width: 44px;
-    --site-tablet-nav-link-padding: clamp(4px, 0.8vw, 8px);
     --site-tablet-nav-logo-size: clamp(16px, calc(0.45vw + 13px), 20px);
     --site-tablet-nav-meta-size: clamp(13px, calc(0.35vw + 10.8px), 15px);
     --site-tablet-nav-letter-spacing: clamp(0.2rem, 0.55vw, 0.4rem);
@@ -1821,7 +1820,7 @@ h2 {
   .footer-link {
     width: var(--site-tablet-nav-link-width);
     height: var(--site-tablet-nav-item-height);
-    padding: var(--site-tablet-nav-link-padding);
+    padding: 0;
     font-size: var(--site-tablet-nav-meta-size);
     letter-spacing: var(--site-tablet-nav-letter-spacing);
   }
