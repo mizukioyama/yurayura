@@ -353,7 +353,7 @@ section.section--concept {
 .section--faq .section__inner,
 .section--access .section__inner {
   display: block;
-  width: min(100%, 740px);
+  width: min(100%, 780px);
   height: auto;
   margin: 0 auto;
 }
@@ -2095,7 +2095,7 @@ h2 {
 
 @media screen and (min-width: 1200px) {
   .section--access .section__inner {
-    width: min(100%, 840px);
+    width: min(100%, 780px);
   }
 
   .section--access > .section__inner > ul.acs-box {

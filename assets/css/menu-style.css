@@ -272,7 +272,7 @@ body.is-menu-open {
 
 @media screen and (max-width: 480px) {
   .header.is-compact.is-open .header-list {
-    gap: clamp(4px, 1.067vw, 6px);
+    gap: clamp(14px, calc(1.067vw + 10px), 16px);
   }
 }
 
@@ -367,7 +367,7 @@ body::after {
 
   .header-list,
   .footer-list {
-    gap: clamp(4px, 1.067vw, 6px);
+    gap: clamp(14px, calc(1.067vw + 10px), 16px);
   }
 
   .header-link,
@@ -486,7 +486,7 @@ body::after {
     --site-nav-top: clamp(16px, 5.333vw, 20px);
     --site-nav-side: clamp(16px, 5.333vw, 20px);
     --site-nav-inner-gap: clamp(8px, 2.667vw, 10px);
-    --site-nav-gap: clamp(4px, 1.067vw, 6px);
+    --site-nav-gap: clamp(14px, calc(1.067vw + 10px), 16px);
     --site-nav-item-height: clamp(184px, 58.667vw, 220px);
     --site-nav-link-width: clamp(36px, 10.667vw, 40px);
     --site-nav-logo-size: clamp(14px, calc(0.55vw + 12px), 16px);
