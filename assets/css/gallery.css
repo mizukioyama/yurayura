@@ -1299,7 +1299,7 @@ body.gallery-page .gallery-section .gallery-pagination {
 /* Keep Gallery's shared header menu at the viewport's right edge. */
 body.gallery-page #js-header .header-list {
   position: fixed;
-  top: var(--site-header-menu-top);
+  top: var(--site-header-list-top);
   right: var(--site-header-menu-side);
   left: auto;
 }
