@@ -1300,15 +1300,15 @@ body.gallery-page .gallery-section .gallery-pagination {
 body.gallery-page #js-header .header-list {
   position: fixed;
   top: var(--site-header-list-top);
-  right: auto;
-  left: var(--site-header-menu-side);
+  right: var(--site-header-menu-side);
+  left: auto;
 }
 
 body.gallery-page #js-header .menu-toggle {
   top: var(--site-header-menu-top);
-  right: auto;
-  left: var(--site-header-menu-side);
-  transform: translateX(-120px);
+  right: var(--site-header-menu-side);
+  left: auto;
+  transform: translateX(120px);
 }
 
 body.gallery-page #js-header .header.is-compact .menu-toggle {
@@ -1319,7 +1319,7 @@ body.gallery-page #js-header .header.is-compact.is-open .header-list {
   inset: 0;
 }
 
-/* Keep Gallery's entire shared header shell on the same right edge as Top and Concept. */
+/* Keep Gallery's title/date shell on the same left edge as Top and Concept. */
 body.gallery-page #js-header .header {
   top: var(--site-header-menu-top);
   right: auto;
