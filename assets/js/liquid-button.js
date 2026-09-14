@@ -203,7 +203,7 @@ class LiquidButton extends HTMLElement {
 
 .md{
 
-  --button-font-size:clamp(13px, calc(0.45vw + 11px), 16px);
+  --button-font-size:clamp(14px, calc(0.5vw + 12px), 16px);
 
   width:${fluid ? "100%" : "280px"};
   min-height:clamp(36px, calc(0.8vw + 33px), 44px);
@@ -235,13 +235,15 @@ class LiquidButton extends HTMLElement {
 }
 
 .arrow{
+  --arrow-size:clamp(10px, calc(0.5vw + 8px), 12px);
+
   box-sizing:border-box;
   display:inline-block;
-  width:calc(var(--button-font-size) - 4px);
-  height:calc(var(--button-font-size) - 4px);
-  flex:0 0 calc(var(--button-font-size) - 4px);
-  border-right:1.5px solid currentColor;
-  border-bottom:1.5px solid currentColor;
+  width:var(--arrow-size);
+  height:var(--arrow-size);
+  flex:0 0 var(--arrow-size);
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
   transform:rotate(-45deg);
   transform-origin:center;
   transition:transform var(--duration) ease;
