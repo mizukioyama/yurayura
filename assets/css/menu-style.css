@@ -216,8 +216,7 @@ body.is-menu-open {
     opacity 0.3s ease;
 }
 
-/* 通常表示の収納アニメーション */
-.header-txt,
+/* 通常表示の収納アニメーションはメニューだけに適用 */
 .header-list {
   transition:
     opacity 0.4s ease,
@@ -226,7 +225,6 @@ body.is-menu-open {
 }
 
 /* 半画面スクロール後 */
-.header.is-compact .header-txt,
 .header.is-compact .header-list {
   opacity: 0;
   visibility: hidden;
