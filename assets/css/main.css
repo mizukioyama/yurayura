@@ -2094,6 +2094,10 @@ h2 {
 ======================================== */
 
 @media screen and (min-width: 1200px) {
+  .section--access .section__inner {
+    width: min(100%, 840px);
+  }
+
   .section--access > .section__inner > ul.acs-box {
     display: flex;
     width: 100%;
