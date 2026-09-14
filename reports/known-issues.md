@@ -440,6 +440,13 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - タブレット用Header／Footerリンクの残存paddingは0pxへ統一しました。リンクの外形、gap、SE幅の`li`全体移動は維持しています。
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作、OSごとのフォント描画差は未確認です。
 
+## Header menu right alignment and Concept mobile refinement (2026-09-14)
+
+- 実機のスマートフォン／タブレットでは未確認です。特に縦書きメニューのフォント描画、タップ位置、スクロール収納の体感は端末確認が必要です。
+- Safari、Firefox、Edgeなど主要ブラウザでの表示差とキーボードのフォーカス順・可視性は未確認です。
+- 公開版の確認はChromeのIABエミュレーションによる375／768pxです。実ブラウザのアドレスバーやOSの表示領域差は含みません。
+- `EXHIBITION STATEMENT`は重なり防止のため通常フローへ変更しています。PC幅でも間隔は維持していますが、元デザインとの細かな視覚差はオーナー確認対象です。
+
 ## MD button and arrow size correction (2026-09-14)
 
 - `.md`の文字サイズは`clamp(14px, calc(0.5vw + 12px), 16px)`、矢印は`clamp(10px, calc(0.5vw + 8px), 12px)`です。

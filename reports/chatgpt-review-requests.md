@@ -966,6 +966,26 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認
 
+## Header menu right alignment and Concept mobile refinement (2026-09-14)
+
+### Review points
+
+1. Header／Footerの常時表示メニューがTop／Concept／Galleryで右端基準になり、タイトル・開催期間の左側配置を崩していないか。
+2. 60%スクロール後のハンバーガーが右側から表示され、クリック時に全画面メニューを開けるか。
+3. Top／Conceptのコンセプト本文が文末の「。」ごとに読みやすく改行されているか。
+4. Conceptページの`EXHIBITION STATEMENT`と「〜 ゆらぎの間で 〜」の間隔が重ならず、スマホ・タブレットで本文が画面内に収まっているか。
+
+### Evidence prepared
+
+- ローカル375／768／1024／1440pxで右端配置、見出し間隔、横方向オーバーフローなしを確認しました。
+- 公開Top／Concept／Galleryの375／768pxでv14／Concept v2の読み込みと表示を確認しました。
+- 公開Topの375pxでスクロール収納、ハンバーガー開閉、全画面メニュー、リンク先を確認しました。
+- 編集前バックアップは`backups/20260914_before_menu_right_concept_mobile/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作による最終確認。
+
 ## MD button and arrow size correction (2026-09-14)
 
 ### Acceptance criteria

@@ -1464,3 +1464,29 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 ### Judgment
 
 `.md`の文字サイズは14〜16px、矢印は10〜12px、ボーダーは1pxで公開版へ反映済みです。ページ遷移ボタンの「文字サイズより4px小さい矢印」も維持しています。
+
+## Header menu right alignment and Concept mobile refinement (2026-09-14)
+
+### Scope
+
+- 共通Header／Footerメニューを右側へ移し、レスポンシブな右余白で右端に揃えました。通常表示のタイトル・開催期間は従来どおり左側に残しています。
+- 60%スクロール後のハンバーガーボタンも右側から表示し、開いたメニューは従来どおり画面全体を覆う構成を維持しました。
+- TopとConceptページのコンセプト本文は、文末の「。」単位で改行する構成にしました。
+- Conceptページの`EXHIBITION STATEMENT`を通常の文書フローへ戻し、「〜 ゆらぎの間で 〜」との間隔を他の見出しと同じ`1.2rem`に統一しました。スマホ帯では本文幅と行間も調整しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local responsive layout | PASS | 375／768／1024／1440pxでメニューの右端配置、Conceptの見出し間隔約19.2px、横方向オーバーフローなしを確認 |
+| Public mobile layout | PASS | 公開Top／Concept／Galleryの375pxでv14／Concept v2を読み込み、右端配置と横方向オーバーフローなしを確認 |
+| Public tablet layout | PASS | 公開Top／Concept／Galleryの768pxで右端配置、Conceptの見出し間隔約19.2px、横方向オーバーフローなしを確認 |
+| Menu interaction | PASS | 公開Topの375pxでスクロール後に`is-compact`とハンバーガー表示、クリック後に`is-compact is-open`・`aria-expanded=true`・全画面メニューを確認 |
+| Shared-page regression | PASS | Concept／Galleryの共通メニュー、本文、作品一覧、Footerを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup | PASS | 編集前コピーを`backups/20260914_before_menu_right_concept_mobile/`へ保存 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+メニューは3ページ共通で右側へ揃い、公開版でもスマホ・タブレットの画面内に収まっています。Conceptの上部英文と見出しは重ならず、指定どおり文末の「。」で改行されています。ソース反映コミットは`2fde29d`です。
