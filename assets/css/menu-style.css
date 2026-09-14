@@ -158,7 +158,8 @@ body.is-menu-open {
 .menu-toggle {
   position: fixed;
   top: 3.5rem;
-  left: 6rem;
+  right: 6rem;
+  left: auto;
   z-index: 10002;
 
   display: flex;
@@ -181,7 +182,7 @@ body.is-menu-open {
   visibility: hidden;
   pointer-events: none;
 
-  transform: translateX(-120px);
+  transform: translateX(120px);
 
   transition:
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -399,7 +400,8 @@ body::after {
 
   .menu-toggle {
     top: 15px;
-    left: 15px;
+    right: 15px;
+    left: auto;
   }
 
   .header.is-compact.is-open .menu-small {
@@ -563,7 +565,8 @@ body::after {
 
   .menu-toggle {
     top: var(--site-nav-top);
-    left: var(--site-nav-side);
+    right: var(--site-nav-side);
+    left: auto;
 
     width: var(--site-nav-link-width);
     height: var(--site-nav-link-width);

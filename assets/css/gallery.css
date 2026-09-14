@@ -1295,3 +1295,26 @@ body.gallery-page .gallery-section .gallery-pagination {
     text-align: center;
   }
 }
+
+/* Keep Gallery's shared header menu at the viewport's right edge. */
+body.gallery-page #js-header .header-list {
+  position: fixed;
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
+}
+
+body.gallery-page #js-header .menu-toggle {
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
+  transform: translateX(120px);
+}
+
+body.gallery-page #js-header .header.is-compact .menu-toggle {
+  transform: translateX(0);
+}
+
+body.gallery-page #js-header .header.is-compact.is-open .header-list {
+  inset: 0;
+}

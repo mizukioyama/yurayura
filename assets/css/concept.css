@@ -230,8 +230,13 @@
 }
 
 .concept-page .concept-statement .concept-eyebrow {
+  position: static;
+  top: auto;
   left: 50%;
-  transform: translateX(-50%);
+  width: auto;
+  margin: 0 0 1.2rem;
+  transform: none;
+  align-self: center;
   text-align: center;
 }
 
@@ -288,5 +293,26 @@
 
   .concept-page .concept-gallery-link liquid-button {
     width: min(100%, 320px);
+  }
+}
+
+/* Concept statement: keep the eyebrow in normal flow on narrow screens so
+   the spacing above the title matches the other Concept sections. */
+@media screen and (max-width: 767px) {
+  .concept-page .concept-statement .section__inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: min(100%, 680px);
+  }
+
+  .concept-page .concept-statement .h2_ttl {
+    margin: 0 0 clamp(24px, 6vw, 32px);
+  }
+
+  .concept-page .concept-statement .section__txt {
+    width: 100%;
+    margin: 0;
+    line-height: 1.9;
   }
 }

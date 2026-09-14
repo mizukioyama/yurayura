@@ -2023,3 +2023,50 @@ h2 {
     width: 100%;
   }
 }
+
+/* ========================================
+  Header menu right-edge alignment
+  The title/date remain in the header's left column;
+  only the navigation and compact toggle move to the right edge.
+======================================== */
+
+:root {
+  --site-header-menu-top: clamp(20px, 3.5vw, 56px);
+  --site-header-menu-side: clamp(20px, 6vw, 96px);
+}
+
+.header-list {
+  position: fixed;
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
+}
+
+.menu-toggle {
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
+  transform: translateX(120px);
+}
+
+.header.is-compact .menu-toggle {
+  transform: translateX(0);
+}
+
+.header.is-compact.is-open .header-list {
+  inset: 0;
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --site-header-menu-top: var(--site-nav-top);
+    --site-header-menu-side: var(--site-nav-side);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1199px) {
+  :root {
+    --site-header-menu-top: var(--site-tablet-nav-top);
+    --site-header-menu-side: var(--site-tablet-nav-side);
+  }
+}
