@@ -2025,9 +2025,9 @@ h2 {
 }
 
 /* ========================================
-  Header shell left edge and menu right-edge alignment
+  Header shell and menu edge alignment
   The title/date shell stays on the left while the navigation
-  menu is aligned to the responsive right edge.
+  menu stays on the right and starts at the same top position.
 ======================================== */
 
 :root {
@@ -2050,7 +2050,7 @@ h2 {
 
 .header-list {
   position: fixed;
-  top: var(--site-header-list-top);
+  top: var(--site-header-menu-top);
   right: var(--site-header-menu-side);
   left: auto;
 }
@@ -2089,17 +2089,36 @@ h2 {
 }
 
 /* ========================================
-  Access information columns: equal desktop widths
-  1200px+
+  Access information widths
+  Desktop: equal columns / tablet: full-width stack
 ======================================== */
 
 @media screen and (min-width: 1200px) {
   .section--access > .section__inner > ul.acs-box {
+    display: flex;
     width: 100%;
   }
 
   .section--access > .section__inner > ul.acs-box .access-info {
     flex: 1 1 0;
+    width: auto;
     max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+
+/* Keep tablet access details as wide as the smartphone layout. */
+@media screen and (min-width: 481px) and (max-width: 1199px) {
+  .section--access > .section__inner > ul.acs-box {
+    display: block;
+    width: 100%;
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
   }
 }
