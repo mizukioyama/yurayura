@@ -986,6 +986,27 @@
 
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
+## Access information equal desktop widths (2026-09-15)
+
+### Review points
+
+1. Topのアクセス直下で、住所・問合せ・営業時間の3項目が同じ幅で親領域いっぱいに広がっているか。
+2. 481〜1199pxでは、従来どおり3項目が縦積みで各項目width 100%になっているか。
+3. Concept／Galleryの本文・作品・共通メニューに影響がないか。
+4. `main.css` v19が公開版で読み込まれているか。
+
+### Evidence prepared
+
+- ローカルTopのアクセス情報を表示し、3列の境界が等間隔になることを確認しました。
+- 公開Topのアクセス情報を表示し、同じ均等幅の表示を確認しました。
+- 公開Concept／Galleryを表示し、既存コンテンツが表示されることを確認しました。
+- タブレット／スマホ向けの既存縦積みルールが変更されていないことをソース上で確認しました。
+- 編集前バックアップは`backups/20260915_before_access_info_equal_width/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Header text persistence on scroll (2026-09-15)
 
 ### Review points

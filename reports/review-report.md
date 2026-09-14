@@ -1599,6 +1599,32 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 
 `.header`本体は左側に戻した状態を維持し、ナビゲーションメニューと収納時のハンバーガーだけを右側へ配置しました。前回の上下分離による重なり防止と全画面メニュー開閉も維持しています。反映コミットは`c3ca2b3`です。
 
+## Access information equal desktop widths (2026-09-15)
+
+### Scope
+
+- アクセス直下の`住所`・`問合せ`・`営業時間`を対象に、デスクトップ幅では3項目を同じ比率で伸縮させました。
+- 固定上限`228px`を解除し、`flex: 1 1 0`で親領域を均等に使用するようにしました。
+- 既存のタブレット／スマホの縦積み（各項目width 100%）は維持しています。
+- 3ページの`main.css`キャッシュバスターを`main.css?v=20260915-access-info-equal-v19`へ更新しました。
+- 編集前コピーは`backups/20260915_before_access_info_equal_width/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local desktop Access | PASS | ローカルTopのアクセス情報で、3項目の境界が等間隔になり、親領域いっぱいに広がることを目視確認 |
+| Public desktop Access | PASS | 公開Topのアクセス情報で、住所・問合せ・営業時間の3列が均等幅で表示されることを目視確認 |
+| Tablet / smartphone rule | PASS | `481px〜1199px`の既存縦積みルールと`max-width: 767px`の全幅ルールを変更していないことを確認 |
+| Concept / Gallery impact | PASS | 公開Concept／Galleryを表示し、既存の本文・作品・共通メニューが表示されることを確認 |
+| Cache / source diff | PASS | 3ページのv19参照、`git diff --check`を確認 |
+| Backup / package | PASS | 編集前コピーを保存し、確認用ZIPを再作成・`unzip -tq`検査済み |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+アクセス直下の3項目だけをデスクトップ時に均等伸縮へ変更し、タブレット／スマホの縦積みとConcept／Galleryの共通表示は維持しました。反映コミットは`5fa4da7a1777241dd849326de19a6dae56321269`です。
+
 ## Header text persistence on scroll (2026-09-15)
 
 ### Scope
