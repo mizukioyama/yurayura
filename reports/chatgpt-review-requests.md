@@ -1007,6 +1007,27 @@
 
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
+## Header and menu overlap correction (2026-09-15)
+
+### Review points
+
+1. Top／Concept／Galleryで、タイトル・開催期間と縦書きメニューが重ならず、メニューがテキスト領域の下に配置されているか。
+2. `.header`・タイトル／開催期間・メニューの右端基準が維持されているか。
+3. 375／768／1440pxで画面内に収まり、横方向オーバーフローが発生していないか。
+4. 収納後のハンバーガー開閉と全画面メニューに影響がないか。
+
+### Evidence prepared
+
+- ローカルTop／Concept／Galleryの375／768／1440pxで、テキストと各メニュー項目の矩形交差を確認しました。
+- 公開Top／Concept／Galleryの375／768px、および公開Topの1280pxで同じ確認を行いました。
+- 公開版で`main.css?v=20260914-header-overlap-fix-v16`、Galleryで`gallery.css?v=20260914-header-overlap-fix-v4`を確認しました。
+- 公開Topの375pxでスクロール収納、ハンバーガー開閉、全画面メニューを確認しました。
+- 編集前バックアップは`backups/20260914_before_header_overlap_fix/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## MD button and arrow size correction (2026-09-14)
 
 ### Acceptance criteria

@@ -1517,3 +1517,30 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 ### Judgment
 
 Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間・ナビゲーションを含めて同じレスポンシブな右端へ揃いました。公開版でも375／768pxで画面内に収まり、既存のスクロール収納とハンバーガー開閉も維持しています。主な反映コミットは`53929f3`、`3157b3a`、`0ca14d0`です。
+
+## Header and menu overlap correction (2026-09-15)
+
+### Scope
+
+- タイトル・開催期間の領域と縦書きメニューが同じ上端で重ならないよう、メニュー全体を`.header`テキスト領域の下へ配置しました。
+- メニューの上端は、画面幅に応じたテキスト領域の高さと余白から`clamp()`で算出しています。右端位置は従来どおり`.header`・テキスト・メニューで統一しています。
+- Gallery固有CSSにも同じメニュー上端を適用し、3ページで共通の構成にしました。キャッシュバスターは`main.css` v16、Gallery CSS v4です。
+- 編集前のソースとレビュー資料は`backups/20260914_before_header_overlap_fix/`へ保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local all pages | PASS | Top／Concept／Galleryの375／768／1440pxで、ヘッダーテキストと各メニュー項目の矩形が重ならないことを確認 |
+| Local right edge | PASS | 375／768／1440pxで`.header`・テキスト・メニューの右端が347.0078／717.7656／1345.6016pxで一致 |
+| Local responsive gap | PASS | メニュー上端は375px=80.7422px、768px=108.2813px、1440px=129.5938px。テキスト下端より下に配置 |
+| Public all pages | PASS | 公開Top／Concept／Galleryの375／768pxで重なりなし、`scrollWidth=clientWidth`、v16／v4読み込みを確認 |
+| Public desktop | PASS | 公開Top 1280pxで重なりなし。メニュー上端118.3984px、横方向オーバーフローなし |
+| Hamburger interaction | PASS | 公開Top 375pxで`scrollY=401`後に`is-compact`、クリック後に`is-compact is-open`・`aria-expanded=true`・全画面メニューを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup / package | PASS | `backups/20260914_before_header_overlap_fix/`を保存し、確認用ZIPを再作成・`unzip -tq`検査 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+`.header`とメニューの右端揃えを維持したまま、タイトル・開催期間と縦書きメニューの重なりを解消しました。メニューは各端末幅でテキスト領域の下へ移動し、公開版の3ページでも同じ構成になっています。反映コミットは`1906d7e`です。
