@@ -1651,3 +1651,31 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 スクロール時に`.header`のタイトル・開催期間を収納対象から除外し、`.header-list`だけがスライドアウトする構成へ変更しました。既存のスクロール判定とハンバーガー開閉は維持しています。反映コミットは`20c9c75`です。
+
+## Access width and menu top alignment correction (2026-09-15)
+
+### Scope
+
+- 前回のv19変更で表示条件から外れていたタブレット幅を含め、アクセス直下の`住所`・`問合せ`・`営業時間`の幅指定を明示しました。
+- `1200px以上`では3項目を`flex: 1 1 0`で親領域いっぱいに均等配置し、固定上限`228px`を適用しない構成にしました。
+- `481px〜1199px`ではスマホと同じ縦積みを明示し、各項目を`width: 100%`にしました。スマホ幅の既存全幅指定も維持しています。
+- 右側メニューの`.header-list`を、左側にある`.header`本体と同じ`--site-header-menu-top`で開始するようにしました。左右の設置位置は変更していません。
+- 3ページの`main.css`キャッシュバスターを`main.css?v=20260915-access-info-equal-menu-top-v20`へ更新しました。
+- 編集前コピーは`backups/20260915_before_access_info_equal_and_menu_top/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local desktop Access | PASS | ローカルTopで、住所・問合せ・営業時間の3列が同じ幅で親領域に収まることを目視確認 |
+| Local header/menu top | PASS | ローカルTop上端で、左側タイトルと右側メニューの開始高さが揃うことを目視確認 |
+| Public desktop Access | PASS | 公開Topで、3項目の境界が等間隔になっていることを目視確認 |
+| Public Concept / Gallery | PASS | 公開Concept／Galleryを再読込し、本文・作品・共通メニューが表示されることを確認 |
+| Tablet width rule | PASS | `481px〜1199px`で各アクセス情報を100%幅の縦積みにする後勝ちルールを確認 |
+| Cache / source diff | PASS | 3ページのv20参照、`git diff --check`、関連JavaScriptの構文確認を実施 |
+| Backup / package | PASS | 編集前コピーを保存し、最終レポート反映後の確認用ZIPを更新・検査済み |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+アクセス欄は端末幅に応じて、PCでは均等3列、タブレット／スマホでは各項目100%幅の縦積みになるよう修正しました。メニューの上端は`.header`と同じ基準へ統一し、Concept／Galleryの既存表示は維持しています。ソース反映コミットは`63aeb81267de7bb03ecd52a981c0afa956a45321`です。

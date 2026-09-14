@@ -634,6 +634,17 @@
 - [x] 編集前バックアップと確認用ZIPを更新・検査した
 - [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
 
+## Access width and menu top alignment correction (2026-09-15)
+
+- [x] PC幅の住所・問合せ・営業時間を同じ幅で表示した
+- [x] タブレット幅をスマホと同じ100%幅の縦積みにした
+- [x] 右側メニューの開始高さを`.header`と揃えた
+- [x] Top／Concept／Galleryのv20 CSS参照を確認した
+- [x] 公開Topのアクセス欄を確認した
+- [x] 公開Concept／Galleryへの影響がないことを確認した
+- [x] 編集前バックアップを保存した
+- [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
+
 ## iPhone SE whole-li menu alignment correction (2026-09-13)
 
 - [x] 375px以下で`ul > li`全体を左へ移動した

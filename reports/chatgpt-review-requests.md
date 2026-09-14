@@ -966,6 +966,28 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認
 
+## Access width and menu top alignment correction (2026-09-15)
+
+### Review requests
+
+1. PC幅で、アクセス直下の`住所`・`問合せ`・`営業時間`が同じ幅で広がっているか。
+2. タブレット幅で、アクセス情報がスマホと同じ各項目100%幅の縦積みになっているか。
+3. 上端表示で、左側の`.header`と右側メニューの開始高さが揃っているか。
+4. スクロール収納後のハンバーガー開閉、Concept／Galleryの共通メニューに影響がないか。
+5. 旧CSSキャッシュが残る場合でも、v20の`main.css`が読み込まれるか。
+
+### Evidence prepared
+
+- ローカルTopで、PC幅の3列等幅表示と、左タイトル／右メニューの同一top基準を目視確認しました。
+- 公開Topで、アクセス情報の3列等幅表示を目視確認しました。
+- 公開Concept／Galleryで本文・作品・リンク構成の表示を確認しました。
+- `main.css`のv20参照、`git diff --check`、関連JavaScriptの構文確認を実施しました。
+- 編集前バックアップは`backups/20260915_before_access_info_equal_and_menu_top/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Header left alignment restoration (2026-09-15)
 
 ### Review points
