@@ -1000,10 +1000,11 @@
 - ローカルTopのcontact／faq／accessの実効幅、アクセス3列、共通メニューCSSを確認しました。
 - キャッシュバスターをTop／Concept／Galleryの3ページで更新しました。
 - 編集前バックアップは`backups/20260915_before_section_width_780_menu_gap/`に保存しています。
+- `main`へのpush後、fresh公開Topでv22／v16の読み込みと、734px幅における3セクションの実効幅638pxを確認しました。
 
 ### Remaining owner acceptance
 
-- GitHub `main`への公開反映後のTop／Concept／Gallery確認、実機スマートフォン／タブレット、主要ブラウザ、キーボード操作。
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
 ## Access width and menu top alignment correction (2026-09-15)
 

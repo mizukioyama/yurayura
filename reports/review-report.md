@@ -1727,8 +1727,9 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 | Concept / Gallery impact | PASS | 共通幅とメニュー間隔の範囲以外の固有レイアウト・文言・リンクは変更していないことを確認 |
 | Cache / source diff | PASS | v22／v16参照、`git diff --check`、ソースコミット`80c8be63ddf7fa8c60405da347f04562f0a02df6`を確認 |
 | Backup / package | PASS | 編集前コピーを保存し、レポート反映後に確認用ZIPを更新・検査 |
-| Public / physical devices | NOT TESTED | GitHub公開push、実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は未実施 |
+| Public HTML / CSS delivery | PASS | GitHub `main`へのpush後、fresh公開IABでv22／v16を読み込み、734pxの公開レスポンシブ幅で3セクションが各638px（`min(100%, 780px)`の実効値）になることを確認 |
+| Physical devices / major browsers / keyboard | NOT TESTED | 実機スマートフォン／タブレット、Safari・Firefox・Edge、キーボード操作は未実施 |
 
 ### Judgment
 
-指定された3セクションの最大幅を780pxへ揃え、スマホ用メニューの項目間隔だけを10px拡張しました。公開反映と実機確認は、公開許可後の確認対象です。
+指定された3セクションの最大幅を780pxへ揃え、スマホ用メニューの項目間隔だけを10px拡張しました。`main`への公開反映とfresh公開Topの配信確認まで完了しています。実機・主要ブラウザ・キーボード操作は未確認です。

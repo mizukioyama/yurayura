@@ -462,7 +462,7 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 
 - contact／faq／accessの`.section__inner`は`min(100%, 780px)`です。アクセス欄のデスクトップ3列も780px内で均等配置します。
 - 添付画像を対象に、スマホ用メニュー項目間隔を従来より10px広げ、実効値を14〜16pxにしています。タブレット／デスクトップの既存間隔は変更していません。
-- ローカル確認は完了していますが、GitHub公開反映後の表示、実機、Safari・Firefox・Edge、キーボード操作、端末ごとのフォント描画差は未確認です。
+- ローカル確認とGitHub公開反映後のfresh公開TopのHTML／CSS配信確認は完了しています。実機、Safari・Firefox・Edge、キーボード操作、端末ごとのフォント描画差は未確認です。
 
 ## Access width and menu top alignment correction (2026-09-15)
 
