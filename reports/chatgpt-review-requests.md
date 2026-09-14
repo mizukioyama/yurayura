@@ -966,6 +966,26 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認
 
+## Header left alignment restoration (2026-09-15)
+
+### Review points
+
+1. Top／Concept／Galleryでタイトル・開催期間・ナビゲーションを含む`.header`全体が左端基準になっているか。
+2. 3ページで`.header`・テキスト・メニューの左端が一致し、タイトル領域とメニューが重ならないか。
+3. 375／768／1280pxで画面内に収まり、横方向オーバーフローがないか。
+4. 左側へ移動したハンバーガーの収納・開閉と全画面メニューに影響がないか。
+
+### Evidence prepared
+
+- ローカルTop／Concept／Galleryの375／768／1440pxで左端、重なり、横方向オーバーフローを確認。
+- 公開Top／Concept／Galleryの375／768px、および公開Topの1280pxでv17／v5を確認。
+- 公開Topの375pxでスクロール収納、ハンバーガー開閉、全画面メニューを確認。
+- 編集前バックアップは`backups/20260915_before_header_left/`に保存。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Header menu right alignment and Concept mobile refinement (2026-09-14)
 
 ### Review points

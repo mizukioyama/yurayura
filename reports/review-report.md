@@ -1544,3 +1544,30 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 `.header`とメニューの右端揃えを維持したまま、タイトル・開催期間と縦書きメニューの重なりを解消しました。メニューは各端末幅でテキスト領域の下へ移動し、公開版の3ページでも同じ構成になっています。反映コミットは`1906d7e`です。
+
+## Header left alignment restoration (2026-09-15)
+
+### Scope
+
+- `.header`全体（タイトル・開催期間・ナビゲーション）を左端基準へ戻しました。
+- `.header-list`は前回の重なり解消を維持し、タイトル・開催期間の下へ可変余白で配置しています。
+- 収納時のハンバーガーも左側から表示するように揃えました。
+- 3ページのキャッシュバスターを`main.css?v=20260915-header-left-v17`へ更新し、Galleryは`gallery.css?v=20260915-header-left-v5`へ更新しました。
+- 編集前コピーは`backups/20260915_before_header_left/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local all pages | PASS | Top／Concept／Galleryの375／768／1440pxでヘッダー・テキスト・メニューの左端一致、矩形の重なりなし、横方向オーバーフローなし |
+| Local left edge | PASS | 375／768／1440pxで左端が19.9922／42.2344／86.3984pxで一致 |
+| Public all pages | PASS | 公開Top／Concept／Galleryの375／768pxで左端一致、重なりなし、`scrollWidth=clientWidth`、v17／v5読み込み |
+| Public desktop | PASS | 公開Top 1280pxで左端一致、重なりなし、横方向オーバーフローなし |
+| Hamburger interaction | PASS | 公開Top 375pxで`scrollY=401`後に`is-compact`、クリック後に`is-compact is-open`・`aria-expanded=true`・全画面メニューを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup / package | PASS | `backups/20260915_before_header_left/`を保存し、確認用ZIPを再作成・`unzip -tq`検査済み |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+`.header`・タイトル／開催期間・メニューを左端基準へ戻し、前回の上下分離による重なり防止とハンバーガー開閉を維持しました。反映コミットは`4396005`です。
