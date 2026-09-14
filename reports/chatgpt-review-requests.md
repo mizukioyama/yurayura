@@ -966,6 +966,25 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認
 
+## Access information natural line-wrap adjustment (2026-09-15)
+
+### Review points
+
+1. デスクトップのアクセス欄が`840px`の親幅内で、住所・問合せ・営業時間の3列均等配置になっているか。
+2. 営業時間の「最終日（10/12）：13:00まで」が最後の1文字だけ不自然に折り返されず、他の行も読みやすく収まっているか。
+3. `481px〜1199px`のタブレットとスマホで、アクセス情報が既存どおり100%幅の縦積みになっているか。
+4. `.header`と右側メニューの上端、Top／Concept／Galleryの共通レイアウト、リンク動作に影響がないか。
+
+### Evidence prepared
+
+- ローカルTopのアクセス詳細を確認し、3列の境界と営業時間の改行を確認しました。
+- `main.css`のv21キャッシュバスターをTop／Concept／Galleryに反映しました。
+- 編集前バックアップは`backups/20260915_before_access_info_text_width/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Access width and menu top alignment correction (2026-09-15)
 
 ### Review requests

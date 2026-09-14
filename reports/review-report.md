@@ -1679,3 +1679,29 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 アクセス欄は端末幅に応じて、PCでは均等3列、タブレット／スマホでは各項目100%幅の縦積みになるよう修正しました。メニューの上端は`.header`と同じ基準へ統一し、Concept／Galleryの既存表示は維持しています。ソース反映コミットは`63aeb81267de7bb03ecd52a981c0afa956a45321`です。
+
+## Access information natural line-wrap adjustment (2026-09-15)
+
+### Scope
+
+- デスクトップのアクセス欄の親幅を`740px`から`840px`へ広げ、住所・問合せ・営業時間の3列均等配置を維持しました。
+- 営業時間の「最終日（10/12）：13:00まで」が最後の1文字だけ折り返されない幅に調整しました。
+- `481px〜1199px`のタブレットとスマホは、既存どおり各アクセス情報を100%幅の縦積みにしています。
+- `.header`と右側メニューの上端基準は変更せず、3ページの`main.css`キャッシュバスターを`main.css?v=20260915-access-info-width-v21`へ更新しました。
+- 編集前コピーは`backups/20260915_before_access_info_text_width/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local desktop Access | PASS | ローカルTopで3列の境界が等間隔のまま、営業時間の「最終日（10/12）：13:00まで」が自然な1行で表示されることを確認 |
+| Tablet / mobile rule | PASS | `481px〜1199px`の縦積みルールとスマホの全幅指定を確認 |
+| Header / menu top | PASS | 既存の`.header`左側配置と右側メニューの上端基準を変更していないことを確認 |
+| Concept / Gallery impact | PASS | 今回の表示幅ルールはTopの`#access`内に限定され、Concept／Galleryはキャッシュバスター更新のみであることを確認 |
+| Cache / source diff | PASS | v21参照、`git diff --check`、ソース反映コミット`b073681548ec68697e31b7b97838dc91f661fff1`を確認 |
+| Backup / package | PASS | 編集前コピーを保存し、最終レポート反映後に確認用ZIPを更新・検査 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、Safari・Firefox・Edge、キーボード操作は未実施 |
+
+### Judgment
+
+アクセス欄のデスクトップ表示を必要な範囲だけ横へ広げ、均等3列と自然な改行を両立しました。タブレット／スマホの縦積み、ヘッダーとメニューの配置、Concept／Galleryの表示は維持しています。
