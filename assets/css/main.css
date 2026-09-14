@@ -2025,14 +2025,20 @@ h2 {
 }
 
 /* ========================================
-  Header menu right-edge alignment
-  The title/date remain in the header's left column;
-  only the navigation and compact toggle move to the right edge.
+  Header shell and menu right-edge alignment
+  The whole header, including title/date and navigation,
+  shares the same responsive right edge.
 ======================================== */
 
 :root {
   --site-header-menu-top: clamp(20px, 3.5vw, 56px);
   --site-header-menu-side: clamp(20px, 6vw, 96px);
+}
+
+.header {
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
 }
 
 .header-list {
