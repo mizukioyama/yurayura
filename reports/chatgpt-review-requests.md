@@ -986,6 +986,27 @@
 
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
 
+## Header text persistence on scroll (2026-09-15)
+
+### Review points
+
+1. スクロール後も`.header`内のタイトル・開催期間が表示され、位置が変わらないか。
+2. `.header-list`だけがスライドアウトし、既存の右側ハンバーガーが表示されるか。
+3. Top／Concept／Galleryの375／768／1280pxで横方向オーバーフローや表示崩れがないか。
+4. スクロール判定、ハンバーガー開閉、全画面メニューに影響がないか。
+
+### Evidence prepared
+
+- ローカルTop／Concept／Galleryの375／768pxで`scrollY=401`後の`.header-txt`と`.header-list`の計算状態を確認。
+- 公開Top／Concept／Galleryの375／768pxで`.header-txt`の表示維持と`.header-list`の収納を確認。
+- 公開Topの1280pxで`scrollY=481`後の表示維持と右側ハンバーガーを確認。
+- 公開Top 375pxで全画面メニューの開閉を確認。
+- 編集前バックアップは`backups/20260915_before_header_text_persistent/`に保存。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## Header menu right alignment (2026-09-15)
 
 ### Review points

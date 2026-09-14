@@ -1598,3 +1598,30 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 `.header`本体は左側に戻した状態を維持し、ナビゲーションメニューと収納時のハンバーガーだけを右側へ配置しました。前回の上下分離による重なり防止と全画面メニュー開閉も維持しています。反映コミットは`c3ca2b3`です。
+
+## Header text persistence on scroll (2026-09-15)
+
+### Scope
+
+- スクロール収納のCSS対象を`.header-list`だけに限定しました。
+- `.header-txt`（タイトル・開催期間）はスクロール後も表示・位置を維持します。
+- `allmenu.js`の`is-compact`切り替え、右側ハンバーガー、全画面メニュー開閉は維持しました。
+- 3ページのキャッシュバスターを`menu-style.css?v=20260915-header-text-persistent-v15`へ更新しました。
+- 編集前コピーは`backups/20260915_before_header_text_persistent/`に保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local all pages | PASS | Top／Concept／Galleryの375／768pxで`scrollY=401`後も`.header-txt`が`opacity:1`・`visibility:visible`・`transform:none`、`.header-list`だけが収納状態。1280pxのレイアウトも確認 |
+| Local desktop threshold | PASS | Top 1280pxで`scrollY=481`後も`.header-txt`を表示し、`.header-list`だけを収納 |
+| Public all pages | PASS | 公開Top／Concept／Galleryの375／768pxで同じ状態、`scrollWidth=clientWidth`、v15読み込み |
+| Public desktop threshold | PASS | 公開Top 1280pxで`scrollY=481`後も`.header-txt`が表示、`.header-list`が非表示、右側ハンバーガー表示、横方向オーバーフローなし |
+| Hamburger interaction | PASS | 公開Top 375pxでスクロール収納後に右側ハンバーガーをクリックし、`is-compact is-open`・`aria-expanded=true`・全画面メニューを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup / package | PASS | `backups/20260915_before_header_text_persistent/`を保存し、確認用ZIPを再作成・`unzip -tq`検査済み |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+スクロール時に`.header`のタイトル・開催期間を収納対象から除外し、`.header-list`だけがスライドアウトする構成へ変更しました。既存のスクロール判定とハンバーガー開閉は維持しています。反映コミットは`20c9c75`です。
