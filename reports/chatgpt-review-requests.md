@@ -942,3 +942,26 @@
 - ローカルConcept／Galleryの375pxでv11 CSS、共通メニュー、見出し・本文・作品表示を確認
 - 公開Top／Concept／Galleryの375pxでv11 CSS、`li`全体の位置、ラベル順、横方向オーバーフローなしを確認
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作は追加確認が必要
+
+## All-device button typography and spacing (2026-09-14)
+
+### Acceptance criteria
+
+1. Top／Conceptのページ遷移ボタンが、全端末幅で`clamp()`による文字サイズ・余白・高さになっていること。
+2. ボタン矢印が2辺ボーダーを回転した正方形で、計算上ボタン文字サイズより4px小さいこと。
+3. Topの送信、Galleryの絞り込み・ページ移動ボタンにも同じモバイルファーストの文字サイズ・余白調整が適用されること。
+4. タブレットのHeader／Footerリンク内側paddingが0pxで、リンク幅・高さ・タップ領域・メニュー順を維持すること。
+5. Top／Concept／Galleryの表示、既存のガラス効果、リンク、横幅に影響がないこと。
+
+### Evidence
+
+- ローカル320／375／480／768／1024／1280pxでCTAの`clamp()`計算値、矢印差分4px、native controlの文字サイズ・余白を確認
+- ローカルConcept／Galleryで新キャッシュバスター、CTA、Galleryコントロール、見出し・本文・作品表示、横方向オーバーフローなしを確認
+- 公開Topの375pxと768pxでCTA、送信ボタン、メニューpadding0px、横方向オーバーフローなしを確認
+- 公開Concept／Galleryの375pxでCTA／Galleryコントロール、本文、作品表示、横方向オーバーフローなしを確認
+- `git diff --check`、`node --check assets/js/liquid-button.js`、`node --check assets/js/allmenu.js`、`unzip -tq`を実施
+- ソース反映コミットは`85f5f7b`。編集前コピーは`backups/20260914_before_button_size_spacing/`に保存
+
+### Remaining acceptance
+
+- 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認

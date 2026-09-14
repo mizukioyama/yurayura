@@ -1406,3 +1406,38 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 | Public Concept / Gallery | PASS | 公開v12の375pxでpadding0px、共通メニュー、見出し・作品表示、横方向オーバーフローなしを確認 |
 | Backup / package | PASS | 編集前コピーを保存し、確認用ZIPを更新・検査した |
 | Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、各OS／ブラウザ未実施 |
+
+## All-device button typography and spacing (2026-09-14)
+
+### Scope
+
+「前端末」は「全端末」と解釈し、Top／Concept／Galleryのページ遷移CTA、Topの送信ボタン、Galleryの絞り込み・ページ移動ボタンを対象にしました。FAQの回答行やモーダル閉じるボタンの機能・平面表示は変更していません。
+
+### Changes
+
+- `assets/js/liquid-button.js` の共通CTAをモバイルファーストの`clamp()`で調整し、文字サイズ、上下左右の内側余白、最小高さ、ラベル間隔を画面幅に応じて補間
+- CTAの矢印は従来どおり右辺・下辺の2本のボーダーを回転した正方形とし、CSSで幅・高さを`var(--button-font-size) - 4px`に統一
+- `assets/css/liquid.css` の送信・絞り込み・ページ移動などのガラスボタンにも`clamp()`の文字サイズ・余白・高さを適用
+- タブレット帯のHeader／Footerリンクにも`padding: 0`を適用し、前回のメニュー内側余白の残存を解消。リンクのwidth／height、gap、SE幅の`li`全体移動は維持
+- 3ページの共通CSS／JSキャッシュバスターを`20260914-button-size-spacing-v13`、`...v6`、`...v7`へ更新
+- 編集前コピーを`backups/20260914_before_button_size_spacing/`へ保存
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local CTA typography | PASS | 320／375／480／768／1024／1280pxで文字サイズと内側余白が`clamp()`により連続変化 |
+| Local arrow size | PASS | 全幅で矢印の計算幅・高さがボタン文字サイズより4px小さいことを確認。375pxは13px／9px |
+| Local native controls | PASS | 送信、Gallery絞り込み、Galleryページ移動の文字サイズ・余白・最小高さを確認 |
+| Local menu regression | PASS | 320〜1280pxでHeaderリンクのpaddingが0px、横方向オーバーフローなし |
+| Local Concept / Gallery | PASS | 新キャッシュバスター、見出し、本文、Concept CTA、Gallery表示を確認 |
+| Public Top | PASS | 公開版の375pxでv13 CSS／JS、CTA 13px、矢印9px、差分4px、送信ボタン、padding0pxを確認 |
+| Public Concept / Gallery | PASS | 公開版の375pxでCTA／Galleryコントロール、本文、作品表示、横方向オーバーフローなしを確認 |
+| Public tablet | PASS | 公開版768pxでCTAの可変値、矢印差分約4px、メニューpadding0px、横方向オーバーフローなしを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/liquid-button.js`、`node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup / package | PASS | 編集前コピーを保存し、レビュー資料と確認用ZIPを更新・`unzip -tq`検査 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+ボタンの文字サイズ・余白は全端末で`clamp()`により調整され、矢印は2辺ボーダーの正方形を保ったまま文字より4px小さくなっています。公開Top／Concept／Galleryとタブレット幅まで確認済みです。実機での最終受入だけが未確認です。
