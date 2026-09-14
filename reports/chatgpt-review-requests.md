@@ -986,6 +986,27 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作による最終確認。
 
+## Whole Header right-edge alignment (2026-09-14)
+
+### Review points
+
+1. Top／Concept／Galleryで、タイトル・開催期間・ナビゲーションを含む`.header`全体が同じ右端基準になっているか。
+2. 375／768pxで`.header`、`.header-txt`、通常表示メニューが画面内に収まり、横方向オーバーフローがないか。
+3. Gallery固有CSSの後勝ちルールと`gallery.css` v3キャッシュバスターが公開版で読み込まれているか。
+4. 60%スクロール相当の収納、ハンバーガー開閉、全画面メニューに影響がないか。
+
+### Evidence prepared
+
+- ローカルTop 375／768／1440px、ローカルGallery 375pxで右端と横幅を測定しました。
+- 公開Top／Concept／Galleryの375／768pxで右端一致と`scrollWidth=clientWidth`を確認しました。
+- 公開Galleryで`gallery.css?v=20260914-header-whole-right-v3`の読み込みを確認しました。
+- 公開Topの375pxで`scrollY=401`後の`is-compact`、ハンバーガー開閉、全画面メニューを確認しました。
+- 編集前バックアップは`backups/20260914_before_header_whole_right/`に保存しています。
+
+### Remaining owner acceptance
+
+- 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作による最終確認。
+
 ## MD button and arrow size correction (2026-09-14)
 
 ### Acceptance criteria

@@ -1490,3 +1490,30 @@ SE幅（375px以下）でメニューが大きく見える要因になってい�
 ### Judgment
 
 メニューは3ページ共通で右側へ揃い、公開版でもスマホ・タブレットの画面内に収まっています。Conceptの上部英文と見出しは重ならず、指定どおり文末の「。」で改行されています。ソース反映コミットは`2fde29d`です。
+
+## Whole Header right-edge alignment (2026-09-14)
+
+### Scope
+
+- `.header`全体を`right: var(--site-header-menu-side); left: auto;`へ統一し、タイトル・開催期間・ナビゲーションを同じ右端基準にしました。
+- Galleryではページ固有CSSが共通CSSより後に読み込まれるため、最後のスコープ付きルールで`.header`全体を同じ右端へ揃えました。
+- 3ページの`main.css`キャッシュバスターを`20260914-header-whole-right-v15`、GalleryのCSSを`20260914-header-whole-right-v3`へ更新しました。
+- 編集前のソースと既存レビュー資料は`backups/20260914_before_header_whole_right/`へ保存しています。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Local Top | PASS | 375／768／1440pxで`.header`と`.header-txt`の右端をそれぞれ347.0078／717.7656／1345.6016pxで確認。横方向オーバーフローなし |
+| Local Gallery | PASS | 375pxでタイトル・開催期間を含む`.header`全体の右端347.0078px、メニュー右端347.0078px。横方向オーバーフローなし |
+| Public Top／Concept／Gallery tablet | PASS | 768pxで3ページとも`.header`・`.header-txt`・メニューの右端717.7656px、`scrollWidth=clientWidth=760px` |
+| Public Top／Concept／Gallery mobile | PASS | 375pxで3ページとも右端347.0078px、`scrollWidth=clientWidth=367px` |
+| Public Gallery cache refresh | PASS | 公開Galleryが`gallery.css?v=20260914-header-whole-right-v3`を読み込み、タイトル・開催期間を含む`.header`が右端へ移動 |
+| Hamburger interaction | PASS | 公開Top 375pxで`scrollY=401`時に`is-compact`、クリック後に`is-compact is-open`・`aria-expanded=true`・全画面メニューを確認 |
+| JavaScript／差分 | PASS | `node --check assets/js/allmenu.js`、`git diff --check` |
+| Backup / package | PASS | `backups/20260914_before_header_whole_right/`を保存し、確認用ZIPを再作成・`unzip -tq`検査 |
+| Physical smartphone / tablet | NOT TESTED | 実機表示・タップ、主要ブラウザ、キーボード操作は未実施 |
+
+### Judgment
+
+Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間・ナビゲーションを含めて同じレスポンシブな右端へ揃いました。公開版でも375／768pxで画面内に収まり、既存のスクロール収納とハンバーガー開閉も維持しています。主な反映コミットは`53929f3`、`3157b3a`、`0ca14d0`です。
