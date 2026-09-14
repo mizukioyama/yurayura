@@ -2025,9 +2025,9 @@ h2 {
 }
 
 /* ========================================
-  Header shell and menu right-edge alignment
+  Header shell and menu left-edge alignment
   The whole header, including title/date and navigation,
-  shares the same responsive right edge.
+  shares the same responsive left edge.
 ======================================== */
 
 :root {
@@ -2044,22 +2044,22 @@ h2 {
 
 .header {
   top: var(--site-header-menu-top);
-  right: var(--site-header-menu-side);
-  left: auto;
+  right: auto;
+  left: var(--site-header-menu-side);
 }
 
 .header-list {
   position: fixed;
   top: var(--site-header-list-top);
-  right: var(--site-header-menu-side);
-  left: auto;
+  right: auto;
+  left: var(--site-header-menu-side);
 }
 
 .menu-toggle {
   top: var(--site-header-menu-top);
-  right: var(--site-header-menu-side);
-  left: auto;
-  transform: translateX(120px);
+  right: auto;
+  left: var(--site-header-menu-side);
+  transform: translateX(-120px);
 }
 
 .header.is-compact .menu-toggle {
