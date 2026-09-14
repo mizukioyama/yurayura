@@ -1318,3 +1318,10 @@ body.gallery-page #js-header .header.is-compact .menu-toggle {
 body.gallery-page #js-header .header.is-compact.is-open .header-list {
   inset: 0;
 }
+
+/* Keep Gallery's entire shared header shell on the same right edge as Top and Concept. */
+body.gallery-page #js-header .header {
+  top: var(--site-header-menu-top);
+  right: var(--site-header-menu-side);
+  left: auto;
+}
