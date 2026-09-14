@@ -2087,3 +2087,19 @@ h2 {
     --site-header-text-menu-gap: clamp(16px, 2.8vw, 28px);
   }
 }
+
+/* ========================================
+  Access information columns: equal desktop widths
+  1200px+
+======================================== */
+
+@media screen and (min-width: 1200px) {
+  .section--access > .section__inner > ul.acs-box {
+    width: 100%;
+  }
+
+  .section--access > .section__inner > ul.acs-box .access-info {
+    flex: 1 1 0;
+    max-width: none;
+  }
+}
