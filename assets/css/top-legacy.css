@@ -3,7 +3,7 @@
 /* Top-only restoration of the pre-refinement desktop composition. */
 .top-page section.section--concept,
 .top-page section.section--artists {
-  --top-section-inline-padding: 48px;
+  --top-section-inline-padding: 54px;
   height: 100vh;
   min-height: 100vh;
   padding-block: 80px;
@@ -166,7 +166,7 @@
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .top-page section.section--concept,
   .top-page section.section--artists {
-    --top-section-inline-padding: 48px;
+    --top-section-inline-padding: 54px;
     height: auto;
     min-height: 100vh;
     padding-block: clamp(72px, calc(4vw + 40px), 96px);
@@ -188,7 +188,7 @@
 @media screen and (max-width: 767px) {
   .top-page section.section--concept,
   .top-page section.section--artists {
-    --top-section-inline-padding: 48px;
+    --top-section-inline-padding: 54px;
     height: auto;
     min-height: 100vh;
     padding-block: clamp(88px, calc(8.5vw + 57px), 120px);
