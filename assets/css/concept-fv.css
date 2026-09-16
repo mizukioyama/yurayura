@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* Isolated Concept FV. Mirrors Gallery title layout without shared .fv legacy rules. */
+/* Concept FV: same title geometry/typography as Gallery. */
 .concept-page .concept-fv {
   position: relative !important;
   display: block !important;
@@ -16,7 +16,7 @@
   top: 40vmin !important;
   right: auto !important;
   bottom: auto !important;
-  z-index: 100000 !important;
+  z-index: 90 !important;
   display: block !important;
   place-items: initial !important;
   width: auto !important;
@@ -70,6 +70,14 @@
   letter-spacing: normal !important;
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
+}
+
+/* Concept's fog/Vanta layers are visual only and must never cover the shared menu. */
+.concept-page #fog-scene,
+.concept-page .vanta-wrap,
+.concept-page #vanta-bg,
+.concept-page .smoke-twist {
+  pointer-events: none !important;
 }
 
 @media screen and (max-width: 1199px) {
