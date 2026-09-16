@@ -3,13 +3,13 @@
 /* Top-only restoration of the pre-refinement desktop composition. */
 .top-page .bg-img,
 .top-page::after {
-  display: none;
+  display: block;
 }
 
 .top-page,
 .top-page main,
 .top-page main section {
-  background-color: var(--color-bg) !important;
+  background-color: transparent !important;
 }
 
 /* Keep the FV Scroll guide on the same left axis as Concept. */
@@ -111,12 +111,6 @@
   line-height: 2;
   letter-spacing: 0.4rem;
   text-align: initial;
-}
-
-/* Remove the decorative image element placed behind the Artists section. */
-.top-page .section--artists .artists-bg-img,
-.top-page .section--artists .section__bg-img {
-  display: none !important;
 }
 
 .top-page .member-slider {
