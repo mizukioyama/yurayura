@@ -1,4 +1,23 @@
 <header class="header">
+  <style>
+    /* Shared header navigation: keep title/date left, navigation on the right. */
+    .header > .header-inner > .header-list:not(.header.is-compact.is-open .header-list) {
+      position: fixed !important;
+      top: 3.5rem !important;
+      right: 6rem !important;
+      left: auto !important;
+      margin: 0 !important;
+    }
+
+    @media screen and (max-width: 767px) {
+      .header > .header-inner > .header-list:not(.header.is-compact.is-open .header-list) {
+        top: var(--site-nav-top, 20px) !important;
+        right: var(--site-nav-side, 20px) !important;
+        left: auto !important;
+      }
+    }
+  </style>
+
   <nav class="header-inner inner">
 
     <div class="header-txt">
