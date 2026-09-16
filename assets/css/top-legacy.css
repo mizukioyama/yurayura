@@ -101,8 +101,10 @@
   text-align: initial;
 }
 
-.top-page .artists-bg-img {
-  display: none;
+/* Remove the decorative image element placed behind the Artists section. */
+.top-page .section--artists .artists-bg-img,
+.top-page .section--artists .section__bg-img {
+  display: none !important;
 }
 
 .top-page .member-slider {
