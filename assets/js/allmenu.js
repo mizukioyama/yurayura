@@ -135,8 +135,8 @@ function initializeCustomCursor() {
   });
 }
 
-/* Keep Scroll on one shared FV axis. On PC, Top uses the exact same
-   vertical origin as Concept: 40vmin + rendered H1 height + 140px. */
+/* Keep Scroll on one shared FV axis. On PC, Top and Concept are anchored
+   to the bottom edge of their FV with bottom: 0. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
@@ -148,21 +148,28 @@ function initializeScrollGuidePosition() {
     const titleRect = title.getBoundingClientRect();
     const parentRect = containingBlock.getBoundingClientRect();
     const isTopPage = document.body.classList.contains("top-page");
+    const isConceptPage = document.body.classList.contains("concept-page");
+    const isPc = window.innerWidth >= 1200;
+
+    guide.style.setProperty("position", "absolute", "important");
+    guide.style.setProperty("transform", "none", "important");
+
+    if (isPc && (isTopPage || isConceptPage)) {
+      guide.style.setProperty("top", "auto", "important");
+      guide.style.setProperty("bottom", "0px", "important");
+      return;
+    }
 
     let guideTop;
-    if (isTopPage && window.innerWidth >= 1200) {
-      guideTop = Math.min(window.innerWidth, window.innerHeight) * 0.40 + titleRect.height + 140;
-    } else if (isTopPage) {
+    if (isTopPage) {
       const sharedTitleTop = window.innerWidth <= 767 ? 180 : window.innerWidth * 0.28;
       guideTop = sharedTitleTop + titleRect.height + 140;
     } else {
       guideTop = titleRect.bottom - parentRect.top + 140;
     }
 
-    guide.style.setProperty("position", "absolute", "important");
     guide.style.setProperty("top", `${guideTop}px`, "important");
     guide.style.setProperty("bottom", "auto", "important");
-    guide.style.setProperty("transform", "none", "important");
   };
 
   positionGuide();
