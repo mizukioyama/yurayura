@@ -266,7 +266,7 @@
     width: min(100%, 320px);
   }
 
-  /* Match Gallery: first content starts immediately after the shared FV/Scroll area. */
+  /* Match Gallery's vertical content start while preserving Concept's centered layout. */
   .concept-page .concept-statement {
     min-height: 0 !important;
     padding-top: 0 !important;
@@ -274,27 +274,34 @@
 
   .concept-page .concept-statement .section__inner {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
     width: 100%;
     min-height: 0 !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
+    text-align: center;
   }
 
   .concept-page .concept-statement .concept-eyebrow {
-    align-self: flex-start;
+    align-self: center;
     margin-top: 0 !important;
+    text-align: center !important;
   }
 
   .concept-page .concept-statement .h2_ttl {
+    align-self: center;
     margin: 0 0 clamp(24px, 6vw, 32px);
+    text-align: center !important;
   }
 
   .concept-page .concept-statement .section__txt {
+    align-self: center;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     line-height: 1.9;
+    text-align: center !important;
   }
 }
 
