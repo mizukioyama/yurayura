@@ -80,6 +80,12 @@
   pointer-events: none !important;
 }
 
+/* Concept only: place the Scroll guide on the left. */
+.concept-page .concept-fv .scroll-guide {
+  left: 8vmin !important;
+  right: auto !important;
+}
+
 @media screen and (max-width: 1199px) {
   .concept-page .concept-fv .fv__inner {
     left: 10vw !important;
@@ -88,8 +94,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  /* Keep a full viewport FV so the shared Scroll guide lands at the same
-     right/bottom coordinates as Top. */
   .concept-page .concept-fv {
     min-height: 100vh !important;
   }
@@ -102,5 +106,10 @@
     width: 100% !important;
     margin: 0 !important;
     padding: 180px 22px 280px !important;
+  }
+
+  .concept-page .concept-fv .scroll-guide {
+    left: 20px !important;
+    right: auto !important;
   }
 }
