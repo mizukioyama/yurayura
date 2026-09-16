@@ -28,45 +28,6 @@
   text-orientation: mixed;
 }
 
-/* Concept FV uses the same title composition as Gallery. */
-.concept-page .concept-fv {
-  position: relative;
-  min-height: 100vh;
-}
-
-.concept-page .concept-fv .fv__inner {
-  position: absolute;
-  left: 20vmin;
-  top: 40vmin;
-  z-index: 90;
-  display: block;
-  width: auto;
-  height: auto;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.concept-page .concept-fv .fv__ttl {
-  margin: 0;
-  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem);
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: normal;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed;
-}
-
-.concept-page .concept-fv .fv__txt {
-  margin: .5rem 0 0;
-  font-size: var(--responsive-copy-size, 1rem);
-  font-weight: 300;
-  line-height: 1.7;
-  letter-spacing: normal;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed;
-}
-
 .concept-statement .section__inner {
   position: relative;
 }
@@ -186,28 +147,71 @@
   writing-mode: initial;
 }
 
-@media screen and (max-width: 1199px) {
-  .concept-page .concept-fv .fv__inner {
-    left: 10vw;
-    top: 28vmin;
+@media (prefers-reduced-motion: reduce) {
+  .concept-gallery-link__button,
+  #concept .concept-link {
+    transition: none;
   }
 }
 
+.concept-page .h2_ttl,
+.concept-page .concept-texture__copy .h2_ttl {
+  text-align: center;
+}
+
+.concept-page main section:not(.fv) .h2_ttl,
+.concept-page main section:not(.fv) .section__txt,
+.concept-page main section:not(.fv) .concept-eyebrow,
+.concept-page main section:not(.fv) a {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  text-align: center;
+}
+
+.concept-page .concept-statement .concept-eyebrow {
+  position: static;
+  top: auto;
+  left: 50%;
+  width: auto;
+  margin: 0 0 1.2rem;
+  transform: none;
+  align-self: center;
+  text-align: center;
+}
+
+.concept-page main section:not(.fv) .section__txt {
+  width: min(100%, 680px);
+  margin-inline: auto;
+  line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
+}
+
+.concept-page .concept-texture__copy {
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.concept-page .concept-gallery-link liquid-button {
+  display: block;
+  width: min(100%, 520px);
+  margin: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px)) auto 0;
+}
+
+.concept-page .concept-texture__copy {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+.concept-page .concept-texture__copy .concept-eyebrow,
+.concept-page .concept-texture__copy .h2_ttl,
+.concept-page .concept-texture__copy .section__txt {
+  align-self: flex-start;
+  width: 100%;
+  margin-inline: 0;
+  text-align: left !important;
+}
+
 @media screen and (max-width: 767px) {
-  .concept-page .concept-fv {
-    min-height: 0;
-  }
-
-  .concept-page .concept-fv .fv__inner {
-    position: relative;
-    left: auto;
-    top: auto;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding: 180px 22px 280px;
-  }
-
   .concept-texture {
     padding-block: 96px;
   }
@@ -253,82 +257,7 @@
   .concept-gallery-link .section__txt {
     text-align: center;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .concept-gallery-link__button,
-  #concept .concept-link {
-    transition: none;
-  }
-}
-
-.concept-page .h2_ttl,
-.concept-page .concept-texture__copy .h2_ttl {
-  text-align: center;
-}
-
-.concept-page main section:not(.fv) .h2_ttl,
-.concept-page main section:not(.fv) .section__txt,
-.concept-page main section:not(.fv) .concept-eyebrow,
-.concept-page main section:not(.fv) a {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-}
-
-.concept-page .concept-statement .concept-eyebrow {
-  position: static;
-  top: auto;
-  left: 50%;
-  width: auto;
-  margin: 0 0 1.2rem;
-  transform: none;
-  align-self: center;
-  text-align: center;
-}
-
-.concept-page main section:not(.fv) .h2_ttl,
-.concept-page main section:not(.fv) .section__txt,
-.concept-page main section:not(.fv) .concept-eyebrow,
-.concept-page main section:not(.fv) a {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-  text-align: center;
-}
-
-.concept-page main section:not(.fv) .section__txt {
-  width: min(100%, 680px);
-  margin-inline: auto;
-  line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
-}
-
-.concept-page .concept-texture__copy {
-  align-items: center;
-  width: 100%;
-  text-align: center;
-}
-
-.concept-page .concept-gallery-link liquid-button {
-  display: block;
-  width: min(100%, 520px);
-  margin: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px)) auto 0;
-}
-
-/* The "A MOMENT TO FEEL / 感じるということ" copy is left aligned. */
-.concept-page .concept-texture__copy {
-  align-items: flex-start !important;
-  text-align: left !important;
-}
-
-.concept-page .concept-texture__copy .concept-eyebrow,
-.concept-page .concept-texture__copy .h2_ttl,
-.concept-page .concept-texture__copy .section__txt {
-  align-self: flex-start;
-  width: 100%;
-  margin-inline: 0;
-  text-align: left !important;
-}
-
-@media screen and (max-width: 767px) {
   .concept-page main section:not(.fv) .section__txt {
     line-height: 1.9;
   }
@@ -336,11 +265,7 @@
   .concept-page .concept-gallery-link liquid-button {
     width: min(100%, 320px);
   }
-}
 
-/* Concept statement: keep the eyebrow in normal flow on narrow screens so
-   the spacing above the title matches the other Concept sections. */
-@media screen and (max-width: 767px) {
   .concept-page .concept-statement .section__inner {
     display: flex;
     align-items: center;
@@ -369,4 +294,82 @@
 .top-page section.section--concept,
 .top-page section.section--artists {
   --top-section-inline-padding: 54px;
+}
+
+/* Final FV override: copy Gallery's H1 layout exactly and neutralize shared .fv rules. */
+.concept-page .concept-fv {
+  position: relative !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.concept-page .concept-fv .fv__inner {
+  position: absolute !important;
+  left: 20vmin !important;
+  top: 40vmin !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 90 !important;
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.concept-page .concept-fv .fv__ttl {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
+  font-weight: 300 !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+.concept-page .concept-fv .fv__txt {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: .5rem 0 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  font-size: var(--responsive-copy-size, 1rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .concept-page .concept-fv .fv__inner {
+    left: 10vw !important;
+    top: 28vmin !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .concept-page .concept-fv {
+    min-height: 0 !important;
+  }
+
+  .concept-page .concept-fv .fv__inner {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 180px 22px 280px !important;
+  }
 }
