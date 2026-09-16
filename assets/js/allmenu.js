@@ -28,44 +28,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadHTML(`${PARTS_PATH}footer.html`, selectors.footer),
   ]);
 
-  /* Galleryに残る旧ページ固有配置を無効化し、共通メニュー位置へ戻す。 */
-  if (document.body.classList.contains("gallery-page")) {
-    const sharedMenuPosition = document.createElement("style");
-    sharedMenuPosition.textContent = `
-      body.gallery-page #js-header .header-list {
-        position: static !important;
-        top: auto !important;
-        right: auto !important;
-        left: auto !important;
-      }
-      body.gallery-page #js-header .header {
-        top: 3.5rem !important;
-        left: 6rem !important;
-      }
-      body.gallery-page #js-header .menu-toggle {
-        top: 3.5rem !important;
-        right: 6rem !important;
-        left: auto !important;
-      }
-      @media screen and (max-width: 767px) {
-        body.gallery-page #js-header .header {
-          top: var(--site-nav-top) !important;
-          left: var(--site-nav-side) !important;
-        }
-        body.gallery-page #js-header .menu-toggle {
-          top: var(--site-nav-top) !important;
-          right: var(--site-nav-side) !important;
-          left: auto !important;
-        }
-      }
-      body.gallery-page #js-header .header.is-compact.is-open .header-list {
-        position: fixed !important;
-        inset: 0 !important;
-      }
-    `;
-    document.head.appendChild(sharedMenuPosition);
-  }
-
   initializeHeaderMenu();
   initializeCurrentYear();
   initializeCurrentPage();
