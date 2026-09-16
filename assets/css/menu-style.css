@@ -57,9 +57,7 @@ body.is-loaded {
   flex-direction: column;
   justify-content: flex-start;
   gap: 40px;
-
   width: fit-content;
-
   writing-mode: vertical-rl;
 }
 
@@ -69,52 +67,35 @@ body.is-loaded {
   height: clamp(280px, 29vw, 372px);
 }
 
-/* 縦書きの見た目を左から TOP / CONCEPT / GALLERY に揃える */
 .header-item--top,
-.footer-item--top {
-  order: 3;
-}
-
+.footer-item--top { order: 3; }
 .header-item--concept,
-.footer-item--concept {
-  order: 2;
-}
-
+.footer-item--concept { order: 2; }
 .header-item--gallery,
-.footer-item--gallery {
-  order: 1;
-}
+.footer-item--gallery { order: 1; }
 
 .header-link,
 .footer-link {
   position: relative;
-
   display: block;
   pointer-events: auto;
-
   box-sizing: border-box;
   width: 58px;
   height: 100%;
   padding: 0;
-
   font-size: 1rem;
   letter-spacing: 0.8rem;
 }
 
-.footer-link {
-  letter-spacing: 0.8rem;
-}
+.footer-link { letter-spacing: 0.8rem; }
 
 .menu-small {
   position: absolute;
   top: 72%;
   left: 50%;
-
   margin-top: 0;
-
   font-size: 1rem;
   white-space: nowrap;
-
   transform: translateX(-50%);
 }
 
@@ -122,9 +103,7 @@ body.is-loaded {
   position: absolute;
   top: 1rem;
   left: 50%;
-
   white-space: nowrap;
-
   transform: translateX(-50%);
 }
 
@@ -132,17 +111,10 @@ body.is-loaded {
   position: absolute;
   top: 56%;
   left: 50%;
-
   width: 1px;
   height: 30px;
-
   background: var(--color-txt);
 }
-
-/* ========================================
-  Scroll Menu
-  PC・スマホ共通
-======================================== */
 
 html.is-menu-open,
 body.is-menu-open {
@@ -150,81 +122,51 @@ body.is-menu-open {
   overscroll-behavior: none;
 }
 
-.header-inner {
-  position: relative;
-}
+.header-inner { position: relative; }
 
-/* 通常時は非表示 */
 .menu-toggle {
   position: fixed;
   top: 3.5rem;
   right: 6rem;
   left: auto;
   z-index: 10002;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 44px;
   height: 44px;
   padding: 0;
-
   color: var(--color-txt);
   background: transparent;
   border: 0;
-
   cursor: pointer;
   appearance: none;
-
-  /* 初期状態：画面外 */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
   transform: translateX(120px);
-
-  transition:
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.4s ease,
-    visibility 0.4s;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, visibility 0.4s;
 }
 
-/* スクロール後：画面内へ */
 .header.is-compact .menu-toggle {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-
   transform: translateX(0);
 }
 
-/* ハンバーガーの点 */
 .menu-toggle-dot {
   display: block;
-
   width: 10px;
   height: 3px;
-
   background: currentColor;
-
-  transition:
-    width 0.3s ease,
-    height 0.3s ease,
-    border-radius 0.3s ease,
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* 通常表示の収納アニメーションはメニューだけに適用 */
 .header-list {
-  transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease,
-    transform 0.4s ease;
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
 }
 
-/* 半画面スクロール後 */
 .header.is-compact .header-list {
   opacity: 0;
   visibility: hidden;
@@ -232,17 +174,8 @@ body.is-menu-open {
   transform: translateY(-100px);
 }
 
-.header.is-compact .menu-toggle {
-  display: flex;
-}
-
-/* ========================================
-  Open Menu
-======================================== */
-
-.header.is-open {
-  overscroll-behavior: contain;
-}
+.header.is-compact .menu-toggle { display: flex; }
+.header.is-open { overscroll-behavior: contain; }
 
 .header.is-compact.is-open .header-list {
   position: fixed;
@@ -253,165 +186,44 @@ body.is-menu-open {
   align-items: center;
   justify-content: center;
   gap: 40px;
-
   width: 100%;
   height: 100dvh;
   margin: 0;
   padding: 0;
-
   writing-mode: vertical-rl;
-
   background: var(--color-bg);
-
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-
   transform: none;
 }
 
-@media screen and (max-width: 480px) {
-  .header.is-compact.is-open .header-list {
-    gap: clamp(14px, calc(1.067vw + 10px), 16px);
-  }
-}
-
-.header.is-compact.is-open .header-link {
-  letter-spacing: 0.8rem;
-}
-
-.header.is-compact.is-open .menu-border {
-  top: 56%;
-
-  height: 30px;
-}
-
-.header.is-compact.is-open .menu-small {
-  top: 72%;
-  margin-top: 0;
-}
-
-/* ========================================
-  Menu Toggle Animation
-======================================== */
+.header.is-compact.is-open .header-link { letter-spacing: 0.8rem; }
+.header.is-compact.is-open .menu-border { top: 56%; height: 30px; }
+.header.is-compact.is-open .menu-small { top: 72%; margin-top: 0; }
 
 .header.is-open .menu-toggle-dot:nth-child(1) {
   width: 24px;
   height: 1px;
-
   border-radius: 0;
-
   transform: translateX(10px) rotate(0deg);
 }
-
-.header.is-open .menu-toggle-dot:nth-child(2) {
-  opacity: 0;
-}
-
+.header.is-open .menu-toggle-dot:nth-child(2) { opacity: 0; }
 .header.is-open .menu-toggle-dot:nth-child(3) {
   width: 24px;
   height: 1px;
-
   border-radius: 0;
-
   transform: translateX(-17px) rotate(90deg);
 }
-
-/* ========================================
-  Click Prevention
-======================================== */
 
 #cursor,
 #stalker,
 body::before,
-body::after {
-  pointer-events: none;
-}
-
-/* ========================================
-  Smartphone
-======================================== */
-
-@media screen and (max-width: 480px) {
-  .header-item,
-  .footer-item {
-    height: 220px;
-  }
-
-  .header {
-    top: 20px;
-    left: 20px;
-  }
-
-  .header-inner,
-  .footer-inner {
-    gap: 8px;
-  }
-
-  .header-logo-link,
-  .footer-logo-link,
-  .header-logo {
-    font-size: 14px;
-  }
-
-  .header-lead,
-  .footer-lead {
-    font-size: 0.8rem;
-  }
-
-  .header-date,
-  .footer-date {
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-
-  .header-list,
-  .footer-list {
-    gap: clamp(14px, calc(1.067vw + 10px), 16px);
-  }
-
-  .header-link,
-  .footer-link {
-    width: 44px;
-    height: 220px;
-    padding: 0;
-
-    font-size: 0.8rem;
-    letter-spacing: 0.2rem;
-  }
-
-  .footer-link {
-    letter-spacing: 0.2rem;
-  }
-
-  .menu-small {
-    font-size: 0.7rem;
-  }
-
-  .menu-border {
-    top: 31.5%;
-
-    height: 15px;
-
-    transform: translate(-50%, -50%);
-  }
-
-  .menu-toggle {
-    top: 15px;
-    right: 15px;
-    left: auto;
-  }
-
-  .header.is-compact.is-open .menu-small {
-    top: 72%;
-    margin-top: 0;
-  }
-}
+body::after { pointer-events: none; }
 
 /* ========================================
   footer
 ======================================== */
-
 .footer {
   display: flex;
   justify-content: center;
@@ -427,33 +239,54 @@ body::after {
 .footer-lead,
 .footer .menu-small,
 .footer .menu-en,
-.footer .bottom-txt {
-  color: var(--color-bg);
-}
-
-.footer .menu-border {
-  background: var(--color-bg);
-}
-
-@media screen and (max-width: 480px) {
-  .footer {
-    padding: 120px 0 45px;
-  }
-  .footer-txt {
-    text-align: center;
-  }
-}
+.footer .bottom-txt { color: var(--color-bg); }
+.footer .menu-border { background: var(--color-bg); }
 
 .footer-list {
   justify-content: space-between;
   width: 100%;
 }
 
-@media screen and (max-width: 480px) {
-  .footer-list {
-    width: 80%;
-    margin: 0 auto;
-  }
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-top: 6px;
+  writing-mode: horizontal-tb;
+}
+
+.footer-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-bg);
+  opacity: .82;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.footer-social__link:hover,
+.footer-social__link:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.footer-social__icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.footer-social__note {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: 1;
 }
 
 .bottom-txt {
@@ -466,34 +299,16 @@ body::after {
   z-index: 1;
 }
 
-@media screen and (max-width: 480px) {
-  .bottom-txt {
-    width: 100%;
-  text-align: center;
-  }
-}
-
-/* Header and footer text: responsive clamp scale */
 .header-logo-link,
 .footer-logo-link,
-.header-logo {
-  font-size: clamp(14px, calc(0.5vw + 12px), 22px);
-}
-
+.header-logo { font-size: clamp(14px, calc(0.5vw + 12px), 22px); }
 .header-lead,
 .footer-lead,
 .header-date,
 .footer-date,
 .header-link,
 .footer-link,
-.menu-small {
-  font-size: clamp(12px, calc(0.4vw + 10px), 18px);
-}
-
-/* ========================================
-  Header / Footer responsive calibration
-  Mobile first: the same vertical composition on every page
-======================================== */
+.menu-small { font-size: clamp(12px, calc(0.4vw + 10px), 18px); }
 
 @media screen and (max-width: 767px) {
   :root {
@@ -511,119 +326,56 @@ body::after {
     --site-footer-padding-bottom: clamp(32px, 10.667vw, 48px);
   }
 
-  .header {
-    top: var(--site-nav-top);
-    left: var(--site-nav-side);
-  }
-
+  .header { top: var(--site-nav-top); left: var(--site-nav-side); }
   .header-inner,
-  .footer-inner {
-    gap: var(--site-nav-inner-gap);
-  }
-
+  .footer-inner { gap: var(--site-nav-inner-gap); }
   .header-item,
-  .footer-item {
-    height: var(--site-nav-item-height);
-  }
-
+  .footer-item { height: var(--site-nav-item-height); }
   .header-list,
-  .footer-list {
-    gap: var(--site-nav-gap);
-  }
-
+  .footer-list { gap: var(--site-nav-gap); }
   .header-link,
   .footer-link {
     width: var(--site-nav-link-width);
     height: var(--site-nav-item-height);
     padding: 0;
-
     font-size: var(--site-nav-meta-size);
     letter-spacing: var(--site-nav-letter-spacing);
   }
-
   .header-logo-link,
   .footer-logo-link,
-  .header-logo {
-    font-size: var(--site-nav-logo-size);
-  }
-
+  .header-logo { font-size: var(--site-nav-logo-size); }
   .header-lead,
   .footer-lead,
   .header-date,
   .footer-date,
-  .menu-small {
-    font-size: var(--site-nav-meta-size);
-  }
-
+  .menu-small { font-size: var(--site-nav-meta-size); }
   .header-date,
-  .footer-date {
-    letter-spacing: clamp(0.04rem, 0.267vw, 0.1rem);
-  }
-
-  .menu-en {
-    top: 1rem;
-  }
-
-  .menu-small {
-    top: 72%;
-    margin-top: 0;
-  }
-
-  .menu-border {
-    top: 56%;
-    height: var(--site-nav-border-height);
-    transform: none;
-  }
-
+  .footer-date { letter-spacing: clamp(0.04rem, 0.267vw, 0.1rem); }
+  .menu-en { top: 1rem; }
+  .menu-small { top: 72%; margin-top: 0; }
+  .menu-border { top: 56%; height: var(--site-nav-border-height); transform: none; }
   .menu-toggle {
     top: var(--site-nav-top);
     right: var(--site-nav-side);
     left: auto;
-
     width: var(--site-nav-link-width);
     height: var(--site-nav-link-width);
   }
-
-  .header.is-compact.is-open .header-list {
-    gap: var(--site-nav-gap);
-  }
-
+  .header.is-compact.is-open .header-list { gap: var(--site-nav-gap); }
   .header.is-compact.is-open .header-item {
-    height: min(
-      var(--site-nav-item-height),
-      calc((100dvh - 2 * var(--site-nav-gap)) / 3)
-    );
+    height: min(var(--site-nav-item-height), calc((100dvh - 2 * var(--site-nav-gap)) / 3));
   }
-
-  .header.is-compact.is-open .header-link {
-    height: 100%;
-    letter-spacing: var(--site-nav-letter-spacing);
-  }
-
-  .header.is-compact.is-open .menu-border {
-    top: 56%;
-    height: var(--site-nav-border-height);
-  }
-
-  .header.is-compact.is-open .menu-small {
-    top: 72%;
-    margin-top: 0;
-  }
-
+  .header.is-compact.is-open .header-link { height: 100%; letter-spacing: var(--site-nav-letter-spacing); }
+  .header.is-compact.is-open .menu-border { top: 56%; height: var(--site-nav-border-height); }
+  .header.is-compact.is-open .menu-small { top: 72%; margin-top: 0; }
   .footer {
     padding-top: var(--site-footer-padding-top);
     padding-bottom: var(--site-footer-padding-bottom);
   }
-
-  .footer-txt {
-    text-align: left;
-  }
-
-  .footer-list {
-    width: 100%;
-    margin: 0;
-  }
-
+  .footer-txt { text-align: left; }
+  .footer-list { width: 100%; margin: 0; }
+  .footer-social { gap: 16px; margin-top: 10px; }
+  .footer-social__link { width: 30px; height: 30px; }
   .bottom-txt {
     width: max-content;
     max-width: calc(100vw - 32px);
@@ -632,84 +384,9 @@ body::after {
   }
 }
 
-/* ========================================
-  Shared menu labels: Japanese first, English second
-  English labels are 3px smaller on every display target.
-======================================== */
-
-:root {
-  --menu-label-jp-size: clamp(12px, calc(0.4vw + 10px), 18px);
-  --menu-label-en-size: clamp(10px, calc(0.4vw + 8px), 12px);
-  --menu-label-jp-top: clamp(12px, calc(0.4vw + 10px), 16px);
-  --menu-label-border-top: 43.5%;
-  --menu-label-en-top: 59%;
-}
-
-.menu-small {
-  top: var(--menu-label-jp-top);
-}
-
-.menu-border {
-  top: var(--menu-label-border-top);
-  transform: translate(-50%, -50%);
-}
-
-.menu-en {
-  top: var(--menu-label-en-top);
-  font-size: var(--menu-label-en-size);
-}
-
-.header.is-compact.is-open .menu-small {
-  top: var(--menu-label-jp-top);
-}
-
-.header.is-compact.is-open .menu-border {
-  top: var(--menu-label-border-top);
-  transform: translate(-50%, -50%);
-}
-
-.header.is-compact.is-open .menu-en {
-  top: var(--menu-label-en-top);
-  font-size: var(--menu-label-en-size);
-}
-
 @media screen and (max-width: 480px) {
-  :root {
-    --menu-label-jp-size: var(--site-nav-meta-size);
-    --menu-label-en-size: clamp(10px, calc(0.4vw + 8px), 12px);
-  }
-
-  .menu-en,
-  .header.is-compact.is-open .menu-en {
-    font-size: var(--menu-label-en-size) !important;
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 1199px) {
-  :root {
-    --menu-label-jp-size: var(--site-tablet-nav-meta-size);
-    --menu-label-en-size: clamp(10px, calc(0.4vw + 8px), 12px);
-  }
-
-  .menu-en,
-  .header.is-compact.is-open .menu-en {
-    font-size: var(--menu-label-en-size) !important;
-  }
-}
-
-/* ========================================
-  iPhone SE whole-item alignment
-  Move each menu item as one group so the Japanese label,
-  separator, and English label keep their relative positions.
-======================================== */
-
-@media screen and (max-width: 375px) {
-  :root {
-    --site-nav-se-li-offset: clamp(-10px, -2.667vw, -8px);
-  }
-
-  .header-list > .header-item,
-  .footer-list > .footer-item {
-    left: var(--site-nav-se-li-offset);
-  }
+  .footer { padding: 120px 0 45px; }
+  .footer-txt { text-align: center; }
+  .footer-list { width: 80%; margin: 0 auto; }
+  .bottom-txt { width: 100%; text-align: center; }
 }
