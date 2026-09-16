@@ -6,443 +6,168 @@
  */
 
 document.addEventListener("DOMContentLoaded", async () => {
-  /**
-   * ==========================
-   * 設定
-   * ==========================
-   */
-
   const PARTS_PATH = "./assets/parts/";
   const PARTS_VERSION = "20260913-menu-border-center-spacing-v7";
-
-  const selectors = {
-    header: "#js-header",
-    footer: "#js-footer",
-  };
-
-  /**
-   * ==========================
-   * HTML読み込み関数
-   * ==========================
-   */
+  const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
     const target = document.querySelector(targetSelector);
-
-    if (!target) {
-      console.warn(`要素が見つかりません: ${targetSelector}`);
-      return;
-    }
-
+    if (!target) { console.warn(`要素が見つかりません: ${targetSelector}`); return; }
     try {
       const response = await fetch(`${url}?v=${PARTS_VERSION}`);
-
-      if (!response.ok) {
-        throw new Error(
-          `読み込み失敗: ${url} Status: ${response.status}`
-        );
-      }
-
+      if (!response.ok) throw new Error(`読み込み失敗: ${url} Status: ${response.status}`);
       target.innerHTML = await response.text();
     } catch (error) {
       console.error(error);
-
-      target.innerHTML = `
-        <div class="parts-load-error">
-          パーツ読み込みエラー: ${url}
-        </div>
-      `;
+      target.innerHTML = `<div class="parts-load-error">パーツ読み込みエラー: ${url}</div>`;
     }
   }
-
-  /**
-   * ==========================
-   * Header / Footer読み込み
-   * ==========================
-   */
 
   await Promise.all([
     loadHTML(`${PARTS_PATH}header.html`, selectors.header),
     loadHTML(`${PARTS_PATH}footer.html`, selectors.footer),
   ]);
 
-  /**
-   * ==========================
-   * 各機能の初期化
-   * ==========================
-   */
+  /* Galleryに残る旧ページ固有配置を無効化し、共通メニュー位置へ戻す。 */
+  if (document.body.classList.contains("gallery-page")) {
+    const sharedMenuPosition = document.createElement("style");
+    sharedMenuPosition.textContent = `
+      body.gallery-page #js-header .header-list {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+      }
+      body.gallery-page #js-header .header {
+        top: 3.5rem !important;
+        left: 6rem !important;
+      }
+      body.gallery-page #js-header .menu-toggle {
+        top: 3.5rem !important;
+        right: 6rem !important;
+        left: auto !important;
+      }
+      @media screen and (max-width: 767px) {
+        body.gallery-page #js-header .header {
+          top: var(--site-nav-top) !important;
+          left: var(--site-nav-side) !important;
+        }
+        body.gallery-page #js-header .menu-toggle {
+          top: var(--site-nav-top) !important;
+          right: var(--site-nav-side) !important;
+          left: auto !important;
+        }
+      }
+      body.gallery-page #js-header .header.is-compact.is-open .header-list {
+        position: fixed !important;
+        inset: 0 !important;
+      }
+    `;
+    document.head.appendChild(sharedMenuPosition);
+  }
 
   initializeHeaderMenu();
   initializeCurrentYear();
   initializeCurrentPage();
   initializeCustomCursor();
-
-  /**
-   * ==========================
-   * スムースフェード表示
-   * ==========================
-   */
-
   document.body.classList.add("is-loaded");
 });
-
-/**
- * ==========================================
- * ヘッダーメニュー
- * ==========================================
- */
 
 function initializeHeaderMenu() {
   const header = document.querySelector(".header");
   const menuToggle = header?.querySelector(".menu-toggle");
-
-  if (!header || !menuToggle) {
-    console.warn("メニュー要素が見つかりません");
-    return;
-  }
-
+  if (!header || !menuToggle) { console.warn("メニュー要素が見つかりません"); return; }
   const menuLinks = header.querySelectorAll(".header-link");
-
   let animationFrameId = null;
 
-  /**
-   * ==========================
-   * 背景スクロール状態を更新
-   * ==========================
-   */
-
   function setScrollLock(isLocked) {
-    document.documentElement.classList.toggle(
-      "is-menu-open",
-      isLocked
-    );
-
-    document.body.classList.toggle(
-      "is-menu-open",
-      isLocked
-    );
+    document.documentElement.classList.toggle("is-menu-open", isLocked);
+    document.body.classList.toggle("is-menu-open", isLocked);
   }
-
-  /**
-   * ==========================
-   * メニュー開閉状態を更新
-   * ==========================
-   */
-
   function setMenuState(isOpen) {
-    const shouldOpen =
-      isOpen && header.classList.contains("is-compact");
-
+    const shouldOpen = isOpen && header.classList.contains("is-compact");
     header.classList.toggle("is-open", shouldOpen);
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(shouldOpen)
-    );
-
-    menuToggle.setAttribute(
-      "aria-label",
-      shouldOpen ? "メニューを閉じる" : "メニューを開く"
-    );
-
+    menuToggle.setAttribute("aria-expanded", String(shouldOpen));
+    menuToggle.setAttribute("aria-label", shouldOpen ? "メニューを閉じる" : "メニューを開く");
     setScrollLock(shouldOpen);
   }
-
-  /**
-   * ==========================
-   * メニューを閉じる
-   * ==========================
-   */
-
-  function closeMenu() {
-    setMenuState(false);
-  }
-
-  /**
-   * ==========================
-   * ヘッダー表示状態を更新
-   * ==========================
-   */
-
+  function closeMenu() { setMenuState(false); }
   function updateHeaderState() {
-    /*
-     * メニューを開いている間は
-     * スクロール判定を変更しない
-     */
-
-    if (header.classList.contains("is-open")) {
-      return;
-    }
-
+    if (header.classList.contains("is-open")) return;
     const compactThreshold = window.innerHeight * 0.6;
-
-    const shouldCompact =
-      window.scrollY >= compactThreshold;
-
-    header.classList.toggle(
-      "is-compact",
-      shouldCompact
-    );
-
-    /*
-     * 縮小位置より上へ戻った場合
-     */
-
-    if (!shouldCompact) {
-      closeMenu();
-    }
+    const shouldCompact = window.scrollY >= compactThreshold;
+    header.classList.toggle("is-compact", shouldCompact);
+    if (!shouldCompact) closeMenu();
   }
-
   function requestHeaderUpdate() {
-    if (animationFrameId !== null) {
-      return;
-    }
-
+    if (animationFrameId !== null) return;
     animationFrameId = requestAnimationFrame(() => {
       updateHeaderState();
       animationFrameId = null;
     });
   }
 
-  /**
-   * ==========================
-   * メニューボタン
-   * ==========================
-   */
-
-  menuToggle.addEventListener("click", (event) => {
-    /*
-     * aタグで作成されている場合も
-     * href="#"によるトップ移動を防ぐ
-     */
-
+  menuToggle.addEventListener("click", event => {
     event.preventDefault();
-
-    const isOpen =
-      !header.classList.contains("is-open");
-
-    setMenuState(isOpen);
+    setMenuState(!header.classList.contains("is-open"));
   });
-
-  /**
-   * ==========================
-   * メニューリンク
-   * ==========================
-   */
-
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  /**
-   * ==========================
-   * Escキー
-   * ==========================
-   */
-
-  document.addEventListener("keydown", (event) => {
-    if (
-      event.key !== "Escape" ||
-      !header.classList.contains("is-open")
-    ) {
-      return;
-    }
-
+  menuLinks.forEach(link => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", event => {
+    if (event.key !== "Escape" || !header.classList.contains("is-open")) return;
     closeMenu();
     menuToggle.focus();
   });
-
-  /**
-   * ==========================
-   * スクロール
-   * ==========================
-   */
-
-  window.addEventListener(
-    "scroll",
-    requestHeaderUpdate,
-    {
-      passive: true,
-    }
-  );
-
-  window.addEventListener(
-    "resize",
-    requestHeaderUpdate,
-    {
-      passive: true,
-    }
-  );
-
-  /**
-   * ==========================
-   * 初期状態
-   * ==========================
-   */
-
+  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+  window.addEventListener("resize", requestHeaderUpdate, { passive: true });
   menuToggle.setAttribute("aria-expanded", "false");
-
   menuToggle.setAttribute("aria-label", "メニューを開く");
-
   updateHeaderState();
 }
 
-/**
- * ==========================================
- * 現在年 自動更新
- * ==========================================
- */
-
 function initializeCurrentYear() {
   const year = document.querySelector("#js-year");
-
-  if (!year) return;
-
-  year.textContent = new Date().getFullYear();
+  if (year) year.textContent = new Date().getFullYear();
 }
-
-/**
- * ==========================================
- * 現在ページ active付与
- * ==========================================
- */
 
 function initializeCurrentPage() {
   const currentPath = normalizePath(location.pathname);
-
-  document.querySelectorAll("a[href]").forEach((link) => {
+  document.querySelectorAll("a[href]").forEach(link => {
     const href = link.getAttribute("href");
-
-    if (!href || href.startsWith("#")) {
-      return;
-    }
-
+    if (!href || href.startsWith("#")) return;
     try {
       const linkURL = new URL(href, location.href);
-
-      /*
-       * 外部リンクを除外
-       */
-
-      if (linkURL.origin !== location.origin) {
-        return;
-      }
-
-      const linkPath = normalizePath(linkURL.pathname);
-
-      link.classList.toggle(
-        "is-current",
-        linkPath === currentPath
-      );
-    } catch (error) {
-      console.warn(`無効なリンクです: ${href}`, error);
-    }
+      if (linkURL.origin !== location.origin) return;
+      link.classList.toggle("is-current", normalizePath(linkURL.pathname) === currentPath);
+    } catch (error) { console.warn(`無効なリンクです: ${href}`, error); }
   });
 }
 
-/**
- * ==========================================
- * パスを比較用に統一
- * ==========================================
- */
-
 function normalizePath(pathname) {
   let normalizedPath = pathname.replace(/\/+$/, "");
-
-  normalizedPath = normalizedPath.replace(
-    /\/index\.html$/,
-    ""
-  );
-
+  normalizedPath = normalizedPath.replace(/\/index\.html$/, "");
   return normalizedPath || "/";
 }
 
-/**
- * ==========================================
- * カスタムカーソル
- * ==========================================
- */
-
 function initializeCustomCursor() {
-  /**
-   * マウス操作がない端末では実行しない
-   */
-
-  const canUseCustomCursor = window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  );
-
-  if (!canUseCustomCursor.matches) {
-    return;
-  }
-
+  const canUseCustomCursor = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!canUseCustomCursor.matches) return;
   const cursor = document.getElementById("cursor");
   const stalker = document.getElementById("stalker");
-
-  if (!cursor || !stalker) {
-    return;
-  }
-
-  let mouseX = 0;
-  let mouseY = 0;
-  let animationFrameId = null;
-
-  /**
-   * ==========================
-   * カーソル位置を反映
-   * ==========================
-   */
-
+  if (!cursor || !stalker) return;
+  let mouseX = 0, mouseY = 0, animationFrameId = null;
   function updateCursorPosition() {
-    const transform =
-      `translate(${mouseX}px, ${mouseY}px) ` +
-      "translate(-50%, -50%)";
-
+    const transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
     cursor.style.transform = transform;
     stalker.style.transform = transform;
-
     animationFrameId = null;
   }
-
-  /**
-   * ==========================
-   * カーソル移動
-   * ==========================
-   */
-
-  document.addEventListener(
-    "pointermove",
-    (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-
-      if (animationFrameId !== null) {
-        return;
-      }
-
-      animationFrameId =
-        requestAnimationFrame(updateCursorPosition);
-    },
-    {
-      passive: true,
-    }
-  );
-
-  /**
-   * ==========================
-   * リンク・ボタンへのホバー
-   * ==========================
-   */
-
-  document
-    .querySelectorAll("a, button, .card__btn")
-    .forEach((target) => {
-      target.addEventListener("pointerenter", () => {
-        stalker.classList.add("is-active");
-      });
-
-      target.addEventListener("pointerleave", () => {
-        stalker.classList.remove("is-active");
-      });
-    });
+  document.addEventListener("pointermove", event => {
+    mouseX = event.clientX; mouseY = event.clientY;
+    if (animationFrameId !== null) return;
+    animationFrameId = requestAnimationFrame(updateCursorPosition);
+  }, { passive: true });
+  document.querySelectorAll("a, button, .card__btn").forEach(target => {
+    target.addEventListener("pointerenter", () => stalker.classList.add("is-active"));
+    target.addEventListener("pointerleave", () => stalker.classList.remove("is-active"));
+  });
 }
