@@ -26,95 +26,59 @@ document.addEventListener("DOMContentLoaded", () => {
       column-gap: 0 !important;
       width: 100% !important;
     }
-    body.gallery-page .gallery-filter-title {
-      width: 100% !important;
-      white-space: nowrap !important;
-    }
+    body.gallery-page .gallery-filter-title { width: 100% !important; white-space: nowrap !important; }
     body.gallery-page .gallery-filter-options {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      width: 100% !important;
-      min-width: 0 !important;
-      gap: 0 !important;
+      display: flex !important; flex-wrap: wrap !important; align-items: center !important;
+      justify-content: flex-start !important; width: 100% !important; min-width: 0 !important; gap: 0 !important;
     }
     body.gallery-page .gallery-filter {
-      position: relative !important;
-      flex: 0 0 auto !important;
-      width: auto !important;
-      min-width: 0 !important;
-      margin: 0 !important;
-      padding: .2rem 14px !important;
-      white-space: nowrap !important;
-      text-align: center !important;
-      justify-content: center !important;
+      position: relative !important; flex: 0 0 auto !important; width: auto !important; min-width: 0 !important;
+      margin: 0 !important; padding: .2rem 14px !important; white-space: nowrap !important;
+      text-align: center !important; justify-content: center !important;
     }
-    body.gallery-page .gallery-filter:first-child {
-      padding-left: 14px !important;
-    }
+    body.gallery-page .gallery-filter:first-child { padding-left: 14px !important; }
     body.gallery-page .gallery-filter + .gallery-filter::before {
-      content: "" !important;
-      position: absolute !important;
-      left: 0 !important;
-      top: 50% !important;
-      width: 1px !important;
-      height: 1em !important;
-      background: currentColor !important;
-      opacity: .35 !important;
-      transform: translateY(-50%) !important;
+      content: "" !important; position: absolute !important; left: 0 !important; top: 50% !important;
+      width: 1px !important; height: 1em !important; background: currentColor !important;
+      opacity: .35 !important; transform: translateY(-50%) !important;
     }
     @media (max-width: 767px) {
       body.gallery-page .gallery-sidebar {
+        display: block !important;
         width: 100% !important;
+        max-width: 100% !important;
         padding: 0 !important;
-        overflow: visible !important;
-      }
-      body.gallery-page .gallery-filter-group {
-        grid-template-columns: 5.7em minmax(0, 1fr) !important;
-      }
-      body.gallery-page .gallery-filter-options {
-        padding: 0 !important;
-      }
-      body.gallery-page [data-filter-group="artist"] {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        width: 100% !important;
-        min-width: 0 !important;
         overflow-x: auto !important;
-        overflow-y: hidden !important;
-        white-space: nowrap !important;
+        overflow-y: visible !important;
         -webkit-overflow-scrolling: touch !important;
         scrollbar-width: thin;
       }
-      body.gallery-page [data-filter-group="artist"] .gallery-filter {
-        flex: 0 0 auto !important;
+      body.gallery-page .gallery-sidebar__label { width: max-content !important; }
+      body.gallery-page .gallery-filter-group {
+        grid-template-columns: 5.7em auto !important;
+        width: max-content !important;
+        min-width: 100% !important;
+      }
+      body.gallery-page .gallery-filter-options { width: max-content !important; min-width: 0 !important; padding: 0 !important; }
+      body.gallery-page [data-filter-group="artist"] {
+        display: flex !important; flex-wrap: nowrap !important; overflow: visible !important; white-space: nowrap !important;
       }
       body.gallery-page [data-filter-group="genre"] {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(5, max-content) !important;
+        width: max-content !important;
         overflow: visible !important;
       }
-      body.gallery-page .gallery-filter {
-        width: auto !important;
-        padding: .2rem 14px !important;
-      }
-      body.gallery-page .gallery-filter:first-child {
-        padding-left: 14px !important;
-      }
+      body.gallery-page .gallery-filter { width: auto !important; padding: .2rem 14px !important; }
+      body.gallery-page .gallery-filter:first-child { padding-left: 14px !important; }
     }
   `;
   document.head.appendChild(categoryStyle);
 
   if (!cards.length) return;
-
   const values = raw => String(raw || "").split(/[、,\/・|]/).map(v => v.trim()).filter(Boolean);
   const matches = (raw, selected) => selected === "all" || values(raw).includes(selected);
-
-  const filteredCards = () => cards.filter(card =>
-    matches(card.dataset.artist, state.artist) && matches(card.dataset.genre, state.genre)
-  );
+  const filteredCards = () => cards.filter(card => matches(card.dataset.artist, state.artist) && matches(card.dataset.genre, state.genre));
 
   function renderPagination(totalPages) {
     if (!pagination) return;
@@ -158,6 +122,5 @@ document.addEventListener("DOMContentLoaded", () => {
       render();
     });
   });
-
   render();
 });
