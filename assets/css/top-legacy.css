@@ -6,6 +6,12 @@
   display: none;
 }
 
+.top-page,
+.top-page main,
+.top-page main section {
+  background-color: var(--color-bg) !important;
+}
+
 .top-page section.section--concept,
 .top-page section.section--artists {
   --top-section-inline-padding: 54px;
