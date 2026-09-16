@@ -28,11 +28,43 @@
   text-orientation: mixed;
 }
 
-.concept-fv__lead {
+/* Concept FV uses the same title composition as Gallery. */
+.concept-page .concept-fv {
+  position: relative;
+  min-height: 100vh;
+}
+
+.concept-page .concept-fv .fv__inner {
   position: absolute;
-  top: 28%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20vmin;
+  top: 40vmin;
+  z-index: 90;
+  display: block;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.concept-page .concept-fv .fv__ttl {
+  margin: 0;
+  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem);
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: normal;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed;
+}
+
+.concept-page .concept-fv .fv__txt {
+  margin: .5rem 0 0;
+  font-size: var(--responsive-copy-size, 1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: normal;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed;
 }
 
 .concept-statement .section__inner {
@@ -154,9 +186,26 @@
   writing-mode: initial;
 }
 
+@media screen and (max-width: 1199px) {
+  .concept-page .concept-fv .fv__inner {
+    left: 10vw;
+    top: 28vmin;
+  }
+}
+
 @media screen and (max-width: 767px) {
-  .concept-fv__lead {
-    top: 25%;
+  .concept-page .concept-fv {
+    min-height: 0;
+  }
+
+  .concept-page .concept-fv .fv__inner {
+    position: relative;
+    left: auto;
+    top: auto;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 180px 22px 280px;
   }
 
   .concept-texture {
@@ -218,26 +267,12 @@
   text-align: center;
 }
 
-/* Concept follows the shared direction policy: FV vertical, content horizontal. */
-.concept-page .concept-fv__lead,
-.concept-page .concept-fv .fv__ttl,
-.concept-page .concept-fv .fv__txt {
-  writing-mode: vertical-rl !important;
-  text-orientation: mixed;
-}
-
 .concept-page main section:not(.fv) .h2_ttl,
 .concept-page main section:not(.fv) .section__txt,
 .concept-page main section:not(.fv) .concept-eyebrow,
 .concept-page main section:not(.fv) a {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
-}
-
-.concept-page .concept-fv__lead {
-  top: clamp(20%, 24vw, 28%);
-  margin-bottom: 0;
-  text-align: center;
 }
 
 .concept-page .concept-statement .concept-eyebrow {
@@ -294,10 +329,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .concept-page .concept-fv__lead {
-    top: 20%;
-  }
-
   .concept-page main section:not(.fv) .section__txt {
     line-height: 1.9;
   }
