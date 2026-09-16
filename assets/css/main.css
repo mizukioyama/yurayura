@@ -1,5 +1,15 @@
 @import url("../../backups/20260912_before_hamburger_menu_fix/main.css");
 
+/* Shared background noise: slightly stronger, but never overlay the footer. */
+body::before {
+  opacity: 0.1 !important;
+}
+
+.footer {
+  position: relative;
+  z-index: 101;
+}
+
 /* Shared Scroll guide: keep the full guide above following sections. */
 .scroll-guide {
   z-index: 120 !important;
