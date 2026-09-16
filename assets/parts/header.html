@@ -9,6 +9,19 @@
       margin: 0 !important;
     }
 
+    /* Gallery PC only: place the English global navigation at the exact viewport center. */
+    @media screen and (min-width: 1200px) {
+      body.gallery-page .header > .header-inner > .header-list:not(.header.is-compact.is-open .header-list) {
+        position: fixed !important;
+        top: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: 50% !important;
+        margin: 0 !important;
+        transform: translate(-50%, -50%) !important;
+      }
+    }
+
     @media screen and (max-width: 767px) {
       .header > .header-inner > .header-list:not(.header.is-compact.is-open .header-list) {
         top: var(--site-nav-top, 20px) !important;
