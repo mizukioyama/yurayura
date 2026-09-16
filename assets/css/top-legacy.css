@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /* Top-only restoration of the pre-refinement desktop composition. */
+.top-page .bg-img,
+.top-page::after {
+  display: none;
+}
+
 .top-page section.section--concept,
 .top-page section.section--artists {
   --top-section-inline-padding: 54px;
