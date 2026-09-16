@@ -1,1 +1,45 @@
-PLACEHOLDER
+@import url("../../backups/20260912_before_hamburger_menu_fix/main.css");
+
+/* Current shared Scroll guide animation. */
+.scroll-guide__bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-guide__bar::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42%;
+  background: var(--color-txt);
+  content: "";
+  transform: translateY(-120%);
+  animation: scrollGuideFlow 2.4s cubic-bezier(.45, 0, .25, 1) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes scrollGuideFlow {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(340%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-guide__bar::before {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
