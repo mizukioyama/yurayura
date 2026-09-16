@@ -12,6 +12,12 @@
   background-color: var(--color-bg) !important;
 }
 
+/* Keep the FV Scroll guide on the same left axis as Concept. */
+.top-page .fv .scroll-guide {
+  left: 20vmin !important;
+  right: auto !important;
+}
+
 .top-page section.section--concept,
 .top-page section.section--artists {
   --top-section-inline-padding: 54px;
@@ -166,6 +172,10 @@
 
 /* Tablet: let content define the section height so long copy and the slider do not clip. */
 @media screen and (min-width: 768px) and (max-width: 1199px) {
+  .top-page .fv .scroll-guide {
+    left: 10vw !important;
+  }
+
   .top-page section.section--concept,
   .top-page section.section--artists {
     --top-section-inline-padding: 54px;
@@ -188,6 +198,11 @@
 }
 
 @media screen and (max-width: 767px) {
+  .top-page .fv .scroll-guide {
+    left: 22px !important;
+    right: auto !important;
+  }
+
   .top-page section.section--concept,
   .top-page section.section--artists {
     --top-section-inline-padding: 54px;
