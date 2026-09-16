@@ -55,20 +55,10 @@ body::before {
 }
 
 @keyframes scrollGuideFlow {
-  0% {
-    transform: translateY(-280px);
-    opacity: 0;
-  }
-  12% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(280px);
-    opacity: 0;
-  }
+  0% { transform: translateY(-280px); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(280px); opacity: 0; }
 }
 
 /* Following content remains below the Scroll guide when their areas overlap. */
@@ -76,6 +66,14 @@ body::before {
 .gallery > section {
   position: relative;
   z-index: 1;
+}
+
+/* Restore the image texture used by the FAQ category headings. */
+.section--faq .faq-heading {
+  background-image: url("../img/btn-bg-img.webp") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
 }
 
 /* Keep the title/date on the left; place only the navigation on the right. */
