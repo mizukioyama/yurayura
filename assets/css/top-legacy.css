@@ -3,7 +3,7 @@
 /* Top-only restoration of the pre-refinement desktop composition. */
 .top-page .bg-img,
 .top-page::after {
-  display: block;
+  display: none;
 }
 
 .top-page,
