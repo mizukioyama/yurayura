@@ -135,7 +135,8 @@ function initializeCustomCursor() {
   });
 }
 
-/* Keep Scroll exactly 140px below the rendered H1, regardless of viewport/font size. */
+/* Keep Scroll on one shared FV axis. Concept/Gallery use their rendered H1;
+   Top uses the same title origin as those pages instead of its centered hero title. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
@@ -146,8 +147,23 @@ function initializeScrollGuidePosition() {
     if (!containingBlock) return;
     const titleRect = title.getBoundingClientRect();
     const parentRect = containingBlock.getBoundingClientRect();
+    const isTopPage = document.body.classList.contains("top-page");
+
+    let guideTop;
+    if (isTopPage) {
+      const titleHeight = titleRect.height;
+      const sharedTitleTop = window.innerWidth <= 767
+        ? 180
+        : window.innerWidth <= 1199
+          ? window.innerWidth * 0.28
+          : window.innerWidth * 0.40;
+      guideTop = sharedTitleTop + titleHeight + 140;
+    } else {
+      guideTop = titleRect.bottom - parentRect.top + 140;
+    }
+
     guide.style.setProperty("position", "absolute", "important");
-    guide.style.setProperty("top", `${titleRect.bottom - parentRect.top + 140}px`, "important");
+    guide.style.setProperty("top", `${guideTop}px`, "important");
     guide.style.setProperty("bottom", "auto", "important");
     guide.style.setProperty("transform", "none", "important");
   };
