@@ -1,8 +1,21 @@
 @import url("../../backups/20260912_before_hamburger_menu_fix/main.css");
 
-/* Shared Scroll guide: both the track and animated line are 280px. */
+/* Shared Scroll guide: keep the full guide above following sections. */
+.scroll-guide {
+  z-index: 120 !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+
+.fv,
+.concept-fv,
+.gallery {
+  overflow: visible !important;
+}
+
 .scroll-guide__bar {
   position: relative;
+  z-index: 121 !important;
   display: block;
   box-sizing: border-box;
   width: 1px;
@@ -17,6 +30,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 1px;
   height: 280px !important;
   min-height: 280px !important;
@@ -43,6 +57,13 @@
     transform: translateY(280px);
     opacity: 0;
   }
+}
+
+/* Following content remains below the Scroll guide when their areas overlap. */
+.main > section:not(.fv),
+.gallery > section {
+  position: relative;
+  z-index: 1;
 }
 
 /* Keep the title/date on the left; place only the navigation on the right. */
