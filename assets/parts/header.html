@@ -9,16 +9,16 @@
       margin: 0 !important;
     }
 
-    /* Gallery PC only: place the English global navigation at the exact viewport center. */
+    /* Gallery PC only: center the English global navigation without viewport fixation. */
     @media screen and (min-width: 1200px) {
       body.gallery-page .header > .header-inner > .header-list:not(.header.is-compact.is-open .header-list) {
-        position: fixed !important;
-        top: 50% !important;
+        position: absolute !important;
+        top: 0 !important;
         right: auto !important;
         bottom: auto !important;
-        left: 50% !important;
+        left: calc(50vw - 6rem) !important;
         margin: 0 !important;
-        transform: translate(-50%, -50%) !important;
+        transform: translateX(-50%) !important;
       }
     }
 
