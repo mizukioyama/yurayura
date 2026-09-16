@@ -15,7 +15,7 @@
   background: var(--color-txt);
   content: "";
   transform: translateY(-120%);
-  animation: scrollGuideFlow 2.4s cubic-bezier(.45, 0, .25, 1) infinite;
+  animation: scrollGuideFlow 2.4s cubic-bezier(.45, 0, .25, 1) infinite !important;
   will-change: transform, opacity;
 }
 
@@ -33,14 +33,6 @@
   100% {
     transform: translateY(340%);
     opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-guide__bar::before {
-    animation: none;
-    transform: none;
-    opacity: 1;
   }
 }
 
