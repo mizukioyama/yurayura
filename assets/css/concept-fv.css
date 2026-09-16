@@ -88,8 +88,10 @@
 }
 
 @media screen and (max-width: 767px) {
+  /* Keep a full viewport FV so the shared Scroll guide lands at the same
+     right/bottom coordinates as Top. */
   .concept-page .concept-fv {
-    min-height: 0 !important;
+    min-height: 100vh !important;
   }
 
   .concept-page .concept-fv .fv__inner {
