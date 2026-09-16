@@ -6,6 +6,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageSize = 10;
   const state = { artist: "all", genre: "all", page: 1 };
 
+  /* Gallery category layout override: no panel/background/padding and no wrapping. */
+  const categoryStyle = document.createElement("style");
+  categoryStyle.textContent = `
+    body.gallery-page .gallery-sidebar {
+      padding: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      max-width: 100% !important;
+      white-space: nowrap !important;
+      scrollbar-width: none;
+    }
+    body.gallery-page .gallery-sidebar::-webkit-scrollbar { display: none; }
+    body.gallery-page .gallery-sidebar__label,
+    body.gallery-page .gallery-filter-group,
+    body.gallery-page .gallery-filter-title,
+    body.gallery-page .gallery-filter-options,
+    body.gallery-page .gallery-filter {
+      white-space: nowrap !important;
+      flex-wrap: nowrap !important;
+    }
+    body.gallery-page .gallery-filter-group { width: max-content !important; }
+    body.gallery-page .gallery-filter-options { width: max-content !important; }
+    @media (max-width: 767px) {
+      body.gallery-page .gallery-sidebar {
+        width: 100% !important;
+        padding: 0 !important;
+        background: transparent !important;
+      }
+    }
+  `;
+  document.head.appendChild(categoryStyle);
+
   if (!cards.length) return;
 
   const values = raw => String(raw || "").split(/[、,\/・|]/).map(v => v.trim()).filter(Boolean);
