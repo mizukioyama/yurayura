@@ -7,6 +7,8 @@
   min-height: 100vh !important;
   height: auto !important;
   padding: 0 !important;
+  overflow: visible !important;
+  z-index: 2 !important;
   background: var(--color-bg) !important;
 }
 
@@ -82,6 +84,13 @@
 .concept-page .concept-fv .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
+  z-index: 120 !important;
+  overflow: visible !important;
+}
+
+.concept-page .concept-fv + section {
+  position: relative;
+  z-index: 1 !important;
 }
 
 @media screen and (max-width: 1199px) {
@@ -98,6 +107,7 @@
 @media screen and (max-width: 767px) {
   .concept-page .concept-fv {
     min-height: 0 !important;
+    overflow: visible !important;
   }
 
   .concept-page .concept-fv .fv__inner {
@@ -107,11 +117,12 @@
     box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 180px 22px 280px !important;
+    padding: 180px 22px 420px !important;
   }
 
   .concept-page .concept-fv .scroll-guide {
     left: 22px !important;
     right: auto !important;
+    z-index: 120 !important;
   }
 }
