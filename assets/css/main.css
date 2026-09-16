@@ -43,3 +43,23 @@
     opacity: 1;
   }
 }
+
+/* Keep the title/date on the left; place only the navigation on the right. */
+.header-list {
+  position: fixed;
+  top: clamp(20px, 3.5vw, 56px);
+  right: clamp(20px, 6vw, 96px);
+  left: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .header-list {
+    top: clamp(16px, 5.333vw, 20px);
+    right: clamp(16px, 5.333vw, 20px);
+    left: auto;
+  }
+}
+
+.header.is-compact.is-open .header-list {
+  inset: 0;
+}
