@@ -80,9 +80,9 @@
   pointer-events: none !important;
 }
 
-/* Concept only: place the Scroll guide on the left. */
+/* Align Scroll to the exact left edge used by the Concept/Gallery H1. */
 .concept-page .concept-fv .scroll-guide {
-  left: 8vmin !important;
+  left: 20vmin !important;
   right: auto !important;
 }
 
@@ -90,6 +90,10 @@
   .concept-page .concept-fv .fv__inner {
     left: 10vw !important;
     top: 28vmin !important;
+  }
+
+  .concept-page .concept-fv .scroll-guide {
+    left: 10vw !important;
   }
 }
 
@@ -109,7 +113,7 @@
   }
 
   .concept-page .concept-fv .scroll-guide {
-    left: 20px !important;
+    left: 22px !important;
     right: auto !important;
   }
 }
