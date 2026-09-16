@@ -1,6 +1,6 @@
 @import url("../../backups/20260912_before_hamburger_menu_fix/main.css");
 
-/* Shared Scroll guide: 280px visible track with a moving indicator. */
+/* Shared Scroll guide: both the track and animated line are 280px. */
 .scroll-guide__bar {
   position: relative;
   display: block;
@@ -18,17 +18,19 @@
   top: 0;
   left: 0;
   width: 1px;
-  height: 70px;
+  height: 280px !important;
+  min-height: 280px !important;
+  max-height: 280px !important;
   background: var(--color-txt);
   content: "";
-  transform: translateY(-70px);
-  animation: scrollGuideFlow 2.4s cubic-bezier(.45, 0, .25, 1) infinite !important;
+  transform: translateY(-280px);
+  animation: scrollGuideFlow 3.2s cubic-bezier(.45, 0, .25, 1) infinite !important;
   will-change: transform, opacity;
 }
 
 @keyframes scrollGuideFlow {
   0% {
-    transform: translateY(-70px);
+    transform: translateY(-280px);
     opacity: 0;
   }
   12% {
