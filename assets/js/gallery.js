@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageSize = 10;
   const state = { artist: "all", genre: "all", page: 1 };
 
-  /* Final category layout override. Keep labels aligned and use content-width flex items. */
+  /* Final category layout override. */
   const categoryStyle = document.createElement("style");
   categoryStyle.textContent = `
     body.gallery-page .gallery-sidebar {
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       width: 100% !important;
       min-width: 0 !important;
       gap: 0 !important;
-      white-space: normal !important;
     }
     body.gallery-page .gallery-filter {
       position: relative !important;
@@ -46,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
       width: auto !important;
       min-width: 0 !important;
       margin: 0 !important;
-      padding: .2rem .72rem !important;
+      padding: .2rem 14px !important;
       white-space: nowrap !important;
       text-align: center !important;
       justify-content: center !important;
     }
     body.gallery-page .gallery-filter:first-child {
-      padding-left: 0 !important;
+      padding-left: 14px !important;
     }
     body.gallery-page .gallery-filter + .gallery-filter::before {
       content: "" !important;
@@ -75,16 +74,34 @@ document.addEventListener("DOMContentLoaded", () => {
         grid-template-columns: 5.7em minmax(0, 1fr) !important;
       }
       body.gallery-page .gallery-filter-options {
+        padding: 0 !important;
+      }
+      body.gallery-page [data-filter-group="artist"] {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: thin;
+      }
+      body.gallery-page [data-filter-group="artist"] .gallery-filter {
+        flex: 0 0 auto !important;
+      }
+      body.gallery-page [data-filter-group="genre"] {
         display: flex !important;
         flex-wrap: wrap !important;
         width: 100% !important;
+        overflow: visible !important;
       }
       body.gallery-page .gallery-filter {
         width: auto !important;
-        padding: .2rem .58rem !important;
+        padding: .2rem 14px !important;
       }
       body.gallery-page .gallery-filter:first-child {
-        padding-left: 0 !important;
+        padding-left: 14px !important;
       }
     }
   `;
