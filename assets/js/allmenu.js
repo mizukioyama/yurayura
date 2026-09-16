@@ -135,8 +135,8 @@ function initializeCustomCursor() {
   });
 }
 
-/* Keep Scroll on one shared FV axis. Concept/Gallery use their rendered H1;
-   Top uses the same title origin as those pages instead of its centered hero title. */
+/* Keep Scroll on one shared FV axis. On PC, Top uses the exact same
+   vertical origin as Concept: 40vmin + rendered H1 height + 140px. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
@@ -150,14 +150,11 @@ function initializeScrollGuidePosition() {
     const isTopPage = document.body.classList.contains("top-page");
 
     let guideTop;
-    if (isTopPage) {
-      const titleHeight = titleRect.height;
-      const sharedTitleTop = window.innerWidth <= 767
-        ? 180
-        : window.innerWidth <= 1199
-          ? window.innerWidth * 0.28
-          : Math.min(window.innerWidth, window.innerHeight) * 0.40;
-      guideTop = sharedTitleTop + titleHeight + 140;
+    if (isTopPage && window.innerWidth >= 1200) {
+      guideTop = Math.min(window.innerWidth, window.innerHeight) * 0.40 + titleRect.height + 140;
+    } else if (isTopPage) {
+      const sharedTitleTop = window.innerWidth <= 767 ? 180 : window.innerWidth * 0.28;
+      guideTop = sharedTitleTop + titleRect.height + 140;
     } else {
       guideTop = titleRect.bottom - parentRect.top + 140;
     }
