@@ -56,3 +56,167 @@ body.gallery-page{font-family:var(--font-base,"Shippori Mincho",serif)!important
   max-width: 100%;
   height: auto;
 }
+
+/* Desktop Gallery: reproduce the supplied four-column reference layout. */
+@media screen and (min-width: 1200px) {
+  .gallery-page .gallery {
+    min-height: 100vh;
+  }
+
+  .gallery-page .h1-text {
+    position: absolute !important;
+    top: 160px !important;
+    left: 50% !important;
+    width: max-content;
+    transform: translateX(-50%) !important;
+    text-align: center;
+  }
+
+  .gallery-page .h1-text h1 {
+    font-size: clamp(2.5rem, 3vw, 3.5rem) !important;
+    letter-spacing: .12em;
+  }
+
+  .gallery-page .h1-text p {
+    display: none !important;
+  }
+
+  .gallery-page .h1-text::after {
+    display: block;
+    width: 30px;
+    height: 1px;
+    margin: 24px auto 0;
+    background: currentColor;
+    content: "";
+    opacity: .65;
+  }
+
+  .gallery-page .gallery > .scroll-guide,
+  .gallery-page .gallery-intro {
+    display: none !important;
+  }
+
+  body.gallery-page .gallery-section {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 265px 7vw 100px !important;
+  }
+
+  .gallery-page .gallery-main {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .gallery-page .gallery-sidebar {
+    width: min(620px, 50vw) !important;
+    max-width: none !important;
+    margin: 0 0 42px !important;
+    padding: 0 !important;
+    gap: .75rem !important;
+  }
+
+  .gallery-page .gallery-sidebar__label {
+    margin: 0 0 10px !important;
+    font-size: 1.08rem !important;
+    letter-spacing: .1em !important;
+  }
+
+  .gallery-page .gallery-filter-group {
+    grid-template-columns: 6em minmax(0, 1fr) !important;
+    column-gap: .5rem !important;
+    align-items: center !important;
+  }
+
+  .gallery-page .gallery-filter-title {
+    line-height: 2.5rem !important;
+  }
+
+  .gallery-page .gallery-filter-options {
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+  }
+
+  .gallery-page .gallery-filter {
+    min-width: 82px !important;
+    min-height: 40px !important;
+    padding: .2rem 16px !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.52) !important;
+    text-decoration: none !important;
+  }
+
+  .gallery-page .gallery-filter + .gallery-filter::before {
+    display: none !important;
+  }
+
+  .gallery-page .gallery-filter.is-active {
+    color: #fff !important;
+    background: rgba(35,35,35,.82) !important;
+    text-decoration: none !important;
+  }
+
+  .gallery-page .gallery-containt {
+    position: relative;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .gallery-page .gallery-result {
+    position: absolute;
+    right: 0;
+    top: -52px;
+    margin: 0 !important;
+    letter-spacing: .12em;
+  }
+
+  .gallery-page .gallery-content {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 34px !important;
+    width: 100% !important;
+  }
+
+  .gallery-page .gallery-content .work {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(255,255,255,.52) !important;
+  }
+
+  .gallery-page .gallery-content .work-img,
+  .gallery-page .gallery-content .work-img > img {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .gallery-page .gallery-content .work-img > img {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+
+  .gallery-page .gallery-work-link {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 12px 14px 16px !important;
+  }
+
+  .gallery-page .gallery-work-link h2 {
+    text-align: left;
+  }
+
+  .gallery-page .gallery-work-link p {
+    text-align: right;
+  }
+
+  .gallery-page .gallery-pagination {
+    margin-top: 42px;
+  }
+}
