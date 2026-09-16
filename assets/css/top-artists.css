@@ -1,21 +1,8 @@
 @charset "UTF-8";
 
-/* Restore the original artwork layer behind the Top Artists section. */
+/* The decorative Artists HTML image is not part of the slideshow. */
 .top-page #artists .artists-bg-img {
-  display: block !important;
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-  background: url("../img/bg-img.webp") center / cover no-repeat !important;
-}
-
-.top-page #artists .artists-bg-img .section__bg-img {
-  display: block !important;
-  width: 100%;
-  height: 120vh;
-  background: none !important;
-  mix-blend-mode: lighten;
-  opacity: 0.4;
+  display: none !important;
 }
 
 .top-page .section--artists .section__txt {
@@ -37,7 +24,7 @@
   text-align: center;
 }
 
-/* Restore the four artwork images without changing the existing card structure. */
+/* Restore the original four slideshow artworks. */
 .top-page #artists .member-track .card__link {
   position: relative;
   display: block;
@@ -49,10 +36,10 @@
   background-repeat: no-repeat;
 }
 
-.top-page #artists .member-track .card:nth-child(1) .card__link { background-image: url("../img/mizuki.webp"); }
-.top-page #artists .member-track .card:nth-child(2) .card__link { background-image: url("../img/kaoru.webp"); }
-.top-page #artists .member-track .card:nth-child(3) .card__link { background-image: url("../img/saki.webp"); }
-.top-page #artists .member-track .card:nth-child(4) .card__link { background-image: url("../img/kurikan.webp"); }
+.top-page #artists .member-track .card:nth-child(1) .card__link { background-image: url("../img/202337.webp") !important; }
+.top-page #artists .member-track .card:nth-child(2) .card__link { background-image: url("../img/202339.webp") !important; }
+.top-page #artists .member-track .card:nth-child(3) .card__link { background-image: url("../img/202402.webp") !important; }
+.top-page #artists .member-track .card:nth-child(4) .card__link { background-image: url("../img/202501.webp") !important; }
 
 .top-page #artists .section__btn {
   --artists-side-padding: var(--top-section-inline-padding, 44px);
