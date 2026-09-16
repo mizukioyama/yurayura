@@ -135,7 +135,7 @@ function initializeCustomCursor() {
   });
 }
 
-/* Keep Scroll exactly 80px below the rendered H1, regardless of viewport/font size. */
+/* Keep Scroll exactly 140px below the rendered H1, regardless of viewport/font size. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
@@ -146,7 +146,8 @@ function initializeScrollGuidePosition() {
     if (!containingBlock) return;
     const titleRect = title.getBoundingClientRect();
     const parentRect = containingBlock.getBoundingClientRect();
-    guide.style.setProperty("top", `${titleRect.bottom - parentRect.top + 80}px`, "important");
+    guide.style.setProperty("position", "absolute", "important");
+    guide.style.setProperty("top", `${titleRect.bottom - parentRect.top + 140}px`, "important");
     guide.style.setProperty("bottom", "auto", "important");
     guide.style.setProperty("transform", "none", "important");
   };
