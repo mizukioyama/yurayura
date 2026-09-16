@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
-/* Scoped correction for the Top page's Artists section. */
-.top-page #artists .artists-bg-img,
+/* Restore the original artwork layer behind the Top Artists section. */
+.top-page #artists .artists-bg-img {
+  display: block !important;
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  background: url("../img/bg-img.webp") center / cover no-repeat !important;
+}
+
 .top-page #artists .artists-bg-img .section__bg-img {
-  display: none !important;
+  display: block !important;
+  width: 100%;
+  height: 120vh;
   background: none !important;
+  mix-blend-mode: lighten;
+  opacity: 0.4;
 }
 
 .top-page .section--artists .section__txt {
