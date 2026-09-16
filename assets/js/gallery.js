@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageSize = 10;
   const state = { artist: "all", genre: "all", page: 1 };
 
-  /* Gallery category layout override: no panel/background/padding and no wrapping. */
+  /* Final category layout override. Keep labels aligned and use content-width flex items. */
   const categoryStyle = document.createElement("style");
   categoryStyle.textContent = `
     body.gallery-page .gallery-sidebar {
@@ -16,28 +16,75 @@ document.addEventListener("DOMContentLoaded", () => {
       border-radius: 0 !important;
       box-shadow: none !important;
       backdrop-filter: none !important;
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
+      overflow: visible !important;
       max-width: 100% !important;
-      white-space: nowrap !important;
-      scrollbar-width: none;
     }
-    body.gallery-page .gallery-sidebar::-webkit-scrollbar { display: none; }
-    body.gallery-page .gallery-sidebar__label,
-    body.gallery-page .gallery-filter-group,
-    body.gallery-page .gallery-filter-title,
-    body.gallery-page .gallery-filter-options,
+    body.gallery-page .gallery-filter-group {
+      display: grid !important;
+      grid-template-columns: 5.7em minmax(0, 1fr) !important;
+      align-items: start !important;
+      column-gap: 0 !important;
+      width: 100% !important;
+    }
+    body.gallery-page .gallery-filter-title {
+      width: 100% !important;
+      white-space: nowrap !important;
+    }
+    body.gallery-page .gallery-filter-options {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      gap: 0 !important;
+      white-space: normal !important;
+    }
     body.gallery-page .gallery-filter {
+      position: relative !important;
+      flex: 0 0 auto !important;
+      width: auto !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: .2rem .72rem !important;
       white-space: nowrap !important;
-      flex-wrap: nowrap !important;
+      text-align: center !important;
+      justify-content: center !important;
     }
-    body.gallery-page .gallery-filter-group { width: max-content !important; }
-    body.gallery-page .gallery-filter-options { width: max-content !important; }
+    body.gallery-page .gallery-filter:first-child {
+      padding-left: 0 !important;
+    }
+    body.gallery-page .gallery-filter + .gallery-filter::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 50% !important;
+      width: 1px !important;
+      height: 1em !important;
+      background: currentColor !important;
+      opacity: .35 !important;
+      transform: translateY(-50%) !important;
+    }
     @media (max-width: 767px) {
       body.gallery-page .gallery-sidebar {
         width: 100% !important;
         padding: 0 !important;
-        background: transparent !important;
+        overflow: visible !important;
+      }
+      body.gallery-page .gallery-filter-group {
+        grid-template-columns: 5.7em minmax(0, 1fr) !important;
+      }
+      body.gallery-page .gallery-filter-options {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+      }
+      body.gallery-page .gallery-filter {
+        width: auto !important;
+        padding: .2rem .58rem !important;
+      }
+      body.gallery-page .gallery-filter:first-child {
+        padding-left: 0 !important;
       }
     }
   `;
