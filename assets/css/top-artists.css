@@ -26,6 +26,23 @@
   text-align: center;
 }
 
+/* Restore the four artwork images without changing the existing card structure. */
+.top-page #artists .member-track .card__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.top-page #artists .member-track .card:nth-child(1) .card__link { background-image: url("../img/mizuki.webp"); }
+.top-page #artists .member-track .card:nth-child(2) .card__link { background-image: url("../img/kaoru.webp"); }
+.top-page #artists .member-track .card:nth-child(3) .card__link { background-image: url("../img/saki.webp"); }
+.top-page #artists .member-track .card:nth-child(4) .card__link { background-image: url("../img/kurikan.webp"); }
+
 .top-page #artists .section__btn {
   --artists-side-padding: var(--top-section-inline-padding, 44px);
   --view-button-width: clamp(480px, 36vw, 520px);
@@ -34,12 +51,7 @@
   margin-top: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px));
   margin-right: calc(-1 * var(--artists-side-padding));
   margin-left: calc(-1 * var(--artists-side-padding));
-  padding-inline: max(
-    0px,
-    calc(
-      (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
-    )
-  );
+  padding-inline: max(0px, calc((100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2));
 }
 
 .top-page .member-slider {
@@ -91,12 +103,7 @@
     margin-top: var(--page-nav-button-margin-top, clamp(24px, 5.5vw, 32px));
     margin-right: calc(-1 * var(--artists-side-padding));
     margin-left: calc(-1 * var(--artists-side-padding));
-    padding-inline: max(
-      0px,
-      calc(
-        (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
-      )
-    );
+    padding-inline: max(0px, calc((100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2));
   }
 
   .top-page .member-slider {
