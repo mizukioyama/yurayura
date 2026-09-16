@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
 /* Scoped correction for the Top page's Artists section. */
+.top-page #artists .artists-bg-img,
+.top-page #artists .artists-bg-img .section__bg-img {
+  display: none !important;
+  background: none !important;
+}
+
 .top-page .section--artists .section__txt {
   align-self: center;
   width: min(100%, 520px);
