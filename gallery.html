@@ -1,180 +1,136 @@
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';"
-    />
-    <title>ゆらゆら | 作家と作品</title>
-    <meta
-      name="description"
-      content="ゆらゆらに出展するMizukiの作品紹介です。"
-    />
-    <link rel="canonical" href="https://mizukioyama.github.io/yurayura/gallery.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ゆらゆら" />
-    <meta property="og:title" content="ゆらゆら | 作家と作品" />
-    <meta
-      property="og:description"
-      content="ゆらゆらに出展するMizukiの作品紹介です。"
-    />
-    <meta property="og:url" content="https://mizukioyama.github.io/yurayura/gallery.html" />
-    <meta property="og:image" content="https://mizukioyama.github.io/yurayura/assets/img/bg-img.jpg" />
-    <meta property="og:image:alt" content="ゆらゆら | 体感するArt展" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://mizukioyama.github.io/yurayura/assets/img/bg-img.jpg" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';" />
+  <title>ゆらゆら | 作家と作品</title>
+  <meta name="description" content="ゆらゆらに出展するMizukiの作品紹介です。" />
+  <link rel="canonical" href="https://mizukioyama.github.io/yurayura/gallery.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ゆらゆら" />
+  <meta property="og:title" content="ゆらゆら | 作家と作品" />
+  <meta property="og:description" content="ゆらゆらに出展するMizukiの作品紹介です。" />
+  <meta property="og:url" content="https://mizukioyama.github.io/yurayura/gallery.html" />
+  <meta property="og:image" content="https://mizukioyama.github.io/yurayura/assets/img/bg-img.jpg" />
+  <meta property="og:image:alt" content="ゆらゆら | 体感するArt展" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://mizukioyama.github.io/yurayura/assets/img/bg-img.jpg" />
+  <link rel="icon" href="./assets/img/favicon.ico" />
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/main.css?v=20260915-section-width-780-menu-gap-v22" />
+  <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260915-section-width-780-menu-gap-v16" />
+  <link rel="stylesheet" href="./assets/css/works-list.css" />
+  <link rel="stylesheet" href="./assets/css/gallery.css?v=20260916-portfolio-layout-v1" />
+  <link rel="stylesheet" href="./assets/css/liquid.css?v=20260914-button-size-spacing-v6" />
+  <script src="./assets/js/font.js" defer></script>
+  <script src="./assets/js/allmenu.js?v=20260913-menu-border-center-spacing-v7" defer></script>
+  <script src="./assets/js/gallery.js?v=20260912-contact-glass-v2" defer></script>
+  <script src="./assets/js/liquid-button.js?v=20260914-arrow-md-size-v8" defer></script>
+  <style>
+    /* Portfolio Gallery structure parity */
+    .gallery-page .gallery { position: relative; min-height: 100vh; padding-top: 0; }
+    .gallery-page .h1-text { position: absolute; left: 20vmin; top: 40vmin; z-index: 90; width: fit-content; }
+    .gallery-page .h1-text h1 { margin: 0; font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem); font-weight: 300; line-height: 1.2; letter-spacing: .03em; }
+    .gallery-page .h1-text p { margin: .5rem 0 0; font-size: clamp(1rem, calc(.6rem + 1.2vw), 2rem); }
+    .gallery-page .scroll { position: absolute; left: 5vmin; top: 0; width: 1.5px; height: 100%; z-index: 80; background: rgba(237,237,237,.45); overflow: hidden; }
+    .gallery-page .scroll::before { content: ""; position: absolute; inset: 0; background: #111; animation: gallery-scroll-line 15s infinite; }
+    @keyframes gallery-scroll-line { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+    .gallery-page .gallery-section { min-height: 100vh; padding-top: 10vmin; }
+    .gallery-page .gallery-main { width: 100%; min-width: 0; }
+    .gallery-page .gallery-intro, .gallery-page .gallery-taxonomy { width: min(55%, 1000px); margin-left: 55vmin; padding-inline: 2rem; }
+    .gallery-page .gallery-intro { margin-top: 30vmin; }
+    .gallery-page .gallery-taxonomy { margin-top: 4rem; margin-bottom: -22vmin; position: relative; z-index: 2; }
+    .gallery-page .gallery-containt { margin-top: 30vmin !important; }
+    @media (max-width: 1199px) {
+      .gallery-page .h1-text { left: 10vw; top: 28vmin; }
+      .gallery-page .gallery-intro, .gallery-page .gallery-taxonomy { width: min(100% - 4rem, 1000px); margin-left: auto; margin-right: auto; }
+      .gallery-page .gallery-intro { margin-top: 50vmin; }
+      .gallery-page .gallery-taxonomy { margin-bottom: 2rem; }
+      .gallery-page .gallery-containt { margin-top: 2rem !important; }
+    }
+    @media (max-width: 767px) {
+      .gallery-page .h1-text { position: relative; left: auto; top: auto; margin: 10rem 1.25rem 7rem; }
+      .gallery-page .scroll { left: 1rem; }
+      .gallery-page .gallery-section { padding-top: 0; }
+      .gallery-page .gallery-intro, .gallery-page .gallery-taxonomy { width: 100%; margin: 0 auto 2rem; padding-inline: 1.25rem; }
+      .gallery-page .gallery-sidebar { margin-bottom: 4rem !important; }
+      .gallery-page .gallery-containt { margin-top: 0 !important; }
+    }
+  </style>
+</head>
+<body class="gallery-page">
+  <div id="js-header"></div>
+  <main class="main gallery" id="main">
+    <div class="h1-text">
+      <h1>Gallery</h1>
+      <p>作家と作品</p>
+    </div>
+    <div class="scroll" aria-hidden="true"></div>
 
-    <link rel="icon" href="./assets/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
-
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="stylesheet" href="./assets/css/main.css?v=20260915-section-width-780-menu-gap-v22" />
-    <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260915-section-width-780-menu-gap-v16" />
-    <link rel="stylesheet" href="./assets/css/works-list.css" />
-    <link rel="stylesheet" href="./assets/css/gallery.css?v=20260915-menu-right-v6" />
-    <link rel="stylesheet" href="./assets/css/liquid.css?v=20260914-button-size-spacing-v6" />
-
-    <script src="./assets/js/font.js" defer></script>
-    <script src="./assets/js/allmenu.js?v=20260913-menu-border-center-spacing-v7" defer></script>
-    <script src="./assets/js/gallery.js?v=20260912-contact-glass-v2" defer></script>
-    <script src="./assets/js/liquid-button.js?v=20260914-arrow-md-size-v8" defer></script>
-  </head>
-  <body class="gallery-page">
-    <div id="js-header"></div>
-
-    <main class="main gallery" id="main">
-      <section class="fv">
-        <div class="fv__inner inner">
-          <p class="fv__lead">ゆらゆら｜体感するArt展</p>
-          <h1 class="fv__ttl">作家紹介</h1>
+    <section class="section liquid gallery-section" id="works">
+      <aside class="gallery-sidebar" aria-label="作品カテゴリ">
+        <p class="gallery-sidebar__label">Category</p>
+        <div class="gallery-filter-group">
+          <h2 class="gallery-filter-title">作家</h2>
+          <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-label="作家で絞り込む">
+            <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
+            <button class="gallery-filter" type="button" data-filter-value="Mizuki" aria-pressed="false">Mizuki</button>
+          </div>
         </div>
-      </section>
-
-      <section class="section liquid gallery-section" id="works">
-        <aside class="gallery-sidebar" aria-label="作品カテゴリ">
-          <p class="gallery-sidebar__label">Category</p>
-          <div class="gallery-filter-group">
-            <h2 class="gallery-filter-title">作家</h2>
-            <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-label="作家で絞り込む">
-              <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-              <button class="gallery-filter" type="button" data-filter-value="Mizuki" aria-pressed="false">Mizuki</button>
-            </div>
+        <div class="gallery-filter-group">
+          <h2 class="gallery-filter-title">ジャンル</h2>
+          <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-label="ジャンルで絞り込む">
+            <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
+            <button class="gallery-filter" type="button" data-filter-value="Digital" aria-pressed="false">Digital</button>
           </div>
-          <div class="gallery-filter-group">
-            <h2 class="gallery-filter-title">ジャンル</h2>
-            <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-label="ジャンルで絞り込む">
-              <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-              <button class="gallery-filter" type="button" data-filter-value="Digital" aria-pressed="false">Digital</button>
-            </div>
-          </div>
-        </aside>
+        </div>
+      </aside>
 
-        <div class="gallery-main">
-          <div class="gallery-intro">
-            <p>このページでは、このWebサイトに作品を掲載している作家の紹介をしています。</p>
-            <p>作品に対しての想い、考えなどを文字や雰囲気でお伝えします。</p>
-          </div>
+      <div class="gallery-main">
+        <div class="gallery-intro">
+          <p>このページでは、このWebサイトに作品を掲載している作家の紹介をしています。</p>
+          <p>作品に対しての想い、考えなどを文字や雰囲気でお伝えします。</p>
+        </div>
+        <div class="gallery-taxonomy">
+          <p>ジャンル：抽象・風景・自然</p>
+          <p>アクリル・油彩・水彩・レジン・インクアート</p>
+        </div>
 
-          <div class="gallery-taxonomy">
-            <p>ジャンル：抽象・風景・自然</p>
-            <p>アクリル・油彩・水彩・レジン・インクアート</p>
-          </div>
-
-          <div class="gallery-containt">
-            <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
-
-            <div class="content gallery-content" id="gallery-container" aria-label="Mizukiの作品一覧">
+        <div class="gallery-containt">
+          <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
+          <div class="content gallery-content" id="gallery-container" aria-label="Mizukiの作品一覧">
             <article class="work gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="Digital">
               <p class="gallery-card__category">Category | Digital</p>
-              <div class="work-img">
-                <img
-                  src="./assets/img/202337.jpg"
-                  alt="Mizukiの作品 01"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <a class="works gallery-work-link" href="#mizuki-01" aria-label="作品 01を表示">
-                  <h2>作品 01</h2>
-                  <p>Mizuki<br />Digital</p>
-                </a>
-              </div>
+              <div class="work-img"><img src="./assets/img/202337.jpg" alt="Mizukiの作品 01" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-01" aria-label="作品 01を表示"><h2>作品 01</h2><p>Mizuki<br />Digital</p></a></div>
             </article>
-
             <article class="work gallery-card" id="mizuki-02" data-artist="Mizuki" data-genre="Digital">
               <p class="gallery-card__category">Category | Digital</p>
-              <div class="work-img">
-                <img
-                  src="./assets/img/202339.jpg"
-                  alt="Mizukiの作品 02"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <a class="works gallery-work-link" href="#mizuki-02" aria-label="作品 02を表示">
-                  <h2>作品 02</h2>
-                  <p>Mizuki<br />Digital</p>
-                </a>
-              </div>
+              <div class="work-img"><img src="./assets/img/202339.jpg" alt="Mizukiの作品 02" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-02" aria-label="作品 02を表示"><h2>作品 02</h2><p>Mizuki<br />Digital</p></a></div>
             </article>
-
             <article class="work gallery-card" id="mizuki-03" data-artist="Mizuki" data-genre="Digital">
               <p class="gallery-card__category">Category | Digital</p>
-              <div class="work-img">
-                <img
-                  src="./assets/img/202402.jpg"
-                  alt="Mizukiの作品 03"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <a class="works gallery-work-link" href="#mizuki-03" aria-label="作品 03を表示">
-                  <h2>作品 03</h2>
-                  <p>Mizuki<br />Digital</p>
-                </a>
-              </div>
+              <div class="work-img"><img src="./assets/img/202402.jpg" alt="Mizukiの作品 03" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-03" aria-label="作品 03を表示"><h2>作品 03</h2><p>Mizuki<br />Digital</p></a></div>
             </article>
-
             <article class="work gallery-card" id="mizuki-04" data-artist="Mizuki" data-genre="Digital">
               <p class="gallery-card__category">Category | Digital</p>
-              <div class="work-img">
-                <img
-                  src="./assets/img/202501.jpg"
-                  alt="Mizukiの作品 04"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <a class="works gallery-work-link" href="#mizuki-04" aria-label="作品 04を表示">
-                  <h2>作品 04</h2>
-                  <p>Mizuki<br />Digital</p>
-                </a>
-              </div>
+              <div class="work-img"><img src="./assets/img/202501.jpg" alt="Mizukiの作品 04" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-04" aria-label="作品 04を表示"><h2>作品 04</h2><p>Mizuki<br />Digital</p></a></div>
             </article>
-            </div>
-            <div class="gallery-page-line" aria-hidden="true"></div>
-            <nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav>
-            <div class="gallery-page-line" aria-hidden="true"></div>
           </div>
+          <div class="gallery-page-line" aria-hidden="true"></div>
+          <nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav>
+          <div class="gallery-page-line" aria-hidden="true"></div>
         </div>
-      </section>
-    </main>
-
-    <div id="js-footer"></div>
-  </body>
+      </div>
+    </section>
+  </main>
+  <div id="js-footer"></div>
+</body>
 </html>
