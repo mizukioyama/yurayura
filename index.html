@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
+  <!-- CSP -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     img-src 'self' data: https:;
@@ -28,22 +29,27 @@
   <meta property="og:image:alt" content="ゆらゆら | 体感するArt展" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://mizukioyama.github.io/yurayura/assets/img/bg-img.jpg" />
+
   <link rel="icon" href="./assets/img/favicon.ico" />
   <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+
+  <!-- font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260915-section-width-780-menu-gap-v16" />
   <link rel="stylesheet" href="./assets/css/main.css?v=20260915-section-width-780-menu-gap-v22" />
   <link rel="stylesheet" href="./assets/css/concept.css?v=20260914-menu-right-concept-mobile-v2" />
   <link rel="stylesheet" href="./assets/css/top-legacy.css?v=20260916-restore-background-v2" />
-  <link rel="stylesheet" href="./assets/css/top-artists.css?v=20260917-artwork-slideshow-v3" />
+  <link rel="stylesheet" href="./assets/css/top-artists.css?v=20260916-restore-background-v2" />
   <link rel="stylesheet" href="./assets/css/form.css?v=20260912-writing-mode-v1" />
   <link rel="stylesheet" href="./assets/css/liquid.css?v=20260914-button-size-spacing-v6" />
   <link rel="stylesheet" href="./assets/css/fog-hole.css?v=20260909-slow-loading" />
   <link rel="stylesheet" href="./assets/css/fv-animation.css" />
+
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=20260913-menu-border-center-spacing-v7" defer></script>
   <script src="./assets/js/slide.js" defer></script>
@@ -57,89 +63,391 @@
 </head>
 
 <body class="top-page">
-  <div id="fog-scene"><div id="fog-blur-layer"></div><div id="fog-hole"><canvas id="fogHoleCanvas"></canvas></div></div>
-  <div id="cursor"></div><div id="stalker"></div>
+  <div id="fog-scene">
+    <div id="fog-blur-layer"></div>
+    <div id="fog-hole">
+      <canvas id="fogHoleCanvas"></canvas>
+    </div>
+  </div>
+
+  <div id="cursor"></div>
+  <div id="stalker"></div>
+
+  <!-- Header -->
   <div id="js-header"></div>
   <main class="main" id="main">
-    <div class="vanta-wrap"><div id="vanta-bg"></div><div class="smoke-twist smoke-twist--01" aria-hidden="true"></div><div class="smoke-twist smoke-twist--02" aria-hidden="true"></div><div class="smoke-twist smoke-twist--03" aria-hidden="true"></div></div>
+    <div class="vanta-wrap">
+      <div id="vanta-bg"></div>
+      <div class="smoke-twist smoke-twist--01" aria-hidden="true"></div>
+      <div class="smoke-twist smoke-twist--02" aria-hidden="true"></div>
+      <div class="smoke-twist smoke-twist--03" aria-hidden="true"></div>
+    </div>
+
     <div class="bg-img"><img src="./assets/img/bg-img.webp" class="body_bg-img" alt=""></div>
     <section class="fv">
-      <div class="fv__inner inner"><h1 class="fv__ttl h1_fade">ゆらゆら</h1><p class="fv__txt">ゆらぎの間で<br />理解するのではなく、<br />体感する。</p></div>
-      <div class="scroll-guide" aria-hidden="true"><span class="scroll-guide__text">Scroll</span><span class="scroll-guide__bar"></span></div>
+      <div class="fv__inner inner">
+        <h1 class="fv__ttl h1_fade">ゆらゆら</h1>
+        <p class="fv__txt">
+          ゆらぎの間で
+          <br />
+          理解するのではなく、
+          <br />
+          体感する。
+        </p>
+      </div>
+
+      <div class="scroll-guide" aria-hidden="true">
+        <span class="scroll-guide__text">Scroll</span>
+        <span class="scroll-guide__bar"></span>
+      </div>
     </section>
 
     <section class="section section--concept" id="concept">
       <div class="section__inner inner">
         <h2 class="h2_ttl">～ ゆらぎの間で ～</h2>
-        <p class="section__txt">「ゆらゆら」は、主催者の想いと協力者の皆さまとつくる、初めての展示企画です。<br /><br />作品を<b>「理解する」</b>だけでなく、<b>「感じる」</b>ことを大切にしています。<br /><br />時間の流れが、ゆるやかになる。<br />さまざまな揺らぎが、心の余白にふれる。<br /><br />作品と空間の重なりが生む気配に身をゆだね、目に見えるものの奥にある静かな変化にも、そっと耳を澄ませてください。<br /><br />そんな時間を、それぞれの感覚で 味わっていただけたら嬉しいです。</p>
-        <p class="concept-link-wrap"><liquid-button text="Conceptを読む ＞" href="./concept.html" size="md" fluid></liquid-button></p>
+        <p class="section__txt">
+          「ゆらゆら」は、主催者の想いと協力者の皆さまとつくる、初めての展示企画です。<br /><br />
+          作品を<b>「理解する」</b>だけでなく、<b>「感じる」</b>ことを大切にしています。<br /><br />
+          時間の流れが、ゆるやかになる。<br />
+          さまざまな揺らぎが、心の余白にふれる。<br /><br />
+          作品と空間の重なりが生む気配に身をゆだね、目に見えるものの奥にある静かな変化にも、そっと耳を澄ませてください。<br /><br />
+          そんな時間を、それぞれの感覚で
+          味わっていただけたら嬉しいです。
+        </p>
+        <p class="concept-link-wrap">
+          <liquid-button text="Conceptを読む ＞" href="./concept.html" size="md" fluid></liquid-button>
+        </p>
       </div>
     </section>
 
     <section class="section section--artists" id="artists">
       <div class="section__inner inner">
-        <h2 class="h2_ttl">作家<span class="h2_ttl-small">と</span>作品<span class="h2_ttl-artists"> 出展者紹介 </span></h2>
-        <p class="section__txt">作品と作家については、<br />紹介ページでご覧いただけます。<br />ひとつひとつの表現、<br />その奥にある感覚にふれ、<br /><b>ゆらゆら</b>の世界をご覧ください。</p>
+        <h2 class="h2_ttl">
+          作家
+          <span class="h2_ttl-small">と</span>
+          作品
+          <span class="h2_ttl-artists"> 出展者紹介 </span>
+        </h2>
+        <p class="section__txt">
+          作品と作家については、
+          <br />
+          紹介ページでご覧いただけます。
+          <br />
+          ひとつひとつの表現、
+          <br />
+          その奥にある感覚にふれ、
+          <br />
+          <b>ゆらゆら</b>の世界をご覧ください。
+        </p>
+
+        <div class="artists-bg-img">
+          <img class="section__bg-img" src="./assets/img/artists-bg.webp" alt="" />
+        </div>
+
         <div class="cards member-slider" id="memberSlider">
           <div class="cards__track member-track" id="memberTrack">
-            <article class="card"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span class="card__btn img-btn">Mizuki</span></a></article>
-            <article class="card"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span class="card__btn img-btn">Mizuki</span></a></article>
-            <article class="card"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span class="card__btn img-btn">Mizuki</span></a></article>
-            <article class="card"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span class="card__btn img-btn">Mizuki</span></a></article>
+            <article class="card">
+              <a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link">
+                <span class="card__btn img-btn">Mizuki</span>
+              </a>
+            </article>
           </div>
         </div>
-        <div class="section__btn btn"><liquid-button text="View ＞" href="https://mizukioyama.github.io/yurayura/gallery.html" size="md" fluid></liquid-button></div>
+
+        <div class="section__btn btn">
+          <liquid-button text="View ＞" href="https://mizukioyama.github.io/yurayura/gallery.html" size="md" fluid></liquid-button>
+        </div>
       </div>
     </section>
 
     <section class="section section--contact" id="contact">
       <div class="section__inner inner">
         <h2 class="h2_ttl">お問い合せ</h2>
-        <p class="section__txt">作品や展示会については、よくある質問に記載していますが、<br />質問したいことがありましたらお気軽に下記フォームからお問い合わせください。</p>
-        <form action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec" method="POST" class="contact-form" id="contactForm">
+        <p class="section__txt">
+          作品や展示会については、よくある質問に記載していますが、<br />
+          質問したいことがありましたらお気軽に下記フォームからお問い合わせください。
+        </p>
+
+        <form
+          action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
+          method="POST" class="contact-form" id="contactForm">
+
           <p class="kinds">お問い合わせ種別</p>
           <div class="contact-check-grid">
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="展示について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">展示について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="作品について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">作品について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="購入について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">購入について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="その他" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">その他</span></label>
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="展示について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">展示について</span>
+            </label>
+
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="作品について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">作品について</span>
+            </label>
+
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="購入について" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">購入について</span>
+            </label>
+
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="type" value="その他" />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">その他</span>
+            </label>
           </div>
-          <div class="form-row"><input type="text" id="subject" name="subject" placeholder=" " required /><label for="subject" class="form-label">件名</label></div>
-          <div class="form-row"><input type="text" id="name" name="name" placeholder=" " required /><label for="name" class="form-label">お名前</label></div>
-          <div class="form-row"><input type="email" id="email" name="email" placeholder=" " required /><label for="email" class="form-label">メールアドレス・電話番号</label></div>
-          <div class="form-row"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message" class="form-label form-label--textarea">お問い合わせ内容</label></div>
-          <div class="form-bottom"><label class="check-item"><input class="check-item__input" type="checkbox" name="consent" value="同意済み" required /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">個人情報の取り扱いに同意します</span></label><button type="submit" class="send-btn liquid-control">内容を送信する</button></div>
+
+          <div class="form-row">
+            <input type="text" id="subject" name="subject" placeholder=" " required />
+            <label for="subject" class="form-label">件名</label>
+          </div>
+
+          <div class="form-row">
+            <input type="text" id="name" name="name" placeholder=" " required />
+            <label for="name" class="form-label">お名前</label>
+          </div>
+
+          <div class="form-row">
+            <input type="email" id="email" name="email" placeholder=" " required />
+            <label for="email" class="form-label">メールアドレス・電話番号</label>
+          </div>
+
+          <div class="form-row">
+            <textarea id="message" name="message" placeholder=" " required></textarea>
+            <label for="message" class="form-label form-label--textarea">お問い合わせ内容</label>
+          </div>
+
+          <div class="form-bottom">
+            <label class="check-item">
+              <input class="check-item__input" type="checkbox" name="consent" value="同意済み" required />
+              <span class="check-item__box" aria-hidden="true"></span>
+              <span class="check-item__text">
+                個人情報の取り扱いに同意します
+              </span>
+            </label>
+
+            <button type="submit" class="send-btn liquid-control">内容を送信する</button>
+          </div>
         </form>
-        <div id="modal" class="modal"><div class="modal-content"><button type="button" class="modal-close liquid-control liquid-control--icon" id="modalClose" aria-label="閉じる">×</button><h3 id="modalTitle" class="modal-title"></h3><p id="modalMessage" class="modal-message"></p><button type="button" class="modal-btn liquid-control" id="modalButton">閉じる</button></div></div>
+
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <button type="button" class="modal-close liquid-control liquid-control--icon" id="modalClose" aria-label="閉じる">
+              ×
+            </button>
+
+            <h3 id="modalTitle" class="modal-title"></h3>
+
+            <p id="modalMessage" class="modal-message"></p>
+
+            <button type="button" class="modal-btn liquid-control" id="modalButton">閉じる</button>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section section--faq" id="faq">
-      <div class="section__inner inner"><div class="faq-box"><h3 class="section__subttl faq-ttl">よくある質問</h3><ul class="faq-list">
-        <li class="faq-list-item"><h3 class="faq-heading">期間と場所と時間</h3><div class="faq-answer"><div class="faq-sub-list">
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>展示期間</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">展示期間は、<strong>10/06（火）から10/12（月）</strong>までです。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>開催時間</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">初日の<strong>10/06（火）は13:00から</strong>、最終日の<strong>10/12（月）は13:00まで</strong>ご覧いただけます。その他の日は<strong>11:30〜20:00</strong>の時間帯にご覧いただけます。外観のライトアップは、<strong>20:00〜21:00</strong>の間を予定しています。</p></div></div>
-        </div></div></li>
-        <li class="faq-list-item"><h3 class="faq-heading">アクセス（駐車場と最寄り駅）</h3><div class="faq-answer"><div class="faq-sub-list">
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>JR京浜東北根岸線</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">JR京浜東北・根岸線をご利用の場合は、<strong>「石川町駅」の元町口出口</strong>から<strong>徒歩約1分</strong>で会場に到着します。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>みなとみらい線</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">みなとみらい線をご利用の場合は、<strong>「元町・中華街駅」の5番出口・元町口</strong>から<strong>徒歩約13分</strong>です。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>駐車場</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt"><strong>会場周辺には複数のコインパーキング</strong>があります。ご利用の際は、各駐車場の案内や<strong>空き状況</strong>をご確認ください。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>会場の住所</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">会場は、<strong>〒231-0868 神奈川県横浜市中区石川町1丁目19-8</strong>にある<strong>Gallery Charlotte.Usagi</strong>です。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>横浜市営バスで行けますか？</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">横浜市営バスをご利用の場合は、<strong>「元町」停留所から徒歩約2分</strong>です。<strong>21系統、101系統、105系統、106系統</strong>が案内されています。運行状況や時刻は、来場前に公式案内をご確認ください。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>地図や経路を確認できますか？</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">ページ下部の<strong>「会場情報」</strong>にある地図で、<strong>会場の位置</strong>をご確認いただけます。経路や所要時間は、来場前に地図サービスでもご確認ください。</p></div></div>
-        </div></div></li>
-        <li class="faq-list-item"><h3 class="faq-heading">展示について</h3><div class="faq-answer"><div class="faq-sub-list">
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>どのような展示ですか？</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">本展では、作品を<strong>「理解する」</strong>だけでなく、<strong>「感じる」</strong>ことを大切にしています。作品と空間の重なりから生まれる揺らぎを、決まった見方にとらわれず、それぞれの感覚でお楽しみください。</p></div></div>
-          <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>作品と作家について知りたいです。</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt">ページ内の<strong>「作家と作品」</strong>、または<strong>Galleryページ</strong>から、出展作品と作家をご覧いただけます。</p></div></div>
-        </div></div></li>
-        <li class="faq-list-item"><h3 class="faq-heading">主催者（企画背景、コンセプト）</h3><div class="faq-answer"><div class="faq-sub-list"><div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>企画背景・コンセプト</span><span class="faq-sub-icon" aria-hidden="true"></span></button><div class="faq-sub-answer"><p class="faq-sub-txt"><strong>「ゆらゆら」</strong>は、主催者がこれまで作品制作を続ける中で感じてきた、言葉にしきれない感覚や揺らぎを、作品だけでなく空間全体で共有したいという思いから生まれました。詳しい企画背景やコンセプトは、<a href="./concept.html">Conceptページ</a>でご覧いただけます。</p></div></div></div></div></li>
-      </ul></div></div>
+      <div class="section__inner inner">
+        <div class="faq-box">
+          <h3 class="section__subttl faq-ttl">よくある質問</h3>
+
+          <ul class="faq-list">
+            <li class="faq-list-item">
+              <h3 class="faq-heading">期間と場所と時間</h3>
+              <div class="faq-answer">
+                <div class="faq-sub-list">
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>展示期間</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">展示期間は、<strong>10/06（火）から10/12（月）</strong>までです。</p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>開催時間</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        初日の<strong>10/06（火）は13:00から</strong>、最終日の<strong>10/12（月）は13:00まで</strong>ご覧いただけます。その他の日は<strong>11:30〜20:00</strong>の時間帯にご覧いただけます。外観のライトアップは、<strong>20:00〜21:00</strong>の間を予定しています。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq-list-item">
+              <h3 class="faq-heading">アクセス（駐車場と最寄り駅）</h3>
+              <div class="faq-answer">
+                <div class="faq-sub-list">
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>JR京浜東北根岸線</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">JR京浜東北・根岸線をご利用の場合は、<strong>「石川町駅」の元町口出口</strong>から<strong>徒歩約1分</strong>で会場に到着します。</p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>みなとみらい線</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">みなとみらい線をご利用の場合は、<strong>「元町・中華街駅」の5番出口・元町口</strong>から<strong>徒歩約13分</strong>です。</p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>駐車場</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt"><strong>会場周辺には複数のコインパーキング</strong>があります。ご利用の際は、各駐車場の案内や<strong>空き状況</strong>をご確認ください。</p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>会場の住所</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        会場は、<strong>〒231-0868 神奈川県横浜市中区石川町1丁目19-8</strong>にある<strong>Gallery Charlotte.Usagi</strong>です。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>横浜市営バスで行けますか？</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        横浜市営バスをご利用の場合は、<strong>「元町」停留所から徒歩約2分</strong>です。<strong>21系統、101系統、105系統、106系統</strong>が案内されています。運行状況や時刻は、来場前に公式案内をご確認ください。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>地図や経路を確認できますか？</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        ページ下部の<strong>「会場情報」</strong>にある地図で、<strong>会場の位置</strong>をご確認いただけます。経路や所要時間は、来場前に地図サービスでもご確認ください。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq-list-item">
+              <h3 class="faq-heading">展示について</h3>
+              <div class="faq-answer">
+                <div class="faq-sub-list">
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>どのような展示ですか？</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        本展では、作品を<strong>「理解する」</strong>だけでなく、<strong>「感じる」</strong>ことを大切にしています。作品と空間の重なりから生まれる揺らぎを、決まった見方にとらわれず、それぞれの感覚でお楽しみください。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>作品と作家について知りたいです。</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        ページ内の<strong>「作家と作品」</strong>、または<strong>Galleryページ</strong>から、出展作品と作家をご覧いただけます。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq-list-item">
+              <h3 class="faq-heading">主催者（企画背景、コンセプト）</h3>
+              <div class="faq-answer">
+                <div class="faq-sub-list">
+                  <div class="faq-sub-item">
+                    <button class="faq-sub-question" type="button">
+                      <span>企画背景・コンセプト</span>
+                      <span class="faq-sub-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-sub-answer">
+                      <p class="faq-sub-txt">
+                        <strong>「ゆらゆら」</strong>は、主催者がこれまで作品制作を続ける中で感じてきた、言葉にしきれない感覚や揺らぎを、作品だけでなく空間全体で共有したいという思いから生まれました。詳しい企画背景やコンセプトは、<a href="./concept.html">Conceptページ</a>でご覧いただけます。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="section section--access" id="access">
-      <div class="section__inner inner"><h2 class="h2_ttl">会場情報</h2><p class="section__txt">〒231-0868<br />神奈川県横浜市中区石川町1丁目19-8<br />Gallery Charlotte.Usagi<br /><br />2026.10.06（火）13:00〜<br />2026.10.12（月）〜13:00<br />※その他の日は11:30〜20:00<br />※外観のライトアップは20:00〜21:00を予定</p><div class="access-map"><iframe title="Gallery Charlotte.Usagi 周辺地図" src="https://www.google.com/maps?q=%E3%80%92231-0868+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E4%B8%AD%E5%8C%BA%E7%9F%B3%E5%B7%9D%E7%94%BA1%E4%B8%81%E7%9B%AE19-8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div>
+      <div class="section__inner inner">
+        <h2 class="h2_ttl">会場情報</h2>
+        <p class="section__txt">
+          〒231-0868<br />
+          神奈川県横浜市中区石川町1丁目19-8<br />
+          Gallery Charlotte.Usagi<br />
+          <br />
+          2026.10.06（火）13:00〜<br />
+          2026.10.12（月）〜13:00<br />
+          ※その他の日は11:30〜20:00<br />
+          ※外観のライトアップは20:00〜21:00を予定
+        </p>
+
+        <div class="access-map">
+          <iframe
+            title="Gallery Charlotte.Usagi 周辺地図"
+            src="https://www.google.com/maps?q=%E3%80%92231-0868+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E4%B8%AD%E5%8C%BA%E7%9F%B3%E5%B7%9D%E7%94%BA1%E4%B8%81%E7%9B%AE19-8&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
     </section>
   </main>
+  <!-- Footer -->
   <div id="js-footer"></div>
 </body>
+
 </html>
