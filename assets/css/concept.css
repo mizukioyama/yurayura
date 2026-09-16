@@ -316,3 +316,15 @@
     line-height: 1.9;
   }
 }
+
+/* Shared content spacing: FV remains unchanged. */
+.top-page main section:not(.fv),
+.concept-page main section:not(.fv) {
+  padding-left: 48px !important;
+  padding-right: 48px !important;
+}
+
+.top-page section.section--concept,
+.top-page section.section--artists {
+  --top-section-inline-padding: 48px;
+}
