@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeCurrentYear();
   initializeCurrentPage();
   initializeCustomCursor();
+  initializeScrollGuidePosition();
   document.body.classList.add("is-loaded");
 });
 
@@ -132,4 +133,25 @@ function initializeCustomCursor() {
     target.addEventListener("pointerenter", () => stalker.classList.add("is-active"));
     target.addEventListener("pointerleave", () => stalker.classList.remove("is-active"));
   });
+}
+
+/* Keep Scroll exactly 80px below the rendered H1, regardless of viewport/font size. */
+function initializeScrollGuidePosition() {
+  const guide = document.querySelector(".scroll-guide");
+  const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
+  if (!guide || !title) return;
+
+  const positionGuide = () => {
+    const containingBlock = guide.offsetParent;
+    if (!containingBlock) return;
+    const titleRect = title.getBoundingClientRect();
+    const parentRect = containingBlock.getBoundingClientRect();
+    guide.style.setProperty("top", `${titleRect.bottom - parentRect.top + 80}px`, "important");
+    guide.style.setProperty("bottom", "auto", "important");
+    guide.style.setProperty("transform", "none", "important");
+  };
+
+  positionGuide();
+  window.addEventListener("resize", positionGuide, { passive: true });
+  if (document.fonts?.ready) document.fonts.ready.then(positionGuide);
 }
