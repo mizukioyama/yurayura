@@ -156,7 +156,7 @@ function initializeScrollGuidePosition() {
         ? 180
         : window.innerWidth <= 1199
           ? window.innerWidth * 0.28
-          : window.innerWidth * 0.40;
+          : Math.min(window.innerWidth, window.innerHeight) * 0.40;
       guideTop = sharedTitleTop + titleHeight + 140;
     } else {
       guideTop = titleRect.bottom - parentRect.top + 140;
