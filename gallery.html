@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';" />
   <title>ゆらゆら | 作家と作品</title>
   <meta name="description" content="ゆらゆらに出展する作家と作品の紹介です。" />
   <link rel="canonical" href="https://mizukioyama.github.io/yurayura/gallery.html" />
@@ -13,94 +12,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&amp;display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css?v=20260915-section-width-780-menu-gap-v22" />
   <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260915-section-width-780-menu-gap-v16" />
   <link rel="stylesheet" href="./assets/css/works-list.css" />
-  <link rel="stylesheet" href="./assets/css/gallery.css?v=20260916-category-v2" />
+  <link rel="stylesheet" href="./assets/css/gallery.css?v=20260916-filter-inline-v3" />
   <link rel="stylesheet" href="./assets/css/liquid.css?v=20260914-button-size-spacing-v6" />
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=20260913-menu-border-center-spacing-v7" defer></script>
   <script src="./assets/js/gallery.js?v=20260916-filter-v2" defer></script>
   <script src="./assets/js/liquid-button.js?v=20260914-arrow-md-size-v8" defer></script>
   <style>
-    .gallery-page .gallery { position: relative; min-height: 100vh; padding-top: 0; }
-    .gallery-page .h1-text { position: absolute; left: 20vmin; top: 40vmin; z-index: 90; width: fit-content; }
-    .gallery-page .h1-text h1 { margin: 0; font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem); font-weight: 300; line-height: 1.2; letter-spacing: .03em; }
-    .gallery-page .h1-text p { margin: .5rem 0 0; font-size: clamp(1rem, calc(.6rem + 1.2vw), 2rem); }
-    .gallery-page .scroll { position: absolute; left: 5vmin; top: 0; width: 1.5px; height: 100%; z-index: 80; background: rgba(237,237,237,.45); overflow: hidden; }
-    .gallery-page .scroll::before { content:""; position:absolute; inset:0; background:#111; animation:gallery-scroll-line 15s infinite; }
-    @keyframes gallery-scroll-line { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
-    .gallery-page .gallery-section { min-height:100vh; padding-top:10vmin; }
-    .gallery-page .gallery-main { width:100%; min-width:0; }
-    .gallery-page .gallery-intro { width:min(55%,1000px); margin:30vmin 0 0 55vmin; padding-inline:2rem; }
-    /* Category: same vertical hierarchy as the reference portfolio */
-    .gallery-page .gallery-sidebar { display:grid !important; gap:1.4rem !important; align-content:start; }
-    .gallery-page .gallery-sidebar__label { margin:0 0 .5rem; }
-    .gallery-page .gallery-filter-group { display:grid; gap:.35rem; }
-    .gallery-page .gallery-filter-title { margin:0; padding:0; }
-    .gallery-page .gallery-filter-options { display:grid !important; gap:5px !important; }
-    .gallery-page .gallery-filter { display:block; width:100%; padding:.15rem .5rem !important; text-align:left; white-space:nowrap; }
-    @media(max-width:1199px){.gallery-page .h1-text{left:10vw;top:28vmin}.gallery-page .gallery-intro{width:min(100% - 4rem,1000px);margin:50vmin auto 2rem}.gallery-page .gallery-containt{margin-top:2rem!important}}
-    @media(max-width:767px){.gallery-page .h1-text{position:relative;left:auto;top:auto;margin:10rem 1.25rem 7rem}.gallery-page .scroll{left:1rem}.gallery-page .gallery-section{padding-top:0}.gallery-page .gallery-intro{width:100%;margin:0 auto 2rem;padding-inline:1.25rem}.gallery-page .gallery-sidebar{margin-bottom:4rem!important}.gallery-page .gallery-containt{margin-top:0!important}}
+    .gallery-page .gallery{position:relative;min-height:100vh;padding-top:0}.gallery-page .h1-text{position:absolute;left:20vmin;top:40vmin;z-index:90;width:fit-content}.gallery-page .h1-text h1{margin:0;font-size:clamp(2.4rem,calc(1.5rem + 4vw),5.4rem);font-weight:300;line-height:1.2;letter-spacing:.03em}.gallery-page .h1-text p{margin:.5rem 0 0;font-size:clamp(1rem,calc(.6rem + 1.2vw),2rem)}.gallery-page .scroll{position:absolute;left:5vmin;top:0;width:1.5px;height:100%;z-index:80;background:rgba(30,30,30,.65)}.gallery-page .gallery-section{min-height:100vh;padding-top:10vmin}.gallery-page .gallery-main{width:100%;min-width:0}.gallery-page .gallery-intro{width:min(55%,1000px);margin:30vmin 0 0 55vmin;padding-inline:2rem}
+    /* Filters now occupy the old taxonomy/genre text position. No floating panel, pills or background. */
+    .gallery-page .gallery-sidebar{position:relative!important;top:auto!important;left:auto!important;right:auto!important;z-index:2!important;width:min(55%,1000px)!important;margin:7rem 0 4rem 55vmin!important;padding:0 2rem!important;display:grid!important;gap:.8rem!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;border:0!important;color:inherit!important}
+    .gallery-page .gallery-sidebar__label{display:none!important}.gallery-page .gallery-filter-group{display:flex!important;align-items:flex-start!important;gap:.55rem!important;margin:0!important}.gallery-page .gallery-filter-title{flex:0 0 auto;margin:0!important;padding:0!important;font:inherit!important;font-weight:400!important;line-height:2!important;white-space:nowrap!important;color:inherit!important}.gallery-page .gallery-filter-title::after{content:"："}.gallery-page .gallery-filter-options{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:0!important}.gallery-page .gallery-filter{display:inline!important;width:auto!important;min-width:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;font:inherit!important;font-weight:400!important;line-height:2!important;letter-spacing:inherit!important;text-align:left!important;opacity:.48!important;white-space:nowrap!important}.gallery-page .gallery-filter:not(:last-child)::after{content:"・";opacity:.75;margin:0 .08em}.gallery-page .gallery-filter:hover,.gallery-page .gallery-filter:focus-visible,.gallery-page .gallery-filter.is-active{background:transparent!important;color:inherit!important;opacity:1!important;text-shadow:none!important;text-decoration:underline;text-underline-offset:.25em}.gallery-page .gallery-containt{margin-top:5rem!important}
+    @media(max-width:1199px){.gallery-page .h1-text{left:10vw;top:28vmin}.gallery-page .gallery-intro{width:min(100% - 4rem,1000px);margin:50vmin auto 2rem}.gallery-page .gallery-sidebar{width:min(100% - 4rem,1000px)!important;margin:5rem auto 3rem!important}.gallery-page .gallery-containt{margin-top:2rem!important}}
+    @media(max-width:767px){.gallery-page .h1-text{position:relative;left:auto;top:auto;margin:10rem 1.25rem 7rem}.gallery-page .scroll{left:1rem}.gallery-page .gallery-section{padding-top:0}.gallery-page .gallery-intro{width:100%;margin:0 auto 2rem;padding-inline:1.25rem}.gallery-page .gallery-sidebar{width:100%!important;margin:5rem auto 3rem!important;padding:0 1.25rem!important;gap:.45rem!important}.gallery-page .gallery-filter-group{gap:.25rem!important}.gallery-page .gallery-filter-title,.gallery-page .gallery-filter{font-size:clamp(.8rem,3.5vw,1rem)!important;line-height:2!important}.gallery-page .gallery-containt{margin-top:2rem!important}}
   </style>
 </head>
 <body class="gallery-page">
-  <div id="js-header"></div>
-  <main class="main gallery" id="main">
-    <div class="h1-text"><h1>Gallery</h1><p>作家と作品</p></div>
-    <div class="scroll" aria-hidden="true"></div>
-    <section class="section liquid gallery-section" id="works">
-      <aside class="gallery-sidebar" aria-label="作品カテゴリ">
-        <p class="gallery-sidebar__label">Category</p>
-        <div class="gallery-filter-group">
-          <h2 class="gallery-filter-title">作家</h2>
-          <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-label="作家で絞り込む">
-            <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-            <button class="gallery-filter" type="button" data-filter-value="Mizuki" aria-pressed="false">Mizuki</button>
-            <button class="gallery-filter" type="button" data-filter-value="かおる" aria-pressed="false">かおる</button>
-            <button class="gallery-filter" type="button" data-filter-value="咲" aria-pressed="false">咲</button>
-            <button class="gallery-filter" type="button" data-filter-value="クリカン" aria-pressed="false">クリカン</button>
-          </div>
-        </div>
-        <div class="gallery-filter-group">
-          <h2 class="gallery-filter-title">ジャンル</h2>
-          <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-label="ジャンルで絞り込む">
-            <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-            <button class="gallery-filter" type="button" data-filter-value="抽象" aria-pressed="false">抽象</button>
-            <button class="gallery-filter" type="button" data-filter-value="風景" aria-pressed="false">風景</button>
-            <button class="gallery-filter" type="button" data-filter-value="自然" aria-pressed="false">自然</button>
-          </div>
-        </div>
-        <div class="gallery-filter-group">
-          <h2 class="gallery-filter-title">画材</h2>
-          <div class="gallery-filter-options" data-filter-group="medium" role="group" aria-label="画材で絞り込む">
-            <button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button>
-            <button class="gallery-filter" type="button" data-filter-value="アクリル" aria-pressed="false">アクリル</button>
-            <button class="gallery-filter" type="button" data-filter-value="油彩" aria-pressed="false">油彩</button>
-            <button class="gallery-filter" type="button" data-filter-value="水彩" aria-pressed="false">水彩</button>
-            <button class="gallery-filter" type="button" data-filter-value="レジン" aria-pressed="false">レジン</button>
-            <button class="gallery-filter" type="button" data-filter-value="インクアート" aria-pressed="false">インクアート</button>
-          </div>
-        </div>
-      </aside>
-      <div class="gallery-main">
-        <div class="gallery-intro"><p>このページでは、このWebサイトに作品を掲載している作家の紹介をしています。</p><p>作品に対しての想い、考えなどを文字や雰囲気でお伝えします。</p></div>
-        <div class="gallery-containt">
-          <p class="gallery-result" id="galleryResult" aria-live="polite"></p>
-          <div class="content gallery-content" id="gallery-container" aria-label="作品一覧">
-            <article class="work gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="抽象" data-medium="アクリル"><p class="gallery-card__category">Category | 抽象 / アクリル</p><div class="work-img"><img src="./assets/img/202337.jpg" alt="Mizukiの作品 01" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-01"><h2>作品 01</h2><p>Mizuki<br />抽象・アクリル</p></a></div></article>
-            <article class="work gallery-card" id="mizuki-02" data-artist="Mizuki" data-genre="風景" data-medium="油彩"><p class="gallery-card__category">Category | 風景 / 油彩</p><div class="work-img"><img src="./assets/img/202339.jpg" alt="Mizukiの作品 02" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-02"><h2>作品 02</h2><p>Mizuki<br />風景・油彩</p></a></div></article>
-            <article class="work gallery-card" id="mizuki-03" data-artist="Mizuki" data-genre="自然" data-medium="水彩"><p class="gallery-card__category">Category | 自然 / 水彩</p><div class="work-img"><img src="./assets/img/202402.jpg" alt="Mizukiの作品 03" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-03"><h2>作品 03</h2><p>Mizuki<br />自然・水彩</p></a></div></article>
-            <article class="work gallery-card" id="mizuki-04" data-artist="Mizuki" data-genre="抽象" data-medium="レジン"><p class="gallery-card__category">Category | 抽象 / レジン</p><div class="work-img"><img src="./assets/img/202501.jpg" alt="Mizukiの作品 04" loading="lazy" decoding="async" /><a class="works gallery-work-link" href="#mizuki-04"><h2>作品 04</h2><p>Mizuki<br />抽象・レジン</p></a></div></article>
-          </div>
-          <div class="gallery-page-line" aria-hidden="true"></div><nav class="gallery-pagination" id="galleryPagination" aria-label="作品ページ移動"></nav><div class="gallery-page-line" aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <div id="js-footer"></div>
-</body>
-</html>
+<div id="js-header"></div><main class="main gallery" id="main"><div class="h1-text"><h1>Gallery</h1><p>作家と作品</p></div><div class="scroll" aria-hidden="true"></div><section class="section liquid gallery-section" id="works"><div class="gallery-main"><div class="gallery-intro"><p>このページでは、このWebサイトに作品を掲載している作家の紹介をしています。</p><p>作品に対しての想い、考えなどを文字や雰囲気でお伝えします。</p></div>
+<aside class="gallery-sidebar" aria-label="作品絞り込み">
+<div class="gallery-filter-group"><h2 class="gallery-filter-title">作家</h2><div class="gallery-filter-options" data-filter-group="artist" role="group"><button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button><button class="gallery-filter" type="button" data-filter-value="Mizuki">Mizuki</button><button class="gallery-filter" type="button" data-filter-value="かおる">かおる</button><button class="gallery-filter" type="button" data-filter-value="咲">咲</button><button class="gallery-filter" type="button" data-filter-value="クリカン">クリカン</button></div></div>
+<div class="gallery-filter-group"><h2 class="gallery-filter-title">ジャンル</h2><div class="gallery-filter-options" data-filter-group="genre" role="group"><button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button><button class="gallery-filter" type="button" data-filter-value="抽象">抽象</button><button class="gallery-filter" type="button" data-filter-value="風景">風景</button><button class="gallery-filter" type="button" data-filter-value="自然">自然</button></div></div>
+<div class="gallery-filter-group"><h2 class="gallery-filter-title">画材</h2><div class="gallery-filter-options" data-filter-group="medium" role="group"><button class="gallery-filter is-active" type="button" data-filter-value="all" aria-pressed="true">すべて</button><button class="gallery-filter" type="button" data-filter-value="アクリル">アクリル</button><button class="gallery-filter" type="button" data-filter-value="油彩">油彩</button><button class="gallery-filter" type="button" data-filter-value="水彩">水彩</button><button class="gallery-filter" type="button" data-filter-value="レジン">レジン</button><button class="gallery-filter" type="button" data-filter-value="インクアート">インクアート</button></div></div></aside>
+<div class="gallery-containt"><p class="gallery-result" id="galleryResult" aria-live="polite"></p><div class="content gallery-content" id="gallery-container" aria-label="作品一覧"><article class="work gallery-card" id="mizuki-01" data-artist="Mizuki" data-genre="抽象" data-medium="アクリル"><p class="gallery-card__category">Category | 抽象 / アクリル</p><div class="work-img"><img src="./assets/img/202337.jpg" alt="Mizukiの作品 01" loading="lazy"/><a class="works gallery-work-link" href="#mizuki-01"><h2>作品 01</h2><p>Mizuki<br/>抽象・アクリル</p></a></div></article><article class="work gallery-card" id="mizuki-02" data-artist="Mizuki" data-genre="風景" data-medium="油彩"><p class="gallery-card__category">Category | 風景 / 油彩</p><div class="work-img"><img src="./assets/img/202339.jpg" alt="Mizukiの作品 02" loading="lazy"/><a class="works gallery-work-link" href="#mizuki-02"><h2>作品 02</h2><p>Mizuki<br/>風景・油彩</p></a></div></article><article class="work gallery-card" id="mizuki-03" data-artist="Mizuki" data-genre="自然" data-medium="水彩"><p class="gallery-card__category">Category | 自然 / 水彩</p><div class="work-img"><img src="./assets/img/202402.jpg" alt="Mizukiの作品 03" loading="lazy"/><a class="works gallery-work-link" href="#mizuki-03"><h2>作品 03</h2><p>Mizuki<br/>自然・水彩</p></a></div></article><article class="work gallery-card" id="mizuki-04" data-artist="Mizuki" data-genre="抽象" data-medium="レジン"><p class="gallery-card__category">Category | 抽象 / レジン</p><div class="work-img"><img src="./assets/img/202501.jpg" alt="Mizukiの作品 04" loading="lazy"/><a class="works gallery-work-link" href="#mizuki-04"><h2>作品 04</h2><p>Mizuki<br/>抽象・レジン</p></a></div></article></div><div class="gallery-page-line"></div><nav class="gallery-pagination" id="galleryPagination"></nav><div class="gallery-page-line"></div></div></div></section></main><div id="js-footer"></div></body></html>
