@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     body.gallery-page .gallery-filter {
       position: relative !important; flex: 0 0 auto !important; width: auto !important; min-width: 0 !important;
-      margin: 0 !important; padding: .2rem 14px !important; white-space: nowrap !important;
+      margin: 0 !important; padding: .2rem 18px !important; white-space: nowrap !important;
       text-align: center !important; justify-content: center !important;
     }
-    body.gallery-page .gallery-filter:first-child { padding-left: 14px !important; }
+    body.gallery-page .gallery-filter:first-child { padding-left: 18px !important; }
     body.gallery-page .gallery-filter + .gallery-filter::before {
       content: "" !important; position: absolute !important; left: 0 !important; top: 50% !important;
       width: 1px !important; height: 1em !important; background: currentColor !important;
@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         width: max-content !important;
         overflow: visible !important;
       }
-      body.gallery-page .gallery-filter { width: auto !important; padding: .2rem 14px !important; }
-      body.gallery-page .gallery-filter:first-child { padding-left: 14px !important; }
+      body.gallery-page .gallery-filter { width: auto !important; padding: .2rem 18px !important; }
+      body.gallery-page .gallery-filter:first-child { padding-left: 18px !important; }
     }
   `;
   document.head.appendChild(categoryStyle);
