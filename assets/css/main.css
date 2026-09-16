@@ -2,6 +2,8 @@
 
 /* Shared background noise: slightly stronger, but never overlay the footer. */
 body::before {
+  width: 200% !important;
+  height: 200% !important;
   opacity: 0.1 !important;
 }
 
