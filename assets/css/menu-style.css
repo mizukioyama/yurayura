@@ -418,7 +418,21 @@ body::after {
   align-items: center;
   padding-top: 120px;
   padding-bottom: 70px;
+  color: var(--color-bg);
   background: var(--color-shadow-green);
+}
+
+.footer a,
+.footer-date,
+.footer-lead,
+.footer .menu-small,
+.footer .menu-en,
+.footer .bottom-txt {
+  color: var(--color-bg);
+}
+
+.footer .menu-border {
+  background: var(--color-bg);
 }
 
 @media screen and (max-width: 480px) {
