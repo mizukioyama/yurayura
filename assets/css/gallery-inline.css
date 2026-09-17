@@ -52,6 +52,10 @@ html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal__slide-button{width:40px;height:40px;border:0;background:transparent;color:inherit;font-size:34px;cursor:pointer}
 .gallery-modal__contact a{display:inline-flex;margin-top:20px;padding:10px 22px;border:1px solid currentColor;color:inherit;text-decoration:none}
 
+/* The custom cursor/stalker must remain above the modal layer. */
+.gallery-page #cursor{z-index:20002!important}
+.gallery-page #stalker{z-index:20001!important}
+
 @media screen and (max-width:767px){
 .gallery-modal{padding:0}
 .gallery-modal__panel{width:100%;min-height:100dvh;margin:0}
