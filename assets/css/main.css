@@ -68,12 +68,11 @@ body::before {
   z-index: 1;
 }
 
-/* Restore the image texture used by the FAQ category headings. */
-.section--faq .faq-heading {
-  background-image: url("../img/btn-bg-img.webp") !important;
-  background-position: center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
+/* FAQ controls use the shared page background color. */
+.section--faq .faq-heading,
+.section--faq .faq-question {
+  background-color: var(--color-bg) !important;
+  background-image: none !important;
 }
 
 /* Keep the title/date on the left; place only the navigation on the right. */
