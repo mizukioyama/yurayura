@@ -14,6 +14,16 @@
 .gallery-page .header:not(.is-compact.is-open) .header-list{position:absolute!important;display:flex!important;top:0!important;right:auto!important;bottom:auto!important;left:calc(50vw - 6rem)!important;flex-direction:row!important;transform:translateX(-50%)!important}
 .gallery-page .header:not(.is-compact.is-open) .header-item{display:block!important;margin:0!important;text-align:center!important}
 }
+@media screen and (min-width:768px) and (max-width:1199px){
+.gallery-page .gallery-content{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:48px 32px!important;width:100%!important}
+.gallery-page .gallery-content .work{box-sizing:border-box!important;width:100%!important;min-width:0!important;margin:0!important;padding:20px 20px 26px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:0 8px 22px rgba(47,56,42,.10)!important}
+.gallery-page .gallery-content .work-img{box-sizing:border-box!important;width:100%!important;background:transparent!important}
+.gallery-page .gallery-content .work-img>img{display:block!important;width:100%!important;aspect-ratio:1/1!important;height:auto!important;object-fit:cover!important;border-radius:0!important}
+.gallery-page .gallery-work-link{position:static!important;display:block!important;width:100%!important;min-height:0!important;margin:0!important;padding:16px 0 0!important;background:transparent!important;border-radius:0!important}
+.gallery-page .gallery-work-link h2,.gallery-page .gallery-work-link p{position:static!important;inset:auto!important;display:block!important;width:100%!important}
+.gallery-page .gallery-work-link h2{margin:0 0 8px!important;text-align:left!important}
+.gallery-page .gallery-work-link p{margin:0!important;text-align:right!important;line-height:1.8!important}
+}
 @media screen and (max-width:767px){
 .gallery-page .gallery-content .work{box-sizing:border-box!important;width:100%!important;margin:0 0 72px!important;padding:20px 20px 26px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:0 8px 22px rgba(47,56,42,.10)!important}
 .gallery-page .gallery-content .work-img{box-sizing:border-box!important;width:100%!important;background:transparent!important}
