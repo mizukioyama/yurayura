@@ -558,6 +558,14 @@
 - [x] 編集前バックアップを保存した
 - [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
 
+## Smooth animation optimization (2026-09-17)
+
+- [x] 境界の固定サイズ＋`transform: scale()` 化
+- [x] 毎フレームのレイアウト変更を除去
+- [x] PC／モバイルのローカルChrome表示を確認
+- [ ] 実機スマートフォンで滑らかさを確認
+- [ ] Push後のGitHub Pagesを再確認
+
 ## Loading boundary correction (2026-09-17)
 
 - [x] 公開ベースラインのHTML／CSS／JSとHTTPキャッシュ状態を確認した

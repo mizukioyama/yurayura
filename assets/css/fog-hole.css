@@ -17,18 +17,19 @@
   top: 50%;
   z-index: 3;
   box-sizing: border-box;
-  width: calc(var(--hole-size) * 2);
-  height: calc(var(--hole-size) * 2);
+  width: 0;
+  height: 0;
   border: 6px solid rgba(48, 58, 5, 0.96);
   border-radius: 50%;
   background: transparent;
   box-shadow:
     0 0 0 4px rgba(243, 243, 237, 0.92),
     0 0 20px 5px rgba(48, 58, 5, 0.42);
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0) scale(var(--boundary-scale, 0));
+  transform-origin: center;
   opacity: 0;
   pointer-events: none;
-  will-change: width, height, opacity;
+  will-change: transform, opacity;
 }
 
 #fog-boundary.is-hidden {

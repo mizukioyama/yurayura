@@ -985,6 +985,19 @@
 - GitHub PagesへPush後、TopとConceptをfresh URLで再読み込みして表示確認する。**PASS**
 - 実機スマートフォン、Safari／Firefox／Edgeでの最終表示は未確認。
 
+## Smooth animation optimization (2026-09-17)
+
+1. 境界の拡大が毎フレームのレイアウト変更ではなく、`transform: scale()` で滑らかに動くか。
+2. 霧のmaskによる開き方、色付き境界、フェード、完了後の削除が維持されるか。
+3. PC／モバイル幅で円形が崩れず、リサイズ時にも急なジャンプが起きないか。
+4. 今回のローカル修整がまだGitHub PagesへPushされていないことを確認する。
+
+### Current status
+
+- ローカルChrome確認: PASS
+- 公開反映: PENDING
+- 実機スマートフォンの再確認: PENDING
+
 ## Access information natural line-wrap adjustment (2026-09-15)
 
 ### Review points

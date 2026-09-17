@@ -1775,3 +1775,26 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 - Public assets: `20260917-visible-boundary-v5`、`#fog-boundary` を確認
 - Chrome実描画: Top 1280×900、Concept 1280×900、Top 390×844で色付き円形境界を確認
 - Cache: fresh queryで旧 `v4` ではなく新 `v5` のHTML／CSS／JSを確認
+
+## Smooth animation optimization (2026-09-17)
+
+### Cause
+
+`#fog-boundary` の `width`／`height` を `requestAnimationFrame` ごとに変更していたため、境界の拡大中にレイアウト・再描画が発生し、前回の実DOM化後にガタつきが出やすい状態でした。
+
+### Change
+
+- 境界の直径は初期化・リサイズ時だけ設定する固定サイズ方式へ変更。
+- アニメーション中は `--boundary-scale` と `transform: translate3d(...) scale(...)` のみ更新。
+- `will-change` を `width`／`height` から `transform`／`opacity` へ変更。
+- リサイズ処理も `requestAnimationFrame` へまとめ、連続イベントによる再計算を抑制。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| JavaScript構文 | PASS | `node --check assets/js/fog-hole.js` |
+| 差分空白 | PASS | `git diff --check` |
+| 毎フレームの境界サイズ変更 | PASS | JS内の `boundary.style.width`／`height` は初期化・リサイズ処理だけに限定 |
+| Chrome実描画 | PASS | ローカルChromeのPC 1280×900、モバイル390×844で境界表示を確認 |
+| Push | PENDING | 今回の最適化はローカル確認のみ。公開反映には別途承認が必要 |

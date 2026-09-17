@@ -24,7 +24,8 @@
 
   var startTime = performance.now();
   var rafId = 0;
-  var maxRadius = getMaxRadius() * SETTINGS.targetRadiusScale;
+  var resizeRafId = 0;
+  var maxRadius = 0;
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -49,6 +50,9 @@
 
   function updateRadius() {
     maxRadius = getMaxRadius() * SETTINGS.targetRadiusScale;
+    var diameterValue = (maxRadius * 2).toFixed(2) + "px";
+    boundary.style.width = diameterValue;
+    boundary.style.height = diameterValue;
   }
 
   function finish() {
@@ -99,10 +103,8 @@
     var blurRadius = maxRadius * holeProgress;
     var opacity = 1 - fadeProgress;
     var radiusValue = blurRadius.toFixed(2) + "px";
-    var diameterValue = (blurRadius * 2).toFixed(2) + "px";
 
-    boundary.style.width = diameterValue;
-    boundary.style.height = diameterValue;
+    boundary.style.setProperty("--boundary-scale", holeProgress.toFixed(4));
     boundary.style.opacity = holeProgress > 0.025 ? opacity.toFixed(4) : "0";
     blurLayer.style.setProperty("--hole-size", radiusValue);
     blurLayer.style.setProperty("--edge-size", SETTINGS.blurEdgeSize + "px");
@@ -117,6 +119,13 @@
     rafId = requestAnimationFrame(render);
   }
 
-  window.addEventListener("resize", updateRadius, { passive: true });
+  updateRadius();
+  window.addEventListener("resize", function () {
+    if (resizeRafId) return;
+    resizeRafId = requestAnimationFrame(function () {
+      resizeRafId = 0;
+      updateRadius();
+    });
+  }, { passive: true });
   rafId = requestAnimationFrame(render);
 })();

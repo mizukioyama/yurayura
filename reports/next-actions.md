@@ -571,3 +571,11 @@
 3. [完了] ローカルChromeのPC／Mobile実描画とJavaScript構文・差分空白を確認する。
 4. [完了] ユーザー承認後、対象差分をGitHub `mizukioyama/yurayura` の `main` へPushする。
 5. [完了] Push後、GitHub PagesのTop／Conceptをfresh再読み込みし、`v5`配信と色付き境界を実表示確認する。
+
+## Smooth animation optimization (2026-09-17)
+
+1. [完了] 境界の毎フレーム `width`／`height` 更新を調査する。
+2. [完了] 固定サイズ＋`transform: scale()` 更新へ変更する。
+3. [完了] PC／モバイルのローカルChrome描画、構文、差分空白を確認する。
+4. [ ] 実機スマートフォンでガタつきが解消したか確認する。
+5. [ ] ユーザー承認後、今回の最適化をGitHub PagesへPushし、公開ページを再確認する。

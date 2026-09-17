@@ -459,6 +459,12 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - Chrome実描画は確認済みですが、実機スマートフォン、Safari、Firefox、Edge、OSごとのmask／backdrop-filter描画差は未確認です。
 - 既存のHTMLには今回対象外の履歴由来の警告・構造上の注意が残っています。
 
+## Smooth animation optimization (2026-09-17)
+
+- 境界サイズ更新を毎フレームから初期化・リサイズ時だけへ移し、`transform` 更新中心にしました。
+- `#fog-blur-layer` のradial maskとbackdrop-filterは既存表現を維持しているため、低性能端末やブラウザ差による再描画負荷は引き続き実機確認が必要です。
+- 今回の最適化は未Pushです。
+
 ## Access information natural line-wrap adjustment (2026-09-15)
 
 - デスクトップのアクセス欄だけ親幅を`840px`へ広げ、住所・問合せ・営業時間の3列均等配置を維持しています。タブレット／スマホは縦積みです。
