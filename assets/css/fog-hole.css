@@ -46,6 +46,24 @@
   mask-size: 100% 100%;
 }
 
+#fog-blur-layer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  width: calc(var(--hole-size) * 2);
+  height: calc(var(--hole-size) * 2);
+  border: 3px solid rgba(48, 58, 5, 0.72);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px rgba(243, 243, 237, 0.42),
+    0 0 18px rgba(48, 58, 5, 0.24);
+  transform: translate(-50%, -50%);
+  opacity: clamp(0, calc(var(--hole-size) / 24px), 1);
+  will-change: width, height, opacity;
+}
+
 #fog-blur-layer.is-hidden {
   opacity: 0;
 }
@@ -76,6 +94,10 @@
   #fog-blur-layer {
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+  }
+
+  #fog-blur-layer::after {
+    border-width: 2px;
   }
 
   #fog-hole {
