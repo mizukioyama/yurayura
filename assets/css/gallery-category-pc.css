@@ -98,8 +98,8 @@
     transform:translateY(-50%)!important;
   }
   .gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before{
-    content:none!important;
-    display:none!important;
+    content:""!important;
+    display:block!important;
   }
   .gallery-page .gallery-filter.is-active{
     color:#1f1f1f!important;
