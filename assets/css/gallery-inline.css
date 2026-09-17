@@ -14,8 +14,6 @@
 .gallery-page .header:not(.is-compact.is-open) .header-list{position:absolute!important;display:flex!important;top:0!important;right:auto!important;bottom:auto!important;left:calc(50vw - 6rem)!important;flex-direction:row!important;transform:translateX(-50%)!important}
 .gallery-page .header:not(.is-compact.is-open) .header-item{display:block!important;margin:0!important;text-align:center!important}
 }
-
-/* Mobile Gallery: use the same white polaroid-style artwork cards as PC. */
 @media screen and (max-width:767px){
 .gallery-page .gallery-content .work{box-sizing:border-box!important;width:100%!important;margin:0 0 72px!important;padding:20px 20px 26px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:0 8px 22px rgba(47,56,42,.10)!important}
 .gallery-page .gallery-content .work-img{box-sizing:border-box!important;width:100%!important;background:transparent!important}
@@ -25,7 +23,6 @@
 .gallery-page .gallery-work-link h2{margin:0 0 8px!important;text-align:left!important}
 .gallery-page .gallery-work-link p{margin:0!important;text-align:right!important;line-height:1.8!important}
 }
-
 .gallery-page .gallery-card{cursor:pointer}
 html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal{position:fixed;inset:0;z-index:20000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:6vh 24px;color:var(--color-txt);font-family:var(--font-base,"Shippori Mincho",serif)}
@@ -33,8 +30,15 @@ html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal__backdrop{position:fixed;inset:0;background:rgba(30,34,25,.68);backdrop-filter:blur(5px)}
 .gallery-modal__panel{position:relative;z-index:1;box-sizing:border-box;width:min(900px,100%);margin:auto;background:var(--color-bg);box-shadow:0 18px 60px rgba(0,0,0,.22)}
 .gallery-modal__close{position:absolute;top:18px;right:18px;z-index:3;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;background:rgba(243,243,237,.88);color:var(--color-txt);font-size:30px;font-weight:300;line-height:1;cursor:pointer}
-.gallery-modal__hero{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:100%;height:min(72vh,640px);min-height:420px;padding:56px;background:#fff;overflow:hidden}
-.gallery-modal__hero img{display:block;width:100%;height:100%;max-height:none;object-fit:contain}
+.gallery-modal__hero{box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) 112px;align-items:stretch;gap:20px;width:100%;height:min(72vh,640px);min-height:420px;padding:56px;background:#fff;overflow:hidden}
+.gallery-modal__artwork{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;overflow:hidden}
+.gallery-modal__artwork>img{display:block;width:100%;height:100%;max-height:none;object-fit:contain}
+.gallery-modal__slideshow{display:grid;grid-template-rows:32px minmax(0,1fr) 32px;grid-template-columns:1fr;align-items:center;gap:8px;min-width:0;min-height:0}
+.gallery-modal__slides{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-x:hidden;overflow-y:auto;padding:2px;-webkit-overflow-scrolling:touch}
+.gallery-modal__thumb{box-sizing:border-box;flex:0 0 auto;width:100%;padding:5px;border:1px solid transparent;background:#fff;opacity:.58;cursor:pointer}
+.gallery-modal__thumb.is-active{border-color:var(--color-txt);opacity:1}
+.gallery-modal__thumb img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.gallery-modal__slide-button{width:100%;height:32px;border:0;background:transparent;color:inherit;font-size:30px;line-height:1;cursor:pointer;transform:rotate(90deg)}
 .gallery-modal__body{padding:20px 56px 64px}
 .gallery-modal__section{padding:34px 0;border-bottom:1px solid rgba(48,58,5,.18)}
 .gallery-modal__section:last-child{border-bottom:0}
@@ -44,31 +48,21 @@ html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal__profile-image{width:180px;aspect-ratio:1/1;overflow:hidden;background:#fff}
 .gallery-modal__profile-image img{display:block;width:100%;height:100%;object-fit:cover}
 .gallery-modal__profile-name{margin:0 0 12px!important;font-size:1.1em;letter-spacing:.08em}
-.gallery-modal__slideshow{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:center;gap:14px}
-.gallery-modal__slides{display:flex;gap:12px;overflow-x:auto;padding:8px 2px;-webkit-overflow-scrolling:touch}
-.gallery-modal__thumb{flex:0 0 92px;padding:6px;border:1px solid transparent;background:#fff;opacity:.58;cursor:pointer}
-.gallery-modal__thumb.is-active{border-color:var(--color-txt);opacity:1}
-.gallery-modal__thumb img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
-.gallery-modal__slide-button{width:40px;height:40px;border:0;background:transparent;color:inherit;font-size:34px;cursor:pointer}
 .gallery-modal__contact a{display:inline-flex;margin-top:20px;padding:10px 22px;border:1px solid currentColor;color:inherit;text-decoration:none}
-
-/* The custom cursor/stalker must remain above the modal layer. */
 .gallery-page #cursor{z-index:20002!important}
 .gallery-page #stalker{z-index:20001!important}
-
 @media screen and (max-width:767px){
 .gallery-modal{padding:0}
 .gallery-modal__panel{width:100%;min-height:100dvh;margin:0}
 .gallery-modal__close{position:fixed;top:18px;right:18px}
-.gallery-modal__hero{height:60vh;min-height:360px;padding:72px 24px 24px}
-.gallery-modal__hero img{width:100%;height:100%;max-height:none;object-fit:contain}
+.gallery-modal__hero{grid-template-columns:minmax(0,1fr) 72px;gap:10px;height:60vh;min-height:360px;padding:72px 16px 24px 24px}
+.gallery-modal__slideshow{grid-template-rows:28px minmax(0,1fr) 28px;gap:4px}
+.gallery-modal__slides{gap:6px}
+.gallery-modal__thumb{padding:3px}
+.gallery-modal__slide-button{height:28px;font-size:26px}
 .gallery-modal__body{padding:8px 24px 48px}
 .gallery-modal__section{padding:28px 0}
 .gallery-modal__profile{grid-template-columns:96px minmax(0,1fr);gap:18px}
 .gallery-modal__profile-image{width:96px}
-.gallery-modal__slideshow{grid-template-columns:28px minmax(0,1fr) 28px;gap:6px}
-.gallery-modal__slide-button{width:28px;height:36px;font-size:28px}
-.gallery-modal__thumb{flex-basis:72px;padding:4px}
 }
-
 .gallery-page .scroll-guide__bar{height:280px!important;min-height:280px!important;max-height:280px!important;display:block!important;overflow:hidden!important}
