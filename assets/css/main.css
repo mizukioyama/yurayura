@@ -105,9 +105,10 @@ body::before {
     padding-right: 0 !important;
   }
 
-  /* Access details below the map: same layout values as mobile. */
+  /* Access details below the map: compact tablet version of the mobile stack. */
   .section--access ul.acs-box {
     display: block !important;
+    margin-top: 0 !important;
   }
 
   .section--access ul.acs-box .access-info {
@@ -115,10 +116,12 @@ body::before {
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: 120px !important;
-    padding: 1rem 0.75rem !important;
+    height: auto !important;
+    min-height: 96px !important;
+    padding: 14px 12px !important;
     border-width: 0 !important;
     border-top: 1px solid var(--color-txt) !important;
   }
@@ -128,11 +131,15 @@ body::before {
   }
 
   .section--access ul.acs-box .access-info h3 {
-    font-size: 1rem !important;
+    margin: 0 0 4px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
   }
 
   .section--access ul.acs-box .access-txt {
-    font-size: 0.8rem !important;
+    margin: 0 !important;
+    font-size: 0.75rem !important;
+    line-height: 1.8 !important;
   }
 }
 
