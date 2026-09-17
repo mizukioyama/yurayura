@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalTitle = document.getElementById("galleryModalTitle");
   const modalCaption = document.getElementById("galleryModalCaption");
   const modalProfile = document.getElementById("galleryModalProfile");
+  const modalProfileImage = document.getElementById("galleryModalProfileImage");
+  const modalProfileName = document.getElementById("galleryModalProfileName");
   const modalSlides = document.getElementById("galleryModalSlides");
   const prev = document.getElementById("galleryModalPrev");
   const next = document.getElementById("galleryModalNext");
@@ -90,6 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const profiles = {
     Mizuki: "自然や感情から受け取った感覚をもとに、抽象表現を中心とした作品を制作しています。"
+  };
+  const profileImages = {
+    Mizuki: "./assets/img/202326.jpg",
+    かおる: "./assets/img/202339.jpg",
+    咲: "./assets/img/202402.jpg",
+    クリカン: "./assets/img/202501.jpg"
   };
 
   function showSlide(index) {
@@ -104,7 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (modalTitle) modalTitle.textContent = title;
     if (modalCaption) modalCaption.textContent = card.dataset.caption || "";
+    if (modalProfileName) modalProfileName.textContent = artist;
     if (modalProfile) modalProfile.textContent = profiles[artist] || `${artist}の作家プロフィールは準備中です。`;
+    if (modalProfileImage) {
+      modalProfileImage.src = profileImages[artist] || image?.src || "";
+      modalProfileImage.alt = `${artist} プロフィール画像（仮）`;
+    }
     modalSlides?.querySelectorAll("button").forEach((button, i) => button.classList.toggle("is-active", i === modalIndex));
   }
 
