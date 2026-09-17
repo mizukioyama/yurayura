@@ -40,6 +40,10 @@ html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal__section:last-child{border-bottom:0}
 .gallery-modal__section h2,.gallery-modal__section h3{margin:0 0 18px;font-weight:300;letter-spacing:.08em}
 .gallery-modal__section p{margin:0;line-height:2}
+.gallery-modal__profile{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:start;gap:30px}
+.gallery-modal__profile-image{width:180px;aspect-ratio:1/1;overflow:hidden;background:#fff}
+.gallery-modal__profile-image img{display:block;width:100%;height:100%;object-fit:cover}
+.gallery-modal__profile-name{margin:0 0 12px!important;font-size:1.1em;letter-spacing:.08em}
 .gallery-modal__slideshow{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:center;gap:14px}
 .gallery-modal__slides{display:flex;gap:12px;overflow-x:auto;padding:8px 2px;-webkit-overflow-scrolling:touch}
 .gallery-modal__thumb{flex:0 0 92px;padding:6px;border:1px solid transparent;background:#fff;opacity:.58;cursor:pointer}
@@ -56,6 +60,8 @@ html.is-gallery-modal-open{overflow:hidden}
 .gallery-modal__hero img{max-height:65vh}
 .gallery-modal__body{padding:8px 24px 48px}
 .gallery-modal__section{padding:28px 0}
+.gallery-modal__profile{grid-template-columns:96px minmax(0,1fr);gap:18px}
+.gallery-modal__profile-image{width:96px}
 .gallery-modal__slideshow{grid-template-columns:28px minmax(0,1fr) 28px;gap:6px}
 .gallery-modal__slide-button{width:28px;height:36px;font-size:28px}
 .gallery-modal__thumb{flex-basis:72px;padding:4px}
