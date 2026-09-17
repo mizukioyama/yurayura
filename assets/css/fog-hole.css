@@ -7,11 +7,39 @@
   pointer-events: none;
   overflow: hidden;
   isolation: isolate;
+  --hole-size: 0px;
+  --boundary-opacity: 0;
+}
+
+/* Independent boundary: kept outside the masked blur layer so it remains visible. */
+#fog-scene::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  box-sizing: border-box;
+  width: calc(var(--hole-size) * 2);
+  height: calc(var(--hole-size) * 2);
+  border: 4px solid rgba(48, 58, 5, 0.88);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    0 0 0 3px rgba(243, 243, 237, 0.68),
+    0 0 14px rgba(48, 58, 5, 0.38);
+  transform: translate(-50%, -50%);
+  opacity: var(--boundary-opacity);
+  will-change: width, height, opacity;
+}
+
+#fog-scene.is-hidden::after {
+  opacity: 0;
 }
 
 #fog-blur-layer {
   position: absolute;
   inset: 0;
+  z-index: 1;
   opacity: 1;
   transition: opacity 1.1s ease;
   -webkit-backdrop-filter: blur(18px);
@@ -27,7 +55,7 @@
     transparent var(--hole-size),
     rgba(0, 0, 0, 0.35) calc(var(--hole-size) + 4px),
     rgba(0, 0, 0, 0.82) calc(var(--hole-size) + 12px),
-    #000 calc(var(--hole-size) + 20px),
+    #000 calc(var(--hole-size) + var(--edge-size)),
     #000 100%
   );
   mask-image: radial-gradient(
@@ -36,7 +64,7 @@
     transparent var(--hole-size),
     rgba(0, 0, 0, 0.35) calc(var(--hole-size) + 4px),
     rgba(0, 0, 0, 0.82) calc(var(--hole-size) + 12px),
-    #000 calc(var(--hole-size) + 20px),
+    #000 calc(var(--hole-size) + var(--edge-size)),
     #000 100%
   );
 
@@ -46,24 +74,6 @@
   mask-size: 100% 100%;
 }
 
-#fog-blur-layer::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  box-sizing: border-box;
-  width: calc(var(--hole-size) * 2);
-  height: calc(var(--hole-size) * 2);
-  border: 3px solid rgba(48, 58, 5, 0.72);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2px rgba(243, 243, 237, 0.42),
-    0 0 18px rgba(48, 58, 5, 0.24);
-  transform: translate(-50%, -50%);
-  opacity: clamp(0, calc(var(--hole-size) / 24px), 1);
-  will-change: width, height, opacity;
-}
-
 #fog-blur-layer.is-hidden {
   opacity: 0;
 }
@@ -71,6 +81,7 @@
 #fog-hole {
   position: absolute;
   inset: -12%;
+  z-index: 2;
   opacity: 1;
   transition: opacity 1.1s ease;
   background:
@@ -91,13 +102,16 @@
 }
 
 @media (max-width: 767px) {
+  #fog-scene::after {
+    border-width: 3px;
+    box-shadow:
+      0 0 0 2px rgba(243, 243, 237, 0.68),
+      0 0 10px rgba(48, 58, 5, 0.34);
+  }
+
   #fog-blur-layer {
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-  }
-
-  #fog-blur-layer::after {
-    border-width: 2px;
   }
 
   #fog-hole {
