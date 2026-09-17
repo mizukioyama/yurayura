@@ -105,14 +105,34 @@ body::before {
     padding-right: 0 !important;
   }
 
-  /* Access details below the map follow the mobile stacked layout. */
+  /* Access details below the map: same layout values as mobile. */
   .section--access ul.acs-box {
     display: block !important;
   }
 
   .section--access ul.acs-box .access-info {
     display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
     width: 100% !important;
+    max-width: 100% !important;
+    height: 120px !important;
+    padding: 1rem 0.75rem !important;
+    border-width: 0 !important;
+    border-top: 1px solid var(--color-txt) !important;
+  }
+
+  .section--access ul.acs-box .access-info:last-child {
+    border-bottom: 1px solid var(--color-txt) !important;
+  }
+
+  .section--access ul.acs-box .access-info h3 {
+    font-size: 1rem !important;
+  }
+
+  .section--access ul.acs-box .access-txt {
+    font-size: 0.8rem !important;
   }
 }
 
