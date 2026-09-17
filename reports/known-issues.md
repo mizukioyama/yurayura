@@ -463,7 +463,7 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 
 - 境界サイズ更新を毎フレームから初期化・リサイズ時だけへ移し、`transform` 更新中心にしました。
 - `#fog-blur-layer` のradial maskとbackdrop-filterは既存表現を維持しているため、低性能端末やブラウザ差による再描画負荷は引き続き実機確認が必要です。
-- 今回の最適化は未Pushです。
+- 今回の最適化は `1718579` としてPush済みです。実機スマートフォンでの体感確認は未実施です。
 
 ## Access information natural line-wrap adjustment (2026-09-15)
 

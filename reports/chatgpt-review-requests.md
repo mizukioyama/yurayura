@@ -995,7 +995,7 @@
 ### Current status
 
 - ローカルChrome確認: PASS
-- 公開反映: PENDING
+- 公開反映: PASS（`1718579`、v6配信確認）
 - 実機スマートフォンの再確認: PENDING
 
 ## Access information natural line-wrap adjustment (2026-09-15)

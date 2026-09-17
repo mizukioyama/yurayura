@@ -1797,4 +1797,12 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 | 差分空白 | PASS | `git diff --check` |
 | 毎フレームの境界サイズ変更 | PASS | JS内の `boundary.style.width`／`height` は初期化・リサイズ処理だけに限定 |
 | Chrome実描画 | PASS | ローカルChromeのPC 1280×900、モバイル390×844で境界表示を確認 |
-| Push | PENDING | 今回の最適化はローカル確認のみ。公開反映には別途承認が必要 |
+| Push | PASS | `1718579` を `main` へPush済み |
+
+### Public verification after smooth optimization
+
+- GitHub `main` とローカルHEAD: `17185797ba7f21b32d4a2a85e6a3abc5ec2ddbf5`
+- Public Top／Concept: `20260917-visible-boundary-v6` を配信
+- Public CSS: `transform: translate3d(...) scale(...)` と `will-change: transform, opacity` を確認
+- Public JS: 境界の `width`／`height` は初期化・リサイズ時のみ、アニメーション中は `--boundary-scale` のみ更新
+- Chrome実描画: 公開Topを1280×900、390×844でfresh表示し、初期フレームの円形境界を確認

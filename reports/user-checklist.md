@@ -564,7 +564,7 @@
 - [x] 毎フレームのレイアウト変更を除去
 - [x] PC／モバイルのローカルChrome表示を確認
 - [ ] 実機スマートフォンで滑らかさを確認
-- [ ] Push後のGitHub Pagesを再確認
+- [x] Push後のGitHub Pagesを再確認
 
 ## Loading boundary correction (2026-09-17)
 
