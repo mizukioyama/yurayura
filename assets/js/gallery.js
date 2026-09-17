@@ -76,5 +76,101 @@ document.addEventListener("DOMContentLoaded", () => {
       render();
     });
   });
+
+  const modal = document.getElementById("galleryModal");
+  const modalImage = document.getElementById("galleryModalImage");
+  const modalTitle = document.getElementById("galleryModalTitle");
+  const modalCaption = document.getElementById("galleryModalCaption");
+  const modalProfile = document.getElementById("galleryModalProfile");
+  const modalSlides = document.getElementById("galleryModalSlides");
+  const prev = document.getElementById("galleryModalPrev");
+  const next = document.getElementById("galleryModalNext");
+  let modalIndex = 0;
+  let lastFocus = null;
+
+  const profiles = {
+    Mizuki: "自然や感情から受け取った感覚をもとに、抽象表現を中心とした作品を制作しています。"
+  };
+
+  function showSlide(index) {
+    modalIndex = (index + cards.length) % cards.length;
+    const card = cards[modalIndex];
+    const image = card.querySelector(".work-img > img");
+    const title = card.querySelector(".gallery-work-link h2")?.textContent || "作品";
+    const artist = card.dataset.artist || "";
+    if (modalImage && image) {
+      modalImage.src = image.src;
+      modalImage.alt = image.alt;
+    }
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalCaption) modalCaption.textContent = card.dataset.caption || "";
+    if (modalProfile) modalProfile.textContent = profiles[artist] || `${artist}の作家プロフィールは準備中です。`;
+    modalSlides?.querySelectorAll("button").forEach((button, i) => button.classList.toggle("is-active", i === modalIndex));
+  }
+
+  function buildSlides() {
+    if (!modalSlides) return;
+    modalSlides.replaceChildren();
+    cards.forEach((card, index) => {
+      const source = card.querySelector(".work-img > img");
+      if (!source) return;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "gallery-modal__thumb";
+      button.setAttribute("aria-label", `${index + 1}番目の作品を表示`);
+      const image = document.createElement("img");
+      image.src = source.src;
+      image.alt = "";
+      button.appendChild(image);
+      button.addEventListener("click", () => showSlide(index));
+      modalSlides.appendChild(button);
+    });
+  }
+
+  function openModal(index) {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    showSlide(index);
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("is-gallery-modal-open");
+    modal.querySelector(".gallery-modal__close")?.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("is-gallery-modal-open");
+    lastFocus?.focus?.();
+  }
+
+  buildSlides();
+  cards.forEach((card, index) => {
+    const link = card.querySelector(".gallery-work-link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `${link?.querySelector("h2")?.textContent || "作品"}の詳細を見る`);
+    card.addEventListener("click", event => {
+      event.preventDefault();
+      openModal(index);
+    });
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openModal(index);
+      }
+    });
+  });
+  modal?.querySelectorAll("[data-gallery-modal-close]").forEach(button => button.addEventListener("click", closeModal));
+  prev?.addEventListener("click", () => showSlide(modalIndex - 1));
+  next?.addEventListener("click", () => showSlide(modalIndex + 1));
+  document.addEventListener("keydown", event => {
+    if (!modal?.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeModal();
+    if (event.key === "ArrowLeft") showSlide(modalIndex - 1);
+    if (event.key === "ArrowRight") showSlide(modalIndex + 1);
+  });
+
   render();
 });
