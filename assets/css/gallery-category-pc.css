@@ -1,0 +1,111 @@
+/* PC Gallery Category: match the mobile Category visual system. */
+@media screen and (min-width:1200px){
+  .gallery-page .gallery-sidebar{
+    box-sizing:border-box!important;
+    display:block!important;
+    width:max-content!important;
+    max-width:100%!important;
+    margin:0 0 3.5rem!important;
+    padding:0!important;
+    overflow:visible!important;
+  }
+  .gallery-page .gallery-sidebar__label{
+    width:max-content!important;
+    margin:0 0 .15rem!important;
+    font-size:var(--responsive-copy-size,1rem)!important;
+    letter-spacing:.06em!important;
+    color:#444!important;
+  }
+  .gallery-page .gallery-filter-group{
+    display:grid!important;
+    grid-template-columns:5.7em max-content!important;
+    align-items:start!important;
+    column-gap:0!important;
+    width:max-content!important;
+    margin:0 0 .85rem!important;
+  }
+  .gallery-page .gallery-filter-title{
+    box-sizing:border-box!important;
+    width:5.7em!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:start!important;
+    font:inherit!important;
+    font-size:var(--responsive-copy-size,1rem)!important;
+    font-weight:300!important;
+    line-height:2.7rem!important;
+    color:#444!important;
+    white-space:nowrap!important;
+  }
+  .gallery-page .gallery-filter-title--artist{
+    display:flex!important;
+    justify-content:space-between!important;
+  }
+  .gallery-page [data-filter-group="artist"]{
+    display:grid!important;
+    grid-template-columns:repeat(5,7.5em)!important;
+    grid-template-rows:2.7rem!important;
+    width:max-content!important;
+    min-width:max-content!important;
+    gap:0!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+  }
+  .gallery-page [data-filter-group="genre"]{
+    display:grid!important;
+    grid-template-columns:repeat(5,7.5em)!important;
+    grid-template-rows:repeat(2,2.7rem)!important;
+    grid-auto-flow:row!important;
+    width:max-content!important;
+    min-width:max-content!important;
+    gap:.25rem 0!important;
+    overflow:visible!important;
+  }
+  .gallery-page [data-filter-group="artist"] .gallery-filter,
+  .gallery-page [data-filter-group="genre"] .gallery-filter{
+    position:relative!important;
+    box-sizing:border-box!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:7.5em!important;
+    min-width:7.5em!important;
+    min-height:2.7rem!important;
+    margin:0!important;
+    padding:.2rem 18px!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:#444!important;
+    font:inherit!important;
+    font-size:var(--responsive-copy-size,1rem)!important;
+    line-height:2.3rem!important;
+    text-align:center!important;
+    text-decoration:none!important;
+    opacity:.78!important;
+    white-space:nowrap!important;
+  }
+  .gallery-page .gallery-filter+.gallery-filter::before{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    left:0!important;
+    top:50%!important;
+    width:1px!important;
+    height:1em!important;
+    background:currentColor!important;
+    opacity:.38!important;
+    transform:translateY(-50%)!important;
+  }
+  .gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before{
+    content:none!important;
+    display:none!important;
+  }
+  .gallery-page .gallery-filter.is-active{
+    color:#1f1f1f!important;
+    background:transparent!important;
+    opacity:1!important;
+    text-decoration:underline!important;
+    text-underline-offset:.28em!important;
+  }
+}
