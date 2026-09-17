@@ -558,6 +558,17 @@
 - [x] 編集前バックアップを保存した
 - [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
 
+## Loading boundary correction (2026-09-17)
+
+- [x] 公開ベースラインのHTML／CSS／JSとHTTPキャッシュ状態を確認した
+- [x] `#fog-scene::after` の疑似要素依存を調査した
+- [x] `#fog-boundary` 実DOM要素をTop／Conceptへ追加した
+- [x] 色付き円形境界、z-index、mask外配置、既存イージングを確認した
+- [x] 編集前バックアップを作成した
+- [x] ローカルChromeの1280×900と390×844で表示を確認した
+- [ ] GitHub PagesへPush後、Top／Conceptをfresh再読み込みして表示確認する
+- [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
+
 ## Section width 780px and mobile menu spacing adjustment (2026-09-15)
 
 - [x] contact／faq／accessの最大幅を780pxへ統一した

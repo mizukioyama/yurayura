@@ -563,3 +563,11 @@
 5. [完了] 編集前バックアップ、レビュー資料、確認用ZIPを更新・検査する。
 6. [完了] GitHub `main`へ反映し、fresh公開Topでv22／v16の配信と3セクションの実効幅を確認する。
 7. [ ] 公開Concept／Gallery、実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する。
+
+## Loading boundary correction (2026-09-17)
+
+1. [完了] 公開HTML／CSS／JS、Git履歴、mask、疑似要素、z-index、stacking context、キャッシュ状態を調査する。
+2. [完了] 変更前バックアップを作成し、境界を実DOM要素化してキャッシュバスターを更新する。
+3. [完了] ローカルChromeのPC／Mobile実描画とJavaScript構文・差分空白を確認する。
+4. [ ] ユーザー承認後、対象差分をGitHub `mizukioyama/yurayura` の `main` へPushする。
+5. [ ] Push後、GitHub PagesのTop／Conceptをfresh再読み込みし、`v5`配信と色付き境界を実表示確認する。

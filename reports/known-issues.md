@@ -452,6 +452,13 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 - 公開版の確認はChromeのIABエミュレーションです。実機のアドレスバーやOSの表示領域、フォント描画差は含みません。
 - 実機スマートフォン／タブレット、Safari・Firefox・Edgeなど主要ブラウザ、キーボード操作とフォーカス順は未確認です。
 
+## Loading boundary correction (2026-09-17)
+
+- GitHub Pagesの公開ベースラインは現行 `main` のコードと一致していましたが、ブラウザ描画の再現性を高めるため、境界を疑似要素から実DOM要素へ移しました。
+- Push後のGitHub Pages配信とfresh再読み込み確認は未完了です。
+- Chrome実描画は確認済みですが、実機スマートフォン、Safari、Firefox、Edge、OSごとのmask／backdrop-filter描画差は未確認です。
+- 既存のHTMLには今回対象外の履歴由来の警告・構造上の注意が残っています。
+
 ## Access information natural line-wrap adjustment (2026-09-15)
 
 - デスクトップのアクセス欄だけ親幅を`840px`へ広げ、住所・問合せ・営業時間の3列均等配置を維持しています。タブレット／スマホは縦積みです。

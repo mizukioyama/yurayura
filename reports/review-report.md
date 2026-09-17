@@ -1733,3 +1733,35 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 ### Judgment
 
 指定された3セクションの最大幅を780pxへ揃え、スマホ用メニューの項目間隔だけを10px拡張しました。`main`への公開反映とfresh公開Topの配信確認まで完了しています。実機・主要ブラウザ・キーボード操作は未確認です。
+
+## Loading boundary correction (2026-09-17)
+
+### Discover
+
+- 対象は `https://mizukioyama.github.io/yurayura/` と `concept.html` の霧ローディングです。
+- 公開HTMLの `fog-hole.css` / `fog-hole.js` は `main` の `152178b` と一致し、HTTP 200、`cache-control: max-age=600`、`last-modified` も確認しました。
+- 公開Chrome描画では境界が見える場面もありましたが、実装は `#fog-scene::after` 疑似要素に依存しており、mask・`isolation`・`overflow`・固定配置が同一要素に重なっていました。
+
+### Change
+
+- `#fog-scene::after` を `#fog-boundary` 実DOM要素へ変更し、mask対象の `#fog-blur-layer` と霧質感レイヤーの上に `z-index: 3` で配置しました。
+- JSは疑似要素用CSS変数ではなく、境界要素の幅・高さ・透明度を直接更新します。
+- 円形の色境界（深いオリーブ色＋淡い外周＋柔らかい影）、既存のイージング、保持時間、拡大時間、フェード時間は維持しました。
+- `index.html` と `concept.html` のCSS／JSキャッシュバスターを `20260917-visible-boundary-v5` に統一しました。
+- 変更前の `index.html`、`concept.html`、`fog-hole.css`、`fog-hole.js` を `backups/20260917_before_loading_boundary_fix/` に保存しました。
+
+### Verification
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| JavaScript構文 | PASS | `node --check assets/js/fog-hole.js` |
+| 差分空白 | PASS | `git diff --check` |
+| DOM / CSS / JS参照 | PASS | `#fog-boundary` がTop／Concept／CSS／JSで一致し、旧疑似要素参照は残っていない |
+| Chrome実描画 PC | PASS | ローカルHTTPをChromeで1280×900、700／1800／3600ms相当で表示し、色付き円形境界を確認 |
+| Chrome実描画 Mobile | PASS | ローカルHTTPをChromeで390×844で表示し、境界の縮小・表示を確認 |
+| 他レイアウト保全 | PASS | 変更対象はTop／ConceptのローディングDOM、fog CSS／JS、キャッシュバスターのみ |
+| 公開ページ再読込後の修整確認 | PENDING | Push後にfresh公開ページを再読み込みして確認する |
+
+### Judgment
+
+実装とローカルChrome確認は完了しています。GitHub PagesへのPushと、Push後の公開Top／Conceptのfresh再読み込み確認が残っています。

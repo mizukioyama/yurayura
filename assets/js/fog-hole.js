@@ -4,8 +4,9 @@
   var scene = document.getElementById("fog-scene");
   var blurLayer = document.getElementById("fog-blur-layer");
   var wrapper = document.getElementById("fog-hole");
+  var boundary = document.getElementById("fog-boundary");
 
-  if (!scene || !blurLayer || !wrapper) return;
+  if (!scene || !blurLayer || !wrapper || !boundary) return;
 
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -55,6 +56,7 @@
     rafId = 0;
     blurLayer.classList.add("is-hidden");
     wrapper.classList.add("is-hidden");
+    boundary.classList.add("is-hidden");
     scene.classList.add("is-hidden");
 
     window.setTimeout(function () {
@@ -97,9 +99,11 @@
     var blurRadius = maxRadius * holeProgress;
     var opacity = 1 - fadeProgress;
     var radiusValue = blurRadius.toFixed(2) + "px";
+    var diameterValue = (blurRadius * 2).toFixed(2) + "px";
 
-    scene.style.setProperty("--hole-size", radiusValue);
-    scene.style.setProperty("--boundary-opacity", holeProgress > 0.025 ? opacity.toFixed(4) : "0");
+    boundary.style.width = diameterValue;
+    boundary.style.height = diameterValue;
+    boundary.style.opacity = holeProgress > 0.025 ? opacity.toFixed(4) : "0";
     blurLayer.style.setProperty("--hole-size", radiusValue);
     blurLayer.style.setProperty("--edge-size", SETTINGS.blurEdgeSize + "px");
     blurLayer.style.opacity = opacity.toFixed(4);

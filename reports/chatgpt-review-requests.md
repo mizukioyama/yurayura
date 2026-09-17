@@ -966,6 +966,25 @@
 
 - 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作での見え方・タップ確認
 
+## Loading boundary correction (2026-09-17)
+
+1. `index.html` と `concept.html` のローディングDOMに `#fog-boundary` が1つずつ存在するか。
+2. `#fog-boundary` が `#fog-blur-layer` のmaskに消されず、霧と表示領域の境目を深いオリーブ色の円として確認できるか。
+3. 境界が初期の小さい円から滑らかに拡大し、既存のフェード完了後に残らないか。
+4. 既存のFV、背景、メニュー、ページ本文、Concept固有レイアウトに変更がないか。
+5. Push後のfresh公開ページで `20260917-visible-boundary-v5` のCSS／JSが配信されるか。
+
+### Evidence
+
+- 公開ベースライン: GitHub PagesのHTTP 200、HTML／CSS／JSの現行コミット一致、Chrome描画確認。
+- ローカル修整後: Chrome 1280×900、390×844の実描画スクリーンショットで色付き円形境界を確認。
+- 編集前バックアップ: `backups/20260917_before_loading_boundary_fix/`
+
+### Remaining acceptance
+
+- GitHub PagesへPush後、TopとConceptをfresh URLで再読み込みして表示確認する。
+- 実機スマートフォン、Safari／Firefox／Edgeでの最終表示は未確認。
+
 ## Access information natural line-wrap adjustment (2026-09-15)
 
 ### Review points
