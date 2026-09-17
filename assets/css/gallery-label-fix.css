@@ -4,8 +4,8 @@
 .gallery-page .gallery-filter-title--genre::after{content:none!important;display:none!important}
 
 @media screen and (max-width:767px){
-  .gallery-page .gallery-filter-group{grid-template-columns:3.8em max-content!important;column-gap:.35em!important}
-  .gallery-page .gallery-filter-title{box-sizing:border-box!important;width:3.8em!important;margin:0!important;padding:0!important;line-height:2.7rem!important;white-space:nowrap!important}
+  .gallery-page .gallery-filter-group{grid-template-columns:4rem max-content!important;column-gap:.35em!important}
+  .gallery-page .gallery-filter-title{box-sizing:border-box!important;width:4rem!important;margin:0!important;padding:0!important;line-height:2.7rem!important;white-space:nowrap!important}
   .gallery-page .gallery-filter-title--artist,
   .gallery-page .gallery-filter-title--genre{display:block!important;letter-spacing:.04em!important}
   .gallery-page [data-filter-group="artist"] .gallery-filter,
