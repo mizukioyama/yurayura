@@ -17,7 +17,7 @@
     holdAfterHole: prefersReducedMotion ? 0 : 300,
     fadeDuration: prefersReducedMotion ? 300 : 1400,
     removeDelay: 120,
-    blurEdgeSize: 42,
+    blurEdgeSize: 20,
     targetRadiusScale: 0.22
   };
 
@@ -55,6 +55,7 @@
     rafId = 0;
     blurLayer.classList.add("is-hidden");
     wrapper.classList.add("is-hidden");
+    scene.classList.add("is-hidden");
 
     window.setTimeout(function () {
       if (scene && scene.parentNode) scene.remove();
@@ -95,8 +96,11 @@
 
     var blurRadius = maxRadius * holeProgress;
     var opacity = 1 - fadeProgress;
+    var radiusValue = blurRadius.toFixed(2) + "px";
 
-    blurLayer.style.setProperty("--hole-size", blurRadius.toFixed(2) + "px");
+    scene.style.setProperty("--hole-size", radiusValue);
+    scene.style.setProperty("--boundary-opacity", holeProgress > 0.025 ? opacity.toFixed(4) : "0");
+    blurLayer.style.setProperty("--hole-size", radiusValue);
     blurLayer.style.setProperty("--edge-size", SETTINGS.blurEdgeSize + "px");
     blurLayer.style.opacity = opacity.toFixed(4);
     wrapper.style.opacity = opacity.toFixed(4);
