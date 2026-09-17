@@ -4,7 +4,8 @@
 .gallery-page .gallery-filter-title--genre::after{content:none!important;display:none!important}
 
 @media screen and (max-width:767px){
-  .gallery-page .gallery-filter-group{grid-template-columns:5.7em max-content!important;column-gap:0!important}
-  .gallery-page .gallery-filter-title{box-sizing:border-box!important;width:5.7em!important;margin:0!important;padding:0!important;line-height:2.7rem!important;white-space:nowrap!important}
-  .gallery-page .gallery-filter-title--artist{display:block!important;justify-content:normal!important}
+  .gallery-page .gallery-filter-group{grid-template-columns:4.7em max-content!important;column-gap:0!important}
+  .gallery-page .gallery-filter-title{box-sizing:border-box!important;width:4.7em!important;margin:0!important;padding:0!important;line-height:2.7rem!important;white-space:nowrap!important}
+  .gallery-page .gallery-filter-title--artist{display:flex!important;align-items:center!important;justify-content:space-between!important}
+  .gallery-page .gallery-filter-title--artist>span{display:inline-block!important;flex:0 0 auto!important}
 }
