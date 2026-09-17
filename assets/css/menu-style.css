@@ -89,9 +89,10 @@ body.is-loaded {
 
 .footer-link { letter-spacing: 0.8rem; }
 
+/* Original label order: Japanese first, divider, English last. */
 .menu-small {
   position: absolute;
-  top: 72%;
+  top: 1rem;
   left: 50%;
   margin-top: 0;
   font-size: 1rem;
@@ -101,7 +102,7 @@ body.is-loaded {
 
 .menu-en {
   position: absolute;
-  top: 1rem;
+  top: 72%;
   left: 50%;
   white-space: nowrap;
   transform: translateX(-50%);
@@ -200,7 +201,8 @@ body.is-menu-open {
 
 .header.is-compact.is-open .header-link { letter-spacing: 0.8rem; }
 .header.is-compact.is-open .menu-border { top: 56%; height: 30px; }
-.header.is-compact.is-open .menu-small { top: 72%; margin-top: 0; }
+.header.is-compact.is-open .menu-small { top: 1rem; margin-top: 0; }
+.header.is-compact.is-open .menu-en { top: 72%; }
 
 .header.is-open .menu-toggle-dot:nth-child(1) {
   width: 24px;
@@ -351,8 +353,8 @@ body::after { pointer-events: none; }
   .menu-small { font-size: var(--site-nav-meta-size); }
   .header-date,
   .footer-date { letter-spacing: clamp(0.04rem, 0.267vw, 0.1rem); }
-  .menu-en { top: 1rem; }
-  .menu-small { top: 72%; margin-top: 0; }
+  .menu-small { top: 1rem; margin-top: 0; }
+  .menu-en { top: 72%; }
   .menu-border { top: 56%; height: var(--site-nav-border-height); transform: none; }
   .menu-toggle {
     top: var(--site-nav-top);
@@ -367,7 +369,8 @@ body::after { pointer-events: none; }
   }
   .header.is-compact.is-open .header-link { height: 100%; letter-spacing: var(--site-nav-letter-spacing); }
   .header.is-compact.is-open .menu-border { top: 56%; height: var(--site-nav-border-height); }
-  .header.is-compact.is-open .menu-small { top: 72%; margin-top: 0; }
+  .header.is-compact.is-open .menu-small { top: 1rem; margin-top: 0; }
+  .header.is-compact.is-open .menu-en { top: 72%; }
   .footer {
     padding-top: var(--site-footer-padding-top);
     padding-bottom: var(--site-footer-padding-bottom);
