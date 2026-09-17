@@ -68,9 +68,18 @@ body::before {
   z-index: 1;
 }
 
-/* FAQ controls use the shared page background color. */
-.section--faq .faq-heading,
+/* Keep the original FAQ heading texture. */
+.section--faq .faq-heading {
+  background-image: url("../img/btn-bg-img.webp") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Only the FAQ question buttons use color-bg. */
+.section--faq button.faq-question,
 .section--faq .faq-question {
+  background: var(--color-bg) !important;
   background-color: var(--color-bg) !important;
   background-image: none !important;
 }
