@@ -16,15 +16,17 @@
   transition: opacity 1.1s ease;
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-  background: rgba(236, 240, 246, 0.09);
+  background: rgba(236, 240, 246, 0.12);
 
   --hole-size: 0px;
-  --edge-size: 72px;
+  --edge-size: 42px;
 
   -webkit-mask-image: radial-gradient(
     circle at center,
     transparent 0,
     transparent var(--hole-size),
+    rgba(0, 0, 0, 0.18) calc(var(--hole-size) + 8px),
+    rgba(0, 0, 0, 0.62) calc(var(--hole-size) + 24px),
     #000 calc(var(--hole-size) + var(--edge-size)),
     #000 100%
   );
@@ -32,6 +34,8 @@
     circle at center,
     transparent 0,
     transparent var(--hole-size),
+    rgba(0, 0, 0, 0.18) calc(var(--hole-size) + 8px),
+    rgba(0, 0, 0, 0.62) calc(var(--hole-size) + 24px),
     #000 calc(var(--hole-size) + var(--edge-size)),
     #000 100%
   );
