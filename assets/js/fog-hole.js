@@ -17,7 +17,7 @@
     holdAfterHole: prefersReducedMotion ? 0 : 300,
     fadeDuration: prefersReducedMotion ? 300 : 1400,
     removeDelay: 120,
-    blurEdgeSize: 72,
+    blurEdgeSize: 42,
     targetRadiusScale: 0.22
   };
 
