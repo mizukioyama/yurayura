@@ -92,6 +92,15 @@ body::before {
   left: auto;
 }
 
+/* Tablet only: use wider horizontal section padding without changing PC/mobile. */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .section > .section__inner {
+    box-sizing: border-box;
+    padding-left: 20vmin !important;
+    padding-right: 20vmin !important;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .header-list {
     top: clamp(16px, 5.333vw, 20px);
