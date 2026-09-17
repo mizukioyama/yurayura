@@ -104,6 +104,16 @@ body::before {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
+  /* Access details below the map follow the mobile stacked layout. */
+  .section--access ul.acs-box {
+    display: block !important;
+  }
+
+  .section--access ul.acs-box .access-info {
+    display: flex !important;
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 767px) {
