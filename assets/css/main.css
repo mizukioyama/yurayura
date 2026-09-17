@@ -92,12 +92,17 @@ body::before {
   left: auto;
 }
 
-/* Tablet only: use wider horizontal section padding without changing PC/mobile. */
+/* Tablet only: apply horizontal padding to the parent section itself. */
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-  .section > .section__inner {
+  .section {
     box-sizing: border-box;
     padding-left: 20vmin !important;
     padding-right: 20vmin !important;
+  }
+
+  .section > .section__inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
