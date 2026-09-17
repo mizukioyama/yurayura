@@ -76,9 +76,9 @@ body::before {
   background-repeat: no-repeat !important;
 }
 
-/* Only the FAQ question buttons use color-bg. */
-.section--faq button.faq-question,
-.section--faq .faq-question {
+/* FAQ's actual accordion buttons use color-bg. */
+.section--faq button.faq-sub-question,
+.section--faq .faq-sub-question {
   background: var(--color-bg) !important;
   background-color: var(--color-bg) !important;
   background-image: none !important;
