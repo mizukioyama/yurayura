@@ -455,7 +455,7 @@ gallery.htmlの形をFigma作家紹介フレームに合わせて更新しまし
 ## Loading boundary correction (2026-09-17)
 
 - GitHub Pagesの公開ベースラインは現行 `main` のコードと一致していましたが、ブラウザ描画の再現性を高めるため、境界を疑似要素から実DOM要素へ移しました。
-- Push後のGitHub Pages配信とfresh再読み込み確認は未完了です。
+- Push後のGitHub Pages配信とfresh再読み込み確認は完了しました。実機・主要ブラウザ確認は未実施です。
 - Chrome実描画は確認済みですが、実機スマートフォン、Safari、Firefox、Edge、OSごとのmask／backdrop-filter描画差は未確認です。
 - 既存のHTMLには今回対象外の履歴由来の警告・構造上の注意が残っています。
 

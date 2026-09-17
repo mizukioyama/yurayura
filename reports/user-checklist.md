@@ -566,7 +566,7 @@
 - [x] 色付き円形境界、z-index、mask外配置、既存イージングを確認した
 - [x] 編集前バックアップを作成した
 - [x] ローカルChromeの1280×900と390×844で表示を確認した
-- [ ] GitHub PagesへPush後、Top／Conceptをfresh再読み込みして表示確認する
+- [x] GitHub PagesへPush後、Top／Conceptをfresh再読み込みして表示確認する
 - [ ] 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を確認する
 
 ## Section width 780px and mobile menu spacing adjustment (2026-09-15)

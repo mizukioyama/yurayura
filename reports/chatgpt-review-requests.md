@@ -982,7 +982,7 @@
 
 ### Remaining acceptance
 
-- GitHub PagesへPush後、TopとConceptをfresh URLで再読み込みして表示確認する。
+- GitHub PagesへPush後、TopとConceptをfresh URLで再読み込みして表示確認する。**PASS**
 - 実機スマートフォン、Safari／Firefox／Edgeでの最終表示は未確認。
 
 ## Access information natural line-wrap adjustment (2026-09-15)

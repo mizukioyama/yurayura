@@ -1764,4 +1764,14 @@ Top／Concept／Galleryの常時表示`.header`は、タイトル・開催期間
 
 ### Judgment
 
-実装とローカルChrome確認は完了しています。GitHub PagesへのPushと、Push後の公開Top／Conceptのfresh再読み込み確認が残っています。
+実装、ローカルChrome確認、GitHub PagesへのPush、Push後の公開Top／Concept／モバイル幅のfresh Chrome再読み込み確認を完了しました。公開ページは `v5` と `#fog-boundary` を配信し、色付き円形境界が実表示されました。
+
+### Public verification after push
+
+- Commit: `420eef32b261494796291a17ccf7e24b817de776`
+- Remote `main`: 同じコミットSHAを確認
+- Public URL: `https://mizukioyama.github.io/yurayura/`
+- Public Concept URL: `https://mizukioyama.github.io/yurayura/concept.html`
+- Public assets: `20260917-visible-boundary-v5`、`#fog-boundary` を確認
+- Chrome実描画: Top 1280×900、Concept 1280×900、Top 390×844で色付き円形境界を確認
+- Cache: fresh queryで旧 `v4` ではなく新 `v5` のHTML／CSS／JSを確認
