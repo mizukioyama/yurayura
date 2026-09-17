@@ -1,5 +1,7 @@
 /* PC Gallery Category: match the mobile Category visual system. */
+.gallery-page .gallery-pc-subtitle{display:none!important}
 @media screen and (min-width:1200px){
+  .gallery-page .gallery-pc-subtitle{display:block!important;margin:0!important;font-size:20px!important;font-weight:300!important;line-height:1.8!important}
   .gallery-page .gallery-sidebar{box-sizing:border-box!important;display:block!important;width:max-content!important;max-width:100%!important;margin:0 0 3.5rem!important;padding:0!important;overflow:visible!important}
   .gallery-page .gallery-sidebar__label{width:max-content!important;margin:0 0 .15rem!important;font-size:var(--responsive-copy-size,1rem)!important;letter-spacing:.06em!important;color:#444!important}
   .gallery-page .gallery-filter-group{display:grid!important;grid-template-columns:5.7em max-content!important;align-items:start!important;column-gap:0!important;width:max-content!important;margin:0 0 .85rem!important}
