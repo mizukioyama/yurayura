@@ -10,6 +10,7 @@
 .gallery-page .gallery-work-link h2,.gallery-page .gallery-work-link p{position:static!important;inset:auto!important;display:block!important;width:100%!important}
 .gallery-page .gallery-work-link h2{margin:0 0 8px!important;text-align:left!important}
 .gallery-page .gallery-work-link p{margin:0!important;text-align:right!important;line-height:1.8!important}
+.gallery-page .gallery-work-link .gallery-work-title{margin:0 0 8px!important;text-align:left!important}
 .gallery-page .header{position:absolute!important;top:3.5rem!important;right:auto!important;left:6rem!important;width:auto!important}
 .gallery-page .header:not(.is-compact.is-open) .header-list{position:absolute!important;display:flex!important;top:0!important;right:auto!important;bottom:auto!important;left:calc(50vw - 6rem)!important;flex-direction:row!important;transform:translateX(-50%)!important}
 .gallery-page .header:not(.is-compact.is-open) .header-item{display:block!important;margin:0!important;text-align:center!important}
@@ -23,6 +24,7 @@
 .gallery-page .gallery-work-link h2,.gallery-page .gallery-work-link p{position:static!important;inset:auto!important;display:block!important;width:100%!important}
 .gallery-page .gallery-work-link h2{margin:0 0 8px!important;text-align:left!important}
 .gallery-page .gallery-work-link p{margin:0!important;text-align:right!important;line-height:1.8!important}
+.gallery-page .gallery-work-link .gallery-work-title{margin:0 0 8px!important;text-align:left!important}
 }
 @media screen and (max-width:767px){
 .gallery-page .gallery-content .work{box-sizing:border-box!important;width:100%!important;margin:0 0 72px!important;padding:20px 20px 26px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:0 8px 22px rgba(47,56,42,.10)!important}
@@ -32,6 +34,7 @@
 .gallery-page .gallery-work-link h2,.gallery-page .gallery-work-link p{position:static!important;inset:auto!important;display:block!important;width:100%!important}
 .gallery-page .gallery-work-link h2{margin:0 0 8px!important;text-align:left!important}
 .gallery-page .gallery-work-link p{margin:0!important;text-align:right!important;line-height:1.8!important}
+.gallery-page .gallery-work-link .gallery-work-title{margin:0 0 8px!important;text-align:left!important}
 }
 .gallery-page .gallery-card{cursor:pointer}
 html.is-gallery-modal-open{overflow:hidden}
