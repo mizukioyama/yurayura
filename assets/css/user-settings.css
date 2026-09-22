@@ -1,0 +1,79 @@
+/*
+ * User typography settings
+ *
+ * Edit the min/max values below in the 9elements Min-Max Calculator.
+ * The interpolation range is 375px -> 1440px.
+ *
+ * The selected values are based on the current public site's effective
+ * typography so this layer remains visually conservative.
+ */
+:root {
+  /* 本文：375pxで13.5px → 1440pxで14px */
+  --type-body-size: clamp(13.5px, calc(13.3239px + 0.0469vw), 14px);
+
+  /* 見出し2：375pxで18px → 1440pxで28px */
+  --type-heading-2-size: clamp(18px, calc(14.4789px + 0.9390vw), 28px);
+
+  /* 見出し3：375pxで14px → 1440pxで20px */
+  --type-heading-3-size: clamp(14px, calc(11.8873px + 0.5634vw), 20px);
+
+  /* 小見出し：375pxで12px → 1440pxで16px */
+  --type-small-heading-size: clamp(12px, calc(10.5915px + 0.3756vw), 16px);
+
+  /* ボタン：375pxで12px → 1440pxで16px */
+  --type-button-size: clamp(12px, calc(10.5915px + 0.3756vw), 16px);
+
+  /* メニューロゴ：375pxで14px → 1440pxで19.2px */
+  --type-menu-logo-size: clamp(14px, calc(12.1690px + 0.4887vw), 19.2px);
+
+  /* メタ情報・メニュー文字：375pxで12px → 1440pxで15.76px */
+  --type-menu-meta-size: clamp(12px, calc(10.6761px + 0.3531vw), 15.76px);
+
+  /* 既存変数はaliasで互換維持 */
+  --responsive-copy-size: var(--type-body-size);
+  --responsive-heading-2: var(--type-heading-2-size);
+  --responsive-heading-3: var(--type-heading-3-size);
+  --responsive-small-heading: var(--type-small-heading-size);
+  --button-font-size: var(--type-button-size);
+
+  /* モバイルメニューの既存範囲も同じ入力方法で管理 */
+  --site-nav-logo-size: clamp(14px, calc(13.2958px + 0.1878vw), 16px);
+  --site-nav-meta-size: clamp(12px, calc(11.2958px + 0.1878vw), 14px);
+}
+
+/* Header / Footerの直接指定もsemantic variableへ集約 */
+.header-logo-link,
+.footer-logo-link,
+.header-logo {
+  font-size: var(--type-menu-logo-size);
+}
+
+.header-lead,
+.footer-lead,
+.header-date,
+.footer-date,
+.header-link,
+.footer-link,
+.menu-small,
+.menu-en {
+  font-size: var(--type-menu-meta-size);
+}
+
+/* 既存のフォーム用直接指定をユーザー設定へ接続 */
+.modal-title {
+  font-size: clamp(18px, calc(14.4789px + 0.9390vw), 28px);
+}
+
+.modal-close {
+  font-size: clamp(22px, calc(20.2394px + 0.4695vw), 27px);
+}
+
+.send-btn {
+  font-size: clamp(14px, calc(12.5915px + 0.3756vw), 18px);
+}
+
+.modal-btn {
+  font-size: var(--type-small-heading-size);
+}
+
+/* Galleryの20px固定サブタイトル、1px線、矢印などの装飾値は対象外 */

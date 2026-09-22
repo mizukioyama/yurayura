@@ -1,5 +1,14 @@
 # User checklist
 
+## User typography settings (2026-09-22)
+
+- [ ] Top／Concept／Galleryの表示が既存とほぼ同じである
+- [ ] 375／390／430／768／1024／1280／1440pxで改行と横overflowがない
+- [ ] Header／Footer／メニューに崩れがない
+- [ ] Galleryの絞り込み・作品modalが動作する
+- [ ] 公開URLで新しい `user-settings.css` が配信されている
+- [ ] 実機スマートフォン／タブレットと主要ブラウザで確認する
+
 ## Top section layout update (2026-09-12)
 
 - [ ] TopのConceptが見出しと本文の2列で表示され、右側の過剰な空白が抑えられている

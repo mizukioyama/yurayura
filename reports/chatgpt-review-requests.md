@@ -1,5 +1,17 @@
 # ChatGPT review requests
 
+## User typography settings (2026-09-22)
+
+1. Top／Concept／Galleryの本文・見出し・ボタンが、既存表示から大きく変わっていないか。
+2. 375px・390px・430px・768px・1024px・1280px・1440pxで改行、横overflow、Header／Footer崩れがないか。
+3. `assets/css/user-settings.css` のmin/maxを変更したとき、semantic variable経由で安全に調整できるか。
+4. Galleryの絞り込み・作品modal・メニュー開閉が維持されているか。
+
+### Scope boundary
+
+- 1px線、アイコン、装飾用固定値、Heroの演出用タイトルは対象外です。
+- 公開URLと実機表示はpush後の確認対象です。
+
 ## Top section layout review (2026-09-12)
 
 1. TopのConceptが、見出しと本文の2列構成で読みやすく、右側の過剰な空白が抑えられているか。

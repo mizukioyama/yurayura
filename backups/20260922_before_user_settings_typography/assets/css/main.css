@@ -1,0 +1,156 @@
+@import url("../../backups/20260912_before_hamburger_menu_fix/main.css");
+
+/* Shared background noise: slightly stronger, but never overlay the footer. */
+body::before {
+  width: 200% !important;
+  height: 200% !important;
+  opacity: 0.1 !important;
+}
+
+.footer {
+  position: relative;
+  z-index: 101;
+}
+
+/* Shared Scroll guide: keep the full guide above following sections. */
+.scroll-guide {
+  z-index: 120 !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+
+.fv,
+.concept-fv,
+.gallery {
+  overflow: visible !important;
+}
+
+.scroll-guide__bar {
+  position: relative;
+  z-index: 121 !important;
+  display: block;
+  box-sizing: border-box;
+  width: 1px;
+  height: 280px !important;
+  min-height: 280px !important;
+  max-height: 280px !important;
+  overflow: hidden;
+  background: rgba(47, 56, 42, 0.25) !important;
+}
+
+.scroll-guide__bar::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 1px;
+  height: 280px !important;
+  min-height: 280px !important;
+  max-height: 280px !important;
+  background: var(--color-txt);
+  content: "";
+  transform: translateY(-280px);
+  animation: scrollGuideFlow 3.2s cubic-bezier(.45, 0, .25, 1) infinite !important;
+  will-change: transform, opacity;
+}
+
+@keyframes scrollGuideFlow {
+  0% { transform: translateY(-280px); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(280px); opacity: 0; }
+}
+
+/* Following content remains below the Scroll guide when their areas overlap. */
+.main > section:not(.fv),
+.gallery > section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep the original FAQ heading texture. */
+.section--faq .faq-heading {
+  background-image: url("../img/btn-bg-img.webp") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+/* FAQ's actual accordion buttons use color-bg. */
+.section--faq button.faq-sub-question,
+.section--faq .faq-sub-question {
+  background: var(--color-bg) !important;
+  background-color: var(--color-bg) !important;
+  background-image: none !important;
+}
+
+/* Keep the title/date on the left; place only the navigation on the right. */
+.header-list {
+  position: fixed;
+  top: clamp(20px, 3.5vw, 56px);
+  right: clamp(20px, 6vw, 96px);
+  left: auto;
+}
+
+/* Tablet only: apply horizontal padding to the parent section itself. */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .section {
+    box-sizing: border-box;
+    padding-left: 20vmin !important;
+    padding-right: 20vmin !important;
+  }
+
+  .section > .section__inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Access details below the map: compact tablet version of the mobile stack. */
+  .section--access ul.acs-box {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .section--access ul.acs-box .access-info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 96px !important;
+    padding: 14px 12px !important;
+    border-width: 0 !important;
+    border-top: 1px solid var(--color-txt) !important;
+  }
+
+  .section--access ul.acs-box .access-info:last-child {
+    border-bottom: 1px solid var(--color-txt) !important;
+  }
+
+  .section--access ul.acs-box .access-info h3 {
+    margin: 0 0 4px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .section--access ul.acs-box .access-txt {
+    margin: 0 !important;
+    font-size: 0.75rem !important;
+    line-height: 1.8 !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header-list {
+    top: clamp(16px, 5.333vw, 20px);
+    right: clamp(16px, 5.333vw, 20px);
+    left: auto;
+  }
+}
+
+.header.is-compact.is-open .header-list {
+  inset: 0;
+}

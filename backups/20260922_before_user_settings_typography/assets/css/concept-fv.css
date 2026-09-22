@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+/* Concept FV: match Gallery title/FV geometry. */
+.concept-page .concept-fv {
+  position: relative !important;
+  display: block !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  z-index: 2 !important;
+  background: var(--color-bg) !important;
+}
+
+.concept-page .concept-fv .fv__inner {
+  position: absolute !important;
+  left: 20vmin !important;
+  top: 40vmin !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 90 !important;
+  display: block !important;
+  place-items: initial !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  translate: none !important;
+  transform: none !important;
+}
+
+.concept-page .concept-fv #concept-title {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+  color: var(--color-txt) !important;
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
+  font-family: var(--font-base, "Shippori Mincho", serif) !important;
+  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
+  font-weight: 300 !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+.concept-page .concept-fv .fv__txt {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: .5rem 0 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  color: var(--color-txt) !important;
+  font-family: var(--font-base, "Shippori Mincho", serif) !important;
+  font-size: var(--responsive-copy-size, 1rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+.concept-page #fog-scene,
+.concept-page .vanta-wrap,
+.concept-page #vanta-bg,
+.concept-page .smoke-twist {
+  pointer-events: none !important;
+}
+
+.concept-page .concept-fv .scroll-guide {
+  left: 20vmin !important;
+  right: auto !important;
+  z-index: 120 !important;
+  overflow: visible !important;
+}
+
+.concept-page .concept-fv + section {
+  position: relative;
+  z-index: 1 !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .concept-page .concept-fv .fv__inner {
+    left: 10vw !important;
+    top: 28vmin !important;
+  }
+
+  .concept-page .concept-fv .scroll-guide {
+    left: 10vw !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .concept-page .concept-fv {
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .concept-page .concept-fv .fv__inner {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 180px 22px 420px !important;
+  }
+
+  .concept-page .concept-fv .scroll-guide {
+    left: 22px !important;
+    right: auto !important;
+    z-index: 120 !important;
+  }
+}

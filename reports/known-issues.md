@@ -1,5 +1,12 @@
 # Known issues
 
+## User typography settings (2026-09-22)
+
+- ローカルソースへの反映とバックアップは完了しています。
+- GitHub Pagesへのpushと公開URLのfresh確認は未完了です。
+- 実機スマートフォン、タブレット、Safari／Firefox／Edge、キーボード操作は未確認です。
+- HeroやGalleryの一部固定値は、演出・レイアウト保護のためsemantic typographyの対象外です。
+
 ## Top section layout update (2026-09-12)
 
 - ローカルブラウザではConceptの2列配置、Artistsの中央寄せ、作品画像の表示、Viewボタンのまとまりを確認済みです。

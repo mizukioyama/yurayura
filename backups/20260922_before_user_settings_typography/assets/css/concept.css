@@ -1,0 +1,396 @@
+@charset "UTF-8";
+
+.concept-page .bg-img,
+.concept-page::after {
+  display: none;
+}
+
+.concept-page,
+.concept-page main,
+.concept-page main section {
+  background-color: var(--color-bg) !important;
+}
+
+.concept-fv__lead,
+.concept-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.2rem;
+  color: var(--color-txt);
+  font-family: var(--font-btn);
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.concept-page .h2_ttl {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+
+.concept-statement .section__inner {
+  position: relative;
+}
+
+.concept-statement .concept-eyebrow {
+  position: absolute;
+  top: 0;
+  margin-bottom: 0;
+  writing-mode: initial;
+}
+
+.concept-texture {
+  min-height: 100vh;
+  padding-block: clamp(96px, 10vw, 160px);
+}
+
+.concept-texture .section__inner {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1.2fr);
+  gap: clamp(48px, 8vw, 140px);
+  align-items: center;
+  width: min(100%, 1080px);
+}
+
+.concept-texture__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.concept-texture__copy .h2_ttl {
+  margin-bottom: 2rem;
+}
+
+.concept-texture__copy .section__txt {
+  line-height: 2.3;
+  letter-spacing: 0.12em;
+}
+
+.concept-texture__images {
+  position: relative;
+  width: 100%;
+  min-height: clamp(360px, 48vw, 620px);
+}
+
+.concept-photo {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(48, 58, 5, 0.16);
+}
+
+.concept-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) contrast(0.96);
+}
+
+.concept-photo--large {
+  top: 0;
+  right: 0;
+  width: min(75%, 520px);
+  height: clamp(280px, 36vw, 480px);
+}
+
+.concept-photo--small {
+  bottom: 0;
+  left: 0;
+  width: min(48%, 310px);
+  height: clamp(180px, 24vw, 310px);
+}
+
+.concept-gallery-link {
+  min-height: 70vh;
+}
+
+.concept-gallery-link .section__txt {
+  margin-bottom: 2.4rem;
+  line-height: 2.3;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.concept-gallery-link__button,
+#concept .concept-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.9rem 1.5rem;
+  color: var(--color-bg);
+  background: var(--color-shadow-green);
+  font-family: var(--font-btn);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  writing-mode: initial;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.concept-gallery-link__button:hover,
+#concept .concept-link:hover {
+  opacity: 0.76;
+  transform: translateY(-2px);
+}
+
+#concept .concept-link {
+  margin-top: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px));
+}
+
+#concept .concept-link-wrap {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  writing-mode: initial;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-gallery-link__button,
+  #concept .concept-link {
+    transition: none;
+  }
+}
+
+.concept-page .h2_ttl,
+.concept-page .concept-texture__copy .h2_ttl {
+  text-align: center;
+}
+
+.concept-page main section:not(.fv) .h2_ttl,
+.concept-page main section:not(.fv) .section__txt,
+.concept-page main section:not(.fv) .concept-eyebrow,
+.concept-page main section:not(.fv) a {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  text-align: center;
+}
+
+.concept-page .concept-statement .concept-eyebrow {
+  position: static;
+  top: auto;
+  left: 50%;
+  width: auto;
+  margin: 0 0 1.2rem;
+  transform: none;
+  align-self: center;
+  text-align: center;
+}
+
+.concept-page main section:not(.fv) .section__txt {
+  width: min(100%, 680px);
+  margin-inline: auto;
+  line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
+}
+
+.concept-page .concept-texture__copy {
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.concept-page .concept-gallery-link liquid-button {
+  display: block;
+  width: min(100%, 520px);
+  margin: var(--page-nav-button-margin-top, clamp(28px, 3.5vw, 40px)) auto 0;
+}
+
+.concept-page .concept-texture__copy {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+.concept-page .concept-texture__copy .concept-eyebrow,
+.concept-page .concept-texture__copy .h2_ttl,
+.concept-page .concept-texture__copy .section__txt {
+  align-self: flex-start;
+  width: 100%;
+  margin-inline: 0;
+  text-align: left !important;
+}
+
+@media screen and (max-width: 767px) {
+  .concept-texture {
+    padding-block: 96px;
+  }
+
+  .concept-texture .section__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    align-items: stretch;
+  }
+
+  .concept-texture__copy .h2_ttl {
+    align-self: center;
+    margin-bottom: 1.6rem;
+  }
+
+  .concept-texture__copy .section__txt,
+  .concept-gallery-link .section__txt {
+    width: 100%;
+    font-size: var(--responsive-copy-size);
+    line-height: 2;
+    text-align: left;
+  }
+
+  .concept-texture__images {
+    min-height: 390px;
+  }
+
+  .concept-photo--large {
+    width: 76%;
+    height: 270px;
+  }
+
+  .concept-photo--small {
+    width: 52%;
+    height: 190px;
+  }
+
+  .concept-gallery-link {
+    min-height: 60vh;
+  }
+
+  .concept-gallery-link .section__txt {
+    text-align: center;
+  }
+
+  .concept-page main section:not(.fv) .section__txt {
+    line-height: 1.9;
+  }
+
+  .concept-page .concept-gallery-link liquid-button {
+    width: min(100%, 320px);
+  }
+
+  /* Match Gallery's vertical content start while preserving Concept's centered layout. */
+  .concept-page .concept-statement {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .concept-page .concept-statement .section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+
+  .concept-page .concept-statement .concept-eyebrow {
+    align-self: center;
+    margin-top: 0 !important;
+    text-align: center !important;
+  }
+
+  .concept-page .concept-statement .h2_ttl {
+    align-self: center;
+    margin: 0 0 clamp(24px, 6vw, 32px);
+    text-align: center !important;
+  }
+
+  .concept-page .concept-statement .section__txt {
+    align-self: center;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 1.9;
+    text-align: center !important;
+  }
+}
+
+/* Shared content spacing: FV remains unchanged. */
+.top-page main section:not(.fv),
+.concept-page main section:not(.fv) {
+  padding-left: 54px !important;
+  padding-right: 54px !important;
+}
+
+.top-page section.section--concept,
+.top-page section.section--artists {
+  --top-section-inline-padding: 54px;
+}
+
+/* Final FV override: copy Gallery's H1 layout exactly and neutralize shared .fv rules. */
+.concept-page .concept-fv {
+  position: relative !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.concept-page .concept-fv .fv__inner {
+  position: absolute !important;
+  left: 20vmin !important;
+  top: 40vmin !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 90 !important;
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.concept-page .concept-fv .fv__ttl {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
+  font-weight: 300 !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+.concept-page .concept-fv .fv__txt {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: .5rem 0 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  font-size: var(--responsive-copy-size, 1rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .concept-page .concept-fv .fv__inner {
+    left: 10vw !important;
+    top: 28vmin !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .concept-page .concept-fv {
+    min-height: 0 !important;
+  }
+
+  .concept-page .concept-fv .fv__inner {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 180px 22px 280px !important;
+  }
+}

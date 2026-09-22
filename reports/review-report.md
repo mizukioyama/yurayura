@@ -1,5 +1,17 @@
 # Review report
 
+## User typography settings (2026-09-22)
+
+- `assets/css/user-settings.css` を追加し、本文・見出し・小見出し・ボタン・Header／Footerを375px→1440pxのsemantic variableへ集約
+- 既存の実効値を基準にしたため、Heroの演出用タイトル、Galleryの20px固定サブタイトル、線・アイコンなどの装飾値は変更対象外
+- Top／Concept／Galleryへ最後に読み込む構成を追加し、旧変数はaliasで互換維持
+- 変更前のCSS・HTML・共通パーツを `backups/20260922_before_user_settings_typography/` に保存
+
+### Verification
+
+- ソースのstylesheet読み込み順、CSS変数、HTML参照を確認済み
+- 公開反映と実機確認は、このcommitのpush後に実施
+
 ## Top section layout update (2026-09-12)
 
 TopページのConcept／Artistsセクションを、既存の文章・画像・スライダー構造・アニメーションを維持したまま調整しました。

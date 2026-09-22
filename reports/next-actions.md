@@ -1,5 +1,12 @@
 # Next actions
 
+## User typography settings (2026-09-22)
+
+1. ローカルTop／Concept／Galleryを7 viewportで確認する。
+2. `git diff --check` と参照ファイルの読み込み確認を行う。
+3. commit後にGitHub `mizukioyama/yurayura` のmainへpushし、公開URLのCSS配信とfresh表示を確認する。
+4. 実機スマートフォン／タブレット、主要ブラウザ、キーボード操作を受入確認する。
+
 ## Top section layout update (2026-09-12)
 
 1. 320〜480px相当のスマートフォン実機で横はみ出し、作品画像、Viewボタンを確認する。

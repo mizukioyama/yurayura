@@ -1,0 +1,321 @@
+/* ========================================
+  Three.js Liquid Background
+======================================== */
+
+.liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /*
+   * WebGLが表示できない場合の
+   * フォールバック背景
+   */
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), transparent 45%),
+    linear-gradient(135deg, #f2eee5, #e5dfd2);
+}
+
+/*
+ * Three.jsのcanvas
+ */
+
+.liquid-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+/*
+ * 光と紙の薄い質感
+ */
+
+.liquid::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.16),
+    transparent 35%,
+    rgba(255, 255, 255, 0.08) 65%,
+    transparent
+  );
+
+  content: "";
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+/*
+ * section内のコンテンツを
+ * canvasより前面に表示
+ */
+
+.liquid > :not(.liquid-canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+ * 動きを減らす設定
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-canvas {
+    display: none;
+  }
+}
+
+/* Native controls use the same liquid-glass treatment as the custom CTAs. */
+.liquid-control {
+  --button-font-size: clamp(12px, calc(0.45vw + 10.5px), 16px);
+  --liquid-radius: 42px;
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: clamp(32px, calc(0.5vw + 30px), 40px);
+  padding:
+    clamp(0.45rem, calc(0.2vw + 0.35rem), 0.65rem)
+    clamp(0.75rem, calc(0.45vw + 0.45rem), 1.25rem);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--liquid-radius);
+  color: var(--color-txt, #303a05);
+  font: inherit;
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  isolation: isolate;
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.liquid-control::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.05)
+  );
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.liquid-control::after {
+  position: absolute;
+  right: 10%;
+  bottom: -20px;
+  left: 10%;
+  z-index: 0;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.9), transparent);
+  content: "";
+  filter: blur(15px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.liquid-control:hover {
+  color: #f8faec;
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(93, 105, 20, 0.88),
+      rgba(60, 70, 6, 0.82) 48%,
+      rgba(60, 70, 6, 0.72) 100%
+    ),
+    rgba(60, 70, 6, 0.82);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.liquid-control:focus-visible {
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.82);
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.liquid-control--compact {
+  min-width: 5rem;
+  min-height: clamp(2.25rem, calc(0.4vw + 2rem), 2.75rem);
+  padding:
+    clamp(0.5rem, calc(0.2vw + 0.4rem), 0.65rem)
+    clamp(0.75rem, calc(0.35vw + 0.55rem), 1rem);
+  font-size: clamp(12px, calc(0.35vw + 10.5px), 15px);
+}
+
+.liquid-control--icon {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.liquid-control--accordion {
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.liquid-control--accordion .faq-sub-icon {
+  border-color: currentColor;
+}
+
+/* Keep the Contact submit control on the same glass surface as every other button. */
+body.top-page .contact-form .send-btn.liquid-control {
+  min-width: 310px;
+  min-height: clamp(2.5rem, calc(0.3vw + 2.35rem), 2.75rem);
+  padding:
+    clamp(0.5rem, calc(0.2vw + 0.4rem), 0.65rem)
+    clamp(1rem, calc(0.4vw + 0.8rem), 1.25rem);
+  border: 0;
+  border-radius: var(--liquid-radius);
+  color: var(--color-txt, #303a05);
+  appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+  opacity: 1;
+}
+
+body.top-page .contact-form .send-btn.liquid-control:hover,
+body.top-page .contact-form .send-btn.liquid-control:focus-visible {
+  color: #f8faec;
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(93, 105, 20, 0.88),
+      rgba(60, 70, 6, 0.82) 48%,
+      rgba(60, 70, 6, 0.72) 100%
+    ),
+    rgba(60, 70, 6, 0.82);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* FAQ rows keep the original flat surface; accordion behavior remains in faq.js. */
+.section--faq .faq-sub-question.liquid-control {
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+.section--faq .faq-sub-question.liquid-control::before,
+.section--faq .faq-sub-question.liquid-control::after {
+  display: none;
+}
+
+.section--faq .faq-sub-question.liquid-control:hover,
+.section--faq .faq-sub-question.liquid-control:focus-visible {
+  color: var(--color-txt, #303a05);
+  background: transparent;
+  transform: none;
+  outline-offset: 3px;
+}
+
+@media screen and (max-width: 480px) {
+  body.top-page .contact-form .send-btn.liquid-control {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Keep Gallery's controls in the same glass family despite its legacy overrides. */
+body.gallery-page .gallery-sidebar .gallery-filter.liquid-control {
+  width: 100%;
+  min-width: 5rem;
+  min-height: clamp(2.25rem, calc(0.4vw + 2rem), 2.75rem);
+  padding:
+    clamp(0.5rem, calc(0.2vw + 0.4rem), 0.65rem)
+    clamp(0.75rem, calc(0.35vw + 0.55rem), 1rem);
+  border: 0;
+  border-radius: var(--liquid-radius);
+  color: #f8faec;
+  text-align: center;
+  background: rgba(60, 70, 6, 0.68);
+  opacity: 1;
+  text-shadow: none;
+}
+
+body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:hover,
+body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible {
+  border-color: transparent;
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.82);
+  opacity: 1;
+  text-shadow: none;
+}
+
+body.gallery-page .gallery-page-button.liquid-control {
+  min-width: 5rem;
+  min-height: clamp(2.25rem, calc(0.4vw + 2rem), 2.75rem);
+  padding:
+    clamp(0.5rem, calc(0.2vw + 0.4rem), 0.65rem)
+    clamp(0.75rem, calc(0.35vw + 0.55rem), 1rem);
+  border: 0;
+  border-radius: var(--liquid-radius);
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.68);
+}
+
+body.gallery-page .gallery-page-button.liquid-control:hover,
+body.gallery-page .gallery-page-button.liquid-control:focus-visible {
+  color: #f8faec;
+  background: rgba(60, 70, 6, 0.82);
+}
+
+.liquid-control--accordion:hover .faq-sub-icon,
+.liquid-control--accordion:focus-visible .faq-sub-icon {
+  transform: translateX(0.35rem) rotate(45deg);
+}
+
+.faq-sub-item.is-open .liquid-control--accordion:hover .faq-sub-icon,
+.faq-sub-item.is-open .liquid-control--accordion:focus-visible .faq-sub-icon {
+  transform: translateX(0.35rem) rotate(-135deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-control {
+    transition: none;
+  }
+}
