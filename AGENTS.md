@@ -180,3 +180,19 @@ Discover → Plan → Execute → Verify → Iterate
 - 公開URLで確認できる
 - 文書と実装が矛盾していない
 - 残る不確実性を明記している
+
+
+## 12. User Final Adjustment Handoff
+
+AI側の実装・監査が完了した後、ユーザーが最終デザイン調整を行う。
+
+そのため最終整理では：
+- 主要な調整値をsemantic CSS variablesへ集約する
+- ユーザーが触る入口を `assets/css/user-settings.css` に統一する
+- 意味不明な略称だけを残さない
+- 各変数に日本語コメントを付ける
+- hard-coded repeated valuesを可能な範囲で変数化する
+- レイアウト構造用の危険な値と、調整用の安全な値を分離する
+- `CSS_VARIABLES_GUIDE.md` を最終状態へ更新する
+
+既存値を維持し、Visual Regressionを確認しながら段階移行する。
