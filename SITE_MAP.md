@@ -6,22 +6,22 @@ Base URL:
 
 `https://mizukioyama.github.io/yurayura/`
 
-## 2. Confirmed sitemap URLs
+Repository: `mizukioyama/yurayura`  
+Default branch: `main`
 
-現行 `sitemap.xml` に含まれるURL：
+## 2. Canonical page set
 
-| Page | Source | Public URL | Current role |
-|---|---|---|---|
-| TOP | `index.html` | `/yurayura/` | 展示概要・導線・FAQ・Contact・Access |
-| Concept | `concept.html` | `/yurayura/concept.html` | 展示コンセプト |
-| Gallery | `gallery.html` | `/yurayura/gallery.html` | 作家・作品 |
+2026-09-22のPhase 1 repository監査で、現行の正式導線として確認できたページ：
 
-この3URLは現行 `sitemap.xml` 上のindexable候補。
-Phase 1監査でcanonical・内部リンク・公開状態を照合して正式setを確定するまでは「暫定」とする。
+| Status | Page | Source | Public URL | Evidence |
+|---|---|---|---|---|
+| CANONICAL | TOP | `index.html` | `/yurayura/` | sitemap / header / footer |
+| CANONICAL | Concept | `concept.html` | `/yurayura/concept.html` | sitemap / header / footer |
+| CANONICAL | Gallery | `gallery.html` | `/yurayura/gallery.html` | sitemap / header / footer |
+
+header / footerはこの3ページだけを主要ナビゲーションとしている。
 
 ## 3. Classification
-
-監査では以下の分類を使用する。
 
 | Status | Meaning |
 |---|---|
@@ -36,38 +36,79 @@ UNKNOWNは削除しない。
 
 ## 4. Other root HTML files
 
-以下は現在リポジトリに存在するが、現行sitemapには含まれていない。
-
-| File | Observed purpose | Status |
+| File | Classification | Evidence / action |
 |---|---|---|
-| `artist.html` | 作家関連ページ | 要監査。正式公開対象か確認 |
-| `gust.html` | 募集系ページ | legacy / status要確認 |
-| `github-manual.html` | GitHub操作マニュアル | 開発資料候補。公開必要性を監査 |
-| `test.html` | test | 開発用候補。参照確認後に整理 |
-| `top.html` | 小規模な旧TOP候補 | legacy候補。参照確認後に整理 |
+| `artist.html` | LEGACY candidate | titleは「出展者募集」。sitemap・header・footer・現行HTMLから内部参照なし。削除/redirectは公開URL確認後 |
+| `gust.html` | LEGACY candidate | titleは「施術参加者募集」。sitemap・header・footer・現行HTMLから内部参照なし。削除/redirectは公開URL確認後 |
+| `top.html` | LEGACY redirect | `noindex,follow`、canonicalはTOP、即時 `./` redirect |
+| `test.html` | DEV_ONLY | Fog Hole試作用コード。内部参照なし |
+| `github-manual.html` | DEV_ONLY | GitHubコマンド手順ページ。公式サイト機能ではなく内部参照なし |
 
-削除・redirect・noindex判断はリンク参照と公開状態を確認してから行う。
+`top.html` 以外の上記HTMLではrepository検索上 `noindex` を確認できない。
+GitHub Pagesの配信sourceがmain/rootである場合、URLを直接知っている利用者・crawlerから到達可能な可能性があるため、後続SEO/cleanupで扱う。
 
 ## 5. Non-page root items
 
-| Path | Role / action |
-|---|---|
-| `assets/` | 本番CSS / JS / images / parts |
-| `backups/` | バックアップ候補。監査前削除禁止 |
-| `reports/` | 過去監査資料候補。必要性を監査 |
-| `README.md` | 現在は最小説明 |
-| `memo.md` | 旧pushメモ。将来整理候補 |
-| `robots.txt` | Project Site配下のためhost-root authoritative robotsではない |
-| `sitemap.xml` | 現在3URL |
-| `.DS_Store` | 不要候補 |
-| `assets/.DS_Store` | 不要候補 |
+| Path | Classification | Role / action |
+|---|---|---|
+| `assets/` | SUPPORTING | 本番CSS / JS / images / parts |
+| `backups/` | BACKUP + SUPPORTING混在 | 原則backup。ただし現役依存あり。下記参照 |
+| `reports/` | DEV_ONLY / historical | 旧監査資料6件、約442KB。runtime参照なし |
+| `README.md` | DEV_ONLY documentation | 最小説明 |
+| `memo.md` | LEGACY documentation | 旧pushメモ |
+| `robots.txt` | SUPPORTING | Project Site配下。host-root authoritative robotsではない |
+| `sitemap.xml` | SUPPORTING | canonical 3URL |
+| root `.DS_Store` | cleanup candidate | OS metadata |
+| `assets/.DS_Store` | cleanup candidate | OS metadata |
 
-## 6. Shared assets
+## 6. Critical active backup dependency
+
+`assets/css/main.css` の先頭で次を読み込んでいる：
+
+`@import url("../../backups/20260912_before_hamburger_menu_fix/main.css");`
+
+そのため、
+`backups/20260912_before_hamburger_menu_fix/main.css`
+は名前上はbackupでも、現在は **SUPPORTING / runtime dependency**。
+
+同directory内の他ファイルまで現役とは限らない。
+この依存をcanonical CSSへ移すまでは、当該directoryを削除しない。
+
+他の `../../backups/` runtime参照はrepository検索では確認されていない。
+
+## 7. Repository inventory snapshot
+
+2026-09-22時点：
+
+- root HTML: 8 files
+- root directories: `assets/`, `backups/`, `reports/`
+- `assets/css/`: 19 CSS files / 約98.8KB
+- `assets/js/`: 12 JS files / 約50.1KB
+- `assets/img/`: 26 files + 1 directory / 約54.2MB
+- `backups/`: 8 backup directories
+- `reports/`: 6 files / 約442KB
+- branches: `main`, `perf-ui-improvements-20260909`
+
+画像領域は容量が大きく、Phase 5 performance auditの主要対象。
+
+## 8. Shared parts
+
+### Header / Footer
+
+`assets/parts/header.html`  
+`assets/parts/footer.html`
+
+`assets/js/allmenu.js` がfetchして挿入する。
+
+正式ナビゲーション：
+- TOP
+- CONCEPT
+- GALLERY
 
 ### CSS
 `assets/css/`
 
-現行TOPで確認できる主なCSS：
+TOPの主な構成：
 - `reset.css`
 - `menu-style.css`
 - `main.css`
@@ -79,7 +120,7 @@ UNKNOWNは削除しない。
 - `fog-hole.css`
 - `fv-animation.css`
 
-Galleryには追加で複数のGallery専用CSSが存在する。
+Galleryは複数のGallery専用CSSを追加読込している。
 統合前にcascade / override順を監査する。
 
 ### JavaScript
@@ -93,15 +134,13 @@ Galleryには追加で複数のGallery専用CSSが存在する。
 - Gallery filter / modal
 - FAQ
 - form
-- custom font / cursor related behavior
+- custom cursor / typography
 
-CDN：
+TOP CDN：
 - Three.js r134
 - Vanta Fog
 
-## 7. TOP section map
-
-現行 `index.html` の主要構成：
+## 9. TOP section map
 
 1. Header
 2. Fog / FV
@@ -112,11 +151,7 @@ CDN：
 7. Access
 8. Footer
 
-変更時はsection anchor、header/footer導線、mobile layoutを同時確認する。
-
-## 8. Gallery map
-
-現行 `gallery.html`：
+## 10. Gallery map
 
 - H1 Gallery
 - 作家と作品
@@ -132,7 +167,7 @@ CDN：
 Galleryの作品データ更新では、
 表示カード・filter値・modal内容・alt・プロフィールをセットで確認する。
 
-## 9. URL / Path Rule
+## 11. URL / Path Rule
 
 GitHub Pages Project Siteのbase pathは `/yurayura/`。
 
@@ -143,7 +178,7 @@ absolute pathを使う場合はbase path欠落に注意する。
 - GitHub Pages public URL
 の3点で確認する。
 
-## 10. Update Rule
+## 12. Update Rule
 
 ページ追加・削除・rename時は必ず以下を更新する。
 
@@ -152,4 +187,5 @@ absolute pathを使う場合はbase path欠落に注意する。
 - header / footer
 - canonical / OGP URL
 - internal links
+- `AUDIT_LOG.md`（監査を伴う場合）
 - `ROADMAP.md`（必要な場合）
