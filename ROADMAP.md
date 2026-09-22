@@ -14,10 +14,20 @@ Evidence first.
 - [x] DESIGN_SYSTEM.md
 - [x] QA_CHECKLIST.md
 - [x] ROADMAP.md
+- [x] AUDIT_LOG.md
 
 ## Phase 1 - Baseline / Repository Audit
 
-### Priority 1
+### Priority 1 — repository / publication truth
+
+完了条件：
+- 正式公開routeが確定している
+- root HTMLと主要directoryが分類済み
+- sitemapとの差分が説明できる
+- 削除候補と「削除禁止 / 要確認」が分離されている
+- 結果が `SITE_MAP.md` と `AUDIT_LOG.md` に反映されている
+
+この段階ではファイル削除・URL変更・大規模CSS整理を行わない。
 - [ ] 現在のGitHub Pages公開source / branch設定を確認
 - [ ] 全公開routeを確定
 - [ ] sitemap 3URLと実際の公開ページの差分を監査
@@ -26,7 +36,7 @@ Evidence first.
 - [ ] root / assets配下の `.DS_Store` を削除候補として確認
 - [ ] source file inventoryを作成
 
-### Visual baseline
+### Priority 2 — visual / runtime baseline
 - [ ] TOP baseline 1440 / 390
 - [ ] Concept baseline 1440 / 390
 - [ ] Gallery baseline 1440 / 390
