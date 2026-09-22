@@ -144,3 +144,23 @@ Galleryは作品閲覧を主役にする。
 を残す。
 
 「新しい方が派手」という理由だけで採用しない。
+
+
+## 13. User-editable variables
+
+最終調整でユーザーが直接変更する値は、
+原則 `assets/css/user-settings.css` に集約する。
+
+カテゴリ：
+- Color
+- Typography
+- Font size
+- Section spacing
+- Header / Footer
+- Button
+- Safe motion duration
+
+構造を壊しやすい `position`、`z-index`、transform、modal geometry等は
+user settingsへ安易に公開しない。
+
+詳細は `CSS_VARIABLES_GUIDE.md` を参照。
