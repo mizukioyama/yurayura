@@ -8,7 +8,14 @@
 - [ ] Before screenshot / baselineを確保
 - [ ] ROADMAPの対象タスクを確認
 
-## 2. Build / Static Integrity
+## 2. Source / Publication Integrity
+
+- [ ] 編集対象がCANONICAL sourceである
+- [ ] legacy / backupを正本として編集していない
+- [ ] sitemap / canonical / internal linkの役割と矛盾しない
+- [ ] 同じ展示情報が複数箇所にある場合は値を照合
+
+## 3. Build / Static Integrity
 
 現在は静的サイトとして、少なくとも以下を確認する。
 
@@ -19,7 +26,7 @@
 - [ ] CSP違反が重要機能を止めていない
 - [ ] GitHub Pages public URLで同じ結果
 
-## 3. Required Viewports
+## 4. Required Viewports
 
 重要変更：
 - [ ] 1440
@@ -35,7 +42,7 @@
 - [ ] 768
 - [ ] 390
 
-## 4. Layout
+## 5. Layout
 
 - [ ] horizontal overflowなし
 - [ ] 意図しない重なりなし
@@ -46,7 +53,7 @@
 - [ ] button / linkが画面外へ出ない
 - [ ] fixed / absolute要素が本文を隠さない
 
-## 5. TOP
+## 6. TOP
 
 - [ ] FVが表示される
 - [ ] fog / boundaryが意図通り
@@ -58,7 +65,7 @@
 - [ ] Google Map
 - [ ] footer
 
-## 6. Concept
+## 7. Concept
 
 - [ ] H1 / heading hierarchy
 - [ ] 本文可読性
@@ -66,7 +73,7 @@
 - [ ] TOPへ戻れる
 - [ ] mobile wrapping
 
-## 7. Gallery
+## 8. Gallery
 
 - [ ] Artist filter
 - [ ] Genre filter
@@ -85,7 +92,7 @@
 - [ ] modal中body scroll制御
 - [ ] mobileで作品が見切れない
 
-## 8. Contact
+## 9. Contact
 
 本番送信を避け、可能な限りmockで確認する。
 
@@ -99,7 +106,7 @@
 - [ ] modal close
 - [ ] duplicate submit防止
 
-## 9. Event Facts
+## 10. Event Facts
 
 公開前に再確認：
 
@@ -115,7 +122,7 @@
 - [ ] 問い合わせ先
 - [ ] 出展者名
 
-## 10. SEO
+## 11. SEO
 
 indexable pageごと：
 - [ ] unique title
@@ -131,7 +138,7 @@ indexable pageごと：
 - [ ] internal incoming link
 - [ ] no accidental noindex
 
-## 11. Accessibility
+## 12. Accessibility
 
 - [ ] keyboard navigation
 - [ ] focus visible
@@ -144,7 +151,7 @@ indexable pageごと：
 - [ ] touch target
 - [ ] reduced motion
 
-## 12. Motion / Performance
+## 13. Motion / Performance
 
 - [ ] animationが操作をブロックしない
 - [ ] reduced motion
@@ -156,7 +163,7 @@ indexable pageごと：
 - [ ] image loading確認
 - [ ] mobile performance確認
 
-## 13. After Change
+## 14. After Change
 
 - [ ] Before / Afterを比較
 - [ ] 意図した差分だけ
