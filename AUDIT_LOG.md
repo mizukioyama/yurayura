@@ -126,3 +126,63 @@ Performance optimization is deferred until baseline measurements are captured.
 
 Phase 1 Priority 2:
 visual / runtime baselineを取得し、その後にactive backup CSS dependency解消を安全に行う。
+
+
+---
+
+## 2026-09-22 — Phase 1 Priority 2 static runtime baseline
+
+Status: STARTED
+
+### TOP / `index.html`
+
+- CSS references: 10
+- JS references: 10
+- Three.js CDN + Vanta Fog CDN are loaded
+- `fog-hole` canvas is present
+- local animation/runtime includes FV animation, fog-hole, liquid button, custom/shared menu behavior
+- main background uses `bg-img.webp`
+- Artists background uses `artists-bg.webp`
+- canonical HTML itself does not contain a `prefers-reduced-motion` guard
+- Google Map iframe uses lazy loading
+
+### Concept / `concept.html`
+
+- CSS references: 8
+- JS references: 7
+- Three.js CDN + Vanta Fog CDN are loaded
+- `fog-hole` canvas is present
+- canonical HTML itself does not contain a `prefers-reduced-motion` guard
+- artwork images are referenced from the page
+
+### Gallery / `gallery.html`
+
+- CSS references: 9
+- JS references: 3
+- no Three.js / Vanta CDN on this page
+- no canvas in the canonical HTML
+- 4 current artwork card image references
+- Gallery-specific CSS is split across 5 files in addition to shared CSS
+- card images in the current HTML do not use `loading="lazy"`
+- canonical HTML itself does not contain a `prefers-reduced-motion` guard
+
+### Baseline implications
+
+1. TOP / Concept are the motion-heavy canonical pages.
+2. Gallery is lighter in JS but has fragmented CSS and image-loading opportunities.
+3. `assets/css/main.css` remains coupled to a backup CSS file; do not normalize it before visual evidence exists.
+4. reduced-motion support must be audited in external CSS/JS before concluding it is absent globally.
+5. Visual screenshots / runtime measurements remain OPEN because the current connector cannot execute the site in a browser.
+
+### Next execution step
+
+Capture 1440px and 390px screenshots for TOP / Concept / Gallery and record:
+- horizontal overflow
+- console errors
+- resource errors
+- header/footer/menu state
+- text wrapping
+- animation state
+- Gallery filter/modal state
+
+After the baseline exists, normalize the active backup CSS dependency before any broad cleanup.
