@@ -16,9 +16,25 @@ Base URL:
 | Concept | `concept.html` | `/yurayura/concept.html` | 展示コンセプト |
 | Gallery | `gallery.html` | `/yurayura/gallery.html` | 作家・作品 |
 
-この3URLを現時点のindexable setの基準として扱い、追加・削除時はSEO監査を行う。
+この3URLは現行 `sitemap.xml` 上のindexable候補。
+Phase 1監査でcanonical・内部リンク・公開状態を照合して正式setを確定するまでは「暫定」とする。
 
-## 3. Other root HTML files
+## 3. Classification
+
+監査では以下の分類を使用する。
+
+| Status | Meaning |
+|---|---|
+| CANONICAL | 正式な公開・編集対象 |
+| SUPPORTING | 正式ページを支えるasset / component |
+| LEGACY | 旧ページ・旧実装 |
+| DEV_ONLY | 開発・検証専用 |
+| BACKUP | バックアップ |
+| UNKNOWN | 証拠不足・要確認 |
+
+UNKNOWNは削除しない。
+
+## 4. Other root HTML files
 
 以下は現在リポジトリに存在するが、現行sitemapには含まれていない。
 
@@ -32,7 +48,7 @@ Base URL:
 
 削除・redirect・noindex判断はリンク参照と公開状態を確認してから行う。
 
-## 4. Non-page root items
+## 5. Non-page root items
 
 | Path | Role / action |
 |---|---|
@@ -46,7 +62,7 @@ Base URL:
 | `.DS_Store` | 不要候補 |
 | `assets/.DS_Store` | 不要候補 |
 
-## 5. Shared assets
+## 6. Shared assets
 
 ### CSS
 `assets/css/`
@@ -83,7 +99,7 @@ CDN：
 - Three.js r134
 - Vanta Fog
 
-## 6. TOP section map
+## 7. TOP section map
 
 現行 `index.html` の主要構成：
 
@@ -98,7 +114,7 @@ CDN：
 
 変更時はsection anchor、header/footer導線、mobile layoutを同時確認する。
 
-## 7. Gallery map
+## 8. Gallery map
 
 現行 `gallery.html`：
 
@@ -116,7 +132,7 @@ CDN：
 Galleryの作品データ更新では、
 表示カード・filter値・modal内容・alt・プロフィールをセットで確認する。
 
-## 8. URL / Path Rule
+## 9. URL / Path Rule
 
 GitHub Pages Project Siteのbase pathは `/yurayura/`。
 
@@ -127,7 +143,7 @@ absolute pathを使う場合はbase path欠落に注意する。
 - GitHub Pages public URL
 の3点で確認する。
 
-## 9. Update Rule
+## 10. Update Rule
 
 ページ追加・削除・rename時は必ず以下を更新する。
 
