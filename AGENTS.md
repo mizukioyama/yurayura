@@ -25,7 +25,18 @@
 6. `ROADMAP.md`
 
 内容が競合した場合の優先順位は、
-ユーザーの最新指示 > MASTER_SPEC > DESIGN_SYSTEM / SITE_MAP > ROADMAP > 既存実装。
+ユーザーの最新指示 > 確認済み事実 > MASTER_SPEC > DESIGN_SYSTEM / SITE_MAP > ROADMAP > 既存実装。
+
+### Evidence hierarchy
+事実確認では以下を区別する。
+1. ユーザーが明示的に確定した情報
+2. 現在の公式公開ページに掲載されている情報
+3. `main` の実装
+4. 過去ファイル / backup / report
+5. 外部情報
+
+「現在掲載されている」ことと「正しいこと」は同一視しない。
+開催情報・作家情報などに不一致がある場合は、推測で統一せず差分を報告する。
 
 ## 3. Loop Engineering
 
@@ -145,3 +156,27 @@ Discover → Plan → Execute → Verify → Iterate
 を報告する。
 
 必要に応じて `ROADMAP.md` を更新する。
+監査で得た証拠・分類・判断理由は `AUDIT_LOG.md` に記録し、ROADMAPを監査メモで肥大化させない。
+
+## 10. Status Classification
+
+ファイル・URL監査では原則として以下の状態を使う。
+
+- `CANONICAL`：正式な公開・編集対象
+- `SUPPORTING`：正式ページを支えるasset / component / data
+- `LEGACY`：旧実装。公開維持理由がなければ整理候補
+- `DEV_ONLY`：テスト・手順・開発専用
+- `BACKUP`：履歴保管用。Git履歴で代替可能か確認
+- `UNKNOWN`：証拠不足。削除禁止
+
+## 11. Definition of Done
+
+タスク完了は「修正した」ではなく、次を満たした状態とする。
+
+- 変更目的を満たす
+- 共有部分へのregressionがない
+- 必要なviewportで確認済み
+- console / resource errorに新規問題がない
+- 公開URLで確認できる
+- 文書と実装が矛盾していない
+- 残る不確実性を明記している
