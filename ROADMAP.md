@@ -30,11 +30,11 @@ Evidence first.
 この段階ではファイル削除・URL変更・大規模CSS整理を行わない。
 - [ ] 現在のGitHub Pages公開source / branch設定を確認
 - [ ] 全公開routeを確定
-- [ ] sitemap 3URLと実際の公開ページの差分を監査
-- [ ] `artist.html` / `gust.html` / `test.html` / `top.html` / `github-manual.html` の参照・公開状態を分類
-- [ ] `backups/` / `reports/` の必要性を監査
-- [ ] root / assets配下の `.DS_Store` を削除候補として確認
-- [ ] source file inventoryを作成
+- [x] sitemap 3URLとrepository内の主要導線差分を監査
+- [x] `artist.html` / `gust.html` / `test.html` / `top.html` / `github-manual.html` のrepository参照状態を分類
+- [x] `backups/` / `reports/` の依存・役割を監査
+- [x] root / assets配下の `.DS_Store` を削除候補として確認
+- [x] source file inventoryを作成
 
 ### Priority 2 — visual / runtime baseline
 - [ ] TOP baseline 1440 / 390
@@ -137,6 +137,6 @@ Evidence first.
 **Phase 1 - Baseline / Repository Audit**
 
 最初の作業：
-現在の公開route、source、legacy / test / backupファイルを正確に分類する。
+Priority 2のvisual / runtime baselineを取得する。特にactive backup CSS依存を変更する前の表示を証拠として残す。
 
-この分類が終わるまで、大規模なCSS統合・ファイル削除・URL変更は行わない。
+baseline取得前はactive backup CSSの移動、CSS統合、legacyファイル削除を行わない。
