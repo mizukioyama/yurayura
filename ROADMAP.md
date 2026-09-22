@@ -140,3 +140,18 @@ Evidence first.
 Priority 2のvisual / runtime baselineを取得する。特にactive backup CSS依存を変更する前の表示を証拠として残す。
 
 baseline取得前はactive backup CSSの移動、CSS統合、legacyファイル削除を行わない。
+
+
+## Final Handoff - User Adjustment Environment
+
+- [x] CSS_VARIABLES_GUIDE.md の初版を作成
+- [ ] Visual baseline後に `assets/css/user-settings.css` を作成
+- [ ] 色をsemantic variableへ集約
+- [ ] フォントをsemantic variableへ集約
+- [ ] 本文・見出し・ボタンサイズを調整用variableへ集約
+- [ ] section左右余白・主要spacingを調整用variableへ集約
+- [ ] Header / Footer主要値を調整用variableへ集約
+- [ ] animation durationの安全な項目をvariable化
+- [ ] 旧変数aliasを段階的に整理
+- [ ] CSS_VARIABLES_GUIDE.mdを最終実装と一致させる
+- [ ] ユーザーがuser-settings.css中心で最終調整できることを確認
