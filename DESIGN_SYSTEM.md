@@ -126,7 +126,15 @@ Galleryは作品閲覧を主役にする。
 - contrast
 - reduced motion
 
-## 11. Design Change Gate
+## 11. CSS / Override Policy
+
+- 共通ルールは可能な限り共有CSSへ置く。
+- ページ固有差分はページスコープを付ける。
+- `!important`、日時入りcache-busting、後置きoverrideを増やす前に既存cascadeを確認する。
+- 同じプロパティの上書きを新しいCSSファイルで積み重ねる方法を常態化させない。
+- レイアウト修正時は「正しいsource」を先に特定し、生成物・旧backup・legacy CSSを直接正本扱いしない。
+
+## 12. Design Change Gate
 
 大きなビジュアル変更を行う前に、
 1. 現在のスクリーンショット
