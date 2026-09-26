@@ -1,5 +1,7 @@
 # ゆらゆら Design System
 
+この資料は視覚・レイアウト・animationのルールを定める。企画目的・機能仕様は `YURAYURA_MASTER_SPEC.md` を正本とし、ここでは重複して定義しない。
+
 ## 1. Design Principle
 
 ゆらゆらのデザインは、

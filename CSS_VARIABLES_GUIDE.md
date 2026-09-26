@@ -1,150 +1,72 @@
-# ゆらゆら CSS Variables Guide
+# ゆらゆら CSS調整ガイド
 
 ## 目的
 
-このファイルは、最終調整をユーザー自身で行うためのCSS編集ガイド。
+この資料は、mizukiさん本人が最終的なレイアウト・サイズ・余白・フォントサイズを調整するときの案内です。プロジェクトルールと最終調整の開始条件は `AGENTS.md`、視覚基準は `DESIGN_SYSTEM.md` を参照してください。
 
-最終的には主要な調整値を `assets/css/user-settings.css` に集約する。
-それまでは、下記の「現在の場所」を参照して変更する。
+`assets/css/user-settings.css` は既にあり、TOP・Concept・Galleryでページ固有CSSの後に読み込まれています。ただし、現在集約されているのは主に文字サイズです。色・font family・section幅・Gallery形状などはまだ一か所に集約されていません。
+
+技術cleanup、runtime問題、CSS依存、404、security、repository整理が終わり、`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT` と引き継がれるまでは、最終的な見た目調整を始めないでください。現在残っている構造上の例外を、調整可能な共通変数と誤認しないための注意を含みます。
 
 ---
 
-## 1. 色
+## 1. 共通設定と色
 
-現在の基準値は、
-`backups/20260912_before_hamburger_menu_fix/main.css`
-の `:root` にある。
+現行の共通色変数 `--color-txt`、`--color-bg`、`--color-shadow-green` は、`assets/css/main.css` がruntimeでimportしているbackup CSS側にあります。現在の実効値を支える依存が残っているため、backup CSSを直接編集したり、ここから変更を指示したりしないでください。CSS依存解消の作業で正式CSSへ移し、表示維持を確認してから調整入口を整理します。
 
-```css
---color-txt: #303a05;
---color-bg: #f3f3ed;
---color-shadow-green: #3c4606;
-```
+現時点で `user-settings.css` に共通色の調整変数はありません。色調整はまだ安全な共通設定として公開されていません。
 
-意味：
+---
 
-| 現在の変数 | 意味 | 将来の分かりやすい名前 |
+## 2. Typography / font size
+
+現在の共通文字サイズ設定は `assets/css/user-settings.css` にあります。
+
+| 調整したい箇所 | 変数 | 用途・注意 |
 |---|---|---|
-| `--color-txt` | 基本文字色・線色 | `--color-text` |
-| `--color-bg` | 基本背景色 | `--color-background` |
-| `--color-shadow-green` | Footerなどの濃色 | `--color-footer-background` |
+| 本文 | `--type-body-size` | 既存の `--responsive-copy-size` aliasから参照 |
+| 見出し2 | `--type-heading-2-size` | `--responsive-heading-2` aliasから参照 |
+| 見出し3 | `--type-heading-3-size` | `--responsive-heading-3` aliasから参照 |
+| 小見出し | `--type-small-heading-size` | `--responsive-small-heading` aliasから参照 |
+| button | `--type-button-size` | 既存の `--button-font-size` aliasから参照 |
+| Header / Footerのロゴ | `--type-menu-logo-size` | desktop / mobile共通のlogo selectorへ適用 |
+| Header / Footerの補助文字 | `--type-menu-meta-size` | lead、date、link等の共通文字へ適用 |
 
-例：
+`clamp()`で画面幅に応じて変化する値は、最小値・中間の計算式・最大値をまとめて確認してください。本文サイズなどを変えるときは、関連するaliasを別々に上書きせず、対応する `--type-*` を確認します。
 
-```css
---color-text: #303a05;
---color-background: #f3f3ed;
---color-footer-background: #3c4606;
-```
+font familyの `--font-base`、`--font-jp`、`--font-btn` は現在backup CSS側にあります。フォントの変更はHTMLのfont loadと共に監査が必要で、`user-settings.css`から安全に調整できる状態ではありません。
 
----
-
-## 2. フォント
-
-現在：
-
-```css
---font-base: "Shippori Mincho", serif;
---font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
---font-btn: "Akaya Kanadaka", system-ui;
-```
-
-意味：
-
-| 変数 | 用途 |
-|---|---|
-| `--font-base` | 本文・基本フォント |
-| `--font-jp` | ロゴ・和文装飾 |
-| `--font-btn` | ボタン等 |
-
-フォント名を変更する場合は、HTML側でそのフォントが読み込まれていることも確認する。
+フォームの `.modal-title`、`.modal-close`、`.send-btn` は `user-settings.css` 内の個別指定です。`.modal-btn` は小見出し変数を使います。フォーム文字サイズを調整するときは、この例外も個別に確認してください。
 
 ---
 
-## 3. 本文文字サイズ
+## 3. Spacing / section width
 
-現在の本文共通サイズは主に：
+TOPとConceptの一部では `--top-section-inline-padding` が使われています。宣言元は `assets/css/top-legacy.css` と `assets/css/concept.css`、Artists領域では `assets/css/top-artists.css` の `--artists-side-padding` がこの値を参照します。これは `user-settings.css` の共通設定ではなく、宣言がページ側に分かれています。最終調整時も、片方だけ変えてページ間にずれを作らないよう、両ページとArtists領域への影響を確認してください。
 
-```css
---responsive-copy-size
-```
-
-で管理されている。
-
-現在は画面幅ごとに `clamp()` が設定されているため、
-単純に1か所だけ変えると全画面幅へ反映されない場合がある。
-
-### clampの読み方
-
-```css
-clamp(12px, calc(1vw + 10px), 14px)
-```
-
-は、
-
-- 最小：12px
-- 画面幅に応じて変化
-- 最大：14px
-
-という意味。
-
-最終調整で文字サイズを固定したい場合は、
-
-```css
---responsive-copy-size: 14px;
-```
-
-のようにpxへ変更してよい。
-
-見た目を一定に保ちたい文字サイズはpx優先。
+現時点で全ページ共通のsection width / side padding変数はありません。共通設定に集約する作業はCSS依存解消後の別作業です。
 
 ---
 
-## 4. TOP / Conceptの左右余白
+## 4. Breakpoints
 
-現在：
+共通のbreakpoint変数はありません。実際の `@media` を対象stylesheetで確認してください。
 
-```css
---top-section-inline-padding: 54px;
-```
+- Header / Footer：`assets/css/menu-style.css`
+- TOP section / Artists：`assets/css/top-legacy.css`、`assets/css/top-artists.css`、`assets/css/top-sections.css`
+- Concept：`assets/css/concept.css`、`assets/css/concept-fv.css`
+- Gallery：`assets/css/gallery.css`、`assets/css/gallery-inline.css`、`assets/css/gallery-pc-restore.css`、`assets/css/gallery-category-pc.css`、`assets/css/gallery-label-fix.css`
+- Contact form：`assets/css/form.css`
 
-主な場所：
-- `assets/css/top-legacy.css`
-- `assets/css/concept.css`
-- `assets/css/top-artists.css` から参照
-
-この値を変更すると、
-TOP / Concept / Artists周辺の左右余白へ影響する。
-
-例：
-
-```css
---top-section-inline-padding: 44px;
-```
+breakpointやmedia queryの移動・統一は、画面の切替範囲を変えるruntime変更です。最終調整用の値として `user-settings.css` へ追加しないでください。
 
 ---
 
-## 5. ボタン文字サイズ
-
-`assets/css/liquid.css`
-
-```css
---button-font-size: clamp(12px, calc(0.45vw + 10.5px), 16px);
-```
-
-固定したい場合：
-
-```css
---button-font-size: 14px;
-```
-
----
-
-## 6. スマホHeader / Footer
+## 5. Header / Footer
 
 `assets/css/menu-style.css`
 
-767px以下で以下の変数が使われている。
+モバイル向けの位置・間隔・寸法変数は `assets/css/menu-style.css` 内で定義されています。
 
 | 変数 | 意味 |
 |---|---|
@@ -161,27 +83,30 @@ TOP / Concept / Artists周辺の左右余白へ影響する。
 | `--site-footer-padding-top` | Footer上余白 |
 | `--site-footer-padding-bottom` | Footer下余白 |
 
-### 例
-
-Headerを画面端から少し離す：
-
-```css
---site-nav-top: 20px;
---site-nav-side: 24px;
-```
-
-メニュー文字を大きくする：
-
-```css
---site-nav-meta-size: 14px;
---site-nav-logo-size: 16px;
-```
+`menu-style.css`にもモバイル用のlogo / meta文字サイズ変数がありますが、後から読み込まれる `user-settings.css` の共通selectorが文字サイズを指定します。文字サイズの入口は `--type-menu-logo-size` と `--type-menu-meta-size` です。位置、縦メニュー寸法、Footer余白は `menu-style.css` 側の設定です。desktopのHeader / Footerのlayout値は同ファイル内の直接指定が中心で、共通の安全な調整変数にはなっていません。
 
 ---
 
-## 7. 直接変更しない方がよいもの
+## 6. Gallery
 
-最終整理が終わるまでは、以下はユーザー調整対象にしない。
+Galleryには現在、調整専用の共通variable setはありません。表示領域ごとに次を確認します。
+
+| 対象 | 主なstylesheet |
+|---|---|
+| ページ全体、intro、filter、card、mobile layout | `assets/css/gallery.css` |
+| desktop / tablet / mobileのmodalとレイアウト例外 | `assets/css/gallery-inline.css` |
+| desktop表示の復元 | `assets/css/gallery-pc-restore.css` |
+| desktop category表示 | `assets/css/gallery-category-pc.css` |
+| category labelの例外 | `assets/css/gallery-label-fix.css` |
+| filter、pagination、modalの動作 | `assets/js/gallery.js` |
+
+modal座標、作品画像の比率、filter・paginationの動作は安全なユーザー設定値として公開されていません。これらを変える必要がある場合は、個別の変更とQAとして扱います。
+
+---
+
+## 7. 現在のユーザー設定範囲と例外
+
+現行の `user-settings.css` で調整用variableとして集約されているのは主にTypographyです。次の値は構造や複数ページへ影響するため、ユーザー設定として公開されるまでは直接変更しないでください。
 
 - `z-index`
 - `position: fixed / absolute`
@@ -191,62 +116,37 @@ Headerを画面端から少し離す：
 - `!important` の追加・削除
 - backup CSSへの依存関係
 - cache-busting query string
+- breakpoint / media query
+- 共通色・font familyを持つbackup CSS
+- Galleryのfilter / pagination / modal構造
 
-これらは複数ページへ影響する可能性が高い。
-
----
-
-## 8. 最終的な目標構成
-
-最終整理後は、ユーザーが基本的に次だけ触ればよい構成へ変更する。
-
-`assets/css/user-settings.css`
-
-イメージ：
-
-```css
-:root {
-  /* ===== 色 ===== */
-  --color-text: #303a05;
-  --color-background: #f3f3ed;
-  --color-footer-background: #3c4606;
-
-  /* ===== フォント ===== */
-  --font-body: "Shippori Mincho", serif;
-  --font-display: "ab-yuhitsukaisho", "Noto Serif JP", serif;
-  --font-button: "Akaya Kanadaka", system-ui;
-
-  /* ===== 文字サイズ ===== */
-  --font-body-size: 14px;
-  --font-button-size: 14px;
-
-  /* ===== レイアウト ===== */
-  --section-side-padding: 54px;
-
-  /* ===== アニメーション ===== */
-  --motion-fast: 0.25s;
-  --motion-normal: 0.4s;
-}
-```
-
-既存CSS側はこれらを参照する。
+layout・構造値を変える必要がある場合は、CSS調整ではなく技術変更として影響範囲と検証方法を先に決めます。
 
 ---
 
-## 9. 編集ルール
+## 8. 最終調整までの前提
 
-ユーザーが最後に調整するときは、原則：
+`user-settings.css` は調整入口として既に存在しますが、全カテゴリを集約した最終形ではありません。まだないvariableをこのガイドだけで作ったり、例示値をCSSへ追加したりしないでください。
 
-1. `user-settings.css` を変更
-2. ブラウザで確認
-3. 375 / 390 / 430 / 768 / 1024 / 1280 / 1440pxで確認
-4. 問題がある場合のみ個別CSSを見る
+技術cleanupとbackup CSS依存解消で、現在の見た目を維持したまま共通値を整理した後に、最終的な調整対象と安全な入口を再確認します。`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT` の引き継ぎ前に、デザイン値を変更しません。
 
-という流れにする。
+---
+
+## 9. 最終調整の進め方
+
+開始できる状態が明示された後、次の順で調整します。
+
+1. `user-settings.css` にある既存の調整用variableから対象を選ぶ。
+2. 変数で扱えないpage-specific exceptionは、該当stylesheetとcascadeを確認してから扱う。
+3. Desktop / mobileを含む `QA_CHECKLIST.md` のviewportと項目で確認する。
+4. 表示・文章の折り返し・共通Header / Footer・Gallery操作への影響を確認する。
+5. 未確認の見た目をPASSにせず、残った例外を引き継ぐ。
+
+HTML、JavaScript、backup CSS、animation、modal geometryの直接変更は、この調整ガイドの範囲外です。
 
 ## 10. 今後の移行方針
 
-Visual baseline取得後：
+CSS依存解消とbaseline比較を含む別の技術作業で、次の順に整理します。
 
 1. active backup CSSを正式なassets側へ移す
 2. semantic variableを新設
@@ -254,4 +154,6 @@ Visual baseline取得後：
 4. 全ページを新変数へ段階移行
 5. 表示差分ゼロを確認
 6. 旧変数・不要aliasを削除
-7. `user-settings.css` をユーザー最終調整の入口にする
+7. 全カテゴリの安全な調整variableと未集約の例外を確認し、`user-settings.css` を最終調整の入口として引き継げる状態にする
+
+この作業は見た目を変えない技術cleanupとして扱い、表示差分を確認するまではbackupを削除しません。
