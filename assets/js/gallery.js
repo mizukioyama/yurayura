@@ -115,7 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modalProfileName) modalProfileName.textContent = artist;
     if (modalProfile) modalProfile.textContent = profiles[artist] || `${artist}の作家プロフィールは準備中です。`;
     if (modalProfileImage) {
-      modalProfileImage.src = profileImages[artist] || image?.src || "";
+      const profileImageSrc = profileImages[artist] || image?.src;
+      if (profileImageSrc) modalProfileImage.src = profileImageSrc;
+      else modalProfileImage.removeAttribute("src");
       modalProfileImage.alt = `${artist} プロフィール画像（仮）`;
     }
     modalSlides?.querySelectorAll("button").forEach((button, i) => button.classList.toggle("is-active", i === modalIndex));
