@@ -15,17 +15,21 @@
 
 ## 2. Source of Truth
 
-作業開始前に次を読む。
+資料の正本は、内容ごとに次のように分ける。
 
-1. `AGENTS.md`
-2. `YURAYURA_MASTER_SPEC.md`
-3. `SITE_MAP.md`
-4. `DESIGN_SYSTEM.md`
-5. `QA_CHECKLIST.md`
-6. `ROADMAP.md`
+| Document | 正本とする内容 |
+|---|---|
+| `AGENTS.md` | 開発・変更・安全ルール |
+| `YURAYURA_MASTER_SPEC.md` | 企画・機能・恒久仕様 |
+| `DESIGN_SYSTEM.md` | 視覚・レイアウト・animation方針 |
+| `SITE_MAP.md` | ページ・URL・index・canonical・公開分類 |
+| `QA_CHECKLIST.md` | 検証基準・リリース前確認 |
+| `CSS_VARIABLES_GUIDE.md` | ユーザー本人が最終調整するためのCSS操作ガイド |
 
-内容が競合した場合の優先順位は、
-ユーザーの最新指示 > 確認済み事実 > MASTER_SPEC > DESIGN_SYSTEM / SITE_MAP > ROADMAP > 既存実装。
+作業開始時はこの資料を確認し、続いて `README.md` の参照順に従って対象作業に関係する正本を読む。
+`ROADMAP.md` と `AUDIT_LOG.md` は恒久仕様の正本ではなく、作業開始の必須資料にしない。
+
+判断が競合した場合は、ユーザーの最新指示と確認済み事実を優先し、続いて該当分野の正本を参照する。実装状態の確認では、実際のsource・配信ページ・設定を照合し、「現在掲載されている」ことだけで事実の正しさを断定しない。
 
 ### Evidence hierarchy
 事実確認では以下を区別する。
@@ -155,8 +159,7 @@ Discover → Plan → Execute → Verify → Iterate
 - 次の優先作業
 を報告する。
 
-必要に応じて `ROADMAP.md` を更新する。
-監査で得た証拠・分類・判断理由は `AUDIT_LOG.md` に記録し、ROADMAPを監査メモで肥大化させない。
+恒久的な判断は該当分野の正本へ反映する。一時監査の証拠・作業状況・レビュー資料はrepo外のlocal reportとして管理し、Public repositoryへ継続蓄積しない。Gitの変更履歴はcommitで確認する。
 
 ## 10. Status Classification
 
@@ -184,15 +187,12 @@ Discover → Plan → Execute → Verify → Iterate
 
 ## 12. User Final Adjustment Handoff
 
-AI側の実装・監査が完了した後、ユーザーが最終デザイン調整を行う。
+最終的なレイアウト・サイズ・余白・フォントサイズ等の視覚調整はユーザー本人が行う。
 
-そのため最終整理では：
-- 主要な調整値をsemantic CSS variablesへ集約する
-- ユーザーが触る入口を `assets/css/user-settings.css` に統一する
-- 意味不明な略称だけを残さない
-- 各変数に日本語コメントを付ける
-- hard-coded repeated valuesを可能な範囲で変数化する
-- レイアウト構造用の危険な値と、調整用の安全な値を分離する
-- `CSS_VARIABLES_GUIDE.md` を最終状態へ更新する
+その前に、cleanup、runtime問題、CSS依存、404、security、repository整理など、技術作業によって表示が変わり得る作業を完了させる。技術作業による視覚変化の可能性がほぼなくなった時点で、
 
-既存値を維持し、Visual Regressionを確認しながら段階移行する。
+`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT`
+
+と報告して停止する。この状態を最終調整完了とは扱わない。以後、ユーザーから依頼されない限り、AI側で最終デザインを変更しない。
+
+最終調整用のCSS変数・未集約の例外・現在のruntime依存は `CSS_VARIABLES_GUIDE.md` を正本として確認する。既存値を維持した技術移行が必要な場合は、別途before / afterを比較してから行う。

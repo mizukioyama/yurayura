@@ -1,5 +1,8 @@
 # ゆらゆら Site / File Map
 
+この資料は、ページ構成、公開分類、index状態、canonical、sitemap掲載URLの正本。
+SEO方針は `YURAYURA_MASTER_SPEC.md`、検証方法は `QA_CHECKLIST.md` を参照する。
+
 ## 1. Public Site
 
 Base URL:
@@ -9,17 +12,22 @@ Base URL:
 Repository: `mizukioyama/yurayura`  
 Default branch: `main`
 
-## 2. Canonical page set
+## 2. Page, index, and canonical source of truth
 
-2026-09-22のPhase 1 repository監査で、現行の正式導線として確認できたページ：
+GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人がアクセスできる。`noindex` は検索index向けの指定であり、認証・アクセス制限ではない。
 
-| Status | Page | Source | Public URL | Evidence |
-|---|---|---|---|---|
-| CANONICAL | TOP | `index.html` | `/yurayura/` | sitemap / header / footer |
-| CANONICAL | Concept | `concept.html` | `/yurayura/concept.html` | sitemap / header / footer |
-| CANONICAL | Gallery | `gallery.html` | `/yurayura/gallery.html` | sitemap / header / footer |
+| Page / source | Purpose | Classification / availability | Index state | Canonical | Sitemap |
+|---|---|---|---|---|---|
+| TOP / `index.html` | 企画と開催情報の公式入口 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/` | included |
+| Concept / `concept.html` | 企画コンセプトの公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/concept.html` | included |
+| Gallery / `gallery.html` | 作家と作品の公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/gallery.html` | included |
+| `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
+| `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
+| `github-manual.html` | GitHubコマンドの開発用手順 | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
+| `test.html` | Fog Holeの検証用ページ | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
+| `top.html` | TOPへ転送する旧URL | LEGACY / public redirect | `noindex,follow` | `https://mizukioyama.github.io/yurayura/` | excluded |
 
-header / footerはこの3ページだけを主要ナビゲーションとしている。
+正式な検索対象はCANONICALの3ページ。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
 
 ## 3. Classification
 
@@ -34,18 +42,9 @@ header / footerはこの3ページだけを主要ナビゲーションとして�
 
 UNKNOWNは削除しない。
 
-## 4. Other root HTML files
+## 4. Legacy and development pages
 
-| File | Classification | Evidence / action |
-|---|---|---|
-| `artist.html` | LEGACY candidate | titleは「出展者募集」。sitemap・header・footer・現行HTMLから内部参照なし。削除/redirectは公開URL確認後 |
-| `gust.html` | LEGACY candidate | titleは「施術参加者募集」。sitemap・header・footer・現行HTMLから内部参照なし。削除/redirectは公開URL確認後 |
-| `top.html` | LEGACY redirect | `noindex,follow`、canonicalはTOP、即時 `./` redirect |
-| `test.html` | DEV_ONLY | Fog Hole試作用コード。内部参照なし |
-| `github-manual.html` | DEV_ONLY | GitHubコマンド手順ページ。公式サイト機能ではなく内部参照なし |
-
-`top.html` 以外の上記HTMLではrepository検索上 `noindex` を確認できない。
-GitHub Pagesの配信sourceがmain/rootである場合、URLを直接知っている利用者・crawlerから到達可能な可能性があるため、後続SEO/cleanupで扱う。
+Section 2の表がroot HTML全件の公開分類・index状態・canonical・sitemap状態の正本。legacy pageの削除や転送は、公開URLとHTML/CSS/JavaScriptからの参照を別途確認してから判断する。
 
 ## 5. Non-page root items
 
@@ -53,13 +52,8 @@ GitHub Pagesの配信sourceがmain/rootである場合、URLを直接知って�
 |---|---|---|
 | `assets/` | SUPPORTING | 本番CSS / JS / images / parts |
 | `backups/` | BACKUP + SUPPORTING混在 | 原則backup。ただし現役依存あり。下記参照 |
-| `reports/` | DEV_ONLY / historical | 旧監査資料6件、約442KB。runtime参照なし |
-| `README.md` | DEV_ONLY documentation | 最小説明 |
-| `memo.md` | LEGACY documentation | 旧pushメモ |
 | `robots.txt` | SUPPORTING | Project Site配下。host-root authoritative robotsではない |
-| `sitemap.xml` | SUPPORTING | canonical 3URL |
-| root `.DS_Store` | cleanup candidate | OS metadata |
-| `assets/.DS_Store` | cleanup candidate | OS metadata |
+| `sitemap.xml` | SUPPORTING | indexable URLはこの資料の表と一致させる |
 
 ## 6. Critical active backup dependency
 
@@ -76,20 +70,9 @@ GitHub Pagesの配信sourceがmain/rootである場合、URLを直接知って�
 
 他の `../../backups/` runtime参照はrepository検索では確認されていない。
 
-## 7. Repository inventory snapshot
+## 7. Content and visual structure
 
-2026-09-22時点：
-
-- root HTML: 8 files
-- root directories: `assets/`, `backups/`, `reports/`
-- `assets/css/`: 19 CSS files / 約98.8KB
-- `assets/js/`: 12 JS files / 約50.1KB
-- `assets/img/`: 26 files + 1 directory / 約54.2MB
-- `backups/`: 8 backup directories
-- `reports/`: 6 files / 約442KB
-- branches: `main`, `perf-ui-improvements-20260909`
-
-画像領域は容量が大きく、Phase 5 performance auditの主要対象。
+各ページの企画・機能上の役割は `YURAYURA_MASTER_SPEC.md`、視覚ルールは `DESIGN_SYSTEM.md`、確認項目は `QA_CHECKLIST.md` を参照する。この資料では本文構成や視覚仕様を重複して定義しない。
 
 ## 8. Shared parts
 
@@ -140,34 +123,7 @@ TOP CDN：
 - Three.js r134
 - Vanta Fog
 
-## 9. TOP section map
-
-1. Header
-2. Fog / FV
-3. Concept
-4. Artists
-5. Contact
-6. FAQ
-7. Access
-8. Footer
-
-## 10. Gallery map
-
-- H1 Gallery
-- 作家と作品
-- Artist filter
-- Genre filter
-- artwork cards
-- pagination
-- artwork modal
-- artist profile
-- contact / Instagram
-- footer
-
-Galleryの作品データ更新では、
-表示カード・filter値・modal内容・alt・プロフィールをセットで確認する。
-
-## 11. URL / Path Rule
+## 9. URL / Path Rule
 
 GitHub Pages Project Siteのbase pathは `/yurayura/`。
 
@@ -178,7 +134,7 @@ absolute pathを使う場合はbase path欠落に注意する。
 - GitHub Pages public URL
 の3点で確認する。
 
-## 12. Update Rule
+## 10. Update Rule
 
 ページ追加・削除・rename時は必ず以下を更新する。
 
@@ -187,5 +143,5 @@ absolute pathを使う場合はbase path欠落に注意する。
 - header / footer
 - canonical / OGP URL
 - internal links
-- `AUDIT_LOG.md`（監査を伴う場合）
-- `ROADMAP.md`（必要な場合）
+
+index状態またはcanonicalを変更した場合は、この資料とsitemapの整合を確認する。監査履歴や一時作業計画はこの資料へ蓄積しない。

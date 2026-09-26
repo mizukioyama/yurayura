@@ -1,12 +1,18 @@
 # ゆらゆら QA Checklist
 
+## Current acceptance status
+
+- SEO Formal Apply: `SEO FORMAL APPLY COMPLETE`。これはSEO metadata、index設定、Event structured data、sitemapの正式反映に対する判断であり、サイト全体のruntime QA完了を意味しない。
+- Site runtime QA: `SITE RUNTIME QA — PARTIALLY NOT VERIFIED`。未実施のruntime項目をPASSとして扱わない。
+- 現在のページ別index状態・canonical・sitemap対象は `SITE_MAP.md` を正本とする。
+
 ## 1. Before Change
 
 - [ ] 最新mainを確認
 - [ ] 対象URLを確認
 - [ ] 対象ファイルと共有依存を確認
 - [ ] Before screenshot / baselineを確保
-- [ ] ROADMAPの対象タスクを確認
+- [ ] `README.md` に記載された参照順で、対象作業の正本を確認
 
 ## 2. Source / Publication Integrity
 
@@ -23,8 +29,10 @@
 - [ ] CSS / JS 404なし
 - [ ] image / font 404なし
 - [ ] console errorなし
-- [ ] CSP違反が重要機能を止めていない
+- [ ] CSPを設定しているページでは、違反とresource failureを確認
 - [ ] GitHub Pages public URLで同じ結果
+
+CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項目は変更範囲に応じて確認し、未実施の項目は未確認のまま記録する。
 
 ## 4. Required Viewports
 
@@ -124,7 +132,8 @@
 
 ## 11. SEO
 
-indexable pageごと：
+indexable pageごとに確認する。対象ページ、canonical、noindex、sitemapの正確な対応表は `SITE_MAP.md` を参照する。
+
 - [ ] unique title
 - [ ] meta description
 - [ ] H1
@@ -137,6 +146,7 @@ indexable pageごと：
 - [ ] sitemap収録
 - [ ] internal incoming link
 - [ ] no accidental noindex
+- [ ] Event structured dataを使う場合、確認済み開催情報と可視本文に一致
 
 ## 12. Accessibility
 
@@ -169,5 +179,5 @@ indexable pageごと：
 - [ ] 意図した差分だけ
 - [ ] regressionなし
 - [ ] public deploy確認
-- [ ] ROADMAP更新
-- [ ] 残課題を記録
+- [ ] runtime変更を公開する場合はpublic URLで確認
+- [ ] 残課題をlocal reportへ記録し、未確認項目をPASS扱いしない
