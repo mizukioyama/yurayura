@@ -146,6 +146,7 @@ Discover → Plan → Execute → Verify → Iterate
 
 - 原則として小さな変更単位でコミットする。
 - 大きな変更は専用branch → PR → 検証 → mergeを優先する。
+- 過去のsource stateはGit履歴から復元し、新しい日付付きsource backupをPublic treeへ追加しない。
 - 公開後はGitHub Pages上の実URLを確認する。
 - 「ローカルで動く」だけで完了扱いにしない。
 
