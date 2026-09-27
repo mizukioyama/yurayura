@@ -51,24 +51,15 @@ Section 2の表がroot HTML全件の公開分類・index状態・canonical・sit
 | Path | Classification | Role / action |
 |---|---|---|
 | `assets/` | SUPPORTING | 本番CSS / JS / images / parts |
-| `backups/` | BACKUP + SUPPORTING混在 | 原則backup。ただし現役依存あり。下記参照 |
+| `backups/` | BACKUP | 過去状態はGit履歴から復元する。現行sourceのruntime依存なし |
 | `robots.txt` | SUPPORTING | Project Site配下。host-root authoritative robotsではない |
 | `sitemap.xml` | SUPPORTING | indexable URLはこの資料の表と一致させる |
 
-## 6. Critical active backup dependency
+## 6. Backup and runtime status
 
-`assets/css/main.css` の先頭で次を読み込んでいる：
+現行HTML / CSS / JavaScriptに `backups/` への有効なruntime参照はなく、GitHub Pages上でもbackup fileをruntime sourceとして使用しない。過去状態はGit履歴から復元する。
 
-`@import url("../../backups/20260912_before_hamburger_menu_fix/main.css");`
-
-そのため、
-`backups/20260912_before_hamburger_menu_fix/main.css`
-は名前上はbackupでも、現在は **SUPPORTING / runtime dependency**。
-
-同directory内の他ファイルまで現役とは限らない。
-この依存をcanonical CSSへ移すまでは、当該directoryを削除しない。
-
-他の `../../backups/` runtime参照はrepository検索では確認されていない。
+Public treeへ日付付きsource backupを追加しない。runtime依存が見つかった場合は、backupを削除せず依存を別タスクとして解消する。
 
 ## 7. Content and visual structure
 
