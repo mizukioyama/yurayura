@@ -12,7 +12,7 @@
 
 ## 1. 共通設定と色
 
-現行の共通色変数 `--color-txt`、`--color-bg`、`--color-shadow-green` は、`assets/css/main.css` がruntimeでimportしているbackup CSS側にあります。現在の実効値を支える依存が残っているため、backup CSSを直接編集したり、ここから変更を指示したりしないでください。CSS依存解消の作業で正式CSSへ移し、表示維持を確認してから調整入口を整理します。
+`assets/css/main.css` が共通CSSのcanonical sourceです。共通色変数 `--color-txt`、`--color-bg`、`--color-shadow-green` は同ファイルで定義され、active backup CSS dependencyは0です。
 
 現時点で `user-settings.css` に共通色の調整変数はありません。色調整はまだ安全な共通設定として公開されていません。
 
@@ -34,7 +34,7 @@
 
 `clamp()`で画面幅に応じて変化する値は、最小値・中間の計算式・最大値をまとめて確認してください。本文サイズなどを変えるときは、関連するaliasを別々に上書きせず、対応する `--type-*` を確認します。
 
-font familyの `--font-base`、`--font-jp`、`--font-btn` は現在backup CSS側にあります。フォントの変更はHTMLのfont loadと共に監査が必要で、`user-settings.css`から安全に調整できる状態ではありません。
+font familyの `--font-base`、`--font-jp`、`--font-btn` はcanonicalな `assets/css/main.css` にあります。フォントの変更はHTMLのfont loadと共に監査が必要で、`user-settings.css`から安全に調整できる状態ではありません。
 
 フォームの `.modal-title`、`.modal-close`、`.send-btn` は `user-settings.css` 内の個別指定です。`.modal-btn` は小見出し変数を使います。フォーム文字サイズを調整するときは、この例外も個別に確認してください。
 
@@ -128,7 +128,7 @@ layout・構造値を変える必要がある場合は、CSS調整ではなく�
 
 `user-settings.css` は調整入口として既に存在しますが、全カテゴリを集約した最終形ではありません。まだないvariableをこのガイドだけで作ったり、例示値をCSSへ追加したりしないでください。
 
-技術cleanupとbackup CSS依存解消で、現在の見た目を維持したまま共通値を整理した後に、最終的な調整対象と安全な入口を再確認します。`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT` の引き継ぎ前に、デザイン値を変更しません。
+canonical CSS移行とbackup CSS依存解消は完了し、active backup CSS dependencyは0です。最終調整を始める前に、最新branchのbrowser baselineと残る例外を確認し、`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT` の引き継ぎを行います。
 
 ---
 
@@ -144,16 +144,8 @@ layout・構造値を変える必要がある場合は、CSS調整ではなく�
 
 HTML、JavaScript、backup CSS、animation、modal geometryの直接変更は、この調整ガイドの範囲外です。
 
-## 10. 今後の移行方針
+## 10. CSS移行の現在地
 
-CSS依存解消とbaseline比較を含む別の技術作業で、次の順に整理します。
+`assets/css/main.css` がcanonical runtime stylesheetです。active backup CSS dependencyは0で、tracked treeからobsolete backup CSSは除去済みです。旧backup CSS全体のコピーは行わず、承認済みのselector/property cleanupだけをcanonical CSSへ反映しています。
 
-1. active backup CSSを正式なassets側へ移す
-2. semantic variableを新設
-3. 旧変数をaliasとして一時維持
-4. 全ページを新変数へ段階移行
-5. 表示差分ゼロを確認
-6. 旧変数・不要aliasを削除
-7. 全カテゴリの安全な調整variableと未集約の例外を確認し、`user-settings.css` を最終調整の入口として引き継げる状態にする
-
-この作業は見た目を変えない技術cleanupとして扱い、表示差分を確認するまではbackupを削除しません。
+Typographyの調整変数は引き続き `assets/css/user-settings.css` にあります。追加のvariable集約やlayout変更は、別途レビューと表示確認を行う作業です。
