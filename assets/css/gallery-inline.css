@@ -467,11 +467,17 @@ html.is-gallery-modal-open {
    grid-template-rows: repeat(2, auto);
   }
   .gallery-modal__slideshow {
-    width: 100%;
-    min-width: 62px;
-    max-width: 100%;
+    width: calc(100% + 40px);
+    min-width: 0;
+    max-width: none;
     height: 100%;
+    min-height: 108px;
+    margin-inline: -20px;
     padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
   .gallery-modal__slide-button--prev::before {
   border-width: 1px 0 0 1px;
@@ -482,12 +488,13 @@ html.is-gallery-modal-open {
   transform: translate(-50%, -75%) rotate(-45deg);
 }
   .gallery-modal__slides {
-    width: 100%;
+    width: auto;
     height: auto;
     gap: 6px;
     padding: 0;
     justify-content: center;
     flex-direction: row;
+    flex: 0 0 auto;
   }
   .gallery-modal__thumb {
     width: 52px;
@@ -499,17 +506,19 @@ html.is-gallery-modal-open {
     opacity: 0.7;
   }
   .gallery-modal__slide-button {
-    right: 47px !important;
+    right: auto !important;
+    left: auto !important;
     width: 28px !important;
     height: 28px !important;
+    transform: none !important;
   }
   .gallery-modal__slide-button--prev {
-    top: 72px !important;
+    top: auto !important;
     bottom: auto !important;
   }
   .gallery-modal__slide-button--next {
     top: auto !important;
-    bottom: 24px !important;
+    bottom: auto !important;
   }
   .gallery-modal__body {
     padding: 8px 24px 48px;
