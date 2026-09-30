@@ -125,7 +125,6 @@
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-.check-item__text { line-height: 2; }
 
 @media screen and (max-width: 480px) {
   .check-item__box { width: 18px; height: 18px; }

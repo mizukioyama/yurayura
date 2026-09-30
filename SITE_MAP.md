@@ -57,7 +57,7 @@ Section 2の表がroot HTML全件の公開分類・index状態・canonical・sit
 
 ## 6. Backup and runtime status
 
-現行HTML / CSS / JavaScriptに `backups/` への有効なruntime参照はなく、GitHub Pages上でもbackup fileをruntime sourceとして使用しない。過去状態はGit履歴から復元する。
+`assets/css/main.css` がcanonical CSSです。tracked tree内のobsolete backup CSSは削除済みで、現行HTML / CSS / JavaScriptのactive backup CSS dependencyは0です。過去状態はGit履歴から復元します。
 
 Public treeへ日付付きsource backupを追加しない。runtime依存が見つかった場合は、backupを削除せず依存を別タスクとして解消する。
 

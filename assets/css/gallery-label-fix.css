@@ -1,25 +1,46 @@
 /* Category labels are real text in HTML; suppress legacy pseudo labels. */
 .gallery-page .gallery-filter-title--artist::before,
 .gallery-page .gallery-filter-title--artist::after,
-.gallery-page .gallery-filter-title--genre::after{content:none!important;display:none!important}
+.gallery-page .gallery-filter-title--genre::after {
+  content: none !important;
+  display: none !important;
+}
 
 /* Gallery subtitle is shown on PC only. */
-.gallery-page .gallery-pc-subtitle{display:none!important}
+.gallery-page .gallery-pc-subtitle {
+  display: none !important;
+}
 
-@media screen and (min-width:1200px){
-  .gallery-page .gallery-pc-subtitle{
-    display:block!important;
-    margin:0!important;
-    font-size:20px!important;
-    font-weight:300!important;
+@media screen and (min-width: 1200px) {
+  .gallery-page .gallery-pc-subtitle {
+    display: block !important;
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 300 !important;
   }
 }
 
-@media screen and (max-width:767px){
-  .gallery-page .gallery-filter-group{grid-template-columns:4rem max-content!important;column-gap:.35em!important}
-  .gallery-page .gallery-filter-title{box-sizing:border-box!important;width:4rem!important;margin:0!important;padding:0!important;line-height:2.7rem!important;white-space:nowrap!important}
+@media screen and (max-width: 767px) {
+  .gallery-page .gallery-filter-group {
+    grid-template-columns: 3rem max-content !important;
+  }
+  .gallery-page .gallery-filter-title {
+    box-sizing: border-box !important;
+    width: 3.6rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 2.7rem !important;
+    white-space: nowrap !important;
+  }
   .gallery-page .gallery-filter-title--artist,
-  .gallery-page .gallery-filter-title--genre{display:block!important;letter-spacing:.04em!important}
+  .gallery-page .gallery-filter-title--genre {
+    display: block !important;
+    letter-spacing: 0.04em !important;
+  }
   .gallery-page [data-filter-group="artist"] .gallery-filter,
-  .gallery-page [data-filter-group="genre"] .gallery-filter{width:7em!important;min-width:7em!important;padding:.2rem 14px!important}
+  .gallery-page [data-filter-group="genre"] .gallery-filter {
+    width: 7em !important;
+    min-width: 7em !important;
+    padding: 0.2rem 14px !important;
+  }
 }

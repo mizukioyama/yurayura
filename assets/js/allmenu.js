@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await Promise.all([
     loadHTML(`${PARTS_PATH}header.html`, selectors.header),
-    loadHTML(`${PARTS_PATH}footer.html`, selectors.footer),
+    loadHTML(`${PARTS_PATH}footer.xml`, selectors.footer),
   ]);
 
   initializeHeaderMenu();

@@ -7,27 +7,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const state = { artist: "all", genre: "all", page: 1 };
 
   /* Final category layout override. */
-  const categoryStyle = document.createElement("style");
-  categoryStyle.textContent = `
-    body.gallery-page .gallery-sidebar { padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;overflow:visible!important;max-width:100%!important; }
-    body.gallery-page .gallery-filter-group { display:grid!important;grid-template-columns:5.7em minmax(0,1fr)!important;align-items:start!important;column-gap:0!important;width:100%!important; }
-    body.gallery-page .gallery-filter-title { width:100%!important;white-space:nowrap!important; }
-    body.gallery-page .gallery-filter-options { display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-width:0!important;gap:0!important; }
-    body.gallery-page .gallery-filter { position:relative!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;margin:0!important;padding:.2rem 18px!important;white-space:nowrap!important;text-align:center!important;justify-content:center!important; }
-    body.gallery-page .gallery-filter:first-child { padding-left:18px!important; }
-    body.gallery-page .gallery-filter + .gallery-filter::before { content:""!important;position:absolute!important;left:0!important;top:50%!important;width:1px!important;height:1em!important;background:currentColor!important;opacity:.35!important;transform:translateY(-50%)!important; }
-    @media (max-width:767px) {
-      body.gallery-page .gallery-sidebar { display:block!important;width:100%!important;max-width:100%!important;padding:0!important;overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:thin; }
-      body.gallery-page .gallery-sidebar__label { width:max-content!important; }
-      body.gallery-page .gallery-filter-group { grid-template-columns:5.7em auto!important;width:max-content!important;min-width:100%!important; }
-      body.gallery-page .gallery-filter-options { width:max-content!important;min-width:0!important;padding:0!important; }
-      body.gallery-page [data-filter-group="artist"] { display:grid!important;grid-template-columns:repeat(5,7.5em)!important;grid-template-rows:2.7rem!important;width:max-content!important;overflow:visible!important;white-space:nowrap!important; }
-      body.gallery-page [data-filter-group="genre"] { display:grid!important;grid-template-columns:repeat(5,7.5em)!important;grid-template-rows:repeat(2,2.7rem)!important;grid-auto-flow:row!important;width:max-content!important;overflow:visible!important; }
-      body.gallery-page [data-filter-group="artist"] .gallery-filter,body.gallery-page [data-filter-group="genre"] .gallery-filter { box-sizing:border-box!important;width:7.5em!important;padding:.2rem 18px!important; }
-      body.gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before { content:none!important; }
-    }
-  `;
-  document.head.appendChild(categoryStyle);
+  // const categoryStyle = document.createElement("style");
+  // categoryStyle.textContent = `
+  //   body.gallery-page .gallery-sidebar { padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;overflow:visible!important;max-width:100%!important; }
+  //   body.gallery-page .gallery-filter-group { display:grid!important;grid-template-columns:5.7em minmax(0,1fr)!important;align-items:start!important;column-gap:0!important;width:100%!important; }
+  //   body.gallery-page .gallery-filter-title { width:100%!important;white-space:nowrap!important; }
+  //   body.gallery-page .gallery-filter-options { display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-width:0!important;gap:0!important; }
+  //   body.gallery-page .gallery-filter { position:relative!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;margin:0!important;padding:.2rem 18px!important;white-space:nowrap!important;text-align:center!important;justify-content:center!important; }
+  //   body.gallery-page .gallery-filter:first-child { padding-left:18px!important; }
+  //   body.gallery-page .gallery-filter + .gallery-filter::before { content:""!important;position:absolute!important;left:0!important;top:50%!important;width:1px!important;height:1em!important;background:currentColor!important;opacity:.35!important;transform:translateY(-50%)!important; }
+  //   @media (max-width:767px) {
+  //     body.gallery-page .gallery-sidebar { display:block!important;width:100%!important;max-width:100%!important;padding:0!important;overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:thin; }
+  //     body.gallery-page .gallery-sidebar__label { width:max-content!important; }
+  //     body.gallery-page .gallery-filter-group { grid-template-columns:5.7em auto!important;width:max-content!important;min-width:100%!important; }
+  //     body.gallery-page .gallery-filter-options { width:max-content!important;min-width:0!important;padding:0!important; }
+  //     body.gallery-page [data-filter-group="artist"] { display:grid!important;grid-template-columns:repeat(5,7.5em)!important;grid-template-rows:2.7rem!important;width:max-content!important;overflow:visible!important;white-space:nowrap!important; }
+  //     body.gallery-page [data-filter-group="genre"] { display:grid!important;grid-template-columns:repeat(5,7.5em)!important;grid-template-rows:repeat(2,2.7rem)!important;grid-auto-flow:row!important;width:max-content!important;overflow:visible!important; }
+  //     body.gallery-page [data-filter-group="artist"] .gallery-filter,body.gallery-page [data-filter-group="genre"] .gallery-filter { box-sizing:border-box!important;width:7.5em!important;padding:.2rem 18px!important; }
+  //     body.gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before { content:none!important; }
+  //   }
+  // `;
+  // document.head.appendChild(categoryStyle);
 
   if (!cards.length) return;
   const values = raw => String(raw || "").split(/[、,\/・|]/).map(v => v.trim()).filter(Boolean);
@@ -91,13 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastFocus = null;
 
   const profiles = {
-    Mizuki: "自然や感情から受け取った感覚をもとに、抽象表現を中心とした作品を制作しています。"
+    Mizuki: "自然や感情から受け取った感覚をもとに、抽象表現を中心とした作品を制作しています。",
+    KAORU: "Alcohol ink artist<br>KAORU<br>仙台在住<br>宮城県石巻市出身<br>1981年5月生まれ<br>おうし座 B型<br>アーティスト×薬剤師<br>色と形の一期一会<br>KAORUの作品は「ありのまま」がテーマ人の感情や思いが色や形となり、アートとなる。そして、丸キャンパスにこだわりを持ち描き続ける。そこには、「どれがアートの天地か、どれがアートの正面かを決めず、 見た方が見たい角度で、見たいように、感じたいように、 その時の感情に合わせてアートの見方を決めてほしい」という思いがある。また、アルコールインクをドライヤーの風で動かしながら描くため<br>色の混ざり具合や形は同じものがなく<br>唯一無二の作品になることから<br>私のアートを「色と形の一期一会」と表現している<br>活動歷:2022年3月より独学でインクアートを始める/2023年6月個展「一期一会」開催(仙台市)/2023年9月仙台アンデパンダン展出展/2024年6月合同企画展(仙台市)/2024年11月合同企画展(盛岡市)/2025年2月第一回東北アルコールインクアート展出展/2025年4月日仏彩美国際美術展 第30回 彩美展 奨励賞",
   };
   const profileImages = {
     Mizuki: "./assets/img/202326.jpg",
-    かおる: "./assets/img/202339.jpg",
+    KAORU: "./assets/img/202339.jpg",
     咲: "./assets/img/202402.jpg",
-    クリカン: "./assets/img/202501.jpg"
+    クリカン: "./assets/img/202501.jpg",
   };
 
   function showSlide(index) {
@@ -113,7 +114,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modalTitle) modalTitle.textContent = title;
     if (modalCaption) modalCaption.textContent = card.dataset.caption || "";
     if (modalProfileName) modalProfileName.textContent = artist;
-    if (modalProfile) modalProfile.textContent = profiles[artist] || `${artist}の作家プロフィールは準備中です。`;
+    if (modalProfile) {
+      const profileText = profiles[artist] || `${artist}の作家プロフィールは準備中です。`;
+      modalProfile.replaceChildren();
+      profileText.split(/<br\s*\/?>/gi).forEach((line, index) => {
+        if (index > 0) modalProfile.appendChild(document.createElement("br"));
+        modalProfile.appendChild(document.createTextNode(line));
+      });
+    }
     if (modalProfileImage) {
       const profileImageSrc = profileImages[artist] || image?.src;
       if (profileImageSrc) modalProfileImage.src = profileImageSrc;
