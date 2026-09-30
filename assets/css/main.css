@@ -502,21 +502,14 @@ section.section--concept {
   translate: -50% -50%;
 }
 
-/* 初期状態 */
+/* The TOP reveal is applied to the existing hero wrapper. */
 .h1_fade {
-  opacity: 0;
-  transform: translateY(2rem);
-  transition:
-    opacity 3.4s ease,
-    transform 3.2s ease;
-}
-
-/* 表示状態 */
-.h1_fade.is-show {
   opacity: 0.094;
   transform: translate(0%, 0%);
   mix-blend-mode: color-burn;
+  transition: none;
 }
+
 
 .fv__ttl,
 .section--concept .h2_ttl {
