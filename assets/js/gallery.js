@@ -89,6 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const next = document.getElementById("galleryModalNext");
   let modalIndex = 0;
   let lastFocus = null;
+  let imageSwitchTimer = 0;
+  let imageSwitchToken = 0;
+  let modalCloseTimer = 0;
+  let modalMotionToken = 0;
 
   const profiles = {
     Mizuki: "自然や感情から受け取った感覚をもとに、抽象表現を中心とした作品を制作しています。",
@@ -101,15 +105,32 @@ document.addEventListener("DOMContentLoaded", () => {
     クリカン: "./assets/img/202501.jpg",
   };
 
-  function showSlide(index) {
+  function showSlide(index, animateImage = modal?.classList.contains("is-visible")) {
     modalIndex = (index + cards.length) % cards.length;
     const card = cards[modalIndex];
     const image = card.querySelector(".work-img > img");
     const title = card.querySelector(".gallery-work-link h2")?.textContent || "作品";
     const artist = card.dataset.artist || "";
     if (modalImage && image) {
-      modalImage.src = image.src;
-      modalImage.alt = image.alt;
+      window.clearTimeout(imageSwitchTimer);
+      imageSwitchToken += 1;
+      const switchToken = imageSwitchToken;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (animateImage && !reduceMotion && modalImage.src !== image.src) {
+        modalImage.classList.add("is-fading");
+        imageSwitchTimer = window.setTimeout(() => {
+          if (switchToken !== imageSwitchToken) return;
+          modalImage.src = image.src;
+          modalImage.alt = image.alt;
+          window.requestAnimationFrame(() => {
+            if (switchToken === imageSwitchToken) modalImage.classList.remove("is-fading");
+          });
+        }, 140);
+      } else {
+        modalImage.classList.remove("is-fading");
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+      }
     }
     if (modalTitle) modalTitle.textContent = title;
     if (modalCaption) modalCaption.textContent = card.dataset.caption || "";
@@ -152,20 +173,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openModal(index) {
     if (!modal) return;
+    window.clearTimeout(modalCloseTimer);
+    const motionToken = ++modalMotionToken;
     lastFocus = document.activeElement;
-    showSlide(index);
+    showSlide(index, false);
+    modal.classList.remove("is-closing", "is-visible");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("is-gallery-modal-open");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      modal.classList.add("is-visible");
+    } else {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+        if (motionToken === modalMotionToken && modal.classList.contains("is-open") && !modal.classList.contains("is-closing")) {
+          modal.classList.add("is-visible");
+        }
+      }));
+    }
     modal.querySelector(".gallery-modal__close")?.focus();
   }
 
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
+  function finishModalClose(motionToken) {
+    if (!modal || motionToken !== modalMotionToken || !modal.classList.contains("is-closing")) return;
+    modal.classList.remove("is-open", "is-closing", "is-visible");
     document.documentElement.classList.remove("is-gallery-modal-open");
+  }
+
+  function closeModal() {
+    if (!modal || !modal.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
+    const motionToken = ++modalMotionToken;
+    modal.classList.add("is-closing");
+    modal.classList.remove("is-visible");
+    modal.setAttribute("aria-hidden", "true");
+    window.clearTimeout(imageSwitchTimer);
+    imageSwitchToken += 1;
+    modalImage?.classList.remove("is-fading");
     lastFocus?.focus?.();
+    window.clearTimeout(modalCloseTimer);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishModalClose(motionToken);
+    } else {
+      modalCloseTimer = window.setTimeout(() => finishModalClose(motionToken), 230);
+    }
   }
 
   buildSlides();
@@ -189,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
   prev?.addEventListener("click", () => showSlide(modalIndex - 1));
   next?.addEventListener("click", () => showSlide(modalIndex + 1));
   document.addEventListener("keydown", event => {
-    if (!modal?.classList.contains("is-open")) return;
+    if (!modal?.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
     if (event.key === "Escape") closeModal();
     if (event.key === "ArrowLeft") showSlide(modalIndex - 1);
     if (event.key === "ArrowRight") showSlide(modalIndex + 1);

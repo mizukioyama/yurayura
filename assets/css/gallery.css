@@ -165,6 +165,7 @@ body.gallery-page::after {
   color: #505050 !important;
   font: inherit !important;
   opacity: 0.78 !important;
+  transition: color 160ms ease, opacity 160ms ease, text-decoration-color 160ms ease;
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter + .gallery-filter::before {
@@ -451,4 +452,14 @@ body.gallery-page::after {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-page::after,
+  .gallery-page .gallery-scroll-hint::after {
+    animation: none;
+  }
+  .gallery-page .gallery-filter {
+    transition-duration: 0.01ms;
+  }
 }

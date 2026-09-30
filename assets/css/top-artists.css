@@ -112,3 +112,55 @@
     margin-left: calc(-1 * var(--artists-side-padding));
   }
 }
+
+/* Shared TOP and Concept entrance and scroll reveal motion. */
+.top-page .top-reveal-pending,
+.concept-page .top-reveal-pending {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.top-page .top-reveal-pending.top-reveal-visible,
+.concept-page .top-reveal-pending.top-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--top-reveal-delay, 0ms);
+}
+
+.concept-page .concept-fv #concept-title.top-reveal-pending {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+}
+
+.concept-page .concept-fv #concept-title.top-reveal-pending.top-reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-page::before,
+  .top-page *,
+  .top-page *::before,
+  .top-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .top-page .top-reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+
+  .concept-page .top-reveal-pending,
+  .concept-page .concept-fv #concept-title.top-reveal-pending {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    transition-delay: 0ms !important;
+  }
+}
