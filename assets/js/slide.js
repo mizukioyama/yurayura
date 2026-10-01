@@ -128,7 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ".concept-page #concept .section__inner",
         ".concept-page .concept-texture__copy",
         ".concept-page .concept-texture__images",
-        ".concept-page .concept-gallery-link .section__inner"
+        ".concept-page .concept-gallery-link .section__inner",
+        ".gallery-page .h1-text",
+        ".gallery-page .gallery-sidebar__label",
+        ".gallery-page .gallery-filter-group",
+        ".gallery-page .gallery-card"
       ].join(",")
     )
   );
@@ -147,6 +151,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (conceptImages) {
     conceptImages.style.setProperty("--top-reveal-delay", "100ms");
   }
+
+  const galleryCategoryLabel = document.querySelector(".gallery-page .gallery-sidebar__label");
+  if (galleryCategoryLabel) {
+    galleryCategoryLabel.style.setProperty("--top-reveal-delay", "70ms");
+  }
+
+  const galleryFilterGroups = Array.from(
+    document.querySelectorAll(".gallery-page .gallery-filter-group")
+  );
+  galleryFilterGroups.forEach((group) => {
+    group.style.setProperty("--top-reveal-delay", "70ms");
+  });
+
+  const galleryCards = Array.from(document.querySelectorAll(".gallery-page .gallery-card"));
+  galleryCards.forEach((card, index) => {
+    card.style.setProperty("--top-reveal-delay", String(140 + (index % 4) * 60) + "ms");
+  });
 
   let observer;
   let catchUpTimer = null;
