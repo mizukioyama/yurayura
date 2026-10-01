@@ -254,6 +254,21 @@ html.is-gallery-modal-open {
   opacity: 1;
   transform: scale(1);
 }
+.gallery-modal.is-open:not(.is-visible):not(.is-closing) .gallery-modal__artwork,
+.gallery-modal.is-open:not(.is-visible):not(.is-closing) .gallery-modal__section:first-child,
+.gallery-modal.is-open:not(.is-visible):not(.is-closing) .gallery-modal__section:nth-child(2) {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.gallery-modal.is-open.is-visible:not(.is-closing) .gallery-modal__artwork {
+  transition-delay: 50ms;
+}
+.gallery-modal.is-open.is-visible:not(.is-closing) .gallery-modal__section:first-child {
+  transition-delay: 75ms;
+}
+.gallery-modal.is-open.is-visible:not(.is-closing) .gallery-modal__section:nth-child(2) {
+  transition-delay: 100ms;
+}
 .gallery-modal__close {
   position: absolute;
   top: 18px;
@@ -294,6 +309,11 @@ html.is-gallery-modal-open {
   min-height: 0;
   height: 100%;
   overflow: hidden;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gallery-modal__artwork > img {
   display: block;
@@ -425,6 +445,11 @@ html.is-gallery-modal-open {
 .gallery-modal__section {
   padding: 34px 0;
   border-bottom: 1px solid rgba(48, 58, 5, 0.18);
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gallery-modal__section:last-child {
   border-bottom: 0;
@@ -576,9 +601,19 @@ html.is-gallery-modal-open {
 @media (prefers-reduced-motion: reduce) {
   .gallery-modal__backdrop,
   .gallery-modal__panel,
+  .gallery-modal__artwork,
   .gallery-modal__artwork > img,
+  .gallery-modal__section,
   .gallery-modal__slide-button::before,
   .gallery-modal__thumb {
     transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+
+  .gallery-modal.is-open .gallery-modal__artwork,
+  .gallery-modal.is-open .gallery-modal__section:first-child,
+  .gallery-modal.is-open .gallery-modal__section:nth-child(2) {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
