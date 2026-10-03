@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeCustomCursor();
   initializeScrollGuidePosition();
   document.body.classList.add("is-loaded");
+  document.dispatchEvent(new Event("yurayura:fragments-ready"));
 });
 
 function initializeHeaderMenu() {

@@ -183,6 +183,7 @@
   width: min(100%, 680px);
   margin-inline: auto;
   line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
+  white-space: pre-line;
 }
 
 .concept-page .concept-texture__copy {
