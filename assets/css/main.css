@@ -298,6 +298,7 @@ section:not(.fv) {
   section:not(.fv),
   section.fv {
     padding-block: clamp(72px, calc(7vw + 48px), 96px);
+    padding-block: 26vmin;
   }
 }
 
@@ -1539,6 +1540,7 @@ section {
 @media screen and (min-width: 481px) and (max-width: 1335px) {
   section:not(.fv) {
     padding-block: clamp(64px, calc(3vw + 48px), 96px);
+    padding-block: 20vmin;
   }
 
   section.section--concept {

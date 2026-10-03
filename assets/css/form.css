@@ -151,7 +151,7 @@
   padding: 8px 14px;
   border: none;
   border-bottom: 3px solid;
-  border-image: url("../img/btn-bg-img.jpg") 100;
+  border-image: url("../img/btn-bg-img.webp") 100;
   color: var(--color-txt);
   font-size: 1rem;
   background-color: var(--color-bg) !important;
