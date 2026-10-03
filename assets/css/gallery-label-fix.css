@@ -22,14 +22,17 @@
 
 @media screen and (max-width: 767px) {
   .gallery-page .gallery-filter-group {
-    grid-template-columns: 3rem max-content !important;
+    grid-template-columns: minmax(0,1fr) !important;
+    row-gap: 0.2rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
   }
   .gallery-page .gallery-filter-title {
     box-sizing: border-box !important;
-    width: 3.6rem !important;
+    width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 2.7rem !important;
+    line-height: 1.7 !important;
     white-space: nowrap !important;
   }
   .gallery-page .gallery-filter-title--artist,
@@ -39,8 +42,10 @@
   }
   .gallery-page [data-filter-group="artist"] .gallery-filter,
   .gallery-page [data-filter-group="genre"] .gallery-filter {
-    width: 7em !important;
-    min-width: 7em !important;
-    padding: 0.2rem 14px !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0.2rem 0.45rem !important;
+    white-space: nowrap !important;
   }
 }

@@ -6,8 +6,8 @@
   .gallery-page .gallery-sidebar {
     box-sizing: border-box !important;
     display: block !important;
-    width: max-content !important;
-    max-width: 100% !important;
+    width: min(100%, 760px) !important;
+    max-width: 760px !important;
     margin: 0 0 3.5rem !important;
     padding: 0 !important;
     overflow: visible !important;
@@ -23,8 +23,8 @@
     display: grid !important;
     grid-template-columns: 4rem minmax(0,1fr)!important;
     align-items: start !important;
-    column-gap: 0 !important;
-    width: max-content !important;
+    column-gap: 0.5rem !important;
+    width: 100% !important;
     margin: 0 0 0.85rem !important;
   }
   .gallery-page .gallery-filter-title {
@@ -43,25 +43,17 @@
     color: #444 !important;
     white-space: nowrap !important;
   }
-  .gallery-page [data-filter-group="artist"] {
-    display: grid !important;
-    grid-template-columns: repeat(5, 7.5em) !important;
-    grid-template-rows: 2.7rem !important;
-    width: max-content !important;
-    min-width: max-content !important;
-    gap: 0 !important;
-    overflow: visible !important;
-    white-space: nowrap !important;
-  }
+  .gallery-page [data-filter-group="artist"],
   .gallery-page [data-filter-group="genre"] {
-    display: grid !important;
-    grid-template-columns: repeat(9, 7.5em) !important;
-    grid-template-rows: repeat(1, 2.7rem) !important;
-    grid-auto-flow: row !important;
-    width: max-content !important;
-    min-width: max-content !important;
-    gap: 0.25rem 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 0.25rem 0.875rem !important;
     overflow: visible !important;
+    white-space: normal !important;
   }
   .gallery-page [data-filter-group="artist"] .gallery-filter,
   .gallery-page [data-filter-group="genre"] .gallery-filter {
@@ -70,11 +62,12 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 7.5em !important;
-    min-width: 7.5em !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
     min-height: 2.7rem !important;
     margin: 0 !important;
-    padding: 0.2rem 18px !important;
+    padding: 0.2rem 0.5rem !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
@@ -86,22 +79,6 @@
     text-decoration: none !important;
     opacity: 0.78 !important;
     white-space: nowrap !important;
-  }
-  .gallery-page .gallery-filter + .gallery-filter::before {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 50% !important;
-    width: 1px !important;
-    height: 1em !important;
-    background: currentColor !important;
-    opacity: 0.38 !important;
-    transform: translateY(-50%) !important;
-  }
-  .gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before {
-    content: "" !important;
-    display: block !important;
   }
   .gallery-page .gallery-filter.is-active {
     color: #1f1f1f !important;

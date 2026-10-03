@@ -117,7 +117,7 @@ body.gallery-page::after {
   display: grid !important;
   grid-template-columns: 4rem minmax(0,1fr)!important;
   align-items: start !important;
-  column-gap: 1rem !important;
+  column-gap: 0.5rem !important;
   width: 100% !important;
 }
 .gallery-page .gallery-filter-title {
@@ -127,9 +127,8 @@ body.gallery-page::after {
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter-title--artist {
-  display: flex !important;
-  justify-content: space-between !important;
-  width: 100% !important;
+  display: block !important;
+  width: auto !important;
 }
 .gallery-page .gallery-filter-title--artist::before {
   content: "作家名";
@@ -145,7 +144,7 @@ body.gallery-page::after {
   flex-wrap: wrap !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 0.5rem 0 !important;
+  gap: 0.25rem 0.625rem !important;
   width: 100% !important;
   min-width: 0 !important;
 }
@@ -159,7 +158,7 @@ body.gallery-page::after {
   min-width: 0 !important;
   min-height: 2.5rem !important;
   margin: 0 !important;
-  padding: 0.2rem 18px !important;
+  padding: 0.2rem 0.5rem !important;
   border: 0 !important;
   background: transparent !important;
   color: #505050 !important;
@@ -169,15 +168,18 @@ body.gallery-page::after {
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter + .gallery-filter::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 1px;
-  height: 1em;
-  background: currentColor;
+  content: "|";
+  display: inline-block;
+  flex: 0 0 auto;
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0.2rem 0 -0.5rem;
+  background: none;
+  font: inherit;
+  line-height: inherit;
   opacity: 0.38;
-  transform: translateY(-50%);
+  transform: none;
 }
 .gallery-page .gallery-filter:not(:last-child)::after {
   content: none !important;
@@ -217,8 +219,10 @@ body.gallery-page::after {
     margin: 50vmin auto 2rem;
   }
   .gallery-page .gallery-sidebar {
-    width: calc(100% - 4rem) !important;
-    margin: 5rem auto 3rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 760px !important;
+    margin: 5rem 0 3rem !important;
   }
 }
 @media (max-width: 767px) {
@@ -261,10 +265,7 @@ body.gallery-page::after {
     max-width: 100% !important;
     margin: 56px 0 48px !important;
     padding: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: thin !important;
+    overflow: visible !important;
   }
   .gallery-page .gallery-sidebar__label {
     position: sticky !important;
@@ -273,7 +274,7 @@ body.gallery-page::after {
     margin: 0 0 0.15rem !important;
   }
   .gallery-scroll-hint {
-    display: flex !important;
+    display: none !important;
     align-items: center !important;
     gap: 0.45rem !important;
     width: max-content !important;
@@ -304,18 +305,18 @@ body.gallery-page::after {
   }
   .gallery-page .gallery-filter-group {
     display: grid !important;
-    grid-template-columns: 4rem minmax(0,1fr)!important;
+    grid-template-columns: minmax(0,1fr) !important;
     align-items: start !important;
-    column-gap: 0 !important;
-    width: max-content !important;
-    min-width: 100% !important;
+    row-gap: 0.2rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
     margin: 0 0 0.85rem !important;
   }
   .gallery-page .gallery-filter-title {
     box-sizing: border-box !important;
-    width: 5.7em !important;
+    width: auto !important;
     align-self: start !important;
-    line-height: 2.7rem !important;
+    line-height: 1.7 !important;
     padding: 0 !important;
   }
   .gallery-page .gallery-filter-title--artist {
@@ -328,37 +329,23 @@ body.gallery-page::after {
   .gallery-page .gallery-filter-title--artist::after {
     content: "：" !important;
   }
-  .gallery-page [data-filter-group="artist"] {
-    display: grid !important;
-    grid-template-columns: repeat(5, 7rem) !important;
-    grid-template-rows: 2.7rem !important;
-    width: max-content !important;
-    min-width: max-content !important;
-    overflow: visible !important;
-    white-space: nowrap !important;
-    gap: 0 !important;
-  }
+  .gallery-page [data-filter-group="artist"],
   .gallery-page [data-filter-group="genre"] {
-    display: grid !important;
-    grid-template-columns: repeat(5, 7rem) !important;
-    grid-template-rows: repeat(2, 2.7rem) !important;
-    grid-auto-flow: row !important;
-    width: max-content !important;
-    min-width: max-content !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 0 !important;
     overflow: visible !important;
-    gap: 0.25rem 0 !important;
+    white-space: normal !important;
+    gap: 0.25rem 0.45rem !important;
   }
   .gallery-page [data-filter-group="artist"] .gallery-filter,
   .gallery-page [data-filter-group="genre"] .gallery-filter {
     box-sizing: border-box !important;
     line-height: 2.3rem !important;
     text-align: center !important;
-  }
-  .gallery-page .gallery-filter + .gallery-filter::before {
-    left: 0 !important;
-  }
-  .gallery-page [data-filter-group="genre"] .gallery-filter:nth-child(6)::before {
-    content: none !important;
   }
   .gallery-page .gallery-sidebar__label,
   .gallery-page .gallery-filter-title,
