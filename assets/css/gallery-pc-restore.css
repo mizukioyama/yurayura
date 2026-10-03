@@ -67,9 +67,7 @@
     background: rgba(255, 255, 255, 0.48) !important;
     text-decoration: none !important;
   }
-  .gallery-page .gallery-filter + .gallery-filter::before {
-    display: none !important;
-  }  .gallery-page .gallery-containt {
+  .gallery-page .gallery-containt {
     margin-top: 0 !important;
   }
   .gallery-page .gallery-result {
