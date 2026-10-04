@@ -792,7 +792,6 @@ section.section--concept {
   font-family: var(--font-base);
   font-size: 1.2rem;
   font-weight: bold;
-  background: url("../../backups/img/artists-bg.png") center / cover no-repeat;
   mix-blend-mode: plus-lighter;
   transition:
     width 0.45s ease,
