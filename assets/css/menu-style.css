@@ -309,6 +309,21 @@ body::after {
   color: var(--color-txt);
   transform: none;
 }
+
+.footer-policy-link {
+  display: inline-block;
+  margin-inline-start: 1rem;
+  color: inherit;
+  font: inherit;
+  writing-mode: horizontal-tb;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.footer-policy-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
 .header-lead,
 .footer-lead,
 .header-link,

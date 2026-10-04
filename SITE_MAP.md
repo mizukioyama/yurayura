@@ -21,13 +21,14 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | TOP / `index.html` | 企画と開催情報の公式入口 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/` | included |
 | Concept / `concept.html` | 企画コンセプトの公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/concept.html` | included |
 | Gallery / `gallery.html` | 作家と作品の公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/gallery.html` | included |
+| Site Policy / `policy.html` | 著作権・個人情報・外部サービス等の案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/policy.html` | included |
 | `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `github-manual.html` | GitHubコマンドの開発用手順 | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `test.html` | Fog Holeの検証用ページ | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `top.html` | TOPへ転送する旧URL | LEGACY / public redirect | `noindex,follow` | `https://mizukioyama.github.io/yurayura/` | excluded |
 
-正式な検索対象はCANONICALの3ページ。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
+正式な検索対象はCANONICALの4ページ。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
 
 ## 3. Classification
 
@@ -70,9 +71,9 @@ Public treeへ日付付きsource backupを追加しない。runtime依存が見�
 ### Header / Footer
 
 `assets/parts/header.html`  
-`assets/parts/footer.html`
+`assets/parts/footer.xml`
 
-`assets/js/allmenu.js` がfetchして挿入する。
+`assets/js/allmenu.js` がcanonical pagesへfetchして挿入する。`assets/parts/footer.html` は旧include.js経由のlegacy source。
 
 正式ナビゲーション：
 - TOP

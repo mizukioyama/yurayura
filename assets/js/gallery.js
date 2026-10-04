@@ -380,6 +380,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const thumbnailImage = document.createElement("img");
       thumbnailImage.src = source.src;
       thumbnailImage.alt = "";
+      thumbnailImage.setAttribute("data-art-protect", "");
+      thumbnailImage.draggable = false;
       button.appendChild(thumbnailImage);
       button.addEventListener("click", () => showArtwork(artwork));
       modalSlides.appendChild(button);

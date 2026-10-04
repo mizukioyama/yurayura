@@ -70,7 +70,7 @@
   <link rel="stylesheet" href="./assets/css/fv-animation.css" />
   <link rel="stylesheet" href="./assets/css/user-settings.css?v=20260922-typography-settings" />
   <script src="./assets/js/font.js" defer></script>
-  <script src="./assets/js/allmenu.js?v=20260917-access-footer-restore-v8" defer></script>
+  <script src="./assets/js/allmenu.js?v=20261005-site-policy-footer-v9" defer></script>
   <script src="./assets/js/slide.js" defer></script>
   <script src="./assets/js/faq.js" defer></script>
   <script src="./assets/js/form.js" defer></script>
@@ -79,6 +79,7 @@
   <script src="./assets/js/fv-animation.js" defer></script>
   <script src="./assets/js/fog-hole.js?v=20260917-visible-boundary-v6" defer></script>
   <script src="./assets/js/liquid-button.js?v=20260914-arrow-md-size-v8" defer></script>
+  <script src="./assets/js/art-protection.js" defer></script>
 </head>
 
 <body class="top-page">
@@ -144,13 +145,13 @@
           作品と作家については、<br />紹介ページでご覧いただけます。<br />ひとつひとつの表現、<br />その奥にある感覚にふれ、<br /><b>ゆらゆら</b>の世界をご覧ください。</p>
         <div class="cards member-slider" id="memberSlider">
           <div class="cards__track member-track" id="memberTrack">
-            <article class="card card--coming-soon-03"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span
+            <article class="card card--coming-soon-03"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link" data-art-protect><span
                   class="card__btn img-btn">KAoRU</span></a></article>
-            <article class="card card--artist-morimoto"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span
+            <article class="card card--artist-morimoto"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link" data-art-protect><span
                   class="card__btn img-btn">森元 咲喜</span></a></article>
-            <article class="card card--coming-soon-04"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span
+            <article class="card card--coming-soon-04"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link" data-art-protect><span
                   class="card__btn img-btn">Quriqan</span></a></article>
-            <article class="card card--artist-mizuki"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link"><span
+            <article class="card card--artist-mizuki"><a href="https://mizukioyama.github.io/yurayura/gallery.html" class="card__link" data-art-protect><span
                   class="card__btn img-btn">Mizuki</span></a></article>
           </div>
         </div>
@@ -167,37 +168,29 @@
           action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
           method="POST" class="contact-form" id="contactForm">
           <p class="kinds">お問い合わせ種別</p>
-          <div class="contact-check-grid"><label class="check-item"><input class="check-item__input" type="checkbox"
-                name="type" value="展示について" /><span class="check-item__box" aria-hidden="true"></span><span
-                class="check-item__text">展示について</span></label><label class="check-item"><input class="check-item__input"
-                type="checkbox" name="type" value="作品について" /><span class="check-item__box"
-                aria-hidden="true"></span><span class="check-item__text">作品について</span></label><label
-              class="check-item"><input class="check-item__input" type="checkbox" name="type" value="購入について" /><span
-                class="check-item__box" aria-hidden="true"></span><span
-                class="check-item__text">購入について</span></label><label class="check-item"><input class="check-item__input"
-                type="checkbox" name="type" value="その他" /><span class="check-item__box" aria-hidden="true"></span><span
-                class="check-item__text">その他</span></label></div>
-          <div class="form-row"><input type="text" id="subject" name="subject" placeholder=" " required /><label
-              for="subject" class="form-label">件名</label></div>
-          <div class="form-row"><input type="text" id="name" name="name" placeholder=" " required /><label for="name"
-              class="form-label">お名前</label></div>
-          <div class="form-row"><input type="email" id="email" name="email" placeholder=" " required /><label
-              for="email" class="form-label">メールアドレス・電話番号</label></div>
-          <div class="form-row"><textarea id="message" name="message" placeholder=" " required></textarea><label
-              for="message" class="form-label form-label--textarea">お問い合わせ内容</label></div>
-          <div class="form-bottom"><label class="check-item"><input class="check-item__input" type="checkbox"
-                name="consent" value="同意済み" required /><span class="check-item__box" aria-hidden="true"></span><span
-                class="check-item__text">個人情報の取り扱いに同意します</span></label><button type="submit"
-              class="send-btn liquid-control">内容を送信する</button></div>
-        </form>
-        <div id="modal" class="modal">
-          <div class="modal-content"><button type="button" class="modal-close liquid-control liquid-control--icon"
-              id="modalClose" aria-label="閉じる">×</button>
-            <h3 id="modalTitle" class="modal-title"></h3>
-            <p id="modalMessage" class="modal-message"></p><button type="button" class="modal-btn liquid-control"
-              id="modalButton">閉じる</button>
+          <div class="contact-check-grid">
+            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="展示について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">展示について</span></label>
+            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="作品について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">作品について</span></label>
+            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="購入について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">購入について</span></label>
+            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="その他" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">その他</span></label>
           </div>
-        </div>
+          <div class="form-row"><input type="text" id="subject" name="subject" placeholder=" " required maxlength="120" autocomplete="off" /><label for="subject" class="form-label">件名</label></div>
+          <div class="form-row"><input type="text" id="name" name="name" placeholder=" " required maxlength="80" autocomplete="name" /><label for="name" class="form-label">お名前</label></div>
+          <div class="form-row"><input type="email" id="email" name="email" placeholder=" " required maxlength="254" autocomplete="email" /><label for="email" class="form-label">メールアドレス</label></div>
+          <div class="form-row"><textarea id="message" name="message" placeholder=" " required maxlength="5000"></textarea><label for="message" class="form-label form-label--textarea">お問い合わせ内容</label></div>
+          <div class="form-trap" aria-hidden="true"><label for="contactWebsite">Website</label><input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off" maxlength="200" /></div>
+          <div class="form-bottom">
+            <div class="contact-policy-consent">
+              <label class="check-item consent-item"><input class="check-item__input" type="checkbox" name="consent" value="同意済み" required aria-describedby="consentHelp" aria-controls="contactPolicyModal" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">個人情報の取り扱いを確認し、同意します</span></label>
+              <button type="button" class="contact-policy-trigger" data-open-contact-policy aria-haspopup="dialog" aria-controls="contactPolicyModal">個人情報の取り扱いについて</button>
+              <p class="contact-policy-consent__note" id="consentHelp">内容を確認し、同意する場合はチェックしてください。</p>
+            </div>
+            <button type="submit" class="send-btn liquid-control">内容を送信する</button>
+          </div>
+        </form>
+
+
+
       </div>
     </section>
 
@@ -274,11 +267,11 @@
                       </p>
                     </div>
                   </div>
-                  <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>作品の撮影について</span><span
+                  <div class="faq-sub-item"><button class="faq-sub-question" type="button"><span>撮影はできますか？</span><span
                         class="faq-sub-icon" aria-hidden="true"></span></button>
                     <div class="faq-sub-answer">
                       <p class="faq-sub-txt">
-                        <strong>撮影可能です。</strong>ただし、他のお客様が写り込まないようご配慮ください。SNSへ投稿する際は、<strong>「#ゆらゆら展」</strong>を付けていただけると嬉しいです。
+                        撮影可能な作品と、撮影をご遠慮いただく作品があります。会場内の案内や、各作品の表示をご確認ください。必要であれば、周囲のお客様や作品鑑賞の妨げにならないようご配慮ください。
                       </p>
                     </div>
                   </div>
@@ -339,6 +332,26 @@
       </div>
     </section>
   </main>
+  <div class="modal contact-policy-modal" id="contactPolicyModal" role="dialog" aria-modal="true" aria-labelledby="contactPolicyTitle" aria-hidden="true" inert tabindex="-1">
+    <div class="modal-content">
+      <button type="button" class="modal-close liquid-control liquid-control--icon" aria-label="閉じる" data-form-modal-close>×</button>
+      <div class="contact-policy-modal__copy">
+        <h3 id="contactPolicyTitle" class="modal-title">個人情報の取り扱いについて</h3>
+        <p class="modal-message">お問い合わせフォームに入力されたお問い合わせ種別、件名、お名前、メールアドレス、お問い合わせ内容は、お問い合わせへの回答および必要なご連絡のために利用します。</p>
+        <p class="modal-message">フォームの送信には、Google Apps Scriptのウェブアプリを利用しています。入力情報は、法令に基づく場合を除き、上記の目的以外には利用しません。</p>
+        <p class="modal-message">詳しくは<a href="./policy.html">Site Policy / サイトポリシー</a>をご確認ください。</p>
+      </div>
+      <button type="button" class="modal-btn liquid-control" data-form-modal-close>閉じる</button>
+    </div>
+  </div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage" aria-hidden="true" inert tabindex="-1" data-form-result>
+    <div class="modal-content">
+      <button type="button" class="modal-close liquid-control liquid-control--icon" id="modalClose" aria-label="閉じる" data-form-modal-close>×</button>
+      <h3 id="modalTitle" class="modal-title"></h3>
+      <p id="modalMessage" class="modal-message"></p>
+      <button type="button" class="modal-btn liquid-control" id="modalButton" data-form-modal-close>閉じる</button>
+    </div>
+  </div>
   <div id="js-footer"></div>
 </body>
 
