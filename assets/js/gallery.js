@@ -144,6 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
       profileImage: "./assets/img/saki_profile.jpg",
       instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
     },
+    "Quriqan": {
+      profile: "",
+      profileImage: "./assets/img/mizuki_profile.webp",
+      instagramUrl: "https://www.instagram.com/masa_ki.0102/",
+    },
   };
 
   function getArtworkImage(artwork) {
