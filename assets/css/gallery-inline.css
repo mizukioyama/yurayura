@@ -316,7 +316,7 @@ html.is-gallery-modal-open {
   align-items: center;
   justify-content: center;
   min-width: 0;
-  min-height: 270px;
+  min-height: 260px;
   height: 100%;
   overflow: hidden;
   opacity: 1;
@@ -332,6 +332,12 @@ html.is-gallery-modal-open {
   max-height: none;
   transition: opacity 160ms ease-in-out;
   object-fit: contain;
+}
+
+@media screen and (min-width: 320px) and (max-width: 699px) {
+  .gallery-modal__artwork > img {
+    height: 260px;
+  }
 }
 .gallery-modal__artwork > img.is-fading {
   opacity: 0;
@@ -377,7 +383,10 @@ html.is-gallery-modal-open {
   background: #fff;
   opacity: 0.7;
   translate: 0 0;
-  transition: border-color 160ms ease, opacity 160ms ease, translate 160ms ease;
+  transition:
+    border-color 160ms ease,
+    opacity 160ms ease,
+    translate 160ms ease;
   cursor: pointer;
 }
 .gallery-modal__thumb:last-child {
@@ -575,7 +584,7 @@ html.is-gallery-modal-open {
     /* min-height: 360px; */
     grid-auto-flow: column;
     grid-template-columns: none;
-   grid-template-rows: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
   }
   .gallery-modal__slideshow {
     width: calc(100% + 40px);
@@ -591,13 +600,13 @@ html.is-gallery-modal-open {
     gap: 6px;
   }
   .gallery-modal__slide-button--prev::before {
-  border-width: 1px 0 0 1px;
-  transform: translate(-50%, -25%) rotate(-45deg);
-}
-.gallery-modal__slide-button--next::before {
-  border-width: 0 1px 1px 0;
-  transform: translate(-50%, -75%) rotate(-45deg);
-}
+    border-width: 1px 0 0 1px;
+    transform: translate(-50%, -25%) rotate(-45deg);
+  }
+  .gallery-modal__slide-button--next::before {
+    border-width: 0 1px 1px 0;
+    transform: translate(-50%, -75%) rotate(-45deg);
+  }
   .gallery-modal__slides {
     width: 100%;
     height: auto;
@@ -653,7 +662,7 @@ html.is-gallery-modal-open {
     width: 96px;
     width: 25vmin;
     height: 40vmin;
-        /* width: 100%;
+    /* width: 100%;
     height: 180px; */
   }
 }

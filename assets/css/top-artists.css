@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-/* Use confirmed artwork for the published Artists cards and their loop clones. */
+/* Placeholder classes are copied with each slideshow clone. */
 .top-page #artists .member-track .card__link {
   position: relative;
   display: block;
@@ -36,9 +36,10 @@
   background-repeat: no-repeat;
 }
 
-.top-page #artists .member-track .card:nth-child(3n + 1) .card__link { background-image: url("../img/202339.webp") !important; }
-.top-page #artists .member-track .card:nth-child(3n + 2) .card__link { background-image: url("../img/IMG_20261003_190129_901.jpg") !important; }
-.top-page #artists .member-track .card:nth-child(3n) .card__link { background-image: url("../img/202337.webp") !important; }
+.top-page #artists .member-track .card.card--coming-soon-03 .card__link { background-image: url("../img/coming-soon-03.webp") !important; }
+.top-page #artists .member-track .card.card--artist-morimoto .card__link { background-image: url("../img/IMG_20261003_190129_901.jpg") !important; }
+.top-page #artists .member-track .card.card--coming-soon-04 .card__link { background-image: url("../img/coming-soon-04.webp") !important; }
+.top-page #artists .member-track .card.card--artist-mizuki .card__link { background-image: url("../img/uraura.webp") !important; }
 
 .top-page #artists .section__btn {
   --artists-side-padding: var(--top-section-inline-padding, 44px);
