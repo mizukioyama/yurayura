@@ -32,9 +32,10 @@
    <link rel="stylesheet" href="./assets/css/top-artists.css">
    <link rel="stylesheet" href="./assets/css/user-settings.css?v=20260922-typography-settings">
    <script src="./assets/js/font.js" defer></script>
-   <script src="./assets/js/allmenu.js?v=20260916-gallery-cursor-v11" defer></script>
+   <script src="./assets/js/allmenu.js?v=20261005-site-policy-footer-v9" defer></script>
    <script src="./assets/js/gallery.js?v=20260917-gallery-modal-profile-v12" defer></script>
    <script src="./assets/js/slide.js" defer></script>
+   <script src="./assets/js/art-protection.js" defer></script>
 </head>
 
 <body class="gallery-page">
@@ -83,14 +84,14 @@
                <div class="content gallery-content" id="gallery-container">
                   <article class="work gallery-card" data-artist="Mizuki" data-artist-id="Mizuki" data-genre="抽象,アクリル"
                      data-caption="作品 01。抽象とアクリルによる作品です。">
-                     <div class="work-img"><img src="./assets/img/uraura.webp" alt="Mizukiの作品 01"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/uraura.webp" alt="Mizukiの作品 01"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">作品｜裏裏</p>
                            <p>Artist：Mizuki<br>Genre：抽象 / アクリル</p>
                         </a></div>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク" data-caption="作品名">
-                     <div class="work-img"><img src="./assets/img/coming-soon-05.webp" alt="KAoRUの作品画像 準備中"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/coming-soon-05.webp" alt="KAoRUの作品画像 準備中"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">作品 01</p>
                            <p>Artist：KAoRU<br>Genre：アルコールインク</p>
@@ -98,7 +99,7 @@
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="アクリル"
                      data-caption="作品 01。アクリル作品です。">
-                     <div class="work-img"><img src="./assets/img/IMG_20261003_190129_901.jpg" alt="森元 咲喜の作品 01"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/IMG_20261003_190129_901.jpg" alt="森元 咲喜の作品 01"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">森元 咲喜 作品 01</p>
                            <p>Artist：森元 咲喜<br>Genre：アクリル</p>
@@ -106,7 +107,7 @@
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan" data-genre="抽象"
                      data-caption="作品 01。抽象とレジンによる作品です。">
-                     <div class="work-img"><img src="./assets/img/coming-soon-01.webp" alt="作品画像 準備中"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/coming-soon-01.webp" alt="作品画像 準備中"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">作品 01</p>
                            <p>Artist：Quriqan<br>Genre：抽象</p>
@@ -114,7 +115,7 @@
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="ドットペインティング"
                      data-caption="作品 02。ドットペインティング作品です。">
-                     <div class="work-img"><img src="./assets/img/IMG_20261003_190133_464.jpg" alt="森元 咲喜の作品 02"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/IMG_20261003_190133_464.jpg" alt="森元 咲喜の作品 02"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">作品 02</p>
                            <p>Artist：森元 咲喜<br>Genre：ドットペインティング</p>
@@ -122,7 +123,7 @@
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="アクリル"
                      data-caption="作品 03。アクリル作品です。">
-                     <div class="work-img"><img src="./assets/img/IMG_20261003_190136_252.jpg" alt="森元 咲喜の作品 03"><a
+                     <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/IMG_20261003_190136_252.jpg" alt="森元 咲喜の作品 03"><a
                            class="works gallery-work-link" href="#">
                            <p class="gallery-work-title">作品 03</p>
                            <p>Artist：森元 咲喜<br>Genre：アクリル</p>
@@ -141,7 +142,7 @@
       <div class="gallery-modal__panel" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle"><button
             class="gallery-modal__close" type="button" aria-label="閉じる" data-gallery-modal-close>×</button>
          <div class="gallery-modal__hero">
-            <div class="gallery-modal__artwork"><img id="galleryModalImage" alt=""></div>
+            <div class="gallery-modal__artwork"><img id="galleryModalImage" data-art-protect draggable="false" alt=""></div>
             <div class="gallery-modal__slideshow"><button
                   class="gallery-modal__slide-button gallery-modal__slide-button--prev" type="button"
                   id="galleryModalPrev" aria-label="前の作品">‹</button>
