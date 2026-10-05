@@ -181,8 +181,13 @@
           <div class="form-trap" aria-hidden="true"><label for="contactWebsite">Website</label><input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off" maxlength="200" /></div>
           <div class="form-bottom">
             <div class="contact-policy-consent">
-              <label class="check-item consent-item"><input class="check-item__input" type="checkbox" name="consent" value="同意済み" required aria-describedby="consentHelp" aria-controls="contactPolicyModal" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">個人情報の取り扱いを確認し、同意します</span></label>
-              <button type="button" class="contact-policy-trigger" data-open-contact-policy aria-haspopup="dialog" aria-controls="contactPolicyModal">個人情報の取り扱いについて</button>
+              <div class="contact-policy-consent__statement">
+                <label class="check-item contact-policy-consent__checkbox">
+                  <input class="check-item__input" id="contactConsent" type="checkbox" name="consent" value="同意済み" required aria-label="個人情報の取り扱いについて確認し、同意します" aria-describedby="consentHelp" />
+                  <span class="check-item__box" aria-hidden="true"></span>
+                </label>
+                <p class="contact-policy-consent__text"><button type="button" class="contact-policy-trigger" data-open-contact-policy aria-haspopup="dialog" aria-controls="contactPolicyModal">個人情報の取り扱いについて</button>確認し、同意します</p>
+              </div>
               <p class="contact-policy-consent__note" id="consentHelp">内容を確認し、同意する場合はチェックしてください。</p>
             </div>
             <button type="submit" class="send-btn liquid-control">内容を送信する</button>
@@ -334,7 +339,7 @@
   </main>
   <div class="modal contact-policy-modal" id="contactPolicyModal" role="dialog" aria-modal="true" aria-labelledby="contactPolicyTitle" aria-hidden="true" inert tabindex="-1">
     <div class="modal-content">
-      <button type="button" class="modal-close liquid-control liquid-control--icon" aria-label="閉じる" data-form-modal-close>×</button>
+      <button type="button" class="modal-close" aria-label="閉じる" data-form-modal-close>×</button>
       <div class="contact-policy-modal__copy">
         <h3 id="contactPolicyTitle" class="modal-title">個人情報の取り扱いについて</h3>
         <p class="modal-message">お問い合わせフォームに入力されたお問い合わせ種別、件名、お名前、メールアドレス、お問い合わせ内容は、お問い合わせへの回答および必要なご連絡のために利用します。</p>
