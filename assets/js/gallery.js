@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalProfileName = document.getElementById("galleryModalProfileName");
   const modalHistory = document.getElementById("galleryModalHistory");
   const modalInstagram = modal?.querySelector("#galleryModalInstagramLink");
+  const modalPortfolio = modal?.querySelector("#galleryModalPortfolioLink");
   const modalSlides = document.getElementById("galleryModalSlides");
   const prev = document.getElementById("galleryModalPrev");
   const next = document.getElementById("galleryModalNext");
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { date: "2025年 03月", description: "日台の絆展 会場 / 台湾" }
       ],
       instagramUrl: "https://www.instagram.com/o.mizuki_1998/",
+      portfolioUrl: "https://mizukioyama.github.io/website/",
     },
     "KAoRU": {
       profile: "Alcohol ink artist / 仙台在住 / 宮城県石巻市出身 / 1981年5月生まれ / おうし座 B型<br>アーティスト×薬剤師<br>色と形の一期一会<br>KAoRUの作品は「ありのまま」がテーマ人の感情や思いが色や形となり、アートとなる。そして、丸キャンパスにこだわりを持ち描き続ける。<br>そこには、<br>「どれがアートの天地か、どれがアートの正面かを決めず、 見た方が見たい角度で、見たいように、感じたいように、その時の感情に合わせてアートの見方を決めてほしい」という思いがある。<br>また、アルコールインクをドライヤーの風で動かしながら描くため、色の混ざり具合や形は同じものがなく、唯一無二の作品になることから私のアートを「色と形の一期一会」と表現している。",
@@ -291,6 +293,19 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         modalInstagram.removeAttribute("href");
         modalInstagram.hidden = true;
+      }
+    }
+    if (modalPortfolio) {
+      if (metadata.portfolioUrl) {
+        modalPortfolio.href = metadata.portfolioUrl;
+        modalPortfolio.target = "_blank";
+        modalPortfolio.rel = "noopener noreferrer";
+        modalPortfolio.setAttribute("aria-label", `${artist} Portfolio`);
+        modalPortfolio.hidden = false;
+      } else {
+        modalPortfolio.removeAttribute("href");
+        modalPortfolio.removeAttribute("aria-label");
+        modalPortfolio.hidden = true;
       }
     }
   }
