@@ -552,13 +552,27 @@ html.is-gallery-modal-open {
 .gallery-modal__history-table td:last-child {
   overflow-wrap: anywhere;
 }
+.gallery-modal__contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
 .gallery-modal__contact a {
   display: inline-flex;
-  margin-top: 20px;
   padding: 10px 22px;
   border: 1px solid currentColor;
   color: inherit;
   text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.gallery-modal__contact a:hover {
+  opacity: 0.78;
+}
+.gallery-modal__contact a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 .gallery-modal__contact a[hidden] {
   display: none;
