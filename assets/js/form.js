@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function parseResponse(response) {
     const contentType = response.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
-      return Promise.resolve({ status: response.ok ? "success" : "error", message: "" });
+      return Promise.resolve({ status: "error", message: "" });
     }
     return response.json().catch(() => ({ status: "error", message: "" }));
   }

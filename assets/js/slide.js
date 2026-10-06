@@ -300,7 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ".gallery-page .gallery-intro > p",
     ".gallery-page .gallery-sidebar__label",
     ".gallery-page .gallery-filter-group",
-    ".gallery-page .gallery-card"
+    ".gallery-page .gallery-card",
+    ".policy-page .policy-title",
+    ".policy-page .policy-section"
   ].join(",");
   const targets = Array.from(
     new Set([

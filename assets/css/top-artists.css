@@ -119,7 +119,8 @@
 .top-page .top-reveal-pending,
 .concept-page .top-reveal-pending,
 .gallery-page .top-reveal-pending,
-.recruit-page .top-reveal-pending {
+.recruit-page .top-reveal-pending,
+.policy-page .top-reveal-pending {
   opacity: 0;
   transform: translateY(10px);
 }
@@ -127,7 +128,8 @@
 .top-page .top-reveal-pending.top-reveal-visible,
 .concept-page .top-reveal-pending.top-reveal-visible,
 .gallery-page .top-reveal-pending.top-reveal-visible,
-.recruit-page .top-reveal-pending.top-reveal-visible {
+.recruit-page .top-reveal-pending.top-reveal-visible,
+.policy-page .top-reveal-pending.top-reveal-visible {
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -161,6 +163,7 @@
   .concept-page .top-reveal-pending,
   .gallery-page .top-reveal-pending,
   .recruit-page .top-reveal-pending,
+  .policy-page .top-reveal-pending,
   .concept-page .concept-fv #concept-title.top-reveal-pending {
     opacity: 1 !important;
     transform: none !important;

@@ -1544,7 +1544,12 @@ section {
   Tablet refinement: 481px〜1335px
 ======================================== */
 
-@media screen and (min-width: 481px) and (max-width: 1335px) {
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    section:not(.fv) {
+    padding-block: 24vmin;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1335px) {
   section:not(.fv) {
     padding-block: clamp(64px, calc(3vw + 48px), 96px);
     padding-block: 20vmin;
