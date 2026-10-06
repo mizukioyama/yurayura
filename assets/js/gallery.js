@@ -142,12 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "森元咲喜": {
       profile: "⁡⁡花、宇宙、絶滅危惧種の動物をモチーフに、アクリル画を手がけるアーティスト。<br>ドットペインティング(点描)を用いたアクリル 画を制作。<br>静けさの中にある生命力や宇宙の広がり、そこに宿る魂の輝きを、一粒一粒の点に落とし込んでいる。<br>2013年に初作品を発表し、2021年より本格的に活動を開始。<br>創作の模索を重ねる中、2026年友人から贈られた「森元咲喜｣の名を掲げ、活動の新たな章を開く。<br>観る人の心に静かな対話と、深い余韻をもたらす表現を追求している。",
       profileImage: "./assets/img/saki_profile.jpg",
-      instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
+      instagramUrl: "https://www.instagram.com/masa_ki.0102/",
     },
     "Quriqan": {
       profile: "",
       profileImage: "./assets/img/mizuki_profile.webp",
-      instagramUrl: "https://www.instagram.com/masa_ki.0102/",
+      instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
     },
   };
 

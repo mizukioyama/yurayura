@@ -31,7 +31,7 @@
   transform: none !important;
 }
 
-.concept-page .concept-fv #concept-title,
+.concept-page .concept-fv .fv__ttl,
 .policy-page .concept-fv .policy-title {
   position: static !important;
   display: block !important;

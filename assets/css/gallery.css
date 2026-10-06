@@ -225,13 +225,22 @@ body.gallery-page::after {
     margin: 5rem 0 3rem !important;
   }
 }
+
+@media (max-width: 479px) {
+    body.gallery-page .gallery-section {
+    padding: 0 54px 80px !important;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    body.gallery-page .gallery-section {
+    padding: 0 20vmin 80px !important;
+  }
+}
+
 @media (max-width: 767px) {
   html,
   body {
     overflow-x: hidden !important;
-  }
-  body.gallery-page .gallery-section {
-    padding: 0 54px 80px !important;
   }
   .gallery-page .h1-text {
     position: relative !important;

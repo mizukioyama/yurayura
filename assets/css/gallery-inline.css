@@ -334,7 +334,12 @@ html.is-gallery-modal-open {
   object-fit: contain;
 }
 
-@media screen and (min-width: 320px) and (max-width: 699px) {
+@media screen and (min-width: 421px) and (max-width: 767px) {
+  .gallery-modal__artwork > img {
+    height: 340px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
   .gallery-modal__artwork > img {
     height: 260px;
   }
