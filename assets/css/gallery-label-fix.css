@@ -49,3 +49,58 @@
     white-space: nowrap !important;
   }
 }
+
+
+/* Load this after the existing Gallery stylesheets. */
+body.gallery-page .gallery {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: clamp(16px, 3vw, 40px) !important;
+  padding-right: clamp(16px, 3vw, 40px) !important;
+}
+
+body.gallery-page .gallery-section {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body.gallery-page .gallery-main,
+body.gallery-page .gallery-containt,
+body.gallery-page .gallery-content {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  body.gallery-page .gallery-content {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  body.gallery-page .gallery-intro,
+  body.gallery-page .gallery-sidebar {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+/* Mark the current pagination page and keep it inert. */
+body.gallery-page .gallery-page-button[aria-current="page"] {
+  background: rgba(60, 70, 6, 0.82) !important;
+  color: #f8faec !important;
+  cursor: default !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  transform: none !important;
+}
