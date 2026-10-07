@@ -159,8 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
       instagramUrl: "https://www.instagram.com/masa_ki.0102/",
     },
     "Quriqan": {
-      profile: "",
-      profileImage: "./assets/img/mizuki_profile.webp",
+      profile: "グラフィックアート／音楽制作（DTM)／動画（写真・動画撮影・編集）<br>びやかなもの・開放的なものに惹かれ、<br>音の鳴る場所や海外一人旅へ。そこで触れた場のエネルギー、関わった人々、他者の創作物等からの影響を多大に受け取る。<br>音楽から喚起されたイメージ・インスピレーションを視覚に変換するように作品を制作。<br>流動的に視覚と聴覚を横断する。<br>創作は、自分の人生を動かす為に必要なもの。",
+      profileImage: "./assets/img/quriqan_profile.jpg",
       instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
     },
   };
