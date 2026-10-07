@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pagination = document.getElementById("galleryPagination");
   const result = document.getElementById("galleryResult");
   const filters = Array.from(document.querySelectorAll(".gallery-filter"));
-  const pageSize = 10;
+  const pageSize = 8;
   const state = { artist: "all", genre: "all", page: 1 };
 
   /* Final category layout override. */
@@ -46,7 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
       button.type = "button";
       button.textContent = `${page}P`;
       if (page === state.page) button.setAttribute("aria-current", "page");
-      button.addEventListener("click", () => { state.page = page; render(); });
+      button.addEventListener("click", () => {
+  state.page = page;
+  render();
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  window.scrollTo({
+    top: 0,
+    behavior: reduceMotion ? "auto" : "smooth",
+  });
+});
       pagination.appendChild(button);
     }
   }
