@@ -30,10 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // document.head.appendChild(categoryStyle);
 
   if (!allArtworks.length) return;
-  const values = raw => String(raw || "").split(/[、,\/・|]/).map(v => v.trim()).filter(Boolean);
+  const values = (raw) =>
+    String(raw || "")
+      .split(/[、,\/・|]/)
+      .map((v) => v.trim())
+      .filter(Boolean);
   const matches = (raw, selected) => selected === "all" || values(raw).includes(selected);
   let filteredArtworks = [];
-  const getFilteredArtworks = () => allArtworks.filter(artwork => matches(artwork.dataset.artist, state.artist) && matches(artwork.dataset.genre, state.genre));
+  const getFilteredArtworks = () =>
+    allArtworks.filter(
+      (artwork) =>
+        matches(artwork.dataset.artist, state.artist) &&
+        matches(artwork.dataset.genre, state.genre),
+    );
 
   function renderPagination(totalPages) {
     if (!pagination) return;
@@ -46,7 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
       button.type = "button";
       button.textContent = `${page}P`;
       if (page === state.page) button.setAttribute("aria-current", "page");
-      button.addEventListener("click", () => { state.page = page; render(); });
+      button.addEventListener("click", () => {
+        state.page = page;
+        render();
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
+      });
       pagination.appendChild(button);
     }
   }
@@ -55,10 +69,17 @@ document.addEventListener("DOMContentLoaded", () => {
     filteredArtworks = getFilteredArtworks();
     const totalPages = Math.max(1, Math.ceil(filteredArtworks.length / pageSize));
     state.page = Math.min(state.page, totalPages);
-    allArtworks.forEach(artwork => { artwork.hidden = true; });
+    allArtworks.forEach((artwork) => {
+      artwork.hidden = true;
+    });
     const start = (state.page - 1) * pageSize;
-    filteredArtworks.slice(start, start + pageSize).forEach(artwork => { artwork.hidden = false; });
-    if (result) result.textContent = filteredArtworks.length ? String(filteredArtworks.length) + "作品" : "該当する作品はありません";
+    filteredArtworks.slice(start, start + pageSize).forEach((artwork) => {
+      artwork.hidden = false;
+    });
+    if (result)
+      result.textContent = filteredArtworks.length
+        ? String(filteredArtworks.length) + "作品"
+        : "該当する作品はありません";
     renderPagination(totalPages);
     if (currentArtwork && !filteredArtworks.includes(currentArtwork)) {
       closeModal();
@@ -71,14 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
     updateNavigationState();
   }
 
-  filters.forEach(button => {
+  filters.forEach((button) => {
     button.addEventListener("click", () => {
       const wrapper = button.closest("[data-filter-group]");
       const group = wrapper?.dataset.filterGroup;
       if (!group || !(group in state)) return;
       state[group] = button.dataset.filterValue || "all";
       state.page = 1;
-      wrapper.querySelectorAll(".gallery-filter").forEach(item => {
+      wrapper.querySelectorAll(".gallery-filter").forEach((item) => {
         const active = item === button;
         item.classList.toggle("is-active", active);
         item.setAttribute("aria-pressed", String(active));
@@ -111,24 +132,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const artworkPreloads = new Map();
 
   const artistMetadata = {
-    "Mizuki": {
-      profile: "宮城県仙台市出身の抽象画家。<br>自然の中にある、静けさと動き、秩序と混沌、意図と偶然。<br>相反するものが共に存在する曖昧さに惹かれ、「NatureInspire」を軸に制作している。計画と偶然のあいだで、色や形の変化に応答しながら、その瞬間に生まれる感覚を作品へと置き換えていく。<br>答えや解釈を決めるのではなく、見る人が感じ、考え、自分自身と向き合える余白を残すことを大切にしている。",
+    Mizuki: {
+      profile:
+        "宮城県仙台市出身の抽象画家。<br>自然の中にある、静けさと動き、秩序と混沌、意図と偶然。<br>相反するものが共に存在する曖昧さに惹かれ、「NatureInspire」を軸に制作している。計画と偶然のあいだで、色や形の変化に応答しながら、その瞬間に生まれる感覚を作品へと置き換えていく。<br>答えや解釈を決めるのではなく、見る人が感じ、考え、自分自身と向き合える余白を残すことを大切にしている。",
       profileImage: "./assets/img/mizuki_profile.webp",
-            history: [
+      history: [
         { date: "2021年 03月より", description: "出展活動を始める" },
         { date: "2021年 04月", description: "チャリティアート展 会場 / 東京" },
         { date: "2021年 08月", description: "OASISU2021 会場 / 大阪あべのハルカス" },
         { date: "2021年 11月", description: "サロン・ド・アール・ジャポネ 会場 / フランス" },
-        { date: "2022年 04月", description: "日アセアン友好文化交流展 会場 / 東京アセアンセンター" },
+        {
+          date: "2022年 04月",
+          description: "日アセアン友好文化交流展 会場 / 東京アセアンセンター",
+        },
         { date: "2022年 11月", description: "芸術の虎展 会場 / 日光東照宮美術館" },
         { date: "2023年 06月", description: "第2回日仏友好オリジナル切手展 会場 / フランス" },
-        { date: "2025年 03月", description: "日台の絆展 会場 / 台湾" }
+        { date: "2025年 03月", description: "日台の絆展 会場 / 台湾" },
       ],
       instagramUrl: "https://www.instagram.com/o.mizuki_1998/",
       portfolioUrl: "https://mizukioyama.github.io/website/",
     },
-    "KAoRU": {
-      profile: "Alcohol ink artist / 仙台在住 / 宮城県石巻市出身 / 1981年5月生まれ / おうし座 B型<br>アーティスト×薬剤師<br>色と形の一期一会<br>KAoRUの作品は「ありのまま」がテーマ人の感情や思いが色や形となり、アートとなる。そして、丸キャンパスにこだわりを持ち描き続ける。<br>そこには、<br>「どれがアートの天地か、どれがアートの正面かを決めず、 見た方が見たい角度で、見たいように、感じたいように、その時の感情に合わせてアートの見方を決めてほしい」という思いがある。<br>また、アルコールインクをドライヤーの風で動かしながら描くため、色の混ざり具合や形は同じものがなく、唯一無二の作品になることから私のアートを「色と形の一期一会」と表現している。",
+    KAoRU: {
+      profile:
+        "Alcohol ink artist / 仙台在住 / 宮城県石巻市出身 / 1981年5月生まれ / おうし座 B型<br>アーティスト×薬剤師<br>色と形の一期一会<br>KAoRUの作品は「ありのまま」がテーマ人の感情や思いが色や形となり、アートとなる。そして、丸キャンパスにこだわりを持ち描き続ける。<br>そこには、<br>「どれがアートの天地か、どれがアートの正面かを決めず、 見た方が見たい角度で、見たいように、感じたいように、その時の感情に合わせてアートの見方を決めてほしい」という思いがある。<br>また、アルコールインクをドライヤーの風で動かしながら描くため、色の混ざり具合や形は同じものがなく、唯一無二の作品になることから私のアートを「色と形の一期一会」と表現している。",
       history: [
         { date: "2022年 03月より", description: "独学でインクアートを始める" },
         { date: "2023年 06月", description: "個展「一期一会」開催(仙台市)" },
@@ -136,18 +162,20 @@ document.addEventListener("DOMContentLoaded", () => {
         { date: "2024年 06月", description: "合同企画展(仙台市)" },
         { date: "2024年 11月", description: "合同企画展(盛岡市)" },
         { date: "2025年 02月", description: "第一回東北アルコールインクアート展出展" },
-        { date: "2025年 04月", description: "日仏彩美国際美術展 第30回 彩美展 奨励賞" }
+        { date: "2025年 04月", description: "日仏彩美国際美術展 第30回 彩美展 奨励賞" },
       ],
       profileImage: "./assets/img/kaoru_profile.jpg",
       instagramUrl: "https://www.instagram.com/kaoru_ink_art/",
     },
-    "森元咲喜": {
-      profile: "⁡⁡花、宇宙、絶滅危惧種の動物をモチーフに、アクリル画を手がけるアーティスト。<br>ドットペインティング(点描)を用いたアクリル 画を制作。<br>静けさの中にある生命力や宇宙の広がり、そこに宿る魂の輝きを、一粒一粒の点に落とし込んでいる。<br>2013年に初作品を発表し、2021年より本格的に活動を開始。<br>創作の模索を重ねる中、2026年友人から贈られた「森元咲喜｣の名を掲げ、活動の新たな章を開く。<br>観る人の心に静かな対話と、深い余韻をもたらす表現を追求している。",
+    森元咲喜: {
+      profile:
+        "⁡⁡花、宇宙、絶滅危惧種の動物をモチーフに、アクリル画を手がけるアーティスト。<br>ドットペインティング(点描)を用いたアクリル 画を制作。<br>静けさの中にある生命力や宇宙の広がり、そこに宿る魂の輝きを、一粒一粒の点に落とし込んでいる。<br>2013年に初作品を発表し、2021年より本格的に活動を開始。<br>創作の模索を重ねる中、2026年友人から贈られた「森元咲喜｣の名を掲げ、活動の新たな章を開く。<br>観る人の心に静かな対話と、深い余韻をもたらす表現を追求している。",
       profileImage: "./assets/img/saki_profile.jpg",
       instagramUrl: "https://www.instagram.com/masa_ki.0102/",
     },
-    "Quriqan": {
-            profile: "グラフィックアート／音楽制作（DTM)／動画（写真・動画撮影・編集）<br>びやかなもの・開放的なものに惹かれ、<br>音の鳴る場所や海外一人旅へ。そこで触れた場のエネルギー、関わった人々、他者の創作物等からの影響を多大に受け取る。<br>音楽から喚起されたイメージ・インスピレーションを視覚に変換するように作品を制作。<br>流動的に視覚と聴覚を横断する。<br>創作は、自分の人生を動かす為に必要なもの。",
+    Quriqan: {
+      profile:
+        "グラフィックアート／音楽制作（DTM)／動画（写真・動画撮影・編集）<br>びやかなもの・開放的なものに惹かれ、<br>音の鳴る場所や海外一人旅へ。そこで触れた場のエネルギー、関わった人々、他者の創作物等からの影響を多大に受け取る。<br>音楽から喚起されたイメージ・インスピレーションを視覚に変換するように作品を制作。<br>流動的に視覚と聴覚を横断する。<br>創作は、自分の人生を動かす為に必要なもの。",
       profileImage: "./assets/img/quriqan_profile.jpg",
       instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
     },
@@ -167,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const preload = new window.Image();
     preload.decoding = "async";
-    const loaded = new Promise(resolve => {
+    const loaded = new Promise((resolve) => {
       let settled = false;
       const finish = () => {
         if (settled) return;
@@ -179,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
       preload.src = sourceUrl;
       if (preload.complete) finish();
     });
-    const ready = loaded.then(async image => {
+    const ready = loaded.then(async (image) => {
       if (!image) return null;
       if (typeof image.decode === "function") {
         try {
@@ -201,19 +229,27 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const adjacentArtworks = [...new Set([
-      filteredArtworks[(index - 1 + filteredArtworks.length) % filteredArtworks.length],
-      filteredArtworks[(index + 1) % filteredArtworks.length],
-    ])];
-    const adjacentSources = new Set(adjacentArtworks.map(adjacentArtwork => {
-      const image = getArtworkImage(adjacentArtwork);
-      return image?.currentSrc || image?.src;
-    }).filter(Boolean));
+    const adjacentArtworks = [
+      ...new Set([
+        filteredArtworks[(index - 1 + filteredArtworks.length) % filteredArtworks.length],
+        filteredArtworks[(index + 1) % filteredArtworks.length],
+      ]),
+    ];
+    const adjacentSources = new Set(
+      adjacentArtworks
+        .map((adjacentArtwork) => {
+          const image = getArtworkImage(adjacentArtwork);
+          return image?.currentSrc || image?.src;
+        })
+        .filter(Boolean),
+    );
 
     artworkPreloads.forEach((_, sourceUrl) => {
       if (!adjacentSources.has(sourceUrl)) artworkPreloads.delete(sourceUrl);
     });
-    adjacentArtworks.forEach(adjacentArtwork => { void preloadArtwork(adjacentArtwork); });
+    adjacentArtworks.forEach((adjacentArtwork) => {
+      void preloadArtwork(adjacentArtwork);
+    });
   }
 
   function renderArtistHistory(history) {
@@ -232,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     table.className = "gallery-modal__history-table";
     const tableHead = document.createElement("thead");
     const headerRow = document.createElement("tr");
-    ["年月", "内容"].forEach(label => {
+    ["年月", "内容"].forEach((label) => {
       const header = document.createElement("th");
       header.scope = "col";
       header.textContent = label;
@@ -241,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tableHead.appendChild(headerRow);
 
     const tableBody = document.createElement("tbody");
-    history.forEach(item => {
+    history.forEach((item) => {
       const row = document.createElement("tr");
       const date = document.createElement("td");
       date.textContent = item.date || "";
@@ -257,9 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateArtworkInformation(artwork, image) {
-    const title = artwork.querySelector(".gallery-work-link .gallery-work-title")?.textContent?.trim()
-      || artwork.querySelector(".gallery-work-link h2")?.textContent?.trim()
-      || "作品";
+    const title =
+      artwork.querySelector(".gallery-work-link .gallery-work-title")?.textContent?.trim() ||
+      artwork.querySelector(".gallery-work-link h2")?.textContent?.trim() ||
+      "作品";
     const artist = artwork.dataset.artist || "";
     const artistId = artwork.dataset.artistId || artist;
     const metadata = artistMetadata[artistId] || {};
@@ -322,15 +359,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const sourceUrl = image.currentSrc || image.src;
     const shouldCrossfade = Boolean(
-      animateImage && !reduceMotion && modal?.classList.contains("is-open") &&
-      modalImage && currentArtwork !== artwork && modalImage.currentSrc !== sourceUrl
+      animateImage &&
+      !reduceMotion &&
+      modal?.classList.contains("is-open") &&
+      modalImage &&
+      currentArtwork !== artwork &&
+      modalImage.currentSrc !== sourceUrl,
     );
 
     requestedArtwork = artwork;
     if (shouldCrossfade) {
-      preloadArtwork(artwork).then(loadedImage => {
+      preloadArtwork(artwork).then((loadedImage) => {
         if (switchToken !== imageSwitchToken) return;
-        if (!loadedImage || !modal?.classList.contains("is-open") || modal.classList.contains("is-closing")) {
+        if (
+          !loadedImage ||
+          !modal?.classList.contains("is-open") ||
+          modal.classList.contains("is-closing")
+        ) {
           requestedArtwork = currentArtwork;
           return;
         }
@@ -338,7 +383,12 @@ document.addEventListener("DOMContentLoaded", () => {
         modalImage.classList.add("is-fading");
         modalBody?.classList.add("is-switching");
         imageSwitchTimer = window.setTimeout(() => {
-          if (switchToken !== imageSwitchToken || !modal.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
+          if (
+            switchToken !== imageSwitchToken ||
+            !modal.classList.contains("is-open") ||
+            modal.classList.contains("is-closing")
+          )
+            return;
           currentArtwork = artwork;
           requestedArtwork = artwork;
           modalImage.src = loadedImage.src;
@@ -418,24 +468,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       modal.classList.add("is-visible");
     } else {
-      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-        if (motionToken === modalMotionToken && modal.classList.contains("is-open") && !modal.classList.contains("is-closing")) {
-          modal.classList.add("is-visible");
-        }
-      }));
+      window.requestAnimationFrame(() =>
+        window.requestAnimationFrame(() => {
+          if (
+            motionToken === modalMotionToken &&
+            modal.classList.contains("is-open") &&
+            !modal.classList.contains("is-closing")
+          ) {
+            modal.classList.add("is-visible");
+          }
+        }),
+      );
     }
     modal.querySelector(".gallery-modal__close")?.focus();
   }
 
   function finishModalClose(motionToken) {
-    if (!modal || motionToken !== modalMotionToken || !modal.classList.contains("is-closing")) return;
+    if (!modal || motionToken !== modalMotionToken || !modal.classList.contains("is-closing"))
+      return;
     modal.classList.remove("is-open", "is-closing", "is-visible");
     modal.setAttribute("aria-hidden", "true");
     document.documentElement.classList.remove("is-gallery-modal-open");
   }
 
   function closeModal() {
-    if (!modal || !modal.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
+    if (!modal || !modal.classList.contains("is-open") || modal.classList.contains("is-closing"))
+      return;
     const motionToken = ++modalMotionToken;
     modal.classList.add("is-closing");
     modal.classList.remove("is-visible");
@@ -453,27 +511,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  allArtworks.forEach(artwork => {
+  allArtworks.forEach((artwork) => {
     const link = artwork.querySelector(".gallery-work-link");
     const title = link?.querySelector(".gallery-work-title, h2")?.textContent?.trim() || "作品";
     artwork.setAttribute("tabindex", "0");
     artwork.setAttribute("role", "button");
     artwork.setAttribute("aria-label", title + "の詳細を見る");
-    artwork.addEventListener("click", event => {
+    artwork.addEventListener("click", (event) => {
       event.preventDefault();
       openModal(artwork);
     });
-    artwork.addEventListener("keydown", event => {
+    artwork.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         openModal(artwork);
       }
     });
   });
-  modal?.querySelectorAll("[data-gallery-modal-close]").forEach(button => button.addEventListener("click", closeModal));
+  modal
+    ?.querySelectorAll("[data-gallery-modal-close]")
+    .forEach((button) => button.addEventListener("click", closeModal));
   prev?.addEventListener("click", () => navigateArtwork(-1));
   next?.addEventListener("click", () => navigateArtwork(1));
-  document.addEventListener("keydown", event => {
+  document.addEventListener("keydown", (event) => {
     if (!modal?.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
     if (event.key === "Escape") closeModal();
     if (event.key === "ArrowLeft") navigateArtwork(-1);

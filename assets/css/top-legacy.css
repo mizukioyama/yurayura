@@ -166,6 +166,7 @@
     min-height: 100vh;
     padding-block: clamp(88px, calc(8.5vw + 57px), 120px);
     padding-inline: var(--top-section-inline-padding);
+    padding-block: 20vmin;
   }
 
   .top-page .section--concept .section__inner,
