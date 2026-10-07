@@ -420,6 +420,7 @@ body.gallery-page::after {
   justify-content: center;
   gap: 0.6rem;
   min-height: 2rem;
+  padding: 5vmin;
 }
 .gallery-page .gallery-pagination[hidden] {
   display: none;

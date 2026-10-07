@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pagination = document.getElementById("galleryPagination");
   const result = document.getElementById("galleryResult");
   const filters = Array.from(document.querySelectorAll(".gallery-filter"));
-  const pageSize = 10;
+  const pageSize = 8;
   const state = { artist: "all", genre: "all", page: 1 };
 
   /* Final category layout override. */
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const artistMetadata = {
     "Mizuki": {
-      profile: "小山瑞樹 / Mizuki Oyama<br>宮城県仙台市出身の抽象画家。<br>自然の中にある、静けさと動き、秩序と混沌、意図と偶然。<br>相反するものが共に存在する曖昧さに惹かれ、「NatureInspire」を軸に制作している。計画と偶然のあいだで、色や形の変化に応答しながら、その瞬間に生まれる感覚を作品へと置き換えていく。<br>答えや解釈を決めるのではなく、見る人が感じ、考え、自分自身と向き合える余白を残すことを大切にしている。",
+      profile: "宮城県仙台市出身の抽象画家。<br>自然の中にある、静けさと動き、秩序と混沌、意図と偶然。<br>相反するものが共に存在する曖昧さに惹かれ、「NatureInspire」を軸に制作している。計画と偶然のあいだで、色や形の変化に応答しながら、その瞬間に生まれる感覚を作品へと置き換えていく。<br>答えや解釈を決めるのではなく、見る人が感じ、考え、自分自身と向き合える余白を残すことを大切にしている。",
       profileImage: "./assets/img/mizuki_profile.webp",
             history: [
         { date: "2021年 03月より", description: "出展活動を始める" },
@@ -147,8 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
       instagramUrl: "https://www.instagram.com/masa_ki.0102/",
     },
     "Quriqan": {
-      profile: "",
-      profileImage: "./assets/img/mizuki_profile.webp",
+            profile: "グラフィックアート／音楽制作（DTM)／動画（写真・動画撮影・編集）<br>びやかなもの・開放的なものに惹かれ、<br>音の鳴る場所や海外一人旅へ。そこで触れた場のエネルギー、関わった人々、他者の創作物等からの影響を多大に受け取る。<br>音楽から喚起されたイメージ・インスピレーションを視覚に変換するように作品を制作。<br>流動的に視覚と聴覚を横断する。<br>創作は、自分の人生を動かす為に必要なもの。",
+      profileImage: "./assets/img/quriqan_profile.jpg",
       instagramUrl: "https://www.instagram.com/eiende_wanai_dakara/",
     },
   };
