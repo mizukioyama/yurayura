@@ -249,7 +249,7 @@ body.gallery-page::after {
     box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 180px 22px 420px !important;
+    padding: 180px 0px 420px !important;
   }
   .gallery-page .gallery > .scroll-guide {
     left: 22px !important;
