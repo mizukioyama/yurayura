@@ -606,12 +606,12 @@ html.is-gallery-modal-open {
     grid-template-rows: repeat(2, auto);
   }
   .gallery-modal__slideshow {
-    width: calc(100% + 40px);
+    width: calc(100% + 0px);
     min-width: 0;
     max-width: none;
     height: 100%;
     min-height: 108px;
-    margin-inline: -20px;
+    margin-inline: 0px;
     padding: 0;
     flex-direction: row;
     align-items: center;
@@ -622,6 +622,11 @@ html.is-gallery-modal-open {
     border-width: 1px 0 0 1px;
     transform: translate(-50%, -25%) rotate(-45deg);
   }
+  .gallery-modal__slide-button--next::before {
+    border-width: 0 1px 1px 0;
+    transform: translate(-50%, -75%) rotate(-45deg);
+  }
+
   .gallery-modal__slides {
     width: 100%;
     height: auto;
