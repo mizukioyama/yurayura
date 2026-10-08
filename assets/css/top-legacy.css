@@ -132,10 +132,10 @@
 .top-page .member-track .card__btn {
   top: 0;
   right: 20px;
-  width: auto;
+  width: 12vmin;
   height: 100%;
   min-height: 280px;
-  padding: 1.4rem;
+  padding: 0;
   background: var(--color-bg);
   mix-blend-mode: plus-lighter;
 }

@@ -59,6 +59,7 @@
   max-width: calc(100% + (2 * var(--artists-side-padding)));
   margin-right: calc(-1 * var(--artists-side-padding));
   margin-left: calc(-1 * var(--artists-side-padding));
+  min-height: 280px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
