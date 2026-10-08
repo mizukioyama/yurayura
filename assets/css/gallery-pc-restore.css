@@ -3,6 +3,7 @@
   .gallery-page .gallery {
     min-height: 100vh;
     padding: 0 7vw 6vh;
+    padding: 20vmin !important;
   }
   .gallery-page .h1-text {
     position: relative;
@@ -101,6 +102,7 @@
   }
   .gallery-page .gallery-pagination {
     margin-top: 4rem;
+    padding: 6vmin;
   }
   .gallery-page .header:not(.is-compact.is-open) .header-list {
     gap: clamp(32px, 4vw, 72px) !important;

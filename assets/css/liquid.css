@@ -150,11 +150,11 @@
   background:
     radial-gradient(
       circle at var(--mx, 50%) var(--my, 50%),
-      rgba(93, 105, 20, 0.88),
+      rgba(229, 234, 198, 0.88),
       rgba(60, 70, 6, 0.82) 48%,
-      rgba(60, 70, 6, 0.72) 100%
+      rgba(84, 93, 32, 0.72) 100%
     ),
-    rgba(60, 70, 6, 0.82);
+    rgba(77, 88, 16, 0.82);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -280,7 +280,7 @@ body.gallery-page .gallery-sidebar .gallery-filter.liquid-control {
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:hover,
 body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible {
   border-color: transparent;
-  /* color: #f8faec;
+  /*color: #f8faec;
   background: rgba(60, 70, 6, 0.82); */
   opacity: 1;
   text-shadow: none;
@@ -294,7 +294,7 @@ body.gallery-page .gallery-page-button.liquid-control {
     clamp(0.75rem, calc(0.35vw + 0.55rem), 1rem);
   border: 0;
   border-radius: var(--liquid-radius);
-  /* color: #f8faec;
+  /*color: #f8faec;
   background: rgba(60, 70, 6, 0.68); */
 }
 
