@@ -36,9 +36,9 @@
   background-repeat: no-repeat;
 }
 
-.top-page #artists .member-track .card.card--coming-soon-03 .card__link { background-image: url("../img/coming-soon-03.webp") !important; }
+.top-page #artists .member-track .card.card--coming-soon-03 .card__link { background-image: url("../img/ここにいる.webp") !important; }
 .top-page #artists .member-track .card.card--artist-morimoto .card__link { background-image: url("../img/IMG_20261003_190129_901.jpg") !important; }
-.top-page #artists .member-track .card.card--coming-soon-04 .card__link { background-image: url("../img/coming-soon-04.webp") !important; }
+.top-page #artists .member-track .card.card--coming-soon-04 .card__link { background-image: url("../img/無題01.webp") !important; }
 .top-page #artists .member-track .card.card--artist-mizuki .card__link { background-image: url("../img/uraura.webp") !important; }
 
 .top-page #artists .section__btn {

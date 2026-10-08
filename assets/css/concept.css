@@ -309,6 +309,7 @@
 .concept-page main section:not(.fv) {
   padding-left: 54px !important;
   padding-right: 54px !important;
+  padding: 20vmin;
 }
 
 

@@ -30,7 +30,7 @@
   margin: 0;
   writing-mode: horizontal-tb;
   line-height: 2.2;
-  text-align: left;
+  white-space: pre-line;
 }
 
 .top-page .section--concept .concept-link-wrap {

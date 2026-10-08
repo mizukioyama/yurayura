@@ -191,7 +191,7 @@
     white-space: normal;
     line-height: clamp(1.8, calc(0.35vw + 1.68), 1.95);
     letter-spacing: 0.08em;
-    text-align: center;
+    white-space: pre-line;
   }
 
   .top-page .section--concept .concept-link-wrap {
