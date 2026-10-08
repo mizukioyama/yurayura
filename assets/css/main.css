@@ -692,7 +692,6 @@ section.section--concept {
   color: var(--color-bg);
   z-index: 1;
   text-align: center;
-  font-family: var(--font-btn);
   width: 100%;
   padding: 10px 0;
 }

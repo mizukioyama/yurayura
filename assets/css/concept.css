@@ -17,7 +17,6 @@
   z-index: 1;
   margin-bottom: 1.2rem;
   color: var(--color-txt);
-  font-family: var(--font-btn);
   font-size: clamp(0.8rem, 1.4vw, 1rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -123,7 +122,6 @@
   padding: 0.9rem 1.5rem;
   color: var(--color-bg);
   background: var(--color-shadow-green);
-  font-family: var(--font-btn);
   font-size: 1rem;
   letter-spacing: 0.12em;
   writing-mode: initial;
