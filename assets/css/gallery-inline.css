@@ -440,12 +440,12 @@ html.is-gallery-modal-open {
 .gallery-modal__slide-button--prev:hover::before,
 .gallery-modal__slide-button--prev:focus-visible::before,
 .gallery-modal__slide-button--prev:active::before {
-  translate: -3px 0;
+  translate: 0px -4px;
 }
 .gallery-modal__slide-button--next:hover::before,
 .gallery-modal__slide-button--next:focus-visible::before,
 .gallery-modal__slide-button--next:active::before {
-  translate: 3px 0;
+  translate: 0px 4px;
 }
 .gallery-modal__slide-button--prev {
   top: -10px !important;
@@ -621,10 +621,6 @@ html.is-gallery-modal-open {
   .gallery-modal__slide-button--prev::before {
     border-width: 1px 0 0 1px;
     transform: translate(-50%, -25%) rotate(-45deg);
-  }
-  .gallery-modal__slide-button--next::before {
-    border-width: 0 1px 1px 0;
-    transform: translate(-50%, -75%) rotate(-45deg);
   }
   .gallery-modal__slides {
     width: 100%;
