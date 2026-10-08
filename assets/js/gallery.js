@@ -268,6 +268,49 @@ document.addEventListener("DOMContentLoaded", () => {
     modalHistory.hidden = false;
   }
 
+  function syncThumbnailSelection(artwork) {
+    if (!modalSlides) return;
+
+    let selectedThumbnail = null;
+    modalSlides.querySelectorAll(".gallery-modal__thumb").forEach((button, index) => {
+      const isSelected = filteredArtworks[index] === artwork;
+      button.classList.toggle("is-active", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
+      if (isSelected) selectedThumbnail = button;
+    });
+    if (!selectedThumbnail) return;
+
+    const containerRect = modalSlides.getBoundingClientRect();
+    const thumbnailRect = selectedThumbnail.getBoundingClientRect();
+    const isHorizontal = window.matchMedia("(max-width: 767px)").matches;
+    const viewportSize = isHorizontal ? modalSlides.clientWidth : modalSlides.clientHeight;
+    const thumbnailSize = isHorizontal ? thumbnailRect.width : thumbnailRect.height;
+    if (!viewportSize || !thumbnailSize) return;
+
+    const currentScroll = isHorizontal ? modalSlides.scrollLeft : modalSlides.scrollTop;
+    const thumbnailOffset = isHorizontal
+      ? thumbnailRect.left - containerRect.left
+      : thumbnailRect.top - containerRect.top;
+    const maxScroll = Math.max(
+      0,
+      (isHorizontal ? modalSlides.scrollWidth : modalSlides.scrollHeight) - viewportSize
+    );
+    const targetScroll = Math.max(
+      0,
+      Math.min(maxScroll, currentScroll + thumbnailOffset - (viewportSize - thumbnailSize) / 2)
+    );
+    if (Math.abs(targetScroll - currentScroll) < 8) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (isHorizontal) modalSlides.scrollLeft = targetScroll;
+      else modalSlides.scrollTop = targetScroll;
+    } else if (isHorizontal) {
+      modalSlides.scrollTo({ left: targetScroll, behavior: "smooth" });
+    } else {
+      modalSlides.scrollTo({ top: targetScroll, behavior: "smooth" });
+    }
+  }
+
   function updateArtworkInformation(artwork, image) {
     const title = artwork.querySelector(".gallery-work-link .gallery-work-title")?.textContent?.trim()
       || artwork.querySelector(".gallery-work-link h2")?.textContent?.trim()
@@ -293,9 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
       else modalProfileImage.removeAttribute("src");
       modalProfileImage.alt = artist + " プロフィール画像（仮）";
     }
-    modalSlides?.querySelectorAll("button").forEach((button, index) => {
-      button.classList.toggle("is-active", filteredArtworks[index] === artwork);
-    });
+    syncThumbnailSelection(artwork);
     if (modalInstagram) {
       if (metadata.instagramUrl) {
         modalInstagram.href = metadata.instagramUrl;
@@ -427,6 +468,10 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("is-gallery-modal-open");
+    window.requestAnimationFrame(() => {
+      if (motionToken !== modalMotionToken || !modal.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
+      syncThumbnailSelection(currentArtwork);
+    });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       modal.classList.add("is-visible");
     } else {
