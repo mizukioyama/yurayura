@@ -53,13 +53,27 @@
   min-width: 0;
 }
 
-.contact-check-grid > .check-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-.contact-check-grid > .check-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-.contact-check-grid > .check-item:nth-child(3) { grid-column: 1; grid-row: 2; }
-.contact-check-grid > .check-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+.contact-check-grid > .check-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+.contact-check-grid > .check-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+.contact-check-grid > .check-item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+.contact-check-grid > .check-item:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+}
 
 @media screen and (max-width: 480px) {
-  .contact-check-grid { gap: 8px; }
+  .contact-check-grid {
+    gap: 8px;
+  }
 }
 
 /* ========================================
@@ -97,7 +111,11 @@
   border-radius: 6px;
   background-color: var(--color-bg) !important;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.4);
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.4s ease-out;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.4s ease-out;
 }
 
 .check-item__box::after {
@@ -111,7 +129,9 @@
   content: "";
   opacity: 0;
   transform: rotate(45deg) scale(0.8);
-  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .check-item__input:checked + .check-item__box::after {
@@ -125,10 +145,17 @@
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-
 @media screen and (max-width: 480px) {
-  .check-item__box { width: 18px; height: 18px; }
-  .check-item__box::after { top: 2px; left: 5px; width: 5px; height: 9px; }
+  .check-item__box {
+    width: 18px;
+    height: 18px;
+  }
+  .check-item__box::after {
+    top: 2px;
+    left: 5px;
+    width: 5px;
+    height: 9px;
+  }
 }
 
 /* ========================================
@@ -157,12 +184,17 @@
   background-color: var(--color-bg) !important;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.4);
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.4s ease-out, background 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.4s ease-out,
+    background 0.3s ease;
 }
 
 .contact-form input[type="text"]::placeholder,
 .contact-form input[type="email"]::placeholder,
-.contact-form textarea::placeholder { color: #9f9b8e; }
+.contact-form textarea::placeholder {
+  color: #9f9b8e;
+}
 
 .contact-form textarea {
   min-height: 220px;
@@ -172,7 +204,9 @@
 @media screen and (max-width: 480px) {
   .contact-form input[type="text"],
   .contact-form input[type="email"],
-  .contact-form textarea { padding: 8px 10px; }
+  .contact-form textarea {
+    padding: 8px 10px;
+  }
 }
 
 .contact-form input[type="text"]:focus,
@@ -202,10 +236,18 @@
   left: 14px;
   transform: translateY(-50%);
   pointer-events: none;
-  transition: top 0.3s ease, transform 0.3s ease, font-size 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  transition:
+    top 0.3s ease,
+    transform 0.3s ease,
+    font-size 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
-.form-label--textarea { top: 0.4rem; transform: translateY(0); }
+.form-label--textarea {
+  top: 0.4rem;
+  transform: translateY(0);
+}
 
 .form-row input:focus + .form-label,
 .form-row input:not(:placeholder-shown) + .form-label,
@@ -229,7 +271,10 @@
 }
 
 @media screen and (max-width: 480px) {
-  .form-bottom { flex-direction: column; align-items: stretch; }
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .contact-policy-consent {
@@ -381,7 +426,9 @@ body.top-page .contact-policy-trigger:focus-visible {
   border: 0 !important;
 }
 
-.consent-item { flex-wrap: wrap; }
+.consent-item {
+  flex-wrap: wrap;
+}
 
 /* ========================================
   Submit Button
@@ -398,7 +445,9 @@ body.top-page .contact-policy-trigger:focus-visible {
   letter-spacing: 4px;
   cursor: pointer;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
-  transition: transform 0.25s ease, shadow 0.5s ease;
+  transition:
+    transform 0.25s ease,
+    shadow 0.5s ease;
 }
 
 .send-btn:hover,
@@ -407,11 +456,21 @@ body.top-page .contact-policy-trigger:focus-visible {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
 }
 
-.send-btn:focus-visible { outline: 2px solid var(--color-txt); outline-offset: 3px; }
-.send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.send-btn:focus-visible {
+  outline: 2px solid var(--color-txt);
+  outline-offset: 3px;
+}
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
 @media screen and (max-width: 480px) {
-  .send-btn { width: 100%; min-width: auto; }
+  .send-btn {
+    width: 100%;
+    min-width: auto;
+  }
 }
 
 /* ========================================
@@ -433,10 +492,15 @@ html.is-contact-modal-open {
   background: rgba(26, 31, 19, 0.48);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
-.modal.active { opacity: 1; visibility: visible; }
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
 
 .modal-content {
   position: relative;
@@ -456,13 +520,48 @@ html.is-contact-modal-open {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.modal.active .modal-content { transform: translateY(0); }
-.modal-title { margin: 0 44px 1rem 0; font-size: 2.2rem; line-height: 1.5; }
-.modal-message { margin: 0; font-size: 1.6rem; line-height: 1.8; }
-.modal-btn { margin-top: 1.5rem; min-height: 44px; padding: 0.75rem 1.5rem; border: 1px solid rgba(48, 58, 5, 0.25); border-radius: 4px; cursor: pointer; }
-.modal-close { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--color-txt, #303a05); font-size: 2.4rem; cursor: pointer; }
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+.modal-title {
+  margin: 0 44px 1rem 0;
+  font-size: 2.2rem;
+  line-height: 1.5;
+}
+.modal-message {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+.modal-btn {
+  margin-top: 1.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(48, 58, 5, 0.25);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-txt, #303a05);
+  font-size: 2.4rem;
+  cursor: pointer;
+}
 .modal-close:focus-visible,
-.modal-btn:focus-visible { outline: 2px solid var(--color-txt, #303a05); outline-offset: 3px; }
+.modal-btn:focus-visible {
+  outline: 2px solid var(--color-txt, #303a05);
+  outline-offset: 3px;
+}
 
 .kinds,
 .check-item,
@@ -477,36 +576,89 @@ html.is-contact-modal-open {
   writing-mode: horizontal-tb;
 }
 
-.modal-title { font-size: clamp(18px, calc(1vw + 16px), 28px); }
-.modal-close { font-size: clamp(22px, calc(0.5vw + 20px), 32px); }
-.send-btn { font-size: clamp(14px, calc(0.5vw + 12px), 18px); }
-.modal-btn { font-size: clamp(12px, calc(0.4vw + 11px), 16px); }
+.modal-title {
+  font-size: clamp(18px, calc(1vw + 16px), 28px);
+}
+.modal-close {
+  font-size: clamp(22px, calc(0.5vw + 20px), 32px);
+}
+.send-btn {
+  font-size: clamp(14px, calc(0.5vw + 12px), 18px);
+}
+.modal-btn {
+  font-size: clamp(12px, calc(0.4vw + 11px), 16px);
+}
 
 @media screen and (max-width: 767px) {
-  .contact-policy-modal .modal-content { padding: 24px 22px; }
-  .contact-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, auto); gap: 8px; }
-  .form-bottom { flex-direction: column; align-items: stretch; }
-  .send-btn { width: 100%; min-width: 0; }
+  .contact-policy-modal .modal-content {
+    padding: 24px 22px;
+  }
+  .contact-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+  }
+  .form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .send-btn {
+    width: 100%;
+    min-width: 0;
+  }
   .contact-form input[type="text"],
   .contact-form input[type="email"],
-  .contact-form textarea { padding: 8px 10px; }
+  .contact-form textarea {
+    padding: 8px 10px;
+  }
 }
 
 @media screen and (min-width: 768px) {
-  .contact-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, auto); gap: 10px 20px; }
-  .check-item__box { width: 20px; height: 20px; }
+  .contact-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 10px 20px;
+  }
+  .check-item__box {
+    width: 20px;
+    height: 20px;
+  }
   .contact-form input[type="text"],
   .contact-form input[type="email"],
-  .contact-form textarea { padding: 8px 14px; }
-  .form-bottom { flex-direction: row; align-items: center; }
-  .send-btn { width: auto; min-width: 310px; }
+  .contact-form textarea {
+    padding: 8px 14px;
+  }
+  .form-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+  .send-btn {
+    width: auto;
+    min-width: 310px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .contact-form input[type="text"],
-  .contact-form input[type="email"] { min-height: clamp(42px, 4vw, 52px); }
-  .contact-form textarea { min-height: clamp(180px, 22vw, 260px); }
-  .form-bottom { flex-wrap: wrap; align-items: flex-start; gap: clamp(16px, 3vw, 32px); }
-  .form-bottom > .check-item { flex: 1 1 180px; min-width: 0; }
-  .form-bottom .send-btn { flex: 0 1 clamp(280px, 30vw, 310px); min-width: clamp(280px, 30vw, 310px); max-width: 100%; }
+  .contact-form input[type="email"] {
+    min-height: clamp(42px, 4vw, 52px);
+  }
+  .contact-form textarea {
+    min-height: clamp(180px, 22vw, 260px);
+  }
+  .form-bottom {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(16px, 3vw, 32px);
+    justify-content: center;
+  }
+  .form-bottom > .check-item {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+  .form-bottom .send-btn {
+    flex: 0 1 clamp(280px, 30vw, 310px);
+    min-width: clamp(280px, 30vw, 310px);
+    max-width: 100%;
+  }
 }

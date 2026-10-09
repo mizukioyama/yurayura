@@ -307,11 +307,16 @@
 /* Shared content spacing: FV remains unchanged. */
 .top-page main section:not(.fv),
 .concept-page main section:not(.fv) {
-  padding-left: 54px !important;
-  padding-right: 54px !important;
+  /* padding-left: 54px !important;
+  padding-right: 54px !important; */
   padding: 20vmin;
 }
-
+@media screen and (max-width: 800px) {
+    .top-page main section:not(.fv),
+.concept-page main section:not(.fv) {
+  padding: 14vmin;
+}
+}
 
 /* Final FV override: copy Gallery's H1 layout exactly and neutralize shared .fv rules. */
 
