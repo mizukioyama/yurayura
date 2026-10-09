@@ -47,7 +47,7 @@
   display: grid;
   grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1.2fr);
   gap: clamp(48px, 8vw, 140px);
-  align-items: center;
+  align-items: flex-start;
   width: min(100%, 1080px);
 }
 
@@ -68,8 +68,8 @@
 
 .concept-texture__images {
   position: relative;
-  width: 100%;
-  min-height: clamp(360px, 48vw, 620px);
+  width: 80%;
+  min-height: clamp(360px, 44vw, 620px);
 }
 
 .concept-photo {
@@ -90,14 +90,14 @@
 .concept-photo--large {
   top: 0;
   right: 0;
-  width: min(75%, 520px);
+  width: min(75%, 360px);
   height: clamp(280px, 36vw, 480px);
 }
 
 .concept-photo--small {
   bottom: 0;
   left: 0;
-  width: min(48%, 310px);
+  width: min(48%, 280px);
   height: clamp(180px, 24vw, 310px);
 }
 
