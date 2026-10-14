@@ -140,6 +140,7 @@ function initializeCustomCursor() {
    to the bottom edge of their FV with bottom: 0. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
+  if (document.body.classList.contains("gallery-page")) return;
   const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
   if (!guide || !title) return;
 

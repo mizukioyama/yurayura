@@ -1,0 +1,28 @@
+/* Phase 1.3 candidate E: CSS owns the Gallery scroll-guide position from first paint. */
+.gallery-page .gallery > .scroll-guide {
+  /* Mirror the Gallery H1 line box without resizing the existing guide text/bar. */
+  --gallery-title-line-height: clamp(4.08rem, calc(2.55rem + 6.8vw), 9.18rem);
+  top: calc(240px + var(--gallery-title-line-height) + 140px) !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+@media (max-width: 1199px) {
+  .gallery-page .gallery > .scroll-guide {
+    top: calc(28vmin + var(--gallery-title-line-height) + 140px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery-page .gallery > .scroll-guide {
+    top: calc(180px + var(--gallery-title-line-height) + 140px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-page .scroll-guide__bar::before {
+    animation: none !important;
+    transform: translateY(0) !important;
+    opacity: 0.65 !important;
+  }
+}
