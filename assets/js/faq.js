@@ -10,6 +10,7 @@
 
       const answerId = answer.id || `faq-sub-answer-${index + 1}`;
       answer.id = answerId;
+      button.disabled = false;
       button.setAttribute("aria-controls", answerId);
       button.setAttribute(
         "aria-expanded",

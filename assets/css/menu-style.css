@@ -66,6 +66,10 @@ body.is-loaded {
 .footer-item--gallery {
   order: 1;
 }
+.header-item--information,
+.footer-item--information {
+  order: 0;
+}
 .header-link,
 .footer-link {
   position: relative;

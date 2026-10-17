@@ -65,12 +65,11 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 
 - [ ] FVが表示される
 - [ ] fog / boundaryが意図通り
+- [ ] About YURAYURAの短い紹介
 - [ ] Concept導線
-- [ ] Artist / Gallery導線
-- [ ] Contact form
-- [ ] FAQ accordion
-- [ ] Access
-- [ ] Google Map
+- [ ] Gallery / Artist導線
+- [ ] Information導線
+- [ ] 会期・会場名・住所・アクセス詳細を載せていない
 - [ ] footer
 
 ## 7. Concept
@@ -81,7 +80,16 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 - [ ] TOPへ戻れる
 - [ ] mobile wrapping
 
-## 8. Gallery
+## 8. Information
+
+- [ ] 次回会期・会場の未確定を明示
+- [ ] 過去開催を終了済みとして区別
+- [ ] 会場・住所・アクセスを過去開催として表示
+- [ ] FAQ accordion
+- [ ] お問い合わせフォームと個人情報モーダル
+- [ ] 送信検証はmockを使い、本番送信しない
+
+## 9. Gallery
 
 - [ ] Artist filter
 - [ ] Genre filter
@@ -100,7 +108,7 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 - [ ] modal中body scroll制御
 - [ ] mobileで作品が見切れない
 
-## 9. Contact
+## 10. Contact
 
 本番送信を避け、可能な限りmockで確認する。
 
@@ -114,23 +122,17 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 - [ ] modal close
 - [ ] duplicate submit防止
 
-## 10. Event Facts
+## 11. Event Facts
 
 公開前に再確認：
 
-- [ ] 2026/10/06〜10/12
-- [ ] 曜日
-- [ ] 会場名
-- [ ] 住所
-- [ ] 初日時間
-- [ ] 通常時間
-- [ ] 最終日時間
-- [ ] LightUp
-- [ ] 交通案内
-- [ ] 問い合わせ先
-- [ ] 出展者名
+- [ ] 次回開催の会期・会場が未確定なら「未定」と表示
+- [ ] 2026/10/06〜10/12の横浜開催を終了済みの過去展示として表示
+- [ ] 過去開催の曜日・会場名・住所・時間・交通案内が確認済み情報と一致
+- [ ] 次回開催の情報に過去の会場・アクセスを流用していない
+- [ ] 問い合わせ先・出展者名を推測で追加していない
 
-## 11. SEO
+## 12. SEO
 
 indexable pageごとに確認する。対象ページ、canonical、noindex、sitemapの正確な対応表は `SITE_MAP.md` を参照する。
 
@@ -148,7 +150,7 @@ indexable pageごとに確認する。対象ページ、canonical、noindex、si
 - [ ] no accidental noindex
 - [ ] Event structured dataを使う場合、確認済み開催情報と可視本文に一致
 
-## 12. Accessibility
+## 13. Accessibility
 
 - [ ] keyboard navigation
 - [ ] focus visible
@@ -161,7 +163,7 @@ indexable pageごとに確認する。対象ページ、canonical、noindex、si
 - [ ] touch target
 - [ ] reduced motion
 
-## 13. Motion / Performance
+## 14. Motion / Performance
 
 - [ ] animationが操作をブロックしない
 - [ ] reduced motion
@@ -173,7 +175,7 @@ indexable pageごとに確認する。対象ページ、canonical、noindex、si
 - [ ] image loading確認
 - [ ] mobile performance確認
 
-## 14. After Change
+## 15. After Change
 
 - [ ] Before / Afterを比較
 - [ ] 意図した差分だけ

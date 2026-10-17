@@ -292,3 +292,14 @@
 .top-page .section--access .h2_ttl {
   text-align: center;
 }
+
+/* Short introductory sections should follow their content height, not fill a viewport. */
+.top-page section.top-summary {
+  height: auto;
+  min-height: 0;
+  padding-block: clamp(64px, 7.5vw, 108px);
+}
+
+.top-page section.top-summary > .section__inner {
+  height: auto;
+}
