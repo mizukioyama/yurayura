@@ -4,7 +4,7 @@
 
 **公開サイト:** [https://mizukioyama.github.io/yurayura/](https://mizukioyama.github.io/yurayura/)
 
-主要な案内ページは **TOP・Concept・Gallery・Information** です。Site Policyも公開・検索対象です。各ページのsource path、公開URL、canonical、index状態、sitemap掲載有無は [`SITE_MAP.md`](SITE_MAP.md) を正本として確認してください。
+主要な案内ページは **TOP・Concept・Gallery・Information・Contact** です。Site Policyも公開・検索対象です。各ページのsource path、公開URL、canonical、index状態、sitemap掲載有無は [`SITE_MAP.md`](SITE_MAP.md) を正本として確認してください。
 
 ## Documentation
 

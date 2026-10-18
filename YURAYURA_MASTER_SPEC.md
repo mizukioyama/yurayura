@@ -72,11 +72,14 @@ Webサイトも同じ思想を持ち、
 - 会期、会場名、住所、アクセス詳細は掲載しない
 
 ### Information
-- 次回開催の会期・会場・開催地（未確定時は未定と表示）
-- 確認済みの開催情報とアクセス
-- 終了した展示の記録
-- 展示案内、FAQ、お問い合わせフォーム
+- 次回開催の会期・会場・開催地（未確定時は準備中と案内）
+- 確認済みの開催情報と過去展示のアクセス記録
+- 開催時点を明示した展示FAQ
 - 特定の地域に企画を固定しない更新可能な構成
+
+### Contact
+- お問い合わせFAQと公式フォーム
+- 個人情報の取り扱いとSite Policyへの案内
 
 ### Concept
 - 展示思想の詳細
@@ -116,7 +119,8 @@ Webサイトも同じ思想を持ち、
 - custom cursor
 - section animation
 - Gallery filter / modal
-- FAQ accordion
+- Native FAQ details / summary
+- Contact form and privacy dialog
 - Google Maps embed
 - Google Apps Script contact form
 - Shippori Mincho

@@ -56,18 +56,22 @@ body.is-loaded {
 }
 .header-item--top,
 .footer-item--top {
-  order: 3;
+  order: 4;
 }
 .header-item--concept,
 .footer-item--concept {
-  order: 2;
+  order: 3;
 }
 .header-item--gallery,
 .footer-item--gallery {
-  order: 1;
+  order: 2;
 }
 .header-item--information,
 .footer-item--information {
+  order: 1;
+}
+.header-item--contact,
+.footer-item--contact {
   order: 0;
 }
 .header-link,

@@ -7,10 +7,10 @@
 
 .information-page .information-hero {
   display: flex;
-  min-height: min(58vh, 560px);
+  min-height: min(48vh, 460px);
   align-items: center;
   justify-content: center;
-  padding: clamp(144px, 18vh, 208px) 44px clamp(52px, 8vh, 88px);
+  padding: clamp(136px, 16vh, 184px) 44px clamp(40px, 6vh, 68px);
 }
 
 .information-page .information-hero__inner {
@@ -39,7 +39,7 @@
 }
 
 .information-hero__lead {
-  max-width: 38rem;
+  max-width: 24rem;
   margin: 1.5rem auto 0;
   font-size: var(--responsive-copy-size, 1rem);
   letter-spacing: 0.08em;
@@ -47,7 +47,7 @@
 }
 
 .information-page .information-main > .section {
-  padding: clamp(4.5rem, 9vw, 8rem) clamp(36px, 5vw, 72px);
+  padding: clamp(4rem, 7vw, 6.5rem) clamp(36px, 5vw, 72px);
 }
 
 .information-page .information-main .section__inner.inner {
@@ -97,10 +97,9 @@
 
 .information-archive-note {
   max-width: 48rem;
-  margin: 0 auto 2rem;
-  padding: 1rem 1.25rem;
-  border-inline-start: 2px solid rgba(50, 46, 37, 0.55);
-  background: rgba(50, 46, 37, 0.04);
+  margin: 0 auto 1.5rem;
+  padding: 0 0 0 1rem;
+  border-inline-start: 1px solid rgba(50, 46, 37, 0.55);
   line-height: 1.9;
 }
 
@@ -187,7 +186,7 @@
   }
 
   .information-page .information-main > .section {
-    padding-block: 68px;
+    padding-block: 60px;
     padding-inline: 44px;
   }
 
@@ -209,4 +208,39 @@
     grid-template-columns: 6.5rem minmax(0, 1fr);
     gap: 0.75rem;
   }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1399px) {
+  .information-page .information-hero {
+    min-height: 0;
+    padding-top: clamp(340px, 30vw, 384px);
+    padding-bottom: 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .information-page .information-hero {
+    padding-top: calc(var(--site-nav-top, 20px) + var(--site-nav-item-height, 220px) + 3rem);
+  }
+}
+
+.information-contact__link {
+  margin: 2rem auto 0;
+}
+
+.information-contact-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.25rem;
+  color: var(--color-txt);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.information-contact-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }

@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+.contact-page .contact-main {
+  min-height: 100vh;
+  padding-bottom: clamp(48px, 8vw, 112px);
+}
+
+.contact-page .information-hero {
+  display: flex;
+  min-height: min(48vh, 460px);
+  align-items: center;
+  justify-content: center;
+  padding: clamp(136px, 16vh, 184px) 44px clamp(40px, 6vh, 68px);
+}
+
+.contact-page .information-hero__inner {
+  width: min(100%, 900px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.contact-page .contact-main > .section {
+  padding: clamp(4rem, 7vw, 6.5rem) clamp(36px, 5vw, 72px);
+}
+
+.contact-page .contact-main .section__inner.inner {
+  width: min(100%, 840px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.contact-page .contact-faq-section .section__inner,
+.contact-page .contact-form-section .section__inner {
+  text-align: center;
+}
+
+.contact-page .contact-form-section .section__txt {
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  line-height: 2;
+}
+
+.contact-page .contact-form-section .contact-form {
+  max-width: 740px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.contact-page .contact-form-section .section__inner {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid rgba(50, 46, 37, 0.2);
+}
+
+.contact-nojs-notice {
+  max-width: 740px;
+  margin: 2rem auto 0;
+  padding: 1.25rem;
+  border-inline-start: 2px solid rgba(50, 46, 37, 0.55);
+  background: rgba(50, 46, 37, 0.04);
+  line-height: 1.9;
+  text-align: left;
+}
+
+.contact-nojs-notice a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media screen and (max-width: 767px) {
+  .contact-page .information-hero {
+    min-height: 0;
+    padding-top: 148px;
+    padding-bottom: 56px;
+  }
+
+  .contact-page .contact-main > .section {
+    padding-block: 60px;
+    padding-inline: 44px;
+  }
+
+  .contact-page .contact-form-section .section__inner {
+    padding-top: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1399px) {
+  .contact-page .information-hero {
+    min-height: 0;
+    padding-top: clamp(340px, 30vw, 384px);
+    padding-bottom: 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contact-page .information-hero {
+    padding-top: calc(var(--site-nav-top, 20px) + var(--site-nav-item-height, 220px) + 3rem);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-page .information-hero,
+  .contact-page .contact-main > .section {
+    padding-inline: 44px;
+  }
+}

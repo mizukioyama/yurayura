@@ -43,6 +43,13 @@
                </a>
             </li>
 
+            <li class="footer-item footer-item--contact">
+               <a href="./contact.html" class="footer-link" aria-label="お問い合わせ"><span class="menu-small">お問い合わせ</span>
+               <span class="menu-border"></span>
+               <span class="menu-en">CONTACT</span>
+               </a>
+            </li>
+
          </ul>
 
          <div class="footer-social" aria-label="SNS">

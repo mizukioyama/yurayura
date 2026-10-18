@@ -85,7 +85,8 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 - [ ] 次回会期・会場の未確定を明示
 - [ ] 過去開催を終了済みとして区別
 - [ ] 会場・住所・アクセスを過去開催として表示
-- [ ] FAQ accordion
+- [ ] Native FAQ details / summary (Enter, Space, focus visible)
+- [ ] Contact FAQ opens without JavaScript
 - [ ] お問い合わせフォームと個人情報モーダル
 - [ ] 送信検証はmockを使い、本番送信しない
 
@@ -110,7 +111,7 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 
 ## 10. Contact
 
-本番送信を避け、可能な限りmockで確認する。
+本番送信を避け、可能な限りmockで確認する。Contactのフォーム送信先への通信は検証で遮断する。
 
 - [ ] required fields
 - [ ] email validation
@@ -121,6 +122,9 @@ CSPが未設定のページを「CSP検証PASS」とみなさない。runtime項
 - [ ] error
 - [ ] modal close
 - [ ] duplicate submit防止
+- [ ] Contact FAQはdetails/summaryで開閉できる
+- [ ] JavaScript無効時はフォームを隠し、送信できない旨を案内する
+- [ ] Site PolicyへのリンクがContactページを指す
 
 ## 11. Event Facts
 

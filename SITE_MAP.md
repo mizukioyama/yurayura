@@ -21,7 +21,8 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | TOP / `index.html` | 企画の入口。About・Concept・Gallery・Informationへの導線 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/` | included |
 | Concept / `concept.html` | 企画コンセプトの公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/concept.html` | included |
 | Gallery / `gallery.html` | 作家と作品の公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/gallery.html` | included |
-| Information / `information.html` | 次回開催状況、過去開催、会場・アクセス、案内、問い合わせ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/information.html` | included |
+| Information / `information.html` | 次回開催状況、過去開催、会場・アクセス、展示FAQ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/information.html` | included |
+| Contact / `contact.html` | お問い合わせFAQ、問い合わせフォーム、個人情報案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/contact.html` | included |
 | Site Policy / `policy.html` | 著作権・個人情報・外部サービス等の案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/policy.html` | included |
 | `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
@@ -29,7 +30,7 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | `test.html` | Fog Holeの検証用ページ | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `top.html` | TOPへ転送する旧URL | LEGACY / public redirect | `noindex,follow` | `https://mizukioyama.github.io/yurayura/` | excluded |
 
-正式な検索対象はCANONICALの5ページ。主要ナビゲーションはTOP・Concept・Gallery・Information。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
+正式な検索対象はCANONICALの6ページ。主要ナビゲーションはTOP・Concept・Gallery・Information・Contact。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
 
 ## 3. Classification
 
@@ -81,6 +82,7 @@ Public treeへ日付付きsource backupを追加しない。runtime依存が見�
 - CONCEPT
 - GALLERY
 - INFORMATION
+- CONTACT
 
 ### CSS
 `assets/css/`
@@ -101,10 +103,21 @@ Informationの主な構成：
 - `reset.css`
 - `menu-style.css`
 - `main.css`
+- `liquid.css`
+- `user-settings.css`
+- `information.css`
+- `faq.css`
+
+Contactの主な構成：
+- `reset.css`
+- `menu-style.css`
+- `main.css`
 - `form.css`
 - `liquid.css`
 - `user-settings.css`
 - `information.css`
+- `contact.css`
+- `faq.css`
 
 Galleryは複数のGallery専用CSSを追加読込している。
 統合前にcascade / override順を監査する。
@@ -114,7 +127,8 @@ Galleryは複数のGallery専用CSSを追加読込している。
 
 主な機能：
 - shared menu / footer
-- Information FAQ / contact form
+- Information exhibition FAQ
+- Contact FAQ / contact form
 - FV animation
 - fog-hole
 - liquid button

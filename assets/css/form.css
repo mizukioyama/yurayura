@@ -307,7 +307,8 @@
 }
 
 body.top-page .contact-policy-trigger,
-body.information-page .contact-policy-trigger {
+body.information-page .contact-policy-trigger,
+body.contact-page .contact-policy-trigger {
   position: relative;
   z-index: auto;
   display: inline;
@@ -339,7 +340,8 @@ body.information-page .contact-policy-trigger {
 }
 
 body.top-page .contact-policy-trigger::before,
-body.information-page .contact-policy-trigger::before {
+body.information-page .contact-policy-trigger::before,
+body.contact-page .contact-policy-trigger::before {
   position: absolute;
   z-index: 0;
   inset: -0.55em -0.15em;
@@ -355,20 +357,23 @@ body.information-page .contact-policy-trigger::before {
 }
 
 body.top-page .contact-policy-trigger::after,
-body.information-page .contact-policy-trigger::after {
+body.information-page .contact-policy-trigger::after,
+body.contact-page .contact-policy-trigger::after {
   display: none;
   content: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   body.top-page .contact-policy-trigger:hover,
-  body.information-page .contact-policy-trigger:hover {
+  body.information-page .contact-policy-trigger:hover,
+  body.contact-page .contact-policy-trigger:hover {
     opacity: 0.72;
   }
 }
 
 body.top-page .contact-policy-trigger:focus-visible,
-body.information-page .contact-policy-trigger:focus-visible {
+body.information-page .contact-policy-trigger:focus-visible,
+body.contact-page .contact-policy-trigger:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }

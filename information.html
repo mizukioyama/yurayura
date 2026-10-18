@@ -7,12 +7,12 @@
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net https://p.typekit.net; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://use.typekit.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://p.typekit.net https://use.typekit.net; frame-src https://www.google.com; base-uri 'self'; form-action 'self';">
   <title>Information / 開催情報 | ゆらゆら</title>
-  <meta name="description" content="ゆらゆらの次回開催情報、過去の展示記録、会場・アクセス、展示や作品に関する案内をご紹介します。">
+  <meta name="description" content="ゆらゆらの次回開催情報、過去の展示記録、会場・アクセス、展示に関する案内をご紹介します。">
   <link rel="canonical" href="https://mizukioyama.github.io/yurayura/information.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ゆらゆら">
   <meta property="og:title" content="Information / 開催情報 | ゆらゆら">
-  <meta property="og:description" content="ゆらゆらの次回開催情報、過去の展示記録、会場・アクセス、展示や作品に関する案内をご紹介します。">
+  <meta property="og:description" content="ゆらゆらの次回開催情報、過去の展示記録、会場・アクセス、展示に関する案内をご紹介します。">
   <meta property="og:url" content="https://mizukioyama.github.io/yurayura/information.html">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:,">
@@ -23,26 +23,12 @@
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/menu-style.css">
   <link rel="stylesheet" href="./assets/css/main.css">
-  <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/liquid.css">
   <link rel="stylesheet" href="./assets/css/user-settings.css">
   <link rel="stylesheet" href="./assets/css/information.css">
-  <noscript>
-    <style>
-      .information-page .faq-sub-answer { grid-template-rows: 1fr; }
-      .information-page .faq-sub-txt { padding: 0.75rem 1.5rem 1rem; }
-      .information-page .faq-sub-question { cursor: default; }
-      .information-page .faq-sub-question:disabled { opacity: 1; }
-      .information-page .faq-sub-icon { display: none; }
-      @media (max-width: 480px) {
-        .information-page .faq-sub-txt { padding: 8px 10px 12px; }
-      }
-    </style>
-  </noscript>
+  <link rel="stylesheet" href="./assets/css/faq.css">
   <script src="./assets/js/font.js" defer></script>
-  <script src="./assets/js/allmenu.js?v=20261017-website-ux-stage1" defer></script>
-  <script src="./assets/js/faq.js" defer></script>
-  <script src="./assets/js/form.js" defer></script>
+  <script src="./assets/js/allmenu.js?v=20261017-website-ux-stage3" defer></script>
   <script src="./assets/js/liquid-button.js" defer></script>
 </head>
 <body class="information-page">
@@ -54,18 +40,14 @@
       <div class="information-hero__inner inner">
         <p class="information-eyebrow">INFORMATION</p>
         <h1 id="information-title">開催情報</h1>
-        <p class="information-hero__lead">次回開催のご案内と、これまでの展示記録を掲載します。</p>
+        <p class="information-hero__lead">次回開催のご案内と、これまでの展示記録をご覧いただけます。</p>
       </div>
     </header>
     <section class="section information-next" id="next-event" aria-labelledby="next-event-title">
       <div class="section__inner inner">
         <p class="information-eyebrow">NEXT EXHIBITION</p>
         <h2 class="h2_ttl" id="next-event-title">次回開催</h2>
-        <p class="section__txt">次回開催の会期・会場は未定です。決まり次第、このページでお知らせします。</p>
-        <dl class="information-status">
-          <div><dt>会期</dt><dd>未定</dd></div>
-          <div><dt>開催地・会場</dt><dd>未定</dd></div>
-        </dl>
+        <p class="section__txt">次回開催に向けて準備を進めています。詳細は決まり次第、このページでお知らせします。</p>
       </div>
     </section>
     <section class="section section--access" id="past-exhibitions" aria-labelledby="past-exhibitions-title">
@@ -97,114 +79,32 @@
         </article>
       </div>
     </section>
-    <section class="section section--faq" id="faq" aria-labelledby="visitor-guide-title">
+    <section class="section section--faq" id="faq" aria-labelledby="exhibition-faq-title">
       <div class="section__inner inner">
-        <div class="faq-box">
-          <h2 class="h2_ttl" id="visitor-guide-title">ご来場・展示の案内</h2>
-          <p class="information-archive-note">作品の購入・撮影に関する案内は、2026年横浜開催時の内容です。次回開催の案内は決まり次第更新します。</p>
-          <ul class="faq-list">
-            <li class="faq-list-item">
-              <h3 class="faq-heading">作品と展示について</h3>
-              <div class="faq-answer">
-                <div class="faq-sub-list">
-                  <div class="faq-sub-item"><button class="faq-sub-question" type="button" disabled><span>作品の購入について</span><span
-                        class="faq-sub-icon" aria-hidden="true"></span></button>
-                    <div class="faq-sub-answer">
-                      <p class="faq-sub-txt">
-                        作品によっては購入可能です。購入をご希望の場合は、<strong>作家本人へ直接お問い合わせ</strong>いただくか、<strong>会場スタッフ</strong>へお声がけください。
-                      </p>
-                    </div>
-                  </div>
-                  <div class="faq-sub-item"><button class="faq-sub-question" type="button" disabled><span>撮影はできますか？</span><span
-                        class="faq-sub-icon" aria-hidden="true"></span></button>
-                    <div class="faq-sub-answer">
-                      <p class="faq-sub-txt">
-                        撮影可能な作品と、撮影をご遠慮いただく作品があります。会場内の案内や、各作品の表示をご確認ください。必要であれば、周囲のお客様や作品鑑賞の妨げにならないようご配慮ください。
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="faq-list-item">
-              <h3 class="faq-heading">お問い合わせについて</h3>
-              <div class="faq-answer">
-                <div class="faq-sub-list">
-                  <div class="faq-sub-item"><button class="faq-sub-question" type="button" disabled><span>お問い合わせ</span><span
-                        class="faq-sub-icon" aria-hidden="true"></span></button>
-                    <div class="faq-sub-answer">
-                      <p class="faq-sub-txt">
-                        展示や作品について、その他のお問い合わせは<strong><a href="#contact">お問い合わせフォーム</a></strong>からお問い合わせください。<br>
-                        Artistへのお問い合わせは、<strong><a href="#contact">お問い合わせフォーム</a></strong>、もしくは<strong>InformationのDM</strong>からお願いいたします。
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+        <p class="information-eyebrow">EXHIBITION FAQ</p>
+        <h2 class="h2_ttl" id="exhibition-faq-title">展示について</h2>
+        <p class="information-archive-note">以下は2026年横浜開催時の案内です。次回開催では内容が異なる場合があります。</p>
+        <div class="faq-list site-faq">
+          <details class="faq-item">
+            <summary>作品の購入について</summary>
+            <div class="faq-item__answer"><p>作品によっては購入可能です。購入をご希望の場合は、作家本人へ直接お問い合わせいただくか、会場スタッフへお声がけください。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>撮影はできますか？</summary>
+            <div class="faq-item__answer"><p>撮影可能な作品と、撮影をご遠慮いただく作品があります。会場内の案内や各作品の表示をご確認ください。周囲のお客様や作品鑑賞の妨げにならないようご配慮ください。</p></div>
+          </details>
         </div>
       </div>
     </section>
-    <section class="section section--contact" id="contact" aria-labelledby="information-contact-title">
+    <section class="section information-contact-cta" id="contact" aria-labelledby="information-contact-title">
       <div class="section__inner inner">
+        <p class="information-eyebrow">CONTACT</p>
         <h2 class="h2_ttl" id="information-contact-title">お問い合わせ</h2>
-        <p class="section__txt">作品や展示企画についてのお問い合わせは、以下のフォームからご連絡ください。</p>
-        <form
-          action="https://script.google.com/macros/s/AKfycbzUKmFILZBr7-MvSik18DJC8TycuCV5BMq3BU_wi0zEdrutU4YTNA9H96efTPyr6P68og/exec"
-          method="POST" class="contact-form" id="contactForm">
-          <p class="kinds">お問い合わせ種別</p>
-          <div class="contact-check-grid">
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="展示について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">展示について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="作品について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">作品について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="購入について" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">購入について</span></label>
-            <label class="check-item"><input class="check-item__input" type="checkbox" name="type" value="その他" /><span class="check-item__box" aria-hidden="true"></span><span class="check-item__text">その他</span></label>
-          </div>
-          <div class="form-row"><input type="text" id="subject" name="subject" placeholder=" " required maxlength="120" autocomplete="off" /><label for="subject" class="form-label">件名</label></div>
-          <div class="form-row"><input type="text" id="name" name="name" placeholder=" " required maxlength="80" autocomplete="name" /><label for="name" class="form-label">お名前</label></div>
-          <div class="form-row"><input type="email" id="email" name="email" placeholder=" " required maxlength="254" autocomplete="email" /><label for="email" class="form-label">メールアドレス</label></div>
-          <div class="form-row"><textarea id="message" name="message" placeholder=" " required maxlength="5000"></textarea><label for="message" class="form-label form-label--textarea">お問い合わせ内容</label></div>
-          <div class="form-trap" aria-hidden="true"><label for="contactWebsite">Website</label><input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off" maxlength="200" /></div>
-          <div class="form-bottom">
-            <div class="contact-policy-consent">
-              <div class="contact-policy-consent__statement">
-                <label class="check-item contact-policy-consent__checkbox">
-                  <input class="check-item__input" id="contactConsent" type="checkbox" name="consent" value="同意済み" required aria-label="個人情報の取り扱いについて確認し、同意します" aria-describedby="consentHelp" />
-                  <span class="check-item__box" aria-hidden="true"></span>
-                </label>
-                <p class="contact-policy-consent__text"><button type="button" class="contact-policy-trigger" data-open-contact-policy aria-haspopup="dialog" aria-controls="contactPolicyModal">個人情報の取り扱いについて</button>確認し、同意します</p>
-              </div>
-              <p class="contact-policy-consent__note" id="consentHelp">内容を確認し、同意する場合はチェックしてください。</p>
-            </div>
-            <button type="submit" class="send-btn liquid-control">内容を送信する</button>
-          </div>
-        </form>
-
-
-
+        <p class="section__txt">企画や作品についてのお問い合わせは、Contactページをご覧ください。</p>
+        <p class="information-contact__link"><a class="information-contact-link" href="./contact.html">Contactページへ <span aria-hidden="true">↗</span></a></p>
       </div>
     </section>
   </main>
-  <div class="modal contact-policy-modal" id="contactPolicyModal" role="dialog" aria-modal="true" aria-labelledby="contactPolicyTitle" aria-hidden="true" inert tabindex="-1">
-    <div class="modal-content">
-      <button type="button" class="modal-close" aria-label="閉じる" data-form-modal-close>×</button>
-      <div class="contact-policy-modal__copy">
-        <h3 id="contactPolicyTitle" class="modal-title">個人情報の取り扱いについて</h3>
-        <p class="modal-message">お問い合わせフォームに入力されたお問い合わせ種別、件名、お名前、メールアドレス、お問い合わせ内容は、お問い合わせへの回答および必要なご連絡のために利用します。</p>
-        <p class="modal-message">フォームの送信には、Google Apps Scriptのウェブアプリを利用しています。入力情報は、法令に基づく場合を除き、上記の目的以外には利用しません。</p>
-        <p class="modal-message">詳しくは<a href="./policy.html">Site Policy / サイトポリシー</a>をご確認ください。</p>
-      </div>
-      <button type="button" class="modal-btn liquid-control" data-form-modal-close>閉じる</button>
-    </div>
-  </div>
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage" aria-hidden="true" inert tabindex="-1" data-form-result>
-    <div class="modal-content">
-      <button type="button" class="modal-close liquid-control liquid-control--icon" id="modalClose" aria-label="閉じる" data-form-modal-close>×</button>
-      <h3 id="modalTitle" class="modal-title"></h3>
-      <p id="modalMessage" class="modal-message"></p>
-      <button type="button" class="modal-btn liquid-control" id="modalButton" data-form-modal-close>閉じる</button>
-    </div>
-  </div>
   <div id="js-footer"></div>
 </body>
 </html>
