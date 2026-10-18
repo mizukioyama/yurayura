@@ -1,10 +1,11 @@
 @charset "UTF-8";
 
 /* Concept FV: match Gallery title/FV geometry. */
-.concept-page .concept-fv {
+.concept-page .concept-fv,
+.information-page .information-hero.concept-fv,
+.contact-page .information-hero.concept-fv {
   position: relative !important;
   display: block !important;
-  min-height: 100vh !important;
   height: auto !important;
   padding: 0 !important;
   overflow: visible !important;
@@ -12,7 +13,18 @@
   background: var(--color-bg) !important;
 }
 
-.concept-page .concept-fv .fv__inner {
+.concept-page .concept-fv {
+  min-height: 100vh !important;
+}
+
+.information-page .information-hero.concept-fv,
+.contact-page .information-hero.concept-fv {
+  min-height: max(64vh, calc(34vmin + 14rem)) !important;
+}
+
+.concept-page .concept-fv .fv__inner,
+.information-page .information-hero.concept-fv .information-hero__inner,
+.contact-page .information-hero.concept-fv .information-hero__inner {
   position: absolute !important;
   left: 20vmin !important;
   top: 40vmin !important;
@@ -32,7 +44,9 @@
 }
 
 .concept-page .concept-fv .fv__ttl,
-.policy-page .concept-fv .policy-title {
+.policy-page .concept-fv .policy-title,
+.information-page .information-hero.concept-fv .fv__ttl,
+.contact-page .information-hero.concept-fv .fv__ttl {
   position: static !important;
   display: block !important;
   width: auto !important;
@@ -55,7 +69,9 @@
   text-orientation: mixed !important;
 }
 
-.concept-page .concept-fv .fv__txt {
+.concept-page .concept-fv .fv__txt,
+.information-page .information-hero.concept-fv .fv__txt,
+.contact-page .information-hero.concept-fv .fv__txt {
   position: static !important;
   display: block !important;
   width: auto !important;
@@ -75,6 +91,20 @@
   text-orientation: mixed !important;
 }
 
+.information-page .information-hero.concept-fv .information-hero__lead,
+.contact-page .information-hero.concept-fv .information-hero__lead {
+  max-width: 24rem;
+  margin: 1.5rem 0 0;
+  text-align: left;
+}
+
+@media screen and (min-width: 1200px) {
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner {
+    top: 34vmin !important;
+  }
+}
+
 .concept-page #fog-scene,
 .concept-page .vanta-wrap,
 .concept-page #vanta-bg,
@@ -89,13 +119,22 @@
   overflow: visible !important;
 }
 
-.concept-page .concept-fv + section {
+.concept-page .concept-fv + section,
+.information-page .information-hero.concept-fv + section,
+.contact-page .information-hero.concept-fv + section {
   position: relative;
   z-index: 1 !important;
 }
 
 @media screen and (max-width: 1199px) {
-  .concept-page .concept-fv .fv__inner {
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv {
+    min-height: max(64vh, calc(28vmin + 16rem)) !important;
+  }
+
+  .concept-page .concept-fv .fv__inner,
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner {
     left: 10vw !important;
     top: 28vmin !important;
   }
@@ -106,12 +145,16 @@
 }
 
 @media screen and (max-width: 767px) {
-  .concept-page .concept-fv {
+  .concept-page .concept-fv,
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv {
     min-height: 0 !important;
     overflow: visible !important;
   }
 
-  .concept-page .concept-fv .fv__inner {
+  .concept-page .concept-fv .fv__inner,
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner {
     position: relative !important;
     left: auto !important;
     top: auto !important;
@@ -119,6 +162,11 @@
     width: 100% !important;
     margin: 0 !important;
     padding: 180px 22px 420px !important;
+  }
+
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner {
+    padding: clamp(104px, 28vw, 124px) 22px clamp(72px, 18vw, 88px) !important;
   }
 
   .concept-page .concept-fv .scroll-guide {

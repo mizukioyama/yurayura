@@ -21,30 +21,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/reset.css">
-  <link rel="stylesheet" href="./assets/css/menu-style.css">
-  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/menu-style.css?v=20261018-stage4-2-fullscreen-qa">
+  <link rel="stylesheet" href="./assets/css/main.css?v=20261018-stage4-2-fullscreen-qa">
   <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/liquid.css">
   <link rel="stylesheet" href="./assets/css/user-settings.css">
-  <link rel="stylesheet" href="./assets/css/information.css">
-  <link rel="stylesheet" href="./assets/css/contact.css">
-  <link rel="stylesheet" href="./assets/css/faq.css">
+  <link rel="stylesheet" href="./assets/css/information.css?v=20261018-concept-design-alignment">
+  <link rel="stylesheet" href="./assets/css/contact.css?v=20261018-concept-design-alignment">
+  <link rel="stylesheet" href="./assets/css/faq.css?v=20261018-stage4-2-fullscreen-qa">
+  <link rel="stylesheet" href="./assets/css/concept-fv.css?v=20261019-stage5-fv-j-final">
   <noscript><style>.contact-page .contact-form-enhanced { display: none !important; }</style></noscript>
   <script src="./assets/js/font.js" defer></script>
-  <script src="./assets/js/allmenu.js?v=20261017-website-ux-stage3" defer></script>
+  <script src="./assets/js/allmenu.js?v=20261018-stage4-2-fullscreen-qa" defer></script>
   <script src="./assets/js/form.js" defer></script>
   <script src="./assets/js/liquid-button.js" defer></script>
 </head>
 <body class="contact-page">
   <div id="cursor"></div>
   <div id="stalker"></div>
-  <div id="js-header"></div>
+  <div id="js-header">
+    <noscript>
+      <nav class="noscript-site-nav" aria-label="サイトナビゲーション">
+        <a class="noscript-site-nav__brand" href="./index.html">ゆらゆら</a>
+        <div class="noscript-site-nav__links">
+          <a href="./index.html" aria-label="トップ">TOP</a>
+          <a href="./concept.html" aria-label="世界観">CONCEPT</a>
+          <a href="./gallery.html" aria-label="作品">GALLERY</a>
+          <a href="./information.html" aria-label="開催情報">INFORMATION</a>
+          <a href="./contact.html" aria-label="お問い合わせ" aria-current="page">CONTACT</a>
+        </div>
+      </nav>
+    </noscript>
+  </div>
   <main class="main contact-main" id="main">
-    <header class="information-hero" aria-labelledby="contact-title">
+    <header class="fv concept-fv information-hero" aria-labelledby="contact-title">
       <div class="information-hero__inner inner">
-        <p class="information-eyebrow">CONTACT</p>
-        <h1 id="contact-title">お問い合わせ</h1>
+        <h1 class="fv__ttl" id="contact-title">Contact</h1>
+        <p class="fv__txt">お問い合わせ</p>
         <p class="information-hero__lead">グループ展「ゆらゆら」へのお問い合わせはこちらからお送りください。</p>
+        <p class="contact-form-shortcut"><a href="#contact-form">お問い合わせフォームへ</a></p>
       </div>
     </header>
     <section class="section contact-faq-section" id="contact-faq" aria-labelledby="contact-faq-title">

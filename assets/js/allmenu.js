@@ -40,54 +40,82 @@ document.addEventListener("DOMContentLoaded", async () => {
 function initializeHeaderMenu() {
   const header = document.querySelector(".header");
   const menuToggle = header?.querySelector(".menu-toggle");
+  const menuLinks = header ? [...header.querySelectorAll(".header-link")] : [];
   if (!header || !menuToggle) { console.warn("メニュー要素が見つかりません"); return; }
-  const menuLinks = header.querySelectorAll(".header-link");
-  let animationFrameId = null;
 
-  function setScrollLock(isLocked) {
-    document.documentElement.classList.toggle("is-menu-open", isLocked);
-    document.body.classList.toggle("is-menu-open", isLocked);
-  }
-  function setMenuState(isOpen) {
-    const shouldOpen = isOpen && header.classList.contains("is-compact");
-    header.classList.toggle("is-open", shouldOpen);
-    menuToggle.setAttribute("aria-expanded", String(shouldOpen));
-    menuToggle.setAttribute("aria-label", shouldOpen ? "メニューを閉じる" : "メニューを開く");
-    setScrollLock(shouldOpen);
-  }
-  function closeMenu() { setMenuState(false); }
-  function updateHeaderState() {
-    if (header.classList.contains("is-open")) return;
-    const compactThreshold = window.innerHeight * 0.6;
-    const shouldCompact = window.scrollY >= compactThreshold;
-    header.classList.toggle("is-compact", shouldCompact);
-    if (!shouldCompact) closeMenu();
-  }
-  function requestHeaderUpdate() {
-    if (animationFrameId !== null) return;
-    animationFrameId = requestAnimationFrame(() => {
-      updateHeaderState();
-      animationFrameId = null;
+  const mobileNavigation = window.matchMedia("(max-width: 1199px)");
+  const isOpen = () => header.classList.contains("is-open");
+  const headerMenu = header.querySelector("#header-menu");
+  const backgroundElements = [...document.body.children].filter(element => element.id !== "js-header");
+  const inertBeforeOpen = new Map();
+  let scrollPosition = 0;
+
+  function lockBackground() {
+    scrollPosition = window.scrollY;
+    document.body.style.setProperty("--menu-scroll-top", `${-scrollPosition}px`);
+    document.body.classList.add("menu-open");
+    [...backgroundElements, header.querySelector(".header-txt")].filter(Boolean).forEach(element => {
+      inertBeforeOpen.set(element, element.inert);
+      element.inert = true;
     });
   }
 
-  menuToggle.addEventListener("click", event => {
-    event.preventDefault();
-    setMenuState(!header.classList.contains("is-open"));
+  function unlockBackground() {
+    document.body.classList.remove("menu-open");
+    document.body.style.removeProperty("--menu-scroll-top");
+    inertBeforeOpen.forEach((wasInert, element) => { element.inert = wasInert; });
+    inertBeforeOpen.clear();
+    window.scrollTo(0, scrollPosition);
+  }
+
+  function setMenuState(open, restoreFocus = false) {
+    const shouldOpen = mobileNavigation.matches && open;
+    const wasOpen = isOpen();
+    if (shouldOpen && !wasOpen) lockBackground();
+    header.classList.toggle("is-open", shouldOpen);
+    menuToggle.setAttribute("aria-expanded", String(shouldOpen));
+    menuToggle.setAttribute("aria-label", shouldOpen ? "メニューを閉じる" : "メニューを開く");
+    if (shouldOpen && headerMenu) headerMenu.removeAttribute("aria-hidden");
+    else if (headerMenu && mobileNavigation.matches) headerMenu.setAttribute("aria-hidden", "true");
+    else if (headerMenu) headerMenu.removeAttribute("aria-hidden");
+    if (!shouldOpen && wasOpen) unlockBackground();
+    if (restoreFocus) menuToggle.focus({ preventScroll: true });
+    if (shouldOpen && menuLinks[0]) menuLinks[0].focus();
+  }
+
+  menuToggle.addEventListener("click", () => {
+    const wasOpen = isOpen();
+    setMenuState(!wasOpen, wasOpen);
   });
-  menuLinks.forEach(link => link.addEventListener("click", closeMenu));
+  menuLinks.forEach(link => link.addEventListener("click", () => {
+    if (mobileNavigation.matches && isOpen()) setMenuState(false, true);
+  }));
   document.addEventListener("keydown", event => {
-    if (event.key !== "Escape" || !header.classList.contains("is-open")) return;
-    closeMenu();
-    menuToggle.focus();
+    if (event.key === "Escape" && isOpen()) {
+      setMenuState(false, true);
+      return;
+    }
+    if (event.key !== "Tab" || !isOpen()) return;
+    const focusableItems = [menuToggle, ...menuLinks].filter(element => !element.disabled && element.getClientRects().length);
+    const firstItem = focusableItems[0];
+    const lastItem = focusableItems[focusableItems.length - 1];
+    if (event.shiftKey && document.activeElement === firstItem) {
+      event.preventDefault();
+      lastItem?.focus();
+    } else if (!event.shiftKey && document.activeElement === lastItem) {
+      event.preventDefault();
+      firstItem?.focus();
+    }
   });
-  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
-  window.addEventListener("resize", requestHeaderUpdate, { passive: true });
+
+  const resetForBreakpoint = () => setMenuState(false);
+  if (mobileNavigation.addEventListener) mobileNavigation.addEventListener("change", resetForBreakpoint);
+  else mobileNavigation.addListener(resetForBreakpoint);
+
+  if (headerMenu && mobileNavigation.matches) headerMenu.setAttribute("aria-hidden", "true");
   menuToggle.setAttribute("aria-expanded", "false");
   menuToggle.setAttribute("aria-label", "メニューを開く");
-  updateHeaderState();
 }
-
 function initializeCurrentYear() {
   const year = document.querySelector("#js-year");
   if (year) year.textContent = new Date().getFullYear();
@@ -101,11 +129,15 @@ function initializeCurrentPage() {
     try {
       const linkURL = new URL(href, location.href);
       if (linkURL.origin !== location.origin) return;
-      link.classList.toggle("is-current", normalizePath(linkURL.pathname) === currentPath);
+      const isCurrent = normalizePath(linkURL.pathname) === currentPath;
+      link.classList.toggle("is-current", isCurrent);
+      if (link.classList.contains("header-link")) {
+        if (isCurrent) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      }
     } catch (error) { console.warn(`無効なリンクです: ${href}`, error); }
   });
 }
-
 function normalizePath(pathname) {
   let normalizedPath = pathname.replace(/\/+$/, "");
   normalizedPath = normalizedPath.replace(/\/index\.html$/, "");
@@ -130,7 +162,14 @@ function initializeCustomCursor() {
     if (animationFrameId !== null) return;
     animationFrameId = requestAnimationFrame(updateCursorPosition);
   }, { passive: true });
-  document.querySelectorAll("a, button, .card__btn").forEach(target => {
+  const hoverTargets = ["a", "button", ".card__btn"];
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    hoverTargets.push(
+      "body.information-page .faq-item > summary",
+      "body.contact-page .faq-item > summary"
+    );
+  }
+  document.querySelectorAll(hoverTargets.join(", ")).forEach(target => {
     target.addEventListener("pointerenter", () => stalker.classList.add("is-active"));
     target.addEventListener("pointerleave", () => stalker.classList.remove("is-active"));
   });

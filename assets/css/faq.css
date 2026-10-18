@@ -2,28 +2,34 @@
 
 .faq-list {
   display: grid;
-  gap: 0.85rem;
+  gap: 0;
   width: min(100%, 740px);
   margin: 2rem auto 0;
 }
 
 .faq-item {
-  border: 1px solid rgba(50, 46, 37, 0.24);
-  background: rgba(255, 255, 255, 0.18);
+  border: 0;
+  border-top: 1px solid rgba(48, 58, 5, 0.2);
+  background: transparent;
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid rgba(48, 58, 5, 0.2);
 }
 
 .faq-item summary {
   position: relative;
   display: flex;
-  min-height: 64px;
+  min-height: 56px;
   align-items: center;
-  padding: 1rem 3.5rem 1rem 1.25rem;
+  padding: 0.75rem 3.5rem 0.75rem 1.5rem;
   color: var(--color-txt);
+  background: var(--color-bg);
   font-family: var(--font-jp);
   font-size: var(--responsive-copy-size, 1rem);
   font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.8;
+  letter-spacing: 0.05em;
+  line-height: 2;
   list-style: none;
   cursor: pointer;
 }
@@ -42,7 +48,7 @@
   border-bottom: 1px solid currentColor;
   content: "";
   transform: translateY(-70%) rotate(45deg);
-  transition: transform 180ms ease;
+  transition: transform 250ms ease;
 }
 
 .faq-item[open] summary::after {
@@ -56,13 +62,16 @@
 }
 
 .faq-item__answer {
-  padding: 0 1.25rem 1.25rem;
-  border-top: 1px solid rgba(50, 46, 37, 0.12);
+  padding: 0.75rem 1.5rem 1rem;
+  color: var(--color-txt);
+  background: var(--color-bg);
 }
 
 .faq-item__answer p {
-  margin: 1rem 0 0;
+  margin: 0;
+  font-size: var(--responsive-copy-size, 1rem);
   line-height: 2;
+  letter-spacing: 0.08em;
 }
 
 .faq-item__answer a {
@@ -71,20 +80,40 @@
   text-underline-offset: 0.22em;
 }
 
+@supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 350ms ease, content-visibility 350ms allow-discrete;
+  }
+
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .faq-item summary::after {
+    transition: none;
+  }
+
+  .faq-item::details-content {
     transition: none;
   }
 }
 
 @media screen and (max-width: 480px) {
   .faq-list {
-    gap: 0.7rem;
+    margin-top: 1.5rem;
   }
 
   .faq-item summary {
-    min-height: 60px;
-    padding-inline: 1rem 3rem;
+    min-height: 52px;
+    padding-inline: 0.625rem 3rem;
   }
 
   .faq-item summary::after {
@@ -92,6 +121,6 @@
   }
 
   .faq-item__answer {
-    padding: 0 1rem 1rem;
+    padding: 0.5rem 0.625rem 0.75rem;
   }
 }

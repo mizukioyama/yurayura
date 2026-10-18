@@ -117,6 +117,21 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#js-header,
+#js-footer {
+  flex: 0 0 auto;
+}
+
+#js-footer {
+  margin-top: auto;
+}
+
 /* ========================================
 アニメーション
 =noise
@@ -126,11 +141,11 @@ body::before {
   position: fixed;
   top: -50%;
   left: -50%;
-  z-index: 100;
-  width: 150%;
-  height: 150%;
+  z-index: 0;
+  width: 200%;
+  height: 200%;
   background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-  opacity: 0.08;
+  opacity: 0.1;
   content: "";
   pointer-events: none;
   animation: noise 0.2s steps(2) infinite;
@@ -190,7 +205,7 @@ main::after,
   pointer-events: none;
 }
 
-body::after {
+body:not(.information-page):not(.contact-page)::after {
   content: "";
   position: fixed;
   top: 0;
@@ -205,6 +220,9 @@ body::after {
 
 main {
   position: relative;
+  z-index: 1;
+  flex: 1 0 auto;
+  min-width: 0;
 }
 
 .bg-img {
@@ -632,9 +650,7 @@ section.section--concept {
 ======================================== */
 
 .btn,
-.send-btn,
-.faq-question,
-.faq-heading {
+.send-btn {
   background: none;
   background-size: cover;
 }
@@ -875,8 +891,7 @@ section.section--concept {
 Contact
 ======================================== */
 
-.contact-sub-ttl,
-h3.faq-ttl {
+.contact-sub-ttl {
   color: var(--color-txt);
   text-align: center;
   font-weight: 600;
@@ -890,161 +905,6 @@ h3.faq-ttl {
 
 
 
-
-/* ========================================
-FAQ
-======================================== */
-.faq-box {
-  padding: 0;
-}
-
-.faq-list {
-  display: grid;
-  gap: 0.5rem;
-  align-content: flex-start;
-}
-
-.faq-list-item {
-  height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: none center / cover;
-  background-repeat: no-repeat;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
-}
-
-
-
-.faq-heading {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 1rem 1.5rem;
-  color: var(--color-bg);
-  text-align: left;
-  font-size: var(--responsive-heading-3);
-  font-family: var(--font-jp);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-@media screen and (max-width: 480px) {
-  .faq-question,
-  .faq-heading {
-    padding: 8px 10px;
-    font-size: 14px;
-  }
-}
-
-
-
-
-
-.faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  background: var(--color-bg);
-  transition: grid-template-rows 0.35s ease;
-}
-
-.faq-list-item > .faq-answer {
-  grid-template-rows: 1fr;
-}
-
-
-
-.faq-list-item.is-open .faq-answer {
-  grid-template-rows: 1fr;
-}
-
-
-
-.faq-sub-list {
-  display: grid;
-  gap: 0.25rem;
-  min-width: 0;
-}
-
-.faq-sub-item {
-  min-width: 0;
-  border-top: 1px solid rgba(48, 58, 5, 0.2);
-}
-
-.faq-sub-item:last-child {
-  border-bottom: 1px solid rgba(48, 58, 5, 0.2);
-}
-
-.faq-sub-question {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  color: var(--color-txt);
-  text-align: left;
-  font-family: var(--font-jp);
-  font-size: var(--responsive-copy-size);
-  letter-spacing: 0.05em;
-  background: transparent;
-  cursor: pointer;
-}
-
-.faq-sub-icon {
-  flex-shrink: 0;
-  width: 8px;
-  height: 8px;
-  margin-right: 2px;
-  border-right: 2px solid var(--color-txt);
-  border-bottom: 2px solid var(--color-txt);
-  transform: rotate(45deg);
-  transition: transform 0.25s ease;
-}
-
-.faq-sub-item.is-open .faq-sub-icon {
-  margin-top: 0.25rem;
-  transform: rotate(-135deg);
-}
-
-.faq-sub-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  min-width: 0;
-  transition: grid-template-rows 0.35s ease;
-}
-
-.faq-sub-txt {
-  min-height: 0;
-  margin: 0;
-  padding: 0 1.5rem;
-  overflow: hidden;
-  color: var(--color-txt);
-  font-size: var(--responsive-copy-size);
-  line-height: 2;
-  letter-spacing: 0.08em;
-}
-
-.faq-sub-item.is-open .faq-sub-answer {
-  grid-template-rows: 1fr;
-}
-
-.faq-sub-item.is-open .faq-sub-txt {
-  padding: 0.75rem 1.5rem 1rem;
-}
-
-@media screen and (max-width: 480px) {
-  .faq-sub-question {
-    padding: 8px 10px;
-  }
-
-  .faq-sub-txt {
-    padding-inline: 10px;
-  }
-
-  .faq-sub-item.is-open .faq-sub-txt {
-    padding: 8px 10px 12px;
-  }
-}
 
 /* ========================================
 Access
@@ -1164,9 +1024,6 @@ Access
 .section--artists .h2_ttl-artists,
 .section--contact .h2_ttl,
 .section--contact .section__txt,
-.section--faq .faq-question,
-.section--faq .faq-txt,
-.section--faq .faq-ans-txt,
 .section--access .h2_ttl,
 .section--access .section__txt,
 .section--access .access-info h3,
@@ -1182,16 +1039,6 @@ Access
   letter-spacing: 0.08em;
 }
 
-.section--faq .faq-ttl {
-  align-self: flex-start;
-  width: 100%;
-  height: auto;
-  writing-mode: horizontal-tb;
-  text-align: left;
-  white-space: normal;
-  line-height: 2;
-  letter-spacing: 0.08em;
-}
 
 @media screen and (max-width: 375px) {
   :root {
@@ -1239,7 +1086,6 @@ h1.fv__ttl {
 
 .section__txt,
 .h2-bt-txt,
-.faq-txt,
 .access-txt {
   font-size: var(--responsive-copy-size);
 }
@@ -1254,11 +1100,7 @@ h1.fv__ttl {
 }
 
 .contact-sub-ttl,
-h3.faq-ttl,
-.section--access .access-info h3,
-.faq-question,
-.section--faq .faq-ttl,
-.section--faq .faq-question {
+.section--access .access-info h3 {
   font-size: var(--responsive-heading-3);
 }
 
@@ -1289,7 +1131,6 @@ section {
 .section__inner,
 .section__txt,
 .contact-form,
-.faq-box,
 .acs-box,
 .map-box {
   min-width: 0;
@@ -1462,30 +1303,6 @@ section {
 
 
 
-  .header-link,
-  .footer-link {
-    letter-spacing: 0.8rem;
-  }
-
-  .header-list,
-  .footer-list {
-    gap: 40px;
-  }
-
-  .footer {
-    padding-top: 120px;
-    padding-bottom: 70px;
-  }
-
-  .footer-list {
-    width: 100%;
-  }
-
-  .header.is-compact.is-open .header-list {
-    gap: 100px;
-    padding: 20vmin 6rem 40px;
-  }
-
   .contact-check-grid {
     gap: 10px 20px;
   }
@@ -1583,22 +1400,6 @@ section {
     --view-button-width: clamp(360px, 56vw, 520px);
   }
 
-  .faq-heading,
-  .faq-question {
-    padding-block: clamp(10px, calc(1vw + 5px), 16px);
-    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
-  }
-
-  .faq-sub-question {
-    padding-block: clamp(8px, calc(0.8vw + 4px), 14px);
-    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
-  }
-
-  .faq-sub-txt,
-  .faq-sub-item.is-open .faq-sub-txt {
-    padding-inline: clamp(14px, calc(1.5vw + 8px), 24px);
-  }
-
   .section--access > .section__inner > .acs-box:first-of-type {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1622,34 +1423,8 @@ section {
     height: clamp(240px, 32vw, 420px);
   }
 
-  .header {
-    top: clamp(20px, 3.5vw, 56px);
-    left: clamp(20px, 6vw, 96px);
-  }
-
-  .header-link,
-  .footer-link {
-    letter-spacing: clamp(0.2rem, 0.8vw, 0.8rem);
-  }
-
-  .header-list,
-  .footer-list {
-    gap: clamp(20px, calc(2vw + 8px), 40px);
-  }
 }
 
-
-/* Shared background noise: slightly stronger, but never overlay the footer. */
-body::before {
-  width: 200% !important;
-  height: 200% !important;
-  opacity: 0.1 !important;
-}
-
-.footer {
-  position: relative;
-  z-index: 101;
-}
 
 /* Shared Scroll guide: keep the full guide above following sections. */
 .scroll-guide {
@@ -1707,30 +1482,6 @@ body::before {
   z-index: 1;
 }
 
-/* Keep the original FAQ heading texture. */
-.section--faq .faq-heading {
-  background-image: url("../img/btn-bg-img.webp") !important;
-  background-position: center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-}
-
-/* FAQ's actual accordion buttons use color-bg. */
-.section--faq button.faq-sub-question,
-.section--faq .faq-sub-question {
-  background: var(--color-bg) !important;
-  background-color: var(--color-bg) !important;
-  background-image: none !important;
-}
-
-/* Keep the title/date on the left; place only the navigation on the right. */
-.header-list {
-  position: fixed;
-  top: clamp(20px, 3.5vw, 56px);
-  right: clamp(20px, 6vw, 96px);
-  left: auto;
-}
-
 /* Tablet only: apply horizontal padding to the parent section itself. */
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .section {
@@ -1780,16 +1531,4 @@ body::before {
     font-size: 0.75rem !important;
     line-height: 1.8 !important;
   } */
-}
-
-@media screen and (max-width: 767px) {
-  .header-list {
-    top: clamp(16px, 5.333vw, 20px);
-    right: clamp(16px, 5.333vw, 20px);
-    left: auto;
-  }
-}
-
-.header.is-compact.is-open .header-list {
-  inset: 0;
 }

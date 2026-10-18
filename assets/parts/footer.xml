@@ -1,6 +1,6 @@
 <footer class="footer">
 
-   <nav class="footer-inner inner">
+   <div class="footer-inner inner">
          <div class="footer-txt">
          <a href="index.html" class="footer-logo-link">
             ゆらゆら
@@ -13,6 +13,7 @@
          </p>
          </div>
 
+         <nav class="footer-nav" aria-label="フッターナビゲーション">
          <ul class="footer-list">
 
             <li class="footer-item footer-item--top">
@@ -51,8 +52,9 @@
             </li>
 
          </ul>
+         </nav>
 
-         <div class="footer-social" aria-label="SNS">
+         <div class="footer-social" role="group" aria-label="公式SNS">
             <a class="footer-social__link" href="https://www.instagram.com/o.mizuki_1998/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                <svg class="footer-social__icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor"/></svg>
             </a>
@@ -69,5 +71,5 @@
             <a class="footer-policy-link" href="./policy.html">サイトポリシー</a>
          </small>
       </p>
-   </nav>
+   </div>
 </footer>

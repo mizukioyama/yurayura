@@ -22,11 +22,11 @@
    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="./assets/css/reset.css">
-   <link rel="stylesheet" href="./assets/css/menu-style.css?v=20260917-inline-css-move-v18">
-   <link rel="stylesheet" href="./assets/css/main.css?v=20260916-scroll-visible-280-v27">
+   <link rel="stylesheet" href="./assets/css/menu-style.css?v=20261018-stage4-2-fullscreen-qa">
+   <link rel="stylesheet" href="./assets/css/main.css?v=20261018-stage4-2-fullscreen-qa">
    <link rel="stylesheet" href="./assets/css/gallery.css?v=20260917-mobile-label-fix-v42">
-   <link rel="stylesheet" href="./assets/css/gallery-pc-restore.css?v=20260917-pc-restore-v1">
-   <link rel="stylesheet" href="./assets/css/gallery-inline.css?v=20261007-gallery-style-v9">
+   <link rel="stylesheet" href="./assets/css/gallery-pc-restore.css?v=20261018-stage4-2-layout">
+   <link rel="stylesheet" href="./assets/css/gallery-inline.css?v=20261018-stage4-2-layout">
    <link rel="stylesheet" href="./assets/css/gallery-category-pc.css?v=20260917-mobile-style-v2">
    <link rel="stylesheet" href="./assets/css/gallery-label-fix.css?v=20261007-gallery-style-v5">
    <link rel="stylesheet" href="./assets/css/liquid.css?v=20261007-gallery-buttons-v7">
@@ -34,7 +34,7 @@
    <link rel="stylesheet" href="./assets/css/user-settings.css?v=20260922-typography-settings">
    <link rel="stylesheet" href="./assets/css/gallery-phase1-3.css">
    <script src="./assets/js/font.js" defer></script>
-   <script src="./assets/js/allmenu.js?v=20261017-website-ux-stage3" defer></script>
+   <script src="./assets/js/allmenu.js?v=20261018-stage4-2-fullscreen-qa" defer></script>
    <script src="./assets/js/gallery.js?v=20260917-gallery-modal-profile-v12" defer></script>
    <script src="./assets/js/slide.js" defer></script>
    <script src="./assets/js/art-protection.js" defer></script>
@@ -43,7 +43,20 @@
 <body class="gallery-page">
    <div id="cursor"></div>
    <div id="stalker"></div>
-   <div id="js-header"></div>
+   <div id="js-header">
+    <noscript>
+      <nav class="noscript-site-nav" aria-label="サイトナビゲーション">
+        <a class="noscript-site-nav__brand" href="./index.html">ゆらゆら</a>
+        <div class="noscript-site-nav__links">
+          <a href="./index.html" aria-label="トップ">TOP</a>
+          <a href="./concept.html" aria-label="世界観">CONCEPT</a>
+          <a href="./gallery.html" aria-label="作品" aria-current="page">GALLERY</a>
+          <a href="./information.html" aria-label="開催情報">INFORMATION</a>
+          <a href="./contact.html" aria-label="お問い合わせ">CONTACT</a>
+        </div>
+      </nav>
+    </noscript>
+  </div>
    <main class="main gallery" id="main">
       <div class="h1-text">
          <h1>Gallery</h1>

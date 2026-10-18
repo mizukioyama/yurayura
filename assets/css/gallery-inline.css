@@ -65,28 +65,6 @@
     margin: 0 0 8px !important;
     text-align: left !important;
   }
-  .gallery-page .header {
-    position: absolute !important;
-    top: 3.5rem !important;
-    right: auto !important;
-    left: 6rem !important;
-    width: auto !important;
-  }
-  .gallery-page .header:not(.is-compact.is-open) .header-list {
-    position: absolute !important;
-    display: flex !important;
-    top: 0 !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: calc(50vw - 6rem) !important;
-    flex-direction: row !important;
-    transform: translateX(-50%) !important;
-  }
-  .gallery-page .header:not(.is-compact.is-open) .header-item {
-    display: block !important;
-    margin: 0 !important;
-    text-align: center !important;
-  }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .gallery-page .gallery-content {

@@ -188,42 +188,6 @@ font-weight: 700;
    font-size: clamp(1.4rem, 0.28vw + 1.29rem, 1.8rem);
 }
 
-/*================ footer ================*/
-
-.footer {
-   padding-block: 4.8rem 2.4rem;
-   background: #f8fafc;
-}
-
-.footer__inner {
-   display: grid;
-   gap: 2.4rem;
-}
-
-id {
-   
-}
-
-.footer__list {
-   display: flex;
-   justify-content: center;
-   gap: 2.4rem;
-   flex-wrap: wrap;
-}
-
-.footer__link {
-   font-size: clamp(1.3rem, 0.21vw + 1.22rem, 1.6rem);
-}
-
-.footer__copy {
-   text-align: center;
-}
-
-.footer__small {
-   font-size: clamp(1.2rem, 0.14vw + 1.15rem, 1.4rem);
-}
-
-
 @media screen and (max-width: 1024px) {
 
    .cards {
