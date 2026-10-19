@@ -65,7 +65,14 @@ function initializeHeaderMenu() {
     document.body.style.removeProperty("--menu-scroll-top");
     inertBeforeOpen.forEach((wasInert, element) => { element.inert = wasInert; });
     inertBeforeOpen.clear();
-    window.scrollTo(0, scrollPosition);
+    const restoreScrollPosition = scrollPosition;
+    window.requestAnimationFrame(() => {
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      root.scrollTop = restoreScrollPosition;
+      root.style.scrollBehavior = previousScrollBehavior;
+    });
   }
 
   function setMenuState(open, restoreFocus = false) {

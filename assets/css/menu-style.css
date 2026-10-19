@@ -256,6 +256,7 @@ body.is-loaded { opacity: 1; }
 }
 
 @media screen and (max-width: 1199px) {
+  .header { z-index: 1001; }
   .header-inner { min-height: 76px; flex-wrap: wrap; gap: 0 1rem; padding-block: 0.5rem; }
   .header-txt { margin-right: auto; }
   .header .header-list { display: none; }
@@ -291,12 +292,12 @@ body.is-loaded { opacity: 1; }
     font-size: clamp(14px, 1.6vw, 18px);
   }
   .header .menu-border { display: none; }
-  .menu-toggle { display: inline-flex; }
-  .header.is-open .menu-toggle {
+  .menu-toggle {
     position: fixed;
     top: max(0.75rem, env(safe-area-inset-top));
     right: max(0.75rem, env(safe-area-inset-right));
     z-index: 2;
+    display: inline-flex;
     color: var(--color-txt);
     background: var(--color-bg, #f6f4ee);
   }
