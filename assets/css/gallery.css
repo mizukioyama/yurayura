@@ -40,11 +40,10 @@ body.gallery-page button {
 .gallery-page .gallery-section {
   min-height: 100vh;
   padding-top: 10vmin;
-  background: var(--color-bg) !important;
+  background: transparent !important;
 }
 .gallery-page .gallery-main {
   width: 100%;
-  background: var(--color-bg) !important;
 }
 .gallery-page .gallery-intro {
   width: min(55%, 1000px);
@@ -163,7 +162,6 @@ body.gallery-page button {
 }
 .gallery-page .gallery-containt {
   margin-top: 5rem !important;
-  background: var(--color-bg) !important;
 }
 .gallery-page .gallery-work-link,
 .gallery-page .gallery-work-link h2,
@@ -339,13 +337,11 @@ body.gallery-page button {
     max-width: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: var(--color-bg) !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
   .gallery-page .gallery-content {
     width: 100% !important;
-    background: var(--color-bg) !important;
   }
   .gallery-page .gallery-content .work {
     display: block !important;
