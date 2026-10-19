@@ -196,13 +196,14 @@ function initializeScrollGuidePosition() {
     const titleRect = title.getBoundingClientRect();
     const parentRect = containingBlock.getBoundingClientRect();
     const isTopPage = document.body.classList.contains("top-page");
-    const isConceptPage = document.body.classList.contains("concept-page");
+    const conceptFv = title.closest(".concept-fv");
+    const usesConceptFv = Boolean(conceptFv);
     const isPc = window.innerWidth >= 1200;
 
     guide.style.setProperty("position", "absolute", "important");
     guide.style.setProperty("transform", "none", "important");
 
-    if (isPc && (isTopPage || isConceptPage)) {
+    if (isPc && (isTopPage || usesConceptFv)) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
       return;
@@ -212,6 +213,12 @@ function initializeScrollGuidePosition() {
     if (isTopPage) {
       const sharedTitleTop = window.innerWidth <= 767 ? 180 : window.innerWidth * 0.28;
       guideTop = sharedTitleTop + titleRect.height + 140;
+    } else if (conceptFv) {
+      const inner = conceptFv.querySelector(".fv__inner, .information-hero__inner");
+      const layoutTitleTop = inner
+        ? inner.getBoundingClientRect().top - conceptFv.getBoundingClientRect().top + title.offsetTop
+        : titleRect.top - parentRect.top;
+      guideTop = layoutTitleTop + title.offsetHeight + 140;
     } else {
       guideTop = titleRect.bottom - parentRect.top + 140;
     }

@@ -74,7 +74,7 @@
 
 @media (max-width: 767px) {
   .policy-page main section.policy-content {
-    padding: 96px 22px !important;
+    padding: 96px 22px;
   }
 
   .policy-page .policy-section + .policy-section {

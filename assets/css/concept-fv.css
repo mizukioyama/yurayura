@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* Concept FV: match Gallery title/FV geometry. */
+/* Concept is the shared FV reference for the four editorial pages. */
 .concept-page .concept-fv,
 .information-page .information-hero.concept-fv,
 .contact-page .information-hero.concept-fv,
@@ -8,23 +8,12 @@
   position: relative !important;
   display: block !important;
   height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
   padding: 0 !important;
   overflow: visible !important;
   z-index: 2 !important;
   background: var(--color-bg) !important;
-}
-
-.concept-page .concept-fv {
-  min-height: 100vh !important;
-}
-
-.information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv {
-  min-height: max(64vh, calc(40vmin + 14rem)) !important;
-}
-
-.policy-page .concept-fv {
-  min-height: max(64vh, calc(34vmin + 14rem)) !important;
 }
 
 .concept-page .concept-fv .fv__inner,
@@ -98,29 +87,17 @@
   text-orientation: mixed !important;
 }
 
-.information-page .information-hero.concept-fv .information-hero__lead,
-.contact-page .information-hero.concept-fv .information-hero__lead {
-  max-width: 24rem;
-  margin: 1.5rem 0 0;
-  text-align: left;
+.information-page .information-next .information-hero__lead,
+.contact-page .contact-faq-section .information-hero__lead {
+  width: min(100%, 42.5rem);
+  margin: 0 auto 1.25rem;
+  text-align: center;
 }
 
-@media screen and (min-width: 1200px) {
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    top: 40vmin !important;
-  }
-}
-
-.concept-page #fog-scene,
-.concept-page .vanta-wrap,
-.concept-page #vanta-bg,
-.concept-page .smoke-twist {
-  pointer-events: none !important;
-}
-
-.concept-page .concept-fv .scroll-guide {
+.concept-page .concept-fv .scroll-guide,
+.information-page .information-hero.concept-fv .scroll-guide,
+.contact-page .information-hero.concept-fv .scroll-guide,
+.policy-page .concept-fv .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
   z-index: 120 !important;
@@ -135,13 +112,14 @@
   z-index: 1 !important;
 }
 
-@media screen and (max-width: 1199px) {
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: max(64vh, calc(28vmin + 16rem)) !important;
-  }
+.concept-page #fog-scene,
+.concept-page .vanta-wrap,
+.concept-page #vanta-bg,
+.concept-page .smoke-twist {
+  pointer-events: none !important;
+}
 
+@media screen and (max-width: 1199px) {
   .concept-page .concept-fv .fv__inner,
   .information-page .information-hero.concept-fv .information-hero__inner,
   .contact-page .information-hero.concept-fv .information-hero__inner,
@@ -150,7 +128,10 @@
     top: 28vmin !important;
   }
 
-  .concept-page .concept-fv .scroll-guide {
+  .concept-page .concept-fv .scroll-guide,
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide,
+  .policy-page .concept-fv .scroll-guide {
     left: 10vw !important;
   }
 }
@@ -177,15 +158,22 @@
     padding: 180px 22px 420px !important;
   }
 
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding: 180px 22px clamp(32px, 8vw, 40px) !important;
-  }
-
-  .concept-page .concept-fv .scroll-guide {
+  .concept-page .concept-fv .scroll-guide,
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide,
+  .policy-page .concept-fv .scroll-guide {
     left: 22px !important;
     right: auto !important;
-    z-index: 120 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-page .concept-fv .scroll-guide__bar::before,
+  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
+  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
+  .policy-page .concept-fv .scroll-guide__bar::before {
+    animation: none !important;
+    transform: none !important;
+    opacity: 0 !important;
   }
 }
