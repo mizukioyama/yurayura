@@ -12,38 +12,6 @@ body.gallery-page {
 body.gallery-page button {
   font-family: inherit !important;
 }
-body.gallery-page::after {
-  content: "";
-  position: fixed;
-  z-index: 9999;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  pointer-events: none;
-  opacity: 0.11;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  animation: galleryNoise 0.42s steps(2, end) infinite;
-}
-@keyframes galleryNoise {
-  0% {
-    transform: translate(0);
-  }
-  25% {
-    transform: translate(-2%, 1%);
-  }
-  50% {
-    transform: translate(2%, -2%);
-  }
-  75% {
-    transform: translate(-1%, -1%);
-  }
-  100% {
-    transform: translate(1%, 2%);
-  }
-}
 .gallery-page .gallery {
   position: relative;
   min-height: 100vh;
@@ -452,7 +420,7 @@ body.gallery-page::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gallery-page::after,
+  body.gallery-page::before,
   .gallery-page .gallery-scroll-hint::after {
     animation: none;
   }

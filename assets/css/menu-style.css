@@ -257,6 +257,7 @@ body.is-loaded { opacity: 1; }
 
 @media screen and (max-width: 1199px) {
   .header { z-index: 1001; }
+  .header.is-open { z-index: 1003; }
   .header-inner { min-height: 76px; flex-wrap: wrap; gap: 0 1rem; padding-block: 0.5rem; }
   .header-txt { margin-right: auto; }
   .header .header-list { display: none; }
@@ -299,7 +300,6 @@ body.is-loaded { opacity: 1; }
     z-index: 2;
     display: inline-flex;
     color: var(--color-txt);
-    background: var(--color-bg, #f6f4ee);
   }
   body.menu-open {
     position: fixed;
