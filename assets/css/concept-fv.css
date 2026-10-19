@@ -19,7 +19,10 @@
 }
 
 .information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv,
+.contact-page .information-hero.concept-fv {
+  min-height: max(64vh, calc(40vmin + 14rem)) !important;
+}
+
 .policy-page .concept-fv {
   min-height: max(64vh, calc(34vmin + 14rem)) !important;
 }
@@ -106,7 +109,7 @@
   .information-page .information-hero.concept-fv .information-hero__inner,
   .contact-page .information-hero.concept-fv .information-hero__inner,
   .policy-page .concept-fv .fv__inner {
-    top: 34vmin !important;
+    top: 40vmin !important;
   }
 }
 
@@ -177,7 +180,7 @@
   .information-page .information-hero.concept-fv .information-hero__inner,
   .contact-page .information-hero.concept-fv .information-hero__inner,
   .policy-page .concept-fv .fv__inner {
-    padding: clamp(104px, 28vw, 124px) 22px clamp(72px, 18vw, 88px) !important;
+    padding: 180px 22px clamp(32px, 8vw, 40px) !important;
   }
 
   .concept-page .concept-fv .scroll-guide {

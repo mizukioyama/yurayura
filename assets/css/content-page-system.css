@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/* Shared section-heading rhythm from Concept's first narrative section. */
+.information-page .information-main > .section > .section__inner > .information-eyebrow,
+.contact-page .contact-main > .section > .section__inner > .information-eyebrow,
+.policy-page .policy-section > .policy-eyebrow {
+  display: block;
+  width: auto;
+  margin: 0 0 1.2rem;
+  color: var(--color-txt);
+  font-family: var(--font-base, "Shippori Mincho", serif);
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1.7;
+  opacity: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.information-page .information-main > .section .h2_ttl,
+.contact-page .contact-main > .section .h2_ttl,
+.policy-page .policy-section .h2_ttl {
+  margin: 0 0 clamp(24px, 2.222vw, 32px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 2;
+  text-align: center;
+}
+
+.information-page .information-main .information-next .section__txt,
+.information-page .information-main .information-contact-cta .section__txt,
+.contact-page .contact-main .contact-form-section > .section__inner > .section__txt,
+.policy-page main section.policy-content .policy-intro {
+  width: min(100%, 42.5rem);
+  margin-inline: auto;
+  letter-spacing: 0.08em;
+  line-height: 2;
+  text-align: center;
+}
+
+.information-page .information-main .section--faq > .section__inner > .information-archive-note {
+  width: min(100%, 42.5rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Long event records, form controls, and legal copy keep their useful left alignment. */
+.information-page .section--access > .section__inner > .information-eyebrow,
+.information-page .section--access > .section__inner > .h2_ttl {
+  text-align: center;
+}

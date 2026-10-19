@@ -205,7 +205,7 @@ main::after,
   pointer-events: none;
 }
 
-body:not(.information-page):not(.contact-page)::after {
+body:not(.information-page):not(.contact-page):not(.policy-page)::after {
   content: "";
   position: fixed;
   top: 0;

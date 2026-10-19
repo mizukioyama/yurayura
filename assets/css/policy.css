@@ -46,12 +46,6 @@
   border-top: 1px solid rgba(48, 58, 5, 0.16);
 }
 
-.policy-page main section.policy-content .policy-section .h2_ttl {
-  width: 100%;
-  margin: 0 0 clamp(16px, calc(0.75vw + 12px), 24px);
-  text-align: left;
-}
-
 .policy-page .policy-content .section__txt + .section__txt {
   margin-top: 0.8rem;
 }
