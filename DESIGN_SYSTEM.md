@@ -49,6 +49,23 @@
 
 背景画像、霧、半透明レイヤー、ノイズ等を重ねすぎて本文コントラストを下げない。
 
+### Current background system
+- Base paper color: `--color-bg` (`#f3f3ed`). Keep page backgrounds transparent where they should reveal the shared body grain.
+- Shared grain uses the existing inline fractal-noise layer. On Concept, Information, Contact, and Policy it is static at 3.5% opacity; TOP retains its existing animated treatment and Gallery retains its existing page behavior.
+- Use a restrained tint from the existing olive text color only for meaningful information surfaces, such as archived exhibition records and the contact form section. Do not alternate section backgrounds mechanically.
+- Keep form controls and artwork cards on their established opaque surfaces.
+
+## 4.1 Responsive content rhythm
+- Keep Concept's full-height FV as the visual reference.
+- Information and Contact use a shorter viewport-aware FV so the next content begins sooner; the title position remains aligned to the shared title rule.
+- Preserve broad horizontal padding and calm section spacing, while using bounded `clamp()` values rather than oversized fixed spacers.
+- The Policy body remains a long-form reading column; its copy stays left-aligned even when its section label uses the shared heading treatment.
+
+## 4.2 Typography scale
+- Keep `Shippori Mincho` for the primary text and `Akaya Kanadaka` for the existing decorative roles.
+- Current responsive settings: body 15–16px, heading level 2 20–30px, heading level 3 15–21px, small headings and buttons 13–16px across 375–1440px.
+- Preserve semantic hierarchy and line-height/letter-spacing rules; do not enlarge text by changing isolated selectors.
+
 ## 5. Motion
 
 ### Purpose
@@ -74,6 +91,7 @@
 - offscreen時は可能なら停止する。
 - `visibilitychange` を考慮する。
 - `prefers-reduced-motion: reduce` を尊重する。
+- The shared page-grain layer is static on Concept, Information, Contact, and Policy; the TOP grain and its loading/Vanta/scroll-guide motion remain page-specific and unchanged.
 - mobileでは負荷を下げても世界観が保てる設計を優先する。
 - animationがLCP / CLS / INP / scrollを悪化させないことを確認する。
 

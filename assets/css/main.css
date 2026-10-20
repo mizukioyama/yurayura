@@ -151,6 +151,14 @@ body::before {
   animation: noise 0.2s steps(2) infinite;
 }
 
+body.concept-page::before,
+body.information-page::before,
+body.contact-page::before,
+body.policy-page::before {
+  opacity: 0.035;
+  animation: none;
+}
+
 @keyframes noise {
   0% {
     transform: translate(0, 0);

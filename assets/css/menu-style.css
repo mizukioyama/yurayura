@@ -256,6 +256,9 @@ body.is-loaded { opacity: 1; }
 }
 
 @media screen and (max-width: 1199px) {
+  body:has(.menu-toggle) main {
+    padding-inline-end: calc(4.25rem + env(safe-area-inset-right));
+  }
   .header { z-index: 1001; }
   .header.is-open { z-index: 1003; }
   .header-inner { min-height: 76px; flex-wrap: wrap; gap: 0 1rem; padding-block: 0.5rem; }
@@ -300,6 +303,7 @@ body.is-loaded { opacity: 1; }
     z-index: 2;
     display: inline-flex;
     color: var(--color-txt);
+    background: var(--color-bg, #f3f3ed);
   }
   body.menu-open {
     position: fixed;

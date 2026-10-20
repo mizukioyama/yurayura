@@ -13,7 +13,12 @@
   padding: 0 !important;
   overflow: visible !important;
   z-index: 2 !important;
-  background: var(--color-bg) !important;
+  background: transparent !important;
+}
+
+.information-page .information-hero.concept-fv,
+.contact-page .information-hero.concept-fv {
+  min-height: max(64svh, calc(34vmin + 14rem)) !important;
 }
 
 .concept-page .concept-fv .fv__inner,
@@ -95,11 +100,17 @@
 }
 
 .concept-page .concept-fv .scroll-guide,
-.information-page .information-hero.concept-fv .scroll-guide,
-.contact-page .information-hero.concept-fv .scroll-guide,
 .policy-page .concept-fv .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
+  z-index: 120 !important;
+  overflow: visible !important;
+}
+
+.information-page .information-hero.concept-fv .scroll-guide,
+.contact-page .information-hero.concept-fv .scroll-guide {
+  left: auto !important;
+  right: 8vmin !important;
   z-index: 120 !important;
   overflow: visible !important;
 }
@@ -129,10 +140,14 @@
   }
 
   .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
   .policy-page .concept-fv .scroll-guide {
     left: 10vw !important;
+  }
+
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide {
+    left: auto !important;
+    right: 8vmin !important;
   }
 }
 
@@ -145,9 +160,12 @@
     overflow: visible !important;
   }
 
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv {
+    min-height: clamp(420px, 58svh, 520px) !important;
+  }
+
   .concept-page .concept-fv .fv__inner,
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
   .policy-page .concept-fv .fv__inner {
     position: relative !important;
     left: auto !important;
@@ -158,13 +176,49 @@
     padding: 180px 22px 420px !important;
   }
 
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 180px 22px 90px !important;
+  }
+
   .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
   .policy-page .concept-fv .scroll-guide {
     left: 22px !important;
     right: auto !important;
   }
+
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide {
+    left: auto !important;
+    right: 22px !important;
+  }
+
+  .information-page .information-hero.concept-fv .scroll-guide__bar,
+  .contact-page .information-hero.concept-fv .scroll-guide__bar,
+  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
+  .contact-page .information-hero.concept-fv .scroll-guide__bar::before {
+    height: 140px !important;
+    min-height: 140px !important;
+    max-height: 140px !important;
+  }
+
+  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
+  .contact-page .information-hero.concept-fv .scroll-guide__bar::before {
+    animation-name: contentPageScrollGuideFlow !important;
+  }
+}
+
+@keyframes contentPageScrollGuideFlow {
+  0% { transform: translateY(-140px); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(140px); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,6 +5,10 @@
   padding-bottom: clamp(48px, 8vw, 112px);
 }
 
+.information-page #past-exhibitions {
+  background-color: rgba(60, 70, 6, 0.035);
+}
+
 .information-eyebrow {
   margin: 0 0 1.25rem;
   font-family: var(--font-en, var(--font-base));

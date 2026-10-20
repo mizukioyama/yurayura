@@ -8,7 +8,7 @@
 .concept-page,
 .concept-page main,
 .concept-page main section {
-  background-color: var(--color-bg) !important;
+  background-color: transparent !important;
 }
 
 .concept-fv__lead,

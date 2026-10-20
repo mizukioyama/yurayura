@@ -115,7 +115,9 @@ function initializeHeaderMenu() {
     }
   });
 
-  const resetForBreakpoint = () => setMenuState(false);
+  const resetForBreakpoint = () => {
+    setMenuState(false);
+  };
   if (mobileNavigation.addEventListener) mobileNavigation.addEventListener("change", resetForBreakpoint);
   else mobileNavigation.addListener(resetForBreakpoint);
 

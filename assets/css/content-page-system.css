@@ -55,21 +55,21 @@
 /* The first information section continues the same generous Concept rhythm. */
 .information-page .information-main > .information-next.content-page-first-section,
 .contact-page .contact-main > .contact-faq-section.content-page-first-section {
-  padding-top: calc(20vmin + 10px);
+  padding-top: clamp(88px, 12vmin, 144px);
 }
 
 .policy-page main section.policy-content.content-page-first-section {
-  padding-top: 20vmin;
+  padding-top: clamp(88px, 12vmin, 144px);
 }
 
 @media screen and (max-width: 800px) {
   .information-page .information-main > .information-next.content-page-first-section,
   .contact-page .contact-main > .contact-faq-section.content-page-first-section {
-    padding-top: calc(14vmin + 10px);
+    padding-top: clamp(88px, 14vmin, 128px);
   }
 
   .policy-page main section.policy-content.content-page-first-section {
-    padding-top: 14vmin;
+    padding-top: clamp(88px, 14vmin, 128px);
   }
 }
 
