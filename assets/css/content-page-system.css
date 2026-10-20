@@ -79,4 +79,17 @@
   .policy-page main section.policy-content.content-page-first-section {
     padding-top: 0;
   }
+
+  .information-page .information-main .information-next .section__txt,
+  .information-page .information-main .information-contact-cta .section__txt,
+  .information-page .information-main .section--faq > .section__inner > .information-archive-note,
+  .contact-page .contact-main .contact-faq-section .information-hero__lead,
+  .contact-page .contact-main .contact-form-section > .section__inner > .section__txt,
+  .policy-page main section.policy-content .policy-intro,
+  .policy-page main section.policy-content .section__txt {
+    margin-inline: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    text-align: left;
+  }
 }
