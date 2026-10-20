@@ -201,6 +201,7 @@ function initializeScrollGuidePosition() {
     const conceptFv = title.closest(".concept-fv");
     const usesConceptFv = Boolean(conceptFv);
     const isPc = window.innerWidth >= 1200;
+    const isReadingPage = document.body.matches(".information-page, .contact-page, .policy-page");
 
     guide.style.setProperty("position", "absolute", "important");
     guide.style.setProperty("transform", "none", "important");
@@ -208,6 +209,32 @@ function initializeScrollGuidePosition() {
     if (isPc && (isTopPage || usesConceptFv)) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
+      return;
+    }
+
+    if (!isPc && isReadingPage && usesConceptFv) {
+      const subtitle = conceptFv.querySelector(".fv__txt");
+      const bar = guide.querySelector(".scroll-guide__bar");
+      const label = guide.querySelector(".scroll-guide__text");
+      const fvRect = conceptFv.getBoundingClientRect();
+      const subtitleRect = subtitle?.getBoundingClientRect();
+      const labelHeight = label?.getBoundingClientRect().height || 0;
+      const barStyle = bar ? getComputedStyle(bar) : null;
+      const barGap = barStyle ? Number.parseFloat(barStyle.marginTop) || 0 : 0;
+      const gap = window.innerWidth <= 767 ? 16 : 20;
+      const bottomSpace = 18;
+      const guideTop = subtitleRect
+        ? subtitleRect.bottom - parentRect.top + gap
+        : titleRect.bottom - parentRect.top + gap;
+      const available = fvRect.bottom - parentRect.top - guideTop - labelHeight - barGap - bottomSpace;
+      const preferred = window.innerWidth <= 767 ? 64 : 140;
+      const guideSize = Math.max(32, Math.min(preferred, Math.floor(available)));
+
+      conceptFv.style.setProperty("--content-scroll-guide-size", `${guideSize}px`);
+      conceptFv.style.setProperty("--content-scroll-guide-start", `${-guideSize}px`);
+      conceptFv.style.setProperty("--content-scroll-guide-end", `${guideSize}px`);
+      guide.style.setProperty("top", `${guideTop}px`, "important");
+      guide.style.setProperty("bottom", "auto", "important");
       return;
     }
 

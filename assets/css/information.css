@@ -175,8 +175,8 @@
 @media screen and (max-width: 767px) {
   .information-page .information-main > .section,
   .contact-page .contact-main > .section {
-    padding-block: 96px;
-    padding-inline: 44px;
+    padding-block: clamp(48px, 12vw, 56px);
+    padding-inline: clamp(20px, 5.65vw, 24px);
   }
 
   .information-transit-list > div {

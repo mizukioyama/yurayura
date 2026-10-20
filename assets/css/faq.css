@@ -114,6 +114,9 @@
   .faq-item summary {
     min-height: 52px;
     padding-inline: 0.625rem 3rem;
+    letter-spacing: 0.02em;
+    line-height: 1.75;
+    text-align: left;
   }
 
   .faq-item summary::after {
@@ -122,5 +125,11 @@
 
   .faq-item__answer {
     padding: 0.5rem 0.625rem 0.75rem;
+  }
+
+  .faq-item__answer p {
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    text-align: left;
   }
 }
