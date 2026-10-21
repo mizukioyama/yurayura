@@ -8,6 +8,10 @@
  * typography so this layer remains visually conservative.
  */
 :root {
+  /* TOP: existing portrait scale; short viewports use the compact scale. */
+  --type-top-hero-size: clamp(80px, 12vw, 140px);
+  --type-top-hero-tracking: 2.4rem;
+  --type-top-hero-compact-size: clamp(32px, 12svh, 64px);
   /* 本文：375pxで15px → 1440pxで16px */
   --type-body-size: clamp(15px, calc(14.6479px + 0.0939vw), 16px);
 

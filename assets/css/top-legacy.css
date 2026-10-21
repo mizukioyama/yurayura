@@ -16,10 +16,35 @@
    Its final axis, position and 3.2s flow remain owned by the existing rules. */
 .top-page .fv .scroll-guide:not([data-positioned]) { visibility: hidden; }
 
-/* Keep the FV Scroll guide on the same left axis as Concept. */
+/* Center the title in the actual viewport, accounting for the header above FV. */
+.top-page .fv {
+  height: calc(100vh - var(--site-header-size));
+  height: calc(100dvh - var(--site-header-size));
+  min-height: 0;
+  --content-scroll-guide-size: 144px;
+}
+.top-page .fv .fv__inner {
+  /* Keep the existing reveal fade, with a stationary viewport center. */
+  transform: translateY(0);
+  top: calc(50vh - var(--site-header-size));
+  top: calc(50dvh - var(--site-header-size));
+}
+.top-page h1.fv__ttl {
+  font-size: var(--type-top-hero-size);
+  letter-spacing: var(--type-top-hero-tracking);
+  text-indent: var(--type-top-hero-tracking);
+}
+.top-page .fv .fv__txt { top: 50%; transform: translate(-50%, -50%); }
 .top-page .fv .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
+  top: auto !important;
+  bottom: max(24px, env(safe-area-inset-bottom)) !important;
+}
+@media (max-height: 600px) {
+  .top-page h1.fv__ttl { font-size: var(--type-top-hero-compact-size); letter-spacing: 8px; text-indent: 8px; }
+  .top-page .fv { --content-scroll-guide-size: 64px; }
+  .top-page .fv .fv__txt { font-size: var(--type-body-size); }
 }
 
 .top-page section.section--concept,

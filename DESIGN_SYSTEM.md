@@ -191,3 +191,11 @@ Conceptの参加導線は2列×2段のリンクカード。`participation.css` �
 モバイルメニューは主要5リンクと参加関連4リンクをまとめ、関連リンクは2列で表示する。短い画面では縦スクロールで全リンクに到達できる。開くときの短いfadeはreduced-motionで無効。PCの主要ナビゲーション配置とFVは維持。
 
 共通Headerのfetch挿入前から最小領域を確保し、初期レイアウト移動を防ぐ。TOPのScrollは計算位置確定後に表示する。FV本体の高さ、Scrollの最終計算ルールと3.2秒の流れは維持する。
+
+## Phase 2 visual refinements
+TOPのH1はHeader領域を差し引き、dynamic viewport中央へ置く。短い画面はTypography変数のcompact scaleを使用。ScrollはFV内の下端24pxとsafe-areaを守り、既存scrollGuideFlow 3.2秒を維持する。
+参加カードは既存2×2を維持し、オリジナルSVG4点（支援・会場・参加・プロフィール）を5:3の共通枠で表示する。画像は装飾扱い、alt空、寸法指定とlazy読み込み。Artist作品は使用しない。カード面だけ静止した継ぎ目対応のpaper-fiber SVGを使用し、body・Gallery・既存FV背景は維持する。hover/focus時のみ2pxの移動とopacity変化を使用し、reduced-motionでは移動を無効化する。新しい固定layout寸法は偶数pxを基本とする。
+
+Headerのメニューボタンは本文のmobile/tablet gutterに揃え、Header予約領域の垂直中央へ置く。ブランドリンクの44px hit領域は疑似要素で確保し、Header高さを増やさない。Footer主要リンクはブランドと同じ左端へ揃える。
+
+TOPのFVラッパーだけ共通revealの10px移動を抑制し、開始時も中央を維持する。既存のopacity fadeとFog/Vanta/Scroll、他セクションのreveal移動は維持する。
