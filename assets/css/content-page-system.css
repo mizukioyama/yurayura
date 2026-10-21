@@ -1,6 +1,32 @@
 @charset "UTF-8";
 
-/* Shared section-heading rhythm from Concept's first narrative section. */
+/* Shared section-heading rhythm and content frame for editorial pages. */
+.information-page .information-main > .section,
+.contact-page .contact-main > .section {
+  padding: clamp(96px, calc(8vw + 80px), 160px) clamp(36px, 5vw, 72px);
+}
+
+.information-page .information-main .section__inner.inner,
+.contact-page .contact-main .section__inner.inner {
+  width: min(100%, 840px);
+  height: auto;
+  margin-inline: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .information-page .information-main > .section--faq {
+    padding-top: clamp(48px, 4.5vw, 64px);
+  }
+
+  .contact-page .contact-main > .contact-faq-section {
+    padding-bottom: clamp(48px, 4vw, 64px);
+  }
+
+  .contact-page .contact-main > .contact-form-section {
+    padding-top: clamp(48px, 4vw, 64px);
+  }
+}
+
 .information-page .information-main > .section > .section__inner > .information-eyebrow,
 .contact-page .contact-main > .section > .section__inner > .information-eyebrow,
 .policy-page .policy-section > .policy-eyebrow {
@@ -30,13 +56,32 @@
 
 .information-page .information-main .information-next .section__txt,
 .information-page .information-main .information-contact-cta .section__txt,
+.information-page .information-main .information-next .information-hero__lead,
 .contact-page .contact-main .contact-form-section > .section__inner > .section__txt,
-.policy-page main section.policy-content .policy-intro {
+.contact-page .contact-main .contact-faq-section .information-hero__lead {
   width: min(100%, 42.5rem);
   margin-inline: auto;
   letter-spacing: 0.08em;
   line-height: 2;
   text-align: center;
+}
+
+.information-page .information-main .information-next .section__txt,
+.information-page .information-main .information-contact-cta .section__txt {
+  margin-block: 0;
+}
+
+.information-page .information-main .information-next .information-hero__lead,
+.contact-page .contact-main .contact-faq-section .information-hero__lead {
+  margin-block: 0 1.25rem;
+}
+
+.policy-page main section.policy-content .policy-intro {
+  width: min(100%, 42.5rem);
+  margin-inline: auto;
+  letter-spacing: 0.08em;
+  line-height: 2;
+  text-align: left;
 }
 
 .information-page .information-main .section--faq > .section__inner > .information-archive-note {
@@ -74,6 +119,12 @@
 }
 
 @media screen and (max-width: 767px) {
+  .information-page .information-main > .section,
+  .contact-page .contact-main > .section {
+    padding-block: clamp(48px, 12vw, 56px);
+    padding-inline: var(--layout-gutter-mobile);
+  }
+
   .information-page .information-main > .information-next.content-page-first-section,
   .contact-page .contact-main > .contact-faq-section.content-page-first-section,
   .policy-page main section.policy-content.content-page-first-section {
@@ -91,5 +142,12 @@
     letter-spacing: 0.02em;
     line-height: 1.8;
     text-align: left;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .information-page .information-main > .section,
+  .contact-page .contact-main > .section {
+    padding-inline: var(--layout-gutter-tablet);
   }
 }

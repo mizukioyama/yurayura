@@ -92,25 +92,12 @@
   text-orientation: mixed !important;
 }
 
-.information-page .information-next .information-hero__lead,
-.contact-page .contact-faq-section .information-hero__lead {
-  width: min(100%, 42.5rem);
-  margin: 0 auto 1.25rem;
-  text-align: center;
-}
-
 .concept-page .concept-fv .scroll-guide,
+.information-page .information-hero.concept-fv .scroll-guide,
+.contact-page .information-hero.concept-fv .scroll-guide,
 .policy-page .concept-fv .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
-  z-index: 120 !important;
-  overflow: visible !important;
-}
-
-.information-page .information-hero.concept-fv .scroll-guide,
-.contact-page .information-hero.concept-fv .scroll-guide {
-  left: auto !important;
-  right: 8vmin !important;
   z-index: 120 !important;
   overflow: visible !important;
 }
@@ -140,14 +127,20 @@
   }
 
   .concept-page .concept-fv .scroll-guide,
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide,
   .policy-page .concept-fv .scroll-guide {
     left: 10vw !important;
+    right: auto !important;
   }
+}
 
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide {
-    left: auto !important;
-    right: 8vmin !important;
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .concept-page .concept-fv .fv__inner,
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner,
+  .policy-page .concept-fv .fv__inner {
+    left: var(--layout-gutter-tablet) !important;
   }
 }
 
@@ -173,7 +166,7 @@
     box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 180px 22px 420px !important;
+    padding: 180px var(--layout-gutter-mobile) 420px !important;
   }
 
   .information-page .information-hero.concept-fv .information-hero__inner,
@@ -185,17 +178,17 @@
     box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: clamp(100px, 12svh, 112px) 22px 60px !important;
+    padding: clamp(100px, 12svh, 112px) var(--layout-gutter-mobile) 60px !important;
   }
 
-  .concept-page .concept-fv .scroll-guide {
+  .concept-page .concept-fv .scroll-guide,
+  .policy-page .concept-fv .scroll-guide {
     left: 22px !important;
     right: auto !important;
   }
 
   .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
-  .policy-page .concept-fv .scroll-guide {
+  .contact-page .information-hero.concept-fv .scroll-guide {
     left: auto !important;
     right: 22px !important;
   }
@@ -243,6 +236,14 @@
     --content-scroll-guide-size: 64px;
     --content-scroll-guide-start: -64px;
     --content-scroll-guide-end: 64px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide {
+    left: auto !important;
+    right: 8vmin !important;
   }
 }
 

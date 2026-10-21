@@ -74,11 +74,17 @@
 
 @media (max-width: 767px) {
   .policy-page main section.policy-content {
-    padding: 0 22px 56px;
+    padding: 0 var(--layout-gutter-mobile) 56px;
   }
 
   .policy-page .policy-section + .policy-section {
     margin-top: 32px;
     padding-top: 32px !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .policy-page main section.policy-content {
+    padding-inline: var(--layout-gutter-tablet);
   }
 }

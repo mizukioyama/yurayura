@@ -11,6 +11,8 @@
   --font-base: "Shippori Mincho", serif;
   --font-jp: "ab-yuhitsukaisho", "Noto Serif JP", serif;
   --font-btn: "Akaya Kanadaka", system-ui;
+  --layout-gutter-mobile: 44px;
+  --layout-gutter-tablet: 110px;
 }
 
 /* Disable native drag, selection, and long-press callouts only on marked artwork images. */
@@ -1494,8 +1496,6 @@ section {
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .section {
     box-sizing: border-box;
-    padding-left: 20vmin !important;
-    padding-right: 20vmin !important;
   }
 
   .section > .section__inner {
@@ -1539,4 +1539,19 @@ section {
     font-size: 0.75rem !important;
     line-height: 1.8 !important;
   } */
+}
+
+/* The shared tablet gutter applies below the existing desktop layout range. */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    padding-left: var(--layout-gutter-tablet) !important;
+    padding-right: var(--layout-gutter-tablet) !important;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .section {
+    padding-left: 20vmin !important;
+    padding-right: 20vmin !important;
+  }
 }
