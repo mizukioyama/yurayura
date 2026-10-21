@@ -91,7 +91,7 @@
 - offscreen時は可能なら停止する。
 - `visibilitychange` を考慮する。
 - `prefers-reduced-motion: reduce` を尊重する。
-- The shared page-grain layer is static on Concept, Information, Contact, and Policy; the TOP grain and its loading/Vanta/scroll-guide motion remain page-specific and unchanged.
+- Shared body paper is a static 512px vector tile; animated grain is disabled across pages. Fog/Vanta/loading retain their existing motion.
 - mobileでは負荷を下げても世界観が保てる設計を優先する。
 - animationがLCP / CLS / INP / scrollを悪化させないことを確認する。
 
@@ -199,3 +199,11 @@ TOPのH1はHeader領域を差し引き、dynamic viewport中央へ置く。短�
 Headerのメニューボタンは本文のmobile/tablet gutterに揃え、Header予約領域の垂直中央へ置く。ブランドリンクの44px hit領域は疑似要素で確保し、Header高さを増やさない。Footer主要リンクはブランドと同じ左端へ揃える。
 
 TOPのFVラッパーだけ共通revealの10px移動を抑制し、開始時も中央を維持する。既存のopacity fadeとFog/Vanta/Scroll、他セクションのreveal移動は維持する。
+
+## Shared Scroll / paper / menu refinement
+
+`visual-shared.css` owns Concept-derived Scroll horizontal axes: PC 20vmin, intermediate 10vw, mobile 22px. Text remains vertical with 0.4rem tracking, 1px line and 6px gap; duration remains3.2s. Desktop editorial guides share FV bottom0; Information/Contact use the same100svh desktop frame as Concept to keep the left guide clear of titles. Compact editorial guides share a title/subtitle-aware bounded rule, retaining the shared line length by reserving a640px compact reading frame (tablet at least100svh). Extremely constrained views can still shorten the line as a safety fallback. TOP retains its viewport-center title and shared bottom0px desktop /8px compact (safe-area priority) with the same shared guide length; Gallery retains its CSS hero geometry and hidden PC guide. No additional guides are added to pages without them.
+
+The menu uses two20px lines crossing at±45deg at the exact button center, with a240ms transform and160ms fade; existing44/48px circles, focus, Escape, inert and scroll lock remain. Static original washi-body.svg uses fine fibers and particles at shared opacity0.34, preserves the ivory fallback, and replaces the animated SVG noise filter. Artist images, card SVGs, existing Fog/Vanta and card/section interactions remain unchanged. Reduced motion stops guide movement and menu/card transitions.
+
+Compact tablet Concept frames reserve at least640px so a horizontal viewport retains the common140px guide. The H1 position remains unchanged.

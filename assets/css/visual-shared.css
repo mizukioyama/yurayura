@@ -1,0 +1,44 @@
+/* Concept is the canonical Scroll axis and visual vocabulary. */
+:root { --fv-scroll-left: 20vmin; --fv-scroll-line: 280px; --fv-scroll-bottom: 0px; }
+@media (max-width: 1199px) { :root { --fv-scroll-left: 10vw; --fv-scroll-bottom: 8px; } }
+@media (max-width: 1023px) { :root { --fv-scroll-line: 140px; } }
+@media (max-width: 767px) { :root { --fv-scroll-left: 22px; } }
+body .main :is(.fv, .concept-fv) .scroll-guide,
+body.gallery-page .gallery > .scroll-guide {
+  left: var(--fv-scroll-left) !important;
+  right: auto !important;
+  --content-scroll-guide-size: var(--fv-scroll-line);
+}
+body .scroll-guide__text { font-size: var(--type-body-size); line-height: 1.7; writing-mode: vertical-rl; letter-spacing: 0.4rem; }
+body .scroll-guide__bar { width: 1px; margin-top: 6px; }
+/* No moving grain or new perpetual motion; existing FV effects remain intact. */
+@media (prefers-reduced-motion: reduce) {
+  body .scroll-guide__bar::before { animation: none !important; transform: none !important; opacity: 0 !important; }
+}
+
+/* The desktop reading hero uses the same full-height frame as Concept, so
+   a left guide cannot cross its title as it did in the shorter right-guide frame. */
+@media (min-width: 1200px) {
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv { min-height: 100svh !important; }
+}
+
+/* Reserve Concept's guide length instead of reducing it to a short stub. */
+@media (max-width: 1199px) {
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv,
+  .policy-page .concept-fv { min-height: max(100svh, 640px) !important; }
+}
+@media (max-width: 767px) {
+  .information-page .information-hero.concept-fv,
+  .contact-page .information-hero.concept-fv,
+  .policy-page .concept-fv { min-height: 640px !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .concept-page .concept-fv { min-height: max(100svh, 640px) !important; }
+}
+
+body.top-page .main .fv .scroll-guide {
+  bottom: max(var(--fv-scroll-bottom), env(safe-area-inset-bottom)) !important;
+}
