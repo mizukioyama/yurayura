@@ -5,7 +5,7 @@
 .path-eyebrow { margin-bottom:24px; font-size:var(--type-small-heading-size); letter-spacing:.16em; }
 .path-section h2 { margin-bottom:32px; font-size:var(--type-heading-2-size); font-weight:400; line-height:1.8; }
 .path-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--path-gap); }
-.path-card { display:flex; position:relative; flex-direction:column; padding:32px 24px; border:1px solid var(--path-rule); color:inherit; text-decoration:none; min-width:0; }
+.path-card { display:flex; position:relative; flex-direction:column; padding:32px 24px; border:1px solid var(--path-rule); color:inherit; text-decoration:none; min-width:0; background-image:url("../img/participation/paper-fiber.svg"); background-size:256px 256px; }
 .path-card h3 { font-size:var(--type-heading-3-size); font-weight:400; line-height:1.8; }
 .path-card p { margin-top:16px; font-size:var(--type-body-size); line-height:1.8; }
 .path-card > span { margin-top:24px; align-self:flex-end; }
@@ -26,5 +26,20 @@
 .gallery-event-nav { display:flex; gap:16px; flex-wrap:wrap; line-height:2; margin-block:24px; }
 .gallery-event-nav a { color:inherit; min-height:44px; display:inline-flex; align-items:center; }
 @media(min-width:768px) and (max-width:1023px) { .path-section { padding-inline:110px; } }
-@media(max-width:767px) { :root { --path-gap:16px; --path-section-space:64px; } .path-card { padding:24px 16px; } .path-card p { font-size:14px; } }
+@media(max-width:767px) { :root { --path-gap:16px; --path-section-space:64px; } .path-card { padding:24px 16px; } .path-card p { font-size:var(--type-body-size); } }
 @media(max-width:359px) { .path-section { padding-inline:24px; } .path-grid { gap:12px; } .path-card { padding:24px 12px; } }
+
+/* Decorative originals keep the label as the accessible link name. */
+.path-card__image { display:block; width:100%; height:auto; aspect-ratio:5 / 3; object-fit:contain; margin-bottom:24px; transition:transform 720ms cubic-bezier(.22,.61,.36,1), opacity 400ms ease; }
+.path-card > span { transition:transform 400ms ease; }
+.path-card:focus-visible .path-card__image { transform:translateY(-2px); opacity:.9; }
+.path-card:focus-visible > span { transform:translate(2px,-2px); }
+@media (hover:hover) and (pointer:fine) {
+  .path-card:hover .path-card__image { transform:translateY(-2px); opacity:.9; }
+  .path-card:hover > span { transform:translate(2px,-2px); }
+}
+@media (max-width:767px) { .path-card__image { margin-bottom:16px; } }
+@media (prefers-reduced-motion:reduce) {
+  .path-card .path-card__image, .path-card > span { transition:none; }
+  .path-card:hover .path-card__image, .path-card:focus-visible .path-card__image, .path-card:hover > span, .path-card:focus-visible > span { transform:none; }
+}

@@ -152,3 +152,6 @@ Typographyの調整変数は引き続き `assets/css/user-settings.css` にあ�
 
 ## 参加ページ
 `assets/css/participation.css` の `--path-content`、`--path-reading`、`--path-gap`、`--path-section-space` が4カードと参加ページの調整値です。FVは既存の共通ルールを引き継ぎます。
+
+## TOP hero and participation visuals
+TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top-hero-tracking`、`--type-top-hero-compact-size`。中央の座標はtop-legacy.css、Header予約高はmenu-style.cssの`--site-header-size`とbreakpointで共有する。既存Scroll演出の周期は変更しない。カード画像と紙質感・hover/focusはparticipation.cssで共有する。

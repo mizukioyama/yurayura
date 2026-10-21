@@ -184,8 +184,7 @@ function initializeCustomCursor() {
   });
 }
 
-/* Keep Scroll on one shared FV axis. On PC, Top and Concept are anchored
-   to the bottom edge of their FV with bottom: 0. */
+/* TOP uses a safe FV-bottom anchor; editorial pages retain their shared axis. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   if (document.body.classList.contains("gallery-page")) return;
@@ -206,7 +205,14 @@ function initializeScrollGuidePosition() {
     guide.style.setProperty("position", "absolute", "important");
     guide.style.setProperty("transform", "none", "important");
 
-    if (isPc && (isTopPage || usesConceptFv)) {
+    if (isTopPage) {
+      guide.style.setProperty("top", "auto", "important");
+      guide.style.setProperty("bottom", "max(24px, env(safe-area-inset-bottom))", "important");
+      guide.setAttribute("data-positioned", "");
+      return;
+    }
+
+    if (isPc && usesConceptFv) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
       guide.setAttribute("data-positioned", "");
@@ -263,10 +269,7 @@ function initializeScrollGuidePosition() {
     }
 
     let guideTop;
-    if (isTopPage) {
-      const sharedTitleTop = window.innerWidth <= 767 ? 180 : window.innerWidth * 0.28;
-      guideTop = sharedTitleTop + titleRect.height + 140;
-    } else if (conceptFv) {
+    if (conceptFv) {
       const inner = conceptFv.querySelector(".fv__inner, .information-hero__inner");
       const layoutTitleTop = inner
         ? inner.getBoundingClientRect().top - conceptFv.getBoundingClientRect().top + title.offsetTop
