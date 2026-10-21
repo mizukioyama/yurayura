@@ -1455,9 +1455,9 @@ section {
   display: block;
   box-sizing: border-box;
   width: 1px;
-  height: 280px !important;
-  min-height: 280px !important;
-  max-height: 280px !important;
+  height: var(--content-scroll-guide-size, 280px) !important;
+  min-height: var(--content-scroll-guide-size, 280px) !important;
+  max-height: var(--content-scroll-guide-size, 280px) !important;
   overflow: hidden;
   background: rgba(47, 56, 42, 0.25) !important;
 }
@@ -1468,21 +1468,21 @@ section {
   left: 0;
   z-index: 1;
   width: 1px;
-  height: 280px !important;
-  min-height: 280px !important;
-  max-height: 280px !important;
+  height: var(--content-scroll-guide-size, 280px) !important;
+  min-height: var(--content-scroll-guide-size, 280px) !important;
+  max-height: var(--content-scroll-guide-size, 280px) !important;
   background: var(--color-txt);
   content: "";
-  transform: translateY(-280px);
+  transform: translateY(calc(0px - var(--content-scroll-guide-size, 280px)));
   animation: scrollGuideFlow 3.2s cubic-bezier(.45, 0, .25, 1) infinite !important;
   will-change: transform, opacity;
 }
 
 @keyframes scrollGuideFlow {
-  0% { transform: translateY(-280px); opacity: 0; }
+  0% { transform: translateY(calc(0px - var(--content-scroll-guide-size, 280px))); opacity: 0; }
   12% { opacity: 1; }
   70% { opacity: 1; }
-  100% { transform: translateY(280px); opacity: 0; }
+  100% { transform: translateY(var(--content-scroll-guide-size, 280px)); opacity: 0; }
 }
 
 /* Following content remains below the Scroll guide when their areas overlap. */

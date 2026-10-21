@@ -13,9 +13,22 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .gallery-page .gallery > .scroll-guide {
+    --content-scroll-guide-size: 140px;
+  }
+}
+
 @media (max-width: 767px) {
   .gallery-page .gallery > .scroll-guide {
+    --content-scroll-guide-size: 140px;
     top: calc(180px + var(--gallery-title-line-height) + 140px) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-page .gallery > .scroll-guide {
+    --content-scroll-guide-size: 64px;
   }
 }
 

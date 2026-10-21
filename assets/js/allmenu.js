@@ -221,20 +221,43 @@ function initializeScrollGuidePosition() {
       const labelHeight = label?.getBoundingClientRect().height || 0;
       const barStyle = bar ? getComputedStyle(bar) : null;
       const barGap = barStyle ? Number.parseFloat(barStyle.marginTop) || 0 : 0;
+      const compactViewport = window.innerWidth <= 1023;
+      const boundedViewport = window.innerWidth <= 1199;
       const gap = window.innerWidth <= 767 ? 16 : 20;
-      const bottomSpace = 18;
-      const guideTop = subtitleRect
+      const minimumGap = 8;
+      const bottomSpace = compactViewport ? 8 : 18;
+      const nextSection = conceptFv.nextElementSibling;
+      const contentEdge = boundedViewport
+        ? Math.min(fvRect.bottom, nextSection?.getBoundingClientRect().top ?? fvRect.bottom)
+        : fvRect.bottom;
+      let guideTop = subtitleRect
         ? subtitleRect.bottom - parentRect.top + gap
         : titleRect.bottom - parentRect.top + gap;
-      const available = fvRect.bottom - parentRect.top - guideTop - labelHeight - barGap - bottomSpace;
-      const preferred = window.innerWidth <= 767 ? 64 : 140;
-      const guideSize = Math.max(32, Math.min(preferred, Math.floor(available)));
+      const available = contentEdge - parentRect.top - guideTop - labelHeight - barGap - bottomSpace;
+      const preferred = 140;
+      let guideSize = compactViewport
+        ? Math.max(0, Math.min(preferred, Math.floor(available / 2) * 2))
+        : Math.max(32, Math.min(preferred, Math.floor(available)));
 
-      conceptFv.style.setProperty("--content-scroll-guide-size", `${guideSize}px`);
-      conceptFv.style.setProperty("--content-scroll-guide-start", `${-guideSize}px`);
-      conceptFv.style.setProperty("--content-scroll-guide-end", `${guideSize}px`);
+      const setGuideSize = () => {
+        conceptFv.style.setProperty("--content-scroll-guide-size", `${guideSize}px`);
+        conceptFv.style.setProperty("--content-scroll-guide-start", `${-guideSize}px`);
+        conceptFv.style.setProperty("--content-scroll-guide-end", `${guideSize}px`);
+      };
+      setGuideSize();
       guide.style.setProperty("top", `${guideTop}px`, "important");
       guide.style.setProperty("bottom", "auto", "important");
+      let overflow = boundedViewport ? guide.getBoundingClientRect().bottom - (contentEdge - bottomSpace) : 0;
+      if (boundedViewport && overflow > 0) {
+        const shiftUp = Math.min(Math.max(0, gap - minimumGap), overflow);
+        guideTop -= shiftUp;
+        guide.style.setProperty("top", `${guideTop}px`, "important");
+        overflow = guide.getBoundingClientRect().bottom - (contentEdge - bottomSpace);
+        if (overflow > 0) {
+          guideSize = Math.max(0, guideSize - Math.ceil(overflow / 2) * 2);
+          setGuideSize();
+        }
+      }
       return;
     }
 
