@@ -12,6 +12,10 @@
   background-color: transparent !important;
 }
 
+/* Do not paint the decorative guide at its provisional pre-JS coordinates.
+   Its final axis, position and 3.2s flow remain owned by the existing rules. */
+.top-page .fv .scroll-guide:not([data-positioned]) { visibility: hidden; }
+
 /* Keep the FV Scroll guide on the same left axis as Concept. */
 .top-page .fv .scroll-guide {
   left: 20vmin !important;

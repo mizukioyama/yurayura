@@ -149,3 +149,6 @@ HTML、JavaScript、backup CSS、animation、modal geometryの直接変更は、
 `assets/css/main.css` がcanonical runtime stylesheetです。active backup CSS dependencyは0で、tracked treeからobsolete backup CSSは除去済みです。旧backup CSS全体のコピーは行わず、承認済みのselector/property cleanupだけをcanonical CSSへ反映しています。
 
 Typographyの調整変数は引き続き `assets/css/user-settings.css` にあります。追加のvariable集約やlayout変更は、別途レビューと表示確認を行う作業です。
+
+## 参加ページ
+`assets/css/participation.css` の `--path-content`、`--path-reading`、`--path-gap`、`--path-section-space` が4カードと参加ページの調整値です。FVは既存の共通ルールを引き継ぎます。
