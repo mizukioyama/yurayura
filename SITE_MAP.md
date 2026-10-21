@@ -24,13 +24,18 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | Information / `information.html` | 次回開催状況、過去開催、会場・アクセス、展示FAQ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/information.html` | included |
 | Contact / `contact.html` | お問い合わせFAQ、問い合わせフォーム、個人情報案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/contact.html` | included |
 | Site Policy / `policy.html` | 著作権・個人情報・外部サービス等の案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/policy.html` | included |
+| 支援者 / `support.html` | 商品や作品を通じて、活動を支える | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/support.html` | included |
+| 支援会場 / `venues.html` | 各地で、展示の場所をひらく | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/venues.html` | included |
+| 参加申し込み / `participate.html` | 次の展示への参加について | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/participate.html` | included |
+| プロフィール / `profile.html` | 企画に込めた想いを読む | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/profile.html` | included |
+| Exhibition / `exhibitions.html` | 開催中・過去展示作品への入口 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/exhibitions.html` | included |
 | `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `github-manual.html` | GitHubコマンドの開発用手順 | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `test.html` | Fog Holeの検証用ページ | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `top.html` | TOPへ転送する旧URL | LEGACY / public redirect | `noindex,follow` | `https://mizukioyama.github.io/yurayura/` | excluded |
 
-正式な検索対象はCANONICALの6ページ。主要ナビゲーションはTOP・Concept・Gallery・Information・Contact。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
+正式な検索対象はCANONICALの11ページ。主要ナビゲーションはTOP・Concept・Gallery・Information・Contact。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。
 
 ## 3. Classification
 
@@ -163,3 +168,6 @@ absolute pathを使う場合はbase path欠落に注意する。
 - internal links
 
 index状態またはcanonicalを変更した場合は、この資料とsitemapの整合を確認する。監査履歴や一時作業計画はこの資料へ蓄積しない。
+
+## 開催データ
+配信データは `assets/data/exhibitions.json`。`scripts/export-public-events.cjs` へrepo外の管理JSONを渡すと公開許可済みの開催だけを許可フィールドで出力する。非公開データ・商品ファイル・購入者情報をrepoへ保存しない。

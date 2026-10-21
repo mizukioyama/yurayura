@@ -28,4 +28,9 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url><loc>https://mizukioyama.github.io/yurayura/support.html</loc></url>
+  <url><loc>https://mizukioyama.github.io/yurayura/venues.html</loc></url>
+  <url><loc>https://mizukioyama.github.io/yurayura/participate.html</loc></url>
+  <url><loc>https://mizukioyama.github.io/yurayura/profile.html</loc></url>
+  <url><loc>https://mizukioyama.github.io/yurayura/exhibitions.html</loc></url>
 </urlset>

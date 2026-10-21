@@ -184,3 +184,10 @@ Galleryは作品閲覧を主役にする。
 user settingsへ安易に公開しない。
 
 詳細は `CSS_VARIABLES_GUIDE.md` を参照。
+
+## Participation components
+Conceptの参加導線は2列×2段のリンクカード。`participation.css` が参加ページ共通の読み幅・余白・カード・detailsを管理する。44pxのmobile余白、110pxのtablet余白を基準とし、359px以下は24pxへ縮める。既存FV・Gallery形状・3.2秒演出は既存sourceを維持する。
+
+モバイルメニューは主要5リンクと参加関連4リンクをまとめ、関連リンクは2列で表示する。短い画面では縦スクロールで全リンクに到達できる。開くときの短いfadeはreduced-motionで無効。PCの主要ナビゲーション配置とFVは維持。
+
+共通Headerのfetch挿入前から最小領域を確保し、初期レイアウト移動を防ぐ。TOPのScrollは計算位置確定後に表示する。FV本体の高さ、Scrollの最終計算ルールと3.2秒の流れは維持する。

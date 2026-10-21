@@ -7,7 +7,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "20261017-website-ux-stage3";
+  const PARTS_VERSION = "integrated-renewal-3";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
@@ -209,6 +209,7 @@ function initializeScrollGuidePosition() {
     if (isPc && (isTopPage || usesConceptFv)) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
+      guide.setAttribute("data-positioned", "");
       return;
     }
 
@@ -277,6 +278,7 @@ function initializeScrollGuidePosition() {
 
     guide.style.setProperty("top", `${guideTop}px`, "important");
     guide.style.setProperty("bottom", "auto", "important");
+    guide.setAttribute("data-positioned", "");
   };
 
   positionGuide();
