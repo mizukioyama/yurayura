@@ -141,70 +141,13 @@ body {
 
 body::before {
   position: fixed;
-  top: -50%;
-  left: -50%;
+  inset: 0;
   z-index: 0;
-  width: 200%;
-  height: 200%;
-  background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-  opacity: 0.1;
+  background: url('../img/participation/washi-body.svg') repeat;
+  background-size: 512px 512px;
+  opacity: 0.34;
   content: "";
   pointer-events: none;
-  animation: noise 0.2s steps(2) infinite;
-}
-
-body.concept-page::before,
-body.information-page::before,
-body.contact-page::before,
-body.policy-page::before {
-  opacity: 0.035;
-  animation: none;
-}
-
-@keyframes noise {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-5%, -5%);
-  }
-
-  20% {
-    transform: translate(-10%, 5%);
-  }
-
-  30% {
-    transform: translate(5%, -10%);
-  }
-
-  40% {
-    transform: translate(-5%, 15%);
-  }
-
-  50% {
-    transform: translate(-10%, 5%);
-  }
-
-  60% {
-    transform: translate(15%, 0);
-  }
-
-  70% {
-    transform: translate(0, 15%);
-  }
-
-  80% {
-    transform: translate(3%, 35%);
-  }
-
-  90% {
-    transform: translate(-10%, 10%);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
 }
 
 body::before,

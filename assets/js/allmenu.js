@@ -184,106 +184,44 @@ function initializeCustomCursor() {
   });
 }
 
-/* TOP uses a safe FV-bottom anchor; editorial pages retain their shared axis. */
+/* CSS owns the common axis; measure only the available editorial FV space. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
-  if (document.body.classList.contains("gallery-page")) return;
-  const title = document.querySelector(".concept-fv h1, .gallery .h1-text h1, .top-page .fv h1");
-  if (!guide || !title) return;
-
+  const fv = document.querySelector(".concept-fv");
+  if (!guide) return;
   const positionGuide = () => {
-    const containingBlock = guide.offsetParent;
-    if (!containingBlock) return;
-    const titleRect = title.getBoundingClientRect();
-    const parentRect = containingBlock.getBoundingClientRect();
-    const isTopPage = document.body.classList.contains("top-page");
-    const conceptFv = title.closest(".concept-fv");
-    const usesConceptFv = Boolean(conceptFv);
-    const isPc = window.innerWidth >= 1200;
-    const isReadingPage = document.body.matches(".information-page, .contact-page, .policy-page");
-
-    guide.style.setProperty("position", "absolute", "important");
-    guide.style.setProperty("transform", "none", "important");
-
-    if (isTopPage) {
-      guide.style.setProperty("top", "auto", "important");
-      guide.style.setProperty("bottom", "max(24px, env(safe-area-inset-bottom))", "important");
+    if (document.body.classList.contains("top-page")) {
       guide.setAttribute("data-positioned", "");
       return;
     }
-
-    if (isPc && usesConceptFv) {
+    if (!fv) return; // Gallery retains its CSS-owned hero geometry and PC visibility.
+    if (innerWidth >= 1200) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
-      guide.setAttribute("data-positioned", "");
-      return;
-    }
-
-    if (!isPc && isReadingPage && usesConceptFv) {
-      const subtitle = conceptFv.querySelector(".fv__txt");
-      const bar = guide.querySelector(".scroll-guide__bar");
-      const label = guide.querySelector(".scroll-guide__text");
-      const fvRect = conceptFv.getBoundingClientRect();
-      const subtitleRect = subtitle?.getBoundingClientRect();
-      const labelHeight = label?.getBoundingClientRect().height || 0;
-      const barStyle = bar ? getComputedStyle(bar) : null;
-      const barGap = barStyle ? Number.parseFloat(barStyle.marginTop) || 0 : 0;
-      const compactViewport = window.innerWidth <= 1023;
-      const boundedViewport = window.innerWidth <= 1199;
-      const gap = window.innerWidth <= 767 ? 16 : 20;
-      const minimumGap = 8;
-      const bottomSpace = compactViewport ? 8 : 18;
-      const nextSection = conceptFv.nextElementSibling;
-      const contentEdge = boundedViewport
-        ? Math.min(fvRect.bottom, nextSection?.getBoundingClientRect().top ?? fvRect.bottom)
-        : fvRect.bottom;
-      let guideTop = subtitleRect
-        ? subtitleRect.bottom - parentRect.top + gap
-        : titleRect.bottom - parentRect.top + gap;
-      const available = contentEdge - parentRect.top - guideTop - labelHeight - barGap - bottomSpace;
-      const preferred = 140;
-      let guideSize = compactViewport
-        ? Math.max(0, Math.min(preferred, Math.floor(available / 2) * 2))
-        : Math.max(32, Math.min(preferred, Math.floor(available)));
-
-      const setGuideSize = () => {
-        conceptFv.style.setProperty("--content-scroll-guide-size", `${guideSize}px`);
-        conceptFv.style.setProperty("--content-scroll-guide-start", `${-guideSize}px`);
-        conceptFv.style.setProperty("--content-scroll-guide-end", `${guideSize}px`);
-      };
-      setGuideSize();
-      guide.style.setProperty("top", `${guideTop}px`, "important");
-      guide.style.setProperty("bottom", "auto", "important");
-      let overflow = boundedViewport ? guide.getBoundingClientRect().bottom - (contentEdge - bottomSpace) : 0;
-      if (boundedViewport && overflow > 0) {
-        const shiftUp = Math.min(Math.max(0, gap - minimumGap), overflow);
-        guideTop -= shiftUp;
-        guide.style.setProperty("top", `${guideTop}px`, "important");
-        overflow = guide.getBoundingClientRect().bottom - (contentEdge - bottomSpace);
-        if (overflow > 0) {
-          guideSize = Math.max(0, guideSize - Math.ceil(overflow / 2) * 2);
-          setGuideSize();
-        }
-      }
-      return;
-    }
-
-    let guideTop;
-    if (conceptFv) {
-      const inner = conceptFv.querySelector(".fv__inner, .information-hero__inner");
-      const layoutTitleTop = inner
-        ? inner.getBoundingClientRect().top - conceptFv.getBoundingClientRect().top + title.offsetTop
-        : titleRect.top - parentRect.top;
-      guideTop = layoutTitleTop + title.offsetHeight + 140;
+      guide.style.removeProperty("--content-scroll-guide-size");
     } else {
-      guideTop = titleRect.bottom - parentRect.top + 140;
+      const title = fv.querySelector("h1");
+      const subtitle = fv.querySelector(".fv__txt");
+      const parent = guide.offsetParent;
+      if (!title || !parent) return;
+      const bounds = fv.getBoundingClientRect();
+      const origin = parent.getBoundingClientRect().top;
+      const labelHeight = guide.querySelector(".scroll-guide__text").getBoundingClientRect().height;
+      const gap = 6;
+      const preferred = innerWidth <= 1023 ? 140 : 280;
+      // Concept's title-to-guide rhythm is shared; short editorial heroes adapt
+      // to the subtitle and available space without crossing the next section.
+      const preferredTop = title.getBoundingClientRect().bottom - origin + 140;
+      const contentBottom = (subtitle || title).getBoundingClientRect().bottom - origin;
+      const end = bounds.bottom - origin - 8;
+      const top = Math.min(preferredTop, Math.max(contentBottom + 16, end - labelHeight - gap - preferred));
+      const length = Math.max(0, Math.min(preferred, Math.floor((end - top - labelHeight - gap) / 2) * 2));
+      guide.style.setProperty("top", `${top}px`, "important");
+      guide.style.setProperty("bottom", "auto", "important");
+      guide.style.setProperty("--content-scroll-guide-size", `${length}px`);
     }
-
-    guide.style.setProperty("top", `${guideTop}px`, "important");
-    guide.style.setProperty("bottom", "auto", "important");
     guide.setAttribute("data-positioned", "");
   };
-
   positionGuide();
   window.addEventListener("resize", positionGuide, { passive: true });
   if (document.fonts?.ready) document.fonts.ready.then(positionGuide);

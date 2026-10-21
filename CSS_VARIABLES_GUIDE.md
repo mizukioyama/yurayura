@@ -155,3 +155,7 @@ Typographyの調整変数は引き続き `assets/css/user-settings.css` にあ�
 
 ## TOP hero and participation visuals
 TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top-hero-tracking`、`--type-top-hero-compact-size`。中央の座標はtop-legacy.css、Header予約高はmenu-style.cssの`--site-header-size`とbreakpointで共有する。既存Scroll演出の周期は変更しない。カード画像と紙質感・hover/focusはparticipation.cssで共有する。
+
+## Shared Scroll and static body paper
+
+`assets/css/visual-shared.css` owns `--fv-scroll-left` and `--fv-scroll-line`. Bounded editorial FV geometry is computed by `initializeScrollGuidePosition` in allmenu.js; TOP H1 remains independently owned by top-legacy.css. Body paper opacity and512px tile size are in main.css body::before; the source is participation/washi-body.svg. Keep changes scoped and verify contrast, Scroll overlap and all breakpoints.

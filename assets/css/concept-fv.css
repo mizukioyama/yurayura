@@ -258,13 +258,6 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide {
-    left: auto !important;
-    right: 8vmin !important;
-  }
-}
 
 @keyframes contentPageScrollGuideFlow {
   0% { transform: translateY(var(--content-scroll-guide-start, -140px)); opacity: 0; }
