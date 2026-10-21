@@ -9,12 +9,6 @@
   background-color: rgba(60, 70, 6, 0.035);
 }
 
-.contact-page .contact-main .section__inner.inner {
-  width: min(100%, 840px);
-  height: auto;
-  margin-inline: auto;
-}
-
 .contact-page .contact-faq-section .section__inner,
 .contact-page .contact-form-section .section__inner {
   text-align: center;
@@ -86,14 +80,4 @@
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
-}
-
-@media screen and (min-width: 768px) {
-  .contact-page .contact-main > .contact-faq-section {
-    padding-bottom: clamp(48px, 4vw, 64px);
-  }
-
-  .contact-page .contact-main > .contact-form-section {
-    padding-top: clamp(48px, 4vw, 64px);
-  }
 }

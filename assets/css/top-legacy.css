@@ -215,6 +215,13 @@
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .top-page section.section--concept,
+  .top-page section.section--artists {
+    --top-section-inline-padding: var(--layout-gutter-tablet);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .top-page .fv .scroll-guide {
     left: 22px !important;
@@ -223,7 +230,7 @@
 
   .top-page section.section--concept,
   .top-page section.section--artists {
-    --top-section-inline-padding: 54px;
+    --top-section-inline-padding: var(--layout-gutter-mobile);
     height: auto;
     min-height: 100vh;
     padding-block: clamp(88px, calc(8.5vw + 57px), 120px);

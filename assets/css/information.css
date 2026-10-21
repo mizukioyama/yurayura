@@ -18,25 +18,8 @@
   opacity: 0.72;
 }
 
-.information-page .information-main > .section,
-.contact-page .contact-main > .section {
-  padding: clamp(96px, calc(8vw + 80px), 160px) clamp(36px, 5vw, 72px);
-}
-
-.information-page .information-main .section__inner.inner {
-  width: min(100%, 840px);
-  height: auto;
-  margin-inline: auto;
-}
-
 .information-page .information-next .section__inner {
   text-align: center;
-}
-
-.information-next .section__txt {
-  width: min(100%, 42.5rem);
-  margin: 0 auto;
-  line-height: 2;
 }
 
 .information-archive-note {
@@ -173,12 +156,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .information-page .information-main > .section,
-  .contact-page .contact-main > .section {
-    padding-block: clamp(48px, 12vw, 56px);
-    padding-inline: clamp(20px, 5.65vw, 24px);
-  }
-
   .information-transit-list > div {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 0.15rem;
@@ -192,12 +169,6 @@
 
 .information-contact__link {
   margin: 2rem auto 0;
-}
-
-@media screen and (min-width: 768px) {
-  .information-page .information-main > .section--faq {
-    padding-top: clamp(48px, 4.5vw, 64px);
-  }
 }
 
 .information-contact-link {

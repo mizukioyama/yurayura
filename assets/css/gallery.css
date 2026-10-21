@@ -192,6 +192,16 @@ body.gallery-page button {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .gallery-page .h1-text {
+    left: var(--layout-gutter-tablet);
+  }
+  .gallery-page .gallery-intro {
+    width: 100%;
+    margin: 50vmin 0 2rem;
+  }
+}
+
 @media (max-width: 479px) {
     body.gallery-page .gallery-section {
     padding: 0 54px 80px !important;

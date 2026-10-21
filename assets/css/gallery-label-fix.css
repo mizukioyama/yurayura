@@ -107,3 +107,15 @@ body.gallery-page .gallery-page-button[aria-current="page"] {
   pointer-events: none !important;
   transform: none !important;
 }
+
+@media screen and (max-width: 767px) {
+  .gallery-page .gallery {
+    padding-inline: var(--layout-gutter-mobile);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .gallery-page .gallery {
+    padding-inline: var(--layout-gutter-tablet);
+  }
+}
