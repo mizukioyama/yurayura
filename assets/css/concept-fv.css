@@ -133,6 +133,7 @@
     left: 10vw !important;
     right: auto !important;
   }
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -141,6 +142,12 @@
   .contact-page .information-hero.concept-fv .information-hero__inner,
   .policy-page .concept-fv .fv__inner {
     left: var(--layout-gutter-tablet) !important;
+  }
+
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner,
+  .policy-page .concept-fv .fv__inner {
+    padding-inline: var(--layout-gutter-tablet) !important;
   }
 }
 
@@ -172,37 +179,30 @@
   .information-page .information-hero.concept-fv .information-hero__inner,
   .contact-page .information-hero.concept-fv .information-hero__inner,
   .policy-page .concept-fv .fv__inner {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: clamp(100px, 12svh, 112px) var(--layout-gutter-mobile) 60px !important;
+    padding-inline: var(--layout-gutter-mobile) !important;
   }
 
   .concept-page .concept-fv .scroll-guide,
+  .information-page .information-hero.concept-fv .scroll-guide,
+  .contact-page .information-hero.concept-fv .scroll-guide,
   .policy-page .concept-fv .scroll-guide {
     left: 22px !important;
     right: auto !important;
   }
-
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide {
-    left: auto !important;
-    right: 22px !important;
-  }
-
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    --content-scroll-guide-size: 64px;
-    --content-scroll-guide-start: -64px;
-    --content-scroll-guide-end: 64px;
-  }
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1023px) {
+  .concept-page .concept-fv {
+    --content-scroll-guide-size: 140px;
+  }
+
+  .concept-page .concept-fv .scroll-guide__bar,
+  .concept-page .concept-fv .scroll-guide__bar::before {
+    height: var(--content-scroll-guide-size) !important;
+    min-height: var(--content-scroll-guide-size) !important;
+    max-height: var(--content-scroll-guide-size) !important;
+  }
+
   .information-page .information-hero.concept-fv,
   .contact-page .information-hero.concept-fv,
   .policy-page .concept-fv {
@@ -229,17 +229,36 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    --content-scroll-guide-size: 64px;
-    --content-scroll-guide-start: -64px;
-    --content-scroll-guide-end: 64px;
+@media screen and (max-width: 1023px) {
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner,
+  .policy-page .concept-fv .fv__inner {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 var(--layout-gutter-mobile) !important;
+    translate: none !important;
+    transform: none !important;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .information-page .information-hero.concept-fv .information-hero__inner,
+  .contact-page .information-hero.concept-fv .information-hero__inner,
+  .policy-page .concept-fv .fv__inner {
+    padding-inline: var(--layout-gutter-tablet) !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .information-page .information-hero.concept-fv .scroll-guide,
   .contact-page .information-hero.concept-fv .scroll-guide {
     left: auto !important;
