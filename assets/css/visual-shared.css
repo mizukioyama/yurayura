@@ -42,3 +42,83 @@ body .scroll-guide__bar { width: 1px; margin-top: 6px; }
 body.top-page .main .fv .scroll-guide {
   bottom: max(var(--fv-scroll-bottom), env(safe-area-inset-bottom)) !important;
 }
+
+/* Low landscape viewports use a frame based on available height, not the
+   portrait 640px reserve. CSS owns guide placement; JS only bounds line size. */
+@media (orientation: landscape) and (max-height: 720px) {
+  :root {
+    --compact-viewport-height: 100vh;
+    --compact-viewport-height: 100dvh;
+    --compact-header-height: var(--site-header-size);
+    --compact-frame-height: calc(var(--compact-viewport-height) - var(--compact-header-height));
+    --compact-title-left: calc(var(--fv-scroll-left) + 64px);
+    --compact-title-top: clamp(24px, 8dvh, 64px);
+  }
+  body:is(.concept-page, .information-page, .contact-page, .policy-page) .main .concept-fv {
+    min-height: 0 !important;
+    height: var(--compact-frame-height) !important;
+  }
+  body:is(.concept-page, .information-page, .contact-page, .policy-page) .main .concept-fv :is(.fv__inner, .information-hero__inner) {
+    position: absolute !important;
+    inset: auto !important;
+    top: var(--compact-title-top) !important;
+    left: var(--compact-title-left) !important;
+    right: max(24px, env(safe-area-inset-right)) !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    transform: none !important;
+  }
+  body.top-page .main .fv .scroll-guide,
+  body .main :is(.fv, .concept-fv) .scroll-guide,
+  body.gallery-page .gallery > .scroll-guide {
+    top: calc(var(--compact-frame-height) - 12px) !important;
+    bottom: auto !important;
+    transform: translateY(-100%) !important;
+    padding-bottom: env(safe-area-inset-bottom);
+    --content-scroll-guide-size: var(--compact-scroll-line, max(0px, min(var(--fv-scroll-line), calc(var(--compact-frame-height) - 130px)))) !important;
+  }
+  body.top-page .main .fv {
+    height: var(--compact-frame-height);
+  }
+  body.top-page .main .fv .fv__inner {
+    top: calc(var(--compact-viewport-height) / 2 - var(--compact-header-height));
+  }
+  body.top-page .main .fv .fv__txt {
+    height: max-content;
+    white-space: nowrap;
+    font-size: var(--type-top-hero-landscape-copy-size);
+  }
+  body.top-page .main .fv h1.fv__ttl {
+    font-size: var(--type-top-hero-landscape-size);
+    letter-spacing: 8px;
+    text-indent: 8px;
+  }
+}
+/* Gallery PC remains unchanged, including its intentionally hidden Scroll. */
+@media (orientation: landscape) and (max-height: 720px) and (max-width: 1199px) {
+  body.gallery-page .main.gallery { padding: 0 var(--fv-scroll-left) !important; }
+  body.gallery-page .main.gallery .h1-text {
+    position: absolute !important;
+    top: var(--compact-title-top) !important;
+    left: var(--compact-title-left) !important;
+    right: max(24px, env(safe-area-inset-right)) !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.gallery-page .main.gallery .gallery-section {
+    padding-top: var(--compact-frame-height) !important;
+    margin-top: 0 !important;
+  }
+  body.gallery-page .main.gallery .gallery-event-nav {
+    position: absolute;
+    top: calc(var(--compact-title-top) + var(--gallery-title-line-height) + 16px);
+    left: 64px;
+    right: max(24px, env(safe-area-inset-right));
+    margin: 0;
+    justify-content: flex-start;
+  }
+}

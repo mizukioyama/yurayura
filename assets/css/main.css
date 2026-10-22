@@ -143,7 +143,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: url('../img/participation/washi-body.svg') repeat;
+  background: url('../img/participation/washi-micro.webp') repeat;
   background-size: 512px 512px;
   opacity: 0.34;
   content: "";

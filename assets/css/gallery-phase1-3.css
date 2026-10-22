@@ -1,7 +1,9 @@
 /* Phase 1.3 candidate E: CSS owns the Gallery scroll-guide position from first paint. */
-.gallery-page .gallery > .scroll-guide {
-  /* Mirror the Gallery H1 line box without resizing the existing guide text/bar. */
+.gallery-page .gallery {
+  /* Shared with the compact hero event links; matches the existing H1 line box. */
   --gallery-title-line-height: clamp(4.08rem, calc(2.55rem + 6.8vw), 9.18rem);
+}
+.gallery-page .gallery > .scroll-guide {
   top: calc(240px + var(--gallery-title-line-height) + 140px) !important;
   bottom: auto !important;
   transform: none !important;
