@@ -161,8 +161,8 @@ body .top-reveal-pending:not(.fv__inner):not(.h1-text):not(.policy-title):not(#c
 body .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(.fv__txt) {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--motion-reveal-duration) var(--motion-ease-out), transform var(--motion-reveal-duration) var(--motion-ease-out);
-  transition-delay: var(--top-reveal-delay, 0ms);
+  transition: opacity var(--motion-reveal-duration) var(--motion-ease-out), transform var(--motion-reveal-duration) var(--motion-ease-out), translate var(--card-float-duration) var(--motion-ease-out), box-shadow var(--card-float-duration) var(--motion-ease-out), background-color var(--card-float-duration) ease;
+  transition-delay:var(--top-reveal-delay,0ms),var(--top-reveal-delay,0ms),0ms,0ms,0ms;
 }
 /* Feedback uses the child image so it never competes with the card reveal. */
 body .path-card__image { transition: transform var(--motion-reveal-duration) var(--motion-ease-out), opacity var(--motion-feedback-duration) ease; }
@@ -227,7 +227,7 @@ body .gallery-page-button[aria-current="page"] { text-decoration: underline; tex
 .liquid-control:focus-visible { outline-color:var(--color-txt); }
 
 /* Card interaction uses individual translate; reveal owns transform independently. */
-:root { --card-float-duration:500ms; --card-float-lift:-8px; }
+:root { --card-float-duration:680ms; --card-float-lift:-8px; }
 body .path-card,
 body .path-card.top-reveal-pending.top-reveal-visible {
   transition: opacity var(--motion-reveal-duration) var(--motion-ease-out),
@@ -254,3 +254,36 @@ body .path-card:is(:hover,:focus-visible,:active) .path-card__image { transform:
 .top-page .path-section[aria-labelledby="paths-title"] #paths-title {
   text-align:center; margin-bottom:32px;
 }
+
+/* Press reacts promptly; reveal opacity/transform retain their own timing. */
+body .path-card:active { --card-float-duration:120ms; }
+.top-page section#artists { height:auto; min-height:0; padding-bottom:var(--space-7); }
+.top-page #artists > .section__inner { height:auto; }
+.top-page #artists + .path-section { padding-top:var(--space-7); }
+@media (max-width:767px) { .top-page #artists + .path-section { padding-top:var(--space-6); } }
+/* Inline gradients paint each wrapped text fragment without changing geometry. */
+:root { --text-link-color:#343d23; --text-link-line-duration:350ms; --text-link-color-duration:250ms; }
+.footer { --text-link-color:color-mix(in srgb,var(--color-bg) 80%,white); }
+body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a,.footer-link .menu-en) {
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0% 1px;
+  background-position:left bottom;
+  background-repeat:no-repeat;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+  transition:background-size var(--text-link-line-duration) var(--motion-ease-out),color var(--text-link-color-duration) ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a) { text-decoration:none; }
+  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):hover,
+  body .footer-link:hover .menu-en { background-size:100% 1px; color:var(--text-link-color); text-decoration:none; }
+}
+body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):focus-visible,
+body .footer-link:focus-visible .menu-en { background-size:100% 1px; color:var(--text-link-color); }
+body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):active { color:var(--text-link-color); }
+@media (prefers-reduced-motion:reduce) {
+  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a,.footer-link .menu-en) { transition:none; }
+}
+
+/* Avoid a stranded final word in the new editorial paragraphs; normal wrap is the fallback. */
+.top-page .top-summary .section__txt { text-wrap:pretty; }
