@@ -189,7 +189,31 @@ function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
   const fv = document.querySelector(".concept-fv");
   if (!guide) return;
+  const compactMedia = window.matchMedia("(orientation: landscape) and (max-height: 720px)");
   const positionGuide = () => {
+    const root = document.documentElement;
+    if (compactMedia.matches) {
+      const viewport = window.visualViewport;
+      const availableHeight = viewport && viewport.scale === 1
+        ? Math.min(window.innerHeight, viewport.height) : window.innerHeight;
+      const headerHeight = document.getElementById("js-header")?.getBoundingClientRect().height || 0;
+      root.style.setProperty("--compact-viewport-height", `${availableHeight}px`);
+      root.style.setProperty("--compact-header-height", `${headerHeight}px`);
+      guide.style.removeProperty("top");
+      guide.style.removeProperty("bottom");
+      guide.style.removeProperty("--content-scroll-guide-size");
+      const labelHeight = guide.querySelector(".scroll-guide__text").getBoundingClientRect().height;
+      const safeBottom = Number.parseFloat(getComputedStyle(guide).paddingBottom) || 0;
+      const preferred = window.innerWidth <= 1023 ? 140 : 280;
+      const space = availableHeight - headerHeight - labelHeight - 6 - 12 - safeBottom - 16;
+      const line = Math.max(0, Math.min(preferred, Math.floor(space / 2) * 2));
+      guide.style.setProperty("--compact-scroll-line", `${line}px`);
+      guide.setAttribute("data-positioned", "");
+      return;
+    }
+    root.style.removeProperty("--compact-viewport-height");
+    root.style.removeProperty("--compact-header-height");
+    guide.style.removeProperty("--compact-scroll-line");
     if (document.body.classList.contains("top-page")) {
       guide.setAttribute("data-positioned", "");
       return;
@@ -223,6 +247,13 @@ function initializeScrollGuidePosition() {
     guide.setAttribute("data-positioned", "");
   };
   positionGuide();
-  window.addEventListener("resize", positionGuide, { passive: true });
+  let positionFrame = 0;
+  const schedulePosition = () => {
+    cancelAnimationFrame(positionFrame);
+    positionFrame = requestAnimationFrame(positionGuide);
+  };
+  window.addEventListener("resize", schedulePosition, { passive: true });
+  window.visualViewport?.addEventListener("resize", schedulePosition, { passive: true });
+  compactMedia.addEventListener("change", schedulePosition);
   if (document.fonts?.ready) document.fonts.ready.then(positionGuide);
 }

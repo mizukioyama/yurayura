@@ -12,6 +12,9 @@
   --type-top-hero-size: clamp(80px, 12vw, 140px);
   --type-top-hero-tracking: 2.4rem;
   --type-top-hero-compact-size: clamp(32px, 12svh, 64px);
+  /* Low landscape: retain the compact scale, bounded by header clearance. */
+  --type-top-hero-landscape-size: min(var(--type-top-hero-compact-size), calc((var(--compact-viewport-height, 100dvh) - 2 * var(--compact-header-height, var(--site-header-size)) - 32px) / 6));
+  --type-top-hero-landscape-copy-size: min(var(--type-body-size), calc((var(--compact-viewport-height, 100dvh) - 2 * var(--compact-header-height, var(--site-header-size)) - 16px) / 13));
   /* 本文：375pxで15px → 1440pxで16px */
   --type-body-size: clamp(15px, calc(14.6479px + 0.0939vw), 16px);
 
