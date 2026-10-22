@@ -76,3 +76,7 @@ nav.path-section { padding-block: var(--space-5); }
 .participate-page .participation-guide__answer { padding:0 0 24px; }
 .participate-page .participation-guide__answer p { margin:0; }
 .participate-page .participation-guide__answer p + p { margin-top:16px; }
+
+/* Animate only the answer box; inner padding keeps collapse height at zero. */
+.participate-page .participation-guide__answer { padding:0; overflow:hidden; }
+.participate-page .participation-guide__content { padding-bottom:24px; }
