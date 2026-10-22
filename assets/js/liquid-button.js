@@ -60,7 +60,7 @@ class LiquidButton extends HTMLElement {
 
   --blur:30px;
 
-  --duration:.4s;
+  --duration:var(--motion-feedback-duration, .4s);
 
   --light-bg:
     rgba(255,255,255,.18);
@@ -111,7 +111,7 @@ class LiquidButton extends HTMLElement {
 
   overflow:hidden;
 
-  min-height:clamp(36px, calc(0.8vw + 33px), 44px);
+  min-height:44px;
 
   padding:
     clamp(6px, calc(0.35vw + 5px), 9px)
@@ -176,6 +176,7 @@ class LiquidButton extends HTMLElement {
   pointer-events:none;
 }
 
+@media (hover:hover) and (pointer:fine) {
 .wrapper:hover{
 
   color:#f8faec;
@@ -184,12 +185,13 @@ class LiquidButton extends HTMLElement {
   transform:
     translateY(-2px);
 }
+}
 
 .wrapper:focus-visible{
 
   color:#f8faec;
   background:rgba(60,70,6,.82);
-  outline:2px solid currentColor;
+  outline:2px solid ${theme === "dark" ? "#f3f3ed" : "var(--color-txt, #303a05)"};
   outline-offset:4px;
 }
 
@@ -206,7 +208,7 @@ class LiquidButton extends HTMLElement {
   --button-font-size:clamp(14px, calc(0.5vw + 12px), 16px);
 
   width:${fluid ? "100%" : "280px"};
-  min-height:clamp(36px, calc(0.8vw + 33px), 44px);
+  min-height:44px;
 }
 
 .lg{
@@ -249,7 +251,6 @@ class LiquidButton extends HTMLElement {
   transition:transform var(--duration) ease;
 }
 
-.wrapper:hover .arrow,
 .wrapper:focus-visible .arrow{
   transform:translateX(.35em) rotate(-45deg);
 }
@@ -287,6 +288,15 @@ class LiquidButton extends HTMLElement {
   mix-blend-mode:overlay;
 }
 
+@media (hover:hover) and (pointer:fine) {
+  .wrapper:hover .arrow { transform:translateX(.35em) rotate(-45deg); }
+}
+.wrapper:active { transform:translateY(1px); }
+@media (prefers-reduced-motion:reduce) {
+  .wrapper,.arrow { transition:none; }
+  .wrapper:hover,.wrapper:active { transform:none; }
+  .wrapper:focus-visible .arrow,.wrapper:hover .arrow { transform:rotate(-45deg); }
+}
 </style>
 
 <${tag}

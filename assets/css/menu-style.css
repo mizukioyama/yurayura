@@ -392,3 +392,27 @@ body.is-loaded { opacity: 1; }
 
 /* Expand the brand hit area without changing header geometry. */
 .header-logo-link::after { content:""; position:absolute; left:0; top:50%; width:100%; height:44px; translate:0 -50%; }
+
+/* Phase 7: a bounded desktop group, and one shared column for mobile links. */
+:root {
+  --header-content-max:1200px;
+  --nav-desktop-width:560px;
+  --nav-desktop-gap:16px;
+  --nav-panel-width:352px;
+  --nav-panel-gap:8px;
+  --nav-panel-inline:24px;
+  --nav-item-padding:8px;
+}
+@media (min-width:1200px) {
+  .header-inner { width:min(calc(100% - 96px),var(--header-content-max)); gap:32px; }
+  .header-list { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); width:var(--nav-desktop-width); gap:var(--nav-desktop-gap); }
+  .header-link { width:100%; gap:2px; padding-block:8px; }
+  .header .menu-border { margin-block:2px; }
+}
+@media (max-width:1199px) {
+  .header.is-open .header-list { gap:var(--nav-panel-gap); padding-inline:max(var(--nav-panel-inline),env(safe-area-inset-left)) max(var(--nav-panel-inline),env(safe-area-inset-right)); }
+  .header-item, .header-related-group { width:min(100%,var(--nav-panel-width)); }
+  .header .header-link { width:100%; min-height:48px; padding:var(--nav-item-padding) 16px; }
+  .header .header-sublink { min-height:44px; padding:8px 0; }
+  .header-subpages { gap:0 16px; padding-top:8px; }
+}

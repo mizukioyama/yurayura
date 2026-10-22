@@ -9,7 +9,7 @@
 .path-card h3 { font-size:var(--type-heading-3-size); font-weight:400; line-height:1.8; }
 .path-card p { margin-top:var(--space-3); font-size:var(--type-body-size); line-height:1.8; }
 .path-card > span { margin-top:auto; padding-top:var(--space-4); align-self:flex-end; }
-.path-card:hover { background:color-mix(in srgb, var(--color-txt) 4%, transparent); }
+@media (hover:hover) and (pointer:fine) { .path-card:hover { background-color:color-mix(in srgb, var(--color-txt) 4%, transparent); } }
 .path-card:focus-visible,.path-action:focus-visible,.path-prose a:focus-visible,.path-details summary:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
 .path-prose { max-width:var(--path-reading); font-size:var(--type-body-size); line-height:2; overflow-wrap:anywhere; }
 .path-prose p,.path-prose ul { margin-block:24px; }

@@ -91,7 +91,7 @@
 - offscreen時は可能なら停止する。
 - `visibilitychange` を考慮する。
 - `prefers-reduced-motion: reduce` を尊重する。
-- Shared body paper is a static micro-fiber WebP displayed as a1024 CSS pixel tile; animated grain is disabled across pages. Fog/Vanta/loading retain their existing motion.
+- Shared body paper is a static micro-fiber WebP displayed as a512 CSS pixel tile; animated grain is disabled across pages. Fog/Vanta/loading retain their existing motion.
 - mobileでは負荷を下げても世界観が保てる設計を優先する。
 - animationがLCP / CLS / INP / scrollを悪化させないことを確認する。
 
@@ -218,8 +218,20 @@ Phase5 used the static1024px washi-micro.webp at512 CSS pixel repeat size/opacit
 
 ## Phase 6: paper visibility and reading rhythm
 
-Paper uses the existing1024px WebP at native1024 CSS px and opacity0.6. Body paper was attenuated by the opaque-color Vanta surface (wrapper opacity0.52/0.6) on TOP/Concept; a shared static ::after inside .vanta-wrap restores it without moving the canvas or covering artwork. Other pages retain their body layer. No new texture download or animated grain is added.
+Phase6 used the previous1024px WebP at native1024 CSS px and opacity0.6; Phase7 below supersedes this material and density. Body paper was attenuated by the opaque-color Vanta surface (wrapper opacity0.52/0.6) on TOP/Concept; a shared static ::after inside .vanta-wrap restores it without moving the canvas or covering artwork. Other pages retain their body layer. No new texture download or animated grain is added.
 
 Spacing tokens in visual-shared.css:8/16/24/32/48/64/96px. Participation components use these for card padding, image/text rhythm, grid gap and related-navigation spacing. Existing mobile44px and tablet110px gutters remain per side (88/220px combined); no new interpretation is imposed on other layouts. Under360px, participation cards use one column to protect title readability. Related navigation uses32px vertical padding instead of another full64/96px section on each side.
 
 Reuse the existing slide.js IntersectionObserver reveal, with20px movement,800ms ease-out and100ms two-card stagger. Extend it to participation and editorial headings; avoid nested targets. Existing FV targets keep their transforms, TOP H1 remains stationary and centered, Fog/Vanta and3.2s guide stay unchanged. No JS/reduced-motion means content remains visible; touch does not depend on hover. Card-image feedback moves4px on fine-pointer hover or keyboard focus. Paper is always static.
+
+## Phase 7: tactile paper, navigation and mobile type
+
+Paper is now original washi-grain.webp,512×512 lossless WebP78,008bytes, containing dense low-contrast grain and650 short0.8–3px fibers. Shared opacity0.72 and native512px tile preserve ivory. Periodic noise filtering and wrapped fibers avoid a seam; no salient curves or animated grain. The earlier micro material had only about1.3% changed pixels in a representative blank region and a mean RGB difference near0.06/255, even though the layer was present. Diagnostic high-contrast backgrounds prove the layer is painted; opacity/order alone cannot add the missing surface density. Retain the old asset for recovery. Body/Vanta background stack, Footer and open menu use the same paper. No paper is overlaid on artwork, controls or text. Actual Android perceptual acceptance remains separate.
+
+Desktop Header: content max1200px, navigation560px/5 equal columns,16px gap. Mobile/tablet panel: shared352px column,24px edge padding,8px row gap,48px main links/44px sublinks and safe, independently scrolling low-height panel. Existing44/48px close circle,20px±45deg lines and Escape/inert/focus/scroll lock remain unchanged. Existing page gutters are preserved.
+
+Below768px: body14.25px, editorial H1 is92% of its original scale, H2/H3 about92.5/95% of original shared roles; TOP decorative H2 uses its own compact feature-role scale. TOP H1 and small metadata remain unchanged. Native form inputs keep16px. Role variables and semantic aliases remain in user-settings.css. Reading paragraphs use20px spacing and participation H2 uses24px bottom spacing. Desktop/tablet typography stays on the original scale.
+
+Keep20px/800ms reveal and4px card-image feedback. Interaction duration180ms is shared. Fine-pointer hover is separate from keyboard focus, transient active feedback and persistent selected/current state. Preserve card paper on hover by changing only background-color. Liquid buttons also gate hover to fine pointers, keep44px minimum hit area, use contrasting focus outlines and disable transforms/transitions under reduced motion, including their Shadow DOM. No extra reveal observer or animation library.
+
+Phase7 network refinement: main.css paper fallback uses the same grain image/opacity as the shared layer. A fresh-context trace reproduced an intermittent request for both old and new paper due to CSS application timing; the matching fallback removes that redundant old-image request. No artwork or Vanta setting is changed.

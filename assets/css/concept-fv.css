@@ -61,7 +61,7 @@
   text-shadow: none !important;
   mix-blend-mode: normal !important;
   font-family: var(--font-base, "Shippori Mincho", serif) !important;
-  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
+  font-size: var(--type-page-title-size) !important;
   font-weight: 300 !important;
   line-height: normal !important;
   letter-spacing: normal !important;

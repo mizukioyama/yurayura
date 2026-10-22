@@ -168,3 +168,9 @@ TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top
 
 `visual-shared.css`: `--paper-image`, `--paper-size` (1024px1024px), `--paper-opacity` (0.6) are shared by body and Vanta background paper. Do not lift the grain above artwork. `--space-2` through `--space-8` map to8/16/24/32/48/64/96px and are used by participation components. Existing gutters remain unchanged.
 `--motion-reveal-distance`20px, `--motion-reveal-duration`800ms, `--motion-feedback-duration`360ms, `--motion-card-lift`-4px and `--motion-ease-out` control non-FV feedback. Reduced-motion disables these transforms/transitions.
+
+### Phase 7 controls (supersede Phase6 paper values)
+
+`visual-shared.css`: --paper-image points to participation/washi-grain.webp; --paper-size512px512px, --paper-opacity0.72. Footer/open-menu backgrounds share this static material; do not move grain above artwork. --motion-interaction-duration180ms controls ordinary feedback; existing20px/800ms reveals remain.
+`menu-style.css`: --header-content-max1200px / --nav-desktop-width560px / --nav-desktop-gap16px / --nav-panel-width352px / --nav-panel-gap8px / --nav-panel-inline24px / --nav-item-padding8px. Mobile content gutters are unchanged.
+`user-settings.css`: --type-page-title-size owns shared editorial/Gallery titles. Below768px the scale is92% of the original; --type-body-size14.25px, compactH2/H3 and --type-feature-heading-size for TOP decorative section titles. Do not shrink TOP H1, metadata or input controls with a global multiplier. Check320/359/375/390/430/600/767 and768 boundary after changes.
