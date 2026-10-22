@@ -158,11 +158,11 @@ TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top
 
 ## Shared Scroll and static body paper
 
-`assets/css/visual-shared.css` owns `--fv-scroll-left` and `--fv-scroll-line`. Bounded editorial FV geometry is computed by `initializeScrollGuidePosition` in allmenu.js; TOP H1 remains independently owned by top-legacy.css. Body paper is controlled by the shared paper variables documented below; main.css body::before retains fallbacks for legacy pages; the runtime image is participation/washi-micro.webp. Keep changes scoped and verify contrast, Scroll overlap and all breakpoints.
+`assets/css/visual-shared.css` owns `--fv-scroll-left` and `--fv-scroll-line`. Bounded editorial FV geometry is computed by `initializeScrollGuidePosition` in allmenu.js; TOP H1 remains independently owned by top-legacy.css. Body paper is controlled by the shared paper variables documented below; main.css body::before retains fallbacks for legacy pages; the runtime image is participation/washi-grain.webp. Keep changes scoped and verify contrast, Scroll overlap and all breakpoints.
 
 ## Low landscape viewport safety
 
-`visual-shared.css` owns the height-conditioned override. `--compact-viewport-height`, `--compact-header-height` and per-guide `--compact-scroll-line` are runtime bounds, updated in allmenu.js. Keep their calculations scoped to landscape height720px or less; do not copy absolute top coordinates into individual pages. `--type-top-hero-landscape-size` and `--type-top-hero-landscape-copy-size` in user-settings.css retain the compact typography while respecting Header clearance. Main.css retains the existing body background layer geometry/opacity; its image now points to the static micro-fiber WebP. Normal portrait layout and Gallery PC rules remain the fallback outside the compact condition.
+`visual-shared.css` owns the height-conditioned override. `--compact-viewport-height`, `--compact-header-height` and per-guide `--compact-scroll-line` are runtime bounds, updated in allmenu.js. Keep their calculations scoped to landscape height720px or less; do not copy absolute top coordinates into individual pages. `--type-top-hero-landscape-size` and `--type-top-hero-landscape-copy-size` in user-settings.css retain the compact typography while respecting Header clearance. main.css retains the existing body background layer geometry and opacity; its fallback points to the same static participation/washi-grain.webp used by visual-shared.css. Normal portrait layout and Gallery PC rules remain the fallback outside the compact condition.
 
 ### Phase 6 shared controls
 
