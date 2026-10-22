@@ -178,3 +178,8 @@ TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top
 TOP lower card feedback: `visual-shared.css` owns `--card-float-duration:500ms` and `--card-float-lift:-8px`. Whole-card individual `translate` is separate from the reveal `transform`; reduced-motion disables movement. TOP's eyebrow/title rules are scoped to `[aria-labelledby="paths-title"]` and do not change other `.path-eyebrow` labels.
 
 Latest card feedback uses --card-float-duration680ms, overridden to120ms only during :active; reveal timings remain unchanged. --text-link-line-duration350ms / --text-link-color-duration250ms control ordinary links. --text-link-color has a light Footer override; do not apply the body dark hover color to the Footer.
+
+## Phase 8 Header追尾
+
+Header幅は変更しない。閾値はallmenu.jsのviewport高さ×0.70（1200px以上）／×0.80（それ未満）。Headerの固定・280ms transitionはmenu-style.css、Header/Footerの350ms下線・250ms色変化はvisual-shared.cssが所有。高さだけのresizeは180ms待って再評価する。--site-header-sizeの予約領域を消すとFVとCLSが変わるため維持する。
+参加ページの通常PC/タブレットFV例外はparticipation.cssの.information-page.participate-pageに限定。低い横画面の共通指定は変更しない。

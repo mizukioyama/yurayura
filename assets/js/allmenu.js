@@ -7,7 +7,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "integrated-renewal-3";
+  const PARTS_VERSION = "phase8-header-1";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const response = await fetch(`${url}?v=${PARTS_VERSION}`);
       if (!response.ok) throw new Error(`読み込み失敗: ${url} Status: ${response.status}`);
       target.innerHTML = await response.text();
+      if (targetSelector === "#js-header") initializeHeaderScroll();
     } catch (error) {
       console.error(error);
       target.innerHTML = `<div class="parts-load-error">パーツ読み込みエラー: ${url}</div>`;
@@ -86,6 +87,7 @@ function initializeHeaderMenu() {
     else if (headerMenu && mobileNavigation.matches) headerMenu.setAttribute("aria-hidden", "true");
     else if (headerMenu) headerMenu.removeAttribute("aria-hidden");
     if (!shouldOpen && wasOpen) unlockBackground();
+    document.dispatchEvent(new CustomEvent("yurayura:menu-state", { detail: { open: shouldOpen } }));
     if (restoreFocus) menuToggle.focus({ preventScroll: true });
     if (shouldOpen && menuLinks[0]) menuLinks[0].focus();
   }
@@ -256,4 +258,56 @@ function initializeScrollGuidePosition() {
   window.visualViewport?.addEventListener("resize", schedulePosition, { passive: true });
   compactMedia.addEventListener("change", schedulePosition);
   if (document.fonts?.ready) document.fonts.ready.then(positionGuide);
+}
+
+
+/* A fixed header preserves its existing async placeholder and FV geometry. */
+function initializeHeaderScroll() {
+  const header = document.querySelector('#js-header .header');
+  if (!header || header.dataset.scrollReady) return;
+  header.dataset.scrollReady = 'true';
+  let frame = null, resizeTimer = null, lastWidth = window.innerWidth;
+  const viewportHeight = () => {
+    const viewport = window.visualViewport;
+    return viewport && Math.abs(viewport.scale - 1) < .01
+      ? Math.min(window.innerHeight, viewport.height) : window.innerHeight;
+  };
+  let height = viewportHeight(), hidden = null;
+  const update = () => {
+    const ratio = window.innerWidth >= 1200 ? .70 : .80;
+    const threshold = height * ratio;
+    const shouldHide = !header.classList.contains('is-open') && Math.max(0, window.scrollY) >= threshold;
+    if (shouldHide === hidden) return;
+    hidden = shouldHide;
+    header.classList.toggle('is-scroll-hidden', shouldHide);
+    if (shouldHide && header.contains(document.activeElement)) {
+      const main = document.querySelector('main');
+      if (main) {
+        const previous = main.getAttribute('tabindex');
+        main.setAttribute('tabindex', '-1');
+        main.focus({ preventScroll: true });
+        main.addEventListener('blur', () => {
+          if (previous === null) main.removeAttribute('tabindex');
+          else main.setAttribute('tabindex', previous);
+        }, { once: true });
+      }
+    }
+    header.inert = shouldHide;
+    if (shouldHide) header.setAttribute('aria-hidden', 'true');
+    else header.removeAttribute('aria-hidden');
+  };
+  const schedule = () => { if (frame === null) frame = requestAnimationFrame(() => { frame = null; update(); }); };
+  const commitViewport = () => { height = viewportHeight(); lastWidth = window.innerWidth; schedule(); };
+  const resize = () => {
+    clearTimeout(resizeTimer);
+    if (window.innerWidth !== lastWidth) commitViewport();
+    else resizeTimer = setTimeout(commitViewport, 180);
+  };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', resize, { passive: true });
+  window.visualViewport?.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('orientationchange', resize, { passive: true });
+  ['pageshow', 'popstate', 'hashchange', 'load'].forEach(name => window.addEventListener(name, commitViewport));
+  document.addEventListener('yurayura:menu-state', event => event.detail.open ? update() : schedule());
+  update();
 }

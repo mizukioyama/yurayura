@@ -416,3 +416,16 @@ body.is-loaded { opacity: 1; }
   .header .header-sublink { min-height:44px; padding:8px 0; }
   .header-subpages { gap:0 16px; padding-top:8px; }
 }
+
+
+/* Phase 8: same width/height, with viewport-distance tracking. */
+#js-header { position:relative; z-index:1500; }
+#js-header .header {
+  position:fixed; inset:0 0 auto; width:100%;
+  transition:transform 280ms ease-in-out,opacity 280ms ease-in-out;
+}
+#js-header .header.is-scroll-hidden { transform:translateY(-100%); opacity:0; pointer-events:none; }
+#js-header .header.is-open { transform:none; opacity:1; pointer-events:auto; }
+.header .header-logo-link { flex-direction:row; align-items:baseline; flex-wrap:nowrap; white-space:nowrap; gap:4px; }
+.header-separator { letter-spacing:0; }
+@media (prefers-reduced-motion:reduce) { #js-header .header { transition:none; } }

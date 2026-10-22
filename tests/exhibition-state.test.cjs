@@ -17,3 +17,33 @@ test('published undated events stay upcoming; unpublished copy never enters disp
  assert.throws(()=>visibleEvents({}));assert.throws(()=>visibleEvents([{...event,endsAt:null}]));
  assert.equal(publicEvents([undated])[0].startsAt,null);
 });
+
+const {recruitmentView,instant}=require('../assets/js/exhibition-state.js');
+const recStart=Date.parse('2026-10-06T13:00:00+09:00'),recEnd=Date.parse('2026-10-12T13:00:00+09:00');
+const confirmed={...event,recruitment:{published:true,receiverVerified:true,startsAt:event.startsAt,endsAt:event.endsAt}};
+for(const [name,rows,now,failed,expected] of [
+ ['no recruitment',[event],recStart,false,'none'],
+ ['planning',[{...event,recruitment:{published:false}}],recStart,false,'planning'],
+ ['before start',[confirmed],recStart-1,false,'upcoming'],
+ ['verified open',[confirmed],recStart,false,'open'],
+ ['closed',[confirmed],recEnd,false,'closed'],
+ ['fetch failed',[],recStart,true,'error']
+])test('recruitment view: '+name,()=>{
+ const view=recruitmentView(rows,now,failed);assert.equal(view.state,expected);
+ assert(view.copy.method&&view.copy.faq&&view.copy.conditions);
+ if(expected==='open') {assert.match(view.status,/募集中/);assert(!/受け付けていません|未定です|募集準備中|受付停止/.test(Object.values(view.copy).join('')));}
+ else assert(!view.status.includes('募集中'));
+});
+test('view fails closed for missing receiver, unpublished data, invalid calendar/event/recruitment, or clock',()=>{
+ const variants=[{...confirmed,published:false},{...confirmed,startsAt:'bad'},{...confirmed,edition:0},{...confirmed,recruitment:{...confirmed.recruitment,receiverVerified:false}},{...confirmed,recruitment:{...confirmed.recruitment,receiverVerified:'true'}},{...confirmed,recruitment:{...confirmed.recruitment,startsAt:'2026-02-30T00:00:00+09:00'}}];
+ for(const e of variants)assert.notEqual(recruitmentView([e],recStart).state,'open');
+ assert.equal(recruitmentView({},recStart).state,'error');assert.equal(recruitmentView([confirmed],NaN).state,'error');
+ assert(Number.isNaN(instant('2026-02-30T00:00:00+09:00')));assert(Number.isNaN(instant('2026-10-06T24:00:00+09:00')));
+});
+test('an approved open recruitment is not masked by a planning row; date boundaries update copy together',()=>{
+ const planning={...event,id:'planning',recruitment:{published:true,receiverVerified:false,startsAt:event.startsAt,endsAt:event.endsAt}};
+ assert.equal(recruitmentView([planning,confirmed],recStart).state,'open');
+ assert.match(recruitmentView([confirmed],recStart-1).copy.faq,/受付開始前/);
+ assert.match(recruitmentView([confirmed],recStart).copy.faq,/募集期間中/);
+ assert.match(recruitmentView([confirmed],recEnd).copy.faq,/終了/);
+});

@@ -53,3 +53,26 @@ nav.path-section { padding-block: var(--space-5); }
   /* Six/seven-character titles need a readable column at the narrowest size. */
   .path-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+
+/* Participate owns its frame; tablet's generic inset/padding must not double it. */
+@media (min-width:768px) and (min-height:721px) {
+  .information-page.participate-page .information-hero.concept-fv { min-height:calc(100svh - var(--site-header-size)) !important; }
+  .information-page.participate-page .information-hero.concept-fv .information-hero__inner {
+    inset:auto !important; left:var(--fv-scroll-left) !important; top:clamp(96px,24svh,216px) !important;
+    display:block !important; padding:0 !important; width:calc(100% - var(--fv-scroll-left) - 44px) !important;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) and (min-height:721px) {
+  .information-page.participate-page .information-hero.concept-fv .information-hero__inner { left:var(--layout-gutter-tablet) !important; width:calc(100% - 2 * var(--layout-gutter-tablet)) !important; }
+}
+.participate-page .participation-guide { margin-top:32px; }
+.participate-page .path-details { margin:0; border-bottom:0; padding:0; }
+.participate-page .path-details:last-child { border-bottom:1px solid var(--path-rule); }
+.participate-page .path-details summary { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; padding:16px 0; list-style:none; }
+.participate-page .path-details summary::-webkit-details-marker { display:none; }
+.participate-page .path-details summary::after { content:'+'; flex:none; font-size:1.25em; }
+.participate-page .path-details[open] summary::after { content:'−'; }
+.participate-page .participation-guide__answer { padding:0 0 24px; }
+.participate-page .participation-guide__answer p { margin:0; }
+.participate-page .participation-guide__answer p + p { margin-top:16px; }
