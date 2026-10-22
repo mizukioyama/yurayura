@@ -176,3 +176,5 @@ TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top
 `user-settings.css`: --type-page-title-size owns shared editorial/Gallery titles. Below768px the scale is92% of the original; --type-body-size14.25px, compactH2/H3 and --type-feature-heading-size for TOP decorative section titles. Do not shrink TOP H1, metadata or input controls with a global multiplier. Check320/359/375/390/430/600/767 and768 boundary after changes.
 
 TOP lower card feedback: `visual-shared.css` owns `--card-float-duration:500ms` and `--card-float-lift:-8px`. Whole-card individual `translate` is separate from the reveal `transform`; reduced-motion disables movement. TOP's eyebrow/title rules are scoped to `[aria-labelledby="paths-title"]` and do not change other `.path-eyebrow` labels.
+
+Latest card feedback uses --card-float-duration680ms, overridden to120ms only during :active; reveal timings remain unchanged. --text-link-line-duration350ms / --text-link-color-duration250ms control ordinary links. --text-link-color has a light Footer override; do not apply the body dark hover color to the Footer.
