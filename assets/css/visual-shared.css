@@ -206,7 +206,7 @@ body .gallery-page-button[aria-current="page"] { text-decoration: underline; tex
 :is(.modal-btn,.send-btn):active { filter: brightness(.94); }
 @media (hover:hover) and (pointer:fine) {
   :is(.header-link,.footer-link,.footer-related a):hover { opacity:.78; }
-  .header-link:not(.is-current):hover .menu-en { text-decoration:underline; text-underline-offset:4px; }
+  .header-link:not(.is-current):hover .menu-en { background-size:100% 1px; }
   .footer-related a:hover { text-decoration:underline; text-underline-offset:4px; }
   body.gallery-page .gallery-filter:not(.is-active):hover { opacity:1 !important; text-decoration:underline; text-decoration-style:dotted; }
 }
@@ -287,3 +287,24 @@ body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item_
 
 /* Avoid a stranded final word in the new editorial paragraphs; normal wrap is the fallback. */
 .top-page .top-summary .section__txt { text-wrap:pretty; }
+
+
+/* Header uses the same text-fragment feedback as Footer, in its own palette. */
+.header { --text-link-color:#343d23; }
+.header :is(.menu-en,.menu-label) {
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0% 1px; background-position:left bottom; background-repeat:no-repeat;
+  transition:background-size var(--text-link-line-duration) var(--motion-ease-out),color var(--text-link-color-duration) ease;
+}
+.header-link.is-current :is(.menu-en,.menu-label) { background-size:100% 1px; text-decoration:none; }
+@media (hover:hover) and (pointer:fine) {
+  body .header-link:hover :is(.menu-en,.menu-label) { background-size:100% 1px; color:var(--text-link-color); text-decoration:none; }
+}
+.header-link:focus-visible :is(.menu-en,.menu-label) { background-size:100% 1px; color:var(--text-link-color); }
+@media (prefers-reduced-motion:reduce) { .header :is(.menu-en,.menu-label) { transition:none; } }
+.concept-statement__copy { width:min(100%,680px); margin-inline:auto; }
+.concept-statement__copy .section__txt { width:100%; margin:0; white-space:pre-line; }
+.concept-statement__copy .section__txt + .section__txt { margin-top:24px; }
+.information-planning { width:min(100%,680px); margin:32px auto; line-height:2; }
+.information-planning h3 { font-size:var(--type-heading-3-size); font-weight:400; margin-bottom:16px; }
+.information-planning p + p { margin-top:16px; }
