@@ -122,3 +122,63 @@ body.top-page .main .fv .scroll-guide {
     justify-content: flex-start;
   }
 }
+
+/* Shared paper stays below content and artwork. Vanta owns an opaque surface,
+   so its paper belongs inside that background stack, above its canvas only. */
+:root {
+  --paper-image: url('../img/participation/washi-micro.webp');
+  --paper-size: 1024px 1024px;
+  --paper-opacity: .6;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --motion-reveal-distance: 20px;
+  --motion-reveal-duration: 800ms;
+  --motion-feedback-duration: 360ms;
+  --motion-ease-out: cubic-bezier(.22, 1, .36, 1);
+  --motion-card-lift: -4px;
+}
+.vanta-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--paper-image) repeat;
+  background-size: var(--paper-size);
+  opacity: var(--paper-opacity);
+}
+/* Existing intro targets keep their exact transforms and centered geometry. */
+body .top-reveal-pending:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(.fv__txt) {
+  opacity: 0;
+  transform: translateY(var(--motion-reveal-distance));
+}
+body .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(.fv__txt) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--motion-reveal-duration) var(--motion-ease-out), transform var(--motion-reveal-duration) var(--motion-ease-out);
+  transition-delay: var(--top-reveal-delay, 0ms);
+}
+/* Feedback uses the child image so it never competes with the card reveal. */
+body .path-card__image { transition: transform var(--motion-reveal-duration) var(--motion-ease-out), opacity var(--motion-feedback-duration) ease; }
+body .path-card:focus-visible .path-card__image { transform: translateY(var(--motion-card-lift)); }
+.path-action { text-underline-offset: 6px; transition: color var(--motion-feedback-duration) ease; }
+.path-action:focus-visible { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+  body .path-card:hover .path-card__image { transform: translateY(var(--motion-card-lift)); }
+  .path-action:hover { text-decoration: underline; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body .top-reveal-pending,
+  body .top-reveal-pending.top-reveal-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  body .path-card__image, .path-action { transition: none; }
+  body .path-card:is(:hover, :focus-visible) .path-card__image { transform: none; }
+}

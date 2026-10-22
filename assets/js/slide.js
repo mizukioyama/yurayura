@@ -301,6 +301,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ".gallery-page .gallery-sidebar__label",
     ".gallery-page .gallery-filter-group",
     ".gallery-page .gallery-card",
+    ".path-eyebrow",
+    ".path-card",
+    ".path-prose > p",
+    ".path-prose > h2",
+    ".path-prose > h3",
+    ".support-options > article",
+    ".path-details",
+    ".path-action",
+    ".information-main > .section h2",
+    ".information-main > .section h3",
+    ".contact-main > .section h2",
+    ".contact-main > .section h3",
     ".policy-page .policy-title",
     ".policy-page .policy-section"
   ].join(",");
@@ -309,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ...document.querySelectorAll(targetSelector),
       ...legacyTargets
     ])
-  );
+  ).filter((target, index, all) => !all.some((parent) => parent !== target && parent.contains(target)));
 
   const artistCards = Array.from(
     document.querySelectorAll(".top-page #artists .member-track .card")
@@ -340,6 +352,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryCards = Array.from(document.querySelectorAll(".gallery-page .gallery-card"));
   galleryCards.forEach((card, index) => {
     card.style.setProperty("--top-reveal-delay", String(140 + (index % 4) * 60) + "ms");
+  });
+
+  document.querySelectorAll('.path-card').forEach((card, index) => {
+    card.style.setProperty('--top-reveal-delay', String((index % 2) * 100) + 'ms');
   });
 
   const registeredTargets = [];

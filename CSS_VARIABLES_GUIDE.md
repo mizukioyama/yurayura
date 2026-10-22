@@ -158,8 +158,13 @@ TOPの文字サイズはuser-settings.cssの`--type-top-hero-size`、`--type-top
 
 ## Shared Scroll and static body paper
 
-`assets/css/visual-shared.css` owns `--fv-scroll-left` and `--fv-scroll-line`. Bounded editorial FV geometry is computed by `initializeScrollGuidePosition` in allmenu.js; TOP H1 remains independently owned by top-legacy.css. Body paper opacity and512px tile size are in main.css body::before; the runtime image is participation/washi-micro.webp. Keep changes scoped and verify contrast, Scroll overlap and all breakpoints.
+`assets/css/visual-shared.css` owns `--fv-scroll-left` and `--fv-scroll-line`. Bounded editorial FV geometry is computed by `initializeScrollGuidePosition` in allmenu.js; TOP H1 remains independently owned by top-legacy.css. Body paper is controlled by the shared paper variables documented below; main.css body::before retains fallbacks for legacy pages; the runtime image is participation/washi-micro.webp. Keep changes scoped and verify contrast, Scroll overlap and all breakpoints.
 
 ## Low landscape viewport safety
 
 `visual-shared.css` owns the height-conditioned override. `--compact-viewport-height`, `--compact-header-height` and per-guide `--compact-scroll-line` are runtime bounds, updated in allmenu.js. Keep their calculations scoped to landscape height720px or less; do not copy absolute top coordinates into individual pages. `--type-top-hero-landscape-size` and `--type-top-hero-landscape-copy-size` in user-settings.css retain the compact typography while respecting Header clearance. Main.css retains the existing body background layer geometry/opacity; its image now points to the static micro-fiber WebP. Normal portrait layout and Gallery PC rules remain the fallback outside the compact condition.
+
+### Phase 6 shared controls
+
+`visual-shared.css`: `--paper-image`, `--paper-size` (1024px1024px), `--paper-opacity` (0.6) are shared by body and Vanta background paper. Do not lift the grain above artwork. `--space-2` through `--space-8` map to8/16/24/32/48/64/96px and are used by participation components. Existing gutters remain unchanged.
+`--motion-reveal-distance`20px, `--motion-reveal-duration`800ms, `--motion-feedback-duration`360ms, `--motion-card-lift`-4px and `--motion-ease-out` control non-FV feedback. Reduced-motion disables these transforms/transitions.
