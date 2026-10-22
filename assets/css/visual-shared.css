@@ -126,9 +126,9 @@ body.top-page .main .fv .scroll-guide {
 /* Shared paper stays below content and artwork. Vanta owns an opaque surface,
    so its paper belongs inside that background stack, above its canvas only. */
 :root {
-  --paper-image: url('../img/participation/washi-micro.webp');
-  --paper-size: 1024px 1024px;
-  --paper-opacity: .6;
+  --paper-image: url('../img/participation/washi-grain.webp');
+  --paper-size: 512px 512px;
+  --paper-opacity: .72;
   --space-2: 8px;
   --space-3: 16px;
   --space-4: 24px;
@@ -139,6 +139,7 @@ body.top-page .main .fv .scroll-guide {
   --motion-reveal-distance: 20px;
   --motion-reveal-duration: 800ms;
   --motion-feedback-duration: 360ms;
+  --motion-interaction-duration:180ms;
   --motion-ease-out: cubic-bezier(.22, 1, .36, 1);
   --motion-card-lift: -4px;
 }
@@ -182,3 +183,45 @@ body .path-card:focus-visible .path-card__image { transform: translateY(var(--mo
   body .path-card__image, .path-action { transition: none; }
   body .path-card:is(:hover, :focus-visible) .path-card__image { transform: none; }
 }
+
+/* Paper is a surface background, never a foreground over artwork or text. */
+.footer { background-image: var(--paper-image); background-size: var(--paper-size); }
+@media (max-width: 1199px) {
+  .header.is-open .header-list { background-image: var(--paper-image); background-size: var(--paper-size); }
+}
+/* Keyboard feedback is explicit; touch never relies on a hover state. */
+body :is(.header-link,.footer-link,.footer-related a,.header-sublink,.gallery-filter,.gallery-page-button,.gallery-work-link,.gallery-modal__close,.gallery-modal__slide-button,.modal-close,.modal-btn,.send-btn,.path-action,.path-card,summary,.contact-form input,.contact-form textarea,.contact-form select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+:is(.header-link,.footer-link,.footer-related a,.path-action) { transition: opacity var(--motion-interaction-duration) ease, background-color var(--motion-interaction-duration) ease; }
+body :is(.header-link,.footer-link,.footer-related a,.path-action):active { opacity: .65; }
+.path-card:active { background-color: color-mix(in srgb, var(--color-txt) 8%, transparent); }
+body .path-card:active .path-card__image { transform: translateY(0) scale(.99); }
+body.gallery-page .gallery-filter { min-height:44px !important; }
+body.gallery-page .gallery-filter:active { opacity: .55 !important; }
+body.gallery-page .gallery-filter.is-active { opacity: 1 !important; text-decoration-thickness: 2px; }
+body .gallery-page-button:active { opacity:.65; }
+body .gallery-page-button[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+:is(.modal-btn,.send-btn):active { filter: brightness(.94); }
+@media (hover:hover) and (pointer:fine) {
+  :is(.header-link,.footer-link,.footer-related a):hover { opacity:.78; }
+  .header-link:not(.is-current):hover .menu-en { text-decoration:underline; text-underline-offset:4px; }
+  .footer-related a:hover { text-decoration:underline; text-underline-offset:4px; }
+  body.gallery-page .gallery-filter:not(.is-active):hover { opacity:1 !important; text-decoration:underline; text-decoration-style:dotted; }
+}
+@media (hover:none) {
+  .header-link:hover { opacity:1; }
+  .footer-related a:hover { text-decoration:none; }
+  .path-card:hover { background-color:transparent; }
+  .path-card:active { background-color:color-mix(in srgb, var(--color-txt) 8%, transparent); }
+}
+@media (prefers-reduced-motion:reduce) {
+  :is(.header-link,.footer-link,.footer-related a,.path-action) { transition:none; }
+  body .path-card:active .path-card__image { transform:none; }
+}
+
+.liquid-control:active { transform:translateY(1px) scale(.99); }
+@media (prefers-reduced-motion:reduce) { .liquid-control:active { transform:none; } }
+
+.liquid-control:focus-visible { outline-color:var(--color-txt); }

@@ -24,7 +24,7 @@ body.gallery-page button {
 }
 .gallery-page .h1-text h1 {
   margin: 0;
-  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem);
+  font-size: var(--type-page-title-size);
   font-weight: 300;
 }
 .gallery-page .h1-text p {

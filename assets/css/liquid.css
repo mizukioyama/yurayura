@@ -145,6 +145,7 @@
   pointer-events: none;
 }
 
+@media (hover:hover) and (pointer:fine) {
 .liquid-control:hover {
   color: #f8faec;
   background:
@@ -156,6 +157,7 @@
     ),
     rgba(77, 88, 16, 0.82);
   transform: translateY(-3px) scale(1.02);
+}
 }
 
 .liquid-control:focus-visible {

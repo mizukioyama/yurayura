@@ -8,6 +8,7 @@
  * typography so this layer remains visually conservative.
  */
 :root {
+  --type-page-title-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem);
   /* TOP: existing portrait scale; short viewports use the compact scale. */
   --type-top-hero-size: clamp(80px, 12vw, 140px);
   --type-top-hero-tracking: 2.4rem;
@@ -84,3 +85,21 @@
 }
 
 /* Galleryの20px固定サブタイトル、1px線、矢印などの装飾値は対象外 */
+
+/* Compact reading roles only: preserve TOP H1, small metadata and input legibility. */
+@media (max-width:767px) {
+  :root {
+    --type-body-size:14.25px;
+    --type-feature-heading-size:clamp(18.5px,5.2vw,24px);
+    --type-heading-2-size:clamp(18.5px, calc(15.245px + .8638vw),27.75px);
+    --type-heading-3-size:clamp(14.25px,calc(12.243px + .5352vw),19.95px);
+    --type-page-title-size:clamp(35.328px,calc(22.08px + 3.68vw),79.488px);
+  }
+  .top-page :is(.section--concept,.section--artists,.section--contact,.section--access) .h2_ttl { font-size:var(--type-feature-heading-size); }
+  .concept-page .h2_ttl { font-size:var(--type-heading-2-size); }
+  .header .header-sublink { font-size:13px; }
+  .path-card p { letter-spacing:.02em; }
+  .path-section h2 { margin-bottom:24px; }
+  .path-prose p,.path-prose ul { margin-block:20px; }
+  .contact-form :is(input,textarea,select) { font-size:16px; }
+}

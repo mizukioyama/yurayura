@@ -143,9 +143,9 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: var(--paper-image, url('../img/participation/washi-micro.webp')) repeat;
+  background: var(--paper-image, url('../img/participation/washi-grain.webp')) repeat;
   background-size: var(--paper-size, 512px 512px);
-  opacity: var(--paper-opacity, .34);
+  opacity: var(--paper-opacity, .72);
   content: "";
   pointer-events: none;
 }
