@@ -3,6 +3,9 @@
   "use strict";
   function instant(value) {
     if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/.test(value)) return NaN;
+    const [year, month, day, hour, minute, second] = value.slice(0, 19).split(/\D/).map(Number);
+    const days = [31, year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (month < 1 || month > 12 || day < 1 || day > days[month - 1] || hour > 23 || minute > 59 || second > 59) return NaN;
     return Date.parse(value);
   }
   function eventState(event, now = Date.now()) {
@@ -14,7 +17,7 @@
   }
   function recruitmentState(event, now = Date.now()) {
     const r = event?.recruitment;
-    if (!event || event.published !== true || !r || r.published !== true) return "planning";
+    if (!event || event.published !== true || eventState(event, now) === "unknown" || !r || r.published !== true) return "planning";
     const start = instant(r.startsAt), end = instant(r.endsAt);
     if (!Number.isFinite(now) || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) return "planning";
     if (now >= end) return "closed";
@@ -34,7 +37,42 @@
       past: visible.filter(e => eventState(e, now) === "past").sort((a,b) => instant(b.startsAt)-instant(a.startsAt))
     };
   }
-  const api = {instant, eventState, recruitmentState, visibleEvents, groupEvents};
+  /* One view owns the status and every state-dependent participation paragraph. */
+  function recruitmentView(events, now = Date.now(), failed = false) {
+    let state = 'error', selected;
+    if (!failed && Number.isFinite(now)) {
+      try {
+        const visible = visibleEvents(events);
+        const published = visible.filter(e => e.recruitment?.published === true);
+        if (published.some(e => !Number.isFinite(instant(e.recruitment.startsAt)) || !Number.isFinite(instant(e.recruitment.endsAt)) || instant(e.recruitment.endsAt) <= instant(e.recruitment.startsAt))) throw new Error('Invalid recruitment');
+        selected = published.find(e => recruitmentState(e, now) === 'open');
+        if (selected) state = 'open';
+        else {
+          selected = published.filter(e => now < instant(e.recruitment.endsAt)).sort((a,b) => instant(a.recruitment.startsAt) - instant(b.recruitment.startsAt))[0];
+          if (selected) state = now < instant(selected.recruitment.startsAt) ? 'upcoming' : 'planning';
+          else if (published.length) { state = 'closed'; selected = published.sort((a,b) => instant(b.recruitment.endsAt) - instant(a.recruitment.endsAt))[0]; }
+          else state = visible.some(e => e.recruitment) ? 'planning' : 'none';
+        }
+      } catch (_) { state = 'error'; }
+    }
+    const announced = ['upcoming', 'open', 'closed'].includes(state);
+    const status = {none:'出展申し込みの受付は停止中です', planning:'募集準備中です（受付停止中）', upcoming:'受付開始前です（受付停止中）', open:'出展者募集中', closed:`第${selected?.edition || ''}回の募集は締め切りました。`, error:'募集状況を確認できないため、受付中のご案内を停止しています'}[state];
+    const method = {none:'現在は出展申し込みを受け付けていません。正式な応募受付先・募集期間は未定です。', planning:'現在は出展申し込みを受け付けていません。募集要項と受付方法は、確定後にご案内します。', upcoming:'受付開始前です。受付期間と応募方法は、当該展示の正式な募集要項をご確認ください。', open:'出展者を募集しています。応募方法・受付先・締切は、当該展示の正式な募集要項をご確認ください。', closed:'今回の募集は終了しました。次回の応募方法は、募集要項の確定後にご案内します。', error:'募集状況を読み込めませんでした。受付中とはご案内できません。時間をおいて再読み込みしてください。'}[state];
+    const faq = {none:'今すぐ応募できますか？ 現在は受け付けていません。募集開始時は、このページでご案内します。', planning:'今すぐ応募できますか？ 現在は募集準備中のため、受け付けていません。', upcoming:'今すぐ応募できますか？ 受付開始前です。正式な募集要項の受付期間をご確認ください。', open:'今すぐ応募できますか？ 募集期間中です。正式な募集要項に記載された受付方法と締切をご確認ください。', closed:'今すぐ応募できますか？ 今回の募集は終了しました。', error:'今すぐ応募できますか？ 募集状況を確認できないため、受付中とはご案内できません。'}[state];
+    return {state, status, copy: {
+      next: announced ? '開催地・会期・会場は、Informationに掲載する当該展示の正式な案内をご確認ください。' : '次回は岩手県または栃木県での開催を検討しています。開催地・会期・会場は未定です。',
+      policy: announced ? '参加条件は、当該展示の正式な募集要項をご確認ください。展示ごとに条件が異なる場合があります。' : '次回の参加条件は調整中です。過去の募集条件を、次回の確定条件として掲載することはありません。',
+      target: announced ? '募集人数・募集期間・対象作品は、当該展示の正式な募集要項をご確認ください。' : '募集人数・募集期間・対象となる作品は未定です。',
+      targetNote: announced ? '展示ごとの条件をご確認のうえ、参加をご検討ください。' : '決まり次第、このページでご案内します。',
+      conditions: announced ? '作品数・サイズ・展示区画・選考・搬入と搬出は、当該展示の正式な募集要項をご確認ください。' : '出展作品数・サイズ・展示区画・選考方法・搬入と搬出の条件は未定です。',
+      conditionsNote: announced ? '作品と会場に関する条件をご確認ください。' : '会場と展示計画に合わせて整理し、確定後にご案内します。',
+      fees: announced ? '参加費とその対象範囲は、当該展示の正式な募集要項をご確認ください。' : '参加費は未定です。',
+      feesNote: announced ? 'お申し込み前に費用と条件をご確認ください。' : '費用とその対象範囲は、募集要項の確定後にご案内します。',
+      method, faq,
+      faqConditions: announced ? '参加条件は決まっていますか？ 当該展示の正式な募集要項をご確認ください。過去の条件がそのまま適用されるとは限りません。' : '参加条件は決まっていますか？ 募集人数・費用・作品条件・選考方法などは未定です。確定した情報のみ順次掲載します。'
+    }};
+  }
+  const api = {instant, eventState, recruitmentState, visibleEvents, groupEvents, recruitmentView};
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   root.YurayuraState = api;
   if (typeof document === "undefined") return;
@@ -62,6 +100,13 @@
     }
     target.replaceChildren(fragment);
   }
+  function renderRecruitment(view) {
+    document.querySelectorAll('[data-recruitment-status]').forEach(el => { if (el.textContent !== view.status) el.textContent = view.status; if (el.dataset.recruitmentState !== view.state) el.dataset.recruitmentState = view.state; });
+    document.querySelectorAll('[data-recruitment-copy]').forEach(el => {
+      const copy = view.copy[el.dataset.recruitmentCopy];
+      if (typeof copy === 'string' && el.textContent !== copy) el.textContent = copy;
+    });
+  }
   document.addEventListener("DOMContentLoaded", async () => {
     const targets = document.querySelectorAll("[data-event-groups], [data-gallery-groups], [data-recruitment-status]");
     if (!targets.length) return;
@@ -79,17 +124,13 @@
           document.querySelectorAll("[data-gallery-groups]").forEach(el => renderGroups(el, groups, true));
           previous = signature;
         }
-        const publicRecruitment = events.filter(e => e.recruitment?.published === true);
-        const event = publicRecruitment.find(e => recruitmentState(e) !== "closed");
-        const latest = publicRecruitment.sort((a,b) => instant(b.recruitment.endsAt)-instant(a.recruitment.endsAt))[0];
-        document.querySelectorAll("[data-recruitment-status]").forEach(el => {
-          el.textContent = event && recruitmentState(event) === "open" ? "出展者募集中" : !event && latest && recruitmentState(latest) === "closed" ? `第${latest.edition}回の募集は締め切りました。` : "企画中";
-        });
+        renderRecruitment(recruitmentView(events));
       };
       render();
       setInterval(render, 60000);
       document.addEventListener("visibilitychange", () => { if (!document.hidden) render(); });
     } catch (_) {
+      renderRecruitment(recruitmentView([], Date.now(), true));
       document.querySelectorAll("[data-event-groups], [data-gallery-groups]").forEach(el => {
         const message = text("p", "開催情報を読み込めませんでした。時間をおいて再読み込みしてください。");
         message.setAttribute("role", "status");
