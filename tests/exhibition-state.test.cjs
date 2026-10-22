@@ -47,3 +47,51 @@ test('an approved open recruitment is not masked by a planning row; date boundar
  assert.match(recruitmentView([confirmed],recStart).copy.faq,/募集期間中/);
  assert.match(recruitmentView([confirmed],recEnd).copy.faq,/終了/);
 });
+
+test("sculpture weight remains a per-piece venue-dependent guideline",()=>{
+ const none=recruitmentView([event],recStart);
+ const planning=recruitmentView([{...event,recruitment:{published:false}}],recStart);
+ const failed=recruitmentView([],recStart,true);
+ const expected="絵画などの平面作品に加え、立体作品やデジタルサイネージも取り入れたいと考えています。立体作品は、1点あたり最大20kgを目安に考えています。ただし、会場の設備や展示方法によって対応できる重量が変わるため、20kg以下でも展示できない場合があります。正式な条件は会場が決まり次第ご案内します。会場の耐荷重・展示設備・安全基準を優先します。吊り展示については引き続き検討中です。";
+ for(const view of [none,planning,failed]){
+  assert.equal(view.copy.conditions,expected);
+  assert.match(view.copy.conditions,/1点あたり最大20kgを目安/);
+  assert.match(view.copy.conditions,/会場の設備や展示方法によって対応できる重量が変わる/);
+  assert.match(view.copy.conditions,/20kg以下でも展示できない場合があります/);
+  assert.match(view.copy.conditions,/会場の耐荷重・展示設備・安全基準を優先/);
+  assert.match(view.copy.conditions,/吊り展示については引き続き検討中/);
+  assert.doesNotMatch(view.copy.conditions,/20kgまで展示可能|重量20kgまで/);
+ }
+ const announced=[
+  ["upcoming",recStart-1],
+  ["open",recStart],
+  ["closed",recEnd]
+ ];
+ for(const [state,now] of announced){
+  const view=recruitmentView([confirmed],now);
+  assert.equal(view.state,state);
+  assert.match(view.copy.conditions,/正式な募集要項/);
+  assert.doesNotMatch(view.copy.conditions,/20kg/);
+ }
+ const html=require("node:fs").readFileSync(require("node:path").join(__dirname,"..","participate.html"),"utf8");
+ const staticCondition=html.match(/<p data-recruitment-copy="conditions">([^<]+)<\/p>/);
+ assert.ok(staticCondition);
+ assert.equal(staticCondition[1],expected);
+ assert.doesNotMatch(html,/重量20kgまでを想定/);
+});
+
+test("participation page preserves the seven accordion sections and initial open state",()=>{
+ const html=require("node:fs").readFileSync(require("node:path").join(__dirname,"..","participate.html"),"utf8");
+ const items=[...html.matchAll(/<details class="path-details"( open)?><summary>([^<]+)<\/summary>/g)];
+ assert.deepEqual(items.map(item=>item[2]),[
+  "次回の展示について",
+  "どんな人に参加してほしい？",
+  "人数と作品数について",
+  "作品の準備と発送について",
+  "参加費と販売について",
+  "お申し込みについて",
+  "よくあるご質問"
+ ]);
+ assert.equal(items.filter(item=>Boolean(item[1])).length,1);
+ assert.equal(items[0][1]," open");
+});

@@ -76,3 +76,10 @@ nav.path-section { padding-block: var(--space-5); }
 .participate-page .participation-guide__answer { padding:0 0 24px; }
 .participate-page .participation-guide__answer p { margin:0; }
 .participate-page .participation-guide__answer p + p { margin-top:16px; }
+
+/* Only the Participate page uses the animated native <details> content. */
+.participate-page .participation-guide__answer { padding:0; overflow:hidden; }
+.participate-page .participation-guide__content { padding-bottom:24px; }
+.participate-page .participation-vision { margin-block:48px 32px; padding-top:32px; border-top:1px solid var(--path-rule); }
+.participate-page .participation-vision h3 { margin:0; font-size:var(--type-heading-3-size); font-weight:400; line-height:1.8; }
+.participate-page .participation-vision p { margin:16px 0 0; }
