@@ -279,14 +279,6 @@ class LiquidButton extends HTMLElement {
   opacity:.8;
 }
 
-.noise{
-  position:absolute;
-  inset:0;
-  opacity:.03;
-  background-image:radial-gradient(#fff 1px, transparent 1px);
-  background-size:4px 4px;
-  mix-blend-mode:overlay;
-}
 
 @media (hover:hover) and (pointer:fine) {
   .wrapper:hover .arrow { transform:translateX(.35em) rotate(-45deg); }
@@ -307,7 +299,6 @@ ${href ? `href="${href}"` : ""}>
 
 <div class="caustics"></div>
 
-<div class="noise"></div>
 
 <span class="label">
 ${labelText}${arrow ? '<span class="arrow" aria-hidden="true"></span>' : ""}
