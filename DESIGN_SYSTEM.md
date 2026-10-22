@@ -51,7 +51,7 @@
 
 ### Current background system
 - Base paper color: `--color-bg` (`#f3f3ed`). Keep page backgrounds transparent where they should reveal the shared body grain.
-- Shared grain uses the existing inline fractal-noise layer. On Concept, Information, Contact, and Policy it is static at 3.5% opacity; TOP retains its existing animated treatment and Gallery retains its existing page behavior.
+- Shared paper uses a static micro-fiber WebP. The body and opaque Vanta background stack share the same image, scale and opacity; no texture layer is placed over text or artwork.
 - Use a restrained tint from the existing olive text color only for meaningful information surfaces, such as archived exhibition records and the contact form section. Do not alternate section backgrounds mechanically.
 - Keep form controls and artwork cards on their established opaque surfaces.
 
@@ -91,7 +91,7 @@
 - offscreen時は可能なら停止する。
 - `visibilitychange` を考慮する。
 - `prefers-reduced-motion: reduce` を尊重する。
-- Shared body paper is a static micro-fiber WebP displayed as a512 CSS pixel tile; animated grain is disabled across pages. Fog/Vanta/loading retain their existing motion.
+- Shared body paper is a static micro-fiber WebP displayed as a1024 CSS pixel tile; animated grain is disabled across pages. Fog/Vanta/loading retain their existing motion.
 - mobileでは負荷を下げても世界観が保てる設計を優先する。
 - animationがLCP / CLS / INP / scrollを悪化させないことを確認する。
 
@@ -204,7 +204,7 @@ TOPのFVラッパーだけ共通revealの10px移動を抑制し、開始時も�
 
 `visual-shared.css` owns Concept-derived Scroll horizontal axes: PC 20vmin, intermediate 10vw, mobile 22px. Text remains vertical with 0.4rem tracking, 1px line and 6px gap; duration remains3.2s. Desktop editorial guides share FV bottom0; Information/Contact use the same100svh desktop frame as Concept to keep the left guide clear of titles. Compact editorial guides share a title/subtitle-aware bounded rule, retaining the shared line length by reserving a640px compact reading frame (tablet at least100svh). Extremely constrained views can still shorten the line as a safety fallback. TOP retains its viewport-center title and shared bottom0px desktop /8px compact (safe-area priority) with the same shared guide length; Gallery retains its CSS hero geometry and hidden PC guide. No additional guides are added to pages without them.
 
-The menu uses two20px lines crossing at±45deg at the exact button center, with a240ms transform and160ms fade; existing44/48px circles, focus, Escape, inert and scroll lock remain. Static original washi-micro.webp uses fine fibers and particles at shared opacity0.34, preserves the ivory fallback, and replaces the animated SVG noise filter. Artist images, card SVGs, existing Fog/Vanta and card/section interactions remain unchanged. Reduced motion stops guide movement and menu/card transitions.
+The menu uses two20px lines crossing at±45deg at the exact button center, with a240ms transform and160ms fade; existing44/48px circles, focus, Escape, inert and scroll lock remain. Phase5 static original washi-micro.webp used fine fibers and particles at shared opacity0.34, preserves the ivory fallback, and replaces the animated SVG noise filter. Artist images, card SVGs, existing Fog/Vanta and card/section interactions remain unchanged. Reduced motion stops guide movement and menu/card transitions.
 
 Outside the low-landscape override, compact tablet Concept frames retain their640px minimum. Low landscape viewports use the height-bounded frame described below.
 
@@ -214,4 +214,12 @@ The portrait and regular desktop rules stay unchanged. Only `(orientation: lands
 
 The complete Scroll group is anchored12px above the available viewport end, with safe-area padding. Its static parent translateY(-100%) accounts for the actual label and bar height. The140/280px bar remains preferred; only insufficient height causes an even-pixel shortening based on measured Header/label/safe-area dimensions. Resize, orientation media changes, fonts.ready and visualViewport.resize update the size through a requestAnimationFrame scheduler. visualViewport scale changes from pinch zoom do not trigger layout shrinkage. TOP keeps its viewport center and3.2s guide animation; short landscape title/copy scales are owned by user-settings.css and explicit line breaks remain intact.
 
-Body uses the static1024px washi-micro.webp at the existing512 CSS pixel repeat size/opacity/ivory fallback. It contains only0.5–2.6 CSS pixel straight fibers and micro-particles, not visible curved line art. Runtime WebP is21,132bytes. The procedural SVG comparison source and generation/validation scripts remain in the local review package. The old washi-body.svg is retained but no longer referenced by body. Card SVGs/paper, Artist artwork, Fog/Vanta and other motion are unchanged.
+Phase5 used the static1024px washi-micro.webp at512 CSS pixel repeat size/opacity/ivory fallback; Phase6 below supersedes size/opacity. At the Phase5 half scale it contained0.5–2.6 CSS pixel straight fibers and micro-particles (Phase6 native scale doubles these lengths), not visible curved line art. Runtime WebP is21,132bytes. The procedural SVG comparison source and generation/validation scripts remain in the local review package. The old washi-body.svg is retained but no longer referenced by body. Card SVGs/paper, Artist artwork, Fog/Vanta and other motion are unchanged.
+
+## Phase 6: paper visibility and reading rhythm
+
+Paper uses the existing1024px WebP at native1024 CSS px and opacity0.6. Body paper was attenuated by the opaque-color Vanta surface (wrapper opacity0.52/0.6) on TOP/Concept; a shared static ::after inside .vanta-wrap restores it without moving the canvas or covering artwork. Other pages retain their body layer. No new texture download or animated grain is added.
+
+Spacing tokens in visual-shared.css:8/16/24/32/48/64/96px. Participation components use these for card padding, image/text rhythm, grid gap and related-navigation spacing. Existing mobile44px and tablet110px gutters remain per side (88/220px combined); no new interpretation is imposed on other layouts. Under360px, participation cards use one column to protect title readability. Related navigation uses32px vertical padding instead of another full64/96px section on each side.
+
+Reuse the existing slide.js IntersectionObserver reveal, with20px movement,800ms ease-out and100ms two-card stagger. Extend it to participation and editorial headings; avoid nested targets. Existing FV targets keep their transforms, TOP H1 remains stationary and centered, Fog/Vanta and3.2s guide stay unchanged. No JS/reduced-motion means content remains visible; touch does not depend on hover. Card-image feedback moves4px on fine-pointer hover or keyboard focus. Paper is always static.
