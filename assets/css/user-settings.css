@@ -65,7 +65,7 @@
 .menu-small,
 .menu-en {
   font-size: var(--type-menu-meta-size);
-  font-size: clamp(0.8px, 0.9vw, 10px);
+  font-size: clamp(9px, 0.9vw, 10px);
 }
 
 /* 既存のフォーム用直接指定をユーザー設定へ接続 */
