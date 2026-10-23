@@ -150,6 +150,16 @@ Discover → Plan → Execute → Verify → Iterate
 - 公開後はGitHub Pages上の実URLを確認する。
 - 「ローカルで動く」だけで完了扱いにしない。
 
+
+### ブランチの維持・整理
+
+- `main`を正式公開コードとし、新しい目的の作業は最新の`origin/main`を基準にし、既存変更を保護するため必要な場合に独立環境を用意する。古い作業ブランチを別目的に再利用しない。
+- 作業ブランチは必要な場合にだけ作成し、1本につき1つの目的の変更を扱う。未完成・公開保留の変更はDraft PRで管理し、無断で公開しない。
+- ブランチ切替前にstaged / unstaged / untracked、stash、全worktreeを確認する。未コミット変更と未保存のエディター内容を保護できない場合、その環境を切り替えない。
+- 整理候補は、関連PRのMerge、最終head SHA、mainへの統合、PR後の追加commit、open / Draft PRと全worktreeの利用状況を照合する。Squash等はpatch同等性とコード差分も確認する。
+- `main`、open / Draft PR、未統合の独自作業、未コミット変更、利用中worktreeのブランチを保護する。Merge済みでも自動削除しない。
+- 削除は対象・最終SHA・統合先・未統合作業がない根拠・復旧方法を提示し、ユーザー承認後に実施する。削除直前にもSHAと利用状況を再確認し、force削除・stash削除・worktree pruneを整理に混在させない。履歴の書き換えなどの破壊的Git操作も事前承認を得る。
+
 ## 9. Completion Report
 
 作業完了時は最低限、
