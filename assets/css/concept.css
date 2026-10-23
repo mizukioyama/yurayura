@@ -68,7 +68,7 @@
 
 .concept-texture__images {
   position: relative;
-  width: 80%;
+  width: 100%;
   min-height: clamp(360px, 44vw, 620px);
 }
 
@@ -95,8 +95,8 @@
 }
 
 .concept-photo--small {
-  bottom: 0;
-  left: 0;
+  bottom: 32px;
+  left: 36px;
   width: min(48%, 280px);
   height: clamp(180px, 24vw, 310px);
 }
@@ -236,17 +236,17 @@
   }
 
   .concept-texture__images {
-    min-height: 390px;
+    min-height: 260px;
   }
 
   .concept-photo--large {
-    width: 76%;
-    height: 270px;
+    width: 56%;
+    height: 180px;
   }
 
   .concept-photo--small {
-    width: 52%;
-    height: 190px;
+    width: 42%;
+    height: 132px;
   }
 
   .concept-gallery-link {

@@ -145,7 +145,8 @@ body::before {
   z-index: 0;
   background: var(--paper-image, url('../img/participation/washi-grain.webp')) repeat;
   background-size: var(--paper-size, 512px 512px);
-  opacity: var(--paper-opacity, .72);
+  background-size: cover;
+  /* opacity: var(--paper-opacity, .72); */
   content: "";
   pointer-events: none;
 }
