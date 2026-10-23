@@ -1,42 +1,79 @@
 /* Concept is the canonical Scroll axis and visual vocabulary. */
-:root { --fv-scroll-left: 20vmin; --fv-scroll-line: 280px; --fv-scroll-bottom: 0px; }
-@media (max-width: 1199px) { :root { --fv-scroll-left: 10vw; --fv-scroll-bottom: 8px; } }
-@media (max-width: 1023px) { :root { --fv-scroll-line: 140px; } }
-@media (max-width: 767px) { :root { --fv-scroll-left: 22px; } }
+:root {
+  --fv-scroll-left: 20vmin;
+  --fv-scroll-line: 280px;
+  --fv-scroll-bottom: 0px;
+}
+@media (max-width: 1199px) {
+  :root {
+    --fv-scroll-left: 10vw;
+    --fv-scroll-bottom: 8px;
+  }
+}
+@media (max-width: 1023px) {
+  :root {
+    --fv-scroll-line: 140px;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --fv-scroll-left: 22px;
+  }
+}
 body .main :is(.fv, .concept-fv) .scroll-guide,
 body.gallery-page .gallery > .scroll-guide {
-  left: var(--fv-scroll-left) !important;
+  left: 0;
   right: auto !important;
   --content-scroll-guide-size: var(--fv-scroll-line);
 }
-body .scroll-guide__text { font-size: var(--type-body-size); line-height: 1.7; writing-mode: vertical-rl; letter-spacing: 0.4rem; }
-body .scroll-guide__bar { width: 1px; margin-top: 6px; }
+body .scroll-guide__text {
+  font-size: var(--type-body-size);
+  line-height: 1.7;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.4rem;
+}
+body .scroll-guide__bar {
+  width: 1px;
+  margin-top: 6px;
+}
 /* No moving grain or new perpetual motion; existing FV effects remain intact. */
 @media (prefers-reduced-motion: reduce) {
-  body .scroll-guide__bar::before { animation: none !important; transform: none !important; opacity: 0 !important; }
+  body .scroll-guide__bar::before {
+    animation: none !important;
+    transform: none !important;
+    opacity: 0 !important;
+  }
 }
 
 /* The desktop reading hero uses the same full-height frame as Concept, so
    a left guide cannot cross its title as it did in the shorter right-guide frame. */
 @media (min-width: 1200px) {
   .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv { min-height: 100svh !important; }
+  .contact-page .information-hero.concept-fv {
+    min-height: 100svh !important;
+  }
 }
 
 /* Reserve Concept's guide length instead of reducing it to a short stub. */
 @media (max-width: 1199px) {
   .information-page .information-hero.concept-fv,
   .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv { min-height: max(100svh, 640px) !important; }
+  .policy-page .concept-fv {
+    min-height: max(100svh, 640px) !important;
+  }
 }
 @media (max-width: 767px) {
   .information-page .information-hero.concept-fv,
   .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv { min-height: 640px !important; }
+  .policy-page .concept-fv {
+    min-height: 640px !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
-  .concept-page .concept-fv { min-height: max(100svh, 640px) !important; }
+  .concept-page .concept-fv {
+    min-height: max(100svh, 640px) !important;
+  }
 }
 
 body.top-page .main .fv .scroll-guide {
@@ -58,7 +95,10 @@ body.top-page .main .fv .scroll-guide {
     min-height: 0 !important;
     height: var(--compact-frame-height) !important;
   }
-  body:is(.concept-page, .information-page, .contact-page, .policy-page) .main .concept-fv :is(.fv__inner, .information-hero__inner) {
+  body:is(.concept-page, .information-page, .contact-page, .policy-page)
+    .main
+    .concept-fv
+    :is(.fv__inner, .information-hero__inner) {
     position: absolute !important;
     inset: auto !important;
     top: var(--compact-title-top) !important;
@@ -78,7 +118,10 @@ body.top-page .main .fv .scroll-guide {
     bottom: auto !important;
     transform: translateY(-100%) !important;
     padding-bottom: env(safe-area-inset-bottom);
-    --content-scroll-guide-size: var(--compact-scroll-line, max(0px, min(var(--fv-scroll-line), calc(var(--compact-frame-height) - 130px)))) !important;
+    --content-scroll-guide-size: var(
+      --compact-scroll-line,
+      max(0px, min(var(--fv-scroll-line), calc(var(--compact-frame-height) - 130px)))
+    ) !important;
   }
   body.top-page .main .fv {
     height: var(--compact-frame-height);
@@ -99,7 +142,9 @@ body.top-page .main .fv .scroll-guide {
 }
 /* Gallery PC remains unchanged, including its intentionally hidden Scroll. */
 @media (orientation: landscape) and (max-height: 720px) and (max-width: 1199px) {
-  body.gallery-page .main.gallery { padding: 0 var(--fv-scroll-left) !important; }
+  body.gallery-page .main.gallery {
+    padding: 0 var(--fv-scroll-left) !important;
+  }
   body.gallery-page .main.gallery .h1-text {
     position: absolute !important;
     top: var(--compact-title-top) !important;
@@ -126,9 +171,9 @@ body.top-page .main .fv .scroll-guide {
 /* Shared paper stays below content and artwork. Vanta owns an opaque surface,
    so its paper belongs inside that background stack, above its canvas only. */
 :root {
-  --paper-image: url('../img/participation/washi-grain.webp');
+  --paper-image: url("../img/participation/washi-grain.webp");
   --paper-size: 512px 512px;
-  --paper-opacity: .72;
+  --paper-opacity: 0.72;
   --space-2: 8px;
   --space-3: 16px;
   --space-4: 24px;
@@ -139,12 +184,12 @@ body.top-page .main .fv .scroll-guide {
   --motion-reveal-distance: 20px;
   --motion-reveal-duration: 800ms;
   --motion-feedback-duration: 360ms;
-  --motion-interaction-duration:180ms;
-  --motion-ease-out: cubic-bezier(.22, 1, .36, 1);
+  --motion-interaction-duration: 180ms;
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-card-lift: -4px;
 }
 .vanta-wrap::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -154,24 +199,50 @@ body.top-page .main .fv .scroll-guide {
   opacity: var(--paper-opacity);
 }
 /* Existing intro targets keep their exact transforms and centered geometry. */
-body .top-reveal-pending:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(.fv__txt) {
+body
+  .top-reveal-pending:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(
+    .fv__txt
+  ) {
   opacity: 0;
   transform: translateY(var(--motion-reveal-distance));
 }
-body .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(.fv__txt) {
+body
+  .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.h1-text):not(.policy-title):not(
+    #concept-title
+  ):not(.fv__txt) {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--motion-reveal-duration) var(--motion-ease-out), transform var(--motion-reveal-duration) var(--motion-ease-out), translate var(--card-float-duration) var(--motion-ease-out), box-shadow var(--card-float-duration) var(--motion-ease-out), background-color var(--card-float-duration) ease;
-  transition-delay:var(--top-reveal-delay,0ms),var(--top-reveal-delay,0ms),0ms,0ms,0ms;
+  transition:
+    opacity var(--motion-reveal-duration) var(--motion-ease-out),
+    transform var(--motion-reveal-duration) var(--motion-ease-out),
+    translate var(--card-float-duration) var(--motion-ease-out),
+    box-shadow var(--card-float-duration) var(--motion-ease-out),
+    background-color var(--card-float-duration) ease;
+  transition-delay: var(--top-reveal-delay, 0ms), var(--top-reveal-delay, 0ms), 0ms, 0ms, 0ms;
 }
 /* Feedback uses the child image so it never competes with the card reveal. */
-body .path-card__image { transition: transform var(--motion-reveal-duration) var(--motion-ease-out), opacity var(--motion-feedback-duration) ease; }
-body .path-card:focus-visible .path-card__image { transform: translateY(var(--motion-card-lift)); }
-.path-action { text-underline-offset: 6px; transition: color var(--motion-feedback-duration) ease; }
-.path-action:focus-visible { text-decoration: underline; }
+body .path-card__image {
+  transition:
+    transform var(--motion-reveal-duration) var(--motion-ease-out),
+    opacity var(--motion-feedback-duration) ease;
+}
+body .path-card:focus-visible .path-card__image {
+  transform: translateY(var(--motion-card-lift));
+}
+.path-action {
+  text-underline-offset: 6px;
+  transition: color var(--motion-feedback-duration) ease;
+}
+.path-action:focus-visible {
+  text-decoration: underline;
+}
 @media (hover: hover) and (pointer: fine) {
-  body .path-card:hover .path-card__image { transform: translateY(var(--motion-card-lift)); }
-  .path-action:hover { text-decoration: underline; }
+  body .path-card:hover .path-card__image {
+    transform: translateY(var(--motion-card-lift));
+  }
+  .path-action:hover {
+    text-decoration: underline;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   body .top-reveal-pending,
@@ -180,131 +251,378 @@ body .path-card:focus-visible .path-card__image { transform: translateY(var(--mo
     transform: none !important;
     transition: none !important;
   }
-  body .path-card__image, .path-action { transition: none; }
-  body .path-card:is(:hover, :focus-visible) .path-card__image { transform: none; }
+  body .path-card__image,
+  .path-action {
+    transition: none;
+  }
+  body .path-card:is(:hover, :focus-visible) .path-card__image {
+    transform: none;
+  }
 }
 
 /* Paper is a surface background, never a foreground over artwork or text. */
-.footer { background-image: var(--paper-image); background-size: var(--paper-size); }
+.footer {
+  background-image: var(--paper-image);
+  background-size: var(--paper-size);
+}
 @media (max-width: 1199px) {
-  .header.is-open .header-list { background-image: var(--paper-image); background-size: var(--paper-size); }
+  .header.is-open .header-list {
+    background-image: var(--paper-image);
+    background-size: var(--paper-size);
+  }
 }
 /* Keyboard feedback is explicit; touch never relies on a hover state. */
-body :is(.header-link,.footer-link,.footer-related a,.header-sublink,.gallery-filter,.gallery-page-button,.gallery-work-link,.gallery-modal__close,.gallery-modal__slide-button,.modal-close,.modal-btn,.send-btn,.path-action,.path-card,summary,.contact-form input,.contact-form textarea,.contact-form select):focus-visible {
+body
+  :is(
+    .header-link,
+    .footer-link,
+    .footer-related a,
+    .header-sublink,
+    .gallery-filter,
+    .gallery-page-button,
+    .gallery-work-link,
+    .gallery-modal__close,
+    .gallery-modal__slide-button,
+    .modal-close,
+    .modal-btn,
+    .send-btn,
+    .path-action,
+    .path-card,
+    summary,
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select
+  ):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 4px;
 }
-:is(.header-link,.footer-link,.footer-related a,.path-action) { transition: opacity var(--motion-interaction-duration) ease, background-color var(--motion-interaction-duration) ease; }
-body :is(.header-link,.footer-link,.footer-related a,.path-action):active { opacity: .65; }
-.path-card:active { background-color: color-mix(in srgb, var(--color-txt) 8%, transparent); }
-body .path-card:active .path-card__image { transform: translateY(0) scale(.99); }
-body.gallery-page .gallery-filter { min-height:44px !important; }
-body.gallery-page .gallery-filter:active { opacity: .55 !important; }
-body.gallery-page .gallery-filter.is-active { opacity: 1 !important; text-decoration-thickness: 2px; }
-body .gallery-page-button:active { opacity:.65; }
-body .gallery-page-button[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
-:is(.modal-btn,.send-btn):active { filter: brightness(.94); }
-@media (hover:hover) and (pointer:fine) {
-  :is(.header-link,.footer-link,.footer-related a):hover { opacity:.78; }
-  .header-link:not(.is-current):hover .menu-en { background-size:100% 1px; }
-  .footer-related a:hover { text-decoration:underline; text-underline-offset:4px; }
-  body.gallery-page .gallery-filter:not(.is-active):hover { opacity:1 !important; text-decoration:underline; text-decoration-style:dotted; }
+:is(.header-link, .footer-link, .footer-related a, .path-action) {
+  transition:
+    opacity var(--motion-interaction-duration) ease,
+    background-color var(--motion-interaction-duration) ease;
 }
-@media (hover:none) {
-  .header-link:hover { opacity:1; }
-  .footer-related a:hover { text-decoration:none; }
-  .path-card:hover { background-color:transparent; }
-  .path-card:active { background-color:color-mix(in srgb, var(--color-txt) 8%, transparent); }
+body :is(.header-link, .footer-link, .footer-related a, .path-action):active {
+  opacity: 0.65;
 }
-@media (prefers-reduced-motion:reduce) {
-  :is(.header-link,.footer-link,.footer-related a,.path-action) { transition:none; }
-  body .path-card:active .path-card__image { transform:none; }
+.path-card:active {
+  background-color: color-mix(in srgb, var(--color-txt) 8%, transparent);
+}
+body .path-card:active .path-card__image {
+  transform: translateY(0) scale(0.99);
+}
+body.gallery-page .gallery-filter {
+  min-height: 44px !important;
+}
+body.gallery-page .gallery-filter:active {
+  opacity: 0.55 !important;
+}
+body.gallery-page .gallery-filter.is-active {
+  opacity: 1 !important;
+  text-decoration-thickness: 2px;
+}
+body .gallery-page-button:active {
+  opacity: 0.65;
+}
+body .gallery-page-button[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+:is(.modal-btn, .send-btn):active {
+  filter: brightness(0.94);
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(.header-link, .footer-link, .footer-related a):hover {
+    opacity: 0.78;
+  }
+  .header-link:not(.is-current):hover .menu-en {
+    background-size: 100% 1px;
+  }
+  .footer-related a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  body.gallery-page .gallery-filter:not(.is-active):hover {
+    opacity: 1 !important;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+}
+@media (hover: none) {
+  .header-link:hover {
+    opacity: 1;
+  }
+  .footer-related a:hover {
+    text-decoration: none;
+  }
+  .path-card:hover {
+    background-color: transparent;
+  }
+  .path-card:active {
+    background-color: color-mix(in srgb, var(--color-txt) 8%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.header-link, .footer-link, .footer-related a, .path-action) {
+    transition: none;
+  }
+  body .path-card:active .path-card__image {
+    transform: none;
+  }
 }
 
-.liquid-control:active { transform:translateY(1px) scale(.99); }
-@media (prefers-reduced-motion:reduce) { .liquid-control:active { transform:none; } }
+.liquid-control:active {
+  transform: translateY(1px) scale(0.99);
+}
+@media (prefers-reduced-motion: reduce) {
+  .liquid-control:active {
+    transform: none;
+  }
+}
 
-.liquid-control:focus-visible { outline-color:var(--color-txt); }
+.liquid-control:focus-visible {
+  outline-color: var(--color-txt);
+}
 
 /* Card interaction uses individual translate; reveal owns transform independently. */
-:root { --card-float-duration:680ms; --card-float-lift:-8px; }
+:root {
+  --card-float-duration: 680ms;
+  --card-float-lift: -8px;
+}
 body .path-card,
 body .path-card.top-reveal-pending.top-reveal-visible {
-  transition: opacity var(--motion-reveal-duration) var(--motion-ease-out),
+  transition:
+    opacity var(--motion-reveal-duration) var(--motion-ease-out),
     transform var(--motion-reveal-duration) var(--motion-ease-out),
     translate var(--card-float-duration) var(--motion-ease-out),
     box-shadow var(--card-float-duration) var(--motion-ease-out),
     background-color var(--card-float-duration) ease;
-  transition-delay:var(--top-reveal-delay,0ms),var(--top-reveal-delay,0ms),0ms,0ms,0ms;
+  transition-delay: var(--top-reveal-delay, 0ms), var(--top-reveal-delay, 0ms), 0ms, 0ms, 0ms;
 }
-body .path-card:focus-visible { translate:0 var(--card-float-lift); box-shadow:0 12px 24px rgb(61 53 42 / .12); }
-@media (hover:hover) and (pointer:fine) {
-  body .path-card:hover { translate:0 var(--card-float-lift); box-shadow:0 12px 24px rgb(61 53 42 / .12); }
+body .path-card:focus-visible {
+  translate: 0 var(--card-float-lift);
+  box-shadow: 0 12px 24px rgb(61 53 42 / 0.12);
 }
-body .path-card:active { translate:0 -2px; box-shadow:0 4px 12px rgb(61 53 42 / .1); }
-body .path-card:is(:hover,:focus-visible,:active) .path-card__image { transform:none; }
-@media (prefers-reduced-motion:reduce) {
-  body .path-card, body .path-card.top-reveal-pending.top-reveal-visible { transition:none; }
-  body .path-card:is(:hover,:focus-visible,:active) { translate:none; }
+@media (hover: hover) and (pointer: fine) {
+  body .path-card:hover {
+    translate: 0 var(--card-float-lift);
+    box-shadow: 0 12px 24px rgb(61 53 42 / 0.12);
+  }
+}
+body .path-card:active {
+  translate: 0 -2px;
+  box-shadow: 0 4px 12px rgb(61 53 42 / 0.1);
+}
+body .path-card:is(:hover, :focus-visible, :active) .path-card__image {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  body .path-card,
+  body .path-card.top-reveal-pending.top-reveal-visible {
+    transition: none;
+  }
+  body .path-card:is(:hover, :focus-visible, :active) {
+    translate: none;
+  }
 }
 /* TOP only: keep the eyebrow and Japanese title on one centered axis. */
 .top-page .path-section[aria-labelledby="paths-title"] .path-eyebrow {
-  display:block; width:100%; margin:0 0 16px; text-align:center;
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  text-align: center;
 }
 .top-page .path-section[aria-labelledby="paths-title"] #paths-title {
-  text-align:center; margin-bottom:32px;
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 /* Press reacts promptly; reveal opacity/transform retain their own timing. */
-body .path-card:active { --card-float-duration:120ms; }
-.top-page section#artists { height:auto; min-height:0; padding-bottom:var(--space-7); }
-.top-page #artists > .section__inner { height:auto; }
-.top-page #artists + .path-section { padding-top:var(--space-7); }
-@media (max-width:767px) { .top-page #artists + .path-section { padding-top:var(--space-6); } }
+body .path-card:active {
+  --card-float-duration: 120ms;
+}
+.top-page section#artists {
+  height: auto;
+  min-height: 0;
+  padding-bottom: var(--space-7);
+}
+.top-page #artists > .section__inner {
+  height: auto;
+}
+.top-page #artists + .path-section {
+  padding-top: var(--space-7);
+}
+@media (max-width: 767px) {
+  .top-page #artists + .path-section {
+    padding-top: var(--space-6);
+  }
+}
 /* Inline gradients paint each wrapped text fragment without changing geometry. */
-:root { --text-link-color:#343d23; --text-link-line-duration:350ms; --text-link-color-duration:250ms; }
-.footer { --text-link-color:color-mix(in srgb,var(--color-bg) 80%,white); }
-body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a,.footer-link .menu-en) {
-  background-image:linear-gradient(currentColor,currentColor);
-  background-size:0% 1px;
-  background-position:left bottom;
-  background-repeat:no-repeat;
-  -webkit-box-decoration-break:clone;
-  box-decoration-break:clone;
-  transition:background-size var(--text-link-line-duration) var(--motion-ease-out),color var(--text-link-color-duration) ease;
+:root {
+  --text-link-color: #343d23;
+  --text-link-line-duration: 350ms;
+  --text-link-color-duration: 250ms;
 }
-@media (hover:hover) and (pointer:fine) {
-  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a) { text-decoration:none; }
-  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):hover,
-  body .footer-link:hover .menu-en { background-size:100% 1px; color:var(--text-link-color); text-decoration:none; }
+.footer {
+  --text-link-color: color-mix(in srgb, var(--color-bg) 80%, white);
 }
-body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):focus-visible,
-body .footer-link:focus-visible .menu-en { background-size:100% 1px; color:var(--text-link-color); }
-body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a):active { color:var(--text-link-color); }
-@media (prefers-reduced-motion:reduce) {
-  body :is(.path-action,.path-prose a,.section__txt a,.policy-content a,.faq-item__answer a,.contact-form-shortcut a,.footer-policy-link,.footer-related a,.footer-link .menu-en) { transition:none; }
+body
+  :is(
+    .path-action,
+    .path-prose a,
+    .section__txt a,
+    .policy-content a,
+    .faq-item__answer a,
+    .contact-form-shortcut a,
+    .footer-policy-link,
+    .footer-related a,
+    .footer-link .menu-en
+  ) {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition:
+    background-size var(--text-link-line-duration) var(--motion-ease-out),
+    color var(--text-link-color-duration) ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  body
+    :is(
+      .path-action,
+      .path-prose a,
+      .section__txt a,
+      .policy-content a,
+      .faq-item__answer a,
+      .contact-form-shortcut a,
+      .footer-policy-link,
+      .footer-related a
+    ) {
+    text-decoration: none;
+  }
+  body
+    :is(
+      .path-action,
+      .path-prose a,
+      .section__txt a,
+      .policy-content a,
+      .faq-item__answer a,
+      .contact-form-shortcut a,
+      .footer-policy-link,
+      .footer-related a
+    ):hover,
+  body .footer-link:hover .menu-en {
+    background-size: 100% 1px;
+    color: var(--text-link-color);
+    text-decoration: none;
+  }
+}
+body
+  :is(
+    .path-action,
+    .path-prose a,
+    .section__txt a,
+    .policy-content a,
+    .faq-item__answer a,
+    .contact-form-shortcut a,
+    .footer-policy-link,
+    .footer-related a
+  ):focus-visible,
+body .footer-link:focus-visible .menu-en {
+  background-size: 100% 1px;
+  color: var(--text-link-color);
+}
+body
+  :is(
+    .path-action,
+    .path-prose a,
+    .section__txt a,
+    .policy-content a,
+    .faq-item__answer a,
+    .contact-form-shortcut a,
+    .footer-policy-link,
+    .footer-related a
+  ):active {
+  color: var(--text-link-color);
+}
+@media (prefers-reduced-motion: reduce) {
+  body
+    :is(
+      .path-action,
+      .path-prose a,
+      .section__txt a,
+      .policy-content a,
+      .faq-item__answer a,
+      .contact-form-shortcut a,
+      .footer-policy-link,
+      .footer-related a,
+      .footer-link .menu-en
+    ) {
+    transition: none;
+  }
 }
 
 /* Avoid a stranded final word in the new editorial paragraphs; normal wrap is the fallback. */
-.top-page .top-summary .section__txt { text-wrap:pretty; }
-
+.top-page .top-summary .section__txt {
+  text-wrap: pretty;
+}
 
 /* Header uses the same text-fragment feedback as Footer, in its own palette. */
-.header { --text-link-color:#343d23; }
-.header :is(.menu-en,.menu-label) {
-  background-image:linear-gradient(currentColor,currentColor);
-  background-size:0% 1px; background-position:left bottom; background-repeat:no-repeat;
-  transition:background-size var(--text-link-line-duration) var(--motion-ease-out),color var(--text-link-color-duration) ease;
+.header {
+  --text-link-color: #343d23;
 }
-.header-link.is-current :is(.menu-en,.menu-label) { background-size:100% 1px; text-decoration:none; }
-@media (hover:hover) and (pointer:fine) {
-  body .header-link:hover :is(.menu-en,.menu-label) { background-size:100% 1px; color:var(--text-link-color); text-decoration:none; }
+.header :is(.menu-en, .menu-label) {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition:
+    background-size var(--text-link-line-duration) var(--motion-ease-out),
+    color var(--text-link-color-duration) ease;
 }
-.header-link:focus-visible :is(.menu-en,.menu-label) { background-size:100% 1px; color:var(--text-link-color); }
-@media (prefers-reduced-motion:reduce) { .header :is(.menu-en,.menu-label) { transition:none; } }
-.concept-statement__copy { width:min(100%,680px); margin-inline:auto; }
-.concept-statement__copy .section__txt { width:100%; margin:0; white-space:pre-line; }
-.concept-statement__copy .section__txt + .section__txt { margin-top:24px; }
-.information-planning { width:min(100%,680px); margin:32px auto; line-height:2; }
-.information-planning h3 { font-size:var(--type-heading-3-size); font-weight:400; margin-bottom:16px; }
-.information-planning p + p { margin-top:16px; }
+.header-link.is-current :is(.menu-en, .menu-label) {
+  background-size: 100% 1px;
+  text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  body .header-link:hover :is(.menu-en, .menu-label) {
+    background-size: 100% 1px;
+    color: var(--text-link-color);
+    text-decoration: none;
+  }
+}
+.header-link:focus-visible :is(.menu-en, .menu-label) {
+  background-size: 100% 1px;
+  color: var(--text-link-color);
+}
+@media (prefers-reduced-motion: reduce) {
+  .header :is(.menu-en, .menu-label) {
+    transition: none;
+  }
+}
+.concept-statement__copy {
+  width: min(100%, 680px);
+  margin-inline: auto;
+}
+.concept-statement__copy .section__txt {
+  width: 100%;
+  margin: 0;
+  white-space: pre-line;
+}
+.concept-statement__copy .section__txt + .section__txt {
+  margin-top: 24px;
+}
+.information-planning {
+  width: min(100%, 680px);
+  margin: 32px auto;
+  line-height: 2;
+}
+.information-planning h3 {
+  font-size: var(--type-heading-3-size);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.information-planning p + p {
+  margin-top: 16px;
+}

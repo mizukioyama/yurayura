@@ -1,18 +1,6 @@
 <footer class="footer">
 
    <div class="footer-inner inner">
-         <div class="footer-txt">
-         <a href="index.html" class="footer-logo-link">
-            ゆらゆら
-         <span class="footer-lead">
-            体感するArt展
-         </span>
-         </a>
-         <p class="footer-date">
-            次回開催：未定
-         </p>
-         </div>
-
          <nav class="footer-nav" aria-label="フッターナビゲーション">
          <ul class="footer-list">
 

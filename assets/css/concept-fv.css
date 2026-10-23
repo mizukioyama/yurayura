@@ -14,6 +14,8 @@
   overflow: visible !important;
   z-index: 2 !important;
   background: transparent !important;
+  width: min(100%, 1080px);
+  margin-inline: auto;
 }
 
 .information-page .information-hero.concept-fv,
@@ -26,8 +28,8 @@
 .contact-page .information-hero.concept-fv .information-hero__inner,
 .policy-page .concept-fv .fv__inner {
   position: absolute !important;
-  left: 20vmin !important;
-  top: 40vmin !important;
+  left: 0 !important;
+  top: 26vmin !important;
   right: auto !important;
   bottom: auto !important;
   z-index: 90 !important;
@@ -96,7 +98,7 @@
 .information-page .information-hero.concept-fv .scroll-guide,
 .contact-page .information-hero.concept-fv .scroll-guide,
 .policy-page .concept-fv .scroll-guide {
-  left: 20vmin !important;
+  left: 0vmin !important;
   right: auto !important;
   z-index: 120 !important;
   overflow: visible !important;
