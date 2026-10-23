@@ -14,6 +14,18 @@
       "Quriqan",
       "Mizuki"
     ],
-    "artworkCount": 18
+    "artworkCount": 18,
+    "officialUrl": "https://mizukioyama.github.io/yurayura/information.html#past-exhibitions",
+    "portfolioDetailUrl": "https://mizukioyama.github.io/website/exhibitions/yurayura/",
+    "copy": {
+      "yurayura": {
+        "ja": "ゆらゆらが大切にしている、作品を理解するのではなく体感するということ。",
+        "en": "Yurayura values experiencing the artwork rather than trying to understand it."
+      },
+      "portfolio": {
+        "ja": "2026年10月6日から12日まで開催したグループ展「ゆらゆら」のアーカイブです。展示の背景やコンセプト、参加作家、今後の目標をまとめています。初回の会期は終了しました。",
+        "en": "This is the archive of the group exhibition “Yurayura,” held October 6–12, 2026. It brings together the exhibition’s background, concept, participating artists, and future goals. The first edition has concluded."
+      }
+    }
   }
 ]
