@@ -170,4 +170,8 @@ absolute pathを使う場合はbase path欠落に注意する。
 index状態またはcanonicalを変更した場合は、この資料とsitemapの整合を確認する。監査履歴や一時作業計画はこの資料へ蓄積しない。
 
 ## 開催データ
-配信データは `assets/data/exhibitions.json`。`scripts/export-public-events.cjs` へrepo外の管理JSONを渡すと公開許可済みの開催だけを許可フィールドで出力する。非公開データ・商品ファイル・購入者情報をrepoへ保存しない。
+開催情報とサイト別コピーの唯一の公開編集正本は `assets/data/exhibitions.json`。Portfolio用データや生成JSONを別途手編集しない。`node scripts/export-public-events.cjs --check` は現在の正本を許可フィールドで検証し、ファイルを書き換えない。旧形式のrepo外入力からの上書きは無効化し、次回の検証・公開準備でサイト別コピーや開催記録が消えることを防ぐ。
+
+各公開イベントは `id`、`edition`、`published`、`city`、`venue`、offset付き `startsAt` / `endsAt`、`officialUrl` を持つ。場所または日時が未確定の場合は `null` とし、日時は両方nullか、両方とも有効なoffset付き日時にする。`copy.yurayura.ja/en` と `copy.portfolio.ja/en` は異なる文章として管理し、4つすべての承認済み文章を必須にする。`portfolioDetailUrl` は既存Portfolioアーカイブがある場合だけ付ける。`galleryUrl`、作家名、作品数の互換性を保つ。未知の項目、非公開メモ、個人情報、未承認募集条件はexportに含めない。
+
+編集後は `node --test tests/exhibition-state.test.cjs` と `node scripts/export-public-events.cjs --check` を実行する。公開反映はゆらゆらのGitHub Pagesへデータを公開した後に確認する。Portfolio InformationはこのURLを閲覧時に取得するため、通常の開催データ更新にPortfolio側commit / deployは不要。ローカルプレビューと英語コピーの扱いはPortfolioの編集ガイドを参照する。

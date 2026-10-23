@@ -23,10 +23,39 @@
     if (now >= end) return "closed";
     return now >= start && r.receiverVerified === true ? "open" : "planning";
   }
+  function validPublicUrl(value, pathname = "/yurayura/") {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && url.hostname === "mizukioyama.github.io" && !url.port && !url.username && !url.password && url.pathname.startsWith(pathname);
+    } catch (_) { return false; }
+  }
+  function validCopy(copy) {
+    const keys = value => value && typeof value === "object" && !Array.isArray(value) ? Object.keys(value).sort().join(",") : "";
+    if (keys(copy) !== "portfolio,yurayura") return false;
+    return ["yurayura", "portfolio"].every(site => {
+      if (keys(copy[site]) !== "en,ja") return false;
+      return ["ja", "en"].every(language =>
+        typeof copy[site][language] === "string" && !!copy[site][language].trim() && copy[site][language].length <= 4000);
+    });
+  }
   function visibleEvents(events) {
     if (!Array.isArray(events)) throw new Error("Invalid event data");
     const visible = events.filter(e => e?.published === true);
-    if (visible.some(e => !Number.isInteger(e.edition) || e.edition < 1 || typeof e.city !== "string" || typeof e.venue !== "string" || eventState(e) === "unknown")) throw new Error("Invalid event data");
+    const allowed = new Set(["id", "edition", "published", "city", "venue", "startsAt", "endsAt", "officialUrl", "portfolioDetailUrl", "galleryUrl", "artists", "artworkCount", "copy", "recruitment"]);
+    const ids = new Set(), editions = new Set();
+    if (visible.some(e => {
+      const locationOk = (value, key) => Object.prototype.hasOwnProperty.call(e, key) && (value === null || (typeof value === "string" && !!value.trim()));
+      const duplicate = ids.has(e.id) || editions.has(e.edition);
+      ids.add(e.id); editions.add(e.edition);
+      return Object.keys(e).some(key => !allowed.has(key))
+        || !/^[a-z0-9-]+$/.test(e.id) || duplicate || !Number.isInteger(e.edition) || e.edition < 1
+        || !locationOk(e.city, "city") || !locationOk(e.venue, "venue") || !validPublicUrl(e.officialUrl)
+        || !validCopy(e.copy) || eventState(e) === "unknown"
+        || (e.portfolioDetailUrl !== undefined && !validPublicUrl(e.portfolioDetailUrl, "/website/exhibitions/yurayura/"))
+        || (e.galleryUrl !== undefined && !/^\.\/[a-z0-9-]+\.html$/.test(e.galleryUrl))
+        || (e.artists !== undefined && (!Array.isArray(e.artists) || e.artists.some(name => typeof name !== "string" || !name.trim())))
+        || (e.artworkCount !== undefined && (!Number.isInteger(e.artworkCount) || e.artworkCount < 0));
+    })) throw new Error("Invalid event data");
     return visible;
   }
   function groupEvents(events, now = Date.now()) {
@@ -36,6 +65,9 @@
       upcoming: visible.filter(e => ["upcoming","undated"].includes(eventState(e, now))).sort((a,b) => (instant(a.startsAt)||Infinity)-(instant(b.startsAt)||Infinity)),
       past: visible.filter(e => eventState(e, now) === "past").sort((a,b) => instant(b.startsAt)-instant(a.startsAt))
     };
+  }
+  function informationGroups(groups) {
+    return { ...groups, past: groups.past.filter(event => event.id !== "yurayura-01") };
   }
   /* One view owns the status and every state-dependent participation paragraph. */
   function recruitmentView(events, now = Date.now(), failed = false) {
@@ -72,7 +104,7 @@
       faqConditions: announced ? '参加条件は決まっていますか？ 当該展示の正式な募集要項をご確認ください。過去の条件がそのまま適用されるとは限りません。' : '参加条件は決まっていますか？ 募集人数・費用・作品条件・選考方法などは未定です。確定した情報のみ順次掲載します。'
     }};
   }
-  const api = {instant, eventState, recruitmentState, visibleEvents, groupEvents, recruitmentView};
+  const api = {instant, eventState, recruitmentState, visibleEvents, groupEvents, informationGroups, recruitmentView};
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   root.YurayuraState = api;
   if (typeof document === "undefined") return;
@@ -84,12 +116,18 @@
     for (const [state, title] of [["current",gallery ? "開催中作品一覧" : "開催中"],["upcoming","開催予定"],["past",gallery ? "過去展示作品一覧" : "過去開催情報"]]) {
       const section = document.createElement("section");
       section.append(text(gallery ? "h2" : "h3", title));
-      if (!groups[state].length) section.append(text("p", {current:"現在開催中の展示はありません。", upcoming:"開催予定は未定です。", past:"過去開催の情報はありません。"}[state]));
+      if (!groups[state].length) section.append(text("p", state === "past" && !gallery ? "詳細な過去開催の記録は下部をご覧ください。" : {current:"現在開催中の展示はありません。", upcoming:"開催予定は未定です。", past:"過去開催の情報はありません。"}[state]));
       for (const event of groups[state]) {
         const article = document.createElement("article");
-        article.append(text("p", `第${event.edition}回 · ${event.city} / ${event.venue}`));
+        const city = event.city || "開催地未定";
+        const venue = event.venue || "会場未定";
+        article.append(text("p", `第${event.edition}回 · ${city} / ${venue}`));
         const format = d => new Intl.DateTimeFormat("ja-JP", {timeZone:"Asia/Tokyo", year:"numeric", month:"long", day:"numeric"}).format(new Date(d));
         article.append(text("p", eventState(event) === "undated" ? "開催日未定" : `${format(event.startsAt)}〜${format(event.endsAt)}（日本時間）`));
+        if (!gallery && event.id !== "yurayura-01" && event.edition !== 1) {
+          if (event.copy?.yurayura?.ja) article.append(text("p", event.copy.yurayura.ja));
+          if (Array.isArray(event.artists) && event.artists.length) article.append(text("p", `参加作家：${event.artists.join("、")}`));
+        }
         if (gallery && Number.isInteger(event.artworkCount)) article.append(text("p", `${event.artworkCount}作品`));
         if (safeGallery(event.galleryUrl)) {
           const link = text("a", `第${event.edition}回の作品を見る ↗`); link.href = event.galleryUrl; article.append(link);
@@ -120,7 +158,7 @@
         const signature = JSON.stringify(Object.values(groups).map(list => list.map(e => e.id)));
         // Preserve focus and link nodes while the displayed groups remain unchanged.
         if (signature !== previous) {
-          document.querySelectorAll("[data-event-groups]").forEach(el => renderGroups(el, groups, false));
+          document.querySelectorAll("[data-event-groups]").forEach(el => renderGroups(el, informationGroups(groups), false));
           document.querySelectorAll("[data-gallery-groups]").forEach(el => renderGroups(el, groups, true));
           previous = signature;
         }
