@@ -36,13 +36,13 @@
    <link rel="stylesheet" href="./assets/css/gallery-inline.css?v=0be0bc761860">
    <link rel="stylesheet" href="./assets/css/gallery-category-pc.css?v=4d39b27e9e86">
    <link rel="stylesheet" href="./assets/css/gallery-label-fix.css?v=b1d01a0dd163">
-   <link rel="stylesheet" href="./assets/css/liquid.css?v=dbf5e9d5d641">
+   <link rel="stylesheet" href="./assets/css/liquid.css?v=7c6d7010cff9">
    <link rel="stylesheet" href="./assets/css/top-artists.css?v=0f793ee5f0e7">
    <link rel="stylesheet" href="./assets/css/user-settings.css?v=70a075303ecd">
    <link rel="stylesheet" href="./assets/css/gallery-phase1-3.css?v=9f56bf0bafe3">
    <script src="./assets/js/font.js" defer></script>
    <script src="./assets/js/allmenu.js?v=089f97ca6b45" defer></script>
-   <script src="./assets/js/gallery.js?v=20260917-gallery-modal-profile-v12" defer></script>
+   <script src="./assets/js/gallery.js?v=ea7e02de9ff1" defer></script>
    <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
    <script src="./assets/js/art-protection.js" defer></script>
 <link rel="stylesheet" href="./assets/css/participation.css?v=1549feddec78">
@@ -86,8 +86,8 @@
                <p class="gallery-sidebar__label">Category</p>
                <p class="gallery-scroll-hint" aria-hidden="true">横にScrollできます</p>
                <div class="gallery-filter-group">
-                  <p class="gallery-filter-title">Artist：</p>
-                  <div class="gallery-filter-options" data-filter-group="artist"><button
+                  <p class="gallery-filter-title" id="gallery-artist-label">Artist：</p>
+                  <div class="gallery-filter-options" data-filter-group="artist" role="group" aria-labelledby="gallery-artist-label"><button
                         class="gallery-filter is-active" type="button" data-filter-value="all"
                         aria-pressed="true">すべて</button><button class="gallery-filter" type="button"
                         data-filter-value="Mizuki">Mizuki</button><button class="gallery-filter" type="button"
@@ -96,8 +96,8 @@
                         data-filter-value="Quriqan">Quriqan</button></div>
                </div>
                <div class="gallery-filter-group">
-                  <p class="gallery-filter-title">Genre：</p>
-                  <div class="gallery-filter-options" data-filter-group="genre">
+                  <p class="gallery-filter-title" id="gallery-genre-label">Genre：</p>
+                  <div class="gallery-filter-options" data-filter-group="genre" role="group" aria-labelledby="gallery-genre-label">
                      <button class="gallery-filter is-active" type="button" data-filter-value="all"
                         aria-pressed="true">すべて</button>
                      <button class="gallery-filter" type="button" data-filter-value="抽象">抽象</button>
@@ -109,7 +109,7 @@
                </div>
             </aside>
             <div class="gallery-containt">
-               <p class="gallery-result" id="galleryResult"></p>
+               <p class="gallery-result" id="galleryResult" role="status" aria-live="polite" aria-atomic="true"></p>
                <div class="content gallery-content" id="gallery-container">
                   <article class="work gallery-card" data-artist="Mizuki" data-artist-id="Mizuki" data-genre="抽象,アクリル"
                      data-caption="アクリル">
@@ -260,13 +260,13 @@
                   </article>
                </div>
                <div class="gallery-page-line"></div>
-               <nav class="gallery-pagination" id="galleryPagination"></nav>
+               <nav class="gallery-pagination" id="galleryPagination" aria-label="作品のページ送り"></nav>
                <div class="gallery-page-line"></div>
             </div>
          </div>
       </section>
    </main>
-   <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+   <div class="gallery-modal" id="galleryModal" aria-hidden="true" inert>
       <div class="gallery-modal__backdrop" data-gallery-modal-close></div>
       <div class="gallery-modal__panel" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle"><button
             class="gallery-modal__close" type="button" aria-label="閉じる" data-gallery-modal-close>×</button>
