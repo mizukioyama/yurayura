@@ -46,19 +46,18 @@ document.addEventListener("DOMContentLoaded", () => {
       button.type = "button";
       button.textContent = `${page}P`;
       if (page === state.page) button.setAttribute("aria-current", "page");
+      button.setAttribute("aria-label", `${page}ページ目`);
       button.addEventListener("click", () => {
-  state.page = page;
-  render();
+        if (page === state.page) return;
+        state.page = page;
+        render();
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  window.scrollTo({
-    top: 0,
-    behavior: reduceMotion ? "auto" : "smooth",
-  });
-});
+        // Continue at the new artworks instead of restarting at the FV.
+        const firstArtwork = allArtworks.find(artwork => !artwork.hidden);
+        firstArtwork?.focus({ preventScroll: true });
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.getElementById("gallery-container")?.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+      });
       pagination.appendChild(button);
     }
   }
@@ -121,6 +120,27 @@ document.addEventListener("DOMContentLoaded", () => {
   let modalCloseTimer = 0;
   let modalMotionToken = 0;
   const artworkPreloads = new Map();
+  const backgroundInert = new Map();
+
+  function lockModalBackground() {
+    if (backgroundInert.size) return;
+    Array.from(document.body.children).forEach(element => {
+      if (element === modal || element.contains(modal)) return;
+      backgroundInert.set(element, element.inert);
+      element.inert = true;
+    });
+  }
+
+  function unlockModalBackground() {
+    backgroundInert.forEach((wasInert, element) => { element.inert = wasInert; });
+    backgroundInert.clear();
+  }
+
+  function modalFocusables() {
+    return Array.from(modal.querySelectorAll(
+      'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+    )).filter(element => element.getClientRects().length && !element.closest('[hidden], [inert]') && getComputedStyle(element).visibility !== "hidden");
+  }
 
   const artistMetadata = {
     "Mizuki": {
@@ -461,7 +481,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!modal || !filteredArtworks.includes(artwork)) return;
     window.clearTimeout(modalCloseTimer);
     const motionToken = ++modalMotionToken;
-    lastFocus = document.activeElement;
+    if (!modal.classList.contains("is-open") || modal.classList.contains("is-closing")) {
+      lastFocus = document.activeElement;
+    }
+    modal.inert = false;
     buildSlides();
     showArtwork(artwork, false);
     modal.classList.remove("is-closing", "is-visible");
@@ -481,7 +504,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }));
     }
-    modal.querySelector(".gallery-modal__close")?.focus();
+    modal.querySelector(".gallery-modal__close")?.focus({ preventScroll: true });
+    lockModalBackground();
   }
 
   function finishModalClose(motionToken) {
@@ -501,7 +525,9 @@ document.addEventListener("DOMContentLoaded", () => {
     requestedArtwork = currentArtwork;
     modalImage?.classList.remove("is-fading");
     modalBody?.classList.remove("is-switching");
-    lastFocus?.focus?.();
+    modal.inert = true;
+    unlockModalBackground();
+    if (lastFocus?.isConnected) lastFocus.focus({ preventScroll: true });
     window.clearTimeout(modalCloseTimer);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       finishModalClose(motionToken);
@@ -532,6 +558,19 @@ document.addEventListener("DOMContentLoaded", () => {
   next?.addEventListener("click", () => navigateArtwork(1));
   document.addEventListener("keydown", event => {
     if (!modal?.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
+    if (event.key === "Tab") {
+      const items = modalFocusables();
+      const first = items[0];
+      const last = items[items.length - 1];
+      const outside = !modal.contains(document.activeElement);
+      if (event.shiftKey && (document.activeElement === first || outside)) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+        event.preventDefault();
+        first?.focus();
+      }
+    }
     if (event.key === "Escape") closeModal();
     if (event.key === "ArrowLeft") navigateArtwork(-1);
     if (event.key === "ArrowRight") navigateArtwork(1);
