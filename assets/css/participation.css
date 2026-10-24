@@ -253,6 +253,7 @@ nav.path-section {
   min-height: 64px;
   padding: 16px 0;
   list-style: none;
+  font-weight: bold;
 }
 .participate-page .path-details summary::-webkit-details-marker {
   display: none;

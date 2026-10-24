@@ -3,7 +3,6 @@
   .gallery-page .gallery {
     min-height: 100vh;
     padding: 0 7vw 6vh;
-    padding: 20vmin !important;
   }
   .gallery-page .h1-text {
     position: relative;
@@ -12,7 +11,6 @@
     z-index: 90;
     width: max-content;
     margin: 0 auto;
-    padding-top: 10vh;
     text-align: center;
   }
   .gallery-page .h1-text h1 {
