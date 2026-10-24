@@ -94,11 +94,13 @@ Galleryには現在、調整専用の共通variable setはありません。表�
 | 対象 | 主なstylesheet |
 |---|---|
 | ページ全体、intro、filter、card、mobile layout | `assets/css/gallery.css` |
-| desktop / tablet / mobileのmodalとレイアウト例外 | `assets/css/gallery-inline.css` |
+| カード・画像・作品リンクの共通宣言、modal、responsive差分 | `assets/css/gallery-inline.css` |
 | desktop表示の復元 | `assets/css/gallery-pc-restore.css` |
 | desktop category表示 | `assets/css/gallery-category-pc.css` |
 | category labelの例外 | `assets/css/gallery-label-fix.css` |
 | filter、pagination、modalの動作 | `assets/js/gallery.js` |
+
+カードの同値宣言は `gallery-inline.css` 冒頭の共有ルールで編集し、画像height・カード余白・grid等の差だけを元のmedia範囲で管理します。Artist/Genreの見出しは `.gallery-filter-title` を使い、HTMLの文字を表示します。旧ラベル生成用Modifierは使いません。
 
 modal座標、作品画像の比率、filter・paginationの動作は安全なユーザー設定値として公開されていません。これらを変える必要がある場合は、個別の変更とQAとして扱います。
 

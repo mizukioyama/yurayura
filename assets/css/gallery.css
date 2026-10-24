@@ -109,19 +109,6 @@ body.gallery-page button {
   font-weight: 300 !important;
   white-space: nowrap !important;
 }
-.gallery-page .gallery-filter-title--artist {
-  display: block !important;
-  width: auto !important;
-}
-.gallery-page .gallery-filter-title--artist::before {
-  content: "作家名";
-}
-.gallery-page .gallery-filter-title--artist::after {
-  content: "：";
-}
-.gallery-page .gallery-filter-title--genre::after {
-  content: "：";
-}
 .gallery-page .gallery-filter-options {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -294,16 +281,6 @@ body.gallery-page button {
     align-self: start !important;
     line-height: 1.7 !important;
     padding: 0 !important;
-  }
-  .gallery-page .gallery-filter-title--artist {
-    display: block !important;
-    justify-content: normal !important;
-  }
-  .gallery-page .gallery-filter-title--artist::before {
-    content: "作家名" !important;
-  }
-  .gallery-page .gallery-filter-title--artist::after {
-    content: "：" !important;
   }
   .gallery-page [data-filter-group="artist"],
   .gallery-page [data-filter-group="genre"] {

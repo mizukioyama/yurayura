@@ -1,4 +1,59 @@
-/* Gallery rules moved from gallery.html. */
+/* Shared Gallery card declarations; preserve the original media ranges. */
+@media screen and (min-width: 1200px),
+       screen and (min-width: 768px) and (max-width: 1199px),
+       screen and (max-width: 767px) {
+  .gallery-page .gallery-content .work {
+    box-sizing: border-box !important;
+    padding: 20px 20px 26px !important;
+    background: #fff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 8px 22px rgba(47, 56, 42, 0.1) !important;
+  }
+  .gallery-page .gallery-content .work-img {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+  .gallery-page .gallery-content .work-img > img {
+    display: block !important;
+    width: 100% !important;
+    aspect-ratio: 1/1 !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+  }
+  .gallery-page .gallery-work-link {
+    position: static !important;
+    display: block !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 16px 0 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+  }
+  .gallery-page .gallery-work-link h2,
+  .gallery-page .gallery-work-link p {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  .gallery-page .gallery-work-link h2 {
+    margin: 0 0 8px !important;
+    text-align: left !important;
+  }
+  .gallery-page .gallery-work-link p {
+    margin: 0 !important;
+    text-align: right !important;
+    line-height: 1.8 !important;
+  }
+  .gallery-page .gallery-work-link .gallery-work-title {
+    margin: 0 0 8px !important;
+    text-align: left !important;
+  }
+}
+
+/* Gallery-specific responsive differences remain in their original ranges. */
 @media screen and (min-width: 1200px) {
   .gallery-page .h1-text {
     position: relative !important;
@@ -16,55 +71,6 @@
     box-sizing: border-box !important;
     padding: 0 !important;
   }
-  .gallery-page .gallery-content .work {
-    box-sizing: border-box !important;
-    padding: 20px 20px 26px !important;
-    background: #fff !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: 0 8px 22px rgba(47, 56, 42, 0.1) !important;
-  }
-  .gallery-page .gallery-content .work-img {
-    box-sizing: border-box !important;
-    width: 100% !important;
-    background: transparent !important;
-  }
-  .gallery-page .gallery-content .work-img > img {
-    display: block !important;
-    width: 100% !important;
-    aspect-ratio: 1/1 !important;
-    object-fit: cover !important;
-    border-radius: 0 !important;
-  }
-  .gallery-page .gallery-work-link {
-    position: static !important;
-    display: block !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 16px 0 0 !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-  }
-  .gallery-page .gallery-work-link h2,
-  .gallery-page .gallery-work-link p {
-    position: static !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-  }
-  .gallery-page .gallery-work-link h2 {
-    margin: 0 0 8px !important;
-    text-align: left !important;
-  }
-  .gallery-page .gallery-work-link p {
-    margin: 0 !important;
-    text-align: right !important;
-    line-height: 1.8 !important;
-  }
-  .gallery-page .gallery-work-link .gallery-work-title {
-    margin: 0 0 8px !important;
-    text-align: left !important;
-  }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .gallery-page .gallery-content {
@@ -74,113 +80,27 @@
     width: 100% !important;
   }
   .gallery-page .gallery-content .work {
-    box-sizing: border-box !important;
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
-    padding: 20px 20px 26px !important;
-    background: #fff !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: 0 8px 22px rgba(47, 56, 42, 0.1) !important;
-  }
-  .gallery-page .gallery-content .work-img {
-    box-sizing: border-box !important;
-    width: 100% !important;
-    background: transparent !important;
   }
   .gallery-page .gallery-content .work-img > img {
-    display: block !important;
-    width: 100% !important;
-    aspect-ratio: 1/1 !important;
     height: auto !important;
-    object-fit: cover !important;
-    border-radius: 0 !important;
   }
   .gallery-page .gallery-work-link {
-    position: static !important;
-    display: block !important;
     width: 100% !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 16px 0 0 !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-  }
-  .gallery-page .gallery-work-link h2,
-  .gallery-page .gallery-work-link p {
-    position: static !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-  }
-  .gallery-page .gallery-work-link h2 {
-    margin: 0 0 8px !important;
-    text-align: left !important;
-  }
-  .gallery-page .gallery-work-link p {
-    margin: 0 !important;
-    text-align: right !important;
-    line-height: 1.8 !important;
-  }
-  .gallery-page .gallery-work-link .gallery-work-title {
-    margin: 0 0 8px !important;
-    text-align: left !important;
   }
 }
 @media screen and (max-width: 767px) {
   .gallery-page .gallery-content .work {
-    box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 0 72px !important;
-    padding: 20px 20px 26px !important;
-    background: #fff !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: 0 8px 22px rgba(47, 56, 42, 0.1) !important;
-  }
-  .gallery-page .gallery-content .work-img {
-    box-sizing: border-box !important;
-    width: 100% !important;
-    background: transparent !important;
   }
   .gallery-page .gallery-content .work-img > img {
-    display: block !important;
-    width: 100% !important;
-    aspect-ratio: 1/1 !important;
     height: auto !important;
-    object-fit: cover !important;
-    border-radius: 0 !important;
   }
   .gallery-page .gallery-work-link {
-    position: static !important;
-    display: block !important;
     width: 100% !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 16px 0 0 !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-  }
-  .gallery-page .gallery-work-link h2,
-  .gallery-page .gallery-work-link p {
-    position: static !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-  }
-  .gallery-page .gallery-work-link h2 {
-    margin: 0 0 8px !important;
-    text-align: left !important;
-  }
-  .gallery-page .gallery-work-link p {
-    margin: 0 !important;
-    text-align: right !important;
-    line-height: 1.8 !important;
-  }
-  .gallery-page .gallery-work-link .gallery-work-title {
-    margin: 0 0 8px !important;
-    text-align: left !important;
   }
 }
 .gallery-page .gallery-card {
@@ -289,6 +209,15 @@ html.is-gallery-modal-open {
   background: #fff;
   overflow: hidden;
 }
+/* These two modal reveal targets share timing and initial state. */
+.gallery-modal__artwork,
+.gallery-modal__section {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 .gallery-modal__artwork {
   display: flex;
   align-items: center;
@@ -297,11 +226,6 @@ html.is-gallery-modal-open {
   min-height: 260px;
   height: 100%;
   overflow: hidden;
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gallery-modal__artwork > img {
   display: block;
@@ -452,11 +376,6 @@ html.is-gallery-modal-open {
 .gallery-modal__section {
   padding: 34px 0;
   border-bottom: 1px solid rgba(48, 58, 5, 0.18);
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gallery-modal__section:last-child {
   border-bottom: 0;

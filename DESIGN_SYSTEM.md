@@ -287,3 +287,17 @@ HeaderとFooterの配置・ナビ開閉等の異なる役割のクラスは残�
 PR #51は独立Draftのまま。統合時は同じ9px下限を重複適用せず、最終CSS内容のSHA-256からHTMLキャッシュ参照を更新する。
 
 変更時はConceptとの同幅比較、TOP全幅とGallery PCの変更前後、通常モーションとReduced Motionを検証する。
+
+
+### 非FVの共通コード編集
+
+Galleryのカード・画像・作品リンクの共通宣言は `gallery-inline.css` 冒頭へ集約する。
+共通宣言は元のPC・tablet・mobileのmedia範囲の和集合にだけ適用し、幅の境界や読み込み順を変えない。
+カード余白、画像height、grid等のresponsive差分は同ファイルの各mediaに残す。
+Category見出しは `.gallery-filter-title` を共有し、Artist/Genreの文言はHTMLを正本とする。
+PCのFV・Category配置は既存の専用stylesheetを引き続き使用する。
+
+Gallery modalのartworkとsectionは初期opacity/transformと180ms遷移を共有する。
+個々の表示遅延、body切替、閉じる時間、モバイル方向、Reduced Motionは別の責務として維持する。
+RevealのtransformとHoverのtranslate、touch/keyboardの条件を一律に統合しない。
+`main.css` の同値な小画面ルールは元のmedia条件の和集合で管理し、ボタン等の値は変えない。
