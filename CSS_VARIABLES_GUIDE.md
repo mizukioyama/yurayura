@@ -4,7 +4,7 @@
 
 この資料は、mizukiさん本人が最終的なレイアウト・サイズ・余白・フォントサイズを調整するときの案内です。プロジェクトルールと最終調整の開始条件は `AGENTS.md`、視覚基準は `DESIGN_SYSTEM.md` を参照してください。
 
-`assets/css/user-settings.css` は既にあり、TOP・Concept・Galleryでページ固有CSSの後に読み込まれています。ただし、現在集約されているのは主に文字サイズです。色・font family・section幅・Gallery形状などはまだ一か所に集約されていません。
+`assets/css/user-settings.css` は全公開11ページの文字サイズの正本です。共有ロールは`:root`、独立した既存サイズは同ファイルのコンポーネント別セクションで編集します。色・font family・section幅・Gallery形状は文字サイズの設定とは分離しています。
 
 技術cleanup、runtime問題、CSS依存、404、security、repository整理が終わり、`READY FOR USER FINAL LAYOUT / SIZE ADJUSTMENT` と引き継がれるまでは、最終的な見た目調整を始めないでください。現在残っている構造上の例外を、調整可能な共通変数と誤認しないための注意を含みます。
 
@@ -20,23 +20,33 @@
 
 ## 2. Typography / font size
 
-現在の共通文字サイズ設定は `assets/css/user-settings.css` にあります。
+文字サイズは原則 `assets/css/user-settings.css` だけを編集します。component CSSは配置・色・行間・字間・動作を管理し、文字サイズの別の正本を作りません。移行前のstylesheetにあったセレクターとmedia条件を同ファイルの名前付きセクションへ集約しています。CSSの順序を並べ替えたり、同じタグという理由だけで値を統一しないでください。
 
-| 調整したい箇所 | 変数 | 用途・注意 |
+| 基本ロール | 正本・調整箇所 | 適用範囲・例外 |
 |---|---|---|
-| 本文 | `--type-body-size` | 既存の `--responsive-copy-size` aliasから参照 |
-| 見出し2 | `--type-heading-2-size` | `--responsive-heading-2` aliasから参照 |
-| 見出し3 | `--type-heading-3-size` | `--responsive-heading-3` aliasから参照 |
-| 小見出し | `--type-small-heading-size` | `--responsive-small-heading` aliasから参照 |
-| button | `--type-button-size` | 既存の `--button-font-size` aliasから参照 |
-| Header / Footerのロゴ | `--type-menu-logo-size` | desktop / mobile共通のlogo selectorへ適用 |
-| Header / Footerの補助文字 | `--type-menu-meta-size` | lead、date、link等の共通文字へ適用 |
+| FVタイトル | `--type-page-title-size` | 非TOPの共通タイトル。TOPの特大・compact・低い横画面は`--type-top-hero-*`で独立 |
+| H2 | `--type-heading-2-size` | 共通セクション見出し。TOPの導入見出しは既存の専用式を維持 |
+| H3 | `--type-heading-3-size` | 小見出し。compactの式は同ファイルの767px以下の定義 |
+| 小見出し | `--type-small-heading-size` | 補助見出し・既存のmodal button |
+| 本文 | `--type-body-size` | desktopは既存式の上限14px、767px以下は14.25px。legacy aliasは使わない |
+| リード | component別の`.fv__txt`、`.information-subheading`等 | 標準本文と同じとは限らないため、独自式または共有ロールの直接参照を維持 |
+| メタ情報 | component別のeyebrow、`.bottom-txt`、Gallery profile等 | 意味・継承単位が異なるサイズを同値だけで結合しない |
+| ボタン | `--type-button-size`、`--type-compact-button-size`、`--type-liquid-*-size` | nativeとShadow DOMの既存スケールは異なる。Galleryのfilter/paginationは既存のfont継承が優先。Contact send/modalも名前付きselectorで独立 |
+| ナビゲーション | `--type-navigation-label-size`、`--type-menu-logo-size`、`--type-menu-meta-size` | 共有ラベル9–10px。Header英語ラベル等の独立した既存式を維持 |
 
-`clamp()`で画面幅に応じて変化する値は、最小値・中間の計算式・最大値をまとめて確認してください。本文サイズなどを変えるときは、関連するaliasを別々に上書きせず、対応する `--type-*` を確認します。
+9つは意味の分類で、変数数の上限ではありません。独立したサイズ変数は19種類（trackingを除く）あり、TOPの画面高制御・ナビのlogo/meta・native/compact/Shadow DOMのサイズvariantを含みます。単発のサイズは同ファイルの既存selectorの`font-size`を直接編集し、1宣言のためだけに別名変数を作りません。
 
-font familyの `--font-base`、`--font-jp`、`--font-btn` はcanonicalな `assets/css/main.css` にあります。フォントの変更はHTMLのfont loadと共に監査が必要で、`user-settings.css`から安全に調整できる状態ではありません。
+rootの共有ロールは現在のmediaによる上書きを含みます。例えばdesktop本文を調整する場合はrootの定義1か所、compact本文を調整する場合は767px以下の定義1か所を変更します。ロールの参照先をページ別にコピーしないでください。`--responsive-copy-size` / `--responsive-heading-2` / `--responsive-heading-3` / `--responsive-small-heading` / `--button-font-size`は廃止済みです。
 
-フォームの `.modal-title`、`.modal-close`、`.send-btn` は `user-settings.css` 内の個別指定です。`.modal-btn` は小見出し変数を使います。フォーム文字サイズを調整するときは、この例外も個別に確認してください。
+`clamp()`の上下限・中間式・rem/emの継承関係をまとめて確認してください。異なる式を同じmin/maxへ変換するのはデザイン変更です。TOP低横画面は画面高・Header高に依存した実計算が必要なので、`--type-top-hero-landscape-*`からcompact/bodyを参照する派生式を維持します。これは無意味な別名ではありません。
+
+Gallery PC副題の20px、フォームの`.modal-title` / `.modal-close` / `.send-btn`、操作glyphの0/30pxなども同ファイルのcomponent節が正本です。通常CSSからShadow DOM内部は選択できないため、`liquid-button.js`は正本変数をhost経由で継承します。同JS内の4つの旧値はサイトCSSがない単体利用だけのfallbackで、通常のサイズ調整箇所ではありません。
+
+例外: reset.cssの1rem/100%/75%はブラウザー基礎の継承reset。現行11ページに未読込のworks-list.css/top-sections.cssは旧・外部利用を否定できないため保持します。有効化する際は同時にTypography移行と表示検証が必要です。新規のinline/JS/font shorthandでサイズを分散させないでください。
+
+font familyの `--font-base`、`--font-jp`、`--font-btn` はcanonicalな `assets/css/main.css` にあります。フォント変更はHTMLのloadと共に監査が必要で、サイズ移行と混ぜません。
+
+`node --test tests/*.test.cjs`は、サイズ正本の分散、廃止alias、無意味なpure alias、未定義/未参照のTypography token、Shadow DOM設定契約を検出します。テストPASSだけで見た目の同等性は証明できないため、computed font/改行/寸法のBefore/Afterも確認します。
 
 ---
 
@@ -50,7 +60,7 @@ TOPとConceptの一部では `--top-section-inline-padding` が使われてい�
 
 ## 4. Breakpoints
 
-共通のbreakpoint変数はありません。実際の `@media` を対象stylesheetで確認してください。
+共通のbreakpoint変数はありません。文字サイズの条件は`user-settings.css`、レイアウトの条件は対象stylesheetの`@media`を確認してください。
 
 - Header / Footer：`assets/css/menu-style.css`
 - TOP section / Artists：`assets/css/top-legacy.css`、`assets/css/top-artists.css`、`assets/css/top-sections.css`
@@ -58,7 +68,7 @@ TOPとConceptの一部では `--top-section-inline-padding` が使われてい�
 - Gallery：`assets/css/gallery.css`、`assets/css/gallery-inline.css`、`assets/css/gallery-pc-restore.css`、`assets/css/gallery-category-pc.css`、`assets/css/gallery-label-fix.css`
 - Contact form：`assets/css/form.css`
 
-breakpointやmedia queryの移動・統一は、画面の切替範囲を変えるruntime変更です。最終調整用の値として `user-settings.css` へ追加しないでください。
+レイアウトのbreakpointを文字サイズへコピーしたり、既存の適用範囲を勝手に広げないでください。Typography用の元のmedia条件は正本に維持しています。
 
 ---
 
@@ -108,7 +118,7 @@ modal座標、作品画像の比率、filter・paginationの動作は安全な�
 
 ## 7. 現在のユーザー設定範囲と例外
 
-現行の `user-settings.css` で調整用variableとして集約されているのは主にTypographyです。次の値は構造や複数ページへ影響するため、ユーザー設定として公開されるまでは直接変更しないでください。
+現行の `user-settings.css` はTypography値の唯一の編集先です。次の値は構造や複数ページへ影響するため、ユーザー設定として公開されるまでは直接変更しないでください。
 
 - `z-index`
 - `position: fixed / absolute`
@@ -150,7 +160,7 @@ HTML、JavaScript、backup CSS、animation、modal geometryの直接変更は、
 
 `assets/css/main.css` がcanonical runtime stylesheetです。active backup CSS dependencyは0で、tracked treeからobsolete backup CSSは除去済みです。旧backup CSS全体のコピーは行わず、承認済みのselector/property cleanupだけをcanonical CSSへ反映しています。
 
-Typographyの調整変数は引き続き `assets/css/user-settings.css` にあります。追加のvariable集約やlayout変更は、別途レビューと表示確認を行う作業です。
+Typographyの共有変数と独自サイズ指定は `assets/css/user-settings.css` に集約済みです。追加variableが必要な場合も独立した役割・scope・実際の消費先を確認し、layout変更とは分離します。
 
 ## 参加ページ
 `assets/css/participation.css` の `--path-content`、`--path-reading`、`--path-gap`、`--path-section-space` が4カードと参加ページの調整値です。FVは既存の共通ルールを引き継ぎます。
