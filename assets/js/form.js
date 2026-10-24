@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let returnFocusElement = null;
   let isSubmitting = false;
   const backgroundRoots = [
+    document.querySelector(".skip-link"),
     document.getElementById("js-header"),
     document.getElementById("main"),
     document.getElementById("js-footer")

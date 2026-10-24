@@ -353,3 +353,6 @@ body.top-page .main .fv h1.fv__ttl { font-size: var(--type-top-hero-landscape-si
 /* concept-fv.css: typography only; layout remains in the component stylesheet. */
 .page-fv .page-fv__title { font-size: var(--type-page-title-size); }
 .page-fv .page-fv__subtitle { font-size: var(--type-body-size); }
+
+/* Keyboard bypass link uses the existing body role. */
+.skip-link { font-size: var(--type-body-size); }

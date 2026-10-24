@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Continue at the new artworks instead of restarting at the FV.
         const firstArtwork = allArtworks.find(artwork => !artwork.hidden);
-        firstArtwork?.focus({ preventScroll: true });
+        firstArtwork?.querySelector(".gallery-card__open")?.focus({ preventScroll: true });
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         document.getElementById("gallery-container")?.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
       });
@@ -482,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.clearTimeout(modalCloseTimer);
     const motionToken = ++modalMotionToken;
     if (!modal.classList.contains("is-open") || modal.classList.contains("is-closing")) {
-      lastFocus = document.activeElement;
+      lastFocus = artwork.querySelector(".gallery-card__open");
     }
     modal.inert = false;
     buildSlides();
@@ -536,21 +536,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // A native button is the card's only Tab stop; Enter/Space use its click event.
+  // Delegate pointer clicks to the article so the existing full-card hit area remains.
   allArtworks.forEach(artwork => {
-    const link = artwork.querySelector(".gallery-work-link");
-    const title = link?.querySelector(".gallery-work-title, h2")?.textContent?.trim() || "作品";
-    artwork.setAttribute("tabindex", "0");
-    artwork.setAttribute("role", "button");
-    artwork.setAttribute("aria-label", title + "の詳細を見る");
     artwork.addEventListener("click", event => {
       event.preventDefault();
       openModal(artwork);
-    });
-    artwork.addEventListener("keydown", event => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openModal(artwork);
-      }
     });
   });
   modal?.querySelectorAll("[data-gallery-modal-close]").forEach(button => button.addEventListener("click", closeModal));

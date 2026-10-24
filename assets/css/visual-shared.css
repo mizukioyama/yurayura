@@ -543,3 +543,25 @@ body
 .information-planning p + p {
   margin-top: 16px;
 }
+
+/* Available before the asynchronous header, including without JavaScript. */
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100000;
+  box-sizing: border-box;
+  max-width: calc(100% - 2 * var(--space-3));
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-txt);
+  background: var(--color-bg);
+  clip-path: inset(50%);
+  pointer-events: none;
+}
+.skip-link:focus-visible {
+  clip-path: none;
+  pointer-events: auto;
+}
+main#main {
+  scroll-margin-top: var(--site-header-size);
+}

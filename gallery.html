@@ -33,24 +33,25 @@
    <link rel="stylesheet" href="./assets/css/main.css?v=423f024f88e1">
    <link rel="stylesheet" href="./assets/css/gallery.css?v=a1fd21b1a604">
    <link rel="stylesheet" href="./assets/css/gallery-pc-restore.css?v=95d432043270">
-   <link rel="stylesheet" href="./assets/css/gallery-inline.css?v=0be0bc761860">
+   <link rel="stylesheet" href="./assets/css/gallery-inline.css?v=0427229366d3">
    <link rel="stylesheet" href="./assets/css/gallery-category-pc.css?v=4d39b27e9e86">
    <link rel="stylesheet" href="./assets/css/gallery-label-fix.css?v=b1d01a0dd163">
    <link rel="stylesheet" href="./assets/css/liquid.css?v=7c6d7010cff9">
    <link rel="stylesheet" href="./assets/css/top-artists.css?v=0f793ee5f0e7">
-   <link rel="stylesheet" href="./assets/css/user-settings.css?v=70a075303ecd">
+   <link rel="stylesheet" href="./assets/css/user-settings.css?v=d22a4be2b29c">
    <link rel="stylesheet" href="./assets/css/gallery-phase1-3.css?v=9f56bf0bafe3">
    <script src="./assets/js/font.js" defer></script>
    <script src="./assets/js/allmenu.js?v=089f97ca6b45" defer></script>
-   <script src="./assets/js/gallery.js?v=ea7e02de9ff1" defer></script>
+   <script src="./assets/js/gallery.js?v=425143827398" defer></script>
    <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
    <script src="./assets/js/art-protection.js" defer></script>
 <link rel="stylesheet" href="./assets/css/participation.css?v=1549feddec78">
-  <link rel="stylesheet" href="./assets/css/visual-shared.css?v=5f4f94c58959">
+  <link rel="stylesheet" href="./assets/css/visual-shared.css?v=7a6a76f33f3e">
   <link rel="stylesheet" href="./assets/css/concept-fv.css?v=e544f6c0fd26" />
 </head>
 
 <body class="gallery-page">
+  <a class="skip-link" href="#main">本文へスキップ</a>
    <div id="cursor"></div>
    <div id="stalker"></div>
    <div id="js-header">
@@ -67,7 +68,7 @@
       </nav>
     </noscript>
   </div>
-   <main class="main gallery" id="main">
+   <main class="main gallery" id="main" tabindex="-1">
       <header class="page-fv page-fv--gallery" aria-labelledby="gallery-title">
       <div class="h1-text page-fv__inner">
          <h1 class="page-fv__title" id="gallery-title">Gallery</h1>
@@ -114,149 +115,164 @@
                   <article class="work gallery-card" data-artist="Mizuki" data-artist-id="Mizuki" data-genre="抽象,アクリル"
                      data-caption="アクリル">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/uraura.webp"
-                           alt="作品：裏裏" width="800" height="1000"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜裏裏</p>
-                           <p>Artist：Mizuki<br>Genre：抽象 / アクリル</p>
-                        </a></div>
+                           alt="作品：裏裏" width="800" height="1000"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-1">Title｜裏裏</p>
+                           <p id="gallery-work-meta-1">Artist：Mizuki<br>Genre：抽象 / アクリル</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-1 gallery-work-meta-1" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/ここにいる.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜私、いま、ここにいる</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-2">Title｜私、いま、ここにいる</p>
+                           <p id="gallery-work-meta-2">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-2 gallery-work-meta-2" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="アクリル"
                      data-caption="アクリル">
                      <div class="work-img"><img data-art-protect draggable="false"
-                           src="./assets/img/IMG_20261003_190129_901.jpg" alt="森元 咲喜の作品 フローラ" width="1080" height="1397" loading="lazy"><a
-                           class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜フローラ</p>
-                           <p>Artist：森元 咲喜<br>Genre：アクリル</p>
-                        </a></div>
+                           src="./assets/img/IMG_20261003_190129_901.jpg" alt="森元 咲喜の作品 フローラ" width="1080" height="1397" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-3">Title｜フローラ</p>
+                           <p id="gallery-work-meta-3">Artist：森元 咲喜<br>Genre：アクリル</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-3 gallery-work-meta-3" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan"
                      data-genre="グラフィックアート" data-caption="グラフィックアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/無題01.webp"
-                           alt="作品 無題01" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜無題 #1</p>
-                           <p>Artist：Quriqan<br>Genre：グラフィックアート</p>
-                        </a></div>
+                           alt="作品 無題01" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-4">Title｜無題 #1</p>
+                           <p id="gallery-work-meta-4">Artist：Quriqan<br>Genre：グラフィックアート</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-4 gallery-work-meta-4" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Mizuki" data-artist-id="Mizuki" data-genre="抽象,アクリル"
                      data-caption="アクリル">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/hyouhyou.webp"
-                           alt="作品：表表" width="800" height="1000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜表表</p>
-                           <p>Artist：Mizuki<br>Genre：抽象 / アクリル</p>
-                        </a></div>
+                           alt="作品：表表" width="800" height="1000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-5">Title｜表表</p>
+                           <p id="gallery-work-meta-5">Artist：Mizuki<br>Genre：抽象 / アクリル</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-5 gallery-work-meta-5" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/今宵.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜今宵の月に何を感じるのか</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-6">Title｜今宵の月に何を感じるのか</p>
+                           <p id="gallery-work-meta-6">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-6 gallery-work-meta-6" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="ドットペインティング"
                      data-caption="ドットペインティング">
                      <div class="work-img"><img data-art-protect draggable="false"
-                           src="./assets/img/IMG_20261003_190133_464.jpg" alt="森元 咲喜の作品 hawksbill" width="1080" height="920" loading="lazy"><a
-                           class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜hawksbill</p>
-                           <p>Artist：森元 咲喜<br>Genre：ドットペインティング</p>
-                        </a></div>
+                           src="./assets/img/IMG_20261003_190133_464.jpg" alt="森元 咲喜の作品 hawksbill" width="1080" height="920" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-7">Title｜hawksbill</p>
+                           <p id="gallery-work-meta-7">Artist：森元 咲喜<br>Genre：ドットペインティング</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-7 gallery-work-meta-7" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan"
                      data-genre="グラフィックアート" data-caption="グラフィックアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/無題02.webp"
-                           alt="作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜無題 #2</p>
-                           <p>Artist：Quriqan<br>Genre：グラフィックアート</p>
-                        </a></div>
+                           alt="作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-8">Title｜無題 #2</p>
+                           <p id="gallery-work-meta-8">Artist：Quriqan<br>Genre：グラフィックアート</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-8 gallery-work-meta-8" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/希望.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜希望の輪</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-9">Title｜希望の輪</p>
+                           <p id="gallery-work-meta-9">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-9 gallery-work-meta-9" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="アクリル"
                      data-caption="アクリル">
                      <div class="work-img"><img data-art-protect draggable="false"
-                           src="./assets/img/IMG_20261003_190136_252.jpg" alt="森元 咲喜の作品 禁断の果実" width="1080" height="1313" loading="lazy"><a
-                           class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜禁断の果実</p>
-                           <p>Artist：森元 咲喜<br>Genre：アクリル</p>
-                        </a></div>
+                           src="./assets/img/IMG_20261003_190136_252.jpg" alt="森元 咲喜の作品 禁断の果実" width="1080" height="1313" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-10">Title｜禁断の果実</p>
+                           <p id="gallery-work-meta-10">Artist：森元 咲喜<br>Genre：アクリル</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-10 gallery-work-meta-10" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan"
                      data-genre="グラフィックアート" data-caption="グラフィックアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/無題03.webp"
-                           alt="作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜無題 #3</p>
-                           <p>Artist：Quriqan<br>Genre：グラフィックアート</p>
-                        </a></div>
+                           alt="作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-11">Title｜無題 #3</p>
+                           <p id="gallery-work-meta-11">Artist：Quriqan<br>Genre：グラフィックアート</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-11 gallery-work-meta-11" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/静寂.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜静寂の蒼（あお）</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-12">Title｜静寂の蒼（あお）</p>
+                           <p id="gallery-work-meta-12">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-12 gallery-work-meta-12" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="森元 咲喜" data-artist-id="森元咲喜" data-genre="アクリル"
                      data-caption="アクリル">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/ヒカリアレ.webp"
-                           alt="森元 咲喜の作品 ヒカリアレ" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜ヒカリアレ</p>
-                           <p>Artist：森元 咲喜<br>Genre：アクリル</p>
-                        </a></div>
+                           alt="森元 咲喜の作品 ヒカリアレ" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-13">Title｜ヒカリアレ</p>
+                           <p id="gallery-work-meta-13">Artist：森元 咲喜<br>Genre：アクリル</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-13 gallery-work-meta-13" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan"
                      data-genre="グラフィックアート" data-caption="グラフィックアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/無題04.webp"
-                           alt="作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜無題 #4</p>
-                           <p>Artist：Quriqan<br>Genre：グラフィックアート</p>
-                        </a></div>
+                           alt="作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-14">Title｜無題 #4</p>
+                           <p id="gallery-work-meta-14">Artist：Quriqan<br>Genre：グラフィックアート</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-14 gallery-work-meta-14" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/朝凪.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜朝凪</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-15">Title｜朝凪</p>
+                           <p id="gallery-work-meta-15">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-15 gallery-work-meta-15" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="Quriqan" data-artist-id="Quriqan"
                      data-genre="グラフィックアート" data-caption="グラフィックアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/無題05.webp"
-                           alt="作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜無題 #5</p>
-                           <p>Artist：Quriqan<br>Genre：グラフィックアート</p>
-                        </a></div>
+                           alt="作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-16">Title｜無題 #5</p>
+                           <p id="gallery-work-meta-16">Artist：Quriqan<br>Genre：グラフィックアート</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-16 gallery-work-meta-16" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/光.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜「静な光」と「動の光」が混じり合う時</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-17">Title｜「静な光」と「動の光」が混じり合う時</p>
+                           <p id="gallery-work-meta-17">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-17 gallery-work-meta-17" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                   <article class="work gallery-card" data-artist="KAoRU" data-artist-id="KAoRU" data-genre="アルコールインク"
                      data-caption="アルコールインクアート">
                      <div class="work-img"><img data-art-protect draggable="false" src="./assets/img/自我.webp"
-                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><a class="works gallery-work-link" href="#">
-                           <p class="gallery-work-title">Title｜自我の重なり</p>
-                           <p>Artist：KAoRU<br>Genre：アルコールインク</p>
-                        </a></div>
+                           alt="KAoRUの作品画像" width="1600" height="2000" loading="lazy"><div class="works gallery-work-link">
+                           <p class="gallery-work-title" id="gallery-work-title-18">Title｜自我の重なり</p>
+                           <p id="gallery-work-meta-18">Artist：KAoRU<br>Genre：アルコールインク</p>
+                        </div></div>
+                  <button class="gallery-card__open" type="button" aria-labelledby="gallery-work-title-18 gallery-work-meta-18" aria-haspopup="dialog" aria-controls="galleryModal" data-art-protect></button>
                   </article>
                </div>
                <div class="gallery-page-line"></div>
