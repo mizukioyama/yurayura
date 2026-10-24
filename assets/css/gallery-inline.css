@@ -190,7 +190,6 @@ html.is-gallery-modal-open {
   border: 0;
   background: rgba(243, 243, 237, 0.88);
   color: var(--color-txt);
-  font-size: 30px;
   font-weight: 300;
   line-height: 1;
   cursor: pointer;
@@ -322,7 +321,6 @@ html.is-gallery-modal-open {
   border: 0 !important;
   background: transparent !important;
   color: transparent !important;
-  font-size: 0 !important;
   line-height: 0 !important;
   cursor: pointer;
   transform: translateX(50%) !important;
@@ -412,7 +410,6 @@ html.is-gallery-modal-open {
 }
 .gallery-modal__profile-name {
   margin: 0 0 12px !important;
-  font-size: 1.1em;
   letter-spacing: 0.08em;
 }
 .gallery-modal__history {

@@ -26,7 +26,6 @@
   color: var(--color-txt);
   background: var(--color-bg);
   font-family: var(--font-jp);
-  font-size: var(--responsive-copy-size, 1rem);
   font-weight: 500;
   letter-spacing: 0.05em;
   line-height: 2;
@@ -69,7 +68,6 @@
 
 .faq-item__answer p {
   margin: 0;
-  font-size: var(--responsive-copy-size, 1rem);
   line-height: 2;
   letter-spacing: 0.08em;
 }

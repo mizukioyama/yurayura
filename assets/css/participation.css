@@ -21,12 +21,10 @@
 
 .path-eyebrow {
   margin-bottom: 24px;
-  font-size: var(--type-small-heading-size);
   letter-spacing: 0.16em;
 }
 .path-section h2 {
   margin-bottom: var(--space-5);
-  font-size: var(--type-heading-2-size);
   font-weight: 400;
   line-height: 1.8;
 }
@@ -50,13 +48,11 @@
   max-height: 520px;
 }
 .path-card h3 {
-  font-size: var(--type-heading-3-size);
   font-weight: 400;
   line-height: 1.8;
 }
 .path-card p {
   margin-top: var(--space-3);
-  font-size: var(--type-body-size);
   line-height: 1.8;
 }
 .path-card > span {
@@ -78,7 +74,6 @@
 }
 .path-prose {
   max-width: var(--path-reading);
-  font-size: var(--type-body-size);
   line-height: 2;
   overflow-wrap: anywhere;
 }
@@ -128,7 +123,6 @@
   overflow: visible;
 }
 .event-state-groups h3 {
-  font-size: var(--type-heading-3-size);
   margin-bottom: 16px;
   font-weight: 400;
 }
@@ -163,9 +157,7 @@
   .path-card {
     padding: var(--space-4) var(--space-3);
   }
-  .path-card p {
-    font-size: var(--type-body-size);
-  }
+
 }
 @media (max-width: 359px) {
   .path-section {
@@ -268,7 +260,6 @@ nav.path-section {
 .participate-page .path-details summary::after {
   content: "+";
   flex: none;
-  font-size: 1.25em;
 }
 .participate-page .path-details[open] summary::after {
   content: "−";

@@ -43,7 +43,6 @@
 
 .contact-form-shortcut {
   margin: 1.25rem 0 0;
-  font-size: var(--responsive-copy-size, 1rem);
   letter-spacing: 0.04em;
 }
 

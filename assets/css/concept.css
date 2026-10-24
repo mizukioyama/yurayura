@@ -17,7 +17,6 @@
   z-index: 1;
   margin-bottom: 1.2rem;
   color: var(--color-txt);
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -122,7 +121,6 @@
   padding: 0.9rem 1.5rem;
   color: var(--color-bg);
   background: var(--color-shadow-green);
-  font-size: 1rem;
   letter-spacing: 0.12em;
   writing-mode: initial;
   transition: opacity 0.35s ease, transform 0.35s ease;
@@ -230,7 +228,6 @@
   .concept-texture__copy .section__txt,
   .concept-gallery-link .section__txt {
     width: 100%;
-    font-size: var(--responsive-copy-size);
     line-height: 2;
     text-align: left;
   }

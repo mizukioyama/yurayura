@@ -35,7 +35,6 @@
   margin: 0 0 1.2rem;
   color: var(--color-txt);
   font-family: var(--font-base, "Shippori Mincho", serif);
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
   font-weight: 400;
   letter-spacing: 0.18em;
   line-height: 1.7;

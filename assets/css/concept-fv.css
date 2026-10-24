@@ -50,12 +50,10 @@
   filter: none;
   text-shadow: none;
   mix-blend-mode: normal;
-  font-size: var(--type-page-title-size);
   line-height: normal;
 }
 .page-fv .page-fv__subtitle {
   margin-top: .5rem;
-  font-size: var(--responsive-copy-size, 1rem);
   line-height: 1.7;
 }
 .page-fv > .scroll-guide {

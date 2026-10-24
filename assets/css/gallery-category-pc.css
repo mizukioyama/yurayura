@@ -15,7 +15,6 @@
   .gallery-page .gallery-sidebar__label {
     width: max-content !important;
     margin: 0 0 0.15rem !important;
-    font-size: var(--responsive-copy-size, 1rem) !important;
     letter-spacing: 0.06em !important;
     color: #444 !important;
   }
@@ -37,7 +36,6 @@
     padding: 0 !important;
     align-self: start !important;
     font: inherit !important;
-    font-size: var(--responsive-copy-size, 1rem) !important;
     font-weight: 300 !important;
     line-height: 2.7rem !important;
     color: #444 !important;
@@ -73,7 +71,6 @@
     background: transparent !important;
     color: #444 !important;
     font: inherit !important;
-    font-size: var(--responsive-copy-size, 1rem) !important;
     line-height: 2.3rem !important;
     text-align: center !important;
     text-decoration: none !important;

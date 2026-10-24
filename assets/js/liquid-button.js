@@ -98,7 +98,7 @@ class LiquidButton extends HTMLElement {
 
 .wrapper{
 
-  --button-font-size: clamp(13px, calc(0.45vw + 11px), 16px);
+
 
   box-sizing:border-box;
 
@@ -128,7 +128,8 @@ class LiquidButton extends HTMLElement {
   color:${theme === "dark" ? "#fff" : "var(--color-txt, #303a05)"};
 
   font-family:inherit;
-  font-size:var(--button-font-size);
+  /* Global settings normally supply these sizes. Literal fallbacks preserve standalone use without the site CSS. */
+  font-size:var(--type-liquid-button-size, clamp(13px, calc(0.45vw + 11px), 16px));
   line-height:1.2;
 
   backdrop-filter:
@@ -197,7 +198,7 @@ class LiquidButton extends HTMLElement {
 
 .sm{
 
-  --button-font-size:clamp(12px, calc(0.4vw + 10.5px), 15px);
+  font-size:var(--type-liquid-small-size, clamp(12px, calc(0.4vw + 10.5px), 15px));
 
   width:180px;
   min-height:40px;
@@ -205,7 +206,7 @@ class LiquidButton extends HTMLElement {
 
 .md{
 
-  --button-font-size:clamp(14px, calc(0.5vw + 12px), 16px);
+  font-size:var(--type-liquid-medium-size, clamp(14px, calc(0.5vw + 12px), 16px));
 
   width:${fluid ? "100%" : "280px"};
   min-height:44px;
@@ -213,7 +214,7 @@ class LiquidButton extends HTMLElement {
 
 .lg{
 
-  --button-font-size:clamp(24px, calc(1vw + 20px), 40px);
+  font-size:var(--type-liquid-large-size, clamp(24px, calc(1vw + 20px), 40px));
 
   width:420px;
   min-height:140px;

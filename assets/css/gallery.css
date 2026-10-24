@@ -5,7 +5,6 @@
 
 body.gallery-page {
   font-family: var(--font-base, "Shippori Mincho", serif) !important;
-  font-size: var(--responsive-copy-size, 1rem) !important;
   font-weight: 300 !important;
   line-height: 1.7 !important;
 }
@@ -30,7 +29,6 @@ body.gallery-page button {
 
 .gallery-page .h1-text h1 {
   margin: 0;
-  font-size: var(--type-page-title-size);
   font-weight: 300;
 }
 }
@@ -90,7 +88,6 @@ body.gallery-page button {
   display: block !important;
   margin: 0 0 0.35rem !important;
   font: inherit !important;
-  font-size: 1.12em !important;
   letter-spacing: 0.06em !important;
 }
 .gallery-scroll-hint {
@@ -171,7 +168,6 @@ body.gallery-page button {
 .gallery-page .gallery-work-link p,
 .gallery-page .gallery-intro p {
   font-family: inherit !important;
-  font-size: var(--responsive-copy-size, 1rem) !important;
   font-weight: 300 !important;
   line-height: 1.7 !important;
 }
@@ -243,7 +239,6 @@ body.gallery-page button {
     width: max-content !important;
     margin: 0 0 0.45rem !important;
     font: inherit !important;
-    font-size: 0.78em !important;
     letter-spacing: 0.08em !important;
     color: #777 !important;
     opacity: 0.72 !important;
@@ -251,7 +246,6 @@ body.gallery-page button {
   }
   .gallery-scroll-hint::after {
     content: "⟶";
-    font-size: 1.15em;
     line-height: 1;
     animation: galleryHint 1.8s ease-in-out infinite;
   }
@@ -303,7 +297,6 @@ body.gallery-page button {
   .gallery-page .gallery-sidebar__label,
   .gallery-page .gallery-filter-title,
   .gallery-page .gallery-filter {
-    font-size: var(--responsive-copy-size, 1rem) !important;
     color: #444 !important;
   }
   .gallery-page .gallery-filter.is-active {
