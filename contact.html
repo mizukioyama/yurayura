@@ -42,7 +42,7 @@
   <noscript><style>.contact-page .contact-form-enhanced { display: none !important; }</style></noscript>
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=089f97ca6b45" defer></script>
-  <script src="./assets/js/form.js" defer></script>
+  <script src="./assets/js/form.js?v=acf3ce13ca27" defer></script>
   <script src="./assets/js/liquid-button.js?v=838660e4d3d4" defer></script>
   <link rel="stylesheet" href="./assets/css/visual-shared.css?v=7a6a76f33f3e">
   <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
@@ -121,7 +121,7 @@
           <div class="form-row"><input type="text" id="name" name="name" placeholder=" " required maxlength="80" autocomplete="name" /><label for="name" class="form-label">お名前</label></div>
           <div class="form-row"><input type="email" id="email" name="email" placeholder=" " required maxlength="254" autocomplete="email" /><label for="email" class="form-label">メールアドレス</label></div>
           <div class="form-row"><textarea id="message" name="message" placeholder=" " required maxlength="5000"></textarea><label for="message" class="form-label form-label--textarea">お問い合わせ内容</label></div>
-          <div class="form-trap" aria-hidden="true"><label for="contactWebsite">Website</label><input type="text" id="contactWebsite" name="website" autocomplete="off" maxlength="200" /></div>
+          <div class="form-trap" aria-hidden="true"><label for="contactWebsite">Website</label><input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off" maxlength="200" /></div>
           <div class="form-bottom">
             <div class="contact-policy-consent">
               <div class="contact-policy-consent__statement">
@@ -140,7 +140,7 @@
       </div>
     </section>
   </main>
-<div class="modal contact-policy-modal" id="contactPolicyModal" role="dialog" aria-modal="true" aria-labelledby="contactPolicyTitle" aria-hidden="true" inert>
+<div class="modal contact-policy-modal" id="contactPolicyModal" role="dialog" aria-modal="true" aria-labelledby="contactPolicyTitle" aria-hidden="true" inert tabindex="-1">
     <div class="modal-content">
       <button type="button" class="modal-close" aria-label="閉じる" data-form-modal-close>×</button>
       <div class="contact-policy-modal__copy">
@@ -152,7 +152,7 @@
       <button type="button" class="modal-btn liquid-control" data-form-modal-close>閉じる</button>
     </div>
   </div>
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage" aria-hidden="true" inert data-form-result>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage" aria-hidden="true" inert tabindex="-1" data-form-result>
     <div class="modal-content">
       <button type="button" class="modal-close liquid-control liquid-control--icon" id="modalClose" aria-label="閉じる" data-form-modal-close>×</button>
       <h3 id="modalTitle" class="modal-title"></h3>

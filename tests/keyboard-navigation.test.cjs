@@ -36,3 +36,12 @@ test('each artwork has one native dialog trigger named by its visible title and 
     assert(card.includes('Artist：'));
   }
 });
+
+
+test('bypass navigation preserves Contact trap and dialog focus exclusions', () => {
+  const html = read('contact.html');
+  for (const id of ['contactWebsite', 'contactPolicyModal', 'modal']) {
+    const tag = html.match(new RegExp('<[^>]+\\bid="' + id + '"[^>]*>'))[0];
+    assert.match(tag, /tabindex="-1"/, id);
+  }
+});
