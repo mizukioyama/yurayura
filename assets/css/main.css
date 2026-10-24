@@ -254,7 +254,7 @@ section {
   } */
 }
 
-section:not(.fv) {
+section:not(.fv):not(:where(.page-fv)) {
   height: auto;
   min-height: 0;
 }
@@ -275,7 +275,7 @@ section:not(.fv) {
 }
 
 @media screen and (max-width: 480px) {
-  section:not(.fv),
+  section:not(.fv):not(:where(.page-fv)),
   section.fv {
     padding-block: clamp(72px, calc(7vw + 48px), 96px);
     padding-block: 26vmin;
@@ -1302,12 +1302,12 @@ section {
 ======================================== */
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
-    section:not(.fv) {
+    section:not(.fv):not(:where(.page-fv)) {
     padding-block: 24vmin;
   }
 }
 @media screen and (min-width: 768px) {
-  section:not(.fv) {
+  section:not(.fv):not(:where(.page-fv)) {
     padding-block: clamp(64px, calc(3vw + 48px), 96px);
     padding-block: 20vmin;
   }
@@ -1429,7 +1429,7 @@ section {
 }
 
 /* Following content remains below the Scroll guide when their areas overlap. */
-.main > section:not(.fv),
+.main > section:not(.fv):not(:where(.page-fv)),
 .gallery > section {
   position: relative;
   z-index: 1;

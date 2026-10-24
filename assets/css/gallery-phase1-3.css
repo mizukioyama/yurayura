@@ -3,36 +3,15 @@
   /* Shared with the compact hero event links; matches the existing H1 line box. */
   --gallery-title-line-height: calc(var(--type-page-title-size) * 1.7);
 }
-.gallery-page .gallery > .scroll-guide {
+@media (min-width: 1200px) {
+
+.gallery-page .gallery .page-fv--gallery > .scroll-guide {
   top: calc(240px + var(--gallery-title-line-height) + 140px) !important;
   bottom: auto !important;
   transform: none !important;
 }
-
-@media (max-width: 1199px) {
-  .gallery-page .gallery > .scroll-guide {
-    top: calc(28vmin + var(--gallery-title-line-height) + 140px) !important;
-  }
 }
 
-@media (max-width: 1023px) {
-  .gallery-page .gallery > .scroll-guide {
-    --content-scroll-guide-size: 140px;
-  }
-}
-
-@media (max-width: 767px) {
-  .gallery-page .gallery > .scroll-guide {
-    --content-scroll-guide-size: 140px;
-    top: calc(180px + var(--gallery-title-line-height) + 140px) !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .gallery-page .gallery > .scroll-guide {
-    --content-scroll-guide-size: 64px;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .gallery-page .scroll-guide__bar::before {

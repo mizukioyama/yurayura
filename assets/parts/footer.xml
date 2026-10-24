@@ -4,38 +4,38 @@
          <nav class="footer-nav" aria-label="フッターナビゲーション">
          <ul class="footer-list">
 
-            <li class="footer-item footer-item--top">
-               <a href="./index.html" class="footer-link" aria-label="トップ"><span class="menu-small">トップ</span>
+            <li class="footer-item">
+               <a href="./index.html" class="footer-link site-nav-label" aria-label="トップ"><span class="menu-small site-nav-label">トップ</span>
                <span class="menu-border"></span>
-               <span class="menu-en">TOP</span>
+               <span class="menu-en site-nav-label">TOP</span>
                </a>
             </li>
 
-            <li class="footer-item footer-item--concept">
-               <a href="./concept.html" class="footer-link" aria-label="世界観"><span class="menu-small">世界観</span>
+            <li class="footer-item">
+               <a href="./concept.html" class="footer-link site-nav-label" aria-label="世界観"><span class="menu-small site-nav-label">世界観</span>
                <span class="menu-border"></span>
-               <span class="menu-en">CONCEPT</span>
+               <span class="menu-en site-nav-label">CONCEPT</span>
                </a>
             </li>
 
-            <li class="footer-item footer-item--gallery">
-               <a href="./gallery.html" class="footer-link" aria-label="作品"><span class="menu-small">作　品</span>
+            <li class="footer-item">
+               <a href="./gallery.html" class="footer-link site-nav-label" aria-label="作品"><span class="menu-small site-nav-label">作　品</span>
                <span class="menu-border"></span>
-               <span class="menu-en">GALLERY</span>
+               <span class="menu-en site-nav-label">GALLERY</span>
                </a>
             </li>
 
-            <li class="footer-item footer-item--information">
-               <a href="./information.html" class="footer-link" aria-label="開催情報"><span class="menu-small">開催情報</span>
+            <li class="footer-item">
+               <a href="./information.html" class="footer-link site-nav-label" aria-label="開催情報"><span class="menu-small site-nav-label">開催情報</span>
                <span class="menu-border"></span>
-               <span class="menu-en">INFORMATION</span>
+               <span class="menu-en site-nav-label">INFORMATION</span>
                </a>
             </li>
 
-            <li class="footer-item footer-item--contact">
-               <a href="./contact.html" class="footer-link" aria-label="お問い合わせ"><span class="menu-small">お問い合わせ</span>
+            <li class="footer-item">
+               <a href="./contact.html" class="footer-link site-nav-label" aria-label="お問い合わせ"><span class="menu-small site-nav-label">お問い合わせ</span>
                <span class="menu-border"></span>
-               <span class="menu-en">CONTACT</span>
+               <span class="menu-en site-nav-label">CONTACT</span>
                </a>
             </li>
 

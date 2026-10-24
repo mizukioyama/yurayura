@@ -7,7 +7,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "phase8-header-1";
+  const PARTS_VERSION = "shared-typography-phase2";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
@@ -220,7 +220,7 @@ function initializeScrollGuidePosition() {
       guide.setAttribute("data-positioned", "");
       return;
     }
-    if (!fv) return; // Gallery retains its CSS-owned hero geometry and PC visibility.
+    if (!fv || (fv.classList.contains("page-fv--gallery") && innerWidth >= 1200)) return; // Keep Gallery PC CSS-owned.
     if (innerWidth >= 1200) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");

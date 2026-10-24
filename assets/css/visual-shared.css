@@ -20,8 +20,7 @@
     --fv-scroll-left: 22px;
   }
 }
-body .main :is(.fv, .page-fv) .scroll-guide,
-body.gallery-page .gallery > .scroll-guide {
+body.top-page .main .fv .scroll-guide {
   left: 0;
   right: auto !important;
   --content-scroll-guide-size: var(--fv-scroll-line);
@@ -63,8 +62,7 @@ body.top-page .main .fv .scroll-guide {
     --compact-title-top: clamp(24px, 8dvh, 64px);
   }
   body.top-page .main .fv .scroll-guide,
-  body .main :is(.fv, .page-fv) .scroll-guide,
-  body.gallery-page .gallery > .scroll-guide {
+  body .main .page-fv > .scroll-guide {
     top: calc(var(--compact-frame-height) - 12px) !important;
     bottom: auto !important;
     transform: translateY(-100%) !important;
@@ -91,34 +89,6 @@ body.top-page .main .fv .scroll-guide {
     text-indent: 8px;
   }
 }
-/* Gallery PC remains unchanged, including its intentionally hidden Scroll. */
-@media (orientation: landscape) and (max-height: 720px) and (max-width: 1199px) {
-  body.gallery-page .main.gallery {
-    padding: 0 var(--fv-scroll-left) !important;
-  }
-  body.gallery-page .main.gallery .h1-text {
-    position: absolute !important;
-    top: var(--compact-title-top) !important;
-    left: var(--compact-title-left) !important;
-    right: max(24px, env(safe-area-inset-right)) !important;
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  body.gallery-page .main.gallery .gallery-section {
-    padding-top: var(--compact-frame-height) !important;
-    margin-top: 0 !important;
-  }
-  body.gallery-page .main.gallery .gallery-event-nav {
-    position: absolute;
-    top: calc(var(--compact-title-top) + var(--gallery-title-line-height) + 16px);
-    left: 64px;
-    right: max(24px, env(safe-area-inset-right));
-    margin: 0;
-    justify-content: flex-start;
-  }
-}
-
 /* Shared paper stays below content and artwork. Vanta owns an opaque surface,
    so its paper belongs inside that background stack, above its canvas only. */
 :root {
@@ -151,16 +121,17 @@ body.top-page .main .fv .scroll-guide {
 }
 /* Existing intro targets keep their exact transforms and centered geometry. */
 body
-  .top-reveal-pending:not(.fv__inner):not(.h1-text):not(.policy-title):not(#concept-title):not(
+  .top-reveal-pending:not(.fv__inner):not(.page-fv__inner):not(.h1-text):not(.page-fv__title):not(#concept-title):not(
     .fv__txt
+  ):not(.page-fv__subtitle
   ) {
   opacity: 0;
   transform: translateY(var(--motion-reveal-distance));
 }
 body
-  .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.h1-text):not(.policy-title):not(
+  .top-reveal-pending.top-reveal-visible:not(.fv__inner):not(.page-fv__inner):not(.h1-text):not(.page-fv__title):not(
     #concept-title
-  ):not(.fv__txt) {
+  ):not(.fv__txt):not(.page-fv__subtitle) {
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -576,8 +547,4 @@ body
 }
 .information-planning p + p {
   margin-top: 16px;
-}
-
-@media (max-width: 480px) {
-  .page-fv--gallery .scroll-guide__text { font-size: 10px !important; }
 }

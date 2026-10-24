@@ -183,3 +183,12 @@ Latest card feedback uses --card-float-duration680ms, overridden to120ms only du
 
 Header幅は変更しない。閾値はallmenu.jsのviewport高さ×0.70（1200px以上）／×0.80（それ未満）。Headerの固定・280ms transitionはmenu-style.css、Header/Footerの350ms下線・250ms色変化はvisual-shared.cssが所有。高さだけのresizeは180ms待って再評価する。--site-header-sizeの予約領域を消すとFVとCLSが変わるため維持する。
 参加ページの通常PC/タブレットFV例外はparticipation.cssの.information-page.participate-pageに限定。低い横画面の共通指定は変更しない。
+
+## 非TOP FVとHeader/Footerの共通操作
+
+FVの位置・フレーム・スマホPaddingは `concept-fv.css` の `.page-fv` と `.page-fv__inner` を1か所で編集する。
+ConceptはPCを含む全幅の正本。ページ名別のコピーや `page-fv--reading` / `page-fv--participate` は使用しない。
+Galleryは1200px以上だけ既存のPC専用配置を維持する。TOPの `.fv` は対象外。
+共有ラベル文字サイズは `user-settings.css` の `--type-navigation-label-size`（9px / 0.9vw / 10px）。
+`.site-brand` と `.site-nav-label` は共有Typography用で、Header/Footer固有の配置クラスを置換しない。
+`--type-menu-meta-size` と `.header-logo` は既存の別の詳細度・旧Markup互換用に維持する。

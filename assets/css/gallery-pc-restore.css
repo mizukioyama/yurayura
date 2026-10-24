@@ -27,7 +27,7 @@
     color: transparent;
     background: currentColor;
   }
-  .gallery-page .gallery > .scroll-guide,
+  .gallery-page .gallery .page-fv--gallery > .scroll-guide,
   .gallery-page .gallery-intro,
   .gallery-scroll-hint {
     display: none !important;
