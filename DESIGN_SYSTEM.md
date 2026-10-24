@@ -258,3 +258,22 @@ Only participate-page owns its regular desktop/tablet hero override: min-height1
 ## Phase 9: more visible static washi (2026-10-22)
 
 The Phase 7 grain layer was present but visually faint because the source texture uses low alpha values; the shared opacity (0.72), 512×512 repeat, layer order and Vanta wrapper remain unchanged. The selected B variant raises mean alpha by about 46% using a nonlinear tone curve while preserving the ivory base and the existing fiber pattern. The actual-page comparison at 390px and desktop showed B gives the paper texture a readable presence without competing with copy or artwork; A remained too subtle. The shared `--paper-image` still feeds body, Vanta, Footer and open menu, and `main.css` keeps the same fallback. No CSS, animation, layout, menu, Gallery or participation behavior changed. The updated 512×512 WebP is 97,426 bytes (19,418 bytes, or 24.9%, above the previous 78,008-byte asset); Android-device acceptance and browser LCP/CLS measurements remain separate checks.
+
+### Non-TOP FVの共通編集
+
+正式な非TOPページのFV配置は `assets/css/concept-fv.css` を正本とする。
+`.fv.page-fv` の直下に `.fv__inner.page-fv__inner`、その中に
+`.fv__ttl.page-fv__title` と `.fv__txt.page-fv__subtitle` を置き、Scrollを兄弟にする。
+`section` / `header` と `aria-labelledby` はページの意味に合わせて維持する。
+
+- `page-fv--concept`：Conceptの背景演出とスマホの読み始め位置を維持。
+- `page-fv--reading`：Information / Contact / Policy / Profile / Exhibitions / Venues / Support / Participateの読み物用フレーム。
+- `page-fv--participate`：Header予約高を差し引く既存の参加ページ例外。
+- Galleryは `main.gallery.page-fv--gallery` 内に作品一覧も含む。共通のタイトル用クラスを使うが、独立したFVラッパーを追加せず、Gallery専用CSSの配置とPC Scroll非表示を維持する。
+
+共通FVのCSSは各ページの最後に読み込む。Typographyの数値は引き続き
+`user-settings.css` の既存トークン、Scrollの3.2秒アニメーションは `main.css`、
+全体のScroll変数と低い横画面の共通座標は `visual-shared.css` が所有する。
+`allmenu.js` は `.page-fv` のタイトル・副題と使用可能な領域を測定する。
+TOPおよび開発・旧ページはこの編集契約の対象外。配置変更時は指定幅、横画面、
+通常モーションとReduced Motionで変更前後を比較する。

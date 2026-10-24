@@ -328,21 +328,3 @@
     padding-inline: var(--layout-gutter-tablet);
   }
 }
-
-/* Final FV override: copy Gallery's H1 layout exactly and neutralize shared .fv rules. */
-
-
-.concept-page .concept-fv .fv__ttl {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  transform: none !important;
-  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
-  font-weight: 300 !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed !important;
-}

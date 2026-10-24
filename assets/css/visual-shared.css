@@ -20,14 +20,16 @@
     --fv-scroll-left: 22px;
   }
 }
-body .main :is(.fv, .concept-fv) .scroll-guide,
+body .main :is(.fv, .page-fv) .scroll-guide,
 body.gallery-page .gallery > .scroll-guide {
   left: 0;
   right: auto !important;
   --content-scroll-guide-size: var(--fv-scroll-line);
 }
-body .scroll-guide__text {
+body.top-page .scroll-guide__text {
   font-size: var(--type-body-size);
+}
+body .scroll-guide__text {
   line-height: 1.7;
   writing-mode: vertical-rl;
   letter-spacing: 0.4rem;
@@ -42,37 +44,6 @@ body .scroll-guide__bar {
     animation: none !important;
     transform: none !important;
     opacity: 0 !important;
-  }
-}
-
-/* The desktop reading hero uses the same full-height frame as Concept, so
-   a left guide cannot cross its title as it did in the shorter right-guide frame. */
-@media (min-width: 1200px) {
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv {
-    min-height: 100svh !important;
-  }
-}
-
-/* Reserve Concept's guide length instead of reducing it to a short stub. */
-@media (max-width: 1199px) {
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: max(100svh, 640px) !important;
-  }
-}
-@media (max-width: 767px) {
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: 640px !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-  .concept-page .concept-fv {
-    min-height: max(100svh, 640px) !important;
   }
 }
 
@@ -91,28 +62,8 @@ body.top-page .main .fv .scroll-guide {
     --compact-title-left: calc(var(--fv-scroll-left) + 64px);
     --compact-title-top: clamp(24px, 8dvh, 64px);
   }
-  body:is(.concept-page, .information-page, .contact-page, .policy-page) .main .concept-fv {
-    min-height: 0 !important;
-    height: var(--compact-frame-height) !important;
-  }
-  body:is(.concept-page, .information-page, .contact-page, .policy-page)
-    .main
-    .concept-fv
-    :is(.fv__inner, .information-hero__inner) {
-    position: absolute !important;
-    inset: auto !important;
-    top: var(--compact-title-top) !important;
-    left: var(--compact-title-left) !important;
-    right: max(24px, env(safe-area-inset-right)) !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    transform: none !important;
-  }
   body.top-page .main .fv .scroll-guide,
-  body .main :is(.fv, .concept-fv) .scroll-guide,
+  body .main :is(.fv, .page-fv) .scroll-guide,
   body.gallery-page .gallery > .scroll-guide {
     top: calc(var(--compact-frame-height) - 12px) !important;
     bottom: auto !important;
@@ -625,4 +576,8 @@ body
 }
 .information-planning p + p {
   margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .page-fv--gallery .scroll-guide__text { font-size: 10px !important; }
 }

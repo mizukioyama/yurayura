@@ -1,32 +1,19 @@
 @charset "UTF-8";
-
-/* Concept is the shared FV reference for the four editorial pages. */
-.concept-page .concept-fv,
-.information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv,
-.policy-page .concept-fv {
+/* Shared non-TOP FV authority. Typography tokens remain in user-settings.css.
+   TOP and Gallery geometry are deliberately separate. */
+.page-fv {
   position: relative !important;
   display: block !important;
   height: auto !important;
   min-height: 100vh !important;
   min-height: 100svh !important;
   padding: 0 !important;
-  overflow: visible !important;
   z-index: 2 !important;
   background: transparent !important;
   width: min(100%, 1080px);
   margin-inline: auto;
 }
-
-.information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv {
-  min-height: max(64svh, calc(34vmin + 14rem)) !important;
-}
-
-.concept-page .concept-fv .fv__inner,
-.information-page .information-hero.concept-fv .information-hero__inner,
-.contact-page .information-hero.concept-fv .information-hero__inner,
-.policy-page .concept-fv .fv__inner {
+.page-fv .fv__inner {
   position: absolute !important;
   left: 0 !important;
   top: 26vmin !important;
@@ -44,11 +31,7 @@
   translate: none !important;
   transform: none !important;
 }
-
-.concept-page .concept-fv .fv__ttl,
-.policy-page .concept-fv .policy-title,
-.information-page .information-hero.concept-fv .fv__ttl,
-.contact-page .information-hero.concept-fv .fv__ttl {
+.page-fv .fv__ttl {
   position: static !important;
   display: block !important;
   width: auto !important;
@@ -70,11 +53,7 @@
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
 }
-
-.concept-page .concept-fv .fv__txt,
-.information-page .information-hero.concept-fv .fv__txt,
-.contact-page .information-hero.concept-fv .fv__txt,
-.policy-page .concept-fv .fv__txt {
+.page-fv .fv__txt {
   position: static !important;
   display: block !important;
   width: auto !important;
@@ -93,25 +72,14 @@
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
 }
-
-.concept-page .concept-fv .scroll-guide,
-.information-page .information-hero.concept-fv .scroll-guide,
-.contact-page .information-hero.concept-fv .scroll-guide,
-.policy-page .concept-fv .scroll-guide {
+.page-fv .scroll-guide {
   left: 0vmin !important;
   right: auto !important;
-  z-index: 120 !important;
-  overflow: visible !important;
 }
-
-.concept-page .concept-fv + section,
-.information-page .information-hero.concept-fv + section,
-.contact-page .information-hero.concept-fv + section,
-.policy-page .concept-fv + section {
+.page-fv + section {
   position: relative;
   z-index: 1 !important;
 }
-
 .concept-page #fog-scene,
 .concept-page .vanta-wrap,
 .concept-page #vanta-bg,
@@ -120,146 +88,71 @@
 }
 
 @media screen and (max-width: 1199px) {
-  .concept-page .concept-fv .fv__inner,
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
+  .page-fv .fv__inner {
     left: 10vw !important;
     top: 28vmin !important;
   }
-
-  .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
-  .policy-page .concept-fv .scroll-guide {
+  .page-fv .scroll-guide {
     left: 10vw !important;
-    right: auto !important;
   }
 
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .concept-page .concept-fv .fv__inner,
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
+  .page-fv .fv__inner {
     left: var(--layout-gutter-tablet) !important;
-  }
-
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding-inline: var(--layout-gutter-tablet) !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .concept-page .concept-fv,
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
+  .page-fv {
     min-height: 0 !important;
-    overflow: visible !important;
   }
-
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: clamp(360px, 44svh, 390px) !important;
-  }
-
-  .concept-page .concept-fv .fv__inner {
+  .page-fv--concept .fv__inner {
     position: relative !important;
     left: auto !important;
     top: auto !important;
     box-sizing: border-box !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 180px var(--layout-gutter-mobile) 420px !important;
+    padding: 120px 22.5px 420px !important;
   }
-
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding-inline: var(--layout-gutter-mobile) !important;
-  }
-
-  .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
-  .policy-page .concept-fv .scroll-guide {
+  .page-fv .scroll-guide {
     left: 22px !important;
-    right: auto !important;
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .concept-page .concept-fv {
+  .page-fv--concept {
     --content-scroll-guide-size: 140px;
   }
-
-  .concept-page .concept-fv .scroll-guide__bar,
-  .concept-page .concept-fv .scroll-guide__bar::before {
-    height: var(--content-scroll-guide-size) !important;
-    min-height: var(--content-scroll-guide-size) !important;
-    max-height: var(--content-scroll-guide-size) !important;
-  }
-
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
+  .page-fv--reading {
     --content-scroll-guide-size: 140px;
     --content-scroll-guide-start: -140px;
     --content-scroll-guide-end: 140px;
   }
-
-  .information-page .information-hero.concept-fv .scroll-guide__bar,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar,
-  .policy-page .concept-fv .scroll-guide__bar,
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
-    height: var(--content-scroll-guide-size, 140px) !important;
-    min-height: var(--content-scroll-guide-size, 140px) !important;
-    max-height: var(--content-scroll-guide-size, 140px) !important;
-  }
-
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
+  .page-fv--reading .scroll-guide__bar::before {
     animation-name: contentPageScrollGuideFlow !important;
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    position: absolute !important;
+  .page-fv--reading .fv__inner {
     inset: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
     box-sizing: border-box !important;
-    width: auto !important;
-    max-width: none !important;
-    height: auto !important;
-    margin: 0 !important;
     padding: 0 var(--layout-gutter-mobile) !important;
-    translate: none !important;
-    transform: none !important;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
+  .page-fv--reading .fv__inner {
     padding-inline: var(--layout-gutter-tablet) !important;
   }
 }
-
 
 @keyframes contentPageScrollGuideFlow {
   0% { transform: translateY(var(--content-scroll-guide-start, -140px)); opacity: 0; }
@@ -268,13 +161,75 @@
   100% { transform: translateY(var(--content-scroll-guide-end, 140px)); opacity: 0; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .concept-page .concept-fv .scroll-guide__bar::before,
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
-    animation: none !important;
+/* Reserve Concept's guide length instead of reducing it to a short stub. */
+@media (max-width: 1199px) {
+  .page-fv--reading {
+    min-height: max(100svh, 640px) !important;
+  }
+}
+@media (max-width: 767px) {
+  .page-fv--reading {
+    min-height: 640px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-fv--concept {
+    min-height: max(100svh, 640px) !important;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 720px) {
+  .page-fv {
+    min-height: 0 !important;
+    height: var(--compact-frame-height) !important;
+  }
+  .page-fv
+  .fv__inner {
+    position: absolute !important;
+    inset: auto !important;
+    top: var(--compact-title-top) !important;
+    left: var(--compact-title-left) !important;
+    right: max(24px, env(safe-area-inset-right)) !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
     transform: none !important;
-    opacity: 0 !important;
+  }
+}
+
+/* Participate owns its frame; tablet's generic inset/padding must not double it. */
+@media (min-width: 768px) and (min-height: 721px) {
+  .page-fv--participate {
+    min-height: calc(100svh - var(--site-header-size)) !important;
+  }
+  .page-fv--participate .fv__inner {
+    inset: auto !important;
+    left: var(--fv-scroll-left) !important;
+    top: clamp(96px, 24svh, 216px) !important;
+    display: block !important;
+    padding: 0 !important;
+    width: 100% !important;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) and (min-height: 721px) {
+  .page-fv--participate .fv__inner {
+    left: var(--layout-gutter-tablet) !important;
+    width: calc(100% - 2 * var(--layout-gutter-tablet)) !important;
+  }
+}
+
+/* Retain the user-edited Scroll typography without changing TOP. */
+@media (max-width: 480px) {
+  .page-fv .scroll-guide__text { font-size: 10px !important; }
+}
+
+/* Must follow the compact reading animation-name override. */
+@media (prefers-reduced-motion: reduce) {
+  .page-fv .scroll-guide__bar::before {
+    animation: none !important;
   }
 }
