@@ -25,6 +25,13 @@
 - Shippori Mincho
 - Akaya Kanadaka
 
+### Size ownership
+全公開11ページの文字サイズの正本は`assets/css/user-settings.css`。共通の意味を持つ設定は`--type-*`を直接参照し、独立した一度だけの設定は同ファイルのcomponent節で管理する。配置・行間・字間・font familyは元のcomponent stylesheetが所有する。
+
+基本はFV/H2/H3/小見出し/本文/リード/メタ/ボタン/ナビの9ロール。異なる既存式やem継承をタグ名・現在の同値だけで同じ設定にしない。TOPの特大・compact/低横画面、Gallery PC副題、Contact入力・モーダル、Shadow DOM CTAなど必要なvariantは維持する。
+
+既存のroot alias5種類は再導入しない。多段aliasやサイズの新しいoverride層ではなく正本を編集する。Shadow DOMはhostから正本変数を継承し、単体利用fallbackだけをJS側へ残す。resetの継承primitiveと未読込legacy CSSは調整用の正本ではない。詳細な編集先と検証コマンドはCSS_VARIABLES_GUIDE.mdを参照。
+
 ### Rules
 - 本文の可読性を最優先する。
 - 長文で装飾書体を多用しない。

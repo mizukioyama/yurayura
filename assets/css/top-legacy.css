@@ -30,7 +30,6 @@
   top: calc(50dvh - var(--site-header-size));
 }
 .top-page h1.fv__ttl {
-  font-size: var(--type-top-hero-size);
   letter-spacing: var(--type-top-hero-tracking);
   text-indent: var(--type-top-hero-tracking);
 }
@@ -42,9 +41,9 @@
   bottom: max(24px, env(safe-area-inset-bottom)) !important;
 }
 @media (max-height: 600px) {
-  .top-page h1.fv__ttl { font-size: var(--type-top-hero-compact-size); letter-spacing: 8px; text-indent: 8px; }
+  .top-page h1.fv__ttl { letter-spacing: 8px; text-indent: 8px; }
   .top-page .fv { --content-scroll-guide-size: 64px; }
-  .top-page .fv .fv__txt { font-size: var(--type-body-size); }
+
 }
 
 .top-page section.section--concept,
@@ -73,7 +72,6 @@
   width: min(100%, 720px);
   height: auto;
   margin: 0 0 clamp(20px, 2.2vw, 32px);
-  font-size: clamp(22px, calc(0.55vw + 20px), 32px);
   line-height: 1.45;
   letter-spacing: clamp(0.12em, 0.55vw, 0.28em);
   writing-mode: horizontal-tb;
@@ -85,7 +83,6 @@
   width: min(100%, 680px);
   height: auto;
   margin: 0;
-  font-size: var(--responsive-copy-size);
   writing-mode: horizontal-tb;
   white-space: normal;
   line-height: clamp(1.9, calc(0.12vw + 1.82), 2.05);
@@ -206,7 +203,6 @@
   .top-page .section--concept .h2_ttl {
     width: 100%;
     margin-bottom: clamp(18px, 3vw, 24px);
-    font-size: clamp(22px, 3vw, 26px);
     line-height: 1.45;
     letter-spacing: 0.14em;
     writing-mode: horizontal-tb;
@@ -275,7 +271,6 @@
   .top-page .section--concept .h2_ttl {
     width: 100%;
     margin-bottom: clamp(18px, 5vw, 24px);
-    font-size: clamp(20px, 5.7vw, 26px);
     line-height: 1.45;
     letter-spacing: 0.14em;
     writing-mode: horizontal-tb;
