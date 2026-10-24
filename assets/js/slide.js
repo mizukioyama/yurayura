@@ -283,8 +283,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ".top-page #access .section__inner > .h2_ttl",
     ".top-page #access .access-info",
     ".top-page #access iframe",
-    ".concept-page .concept-fv #concept-title",
-    ".concept-page .concept-fv .fv__txt",
+    ".concept-page .page-fv #concept-title",
+    ".concept-page .page-fv .page-fv__subtitle",
     ".concept-page #concept .concept-eyebrow",
     ".concept-page #concept .h2_ttl",
     ".concept-page #concept .section__txt",
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".information-main > .section h3",
     ".contact-main > .section h2",
     ".contact-main > .section h3",
-    ".policy-page .policy-title",
+    ".policy-page .page-fv__title",
     ".policy-page .policy-section"
   ].join(",");
   const targets = Array.from(

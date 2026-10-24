@@ -7,7 +7,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "phase8-header-1";
+  const PARTS_VERSION = "shared-typography-phase2";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
@@ -189,7 +189,7 @@ function initializeCustomCursor() {
 /* CSS owns the common axis; measure only the available editorial FV space. */
 function initializeScrollGuidePosition() {
   const guide = document.querySelector(".scroll-guide");
-  const fv = document.querySelector(".concept-fv");
+  const fv = document.querySelector(".page-fv");
   if (!guide) return;
   const compactMedia = window.matchMedia("(orientation: landscape) and (max-height: 720px)");
   const positionGuide = () => {
@@ -220,14 +220,14 @@ function initializeScrollGuidePosition() {
       guide.setAttribute("data-positioned", "");
       return;
     }
-    if (!fv) return; // Gallery retains its CSS-owned hero geometry and PC visibility.
+    if (!fv || (fv.classList.contains("page-fv--gallery") && innerWidth >= 1200)) return; // Keep Gallery PC CSS-owned.
     if (innerWidth >= 1200) {
       guide.style.setProperty("top", "auto", "important");
       guide.style.setProperty("bottom", "0px", "important");
       guide.style.removeProperty("--content-scroll-guide-size");
     } else {
-      const title = fv.querySelector("h1");
-      const subtitle = fv.querySelector(".fv__txt");
+      const title = fv.querySelector(".page-fv__title");
+      const subtitle = fv.querySelector(".page-fv__subtitle");
       const parent = guide.offsetParent;
       if (!title || !parent) return;
       const bounds = fv.getBoundingClientRect();

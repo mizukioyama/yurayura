@@ -1,6 +1,6 @@
 /* PC Gallery Category: match the mobile Category visual system. */
 @media screen and (min-width: 1200px) {
-  .gallery-page .gallery-pc-subtitle {
+  .gallery-page .page-fv__subtitle {
     line-height: 1.8 !important;
   }
   .gallery-page .gallery-sidebar {

@@ -242,28 +242,6 @@ nav.path-section {
   }
 }
 
-/* Participate owns its frame; tablet's generic inset/padding must not double it. */
-@media (min-width: 768px) and (min-height: 721px) {
-  .information-page.participate-page .information-hero.concept-fv {
-    min-height: calc(100svh - var(--site-header-size)) !important;
-  }
-  .information-page.participate-page .information-hero.concept-fv .information-hero__inner {
-    inset: auto !important;
-    left: var(--fv-scroll-left) !important;
-    top: clamp(96px, 24svh, 216px) !important;
-    display: block !important;
-    padding: 0 !important;
-    width: 100% !important;
-    margin-inline: auto;
-    /* width: calc(100% - var(--fv-scroll-left) - 44px) !important; */
-  }
-}
-@media (min-width: 768px) and (max-width: 1023px) and (min-height: 721px) {
-  .information-page.participate-page .information-hero.concept-fv .information-hero__inner {
-    left: var(--layout-gutter-tablet) !important;
-    width: calc(100% - 2 * var(--layout-gutter-tablet)) !important;
-  }
-}
 .participate-page .participation-guide {
   margin-top: 32px;
 }

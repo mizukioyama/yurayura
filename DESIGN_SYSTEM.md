@@ -258,3 +258,32 @@ Only participate-page owns its regular desktop/tablet hero override: min-height1
 ## Phase 9: more visible static washi (2026-10-22)
 
 The Phase 7 grain layer was present but visually faint because the source texture uses low alpha values; the shared opacity (0.72), 512×512 repeat, layer order and Vanta wrapper remain unchanged. The selected B variant raises mean alpha by about 46% using a nonlinear tone curve while preserving the ivory base and the existing fiber pattern. The actual-page comparison at 390px and desktop showed B gives the paper texture a readable presence without competing with copy or artwork; A remained too subtle. The shared `--paper-image` still feeds body, Vanta, Footer and open menu, and `main.css` keeps the same fallback. No CSS, animation, layout, menu, Gallery or participation behavior changed. The updated 512×512 WebP is 97,426 bytes (19,418 bytes, or 24.9%, above the previous 78,008-byte asset); Android-device acceptance and browser LCP/CLS measurements remain separate checks.
+
+### Non-TOP FVの共通編集
+
+非TOPの配置正本は `assets/css/concept-fv.css`。2026年10月24日のConceptを全幅の基準とし、
+`.page-fv` の直下に `.page-fv__inner`、その中に `.page-fv__title` と `.page-fv__subtitle` を置く。
+Scrollはinnerの兄弟。`header` / `section` と `aria-labelledby` は意味に合わせて維持する。
+
+Concept / Information / Contact / Policy / Participate / Profile / Exhibitions / Venues / Supportは
+同じフレームを使用する。PCは幅1080px以内の中央フレーム、タイトル左0・上26vmin。
+1199px以下は上28vmin・左10vw、768–1023pxは左110px。
+767px以下はinnerのPaddingを120px 22.5px 420pxとする。これらの数値は現在のConcept調整を引き継ぐ。
+低い横画面では既存のcompact変数を使い、Headerを避ける。旧PCの20vmin/40vminへ戻さない。
+
+GalleryのFVも独立headerを持つ。1199px以下は同じフレームを使用し、作品の本文用ガターだけをsectionへ移す。
+唯一の配置例外 `.page-fv--gallery` は1200px以上で `display: contents` とし、
+既存Gallery専用CSSのタイトル・副題・余白・本文位置とScroll非表示を維持する。
+`.h1-text` はGallery PC配置とrevealのため残す。TOPの `.fv` / `.fv__*` は独立して維持し、非TOPへ再利用しない。
+
+Typographyの正本は `user-settings.css`、Scrollの3.2秒は `main.css`、全体のScroll変数と
+低い横画面の共通座標は `visual-shared.css`。`allmenu.js` はタイトルと副題から使用可能なガイド長を測定する。
+Gallery PCではこの測定を適用しない。FVのCSSは非TOP各ページで最後に読む。
+
+Header/Footerは `assets/parts/header.html` / `assets/parts/footer.xml` を `allmenu.js` から読む既存方式を維持。
+ロゴ文字は `.site-brand`、共有ラベルは `.site-nav-label` でTypographyへ接続し、
+`--type-navigation-label-size: clamp(9px, 0.9vw, 10px)` を使う。
+HeaderとFooterの配置・ナビ開閉等の異なる役割のクラスは残す。Header英語ラベル等の既存の詳細度による値も維持する。
+PR #51は独立Draftのまま。統合時は同じ9px下限を重複適用せず、最終CSS内容のSHA-256からHTMLキャッシュ参照を更新する。
+
+変更時はConceptとの同幅比較、TOP全幅とGallery PCの変更前後、通常モーションとReduced Motionを検証する。

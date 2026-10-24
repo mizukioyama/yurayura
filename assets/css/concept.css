@@ -157,10 +157,10 @@
   text-align: center;
 }
 
-.concept-page main section:not(.fv) .h2_ttl,
-.concept-page main section:not(.fv) .section__txt,
-.concept-page main section:not(.fv) .concept-eyebrow,
-.concept-page main section:not(.fv) a {
+.concept-page main section:not(.fv):not(:where(.page-fv)) .h2_ttl,
+.concept-page main section:not(.fv):not(:where(.page-fv)) .section__txt,
+.concept-page main section:not(.fv):not(:where(.page-fv)) .concept-eyebrow,
+.concept-page main section:not(.fv):not(:where(.page-fv)) a {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
   text-align: center;
@@ -177,7 +177,7 @@
   text-align: center;
 }
 
-.concept-page main section:not(.fv) .section__txt {
+.concept-page main section:not(.fv):not(:where(.page-fv)) .section__txt {
   width: min(100%, 680px);
   margin-inline: auto;
   line-height: clamp(1.85, calc(0.18vw + 1.72), 2.05);
@@ -257,7 +257,7 @@
     text-align: center;
   }
 
-  .concept-page main section:not(.fv) .section__txt {
+  .concept-page main section:not(.fv):not(:where(.page-fv)) .section__txt {
     line-height: 1.9;
   }
 
@@ -305,44 +305,26 @@
 }
 
 /* Shared content spacing: FV remains unchanged. */
-.top-page main section:not(.fv),
-.concept-page main section:not(.fv) {
+.top-page main section:not(.fv):not(:where(.page-fv)),
+.concept-page main section:not(.fv):not(:where(.page-fv)) {
   padding-block: 20vmin;
   padding-inline: 20vmin;
 }
 @media screen and (max-width: 800px) {
-  .top-page main section:not(.fv),
-  .concept-page main section:not(.fv) {
+  .top-page main section:not(.fv):not(:where(.page-fv)),
+  .concept-page main section:not(.fv):not(:where(.page-fv)) {
     padding-block: 14vmin;
   }
 }
 @media screen and (max-width: 767px) {
-  .top-page main section:not(.fv),
-  .concept-page main section:not(.fv) {
+  .top-page main section:not(.fv):not(:where(.page-fv)),
+  .concept-page main section:not(.fv):not(:where(.page-fv)) {
     padding-inline: var(--layout-gutter-mobile);
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .top-page main section:not(.fv),
-  .concept-page main section:not(.fv) {
+  .top-page main section:not(.fv):not(:where(.page-fv)),
+  .concept-page main section:not(.fv):not(:where(.page-fv)) {
     padding-inline: var(--layout-gutter-tablet);
   }
-}
-
-/* Final FV override: copy Gallery's H1 layout exactly and neutralize shared .fv rules. */
-
-
-.concept-page .concept-fv .fv__ttl {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  transform: none !important;
-  font-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem) !important;
-  font-weight: 300 !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed !important;
 }

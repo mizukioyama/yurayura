@@ -16,27 +16,43 @@ body.gallery-page button {
   position: relative;
   min-height: 100vh;
 }
+@media (min-width: 1200px) {
+
 .gallery-page .h1-text {
   position: absolute;
   left: 20vmin;
   top: 40vmin;
   z-index: 90;
 }
+}
+
+@media (min-width: 1200px) {
+
 .gallery-page .h1-text h1 {
   margin: 0;
   font-size: var(--type-page-title-size);
   font-weight: 300;
 }
+}
+
+@media (min-width: 1200px) {
+
 .gallery-page .h1-text p {
   margin: 0.5rem 0 0;
 }
-.gallery-page .gallery > .scroll-guide {
+}
+
+@media (min-width: 1200px) {
+
+.gallery-page .gallery .page-fv--gallery > .scroll-guide {
   left: 20vmin !important;
   right: auto !important;
   top: calc(100vh - 60px) !important;
   bottom: auto !important;
   transform: translateY(-100%);
 }
+}
+
 .gallery-page .gallery-section {
   min-height: 100vh;
   padding-top: 10vmin;
@@ -173,13 +189,6 @@ body.gallery-page button {
   line-height: 1.7 !important;
 }
 @media (max-width: 1199px) {
-  .gallery-page .h1-text {
-    left: 10vw;
-    top: 28vmin;
-  }
-  .gallery-page .gallery > .scroll-guide {
-    left: 10vw !important;
-  }
   .gallery-page .gallery-intro {
     width: calc(100% - 4rem);
     margin: 50vmin auto 2rem;
@@ -193,9 +202,6 @@ body.gallery-page button {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .gallery-page .h1-text {
-    left: var(--layout-gutter-tablet);
-  }
   .gallery-page .gallery-intro {
     width: 100%;
     margin: 50vmin 0 2rem;
@@ -217,21 +223,6 @@ body.gallery-page button {
   html,
   body {
     overflow-x: hidden !important;
-  }
-  .gallery-page .h1-text {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 180px 0px 420px !important;
-  }
-  .gallery-page .gallery > .scroll-guide {
-    left: 22px !important;
-    right: auto !important;
-    top: calc(100vh - 30px) !important;
-    bottom: auto !important;
   }
   .gallery-page .gallery-main {
     width: 100% !important;

@@ -1,280 +1,151 @@
 @charset "UTF-8";
-
-/* Concept is the shared FV reference for the four editorial pages. */
-.concept-page .concept-fv,
-.information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv,
-.policy-page .concept-fv {
-  position: relative !important;
-  display: block !important;
-  height: auto !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  padding: 0 !important;
-  overflow: visible !important;
-  z-index: 2 !important;
-  background: transparent !important;
+/* Non-TOP FV source: current Concept design at every viewport.
+   Gallery desktop is the only geometry exception. Typography tokens live in user-settings.css. */
+.page-fv {
+  position: relative;
+  display: block;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0;
+  overflow: visible;
+  z-index: 2;
+  background: transparent;
   width: min(100%, 1080px);
   margin-inline: auto;
 }
-
-.information-page .information-hero.concept-fv,
-.contact-page .information-hero.concept-fv {
-  min-height: max(64svh, calc(34vmin + 14rem)) !important;
+.page-fv .page-fv__inner {
+  position: absolute;
+  inset: 26vmin auto auto 0;
+  z-index: 90;
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  translate: none;
+  transform: none;
 }
-
-.concept-page .concept-fv .fv__inner,
-.information-page .information-hero.concept-fv .information-hero__inner,
-.contact-page .information-hero.concept-fv .information-hero__inner,
-.policy-page .concept-fv .fv__inner {
-  position: absolute !important;
-  left: 0 !important;
-  top: 26vmin !important;
-  right: auto !important;
-  bottom: auto !important;
-  z-index: 90 !important;
-  display: block !important;
-  place-items: initial !important;
-  width: auto !important;
-  max-width: none !important;
-  height: auto !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  translate: none !important;
-  transform: none !important;
+.page-fv .page-fv__title,
+.page-fv .page-fv__subtitle {
+  position: static;
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  color: var(--color-txt);
+  font-family: var(--font-base, "Shippori Mincho", serif);
+  font-weight: 300;
+  letter-spacing: normal;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }
-
-.concept-page .concept-fv .fv__ttl,
-.policy-page .concept-fv .policy-title,
-.information-page .information-hero.concept-fv .fv__ttl,
-.contact-page .information-hero.concept-fv .fv__ttl {
-  position: static !important;
-  display: block !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  filter: none !important;
-  transform: none !important;
-  color: var(--color-txt) !important;
-  text-shadow: none !important;
-  mix-blend-mode: normal !important;
-  font-family: var(--font-base, "Shippori Mincho", serif) !important;
-  font-size: var(--type-page-title-size) !important;
-  font-weight: 300 !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed !important;
+.page-fv .page-fv__title {
+  filter: none;
+  text-shadow: none;
+  mix-blend-mode: normal;
+  font-size: var(--type-page-title-size);
+  line-height: normal;
 }
-
-.concept-page .concept-fv .fv__txt,
-.information-page .information-hero.concept-fv .fv__txt,
-.contact-page .information-hero.concept-fv .fv__txt,
-.policy-page .concept-fv .fv__txt {
-  position: static !important;
-  display: block !important;
-  width: auto !important;
-  height: auto !important;
-  margin: .5rem 0 0 !important;
-  padding: 0 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  color: var(--color-txt) !important;
-  font-family: var(--font-base, "Shippori Mincho", serif) !important;
-  font-size: var(--responsive-copy-size, 1rem) !important;
-  font-weight: 300 !important;
-  line-height: 1.7 !important;
-  letter-spacing: normal !important;
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed !important;
+.page-fv .page-fv__subtitle {
+  margin-top: .5rem;
+  font-size: var(--responsive-copy-size, 1rem);
+  line-height: 1.7;
 }
-
-.concept-page .concept-fv .scroll-guide,
-.information-page .information-hero.concept-fv .scroll-guide,
-.contact-page .information-hero.concept-fv .scroll-guide,
-.policy-page .concept-fv .scroll-guide {
-  left: 0vmin !important;
-  right: auto !important;
-  z-index: 120 !important;
-  overflow: visible !important;
+.page-fv > .scroll-guide {
+  left: 0;
+  right: auto;
+  --content-scroll-guide-size: var(--fv-scroll-line);
 }
-
-.concept-page .concept-fv + section,
-.information-page .information-hero.concept-fv + section,
-.contact-page .information-hero.concept-fv + section,
-.policy-page .concept-fv + section {
+.page-fv + section {
   position: relative;
-  z-index: 1 !important;
+  z-index: 1;
 }
-
-.concept-page #fog-scene,
-.concept-page .vanta-wrap,
-.concept-page #vanta-bg,
-.concept-page .smoke-twist {
-  pointer-events: none !important;
+.concept-page :is(#fog-scene, .vanta-wrap, #vanta-bg, .smoke-twist) {
+  pointer-events: none;
 }
-
-@media screen and (max-width: 1199px) {
-  .concept-page .concept-fv .fv__inner,
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    left: 10vw !important;
-    top: 28vmin !important;
+@media (max-width: 1199px) {
+  .page-fv .page-fv__inner {
+    left: 10vw;
+    top: 28vmin;
   }
-
-  .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
-  .policy-page .concept-fv .scroll-guide {
-    left: 10vw !important;
-    right: auto !important;
+  .page-fv > .scroll-guide {
+    left: 10vw;
   }
-
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .concept-page .concept-fv .fv__inner,
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    left: var(--layout-gutter-tablet) !important;
+  /* Move the existing content gutter off Gallery's parent so the FV has
+     the same viewport frame as Concept; artwork columns retain their gutter. */
+  .gallery-page .gallery {
+    padding: 0;
+    --gallery-content-gutter: 22vmin;
   }
-
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding-inline: var(--layout-gutter-tablet) !important;
+  body.gallery-page .gallery-section {
+    padding-top: 0 !important;
+    padding-inline: var(--gallery-content-gutter) !important;
   }
 }
-
-@media screen and (max-width: 767px) {
-  .concept-page .concept-fv,
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
-
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    min-height: clamp(360px, 44svh, 390px) !important;
-  }
-
-  .concept-page .concept-fv .fv__inner {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 180px var(--layout-gutter-mobile) 420px !important;
-  }
-
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding-inline: var(--layout-gutter-mobile) !important;
-  }
-
-  .concept-page .concept-fv .scroll-guide,
-  .information-page .information-hero.concept-fv .scroll-guide,
-  .contact-page .information-hero.concept-fv .scroll-guide,
-  .policy-page .concept-fv .scroll-guide {
-    left: 22px !important;
-    right: auto !important;
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-fv {
+    min-height: max(100svh, 640px);
   }
 }
-
-@media screen and (max-width: 1023px) {
-  .concept-page .concept-fv {
-    --content-scroll-guide-size: 140px;
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-fv .page-fv__inner {
+    left: var(--layout-gutter-tablet);
   }
-
-  .concept-page .concept-fv .scroll-guide__bar,
-  .concept-page .concept-fv .scroll-guide__bar::before {
-    height: var(--content-scroll-guide-size) !important;
-    min-height: var(--content-scroll-guide-size) !important;
-    max-height: var(--content-scroll-guide-size) !important;
-  }
-
-  .information-page .information-hero.concept-fv,
-  .contact-page .information-hero.concept-fv,
-  .policy-page .concept-fv {
-    --content-scroll-guide-size: 140px;
-    --content-scroll-guide-start: -140px;
-    --content-scroll-guide-end: 140px;
-  }
-
-  .information-page .information-hero.concept-fv .scroll-guide__bar,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar,
-  .policy-page .concept-fv .scroll-guide__bar,
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
-    height: var(--content-scroll-guide-size, 140px) !important;
-    min-height: var(--content-scroll-guide-size, 140px) !important;
-    max-height: var(--content-scroll-guide-size, 140px) !important;
-  }
-
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
-    animation-name: contentPageScrollGuideFlow !important;
+  .gallery-page .gallery {
+    --gallery-content-gutter: var(--layout-gutter-tablet);
   }
 }
-
-@media screen and (max-width: 1023px) {
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    position: absolute !important;
-    inset: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    box-sizing: border-box !important;
-    width: auto !important;
-    max-width: none !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 var(--layout-gutter-mobile) !important;
-    translate: none !important;
-    transform: none !important;
+@media (min-width: 1024px) and (max-width: 1100px) {
+  .gallery-page .gallery {
+    --gallery-content-gutter: 24vmin;
   }
 }
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .information-page .information-hero.concept-fv .information-hero__inner,
-  .contact-page .information-hero.concept-fv .information-hero__inner,
-  .policy-page .concept-fv .fv__inner {
-    padding-inline: var(--layout-gutter-tablet) !important;
+@media (max-width: 767px) {
+  .page-fv {
+    min-height: 0;
+  }
+  .page-fv .page-fv__inner {
+    position: relative;
+    inset: auto;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 120px 22.5px 420px;
+  }
+  .page-fv > .scroll-guide {
+    left: 22px;
+  }
+  .gallery-page .gallery {
+    --gallery-content-gutter: var(--layout-gutter-mobile);
   }
 }
-
-
-@keyframes contentPageScrollGuideFlow {
-  0% { transform: translateY(var(--content-scroll-guide-start, -140px)); opacity: 0; }
-  12% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: translateY(var(--content-scroll-guide-end, 140px)); opacity: 0; }
+@media (orientation: landscape) and (max-height: 720px) {
+  .page-fv {
+    min-height: 0;
+    height: var(--compact-frame-height);
+  }
+  .page-fv .page-fv__inner {
+    position: absolute;
+    inset: var(--compact-title-top) max(24px, env(safe-area-inset-right)) auto var(--compact-title-left);
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+    transform: none;
+  }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .concept-page .concept-fv .scroll-guide__bar::before,
-  .information-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .contact-page .information-hero.concept-fv .scroll-guide__bar::before,
-  .policy-page .concept-fv .scroll-guide__bar::before {
-    animation: none !important;
-    transform: none !important;
-    opacity: 0 !important;
+@media (min-width: 1200px) {
+  .page-fv--gallery {
+    display: contents;
+  }
+  .page-fv--gallery .page-fv__title {
+    line-height: inherit;
   }
 }
