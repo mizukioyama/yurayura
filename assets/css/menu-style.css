@@ -79,7 +79,6 @@ body.is-loaded {
 }
 .header-date {
   margin: 0.25rem 0 0;
-  font-size: 0.76rem;
   letter-spacing: 0.06em;
   opacity: 0.72;
 }
@@ -108,7 +107,6 @@ body.is-loaded {
   gap: 0.1rem;
   padding: 0.25rem 0;
   color: inherit;
-  font-size: clamp(11px, 0.9vw, 14px);
   letter-spacing: 0.08em;
   line-height: 1.4;
   text-decoration: none;
@@ -131,7 +129,6 @@ body.is-loaded {
 }
 .header .menu-en {
   font-family: var(--font-base);
-  font-size: clamp(10px, 0.9vw, 12px);
   letter-spacing: 0.14em;
   opacity: 0.7;
 }
@@ -211,7 +208,6 @@ body.is-loaded {
 }
 .noscript-site-nav__brand {
   font-family: var(--font-jp);
-  font-size: 1.05rem;
   letter-spacing: 0.25em;
   text-decoration: none;
 }
@@ -374,7 +370,6 @@ body.is-loaded {
 .footer-social__note {
   display: block;
   font-family: Arial, sans-serif;
-  font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -390,7 +385,6 @@ body.is-loaded {
   width: auto;
   max-width: 100%;
   font-family: var(--font-jp);
-  font-size: clamp(12px, calc(0.3vw + 10px), 16px);
   line-height: 1.8;
   text-align: left;
 }
@@ -487,7 +481,6 @@ body.is-loaded {
     align-items: center;
     padding: 0.65rem 0.75rem;
     border-bottom: 1px solid rgba(48, 58, 5, 0.16);
-    font-size: clamp(14px, 1.6vw, 18px);
   }
   .header .menu-border {
     display: none;
@@ -508,7 +501,6 @@ body.is-loaded {
     width: 100%;
     min-height: 44px;
     padding: 8px 0;
-    font-size: 14px;
   }
   .header.is-open .header-list {
     animation: menu-appear 180ms ease-out;
@@ -577,14 +569,9 @@ body.is-loaded {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    font-size: var(--type-menu-logo-size, 14px);
   }
-  .header-lead {
-    font-size: var(--type-menu-meta-size, 12px);
-  }
-  .header-date {
-    font-size: var(--type-menu-meta-size, 12px);
-  }
+
+
   .noscript-site-nav {
     flex-direction: column;
     align-items: flex-start;
@@ -634,7 +621,6 @@ body.is-loaded {
   align-items: center;
   min-height: 44px;
   text-decoration: none;
-  font-size: var(--type-menu-meta-size);
 }
 .footer-related a:hover {
   text-decoration: underline;

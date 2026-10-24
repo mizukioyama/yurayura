@@ -25,9 +25,7 @@ body.top-page .main .fv .scroll-guide {
   right: auto !important;
   --content-scroll-guide-size: var(--fv-scroll-line);
 }
-body.top-page .scroll-guide__text {
-  font-size: var(--type-body-size);
-}
+
 body .scroll-guide__text {
   line-height: 1.7;
   writing-mode: vertical-rl;
@@ -81,10 +79,8 @@ body.top-page .main .fv .scroll-guide {
   body.top-page .main .fv .fv__txt {
     height: max-content;
     white-space: nowrap;
-    font-size: var(--type-top-hero-landscape-copy-size);
   }
   body.top-page .main .fv h1.fv__ttl {
-    font-size: var(--type-top-hero-landscape-size);
     letter-spacing: 8px;
     text-indent: 8px;
   }
@@ -541,7 +537,6 @@ body
   line-height: 2;
 }
 .information-planning h3 {
-  font-size: var(--type-heading-3-size);
   font-weight: 400;
   margin-bottom: 16px;
 }

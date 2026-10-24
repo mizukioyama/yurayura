@@ -101,9 +101,6 @@ sp
 ======================================== */
 
 
-
-
-
 /* ========================================
 =base =body =main
 ======================================== */
@@ -313,7 +310,6 @@ section.section--concept {
 }
 
 
-
 .section--contact .section__inner,
 .section--faq .section__inner,
 .section--access .section__inner {
@@ -341,8 +337,6 @@ section.section--concept {
 .section--access .h2_ttl {
   margin: 0 0 1rem;
   text-align: center;
-  font-size: 1.4rem;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 500;
   line-height: 1.2;
   writing-mode: initial;
@@ -357,16 +351,12 @@ section.section--concept {
 ======================================== */
 
 
-
-
-
 /* ========================================
 =txt
 ======================================== */
 
 .section__txt {
   z-index: 1;
-  font-size: 1rem;
   line-height: 2;
 }
 
@@ -387,7 +377,6 @@ section.section--concept {
     align-self: flex-start;
     width: 100%;
     height: auto;
-    font-size: 14px;
     line-height: 2;
     text-align: left;
     writing-mode: horizontal-tb;
@@ -412,10 +401,8 @@ section.section--concept {
 ======================================== */
 
 .h2_ttl-small {
-  font-size: 1rem;
   font-family: var(--font-jp);
 }
-
 
 
 /* ========================================
@@ -440,7 +427,6 @@ section.section--concept {
 }
 
 
-
 @media screen and (max-width: 480px) {
   .pc-br {
     display: none;
@@ -456,7 +442,6 @@ section.section--concept {
 .fv__ttl {
   font-family: var(--font-jp);
   grid-area: 1 / 1;
-  font-size: clamp(80px, 12vw, 140px);
   letter-spacing: 2.4rem;
   filter: blur(2px);
   color: var(--color-shadow-green);
@@ -504,7 +489,6 @@ section.section--concept {
 } */
 
 
-
 @media screen and (max-width: 480px) {
   .fv-bt-txt,
   .fv__txt {
@@ -518,7 +502,6 @@ section.section--concept {
   top: 40%;
   left: 50%;
   z-index: 2;
-  font-size: clamp(16px, 2.5vw, 20px);
   line-height: 3;
   letter-spacing: 0.25em;
   writing-mode: vertical-rl;
@@ -594,7 +577,6 @@ section.section--concept {
 ======================================== */
 
 .section--concept .h2_ttl {
-  font-size: 1.4rem;
   letter-spacing: 0.8rem;
   z-index: 1;
 }
@@ -618,11 +600,9 @@ section.section--concept {
 }
 
 .h2_ttl-artists {
-  font-size: 1rem;
   display: block;
   letter-spacing: 0.1rem;
 }
-
 
 
 .section--artists .section__txt {
@@ -703,8 +683,6 @@ section.section--concept {
 /* --- スライダー --- */
 
 
-
-
 .member-slider {
   --artists-side-padding: 44px;
   position: relative;
@@ -734,9 +712,6 @@ section.section--concept {
   right: 0;
   background: linear-gradient(to left, #fff 0%, rgba(255, 255, 255, 0) 100%);
 }
-
-
-
 
 
 .member-track {
@@ -791,7 +766,6 @@ section.section--concept {
   right: 0;
   padding: 1.4rem;
   font-family: var(--font-base);
-  font-size: 0.8rem;
   font-weight: bold;
   background: var(--color-bg);
   mix-blend-mode: plus-lighter;
@@ -851,13 +825,6 @@ Contact
   font-weight: 600;
   letter-spacing: 0.06em;
 }
-
-
-
-
-
-
-
 
 
 /* ========================================
@@ -926,27 +893,15 @@ Access
 
 .access-info h3 {
   color: var(--color-txt);
-  font-size: 1.2rem;
   font-family: var(--font-jp);
 }
 
-@media screen and (max-width: 480px) {
-  .access-info h3 {
-    font-size: 1rem;
-  }
-}
 
 .access-txt {
   color: var(--color-txt);
-  font-size: 1rem;
   line-height: 1.8;
 }
 
-@media screen and (max-width: 480px) {
-  .access-txt {
-    font-size: 0.8rem;
-  }
-}
 
 .map {
   width: 60%;
@@ -960,10 +915,6 @@ Access
   }
 }
 
-/* Section text: responsive horizontal typesetting */
-:root {
-  --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
-}
 
 .section--artists .section__inner {
   width: 100%;
@@ -988,83 +939,10 @@ Access
   writing-mode: horizontal-tb;
   text-align: left;
   white-space: normal;
-  font-size: var(--responsive-copy-size);
   line-height: 2;
   letter-spacing: 0.08em;
 }
 
-
-@media screen and (max-width: 375px) {
-  :root {
-    --responsive-copy-size: clamp(12px, calc(2vw + 6px), 14px);
-  }
-}
-
-@media screen and (min-width: 376px) and (max-width: 480px) {
-  :root {
-    --responsive-copy-size: clamp(12px, calc(1vw + 10px), 14px);
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 1335px) {
-  :root {
-    --responsive-copy-size: clamp(12px, calc(0.5vw + 11.5px), 14px);
-  }
-}
-
-@media screen and (min-width: 1336px) {
-  :root {
-    --responsive-copy-size: clamp(12px, calc(0.25vw + 10.67px), 14px);
-  }
-}
-
-/* Heading text: responsive clamp scale */
-:root {
-  --responsive-heading-2: clamp(18px, calc(1vw + 14px), 28px);
-  --responsive-heading-3: clamp(14px, calc(0.6vw + 12px), 20px);
-  --responsive-small-heading: clamp(12px, calc(0.5vw + 10px), 16px);
-}
-
-h1.fv__ttl {
-  font-size: clamp(80px, 12vw, 140px);
-}
-
-.h2_ttl,
-.section--concept .h2_ttl,
-.section--artists .h2_ttl,
-.section--contact .h2_ttl,
-.section--faq .h2_ttl,
-.section--access .h2_ttl {
-  font-size: var(--responsive-heading-2);
-}
-
-.section__txt,
-.h2-bt-txt,
-.access-txt {
-  font-size: var(--responsive-copy-size);
-}
-
-.h2_ttl-small,
-.h2_ttl-artists,
-.ttl-small,
-.ttl-artists-txt,
-.section--artists .h2_ttl-small,
-.section--artists .h2_ttl-artists {
-  font-size: var(--responsive-small-heading);
-}
-
-.contact-sub-ttl,
-.section--access .access-info h3 {
-  font-size: var(--responsive-heading-3);
-}
-
-.scroll-guide__text {
-  font-size: clamp(10px, calc(0.6vw + 8px), 14px);
-}
-
-.card__btn {
-  font-size: clamp(12px, calc(0.4vw + 10px), 16px);
-}
 
 /* ========================================
   Canonical responsive layout
@@ -1120,11 +998,9 @@ section {
   }
 
 
-
   .pc-br {
     display: none;
   }
-
 
 
   .section__inner {
@@ -1175,11 +1051,9 @@ section {
   }
 
 
-
   .pc-br {
     display: inline;
   }
-
 
 
   .section__inner {
@@ -1201,7 +1075,6 @@ section {
     height: auto;
     min-height: 120px;
   }
-
 
 
   .contact-check-grid {
@@ -1284,7 +1157,6 @@ section {
   .section--faq .h2_ttl,
   .section--access .h2_ttl {
     margin-bottom: clamp(20px, calc(1.5vw + 12px), 32px);
-    font-size: clamp(20px, calc(1vw + 16px), 28px);
   }
 
   .section--contact .h2_ttl,
