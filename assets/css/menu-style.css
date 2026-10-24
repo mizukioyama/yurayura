@@ -662,7 +662,10 @@ body.is-loaded {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     width: var(--nav-desktop-width);
-    gap: var(--nav-desktop-gap);
+    gap: 20px;
+  }
+  .header-item:nth-child(1) .header-list {
+    width: fit-content;
   }
   .header-link {
     width: 100%;

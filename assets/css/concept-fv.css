@@ -143,6 +143,9 @@
   .page-fv--gallery {
     display: contents;
   }
+  .page-fv--gallery .page-fv__inner {
+    padding-top: 26vmin;
+  }
   .page-fv--gallery .page-fv__title {
     line-height: inherit;
   }
