@@ -28,7 +28,7 @@
   /* Desktop body is clamped to 14px; <=767px retains the existing 14.25px override. */
   --type-body-size: clamp(12px, calc(14.6479px + 0.0939vw), 14px);
 
-  /* 見出し2：375pxで20px → 1440pxで30px */
+  /* Base H2 formula: 20–30px. The <=767px scale is independently overridden below. */
   --type-heading-2-size: clamp(20px, calc(16.4789px + 0.9390vw), 30px);
 
   /* H3: 16–18px on desktop; the existing compact formula is defined below. */
@@ -283,7 +283,7 @@ body.gallery-page { font-size: var(--type-body-size) !important; }
   font-size: var(--type-small-heading-size);
 }
 
-/* Gallery PC subtitle and decorative glyph sizes are scoped below, never merged into page-title. */
+/* Gallery PC subtitle and decorative glyph sizes remain in their named component sections. */
 
 /* Compact reading roles only: preserve TOP H1, small metadata and input legibility. */
 @media (max-width:767px) {
