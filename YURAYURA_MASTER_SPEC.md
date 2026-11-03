@@ -73,8 +73,9 @@ Webサイトも同じ思想を持ち、
 
 ### Information
 - 次回開催の会期・会場・開催地（未確定時は準備中と案内）
-- 確認済みの開催情報と過去展示のアクセス記録
-- 開催時点を明示した展示FAQ
+- 確認済みの開催情報と年別の過去展示記録（開催期間・地域・会場名・Artist・作品）
+- 公開可能なお知らせのみ掲載し、空のNewsは非表示
+- 終了済み展示の駅・交通・詳細住所・地図・開催時間・来場FAQはInformationに掲載しない
 - 特定の地域に企画を固定しない更新可能な構成
 
 ### Contact
@@ -254,3 +255,6 @@ Internal product intake stays outside the public repository. Reuse the existing 
 `node scripts/check-commerce-readiness.cjs` validates public link data and source mapping. Its exported `assessShipping` is a local checklist, not a shipping calculator or a Square cart restriction. Missing origin/rate/event terms remain USER_ACTION_PENDING; every exact combination requires separate Square evidence before READY_FOR_REVIEW. It does not establish that mixed orders are blocked in Square. Keep shared shipping/checkout settings unchanged until their scope and rollback have been reviewed.
 
 Enable only after confirmed products, permissions, seller information, shipping/refund terms, payment readiness, cart verification and final publication approval. Then enter the verified URLs/mappings in one reviewed change, run all tests, verify Square and both sites, and publish using the existing approval flow. Rollback of official-site links is `enabled:false` with no inventory/order changes. This is not a rollback of Square transactions.
+
+### Information更新契約
+公開開催の正本は既存exhibitions.json。Newsは公開専用news.json。静的HTMLはscripts/sync-information.cjsで同期し、JavaScript無効時にも確定済み記録を残す。年別Archiveと開催分類は既存のAsia/Tokyo・終了時刻exclusiveを維持。非公開企画は公開ファイルに置かない。更新手順はINFORMATION_EDITING_GUIDE.mdを参照。
