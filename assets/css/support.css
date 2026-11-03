@@ -1,0 +1,54 @@
+/* Support catalog layout. Shared path components own gutters, type and links. */
+.support-page section.path-section { display: block; height: auto; min-height: 0; overflow: visible; }
+.support-page .support-intro .path-prose { max-width: var(--path-reading); }
+.support-page .support-index {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--path-rule);
+}
+.support-page .support-index a { justify-content: space-between; gap: 8px; }
+.support-page .support-index span { flex: none; }
+.support-page .support-catalog > .path-section { scroll-margin-top: var(--site-header-size); }
+.support-page .support-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-6);
+  border-top: 1px solid var(--path-rule);
+  padding-top: var(--space-5);
+}
+.support-page .support-entry__heading h2 { margin-bottom: var(--space-3); }
+.support-page .support-entry__heading .path-eyebrow { margin-bottom: var(--space-3); }
+.support-page .support-entry__heading .path-status { padding: 0; border: 0; line-height: 2; }
+.support-page .support-entry__body { min-width: 0; width: 100%; }
+.support-page .support-entry__body > :first-child,
+.support-page .support-product > :first-child { margin-top: 0; }
+.support-page .support-product + .support-product {
+  border-top: 1px solid var(--path-rule);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+}
+.support-page .support-facts { margin-block: var(--space-5); }
+.support-page .support-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--path-rule);
+}
+.support-page .support-facts dt { font-weight: 400; }
+.support-page .support-facts dd { margin: 0; }
+.support-page .support-entry__body .path-action { gap: 8px; }
+.support-page .support-related { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+/* Optional approved product media: no placeholder image or fabricated product is shipped. */
+.support-page .support-product figure { margin: 0 0 var(--space-5); }
+.support-page .support-product img { display: block; width: 100%; height: auto; object-fit: contain; }
+@media (max-width: 1199px) {
+  .support-page .support-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .support-page .support-entry { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .support-page .support-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .support-page .support-index { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: var(--space-5); }
+}
