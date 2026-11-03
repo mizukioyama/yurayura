@@ -113,6 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const prev = document.getElementById("galleryModalPrev");
   const next = document.getElementById("galleryModalNext");
   let currentArtwork = null;
+  document.addEventListener('yurayura:commerce-ready', () => {
+    if (currentArtwork) window.YurayuraCommerce?.updateArtwork(
+      currentArtwork.querySelector('.gallery-work-title')?.id || '',
+      currentArtwork.dataset.artistId || '', document);
+  });
   let requestedArtwork = null;
   let lastFocus = null;
   let imageSwitchTimer = 0;
@@ -338,6 +343,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const artist = artwork.dataset.artist || "";
     const artistId = artwork.dataset.artistId || artist;
     const metadata = artistMetadata[artistId] || {};
+    const artworkId = artwork.querySelector('.gallery-work-title')?.id || '';
+    window.YurayuraCommerce?.updateArtwork(artworkId, artistId, document);
     if (modalTitle) modalTitle.textContent = title;
     if (modalCaption) modalCaption.textContent = artwork.dataset.caption || "";
     if (modalProfileName) modalProfileName.textContent = artist;
