@@ -36,12 +36,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeScrollGuidePosition();
   document.body.classList.add("is-loaded");
   document.dispatchEvent(new Event("yurayura:fragments-ready"));
+
+  // Fail closed: unavailable or unapproved commerce data never blocks the existing navigation.
+  try {
+    await import('./commerce.js?v=658572749f01');
+    await window.YurayuraCommerce.ready;
+    window.YurayuraCommerce.hydrateNavigation(document);
+    document.dispatchEvent(new Event("yurayura:commerce-ready"));
+  } catch (_) { /* Shop remains absent; brand navigation keeps working. */ }
 });
 
 function initializeHeaderMenu() {
   const header = document.querySelector(".header");
   const menuToggle = header?.querySelector(".menu-toggle");
-  const menuLinks = header ? [...header.querySelectorAll(".header-link")] : [];
+  const menuLinks = () => header ? [...header.querySelectorAll(".header-link")] : [];
   if (!header || !menuToggle) { console.warn("メニュー要素が見つかりません"); return; }
 
   const mobileNavigation = window.matchMedia("(max-width: 1199px)");
@@ -89,23 +97,23 @@ function initializeHeaderMenu() {
     if (!shouldOpen && wasOpen) unlockBackground();
     document.dispatchEvent(new CustomEvent("yurayura:menu-state", { detail: { open: shouldOpen } }));
     if (restoreFocus) menuToggle.focus({ preventScroll: true });
-    if (shouldOpen && menuLinks[0]) menuLinks[0].focus();
+    if (shouldOpen && menuLinks()[0]) menuLinks()[0].focus();
   }
 
   menuToggle.addEventListener("click", () => {
     const wasOpen = isOpen();
     setMenuState(!wasOpen, wasOpen);
   });
-  menuLinks.forEach(link => link.addEventListener("click", () => {
-    if (mobileNavigation.matches && isOpen()) setMenuState(false, true);
-  }));
+  header.addEventListener("click", event => {
+    if (event.target.closest(".header-link") && mobileNavigation.matches && isOpen()) setMenuState(false, true);
+  });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && isOpen()) {
       setMenuState(false, true);
       return;
     }
     if (event.key !== "Tab" || !isOpen()) return;
-    const focusableItems = [menuToggle, ...menuLinks].filter(element => !element.disabled && element.getClientRects().length);
+    const focusableItems = [menuToggle, ...menuLinks()].filter(element => !element.disabled && element.getClientRects().length);
     const firstItem = focusableItems[0];
     const lastItem = focusableItems[focusableItems.length - 1];
     if (event.shiftKey && document.activeElement === firstItem) {
