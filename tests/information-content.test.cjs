@@ -50,13 +50,14 @@ test('same-year exhibitions in different places remain separate edition records'
 });
 
 
-test('first Yokohama record never regenerates its removed report link',()=>{
+test('all archive editions omit portfolio report links while keeping Gallery links',()=>{
  const first=content.archive(state.groupEvents(published,Date.parse('2026-12-01T00:00:00+09:00')).past);
  assert(published[0].portfolioDetailUrl);
  assert(!first.includes('展示の背景と記録'));assert(!first.includes(published[0].portfolioDetailUrl));assert(!first.includes('concept.html'));
  assert.match(first,/18作品とArtistを見る/);assert.match(first,/href="\.\/gallery\.html"/);assert.match(first,/開催終了/);
  const next={...published[0],id:'fixture-next-archive',edition:2};
- const future=content.archive([next]);assert.match(future,/第2回/);assert.match(future,/展示の背景と記録/);
+ const future=content.archive([next]);assert.match(future,/第2回/);assert(!future.includes('展示の背景と記録'));assert(!future.includes(next.portfolioDetailUrl));assert(!future.includes('concept.html'));assert.match(future,/18作品とArtistを見る/);assert.match(future,/href="\.\/gallery\.html"/);
+ const withoutGallery=content.archive([{...next,galleryUrl:undefined,artworkCount:undefined}]);assert(!withoutGallery.includes('information-record-links'));assert(!withoutGallery.includes(next.portfolioDetailUrl));
  const result=spawnSync(process.execPath,['scripts/sync-information.cjs','--check'],{cwd:root,encoding:'utf8'});assert.equal(result.status,0,result.stderr);
  const html=fs.readFileSync(path.join(root,'information.html'),'utf8');
  const archive=html.split('<!-- INFORMATION:ARCHIVE:START -->')[1].split('<!-- INFORMATION:ARCHIVE:END -->')[0];assert(!archive.includes('展示の背景と記録'));assert(!archive.includes(published[0].portfolioDetailUrl));

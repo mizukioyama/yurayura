@@ -34,7 +34,7 @@ news.jsonに次の公開済み項目だけを追加する（サンプルの架�
 ## 障害時と保護事項
 - 開催データが読めない時：「開催なし」と断定せずエラーを表示。静的Archiveは残る。
 - Newsの取得・検証に失敗した時：直前の公開静的告知を維持。架空の告知や空カードは作らない。
-- 第1回の記録は開催期間・横浜・Gallery Charlotte.Usagi・4 Artist・18作品・Galleryへのリンクを残す。第1回の「展示の背景と記録」リンクはInformationでは表示しない。正本JSONのportfolioDetailUrlは他の用途のため保持し、Conceptへの代替導線も追加しない。駅/徒歩/バス/住所/地図/開催時間/過去来場FAQは追加しない。
+- 第1回の記録は開催期間・横浜・Gallery Charlotte.Usagi・4 Artist・18作品・Galleryへのリンクを残す。すべての過去展示で「展示の背景と記録」リンクはInformationでは自動生成しない。将来の開催記録も同じ方針とし、Galleryの作品リンクは維持する。正本JSONのportfolioDetailUrlは他の用途のため保持し、Conceptへの代替導線も追加しない。駅/徒歩/バス/住所/地図/開催時間/過去来場FAQは追加しない。
 - `#past-exhibitions`・第1回の見出しIDを維持する。旧`#faq`はContact案内の段落へ接続する。Header/Footer/TOP/Galleryをこの更新のために書き換えない。
 - `user-settings.css`がTypography正本。
 - Commit/PR/本番反映は承認された別工程で行う。

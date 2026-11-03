@@ -15,7 +15,6 @@
     const status = archived ? '開催終了' : state === 'current' ? '開催中' : event.startsAt === null ? '開催日未定' : '開催決定';
     const links = [];
     if (localLink(event.galleryUrl)) links.push(`<a class="information-contact-link" href="${escape(event.galleryUrl)}">${Number.isInteger(event.artworkCount) ? event.artworkCount+'作品とArtistを見る' : '展示作品を見る'} <span aria-hidden="true">↗</span></a>`);
-    if (archived && event.id !== 'yurayura-01' && event.portfolioDetailUrl) links.push(`<a class="information-contact-link" href="${escape(event.portfolioDetailUrl)}">展示の背景と記録 <span aria-hidden="true">↗</span></a>`);
     if (!archived) links.push(`<a class="information-contact-link" href="${escape(event.officialUrl)}">開催の詳細 <span aria-hidden="true">↗</span></a>`);
     return `<article class="information-past-event" data-event-id="${escape(event.id)}" aria-labelledby="${id}">
   <header class="information-past-event__identity"><p class="information-status">${status}</p><${heading} class="information-subheading" id="${id}">${escape(label(event))}</${heading}></header>
