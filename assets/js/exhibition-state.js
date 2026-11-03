@@ -149,7 +149,8 @@
     const targets = document.querySelectorAll("[data-event-groups], [data-gallery-groups], [data-recruitment-status]");
     if (!targets.length) return;
     try {
-      const response = await fetch("./assets/data/exhibitions.json");
+      const version = document.body.dataset.informationEventsVersion;
+      const response = await fetch("./assets/data/exhibitions.json" + (version ? "?v=" + encodeURIComponent(version) : ""));
       if (!response.ok) throw new Error("Event data unavailable");
       const events = visibleEvents(await response.json());
       let previous = "";
@@ -158,7 +159,10 @@
         const signature = JSON.stringify(Object.values(groups).map(list => list.map(e => e.id)));
         // Preserve focus and link nodes while the displayed groups remain unchanged.
         if (signature !== previous) {
-          document.querySelectorAll("[data-event-groups]").forEach(el => renderGroups(el, informationGroups(groups), false));
+          document.querySelectorAll("[data-event-groups]").forEach(el => {
+            if (el.hasAttribute("data-information-events") && root.YurayuraInformation) root.YurayuraInformation.render(el, groups);
+            else renderGroups(el, informationGroups(groups), false);
+          });
           document.querySelectorAll("[data-gallery-groups]").forEach(el => renderGroups(el, groups, true));
           previous = signature;
         }
@@ -174,6 +178,7 @@
         message.setAttribute("role", "status");
         const link = text("a", "第1回の開催記録を見る ↗"); link.href = "./information.html#past-exhibitions";
         el.replaceChildren(message, link);
+        if (el.hasAttribute("data-information-events")) el.hidden = false;
       });
     }
   });

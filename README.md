@@ -16,6 +16,7 @@
 | [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) | 視覚・レイアウト・animation方針 |
 | [`QA_CHECKLIST.md`](QA_CHECKLIST.md) | 検証基準・リリース前確認 |
 | [`CSS_VARIABLES_GUIDE.md`](CSS_VARIABLES_GUIDE.md) | ユーザー本人が最終調整するためのCSS操作ガイド |
+| [`INFORMATION_EDITING_GUIDE.md`](INFORMATION_EDITING_GUIDE.md) | 開催記録・予定・お知らせの公開用データと静的HTMLの更新 |
 
 ## 開発開始時の参照順
 

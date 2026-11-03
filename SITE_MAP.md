@@ -21,7 +21,7 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | TOP / `index.html` | 企画の入口。About・Concept・Gallery・Informationへの導線 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/` | included |
 | Concept / `concept.html` | 企画コンセプトの公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/concept.html` | included |
 | Gallery / `gallery.html` | 作家と作品の公式ページ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/gallery.html` | included |
-| Information / `information.html` | 次回開催状況、過去開催、会場・アクセス、展示FAQ | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/information.html` | included |
+| Information / `information.html` | 今後の企画状況、年別の活動記録、公開お知らせ、Contact導線 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/information.html` | included |
 | Contact / `contact.html` | お問い合わせFAQ、問い合わせフォーム、個人情報案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/contact.html` | included |
 | Site Policy / `policy.html` | 著作権・個人情報・外部サービス等の案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/policy.html` | included |
 | 支援者 / `support.html` | 商品や作品を通じて、活動を支える | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/support.html` | included |
@@ -111,7 +111,6 @@ Informationの主な構成：
 - `liquid.css`
 - `user-settings.css`
 - `information.css`
-- `faq.css`
 
 Contactの主な構成：
 - `reset.css`
@@ -132,7 +131,7 @@ Galleryは複数のGallery専用CSSを追加読込している。
 
 主な機能：
 - shared menu / footer
-- Information exhibition FAQ
+- Informationの開催情報・年別Archive・News（information-content.js）
 - Contact FAQ / contact form
 - FV animation
 - fog-hole
@@ -175,3 +174,5 @@ index状態またはcanonicalを変更した場合は、この資料とsitemap�
 各公開イベントは `id`、`edition`、`published`、`city`、`venue`、offset付き `startsAt` / `endsAt`、`officialUrl` を持つ。場所または日時が未確定の場合は `null` とし、日時は両方nullか、両方とも有効なoffset付き日時にする。`copy.yurayura.ja/en` と `copy.portfolio.ja/en` は異なる文章として管理し、4つすべての承認済み文章を必須にする。`portfolioDetailUrl` は既存Portfolioアーカイブがある場合だけ付ける。`galleryUrl`、作家名、作品数の互換性を保つ。未知の項目、非公開メモ、個人情報、未承認募集条件はexportに含めない。
 
 編集後は `node --test tests/exhibition-state.test.cjs` と `node scripts/export-public-events.cjs --check` を実行する。公開反映はゆらゆらのGitHub Pagesへデータを公開した後に確認する。Portfolio InformationはこのURLを閲覧時に取得するため、通常の開催データ更新にPortfolio側commit / deployは不要。ローカルプレビューと英語コピーの扱いはPortfolioの編集ガイドを参照する。
+
+Informationの公開お知らせは `assets/data/news.json`（空なら非表示）。開催データの正本は変更しない。`scripts/sync-information.cjs` がJSONから静的HTMLと内容ハッシュを同期する。更新時は `INFORMATION_EDITING_GUIDE.md` を参照。
