@@ -31,6 +31,8 @@ if(process.argv[2] && !check)throw new Error('Usage: node scripts/sync-informati
 for(const name of fs.readdirSync(root).filter(name=>name.endsWith('.html'))) {
  const target=path.join(root,name), before=fs.readFileSync(target,'utf8');
  let after=name==='information.html'?html:before;
+ // Sync the same public notice into TOP, Information and application pages, including review.
+ after=after.replace(/(<!-- INFORMATION:PLANNING:START -->)[\s\S]*?(<!-- INFORMATION:PLANNING:END -->)/g, (_,start,end)=>start+content.planningNotice()+end);
  for(const [asset,hash] of versions) {
    const escaped=asset.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
    after=after.replace(new RegExp('(\\./'+escaped+')(?:\\?v=[a-zA-Z0-9-]+)?(?=["\'])','g'),'$1?v='+hash);
