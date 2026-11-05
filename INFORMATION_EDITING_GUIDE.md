@@ -3,7 +3,7 @@
 ## 正本と公開範囲
 - 開催日・場所・会場・Artist・作品数・サイト別の紹介文：`assets/data/exhibitions.json`。既存の開催判定・参加募集判定を再利用する。
 - 公開可能なお知らせ：`assets/data/news.json`。初期値は `[]`。空の場合はNews見出し・ページ内リンクも表示しない。
-- 日程のない現行の企画検討案：Informationの`data-information-planning`内。岩手県または栃木県は候補で、開催地・会期・会場は未定。確定した開催データがある時はこの案内を非表示にする。
+- 日程のない公開企画案内：`assets/js/information-content.js`の`planningNotice()`が共通文言の正本。`INFORMATION:PLANNING`コメント間を同期し、TOP・Information・Apply・レビューApplyで一致させる。開催地・会期・会場は未定。Informationの企画カードは公開開催データがある時に非表示にする。
 - 過去の静的記録はHTML内に残すが、内容はJSONから同期する。`INFORMATION:*`コメント間は直接編集しない。
 
 これらはすべて公開用ファイル。非公開の案・内部メモ・個人連絡先・未承認の日付は保存しない。`published:false`や非表示CSSは秘密保持にならない。内部資料はリポジトリ外で管理する。
@@ -17,7 +17,7 @@
 6. 開催決定時はTOP・共通Headerの「未定」表記と募集案内も同じ公開差分で確認する。今回の更新補助はHeaderやTOPの文章を自動変更しない。
 7. JavaScript有効/無効・375〜1440pxで確認し、差分をレビューする。本文の変更だけならCSS・Typographyは編集しない。
 
-同期コマンドはinformation.htmlの指定領域と、information.css/information-content.js/exhibition-state.jsを参照するHTMLのcache値だけを更新する。他ページ本文やJSONは書き換えない。
+同期コマンドはinformation.htmlの指定領域、TOP・Information・Apply・レビューApplyの共通案内コメント領域、information.css/information-content.js/exhibition-state.jsを参照するHTMLのcache値を更新する。それ以外の本文やJSONは書き換えない。
 
 終了判定は終了瞬間を含まず、表示日はAsia/Tokyo。境界の日にデータを更新・公開する時は同期を再実行する。静的HTMLは最後に同期した時点の確定情報であり、JS無効時のリアルタイム判定は行わない。募集はexhibition-state.jsの既存検証を通す。次回企画の確定と応募受付の開始は別判断で、Information改修だけで受付を開始しない。
 
@@ -40,8 +40,14 @@ news.jsonに次の公開済み項目だけを追加する（サンプルの架�
 - Commit/PR/本番反映は承認された別工程で行う。
 
 ## 企画状況の表記
-- 現行の候補（岩手県または栃木県）は`data-information-planning`の「企画検討中」。開催地・会期・会場は未定のままにする。
+- 現行の公開案内は「次回開催に向けて準備を進めています。詳細は決まり次第お知らせします。」に統一する。内部の開催段階は検討中であり、この表現を開催決定や受付開始と解釈しない。地域・時期・会場の内部候補は公開JSONやHTMLに記載しない。
 - 調整段階に入ったことを本人が公開確認できた場合にだけ、同じ企画案内の状態を「開催調整中」へ変える。日付がnullであることだけを根拠に、調整していると推測しない。
 - 確定して公開承認された開催だけをexhibitions.jsonへ登録する。日付のある今後の公開開催は「開催決定」、開催期間中は「開催中」、終了後は「開催終了」と表示する。公開承認済みでも日付が未定の記録は「開催日未定」と区別する。
 - 企画案内と開催データに同じ事実を二重登録しない。公開開催を追加すると企画案内は非表示になる。非公開の候補や内部の調整メモは公開HTML/JSONに置かない。
 - 開催地域は固定の選択肢にしていない。city/venue/editionと日時を公開確認して追加すれば、別地域・別年の記録を同じ年別Archiveへ追加できる。
+
+## 次回案内の整合性チェック
+- 共通案内を更新する時はplanningNotice()だけを編集し、sync-information.cjsで4ページのコメント領域を同期する。生成済み文章だけを手直ししない。TOP/Applyに新しいJS依存は追加せず、JS無効時も同じ静的案内を残す。
+- 今回の準備段階では、Apply/レビューApplyの参加費・人数・募集期間・会場・設備は未定とする。旧候補の資料値を次回の条件へ自動転用しない。旧掲載値や変更経緯は公開repo外の内部台帳へ残す。
+- 開催決定と公開承認が揃った時は、exhibitions.jsonへの登録に加え、TOP/Applyの開催別表示と準備段階用テストの期待値を同じ差分で見直す。この同期は開催別の全項目を自動生成する仕組みではない。
+- 関連テストはnode --test tests/exhibition-state.test.cjs tests/information-content.test.cjs tests/planning-consistency.test.cjs。共通処理を変更した時は既存の全Nodeテストも実行する。日時だけで受付を有効化せず、recruitmentやreceiverVerifiedの変更をこの文言修正に混ぜない。
