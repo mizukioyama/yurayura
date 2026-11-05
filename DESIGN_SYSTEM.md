@@ -308,3 +308,10 @@ Gallery modalのartworkとsectionは初期opacity/transformと180ms遷移を共�
 個々の表示遅延、body切替、閉じる時間、モバイル方向、Reduced Motionは別の責務として維持する。
 RevealのtransformとHoverのtranslate、touch/keyboardの条件を一律に統合しない。
 `main.css` の同値な小画面ルールは元のmedia条件の和集合で管理し、ボタン等の値は変えない。
+
+
+## Body reading rhythm
+FV・背景・Typographyはそれぞれの既存正本を維持する。本文の視覚的な章区切りは既存space token（48/64px）を使い、viewportに比例して無制限に伸ばさない。
+section.path-sectionの寸法はparticipation.css、TOP/Conceptの本文余白はconcept.css、Information/Contactの本文はcontent-page-system.cssが管理する。
+参加の概要番号は末尾の導線矢印とは別の要素。参加カードは全幅で等高とし、概要の段落は見出しとの二重marginを作らない。44px mobile / 110px tablet / 359px以下24pxの既存ガターを使う。
+Policyは独立したpolicy-pageを使い、Conceptの本文クラスを継承しない。Policyの本文・見出しは左揃えの読み物として扱い、項目索引はnative detailsで開く。作品画像の表示領域とFVは本文の共通化対象にしない。

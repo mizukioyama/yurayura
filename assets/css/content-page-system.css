@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
 /* Shared section-heading rhythm and content frame for editorial pages. */
+.information-page .information-main,
+.contact-page .contact-main {
+  padding-bottom: var(--space-6);
+}
 .information-page .information-main > .section,
 .contact-page .contact-main > .section {
-  padding: clamp(96px, calc(8vw + 80px), 160px) clamp(36px, 5vw, 72px);
+  padding: var(--space-7) clamp(36px, 5vw, 72px);
 }
 
 .information-page .information-main .section__inner.inner,
@@ -19,11 +23,11 @@
   }
 
   .contact-page .contact-main > .contact-faq-section {
-    padding-bottom: clamp(48px, 4vw, 64px);
+    padding-bottom: var(--space-5);
   }
 
   .contact-page .contact-main > .contact-form-section {
-    padding-top: clamp(48px, 4vw, 64px);
+    padding-top: var(--space-5);
   }
 }
 
@@ -99,21 +103,21 @@
 /* The first information section continues the same generous Concept rhythm. */
 .information-page .information-main > .information-next.content-page-first-section,
 .contact-page .contact-main > .contact-faq-section.content-page-first-section {
-  padding-top: clamp(88px, 12vmin, 144px);
+  padding-top: var(--space-7);
 }
 
 .policy-page main section.policy-content.content-page-first-section {
-  padding-top: clamp(88px, 12vmin, 144px);
+  padding-top: var(--space-7);
 }
 
 @media screen and (max-width: 800px) {
   .information-page .information-main > .information-next.content-page-first-section,
   .contact-page .contact-main > .contact-faq-section.content-page-first-section {
-    padding-top: clamp(88px, 14vmin, 128px);
+    padding-top: var(--space-7);
   }
 
   .policy-page main section.policy-content.content-page-first-section {
-    padding-top: clamp(88px, 14vmin, 128px);
+    padding-top: var(--space-7);
   }
 }
 

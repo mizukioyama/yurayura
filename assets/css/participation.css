@@ -3,12 +3,19 @@
   --path-content: 960px;
   --path-reading: 680px;
   --path-gap: var(--space-4);
-  --path-section-space: var(--space-8);
+  --path-section-space: var(--space-7);
   --path-rule: color-mix(in srgb, var(--color-txt) 28%, transparent);
 }
-.path-section {
+section.path-section,
+nav.path-section {
+  display: block;
   position: relative;
-  padding: var(--path-section-space) 44px;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: var(--space-5) 44px;
+  overflow: visible;
 }
 .path-inner {
   width: min(100%, var(--path-content));
@@ -44,8 +51,7 @@
   min-width: 0;
   background-image: url("../img/participation/paper-fiber.svg");
   background-size: 256px 256px;
-  background: rgba(250, 244, 238, 0.4);
-  max-height: 520px;
+  background-color: rgba(250, 244, 238, 0.4);
 }
 .path-card h3 {
   font-weight: 400;
@@ -55,7 +61,7 @@
   margin-top: var(--space-3);
   line-height: 1.8;
 }
-.path-card > span {
+.path-card > span:last-child {
   margin-top: auto;
   padding-top: var(--space-4);
   align-self: flex-end;
@@ -82,7 +88,11 @@
   margin-block: 24px;
 }
 .path-prose h2:not(:first-child) {
-  margin-top: 64px;
+  margin-top: var(--space-6);
+}
+:is(.profile-page, .venues-page) .path-prose > h2:not(:first-child) {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--path-rule);
 }
 .path-prose a {
   color: inherit;
@@ -118,7 +128,7 @@
   width: 100%;
   height: auto;
   min-height: 0;
-  margin-block: 40px;
+  margin-block: var(--space-5);
   padding: 0;
   overflow: visible;
 }
@@ -128,8 +138,8 @@
 }
 .event-state-groups article {
   border-top: 1px solid var(--path-rule);
-  padding-block: 24px;
-  line-height: 2;
+  padding-block: var(--space-4);
+  line-height: 1.9;
 }
 .gallery-event-nav {
   display: flex;
@@ -145,14 +155,15 @@
   align-items: center;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .path-section {
+  section.path-section,
+  nav.path-section {
     padding-inline: 110px;
   }
 }
 @media (max-width: 767px) {
   :root {
     --path-gap: var(--space-3);
-    --path-section-space: var(--space-7);
+    --path-section-space: var(--space-6);
   }
   .path-card {
     padding: var(--space-4) var(--space-3);
@@ -160,7 +171,8 @@
 
 }
 @media (max-width: 359px) {
-  .path-section {
+  section.path-section,
+  nav.path-section {
     padding-inline: 24px;
   }
   .path-grid {
@@ -183,7 +195,7 @@
     transform 720ms cubic-bezier(0.22, 0.61, 0.36, 1),
     opacity 400ms ease;
 }
-.path-card > span {
+.path-card > span:last-child {
   transition: transform 400ms ease;
 }
 .path-card:focus-visible .path-card__image {
@@ -209,7 +221,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .path-card .path-card__image,
-  .path-card > span {
+  .path-card > span:last-child {
     transition: none;
   }
   .path-card:hover .path-card__image,
@@ -321,7 +333,7 @@ nav.path-section {
   width: 100%;
   max-width: var(--path-content);
   margin-inline: auto;
-  padding: var(--space-7) clamp(24px, 5vw, 48px);
+  padding: var(--space-7) 48px;
   box-sizing: border-box;
 }
 
@@ -368,7 +380,6 @@ nav.path-section {
 
 .participation-editorial .path-card {
   align-items: start;
-  max-height: none;
   border: 1px solid var(--path-rule);
   padding: var(--space-4);
 }
@@ -401,7 +412,7 @@ nav.path-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
-  margin-block: var(--space-4) 0;
+  margin-block: var(--space-4);
 }
 
 .participation-editorial .recruit-overview > div {
@@ -442,14 +453,14 @@ nav.path-section {
     gap: var(--space-4);
   }
 
-  .participation-editorial .recruit-overview > :last-child {
+  .participation-editorial .recruit-overview > :last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 767px) {
   .participation-editorial {
-    padding-block: var(--space-6);
+    padding: var(--space-6) var(--layout-gutter-mobile);
   }
 
   .participation-editorial > .path-section + .path-section {
@@ -462,14 +473,75 @@ nav.path-section {
   }
 }
 
-@media (min-width: 768px) {
-  .participation-editorial .path-grid.participation-basics {
-    align-items: stretch;
-    grid-auto-rows: 1fr;
-  }
+/* Participate overview and common terms; no application-page selectors. */
+.participation-editorial .path-grid.participation-basics {
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+.participation-editorial .participation-basics > .path-card {
+  box-sizing: border-box;
+}
+.participation-basics .path-card__number {
+  margin-bottom: 8px;
+  letter-spacing: .12em;
+  font-variant-numeric: tabular-nums;
+  opacity: .65;
+}
+.participation-editorial .participation-basics h3 {
+  margin-bottom: 8px;
+}
+.participation-editorial .participation-basics p {
+  margin: 0;
+}
+.participation-editorial .participation-terms {
+  margin-top: var(--space-4);
+}
+.participation-terms summary > span {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.participation-terms .path-terms__note {
+  font-weight: 400;
+  opacity: .75;
+  line-height: 1.8;
+}
+.participation-terms .participation-guide__content {
+  padding: 0 var(--space-3) var(--space-4);
+  border-inline-start: 1px solid var(--path-rule);
+}
+.participation-terms .participation-guide__content ul {
+  padding-inline-start: 1.5em;
+  margin: 0 0 var(--space-3);
+}
+.participation-terms .participation-guide__content li + li {
+  margin-top: 8px;
+}
+.participation-terms .participation-guide__content h3:not(:first-child) {
+  margin-top: var(--space-4);
+}
 
-  .participation-editorial .participation-basics > .path-card {
-    box-sizing: border-box;
-    max-height: none;
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .participation-editorial {
+    padding-inline: var(--layout-gutter-tablet);
   }
+}
+@media (max-width: 359px) {
+  .participation-editorial {
+    padding-inline: 24px;
+  }
+}
+
+
+.participation-editorial .path-prose > ul {
+  list-style: disc;
+  padding-inline-start: 1.5em;
+  margin-block: var(--space-3);
+}
+.participation-editorial .path-prose > ul > li + li {
+  margin-top: 8px;
+}
+.participation-editorial .path-prose > :is(ul, dl) + h3 {
+  margin-top: var(--space-5);
 }

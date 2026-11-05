@@ -304,13 +304,13 @@
 /* Shared content spacing: FV remains unchanged. */
 .top-page main section:not(.fv):not(:where(.page-fv)),
 .concept-page main section:not(.fv):not(:where(.page-fv)) {
-  padding-block: 20vmin;
+  padding-block: var(--space-7);
   padding-inline: 20vmin;
 }
 @media screen and (max-width: 800px) {
   .top-page main section:not(.fv):not(:where(.page-fv)),
   .concept-page main section:not(.fv):not(:where(.page-fv)) {
-    padding-block: 14vmin;
+    padding-block: var(--space-6);
   }
 }
 @media screen and (max-width: 767px) {

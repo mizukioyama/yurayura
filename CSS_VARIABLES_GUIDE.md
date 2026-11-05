@@ -1,5 +1,17 @@
 # ゆらゆら CSS調整ガイド
 
+## 本文レイアウトの編集先
+
+文字サイズは引き続きuser-settings.cssだけを正本にする。本文sectionの高さと余白は、FVの寸法とは別に編集する。
+
+- TOP/Conceptの本文縦余白：concept.cssの既存共有ルール（PC 64px / mobile 48px）。FVは対象外。
+- Information/Contactの本文と末尾余白：content-page-system.css。
+- path-section、カード・開催概要・共通条件：participation.css。番号はpath-card__number、末尾矢印は最後のspanが所有する。
+- 参加関連本文のガター：mobile 44px / tablet 110px / 359px以下24px。
+- Policy：policy.css。Concept用のページクラスを混在させない。索引はnative detailsで、法的本文とは分離する。
+
+複数の共通条件とFAQには既存participation-accordion.jsの360ms処理を使い、高さ計算やアニメーションを再実装しない。
+
 ## 目的
 
 この資料は、mizukiさん本人が最終的なレイアウト・サイズ・余白・フォントサイズを調整するときの案内です。プロジェクトルールと最終調整の開始条件は `AGENTS.md`、視覚基準は `DESIGN_SYSTEM.md` を参照してください。

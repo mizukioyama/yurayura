@@ -2,7 +2,6 @@
 
 .information-page .information-main {
   min-height: 100vh;
-  padding-bottom: clamp(48px, 8vw, 112px);
 }
 
 .information-page #past-exhibitions {
@@ -129,4 +128,16 @@
   .information-page .information-page-nav { justify-content: flex-start; }
   .information-page .information-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .information-page .information-section-lead { text-align: left; }
+}
+
+@media (min-width: 768px) {
+  .information-page .information-past-event {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) minmax(0, 3fr);
+    gap: var(--space-5);
+  }
+  .information-page .information-past-event__identity {
+    align-content: start;
+    margin-bottom: 0;
+  }
 }
