@@ -127,3 +127,15 @@
     gap: var(--space-3);
   }
 }
+
+@media (min-width: 768px) {
+  .participation-editorial .path-grid.participation-basics {
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+  }
+
+  .participation-editorial .participation-basics > .path-card {
+    box-sizing: border-box;
+    max-height: none;
+  }
+}
