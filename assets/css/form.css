@@ -48,6 +48,7 @@
   display: flex;
   width: 100%;
   min-width: 0;
+  min-height: 44px;
 }
 
 .contact-check-grid > .check-item:nth-child(1) {

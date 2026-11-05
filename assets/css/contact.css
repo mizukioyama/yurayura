@@ -2,7 +2,6 @@
 
 .contact-page .contact-main {
   min-height: 100vh;
-  padding-bottom: clamp(48px, 8vw, 112px);
 }
 
 .contact-page #contact-form {

@@ -26,9 +26,11 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | Site Policy / `policy.html` | 著作権・個人情報・外部サービス等の案内 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/policy.html` | included |
 | 支援者 / `support.html` | 商品や作品を通じて、活動を支える | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/support.html` | included |
 | 支援会場 / `venues.html` | 各地で、展示の場所をひらく | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/venues.html` | included |
-| 参加申し込み / `participate.html` | 次の展示への参加について | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/participate.html` | included |
+| 参加について / `participate.html` | 全展示共通の参加方針・条件 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/participate.html` | included |
 | プロフィール / `profile.html` | 企画に込めた想いを読む | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/profile.html` | included |
 | Exhibition / `exhibitions.html` | 開催中・過去展示作品への入口 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/exhibitions.html` | included |
+| 参加申込 / `apply.html` | 開催別条件と受付停止の案内 | CANONICAL / public | noindex,nofollow,noimageindex | `https://mizukioyama.github.io/yurayura/apply.html` | excluded |
+| `review-participate.html` / `review-apply.html` | 本人確認用レビュー | DEV_ONLY / public URL | noindex,nofollow,noimageindex | review URL | excluded |
 | `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `github-manual.html` | GitHubコマンドの開発用手順 | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
