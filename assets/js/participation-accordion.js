@@ -2,10 +2,10 @@
 (() => {
   "use strict";
   const init = () => {
-    const container = document.querySelector(".participate-page .participation-guide");
-    if (!container) return;
+    const containers = document.querySelectorAll(".participate-page .participation-guide");
+    if (!containers.length) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    for (const details of container.querySelectorAll("details.path-details")) {
+    for (const details of Array.from(containers).flatMap(container => Array.from(container.querySelectorAll("details.path-details")))) {
       const summary = details.querySelector(":scope > summary");
       const answer = details.querySelector(":scope > .participation-guide__answer");
       if (!summary || !answer || typeof answer.animate !== "function") continue;
