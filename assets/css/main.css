@@ -470,7 +470,7 @@ section.section--concept {
 
 /* The TOP reveal is applied to the existing hero wrapper. */
 .h1_fade {
-  opacity: 0.094;
+  opacity: 0.62;
   transform: translate(0%, 0%);
   mix-blend-mode: color-burn;
   transition: none;
