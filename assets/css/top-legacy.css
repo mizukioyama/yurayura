@@ -1,15 +1,8 @@
 @charset "UTF-8";
 
 /* Top-only restoration of the pre-refinement desktop composition. */
-.top-page .bg-img,
-.top-page::after {
+.top-page .bg-img {
   display: none;
-}
-
-.top-page,
-.top-page main,
-.top-page main section {
-  background-color: transparent !important;
 }
 
 /* Do not paint the decorative guide at its provisional pre-JS coordinates.

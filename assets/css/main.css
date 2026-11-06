@@ -117,6 +117,7 @@ body {
 }
 
 body {
+  background-color: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -141,9 +142,8 @@ body::before {
   inset: 0;
   z-index: 0;
   background: var(--paper-image, url('../img/participation/washi-grain.webp')) repeat;
-  background-size: var(--paper-size, 512px 512px);
+  /* Concept reference: preserve the existing cover scale and full opacity. */
   background-size: cover;
-  /* opacity: var(--paper-opacity, .72); */
   content: "";
   pointer-events: none;
 }
@@ -156,18 +156,7 @@ main::after,
   pointer-events: none;
 }
 
-body:not(.information-page):not(.contact-page):not(.policy-page):not(.gallery-page)::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  border: 2vmin solid #f4f6f0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1000;
-  box-shadow: inset 0 1px 6px var(--color-shadow-green);
-  border-image: none;
-}
+/* The shared paper canvas has no viewport frame, matching Concept. */
 
 main {
   position: relative;

@@ -1,14 +1,7 @@
 @charset "UTF-8";
 
-.concept-page .bg-img,
-.concept-page::after {
+.concept-page .bg-img {
   display: none;
-}
-
-.concept-page,
-.concept-page main,
-.concept-page main section {
-  background-color: transparent !important;
 }
 
 .concept-fv__lead,

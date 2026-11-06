@@ -4,10 +4,6 @@
   min-height: 100vh;
 }
 
-.information-page #past-exhibitions {
-  background-color: rgba(60, 70, 6, 0.035);
-}
-
 .information-eyebrow {
   margin: 0 0 1.25rem;
   font-family: var(--font-en, var(--font-base));
@@ -128,16 +124,4 @@
   .information-page .information-page-nav { justify-content: flex-start; }
   .information-page .information-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .information-page .information-section-lead { text-align: left; }
-}
-
-@media (min-width: 768px) {
-  .information-page .information-past-event {
-    display: grid;
-    grid-template-columns: minmax(160px, 1fr) minmax(0, 3fr);
-    gap: var(--space-5);
-  }
-  .information-page .information-past-event__identity {
-    align-content: start;
-    margin-bottom: 0;
-  }
 }
