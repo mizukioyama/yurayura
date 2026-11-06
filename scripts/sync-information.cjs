@@ -24,7 +24,7 @@ html=html.replace(/(<a data-information-news-link)(?: hidden)?( href)/,'$1'+(new
 const crypto=require('node:crypto');
 const dataVersion=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex').slice(0,12);
 html=html.replace(/<body class="information-page"(?: data-information-events-version="[^"]*")?(?: data-information-news-version="[^"]*")?>/,`<body class="information-page" data-information-events-version="${dataVersion('assets/data/exhibitions.json')}" data-information-news-version="${dataVersion('assets/data/news.json')}">`);
-const assets=['assets/css/information.css','assets/js/information-content.js','assets/js/exhibition-state.js'];
+const assets=['assets/css/information.css','assets/css/contact.css','assets/css/main.css','assets/css/menu-style.css','assets/css/concept.css','assets/css/top-legacy.css','assets/css/fv-animation.css','assets/js/information-content.js','assets/js/exhibition-state.js'];
 const versions=new Map(assets.map(asset=>[asset,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,asset))).digest('hex').slice(0,12)]));
 const check=process.argv.includes('--check');
 if(process.argv[2] && !check)throw new Error('Usage: node scripts/sync-information.cjs [--check]');

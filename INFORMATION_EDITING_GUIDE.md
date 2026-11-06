@@ -17,7 +17,7 @@
 6. 開催決定時はTOP・共通Headerの「未定」表記と募集案内も同じ公開差分で確認する。今回の更新補助はHeaderやTOPの文章を自動変更しない。
 7. JavaScript有効/無効・375〜1440pxで確認し、差分をレビューする。本文の変更だけならCSS・Typographyは編集しない。
 
-同期コマンドはinformation.htmlの指定領域、TOP・Information・Apply・レビューApplyの共通案内コメント領域、information.css/information-content.js/exhibition-state.jsを参照するHTMLのcache値を更新する。それ以外の本文やJSONは書き換えない。
+同期コマンドはinformation.htmlの指定領域、TOP・Information・Apply・レビューApplyの共通案内コメント領域、同期スクリプトのassets一覧にある共有CSSとinformation-content.js/exhibition-state.jsを参照するHTMLのcache値を更新する。それ以外の本文やJSONは書き換えない。
 
 終了判定は終了瞬間を含まず、表示日はAsia/Tokyo。境界の日にデータを更新・公開する時は同期を再実行する。静的HTMLは最後に同期した時点の確定情報であり、JS無効時のリアルタイム判定は行わない。募集はexhibition-state.jsの既存検証を通す。次回企画の確定と応募受付の開始は別判断で、Information改修だけで受付を開始しない。
 
@@ -48,6 +48,6 @@ news.jsonに次の公開済み項目だけを追加する（サンプルの架�
 
 ## 次回案内の整合性チェック
 - 共通案内を更新する時はplanningNotice()だけを編集し、sync-information.cjsで4ページのコメント領域を同期する。生成済み文章だけを手直ししない。TOP/Applyに新しいJS依存は追加せず、JS無効時も同じ静的案内を残す。
-- 今回の準備段階では、Apply/レビューApplyの参加費・人数・募集期間・会場・設備は未定とする。旧候補の資料値を次回の条件へ自動転用しない。旧掲載値や変更経緯は公開repo外の内部台帳へ残す。
+- 募集条件の表示と受付開始は別に管理する。Applyの開催概要・設備を編集する場合はレビューApplyの対応箇所にも同じ確認済み内容を反映し、planning-consistency.test.cjsで一致を確認する。この同期スクリプトは開催別の募集条件を自動生成しない。会場・正式会期は確認完了まで未確定表記を維持し、資料面積と使用可能面積を混同しない。旧候補の条件を自動転用せず、変更経緯は公開repo外で管理する。
 - 開催決定と公開承認が揃った時は、exhibitions.jsonへの登録に加え、TOP/Applyの開催別表示と準備段階用テストの期待値を同じ差分で見直す。この同期は開催別の全項目を自動生成する仕組みではない。
 - 関連テストはnode --test tests/exhibition-state.test.cjs tests/information-content.test.cjs tests/planning-consistency.test.cjs。共通処理を変更した時は既存の全Nodeテストも実行する。日時だけで受付を有効化せず、recruitmentやreceiverVerifiedの変更をこの文言修正に混ぜない。

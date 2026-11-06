@@ -48,7 +48,7 @@ body.is-loaded {
   gap: clamp(1rem, 3vw, 3rem);
   margin-inline: auto;
   padding: 0;
-  border-block: 1px solid var(--path-rule);
+  border-bottom: 1px solid var(--path-rule);
 }
 
 .header-txt {

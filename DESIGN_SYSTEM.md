@@ -58,8 +58,8 @@
 
 ### Current background system
 - Base paper color: `--color-bg` (`#f3f3ed`). Keep page backgrounds transparent where they should reveal the shared body grain.
-- Shared paper uses a static micro-fiber WebP. The body and opaque Vanta background stack share the same image, scale and opacity; no texture layer is placed over text or artwork.
-- Use a restrained tint from the existing olive text color only for meaningful information surfaces, such as archived exhibition records and the contact form section. Do not alternate section backgrounds mechanically.
+- Shared page paper uses the existing static micro-fiber WebP at Concept’s established `cover` scale and full opacity on body::before, over the base paper color. Page canvases remain transparent and have no viewport frame. The existing Vanta background component supplies Concept’s pale atmosphere and 512px paper overlay at 0.72 opacity. Other pages reuse that component as a static fallback, without adding WebGL or animation scripts. Preserve TOP/Concept’s existing Vanta/Fog animation; no texture layer is placed over text or artwork.
+- Sections use the shared paper canvas, including archived exhibition records and the Contact form section. Keep intentionally opaque card and form-control surfaces; do not alternate section backgrounds mechanically.
 - Keep form controls and artwork cards on their established opaque surfaces.
 
 ## 4.1 Responsive content rhythm
