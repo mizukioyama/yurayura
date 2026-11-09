@@ -100,7 +100,6 @@ img[data-art-protect] {
 sp
 ======================================== */
 
-
 /* ========================================
 =base =body =main
 ======================================== */
@@ -141,7 +140,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: var(--paper-image, url('../img/participation/washi-grain.webp')) repeat;
+  background: var(--paper-image, url("../img/participation/washi-grain.webp")) repeat;
   /* Concept reference: preserve the existing cover scale and full opacity. */
   background-size: cover;
   content: "";
@@ -298,7 +297,6 @@ section.section--concept {
   height: 100%;
 }
 
-
 .section--contact .section__inner,
 .section--faq .section__inner,
 .section--access .section__inner {
@@ -338,7 +336,6 @@ section.section--concept {
 /* ========================================
 =h2-bt-txt
 ======================================== */
-
 
 /* ========================================
 =txt
@@ -393,7 +390,6 @@ section.section--concept {
   font-family: var(--font-jp);
 }
 
-
 /* ========================================
 =sub-txt
 ======================================== */
@@ -415,13 +411,10 @@ section.section--concept {
   display: inline;
 }
 
-
 @media screen and (max-width: 480px) {
   .pc-br {
     display: none;
   }
-
-
 }
 
 /* ========================================
@@ -465,7 +458,6 @@ section.section--concept {
   transition: none;
 }
 
-
 .fv__ttl,
 .section--concept .h2_ttl {
   writing-mode: vertical-rl;
@@ -476,7 +468,6 @@ section.section--concept {
     writing-mode: initial;
   }
 } */
-
 
 @media screen and (max-width: 480px) {
   .fv-bt-txt,
@@ -593,7 +584,6 @@ section.section--concept {
   letter-spacing: 0.1rem;
 }
 
-
 .section--artists .section__txt {
   margin-bottom: 20px;
 }
@@ -657,9 +647,7 @@ section.section--concept {
   margin-right: calc(-1 * var(--artists-side-padding));
   padding-inline: max(
     0px,
-    calc(
-      (100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2
-    )
+    calc((100% + (2 * var(--artists-side-padding)) - var(--view-button-width)) / 2)
   );
 }
 
@@ -670,7 +658,6 @@ section.section--concept {
 }
 
 /* --- スライダー --- */
-
 
 .member-slider {
   --artists-side-padding: 44px;
@@ -701,7 +688,6 @@ section.section--concept {
   right: 0;
   background: linear-gradient(to left, #fff 0%, rgba(255, 255, 255, 0) 100%);
 }
-
 
 .member-track {
   display: flex;
@@ -815,7 +801,6 @@ Contact
   letter-spacing: 0.06em;
 }
 
-
 /* ========================================
 Access
 ======================================== */
@@ -885,12 +870,10 @@ Access
   font-family: var(--font-jp);
 }
 
-
 .access-txt {
   color: var(--color-txt);
   line-height: 1.8;
 }
-
 
 .map {
   width: 60%;
@@ -903,7 +886,6 @@ Access
     height: 200px;
   }
 }
-
 
 .section--artists .section__inner {
   width: 100%;
@@ -931,7 +913,6 @@ Access
   line-height: 2;
   letter-spacing: 0.08em;
 }
-
 
 /* ========================================
   Canonical responsive layout
@@ -976,8 +957,7 @@ section {
 }
 
 /* The union preserves the original fractional-width gap between 375 and 376px. */
-@media screen and (max-width: 375px),
-       screen and (min-width: 376px) and (max-width: 480px) {
+@media screen and (max-width: 375px), screen and (min-width: 376px) and (max-width: 480px) {
   section {
     justify-content: flex-start;
   }
@@ -986,11 +966,9 @@ section {
     padding-block: clamp(96px, calc(8vw + 80px), 160px);
   }
 
-
   .pc-br {
     display: none;
   }
-
 
   .section__inner {
     height: auto;
@@ -1039,11 +1017,9 @@ section {
     padding-block: clamp(112px, calc(6vw + 80px), 176px);
   }
 
-
   .pc-br {
     display: inline;
   }
-
 
   .section__inner {
     height: auto;
@@ -1064,7 +1040,6 @@ section {
     height: auto;
     min-height: 120px;
   }
-
 
   .contact-check-grid {
     gap: 10px 20px;
@@ -1111,7 +1086,7 @@ section {
 ======================================== */
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
-    section:not(.fv):not(:where(.page-fv)) {
+  section:not(.fv):not(:where(.page-fv)) {
     padding-block: 24vmin;
   }
 }
@@ -1184,9 +1159,7 @@ section {
     width: min(100%, clamp(360px, 72vw, 960px));
     height: clamp(240px, 32vw, 420px);
   }
-
 }
-
 
 /* Shared Scroll guide: keep the full guide above following sections. */
 .scroll-guide {
@@ -1225,15 +1198,25 @@ section {
   background: var(--color-txt);
   content: "";
   transform: translateY(calc(0px - var(--content-scroll-guide-size, 280px)));
-  animation: scrollGuideFlow 3.2s cubic-bezier(.45, 0, .25, 1) infinite !important;
+  animation: scrollGuideFlow 3.2s cubic-bezier(0.45, 0, 0.25, 1) infinite !important;
   will-change: transform, opacity;
 }
 
 @keyframes scrollGuideFlow {
-  0% { transform: translateY(calc(0px - var(--content-scroll-guide-size, 280px))); opacity: 0; }
-  12% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: translateY(var(--content-scroll-guide-size, 280px)); opacity: 0; }
+  0% {
+    transform: translateY(calc(0px - var(--content-scroll-guide-size, 280px)));
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--content-scroll-guide-size, 280px));
+    opacity: 0;
+  }
 }
 
 /* Following content remains below the Scroll guide when their areas overlap. */
