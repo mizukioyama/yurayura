@@ -4,6 +4,11 @@ body.is-loaded {
 
 :root {
   --site-header-size: clamp(76px, 7.5vw, 104px);
+  --path-content: 960px;
+  --path-reading: 680px;
+  --path-gap: var(--space-4);
+  --path-section-space: var(--space-7);
+  --path-rule: color-mix(in srgb, var(--color-txt) 28%, transparent);
 }
 @media (max-width: 1199px) {
   :root {
@@ -570,7 +575,6 @@ body.is-loaded {
     align-items: flex-start;
     gap: 0;
   }
-
 
   .noscript-site-nav {
     flex-direction: column;

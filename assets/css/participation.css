@@ -254,6 +254,9 @@ nav.path-section {
   border-bottom: 0;
   padding: 0;
 }
+.path-details span {
+  font-weight: bold;
+}
 .participate-page .path-details:last-child {
   border-bottom: 1px solid var(--path-rule);
 }
@@ -361,6 +364,7 @@ nav.path-section {
 
 .participation-editorial .path-prose :is(h2, h3) {
   margin: 0 0 var(--space-3);
+  font-weight: bold;
 }
 
 .participation-editorial .path-prose p {
