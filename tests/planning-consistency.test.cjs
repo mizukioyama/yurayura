@@ -71,8 +71,8 @@ test('approved second-show details are synchronized without opening reception', 
       'Life Art Gallery auswahi',
       '東北堂大通ビル',
       '20,000円',
-      '募集人数 5名',
-      '1人最大8点',
+      '募集人数 6名',
+      '1人最大6点 ※総作品数で変動します。',
       'F4号を目安',
       '2026年11月28日 11:00',
       '2027年1月29日 20:00',
@@ -80,6 +80,8 @@ test('approved second-show details are synchronized without opening reception', 
       '使用可能な展示面積・壁面面積ではありません',
       'すべての作品の展示を保証するものではありません'
     ]) assert(text.includes(value), name + ': ' + value);
+    assert(text.includes('展示作品数は1人最大6点'), name + ': detail limit');
+    assert(!text.includes('展示作品数は1人最大8点'), name + ': stale prior limit');
     assert(!/2027年4〜5月|2027年4月|2027-01-16|岩手県または栃木県/.test(text), name);
     assert(!/datetime="2027-03-\d{2}/.test(html), name + ': exact event date must not be inferred');
     assert(html.includes('出展申し込みの受付は停止中です') || html.includes('受付停止中'), name);
