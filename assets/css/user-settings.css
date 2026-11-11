@@ -17,7 +17,7 @@
   --type-liquid-medium-size: clamp(14px, calc(0.5vw + 12px), 16px);
   --type-liquid-large-size: clamp(24px, calc(1vw + 20px), 40px);
 
-  --type-page-title-size: clamp(2.4rem, calc(1.5rem + 4vw), 5.4rem);
+  --type-page-title-size: clamp(2.625rem, 2.375rem + 1.25vw, 3.875rem);
   /* TOP: existing portrait scale; short viewports use the compact scale. */
   --type-top-hero-size: clamp(80px, 12vw, 140px);
   --type-top-hero-tracking: 2.4rem;
