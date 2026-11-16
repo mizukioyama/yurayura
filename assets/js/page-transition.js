@@ -40,6 +40,11 @@
    independent supervisor force-removes any overlay that has
    existed far longer than any healthy transition. Neither
    fires in a healthy flow, so neither changes the visuals.
+   A separate guard watches the TOP page's own first-view blur
+   (#fog-scene, driven by fog-hole.js — not a transition
+   overlay): if that scene is still up well past its normal
+   run, it is force-finished so a swapped-in TOP can never stay
+   blurred.
    External links, new-tab links, downloads, in-page anchors
    and form submissions keep their default behaviour. With
    prefers-reduced-motion the transition is disabled entirely.
@@ -60,6 +65,7 @@
   const INIT_REVEAL_CAP_MS = 3000; // post-commit: reveal waits for init at most this long
   const COMMIT_WATCHDOG_MS = 6000; // post-commit: force-clear the overlay after this
   const OVERLAY_MAX_MS = 20000; // supervisor: no overlay may live longer than this
+  const FOG_SCENE_GUARD_MS = 8000; // TOP FV blur: force-finish if still up
   const RING_COUNT = 3;
   const RING_STAGGER = 0.12; // fraction of progress between rings
 
@@ -115,6 +121,21 @@
     "/assets/js/participation-accordion.js"
   ]);
   const loadedScripts = new Set();
+
+  /* The sets above are keyed by root-relative path, but the site
+     is hosted under a subpath (a GitHub Pages project site), so a
+     resolved pathname carries that prefix ("/yurayura/assets/…")
+     and a plain Set.has() never matches. Match by suffix so the
+     classification holds at any base path. (With an exact-match
+     check, fog-hole.js silently degraded to load-once and was
+     skipped on swap-in whenever the session had started on the
+     TOP page, leaving the TOP first-view blur up forever.) */
+  function scriptSetHas(set, pathname) {
+    for (const entry of set) {
+      if (pathname === entry || pathname.endsWith(entry)) return true;
+    }
+    return false;
+  }
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const mobileLayout = window.matchMedia("(max-width: 767px)");
@@ -907,8 +928,8 @@
         continue;
       }
       const key = resolved.origin + resolved.pathname;
-      if (SCRIPT_SKIP.has(resolved.pathname)) continue;
-      if (SCRIPT_ALWAYS.has(resolved.pathname) || !loadedScripts.has(key)) {
+      if (scriptSetHas(SCRIPT_SKIP, resolved.pathname)) continue;
+      if (scriptSetHas(SCRIPT_ALWAYS, resolved.pathname) || !loadedScripts.has(key)) {
         await executeScript(resolved.href);
         loadedScripts.add(key);
       }
@@ -1067,6 +1088,10 @@
     }
     cover.stopHold();
     window.setTimeout(() => forceClearOverlay(overlay), COMMIT_WATCHDOG_MS);
+    // If the destination is the TOP page, its own first-view
+    // blur (#fog-scene) starts with the swapped-in body; arm the
+    // guard for it alongside the transition watchdogs.
+    armFogSceneGuard();
 
     const finalUrl = new URL(fetched.finalUrl);
     try {
@@ -1182,6 +1207,44 @@
         if (!ok) window.location.assign(window.location.href);
       });
   });
+
+  /* ------------- TOP first-view fog guard ---------------------- */
+  /* The TOP page opens under its own full-viewport blur
+     (#fog-scene, assets/css/fog-hole.css), which fog-hole.js
+     animates away in about five seconds on a normal load. That
+     layer is NOT the transition overlay — the watchdogs and the
+     supervisor above never see it — so if fog-hole.js does not
+     run to completion for a swapped-in TOP, the blur would stay
+     forever over an otherwise correct page. This guard captures
+     the scene element when armed (on load, and after every swap
+     commit) and force-finishes it — the same is-hidden classes
+     fog-hole.js itself applies, then removal — if that same
+     element is still up FOG_SCENE_GUARD_MS later. In a healthy
+     flow fog-hole.js has already removed the element by then,
+     so the guard is a no-op and the FV animation is untouched. */
+
+  function forceFinishFogScene(scene) {
+    for (const id of ["fog-blur-layer", "fog-hole", "fog-boundary"]) {
+      const el = scene.querySelector("#" + id);
+      if (el) el.classList.add("is-hidden");
+    }
+    scene.classList.add("is-hidden");
+    // The blur layer fades over 1.1s once hidden; remove the
+    // scene after the fade so the forced finish is not a cut.
+    window.setTimeout(() => {
+      if (scene.parentNode) scene.remove();
+    }, 1400);
+  }
+
+  function armFogSceneGuard() {
+    const scene = document.getElementById("fog-scene");
+    if (!scene) return;
+    window.setTimeout(() => {
+      if (scene.isConnected && !scene.classList.contains("is-hidden")) {
+        forceFinishFogScene(scene);
+      }
+    }, FOG_SCENE_GUARD_MS);
+  }
 
   /* ---------------- Enter: recede the pre-paint veil ------------ */
   /* Classic arrivals only: the destination document was covered
@@ -1324,6 +1387,10 @@
   if (document.documentElement.classList.contains("pt-enter")) {
     startEnter();
   }
+
+  // Fresh loads and classic arrivals: if this document is the
+  // TOP page, guard its first-view blur from the start.
+  armFogSceneGuard();
 
   /* ------------- BFCache: never restore a covered page ---------- */
 
