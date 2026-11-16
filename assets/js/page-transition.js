@@ -17,11 +17,18 @@
 
    Classic mode (fallback): when a swap is not safe — the
    contact page (the site's only form), a dirty form, an open
-   menu or modal, a non-canonical or query-string target, a
-   failed fetch — the transition falls back to the original
+   modal, a non-canonical or query-string target, a failed
+   fetch — the transition falls back to the original
    two-document handoff: cover, real navigation, and the
    destination page — pre-covered by the inline bootstrap in
-   its <head> — lets the fog recede. If WebGL is unavailable
+   its <head> — lets the fog recede. One former fallback case
+   is now handled before the decision: a link inside the open
+   header menu (on mobile the menu is the only way to reach
+   the header navigation, so every header tap used to take
+   the classic route) first closes the menu through allmenu's
+   own close path and then swaps like any other link; only if
+   the menu cannot be closed does the click fall back. If
+   WebGL is unavailable
    the fog falls back to a paper-coloured veil with fine ripple
    rings (Canvas 2D), and any failure falls back to a normal
    navigation: the visitor is never trapped on a covered page.
@@ -730,7 +737,10 @@
   // A swap is only attempted when both pages are canonical, the
   // contact page is not involved, no menu/modal is open and no
   // form holds unsent input. Anything else keeps the classic
-  // two-document transition.
+  // two-document transition. The click handler closes an open
+  // header menu before consulting this for header menu links
+  // (see closeHeaderMenuForLink), so the is-open check below
+  // still guards every other path — popstate included.
   function swapAllowed(url) {
     if (url.search) return false;
     const from = pathSegment(window.location.pathname);
@@ -1156,6 +1166,73 @@
     }
   }
 
+  /* ------------- Header menu: close first, then swap ---------- */
+  /* On mobile the header navigation lives inside the slide-in
+     menu, so a header tap always happens while the menu is
+     open — and swapAllowed refuses an open menu, which forced
+     every header navigation onto the classic two-document
+     route (the route whose arrival handover misbehaves on
+     some devices) while body and footer links swapped fine.
+     For a link inside the open header menu, close the menu
+     first and then take the normal decision below.
+     The close goes through allmenu's own procedure — a
+     programmatic click on the menu toggle runs exactly the
+     handler a visitor's tap runs (setMenuState(false)):
+     is-open removed, the body scroll lock (menu-open class
+     and --menu-scroll-top) released, inert restored on the
+     background, aria state updated and the menu-state event
+     dispatched. Replicating those steps here would drift from
+     allmenu and silently drop pieces (inert, focus, scroll
+     restore), so they are deliberately not duplicated.
+     Returns true only when the menu verifiably closed; any
+     abnormality returns false and the click keeps the classic
+     fallback, so a link can never be stranded by this path. */
+
+  function closeHeaderMenuForLink(anchor) {
+    const header = document.querySelector(".header.is-open");
+    if (!header) return false;
+    // Same scope as allmenu's own close-on-link-click: the
+    // .header-link items of the open menu. (The logo link sits
+    // in .header-txt, which is inert while the menu is open,
+    // so it cannot be the clicked element in this state.)
+    if (!anchor.classList.contains("header-link")) return false;
+    if (!header.contains(anchor)) return false;
+    const toggle = header.querySelector(".menu-toggle");
+    if (!toggle) return false;
+    toggle.click();
+    return (
+      !header.classList.contains("is-open") &&
+      !document.body.classList.contains("menu-open")
+    );
+  }
+
+  // Runs callback on the next animation frame, or after a
+  // short timeout if frames stall — whichever comes first.
+  // Closing the menu queues allmenu's scroll restore on a
+  // frame; the outgoing page's scroll position is only true
+  // again once that frame has run, and startSwapNavigation
+  // records it for later popstate restoration.
+  function afterNextFrame(callback) {
+    let done = false;
+    const run = () => {
+      if (done) return;
+      done = true;
+      callback();
+    };
+    if (typeof window.requestAnimationFrame === "function") {
+      window.requestAnimationFrame(run);
+    }
+    window.setTimeout(run, 120);
+  }
+
+  function beginNavigation(url, clientX, clientY) {
+    if (swapAllowed(url)) {
+      startSwapNavigation(url, clientX, clientY);
+    } else {
+      startClassicExit(url, clientX, clientY);
+    }
+  }
+
   document.addEventListener(
     "click",
     event => {
@@ -1168,11 +1245,21 @@
       const url = eligibleUrl(anchor, event);
       if (!url) return;
       event.preventDefault();
-      if (swapAllowed(url)) {
-        startSwapNavigation(url, event.clientX, event.clientY);
-      } else {
-        startClassicExit(url, event.clientX, event.clientY);
+      if (closeHeaderMenuForLink(anchor)) {
+        // The menu is closed. Hold further clicks for the one
+        // frame allmenu needs to restore the scroll position,
+        // then decide exactly as for any other link — swap for
+        // canonical targets, classic for the rest (contact
+        // included: the menu still closes first, as it does
+        // when allmenu handles the click itself).
+        navigating = true;
+        afterNextFrame(() => {
+          navigating = false;
+          beginNavigation(url, event.clientX, event.clientY);
+        });
+        return;
       }
+      beginNavigation(url, event.clientX, event.clientY);
     },
     true
   );
