@@ -27,11 +27,19 @@ html=html.replace(/<body class="information-page"(?: data-information-events-ver
 const assets=['assets/css/information.css','assets/css/contact.css','assets/css/main.css','assets/css/menu-style.css','assets/css/concept.css','assets/css/top-legacy.css','assets/css/fv-animation.css','assets/css/faq.css','assets/css/participation.css','assets/css/user-settings.css','assets/js/information-content.js','assets/js/exhibition-state.js','assets/js/allmenu.js'];
 const check=process.argv.includes('--check');
 if(process.argv[2] && !check)throw new Error('Usage: node scripts/sync-information.cjs [--check]');
-const headerVersion=dataVersion('assets/parts/header.html'), expectedPartVersion='const PARTS_VERSION = "'+headerVersion+'";';
+// The parts cache identifier covers every file in assets/parts/ so that
+// changing any single part (header, footer, or a future part) refreshes all.
+const partsDir=path.join(root,'assets/parts'), partsHash=crypto.createHash('sha256');
+for(const name of fs.readdirSync(partsDir).sort()) {
+ const partPath=path.join(partsDir,name);
+ if(!fs.statSync(partPath).isFile())continue;
+ partsHash.update(name); partsHash.update('\0'); partsHash.update(fs.readFileSync(partPath)); partsHash.update('\0');
+}
+const partsVersion=partsHash.digest('hex').slice(0,12), expectedPartVersion='const PARTS_VERSION = "'+partsVersion+'";';
 const loaderPath=path.join(root,'assets/js/allmenu.js'), loaderBefore=fs.readFileSync(loaderPath,'utf8');
 const loaderAfter=loaderBefore.replace(/const PARTS_VERSION = "[^"]+";/,expectedPartVersion);
-if(!loaderAfter.includes(expectedPartVersion))throw new Error('Missing header fragment version owner.');
-if(check && loaderAfter!==loaderBefore)throw new Error('Header fragment cache identifier is stale.');
+if(!loaderAfter.includes(expectedPartVersion))throw new Error('Missing parts fragment version owner.');
+if(check && loaderAfter!==loaderBefore)throw new Error('Parts fragment cache identifier is stale.');
 if(!check && loaderAfter!==loaderBefore)fs.writeFileSync(loaderPath,loaderAfter);
 const versions=new Map(assets.map(asset=>[asset,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,asset))).digest('hex').slice(0,12)]));
 for(const name of fs.readdirSync(root).filter(name=>name.endsWith('.html'))) {
