@@ -17,44 +17,6 @@
     base-uri 'self';
     form-action 'self';
   " />
-  <title>ゆらゆら | 体感するArt展</title>
-  <meta name="description"
-    content="作品を理解するのではなく体感するグループ展「ゆらゆら」。企画の世界観、作品とArtist、次回開催情報をご案内します。" />
-  <link rel="canonical" href="https://mizukioyama.github.io/yurayura/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ゆらゆら" />
-  <meta property="og:title" content="ゆらゆら | 体感するArt展" />
-  <meta property="og:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。" />
-  <meta property="og:url" content="https://mizukioyama.github.io/yurayura/" />
-  <meta property="og:image" content="https://mizukioyama.github.io/yurayura/assets/img/ogp-yurayura-1200x630.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="アイボリー背景にオリーブ色の抽象的な曲線と円を配し、中央に「ゆらゆら」と記した共有画像">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ゆらゆら | 体感するArt展">
-  <meta name="twitter:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
-  <meta name="twitter:image" content="https://mizukioyama.github.io/yurayura/assets/img/ogp-yurayura-1200x630.png">
-  <meta name="twitter:image:alt" content="アイボリー背景にオリーブ色の抽象的な曲線と円を配し、中央に「ゆらゆら」と記した共有画像">
-  <noscript><style>#fog-scene{display:none!important}</style></noscript>
-  <link rel="icon" href="data:," />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/reset.css" />
-  <link rel="stylesheet" href="./assets/css/menu-style.css?v=9d6a1676a514" />
-  <link rel="stylesheet" href="./assets/css/main.css?v=f9a5fad12275" />
-  <link rel="stylesheet" href="./assets/css/concept.css?v=1c11231aeb46" />
-  <link rel="stylesheet" href="./assets/css/top-legacy.css?v=e34456fe6368" />
-  <link rel="stylesheet" href="./assets/css/top-artists.css?v=0f793ee5f0e7" />
-  <link rel="stylesheet" href="./assets/css/liquid.css?v=7c6d7010cff9" />
-  <link rel="stylesheet" href="./assets/css/fog-hole.css?v=2d9194d729bb" />
-  <link rel="stylesheet" href="./assets/css/fv-animation.css?v=756c7bd0bf26" />
-  <link rel="stylesheet" href="./assets/css/user-settings.css?v=2bb2ab9e9256" />
-  <script src="./assets/js/font.js" defer></script>
-  <script src="./assets/js/allmenu.js?v=b29a15a0e5df" defer></script>
-  <link rel="stylesheet" href="./assets/css/page-transition.css?v=f4830c6695bc" />
   <style>
     /* Page transition pre-paint cover. Inline on purpose: the
        cover must be in force before the first paint, without
@@ -63,6 +25,14 @@
        this cover and only then lifts it. If the script never
        runs, the failsafe animation lifts the cover on its own,
        so the page can never stay covered. */
+    /* The canvas is painted with the site paper colour from
+      the first bytes, so an arriving page can never flash
+      white before its stylesheets land. This matches
+      --color-bg in main.css, which later takes over with
+      the same value, so nothing changes once styles land. */
+    html {
+      background-color: #f3f3ed;
+    }
     html.pt-enter::before {
       content: "";
       position: fixed;
@@ -105,7 +75,45 @@
       } catch (error) { /* no cover: the page simply opens */ }
     })();
   </script>
-  <script src="./assets/js/page-transition.js?v=8df67ce427be" defer></script>
+  <title>ゆらゆら | 体感するArt展</title>
+  <meta name="description"
+    content="作品を理解するのではなく体感するグループ展「ゆらゆら」。企画の世界観、作品とArtist、次回開催情報をご案内します。" />
+  <link rel="canonical" href="https://mizukioyama.github.io/yurayura/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ゆらゆら" />
+  <meta property="og:title" content="ゆらゆら | 体感するArt展" />
+  <meta property="og:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。" />
+  <meta property="og:url" content="https://mizukioyama.github.io/yurayura/" />
+  <meta property="og:image" content="https://mizukioyama.github.io/yurayura/assets/img/ogp-yurayura-1200x630.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="アイボリー背景にオリーブ色の抽象的な曲線と円を配し、中央に「ゆらゆら」と記した共有画像">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ゆらゆら | 体感するArt展">
+  <meta name="twitter:description" content="ゆらぎの間で、作品を理解するのではなく体感することを大切にした展示企画です。">
+  <meta name="twitter:image" content="https://mizukioyama.github.io/yurayura/assets/img/ogp-yurayura-1200x630.png">
+  <meta name="twitter:image:alt" content="アイボリー背景にオリーブ色の抽象的な曲線と円を配し、中央に「ゆらゆら」と記した共有画像">
+  <noscript><style>#fog-scene{display:none!important}</style></noscript>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/menu-style.css?v=9d6a1676a514" />
+  <link rel="stylesheet" href="./assets/css/main.css?v=f9a5fad12275" />
+  <link rel="stylesheet" href="./assets/css/concept.css?v=1c11231aeb46" />
+  <link rel="stylesheet" href="./assets/css/top-legacy.css?v=e34456fe6368" />
+  <link rel="stylesheet" href="./assets/css/top-artists.css?v=0f793ee5f0e7" />
+  <link rel="stylesheet" href="./assets/css/liquid.css?v=7c6d7010cff9" />
+  <link rel="stylesheet" href="./assets/css/fog-hole.css?v=2d9194d729bb" />
+  <link rel="stylesheet" href="./assets/css/fv-animation.css?v=756c7bd0bf26" />
+  <link rel="stylesheet" href="./assets/css/user-settings.css?v=2bb2ab9e9256" />
+  <script src="./assets/js/font.js" defer></script>
+  <script src="./assets/js/allmenu.js?v=b29a15a0e5df" defer></script>
+  <link rel="stylesheet" href="./assets/css/page-transition.css?v=f4830c6695bc" />
+    <script src="./assets/js/page-transition.js?v=1aea57134286" defer></script>
   <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>

@@ -25,6 +25,21 @@
    the fog falls back to a paper-coloured veil with fine ripple
    rings (Canvas 2D), and any failure falls back to a normal
    navigation: the visitor is never trapped on a covered page.
+
+   Reveal independence and watchdogs: the reveal is NOT gated
+   on the destination's full initialisation. Once the new body
+   is swapped in (the commit point), the destination's scripts
+   and fragment loads continue in the background and the fog
+   lifts as soon as they finish OR a short cap elapses,
+   whichever comes first — a slow CDN script can no longer
+   hold the cover hostage (previously the whole serialised
+   init chain ran under the cover, which on a slow device kept
+   the fog up for tens of seconds). Two watchdogs back this
+   up: a post-commit watchdog force-clears the overlay a few
+   seconds after the commit if it is somehow still up, and an
+   independent supervisor force-removes any overlay that has
+   existed far longer than any healthy transition. Neither
+   fires in a healthy flow, so neither changes the visuals.
    External links, new-tab links, downloads, in-page anchors
    and form submissions keep their default behaviour. With
    prefers-reduced-motion the transition is disabled entirely.
@@ -40,8 +55,11 @@
   const NAV_FALLBACK_MS = 1500; // hard cap for the classic navigation
   const SWAP_DEADLINE_MS = 4500; // click -> swap must be ready, else classic
   const CSS_WAIT_MS = 2500; // per-stylesheet wait while covered
-  const SCRIPT_WAIT_MS = 5000; // per-script wait while covered
+  const SCRIPT_WAIT_MS = 5000; // per-script wait during background init
   const FRAGMENTS_WAIT_MS = 1500; // header/footer re-init wait
+  const INIT_REVEAL_CAP_MS = 3000; // post-commit: reveal waits for init at most this long
+  const COMMIT_WATCHDOG_MS = 6000; // post-commit: force-clear the overlay after this
+  const OVERLAY_MAX_MS = 20000; // supervisor: no overlay may live longer than this
   const RING_COUNT = 3;
   const RING_STAGGER = 0.12; // fraction of progress between rings
 
@@ -108,6 +126,69 @@
   const maxRadius = (cx, cy, w, h) =>
     Math.hypot(Math.max(cx, w - cx), Math.max(cy, h - cy));
   const wait = ms => new Promise(resolve => window.setTimeout(resolve, ms));
+
+  /* ---------------- Overlay registry and supervisor ------------- */
+  /* Every overlay created below registers here. A supervisor
+     sweeps once a second and force-removes any overlay that has
+     been alive far longer than a healthy transition can last
+     (OVERLAY_MAX_MS), whatever path created it and whatever went
+     wrong. forceClearOverlay is idempotent: the animation loops
+     guard their own finish steps, disposing a dead context is a
+     no-op, and removing a detached canvas does nothing. */
+
+  const liveOverlays = new Set();
+  let supervisorTimer = null;
+
+  function registerOverlay(overlay) {
+    overlay.createdAt = performance.now();
+    liveOverlays.add(overlay);
+    if (supervisorTimer === null) {
+      supervisorTimer = window.setInterval(superviseOverlays, 1000);
+    }
+  }
+
+  function unregisterOverlay(overlay) {
+    liveOverlays.delete(overlay);
+    if (liveOverlays.size === 0 && supervisorTimer !== null) {
+      window.clearInterval(supervisorTimer);
+      supervisorTimer = null;
+    }
+  }
+
+  function forceClearOverlay(overlay) {
+    if (!overlay) return;
+    try {
+      if (typeof overlay.cleanup === "function") overlay.cleanup();
+    } catch (error) {
+      /* Cleanup hooks are best-effort; removal below is the point. */
+    }
+    try {
+      if (overlay.kind === "fog" && overlay.fog) overlay.fog.dispose();
+    } catch (error) {
+      /* Disposing a lost context is a no-op. */
+    }
+    if (overlay.canvas) overlay.canvas.remove();
+    unregisterOverlay(overlay);
+    // If the flow that owned this overlay died mid-flight, its
+    // navigating flag would otherwise stay set and the page —
+    // though visible again — would ignore every further click.
+    navigating = false;
+  }
+
+  function superviseOverlays() {
+    const now = performance.now();
+    for (const overlay of Array.from(liveOverlays)) {
+      if (!overlay.canvas || !overlay.canvas.isConnected) {
+        unregisterOverlay(overlay);
+      } else if (now - overlay.createdAt > OVERLAY_MAX_MS) {
+        forceClearOverlay(overlay);
+      }
+    }
+    if (liveOverlays.size === 0 && supervisorTimer !== null) {
+      window.clearInterval(supervisorTimer);
+      supervisorTimer = null;
+    }
+  }
 
   /* ---------------- Fog shader (WebGL, no library) --------------- */
   /* The octave count and the second domain warp are baked into the
@@ -330,13 +411,15 @@
       return null;
     }
     ctx.scale(dpr, dpr);
-    return {
+    const overlay = {
       kind: "2d",
       canvas,
       ctx,
       w: window.innerWidth,
       h: window.innerHeight
     };
+    registerOverlay(overlay);
+    return overlay;
   }
 
   // Tries WebGL fog first. A canvas owns exactly one context mode, so
@@ -349,7 +432,11 @@
     } catch (error) {
       fog = null;
     }
-    if (fog) return { kind: "fog", canvas: glCanvas, fog };
+    if (fog) {
+      const overlay = { kind: "fog", canvas: glCanvas, fog };
+      registerOverlay(overlay);
+      return overlay;
+    }
     glCanvas.remove();
     return setup2DOverlay();
   }
@@ -411,6 +498,12 @@
     const fail = () => {
       if (rafId !== null) cancelAnimationFrame(rafId);
       resolveFailed(true);
+    };
+    // A force-clear (watchdog / supervisor) stops the cover loop;
+    // the canvas removal itself is done by forceClearOverlay.
+    overlay.cleanup = () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
     };
 
     if (overlay.kind === "fog") {
@@ -483,7 +576,9 @@
         done = true;
         fog.dispose();
         canvas.remove();
+        unregisterOverlay(overlay);
       };
+      overlay.cleanup = finish;
       const frame = now => {
         const p = Math.min((now - start) / ENTER_MS, 1);
         if (!fog.draw(1 - easeOut(p), xNorm, yNorm, (now - start) / 1000)) {
@@ -498,6 +593,10 @@
       return;
     }
     const { canvas } = overlay;
+    overlay.cleanup = () => {
+      canvas.remove();
+      unregisterOverlay(overlay);
+    };
     const cx = xNorm * overlay.w;
     const cy = yNorm * overlay.h;
     const frame = now => {
@@ -509,10 +608,16 @@
       ctx.fillRect(0, 0, w, h);
       drawRings(ctx, cx, cy, maxRadius(cx, cy, w, h), p, 0.4);
       if (p < 1) requestAnimationFrame(frame);
-      else canvas.remove();
+      else {
+        canvas.remove();
+        unregisterOverlay(overlay);
+      }
     };
     requestAnimationFrame(frame);
-    window.setTimeout(() => canvas.remove(), ENTER_MS + 600);
+    window.setTimeout(() => {
+      canvas.remove();
+      unregisterOverlay(overlay);
+    }, ENTER_MS + 600);
   }
 
   /* ---------------- Classic exit: cover, then navigate ---------- */
@@ -824,8 +929,13 @@
     });
   }
 
-  // The full in-place swap. Runs entirely under the fog cover.
-  async function swapDocument(fetched, overlay) {
+  // The commit half of the in-place swap: everything that makes
+  // the new document visible and laid out under the fog cover.
+  // Every wait here is short and bounded (stylesheet loads race
+  // a per-sheet timeout), and this is the point of no return —
+  // once it resolves, the destination is on screen under the
+  // cover and the reveal must follow on a bounded schedule.
+  async function swapCore(fetched, overlay) {
     const { doc, finalUrl } = fetched;
 
     // Let the outgoing page tear down: fv-animation.js destroys
@@ -837,13 +947,20 @@
     swapMeta(doc);
     await swapStylesheets(doc, finalUrl);
     swapBody(doc, overlay ? overlay.canvas : null);
-    await loadPageScripts(doc, finalUrl);
+  }
 
-    // Re-fire DOMContentLoaded so every already-loaded page
-    // script (allmenu, slide, gallery, exhibition-state, …)
-    // initialises against the new DOM, exactly as on a fresh
-    // load. allmenu re-fetches the header/footer parts and
-    // re-marks the current page from the new URL.
+  // The initialisation half: load the destination's scripts and
+  // re-fire DOMContentLoaded so every page script (allmenu,
+  // slide, gallery, exhibition-state, …) initialises against the
+  // new DOM, exactly as on a fresh load. allmenu re-fetches the
+  // header/footer parts and re-marks the current page from the
+  // new URL. This runs AFTER the commit and no longer gates the
+  // reveal beyond a short cap: its waits are individually
+  // bounded but serialised, so a slow CDN script could
+  // otherwise keep the page covered for tens of seconds.
+  async function initSwappedPage(fetched) {
+    const { doc, finalUrl } = fetched;
+    await loadPageScripts(doc, finalUrl);
     const fragmentsReady = waitForFragmentsReady();
     document.dispatchEvent(new Event("DOMContentLoaded", { bubbles: true }));
     await fragmentsReady;
@@ -932,13 +1049,16 @@
       return false;
     }
 
-    /* Phase 2 (commit): swap under the held cover. Every wait
-       inside is bounded and the fog keeps holding meanwhile, so
-       no deadline is needed here; a failure still falls back —
-       pushState has not happened yet, so the classic route to
-       the same URL loads the destination cleanly. */
+    /* Phase 2 (commit): swap the document core under the held
+       cover. A failure here still falls back — pushState has
+       not happened yet, so the classic route to the same URL
+       loads the destination cleanly. Once the core is in, the
+       commit watchdog is armed: whatever happens later in this
+       flow, the overlay is force-cleared COMMIT_WATCHDOG_MS
+       after the commit, so the visitor can never be left on a
+       covered page. */
     try {
-      await swapDocument(fetched, overlay);
+      await swapCore(fetched, overlay);
     } catch (error) {
       cover.stopHold();
       if (overlay.kind === "fog") overlay.fog.dispose();
@@ -946,6 +1066,7 @@
       return false;
     }
     cover.stopHold();
+    window.setTimeout(() => forceClearOverlay(overlay), COMMIT_WATCHDOG_MS);
 
     const finalUrl = new URL(fetched.finalUrl);
     try {
@@ -975,6 +1096,19 @@
     } else {
       window.scrollTo(0, 0);
     }
+
+    /* Initialise the new page in the background. The reveal
+       waits for initialisation only up to INIT_REVEAL_CAP_MS:
+       in a healthy flow init finishes well inside the cap and
+       nothing changes, but a slow script (three.js / Vanta from
+       a CDN on a mobile network is the realistic case) can no
+       longer stretch the covered period — the fog lifts on
+       schedule and init completes behind the revealed page.
+       Because init now runs after pushState, allmenu's
+       current-page marking sees the destination URL, as it
+       does on a fresh load. */
+    const initDone = initSwappedPage(fetched).catch(() => {});
+    await Promise.race([initDone, wait(INIT_REVEAL_CAP_MS)]);
 
     startReveal(overlay, xNorm, yNorm);
     return true;
@@ -1131,7 +1265,9 @@
         const finish = () => {
           fog.dispose();
           canvas.remove();
+          unregisterOverlay(overlay);
         };
+        overlay.cleanup = finish;
         const frame = now => {
           const p = Math.min((now - start) / ENTER_MS, 1);
           if (!fog.draw(1 - easeOut(p), xNorm, yNorm, (now - start) / 1000)) {
@@ -1148,6 +1284,10 @@
       }
 
       const { canvas, ctx, w, h } = overlay;
+      overlay.cleanup = () => {
+        canvas.remove();
+        unregisterOverlay(overlay);
+      };
       const cx = (px / 100) * w;
       const cy = (py / 100) * h;
       const limit = maxRadius(cx, cy, w, h);
@@ -1159,11 +1299,17 @@
         ctx.fillRect(0, 0, w, h);
         drawRings(ctx, cx, cy, limit, p, 0.4);
         if (p < 1) requestAnimationFrame(frame);
-        else canvas.remove();
+        else {
+          canvas.remove();
+          unregisterOverlay(overlay);
+        }
       };
       requestAnimationFrame(frame);
       // Failsafe: the overlay must never linger.
-      window.setTimeout(() => canvas.remove(), ENTER_MS + 600);
+      window.setTimeout(() => {
+        canvas.remove();
+        unregisterOverlay(overlay);
+      }, ENTER_MS + 600);
     };
 
     if (typeof window.requestAnimationFrame === "function") {
