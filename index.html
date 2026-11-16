@@ -51,15 +51,32 @@
   <link rel="stylesheet" href="./assets/css/liquid.css?v=7c6d7010cff9" />
   <link rel="stylesheet" href="./assets/css/fog-hole.css?v=2d9194d729bb" />
   <link rel="stylesheet" href="./assets/css/fv-animation.css?v=756c7bd0bf26" />
-  <link rel="stylesheet" href="./assets/css/ripple.css" />
   <link rel="stylesheet" href="./assets/css/user-settings.css?v=2bb2ab9e9256" />
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=b29a15a0e5df" defer></script>
+  <link rel="stylesheet" href="./assets/css/page-transition.css" />
+  <script>
+    // Page transition: cover the first paint when arriving from an
+    // in-site link (flag written by assets/js/page-transition.js).
+    (function () {
+      try {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var data = JSON.parse(window.sessionStorage.getItem("yurayura:page-transition") || "null");
+        if (!data || Date.now() - data.t > 10000) return;
+        var norm = function (p) { return (p || "").replace(/index\.html$/, "").replace(/\/$/, ""); };
+        if (norm(data.to) !== norm(window.location.pathname)) return;
+        var root = document.documentElement;
+        root.classList.add("pt-enter");
+        root.style.setProperty("--pt-x", (typeof data.x === "number" ? data.x : 0.5) * 100 + "%");
+        root.style.setProperty("--pt-y", (typeof data.y === "number" ? data.y : 0.5) * 100 + "%");
+      } catch (error) { /* no cover: the page simply opens */ }
+    })();
+  </script>
+  <script src="./assets/js/page-transition.js" defer></script>
   <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
   <script src="./assets/js/fv-animation.js" defer></script>
-  <script src="./assets/js/ripple.js" defer></script>
   <script src="./assets/js/fog-hole.js?v=064a1098c3b9" defer></script>
   <script src="./assets/js/liquid-button.js?v=838660e4d3d4" defer></script>
   <script src="./assets/js/art-protection.js" defer></script>
@@ -96,7 +113,6 @@
       <div class="smoke-twist smoke-twist--01" aria-hidden="true"></div>
       <div class="smoke-twist smoke-twist--02" aria-hidden="true"></div>
       <div class="smoke-twist smoke-twist--03" aria-hidden="true"></div>
-      <canvas id="ripple-canvas" aria-hidden="true"></canvas>
     </div>
     <section class="fv">
       <div class="fv__inner inner">

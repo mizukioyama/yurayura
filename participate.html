@@ -41,6 +41,25 @@
   <link rel="stylesheet" href="./assets/css/content-page-system.css?v=f7e518bd022e">
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=b29a15a0e5df" defer></script>
+  <link rel="stylesheet" href="./assets/css/page-transition.css" />
+  <script>
+    // Page transition: cover the first paint when arriving from an
+    // in-site link (flag written by assets/js/page-transition.js).
+    (function () {
+      try {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var data = JSON.parse(window.sessionStorage.getItem("yurayura:page-transition") || "null");
+        if (!data || Date.now() - data.t > 10000) return;
+        var norm = function (p) { return (p || "").replace(/index\.html$/, "").replace(/\/$/, ""); };
+        if (norm(data.to) !== norm(window.location.pathname)) return;
+        var root = document.documentElement;
+        root.classList.add("pt-enter");
+        root.style.setProperty("--pt-x", (typeof data.x === "number" ? data.x : 0.5) * 100 + "%");
+        root.style.setProperty("--pt-y", (typeof data.y === "number" ? data.y : 0.5) * 100 + "%");
+      } catch (error) { /* no cover: the page simply opens */ }
+    })();
+  </script>
+  <script src="./assets/js/page-transition.js" defer></script>
   <script src="./assets/js/liquid-button.js?v=838660e4d3d4" defer></script>
   <link rel="stylesheet" href="./assets/css/participation.css?v=bcd2e5cbfd39">
   <link rel="stylesheet" href="./assets/css/visual-shared.css?v=7a6a76f33f3e">
