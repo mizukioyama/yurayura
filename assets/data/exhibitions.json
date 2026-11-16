@@ -27,5 +27,25 @@
         "en": "This is the archive of the group exhibition “Yurayura,” held October 6–12, 2026. It brings together the exhibition’s background, concept, participating artists, and future goals. The first edition has concluded."
       }
     }
+  },
+  {
+    "id": "yurayura-02",
+    "edition": 2,
+    "published": true,
+    "city": "岩手県盛岡市",
+    "venue": "Life Art Gallery auswahi",
+    "startsAt": null,
+    "endsAt": null,
+    "officialUrl": "https://mizukioyama.github.io/yurayura/information.html#next-event",
+    "copy": {
+      "yurayura": {
+        "ja": "作品を理解するのではなく、体感する。第2回グループ展「ゆらゆら」は、岩手県盛岡市で開催します。会場はLife Art Gallery auswahi、時期は2027年3月中旬の予定です。",
+        "en": "Experience the works rather than trying to understand them. The 2nd Yurayura group exhibition will be held in Morioka, Iwate. Venue: Life Art Gallery auswahi. Scheduled for mid-March 2027."
+      },
+      "portfolio": {
+        "ja": "2027年3月中旬に岩手県盛岡市のLife Art Gallery auswahiで開催する、第2回グループ展「ゆらゆら」の案内です。",
+        "en": "Information on the 2nd Yurayura group exhibition, to be held in mid-March 2027 at Life Art Gallery auswahi in Morioka, Iwate."
+      }
+    }
   }
 ]

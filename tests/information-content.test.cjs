@@ -11,7 +11,7 @@ test('Information snapshot matches its public data without a build service',()=>
  assert.equal((archive.match(/data-event-id="yurayura-01"/g)||[]).length,1);
 });
 test('Information archive groups years using Japan time, retaining a single record per edition',()=>{
- const later={...published[0],id:'fixture-02',edition:2,startsAt:'2026-12-31T15:00:00Z',endsAt:'2027-01-02T00:00:00Z'};
+ const later={...published[0],id:'fixture-03',edition:3,startsAt:'2026-12-31T15:00:00Z',endsAt:'2027-01-02T00:00:00Z'};
  const rows=state.groupEvents([...published,later],Date.parse('2027-02-01T00:00:00Z')).past;
  const html=content.archive(rows);assert(html.indexOf('2027年')<html.indexOf('2026年'));assert.match(html,/datetime="2027-01-01"/);
  assert.equal((html.match(/data-event-id=/g)||[]).length,2);
@@ -42,11 +42,11 @@ test('Information data version markers match the exact public JSON bytes',()=>{
 });
 
 test('same-year exhibitions in different places remain separate edition records',()=>{
- const second={...published[0],id:'fixture-other-city',edition:2,city:'検証専用地域',venue:'検証専用会場',startsAt:'2026-11-01T00:00:00+09:00',endsAt:'2026-11-02T00:00:00+09:00',galleryUrl:undefined,artworkCount:undefined};
+ const second={...published[0],id:'fixture-other-city',edition:3,city:'検証専用地域',venue:'検証専用会場',startsAt:'2026-11-01T00:00:00+09:00',endsAt:'2026-11-02T00:00:00+09:00',galleryUrl:undefined,artworkCount:undefined};
  const html=content.archive(state.groupEvents([...published,second],Date.parse('2026-12-01T00:00:00+09:00')).past);
  assert.equal((html.match(/class="information-archive-year"/g)||[]).length,1);
  assert.equal((html.match(/data-event-id=/g)||[]).length,2);
- assert.match(html,/第1回/);assert.match(html,/第2回/);assert.match(html,/横浜/);assert.match(html,/検証専用地域/);
+ assert.match(html,/第1回/);assert.match(html,/第3回/);assert.match(html,/横浜/);assert.match(html,/検証専用地域/);
 });
 
 
