@@ -38,6 +38,39 @@
   <script src="./assets/js/font.js" defer></script>
   <script src="./assets/js/allmenu.js?v=b29a15a0e5df" defer></script>
   <link rel="stylesheet" href="./assets/css/page-transition.css" />
+  <style>
+    /* Page transition pre-paint cover. Inline on purpose: the
+       cover must be in force before the first paint, without
+       waiting for an external stylesheet or the deferred shared
+       script. The shared script paints its first fog frame over
+       this cover and only then lifts it. If the script never
+       runs, the failsafe animation lifts the cover on its own,
+       so the page can never stay covered. */
+    html.pt-enter::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 200000;
+      background: #f5f2e8;
+      pointer-events: none;
+      animation: pt-cover-failsafe 0.9s ease 1.8s forwards;
+    }
+    @keyframes pt-cover-failsafe {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      /* The bootstrap script never adds the class in this mode;
+         this keeps the cover away even if the class was added
+         by other means. */
+      html.pt-enter::before {
+        animation: none;
+        display: none;
+      }
+    }
+  </style>
   <script>
     // Page transition: cover the first paint when arriving from an
     // in-site link (flag written by assets/js/page-transition.js).

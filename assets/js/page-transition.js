@@ -253,19 +253,7 @@
     return canvas;
   }
 
-  // Tries WebGL fog first. A canvas owns exactly one context mode, so
-  // the 2D fallback gets a fresh element.
-  function setupOverlay() {
-    const glCanvas = makeCanvas();
-    let fog = null;
-    try {
-      fog = createFogRenderer(glCanvas);
-    } catch (error) {
-      fog = null;
-    }
-    if (fog) return { kind: "fog", canvas: glCanvas, fog };
-    glCanvas.remove();
-
+  function setup2DOverlay() {
     const canvas = makeCanvas();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(window.innerWidth * dpr);
@@ -283,6 +271,21 @@
       w: window.innerWidth,
       h: window.innerHeight
     };
+  }
+
+  // Tries WebGL fog first. A canvas owns exactly one context mode, so
+  // the 2D fallback gets a fresh element.
+  function setupOverlay() {
+    const glCanvas = makeCanvas();
+    let fog = null;
+    try {
+      fog = createFogRenderer(glCanvas);
+    } catch (error) {
+      fog = null;
+    }
+    if (fog) return { kind: "fog", canvas: glCanvas, fog };
+    glCanvas.remove();
+    return setup2DOverlay();
   }
 
   function drawRings(ctx, cx, cy, maxR, progress, peakAlpha) {
@@ -438,26 +441,51 @@
       /* Storage unavailable: nothing to consume. */
     }
 
+    const px = parseFloat(root.style.getPropertyValue("--pt-x")) || 50;
+    const py = parseFloat(root.style.getPropertyValue("--pt-y")) || 50;
+    const xNorm = px / 100;
+    const yNorm = py / 100;
+
     let overlay = null;
     try {
       overlay = setupOverlay();
     } catch (error) {
       overlay = null;
     }
-    // Swap the pre-paint veil for the animated overlay in the same
-    // tick; the first frame paints at full cover, so the handover is
-    // invisible. Without an overlay the CSS failsafe lifts the veil
-    // instead.
-    root.classList.remove("pt-enter");
+    // Without an overlay the inline failsafe lifts the pre-paint
+    // cover on its own; the class stays until then.
     if (!overlay) return;
 
-    const px = parseFloat(root.style.getPropertyValue("--pt-x")) || 50;
-    const py = parseFloat(root.style.getPropertyValue("--pt-y")) || 50;
+    /* Handover rule: the pre-paint cover (the inline bootstrap's
+       ::before) may only be lifted once the overlay canvas already
+       holds a fully covered frame. Painting that frame synchronously
+       — instead of waiting for the first requestAnimationFrame — is
+       what keeps the page from flashing through between the cover
+       and the fog. */
+    if (overlay.kind === "fog") {
+      if (!overlay.fog.draw(1, xNorm, yNorm, 0)) {
+        // WebGL died between setup and the first draw: trade the
+        // dead canvas for the 2D veil, likewise pre-painted below,
+        // before the cover is lifted.
+        overlay.fog.dispose();
+        overlay.canvas.remove();
+        try {
+          overlay = setup2DOverlay();
+        } catch (error) {
+          overlay = null;
+        }
+        if (!overlay) return;
+      }
+    }
+    if (overlay.kind === "2d") {
+      overlay.ctx.fillStyle = `rgba(${BASE_RGB}, 1)`;
+      overlay.ctx.fillRect(0, 0, overlay.w, overlay.h);
+    }
+
+    root.classList.remove("pt-enter");
 
     if (overlay.kind === "fog") {
       const { canvas, fog } = overlay;
-      const xNorm = px / 100;
-      const yNorm = py / 100;
       const start = performance.now();
       const finish = () => {
         fog.dispose();
