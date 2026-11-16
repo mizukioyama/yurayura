@@ -110,9 +110,9 @@ test('Information keeps the first edition only in its complete static archive', 
 test('adding a future edition retains the published first-edition archive and distinct copy', () => {
   const published = JSON.parse(fs.readFileSync(require.resolve('../assets/data/exhibitions.json'), 'utf8'));
   assert.equal(published[0].id, 'yurayura-01');
-  const future = { ...event, id: 'yurayura-02', edition: 2, startsAt: null, endsAt: null, city: null, venue: null, portfolioDetailUrl: undefined };
+  const future = { ...event, id: 'yurayura-03', edition: 3, startsAt: null, endsAt: null, city: null, venue: null, portfolioDetailUrl: undefined };
   const rows = publicEvents([...published, future]);
-  assert.deepEqual(rows.map(row => row.id), ['yurayura-01', 'yurayura-02']);
+  assert.deepEqual(rows.map(row => row.id), ['yurayura-01', 'yurayura-02', 'yurayura-03']);
   assert.notEqual(rows[0].copy.yurayura.ja, rows[0].copy.portfolio.ja);
   assert.equal(rows[0].startsAt, '2026-10-06T13:00:00+09:00');
 });
