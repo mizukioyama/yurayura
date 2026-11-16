@@ -49,7 +49,7 @@ test('public preparation notice matches its source on all four static pages', ()
     const html = read(name);
     const matches = [...html.matchAll(/<!-- INFORMATION:PLANNING:START -->([\s\S]*?)<!-- INFORMATION:PLANNING:END -->/g)];
     assert.equal(matches.length, 1, name);
-    assert.equal(matches[0][1], content.planningNotice(), name);
+    assert.equal(matches[0][1], content.planningNotice(name === 'information.html' ? 'information' : undefined), name);
   }
 });
 
@@ -80,7 +80,10 @@ test('approved second-show details are synchronized without opening reception', 
       '使用可能な展示面積・壁面面積ではありません',
       'すべての作品の展示を保証するものではありません'
     ]) assert(text.includes(value), name + ': ' + value);
-    assert(text.includes('展示作品数は1人最大6点'), name + ': detail limit');
+    assert(text.includes('参考：第1回（2026年10月・横浜）の募集条件'), name + ': first-show reference section');
+    assert(text.indexOf('参考：第1回（2026年10月・横浜）の募集条件') < text.indexOf('20,000円'), name + ': first-show values stay in the reference section');
+    assert(text.includes('未定（確定次第、正式な募集要項でご案内します）'), name + ': next-show overview values undecided');
+    assert(text.includes('展示作品数、作品サイズは未定です'), name + ': next-show detail limits undecided');
     assert(!text.includes('展示作品数は1人最大8点'), name + ': stale prior limit');
     assert(!/2027年4〜5月|2027年4月|2027-01-16|岩手県または栃木県/.test(text), name);
     assert(!/datetime="2027-03-\d{2}/.test(html), name + ': exact event date must not be inferred');
