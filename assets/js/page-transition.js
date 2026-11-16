@@ -458,10 +458,10 @@
 
     /* Handover rule: the pre-paint cover (the inline bootstrap's
        ::before) may only be lifted once the overlay canvas already
-       holds a fully covered frame. Painting that frame synchronously
-       — instead of waiting for the first requestAnimationFrame — is
-       what keeps the page from flashing through between the cover
-       and the fog. */
+       holds a fully covered frame, so start by painting that frame
+       synchronously instead of waiting for the first
+       requestAnimationFrame. The cover itself is lifted further
+       below, once the frame has also been presented. */
     if (overlay.kind === "fog") {
       if (!overlay.fog.draw(1, xNorm, yNorm, 0)) {
         // WebGL died between setup and the first draw: trade the
@@ -482,47 +482,74 @@
       overlay.ctx.fillRect(0, 0, overlay.w, overlay.h);
     }
 
-    root.classList.remove("pt-enter");
+    /* A synchronous draw alone does not prove the frame reached
+       the screen: the browser may not have composited the canvas
+       yet when the cover is lifted, leaving a frame or two with
+       neither cover nor fog. Two defences close that gap. The
+       canvas element itself is backed with the paper colour, so
+       even a not-yet-composited (still transparent) canvas paints
+       opaque; and the cover is lifted only after two animation
+       frames, the second of which runs after the pre-painted frame
+       has actually been presented. The backing is removed in the
+       same step as the cover, so the reveal is unaffected. If
+       frames stall (hidden tab), the inline failsafe lifts the
+       cover onto this paper-backed canvas instead — still no
+       flash, still no trap — and the reveal runs when frames
+       resume. */
+    overlay.canvas.style.background = `rgb(${BASE_RGB})`;
 
-    if (overlay.kind === "fog") {
-      const { canvas, fog } = overlay;
+    const beginReveal = () => {
+      overlay.canvas.style.background = "";
+      root.classList.remove("pt-enter");
+
+      if (overlay.kind === "fog") {
+        const { canvas, fog } = overlay;
+        const start = performance.now();
+        const finish = () => {
+          fog.dispose();
+          canvas.remove();
+        };
+        const frame = now => {
+          const p = Math.min((now - start) / ENTER_MS, 1);
+          if (!fog.draw(1 - easeOut(p), xNorm, yNorm, (now - start) / 1000)) {
+            finish();
+            return;
+          }
+          if (p < 1) requestAnimationFrame(frame);
+          else finish();
+        };
+        requestAnimationFrame(frame);
+        // Failsafe: the overlay must never linger.
+        window.setTimeout(finish, ENTER_MS + 600);
+        return;
+      }
+
+      const { canvas, ctx, w, h } = overlay;
+      const cx = (px / 100) * w;
+      const cy = (py / 100) * h;
+      const limit = maxRadius(cx, cy, w, h);
       const start = performance.now();
-      const finish = () => {
-        fog.dispose();
-        canvas.remove();
-      };
       const frame = now => {
         const p = Math.min((now - start) / ENTER_MS, 1);
-        if (!fog.draw(1 - easeOut(p), xNorm, yNorm, (now - start) / 1000)) {
-          finish();
-          return;
-        }
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = `rgba(${BASE_RGB}, ${(1 - easeOut(p)).toFixed(3)})`;
+        ctx.fillRect(0, 0, w, h);
+        drawRings(ctx, cx, cy, limit, p, 0.4);
         if (p < 1) requestAnimationFrame(frame);
-        else finish();
+        else canvas.remove();
       };
       requestAnimationFrame(frame);
       // Failsafe: the overlay must never linger.
-      window.setTimeout(finish, ENTER_MS + 600);
-      return;
-    }
-
-    const { canvas, ctx, w, h } = overlay;
-    const cx = (px / 100) * w;
-    const cy = (py / 100) * h;
-    const limit = maxRadius(cx, cy, w, h);
-    const start = performance.now();
-    const frame = now => {
-      const p = Math.min((now - start) / ENTER_MS, 1);
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = `rgba(${BASE_RGB}, ${(1 - easeOut(p)).toFixed(3)})`;
-      ctx.fillRect(0, 0, w, h);
-      drawRings(ctx, cx, cy, limit, p, 0.4);
-      if (p < 1) requestAnimationFrame(frame);
-      else canvas.remove();
+      window.setTimeout(() => canvas.remove(), ENTER_MS + 600);
     };
-    requestAnimationFrame(frame);
-    // Failsafe: the overlay must never linger.
-    window.setTimeout(() => canvas.remove(), ENTER_MS + 600);
+
+    if (typeof window.requestAnimationFrame === "function") {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(beginReveal);
+      });
+    } else {
+      beginReveal();
+    }
   }
 
   if (document.documentElement.classList.contains("pt-enter")) {
