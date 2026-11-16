@@ -1,12 +1,17 @@
 @charset "UTF-8";
 /* ==============================
    Page transition (shared by all canonical pages)
-   Exit: a liquid fog — an fBm-noise WebGL shader in
-   assets/js/page-transition.js — swirls up from the click point and
-   covers the page; if WebGL is unavailable a paper-coloured veil
-   with fine ripple rings (Canvas 2D) takes over.
-   Enter: the destination page is covered before its first paint by
-   the inline bootstrap in its <head> (an inline <style> veil plus a
+   Swap mode: a liquid fog — an fBm-noise WebGL shader in
+   assets/js/page-transition.js — swirls up from the click point
+   and covers the page; while it holds, the destination document
+   is fetched and swapped in underneath (body, stylesheets,
+   title), the URL is updated with history.pushState, and only
+   then does the fog recede. If WebGL is unavailable a
+   paper-coloured veil with fine ripple rings (Canvas 2D) takes
+   over.
+   Classic mode (fallback, e.g. to/from the contact page): the
+   destination page is covered before its first paint by the
+   inline bootstrap in its <head> (an inline <style> veil plus a
    flag check, identical on all canonical pages — inline so the
    cover never waits for an external stylesheet), and the shared
    script paints its first fog frame over that cover, backs the
