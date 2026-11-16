@@ -1,14 +1,16 @@
 @charset "UTF-8";
 /* ==============================
    Page transition (shared by all canonical pages)
-   Exit: fine ripple rings spread from the click point while a
-   paper-coloured veil builds over the page (assets/js/page-transition.js).
+   Exit: a liquid fog — an fBm-noise WebGL shader in
+   assets/js/page-transition.js — swirls up from the click point and
+   covers the page; if WebGL is unavailable a paper-coloured veil
+   with fine ripple rings (Canvas 2D) takes over.
    Enter: the veil is present before first paint — the inline bootstrap
    in <head> adds `pt-enter` to <html> only when the previous page left
-   a transition flag — and the shared script takes over with a canvas
-   in the same colours while the veil recedes.
-   The veil colour is the site paper colour (#f5f2e8); the rings reuse
-   the muted green-grey of the former FV ripples (86, 110, 106).
+   a transition flag — and the shared script swaps it for the animated
+   fog (or fallback veil) while the cover recedes.
+   Colours stay in the site palette: paper #f5f2e8 with fog shadows in
+   the muted green-grey (86, 110, 106).
 ================================ */
 
 #pt-overlay {
