@@ -33,7 +33,7 @@ html.pt-enter::before {
   pointer-events: none;
   /* Failsafe: if the shared script never runs, lift the veil so the
      page can never stay covered. */
-  animation: pt-failsafe 0.9s ease 1.4s forwards;
+  animation: pt-failsafe 0.9s ease 1.8s forwards;
 }
 
 @keyframes pt-failsafe {

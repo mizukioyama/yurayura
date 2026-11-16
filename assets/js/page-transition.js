@@ -18,9 +18,9 @@
   const STORAGE_KEY = "yurayura:page-transition";
   const BASE_RGB = "245, 242, 232"; // site paper colour (#f5f2e8)
   const STROKE_RGB = "86, 110, 106"; // muted green-grey (fallback rings)
-  const EXIT_MS = 720; // click -> covered
-  const ENTER_MS = 760; // covered -> revealed
-  const NAV_FALLBACK_MS = 950; // hard cap: navigate anyway
+  const EXIT_MS = 1100; // click -> covered
+  const ENTER_MS = 1200; // covered -> revealed
+  const NAV_FALLBACK_MS = 1500; // hard cap: navigate anyway
   const RING_COUNT = 3;
   const RING_STAGGER = 0.12; // fraction of progress between rings
 
