@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* ==============================
+   Page transition (shared by all canonical pages)
+   Exit: fine ripple rings spread from the click point while a
+   paper-coloured veil builds over the page (assets/js/page-transition.js).
+   Enter: the veil is present before first paint — the inline bootstrap
+   in <head> adds `pt-enter` to <html> only when the previous page left
+   a transition flag — and the shared script takes over with a canvas
+   in the same colours while the veil recedes.
+   The veil colour is the site paper colour (#f5f2e8); the rings reuse
+   the muted green-grey of the former FV ripples (86, 110, 106).
+================================ */
+
+#pt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200000;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Pre-paint veil on the destination page. */
+html.pt-enter::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200000;
+  background: #f5f2e8;
+  pointer-events: none;
+  /* Failsafe: if the shared script never runs, lift the veil so the
+     page can never stay covered. */
+  animation: pt-failsafe 0.9s ease 1.4s forwards;
+}
+
+@keyframes pt-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The bootstrap already skips the class in this mode; this keeps the
+     veil away even if the class was added by other means. */
+  html.pt-enter::before {
+    animation: none;
+    display: none;
+  }
+}
