@@ -26,6 +26,7 @@
   var rafId = 0;
   var resizeRafId = 0;
   var maxRadius = 0;
+  var finished = false;
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -56,6 +57,8 @@
   }
 
   function finish() {
+    if (finished) return;
+    finished = true;
     if (rafId) cancelAnimationFrame(rafId);
     rafId = 0;
     blurLayer.classList.add("is-hidden");
@@ -128,4 +131,11 @@
     });
   }, { passive: true });
   rafId = requestAnimationFrame(render);
+
+  // Hard failsafe: the animation above is time-based and ends in
+  // about five seconds. If its frame loop ever stalls while the
+  // page is visible (an error in a frame, a throttled timer), the
+  // blur must still lift — finish unconditionally after 8s. In a
+  // healthy run finish() has already run and this is a no-op.
+  window.setTimeout(finish, 8000);
 })();
