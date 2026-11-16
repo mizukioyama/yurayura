@@ -5,12 +5,16 @@
    assets/js/page-transition.js — swirls up from the click point and
    covers the page; if WebGL is unavailable a paper-coloured veil
    with fine ripple rings (Canvas 2D) takes over.
-   Enter: the veil is present before first paint — the inline bootstrap
-   in <head> adds `pt-enter` to <html> only when the previous page left
-   a transition flag — and the shared script swaps it for the animated
-   fog (or fallback veil) while the cover recedes.
-   Colours stay in the site palette: paper #f5f2e8 with fog shadows in
-   the muted green-grey (86, 110, 106).
+   Enter: the destination page is covered before its first paint by
+   the inline bootstrap in its <head> (an inline <style> veil plus a
+   flag check, identical on all canonical pages — inline so the
+   cover never waits for an external stylesheet), and the shared
+   script paints its first fog frame over that cover before lifting
+   it, so the page never flashes through.
+   This file only styles the animated overlay canvas; the pre-paint
+   cover and its no-JS failsafe live in the inline bootstrap.
+   Colours stay in the site palette: paper #f5f2e8 with fog shadows
+   in the muted green-grey (86, 110, 106).
 ================================ */
 
 #pt-overlay {
@@ -21,33 +25,4 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-/* Pre-paint veil on the destination page. */
-html.pt-enter::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 200000;
-  background: #f5f2e8;
-  pointer-events: none;
-  /* Failsafe: if the shared script never runs, lift the veil so the
-     page can never stay covered. */
-  animation: pt-failsafe 0.9s ease 1.8s forwards;
-}
-
-@keyframes pt-failsafe {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  /* The bootstrap already skips the class in this mode; this keeps the
-     veil away even if the class was added by other means. */
-  html.pt-enter::before {
-    animation: none;
-    display: none;
-  }
 }
