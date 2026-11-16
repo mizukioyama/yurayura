@@ -7,14 +7,14 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "5a19a2455ef0";
+  const PARTS_VERSION = "cc8bfe65a235";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {
     const target = document.querySelector(targetSelector);
     if (!target) { console.warn(`要素が見つかりません: ${targetSelector}`); return; }
     try {
-      const response = await fetch(`${url}?v=${PARTS_VERSION}`);
+      const response = await fetch(`${url}?v=${PARTS_VERSION}`, { cache: "no-cache" });
       if (!response.ok) throw new Error(`読み込み失敗: ${url} Status: ${response.status}`);
       target.innerHTML = await response.text();
       if (targetSelector === "#js-header") initializeHeaderScroll();
