@@ -18,7 +18,7 @@ const visibleText = html => html
   .replace(/\s+/g, ' ')
   .trim();
 
-test('changed shared assets and the header fragment use content-matched cache identifiers', () => {
+test('changed shared assets and the shared fragments use content-matched cache identifiers', () => {
   const assets = [
     'assets/css/faq.css',
     'assets/css/main.css',
@@ -28,8 +28,17 @@ test('changed shared assets and the header fragment use content-matched cache id
     'assets/js/allmenu.js'
   ];
   const digest = name => crypto.createHash('sha256').update(fs.readFileSync(path.join(root, name))).digest('hex').slice(0, 12);
-  const headerVersion = digest('assets/parts/header.html');
-  assert(read('assets/js/allmenu.js').includes('const PARTS_VERSION = "' + headerVersion + '";'));
+  const partsHash = crypto.createHash('sha256');
+  const partsDir = path.join(root, 'assets/parts');
+  for (const name of fs.readdirSync(partsDir).sort()) {
+    const partPath = path.join(partsDir, name);
+    if (!fs.statSync(partPath).isFile()) continue;
+    partsHash.update(name); partsHash.update('\0'); partsHash.update(fs.readFileSync(partPath)); partsHash.update('\0');
+  }
+  const partsVersion = partsHash.digest('hex').slice(0, 12);
+  const loader = read('assets/js/allmenu.js');
+  assert(loader.includes('const PARTS_VERSION = "' + partsVersion + '";'));
+  assert(loader.includes('cache: "no-cache"'), 'parts fetch must revalidate so a stale version still serves current parts');
   const pages = fs.readdirSync(root).filter(name => name.endsWith('.html'));
   for (const page of pages) {
     const html = read(page);
@@ -117,6 +126,22 @@ test('sync detects a stale TOP notice and repairs only the temporary fixture', (
   assert.equal(run('--check').status, 0);
   assert.equal(fs.readFileSync(top, 'utf8'), before);
   assert.equal(fs.readFileSync(eventsPath, 'utf8'), eventsBefore);
+});
+
+test('changing only the footer part refreshes the shared parts cache identifier', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'yurayura-parts-cache-'));
+  fs.cpSync(root, dir, {recursive: true});
+  const run = (...args) => spawnSync(process.execPath, ['scripts/sync-information.cjs', ...args], {cwd: dir, encoding: 'utf8'});
+  assert.equal(run().status, 0, 'normalize the temporary copy before testing staleness');
+  const loaderPath = path.join(dir, 'assets/js/allmenu.js');
+  const versionOf = source => source.match(/const PARTS_VERSION = "([a-f0-9]{12})";/)[1];
+  const before = versionOf(fs.readFileSync(loaderPath, 'utf8'));
+  const footerPath = path.join(dir, 'assets/parts/footer.xml');
+  fs.writeFileSync(footerPath, fs.readFileSync(footerPath, 'utf8') + '\n<!-- parts cache fixture -->\n');
+  assert.notEqual(run('--check').status, 0, 'a footer-only change must make the cache identifier stale');
+  assert.equal(run().status, 0);
+  assert.notEqual(versionOf(fs.readFileSync(loaderPath, 'utf8')), before, 'a footer-only change must change PARTS_VERSION');
+  assert.equal(run('--check').status, 0);
 });
 
 test('application and review overview and venue information remain synchronized', () => {
