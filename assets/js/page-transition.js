@@ -1,15 +1,32 @@
 /* ==============================
    Page transition (shared by all canonical pages)
-   Clicking an in-site link raises a liquid fog — an fBm-noise WebGL
-   fragment shader, no library — that swirls thicker until it covers
-   the page; navigation then happens and the destination page —
-   pre-covered by the inline bootstrap in its <head> — lets the fog
-   thin out until the page appears. If WebGL is unavailable the
-   transition falls back to the previous paper-coloured veil with
-   fine ripple rings (Canvas 2D), and any failure falls back to a
-   normal navigation: the visitor is never trapped on a covered page.
-   External links, new-tab links, downloads, in-page anchors and form
-   submissions keep their default behaviour. With
+
+   Swap mode (the default for in-site links between canonical
+   pages): clicking a link raises a liquid fog — an fBm-noise
+   WebGL fragment shader, no library — that swirls thicker until
+   it covers the page. While the fog rises, the destination HTML
+   is fetched in the background; once the page is fully covered,
+   the document underneath is swapped in place (title, meta,
+   stylesheets, body content, body attributes), the URL is
+   updated with history.pushState, the destination's own scripts
+   are loaded and initialised, and only then does the fog thin
+   out. The cover never lifts between the two pages, so the
+   destination can never flash through. Back/forward (popstate)
+   runs the same covered swap and restores the scroll position
+   kept in history.state.
+
+   Classic mode (fallback): when a swap is not safe — the
+   contact page (the site's only form), a dirty form, an open
+   menu or modal, a non-canonical or query-string target, a
+   failed fetch — the transition falls back to the original
+   two-document handoff: cover, real navigation, and the
+   destination page — pre-covered by the inline bootstrap in
+   its <head> — lets the fog recede. If WebGL is unavailable
+   the fog falls back to a paper-coloured veil with fine ripple
+   rings (Canvas 2D), and any failure falls back to a normal
+   navigation: the visitor is never trapped on a covered page.
+   External links, new-tab links, downloads, in-page anchors
+   and form submissions keep their default behaviour. With
    prefers-reduced-motion the transition is disabled entirely.
 ================================ */
 (() => {
@@ -20,7 +37,11 @@
   const STROKE_RGB = "86, 110, 106"; // muted green-grey (fallback rings)
   const EXIT_MS = 1100; // click -> covered
   const ENTER_MS = 1200; // covered -> revealed
-  const NAV_FALLBACK_MS = 1500; // hard cap: navigate anyway
+  const NAV_FALLBACK_MS = 1500; // hard cap for the classic navigation
+  const SWAP_DEADLINE_MS = 4500; // click -> swap must be ready, else classic
+  const CSS_WAIT_MS = 2500; // per-stylesheet wait while covered
+  const SCRIPT_WAIT_MS = 5000; // per-script wait while covered
+  const FRAGMENTS_WAIT_MS = 1500; // header/footer re-init wait
   const RING_COUNT = 3;
   const RING_STAGGER = 0.12; // fraction of progress between rings
 
@@ -33,15 +54,60 @@
   const OCTAVES_DESKTOP = 5;
   const OCTAVES_MOBILE = 3;
 
+  /* Pages the in-place swap covers: the canonical pages from
+     SITE_MAP.md. contact.html is deliberately excluded in both
+     directions (see swapAllowed): it carries the site's only
+     form, an external POST and focus-trapped dialogs, so it
+     keeps the classic two-document transition. */
+  const CANONICAL_SEGMENTS = new Set([
+    "index.html",
+    "concept.html",
+    "gallery.html",
+    "information.html",
+    "exhibitions.html",
+    "participate.html",
+    "apply.html",
+    "support.html",
+    "venues.html",
+    "profile.html",
+    "contact.html",
+    "policy.html"
+  ]);
+  const SWAP_EXCLUDED_SEGMENTS = new Set(["contact.html"]);
+
+  /* Script handling for swapped-in pages. Scripts found in the
+     fetched document fall into three groups, keyed by pathname:
+     - SKIP: shared scripts that are already running and must
+       never execute twice. allmenu.js re-initialises through
+       the re-fired DOMContentLoaded instead.
+     - ALWAYS: scripts that initialise immediately against the
+       elements present when they run (an IIFE / readyState
+       check) and bind only to those elements, so they are
+       re-executed on every swap that includes them.
+     - everything else loads at most once per session; its
+       DOMContentLoaded listener stays registered and re-fires
+       on the synthetic event dispatched after each swap. */
+  const SCRIPT_SKIP = new Set([
+    "/assets/js/font.js",
+    "/assets/js/allmenu.js",
+    "/assets/js/page-transition.js"
+  ]);
+  const SCRIPT_ALWAYS = new Set([
+    "/assets/js/fog-hole.js",
+    "/assets/js/participation-accordion.js"
+  ]);
+  const loadedScripts = new Set();
+
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const mobileLayout = window.matchMedia("(max-width: 767px)");
-  let navigating = false;
+  let navigating = false; // a transition (either mode) is in flight
 
   const easeInOut = t =>
     t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const easeOut = t => 1 - Math.pow(1 - t, 3);
   const maxRadius = (cx, cy, w, h) =>
     Math.hypot(Math.max(cx, w - cx), Math.max(cy, h - cy));
+  const wait = ms => new Promise(resolve => window.setTimeout(resolve, ms));
 
   /* ---------------- Fog shader (WebGL, no library) --------------- */
   /* The octave count and the second domain warp are baked into the
@@ -306,9 +372,168 @@
     }
   }
 
-  /* ---------------- Exit: cover, then navigate ---------------- */
+  function paint2DFrame(overlay, cx, cy, cover) {
+    const { ctx, w, h } = overlay;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = `rgba(${BASE_RGB}, ${cover.toFixed(3)})`;
+    ctx.fillRect(0, 0, w, h);
+    drawRings(ctx, cx, cy, maxRadius(cx, cy, w, h), cover, 0.55);
+  }
 
-  function startExit(url, clientX, clientY) {
+  /* ------------- Cover / reveal animation primitives ------------ */
+  /* startCover animates the overlay from clear to fully covered
+     and resolves; for the fog it then keeps swirling at full cover
+     (a living hold) until stopHold() is called, so a slow fetch
+     never leaves a frozen or thinning cover. The returned
+     `failed` promise resolves true if the fog context dies
+     mid-cover, letting the caller fall back. A watchdog resolves
+     the cover even if animation frames stall (hidden tab). */
+
+  function startCover(overlay, xNorm, yNorm) {
+    let resolveCover;
+    let resolveFailed;
+    const covered = new Promise(resolve => (resolveCover = resolve));
+    const failed = new Promise(resolve => (resolveFailed = resolve));
+    let settled = false;
+    let holding = false;
+    let rafId = null;
+    const start = performance.now();
+
+    const finishCover = () => {
+      if (settled) return;
+      settled = true;
+      // From here the hold owns the canvas; back it with the paper
+      // colour so any sub-opaque fog pixel shows paper, never the
+      // page that is about to be swapped underneath.
+      overlay.canvas.style.background = `rgb(${BASE_RGB})`;
+      resolveCover();
+    };
+    const fail = () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      resolveFailed(true);
+    };
+
+    if (overlay.kind === "fog") {
+      const { fog } = overlay;
+      const frame = now => {
+        const elapsed = now - start;
+        const p = holding ? 1 : Math.min(elapsed / EXIT_MS, 1);
+        if (!fog.draw(holding ? 1 : easeInOut(p), xNorm, yNorm, elapsed / 1000)) {
+          fail();
+          return;
+        }
+        if (!holding && p >= 1) {
+          holding = true;
+          finishCover();
+        }
+        rafId = requestAnimationFrame(frame);
+      };
+      rafId = requestAnimationFrame(frame);
+      window.setTimeout(() => {
+        if (!settled) {
+          holding = true;
+          if (fog.draw(1, xNorm, yNorm, (performance.now() - start) / 1000)) {
+            finishCover();
+          } else {
+            fail();
+          }
+        }
+      }, EXIT_MS + 800);
+    } else {
+      const cx = xNorm * overlay.w;
+      const cy = yNorm * overlay.h;
+      const frame = now => {
+        const p = Math.min((now - start) / EXIT_MS, 1);
+        paint2DFrame(overlay, cx, cy, easeInOut(p));
+        if (p < 1) rafId = requestAnimationFrame(frame);
+        else finishCover();
+      };
+      rafId = requestAnimationFrame(frame);
+      window.setTimeout(() => {
+        if (!settled) {
+          paint2DFrame(overlay, cx, cy, 1);
+          finishCover();
+        }
+      }, EXIT_MS + 800);
+    }
+
+    return {
+      covered,
+      failed,
+      stopHold() {
+        if (rafId !== null) cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+  }
+
+  // Animates the overlay from fully covered back to clear and
+  // removes it. Used after an in-place swap; the classic arrival
+  // has its own handover (startEnter) because of the pre-paint
+  // cover. The paper backing comes off first so the page shows
+  // through the thinning fog.
+  function startReveal(overlay, xNorm, yNorm) {
+    overlay.canvas.style.background = "";
+    const start = performance.now();
+    if (overlay.kind === "fog") {
+      const { canvas, fog } = overlay;
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        fog.dispose();
+        canvas.remove();
+      };
+      const frame = now => {
+        const p = Math.min((now - start) / ENTER_MS, 1);
+        if (!fog.draw(1 - easeOut(p), xNorm, yNorm, (now - start) / 1000)) {
+          finish();
+          return;
+        }
+        if (p < 1) requestAnimationFrame(frame);
+        else finish();
+      };
+      requestAnimationFrame(frame);
+      window.setTimeout(finish, ENTER_MS + 600);
+      return;
+    }
+    const { canvas } = overlay;
+    const cx = xNorm * overlay.w;
+    const cy = yNorm * overlay.h;
+    const frame = now => {
+      const p = Math.min((now - start) / ENTER_MS, 1);
+      const cover = 1 - easeOut(p);
+      const { ctx, w, h } = overlay;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = `rgba(${BASE_RGB}, ${cover.toFixed(3)})`;
+      ctx.fillRect(0, 0, w, h);
+      drawRings(ctx, cx, cy, maxRadius(cx, cy, w, h), p, 0.4);
+      if (p < 1) requestAnimationFrame(frame);
+      else canvas.remove();
+    };
+    requestAnimationFrame(frame);
+    window.setTimeout(() => canvas.remove(), ENTER_MS + 600);
+  }
+
+  /* ---------------- Classic exit: cover, then navigate ---------- */
+
+  function writeFlag(url, clientX, clientY) {
+    try {
+      window.sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          x: clientX / window.innerWidth,
+          y: clientY / window.innerHeight,
+          to: url.pathname,
+          t: Date.now()
+        })
+      );
+    } catch (error) {
+      /* Storage unavailable: the destination simply opens plainly. */
+    }
+  }
+
+  function startClassicExit(url, clientX, clientY) {
     if (navigating) return;
     navigating = true;
 
@@ -316,19 +541,7 @@
     const go = () => {
       if (done) return;
       done = true;
-      try {
-        window.sessionStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({
-            x: clientX / window.innerWidth,
-            y: clientY / window.innerHeight,
-            to: url.pathname,
-            t: Date.now()
-          })
-        );
-      } catch (error) {
-        /* Storage unavailable: the destination simply opens plainly. */
-      }
+      writeFlag(url, clientX, clientY);
       window.location.href = url.href;
     };
     // Absolute fallback: never leave the visitor on this page.
@@ -345,40 +558,68 @@
       return;
     }
 
-    const start = performance.now();
-    if (overlay.kind === "fog") {
-      const { canvas, fog } = overlay;
-      const xNorm = clientX / window.innerWidth;
-      const yNorm = clientY / window.innerHeight;
-      const frame = now => {
-        const p = Math.min((now - start) / EXIT_MS, 1);
-        if (!fog.draw(easeInOut(p), xNorm, yNorm, (now - start) / 1000)) {
-          canvas.remove();
-          go();
-          return;
-        }
-        if (p < 1) requestAnimationFrame(frame);
-        else {
-          fog.dispose();
-          go();
-        }
-      };
-      requestAnimationFrame(frame);
-      return;
-    }
+    const cover = startCover(overlay, clientX / window.innerWidth, clientY / window.innerHeight);
+    cover.failed.then(broken => {
+      if (broken) {
+        overlay.canvas.remove();
+        go();
+      }
+    });
+    cover.covered.then(() => {
+      cover.stopHold();
+      if (overlay.kind === "fog") overlay.fog.dispose();
+      go();
+    });
+  }
 
-    const { ctx, w, h } = overlay;
-    const limit = maxRadius(clientX, clientY, w, h);
-    const frame = now => {
-      const p = Math.min((now - start) / EXIT_MS, 1);
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = `rgba(${BASE_RGB}, ${easeInOut(p).toFixed(3)})`;
-      ctx.fillRect(0, 0, w, h);
-      drawRings(ctx, clientX, clientY, limit, p, 0.55);
-      if (p < 1) requestAnimationFrame(frame);
-      else go();
-    };
-    requestAnimationFrame(frame);
+  /* ------------------- Swap: eligibility ------------------------ */
+
+  function pathSegment(pathname) {
+    if (!pathname || pathname.endsWith("/")) return "index.html";
+    const parts = pathname.split("/").filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : "index.html";
+  }
+
+  function hasDirtyForm() {
+    const forms = document.querySelectorAll("form");
+    for (const form of forms) {
+      for (const el of form.elements) {
+        if (el.type === "checkbox" || el.type === "radio") {
+          if (el.checked !== el.defaultChecked) return true;
+        } else if (el.type === "file") {
+          if (el.files && el.files.length) return true;
+        } else if (
+          (el.tagName === "INPUT" ||
+            el.tagName === "TEXTAREA" ||
+            el.tagName === "SELECT") &&
+          el.value !== el.defaultValue
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // A swap is only attempted when both pages are canonical, the
+  // contact page is not involved, no menu/modal is open and no
+  // form holds unsent input. Anything else keeps the classic
+  // two-document transition.
+  function swapAllowed(url) {
+    if (url.search) return false;
+    const from = pathSegment(window.location.pathname);
+    const to = pathSegment(url.pathname);
+    if (!CANONICAL_SEGMENTS.has(from) || !CANONICAL_SEGMENTS.has(to)) {
+      return false;
+    }
+    if (SWAP_EXCLUDED_SEGMENTS.has(from) || SWAP_EXCLUDED_SEGMENTS.has(to)) {
+      return false;
+    }
+    if (document.querySelector(".header.is-open")) return false;
+    if (document.body.classList.contains("is-modal-open")) return false;
+    if (document.querySelector(".modal.active")) return false;
+    if (hasDirtyForm()) return false;
+    return true;
   }
 
   function eligibleUrl(anchor, event) {
@@ -413,6 +654,349 @@
     return url;
   }
 
+  /* ------------------- Swap: document loading ------------------- */
+
+  async function fetchDocument(url) {
+    const response = await fetch(url.href, {
+      credentials: "same-origin",
+      headers: { Accept: "text/html" }
+    });
+    if (!response.ok) throw new Error("fetch failed: " + response.status);
+    const html = await response.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    if (!doc.body || !doc.querySelector("main#main")) {
+      throw new Error("unexpected document structure");
+    }
+    return { doc, finalUrl: response.url || url.href };
+  }
+
+  function swapMeta(doc) {
+    const keys = [
+      'meta[name="description"]',
+      'meta[property="og:title"]',
+      'meta[property="og:description"]',
+      'meta[property="og:url"]',
+      'meta[name="twitter:title"]',
+      'meta[name="twitter:description"]'
+    ];
+    for (const selector of keys) {
+      const next = doc.querySelector(selector);
+      const current = document.querySelector(selector);
+      if (next && current) {
+        current.setAttribute("content", next.getAttribute("content") || "");
+      }
+    }
+    const nextCanonical = doc.querySelector('link[rel="canonical"]');
+    const currentCanonical = document.querySelector('link[rel="canonical"]');
+    if (nextCanonical && currentCanonical) {
+      currentCanonical.setAttribute(
+        "href",
+        nextCanonical.getAttribute("href") || ""
+      );
+    }
+  }
+
+  function stylesheetKey(href, base) {
+    try {
+      return new URL(href, base).href;
+    } catch (error) {
+      return href;
+    }
+  }
+
+  // Adds the destination's stylesheets (awaited, so the layout is
+  // final when the fog lifts) and removes ones it does not use.
+  // Links present on both pages keep their elements and order.
+  async function swapStylesheets(doc, finalUrl) {
+    const current = Array.from(
+      document.querySelectorAll('link[rel="stylesheet"]')
+    );
+    const target = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
+    const currentKeys = new Set(
+      current.map(link => stylesheetKey(link.getAttribute("href"), window.location.href))
+    );
+    const targetKeys = new Set(
+      target.map(link => stylesheetKey(link.getAttribute("href"), finalUrl))
+    );
+
+    const waits = [];
+    for (const link of target) {
+      const key = stylesheetKey(link.getAttribute("href"), finalUrl);
+      if (currentKeys.has(key)) continue;
+      const clone = document.createElement("link");
+      clone.rel = "stylesheet";
+      clone.href = key;
+      const media = link.getAttribute("media");
+      if (media) clone.media = media;
+      waits.push(
+        new Promise(resolve => {
+          clone.addEventListener("load", resolve, { once: true });
+          clone.addEventListener("error", resolve, { once: true });
+          window.setTimeout(resolve, CSS_WAIT_MS);
+        })
+      );
+      document.head.appendChild(clone);
+    }
+    await Promise.all(waits);
+
+    for (const link of current) {
+      const key = stylesheetKey(link.getAttribute("href"), window.location.href);
+      if (!targetKeys.has(key)) link.remove();
+    }
+  }
+
+  function swapBody(doc, overlayCanvas) {
+    const live = document.body;
+    // Detach the overlay first: it must survive the swap and stay
+    // on top of the new content.
+    if (overlayCanvas && overlayCanvas.parentNode) overlayCanvas.remove();
+
+    for (const attr of Array.from(live.attributes)) {
+      live.removeAttribute(attr.name);
+    }
+    for (const attr of Array.from(doc.body.attributes)) {
+      live.setAttribute(attr.name, attr.value);
+    }
+
+    const nodes = Array.from(doc.body.childNodes).map(node =>
+      document.importNode(node, true)
+    );
+    live.replaceChildren(...nodes);
+
+    if (overlayCanvas) live.appendChild(overlayCanvas);
+  }
+
+  function executeScript(src) {
+    return new Promise(resolve => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        resolve();
+      };
+      script.addEventListener("load", finish, { once: true });
+      script.addEventListener("error", finish, { once: true });
+      window.setTimeout(finish, SCRIPT_WAIT_MS);
+      document.head.appendChild(script);
+    });
+  }
+
+  // Loads the destination's scripts in document order. Shared
+  // scripts never re-execute; page scripts load once per session
+  // and re-initialise through the re-fired DOMContentLoaded;
+  // immediate scripts (SCRIPT_ALWAYS) re-execute every time.
+  // Inline scripts are never copied: the only one on canonical
+  // pages is the pre-paint bootstrap, which must not run here.
+  async function loadPageScripts(doc, finalUrl) {
+    const scripts = Array.from(doc.querySelectorAll("script[src]"));
+    for (const script of scripts) {
+      const raw = script.getAttribute("src");
+      if (!raw) continue;
+      let resolved;
+      try {
+        resolved = new URL(raw, finalUrl);
+      } catch (error) {
+        continue;
+      }
+      const key = resolved.origin + resolved.pathname;
+      if (SCRIPT_SKIP.has(resolved.pathname)) continue;
+      if (SCRIPT_ALWAYS.has(resolved.pathname) || !loadedScripts.has(key)) {
+        await executeScript(resolved.href);
+        loadedScripts.add(key);
+      }
+    }
+  }
+
+  function waitForFragmentsReady() {
+    return new Promise(resolve => {
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        document.removeEventListener("yurayura:fragments-ready", finish);
+        resolve();
+      };
+      document.addEventListener("yurayura:fragments-ready", finish);
+      window.setTimeout(finish, FRAGMENTS_WAIT_MS);
+    });
+  }
+
+  // The full in-place swap. Runs entirely under the fog cover.
+  async function swapDocument(fetched, overlay) {
+    const { doc, finalUrl } = fetched;
+
+    // Let the outgoing page tear down: fv-animation.js destroys
+    // its Vanta effect and cancels its loops on pagehide, which
+    // is the only pagehide listener on canonical pages.
+    window.dispatchEvent(new Event("pagehide"));
+
+    document.title = doc.title;
+    swapMeta(doc);
+    await swapStylesheets(doc, finalUrl);
+    swapBody(doc, overlay ? overlay.canvas : null);
+    await loadPageScripts(doc, finalUrl);
+
+    // Re-fire DOMContentLoaded so every already-loaded page
+    // script (allmenu, slide, gallery, exhibition-state, …)
+    // initialises against the new DOM, exactly as on a fresh
+    // load. allmenu re-fetches the header/footer parts and
+    // re-marks the current page from the new URL.
+    const fragmentsReady = waitForFragmentsReady();
+    document.dispatchEvent(new Event("DOMContentLoaded", { bubbles: true }));
+    await fragmentsReady;
+  }
+
+  /* ------------------- Swap: history handling ------------------- */
+
+  function markCurrentEntry(scrollY) {
+    try {
+      const state = Object.assign({}, window.history.state, {
+        ptSwap: true,
+        scrollY: typeof scrollY === "number" ? scrollY : window.scrollY
+      });
+      window.history.replaceState(state, "", window.location.href);
+    } catch (error) {
+      /* History unavailable: popstate swaps simply will not run. */
+    }
+  }
+
+  let scrollSaveQueued = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (scrollSaveQueued || navigating) return;
+      scrollSaveQueued = true;
+      requestAnimationFrame(() => {
+        scrollSaveQueued = false;
+        if (!navigating) markCurrentEntry(window.scrollY);
+      });
+    },
+    { passive: true }
+  );
+
+  try {
+    markCurrentEntry(window.scrollY);
+    // Seed the loaded-script set from this document.
+    for (const script of document.querySelectorAll("script[src]")) {
+      try {
+        const resolved = new URL(script.getAttribute("src"), window.location.href);
+        loadedScripts.add(resolved.origin + resolved.pathname);
+      } catch (error) {
+        /* Unparseable src: it will simply load again if needed. */
+      }
+    }
+  } catch (error) {
+    /* Swap stays available for clicks; popstate may fall back. */
+  }
+
+  /* ------------------- Swap: navigation flow -------------------- */
+
+  async function navigateViaSwap(url, options) {
+    const xNorm = options.xNorm;
+    const yNorm = options.yNorm;
+
+    let overlay = null;
+    try {
+      overlay = setupOverlay();
+    } catch (error) {
+      overlay = null;
+    }
+    if (!overlay) return false;
+
+    /* Phase 1 (reversible): rise the cover while the destination
+       is fetched in parallel. Nothing in the document is touched
+       yet, so missing the deadline — or a dead fog context — can
+       still fall back to the classic navigation. */
+    const fetchedPromise = fetchDocument(url).catch(() => null);
+    const cover = startCover(overlay, xNorm, yNorm);
+    const coveredOrBroken = Promise.race([
+      cover.covered.then(() => false),
+      cover.failed.then(() => true)
+    ]);
+    const phase1 = (async () => {
+      const broken = await coveredOrBroken;
+      if (broken) return null;
+      return fetchedPromise;
+    })();
+    const fetched = await Promise.race([
+      phase1,
+      wait(SWAP_DEADLINE_MS).then(() => "timeout")
+    ]);
+    if (!fetched || fetched === "timeout") {
+      cover.stopHold();
+      if (overlay.kind === "fog") overlay.fog.dispose();
+      overlay.canvas.remove();
+      return false;
+    }
+
+    /* Phase 2 (commit): swap under the held cover. Every wait
+       inside is bounded and the fog keeps holding meanwhile, so
+       no deadline is needed here; a failure still falls back —
+       pushState has not happened yet, so the classic route to
+       the same URL loads the destination cleanly. */
+    try {
+      await swapDocument(fetched, overlay);
+    } catch (error) {
+      cover.stopHold();
+      if (overlay.kind === "fog") overlay.fog.dispose();
+      overlay.canvas.remove();
+      return false;
+    }
+    cover.stopHold();
+
+    const finalUrl = new URL(fetched.finalUrl);
+    try {
+      // From the first swap on, scroll positions live in
+      // history.state and are restored by the popstate handler.
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      if (!options.viaPopstate) {
+        window.history.pushState(
+          { ptSwap: true, scrollY: 0 },
+          "",
+          fetched.finalUrl
+        );
+      }
+    } catch (error) {
+      overlay.canvas.remove();
+      return false;
+    }
+
+    if (options.restoreScrollY != null) {
+      window.scrollTo(0, options.restoreScrollY);
+    } else if (finalUrl.hash) {
+      const target = document.querySelector(finalUrl.hash);
+      if (target) target.scrollIntoView();
+      else window.scrollTo(0, 0);
+    } else {
+      window.scrollTo(0, 0);
+    }
+
+    startReveal(overlay, xNorm, yNorm);
+    return true;
+  }
+
+  async function startSwapNavigation(url, clientX, clientY) {
+    navigating = true;
+    markCurrentEntry(window.scrollY);
+    const ok = await navigateViaSwap(url, {
+      xNorm: clientX / window.innerWidth,
+      yNorm: clientY / window.innerHeight,
+      restoreScrollY: null
+    }).catch(() => false);
+    navigating = false;
+    if (!ok) {
+      // Nothing was pushed and the document is unchanged (the
+      // swap only mutates after every fetch has succeeded);
+      // take the classic route instead.
+      startClassicExit(url, clientX, clientY);
+    }
+  }
+
   document.addEventListener(
     "click",
     event => {
@@ -425,12 +1009,51 @@
       const url = eligibleUrl(anchor, event);
       if (!url) return;
       event.preventDefault();
-      startExit(url, event.clientX, event.clientY);
+      if (swapAllowed(url)) {
+        startSwapNavigation(url, event.clientX, event.clientY);
+      } else {
+        startClassicExit(url, event.clientX, event.clientY);
+      }
     },
     true
   );
 
+  window.addEventListener("popstate", event => {
+    const state = event.state;
+    if (!state || !state.ptSwap) return; // not a swap-managed entry
+    if (reducedMotion.matches) {
+      // Preferences changed mid-session: resync with a full load.
+      window.location.assign(window.location.href);
+      return;
+    }
+    if (navigating) {
+      window.location.assign(window.location.href);
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (!swapAllowed(url)) {
+      window.location.assign(window.location.href);
+      return;
+    }
+    navigating = true;
+    navigateViaSwap(url, {
+      xNorm: 0.5,
+      yNorm: 0.5,
+      viaPopstate: true,
+      restoreScrollY: typeof state.scrollY === "number" ? state.scrollY : 0
+    })
+      .catch(() => false)
+      .then(ok => {
+        navigating = false;
+        if (!ok) window.location.assign(window.location.href);
+      });
+  });
+
   /* ---------------- Enter: recede the pre-paint veil ------------ */
+  /* Classic arrivals only: the destination document was covered
+     before its first paint by the inline bootstrap, and the fog
+     takes over from that cover. Swap arrivals never come here —
+     their document never reloads. */
 
   function startEnter() {
     const root = document.documentElement;
