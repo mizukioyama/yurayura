@@ -9,8 +9,10 @@
    the inline bootstrap in its <head> (an inline <style> veil plus a
    flag check, identical on all canonical pages — inline so the
    cover never waits for an external stylesheet), and the shared
-   script paints its first fog frame over that cover before lifting
-   it, so the page never flashes through.
+   script paints its first fog frame over that cover, backs the
+   canvas with the paper colour and waits until the frame has been
+   presented before lifting the cover, so the page never flashes
+   through.
    This file only styles the animated overlay canvas; the pre-paint
    cover and its no-JS failsafe live in the inline bootstrap.
    Colours stay in the site palette: paper #f5f2e8 with fog shadows
