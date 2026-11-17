@@ -23,7 +23,7 @@
     return `<article class="information-past-event" data-event-id="${escape(event.id)}" aria-labelledby="${id}">
   <header class="information-past-event__identity"><p class="information-status">${status}</p><${heading} class="information-subheading" id="${id}">${escape(label(event))}</${heading}></header>
   <p class="information-archive-note">${escape(event.copy.yurayura.ja)}</p>
-  <dl class="information-facts"><div><dt>開催期間</dt><dd>${period(event)}${archived ? '（終了）' : '（日本時間）'}</dd></div>${fact('開催地',event.city || '未定')}${fact('会場',event.venue || '未定')}${event.artists?.length ? fact('参加Artist',event.artists.join('、')) : ''}</dl>
+  <dl class="information-facts"><div><dt>開催期間</dt><dd>${period(event)}${archived ? '（終了）' : '（日本時間）'}</dd></div>${fact('開催地',event.city || '未定')}${fact('会場',event.venue || '未定')}${event.artists?.length ? fact('参加Artist',event.artists.join('、')) : ''}${Number.isInteger(event.artworkCountTotal) && Number.isInteger(event.artworkCount) ? fact('展示作品', `全${event.artworkCountTotal}点（Web掲載${event.artworkCount}点）`) : ''}</dl>
   ${links.length ? `<div class="information-record-links">${links.join('')}</div>` : ''}
 </article>`;
   }

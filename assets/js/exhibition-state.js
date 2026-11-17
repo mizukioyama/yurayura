@@ -41,7 +41,7 @@
   function visibleEvents(events) {
     if (!Array.isArray(events)) throw new Error("Invalid event data");
     const visible = events.filter(e => e?.published === true);
-    const allowed = new Set(["id", "edition", "published", "city", "venue", "startsAt", "endsAt", "officialUrl", "portfolioDetailUrl", "galleryUrl", "artists", "artworkCount", "copy", "recruitment"]);
+    const allowed = new Set(["id", "edition", "published", "city", "venue", "startsAt", "endsAt", "officialUrl", "portfolioDetailUrl", "galleryUrl", "artists", "artworkCount", "artworkCountTotal", "copy", "recruitment"]);
     const ids = new Set(), editions = new Set();
     if (visible.some(e => {
       const locationOk = (value, key) => Object.prototype.hasOwnProperty.call(e, key) && (value === null || (typeof value === "string" && !!value.trim()));
@@ -54,7 +54,8 @@
         || (e.portfolioDetailUrl !== undefined && !validPublicUrl(e.portfolioDetailUrl, "/website/exhibitions/yurayura/"))
         || (e.galleryUrl !== undefined && !/^\.\/[a-z0-9-]+\.html$/.test(e.galleryUrl))
         || (e.artists !== undefined && (!Array.isArray(e.artists) || e.artists.some(name => typeof name !== "string" || !name.trim())))
-        || (e.artworkCount !== undefined && (!Number.isInteger(e.artworkCount) || e.artworkCount < 0));
+        || (e.artworkCount !== undefined && (!Number.isInteger(e.artworkCount) || e.artworkCount < 0))
+        || (e.artworkCountTotal !== undefined && (!Number.isInteger(e.artworkCountTotal) || e.artworkCountTotal < 0));
     })) throw new Error("Invalid event data");
     return visible;
   }

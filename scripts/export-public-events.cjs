@@ -81,6 +81,10 @@ function publicEvents(rows) {
       if (!Number.isInteger(event.artworkCount) || event.artworkCount < 0) throw new Error('Invalid artwork count');
       row.artworkCount = event.artworkCount;
     }
+    if (event.artworkCountTotal !== undefined) {
+      if (!Number.isInteger(event.artworkCountTotal) || event.artworkCountTotal < 0) throw new Error('Invalid artwork count total');
+      row.artworkCountTotal = event.artworkCountTotal;
+    }
 
     const recruitment = event.recruitment;
     if (recruitment?.published === true) {
