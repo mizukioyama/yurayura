@@ -56,17 +56,17 @@ class LiquidButton extends HTMLElement {
 
 :host{
 
-  --radius:42px;
+  --radius:999px;
 
   --blur:30px;
 
   --duration:var(--motion-feedback-duration, .4s);
 
   --light-bg:
-    rgba(255,255,255,.18);
+    linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.14));
 
   --dark-bg:
-    rgba(25,25,25,.18);
+    linear-gradient(180deg, rgba(25,25,25,.30), rgba(25,25,25,.14));
 
   --btn-color: #F8FAEC;
 
@@ -152,9 +152,10 @@ class LiquidButton extends HTMLElement {
     box-shadow var(--duration);
 
   box-shadow:
-    0 25px 40px rgba(0,0,0,.08),
+    0 12px 32px rgba(0,0,0,.12),
     inset 0 1px 1px rgba(255,255,255,.95),
-    inset 0 -10px 20px rgba(0,0,0,.05);
+    inset 0 -1px 1px rgba(255,255,255,.4),
+    inset 0 -10px 20px rgba(0,0,0,.04);
 
 }
 
@@ -167,8 +168,8 @@ class LiquidButton extends HTMLElement {
   background:linear-gradient(
     180deg,
     rgba(255,255,255,.95),
-    rgba(255,255,255,.3),
-    rgba(255,255,255,.05)
+    rgba(255,255,255,.45),
+    rgba(255,255,255,.1)
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -180,8 +181,7 @@ class LiquidButton extends HTMLElement {
 @media (hover:hover) and (pointer:fine) {
 .wrapper:hover{
 
-  color:#f8faec;
-  background:rgba(60,70,6,.82);
+  background:${theme === "dark" ? "rgba(255,255,255,.16)" : "linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.24))"};
 
   transform:
     translateY(-2px);
@@ -190,8 +190,7 @@ class LiquidButton extends HTMLElement {
 
 .wrapper:focus-visible{
 
-  color:#f8faec;
-  background:rgba(60,70,6,.82);
+  background:${theme === "dark" ? "rgba(255,255,255,.16)" : "linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.24))"};
   outline:2px solid ${theme === "dark" ? "#f3f3ed" : "var(--color-txt, #303a05)"};
   outline-offset:4px;
 }
@@ -208,7 +207,7 @@ class LiquidButton extends HTMLElement {
 
   font-size:var(--type-liquid-medium-size, clamp(14px, calc(0.5vw + 12px), 16px));
 
-  width:${fluid ? "100%" : "280px"};
+  width:${fluid ? "min(100%, 480px)" : "280px"};
   min-height:44px;
 }
 
