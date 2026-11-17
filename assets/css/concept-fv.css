@@ -11,7 +11,7 @@
   overflow: visible;
   z-index: 2;
   background: transparent;
-  width: min(100%, 1080px);
+  width: min(calc(100% - 2rem), 1320px);
   margin-inline: auto;
 }
 .page-fv .page-fv__inner {
@@ -68,13 +68,20 @@
 .concept-page :is(#fog-scene, .vanta-wrap, #vanta-bg, .smoke-twist) {
   pointer-events: none;
 }
+/* Match the header/footer frame under 1024px so the FV title, the
+   scroll guide and the header share one left edge at every width. */
+@media (max-width: 1023px) {
+  .page-fv {
+    width: 88%;
+  }
+}
 @media (max-width: 1199px) {
   .page-fv .page-fv__inner {
-    left: 10vw;
+    left: 0;
     top: 28vmin;
   }
   .page-fv > .scroll-guide {
-    left: 10vw;
+    left: 0;
   }
   /* Move the existing content gutter off Gallery's parent so the FV has
      the same viewport frame as Concept; artwork columns retain their gutter. */
@@ -94,7 +101,7 @@
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .page-fv .page-fv__inner {
-    left: var(--layout-gutter-tablet);
+    left: 0;
   }
   .gallery-page .gallery {
     --gallery-content-gutter: var(--layout-gutter-tablet);
@@ -114,7 +121,7 @@
     inset: auto;
     box-sizing: border-box;
     width: 100%;
-    padding: 120px var(--layout-gutter-mobile) 420px;
+    padding: 120px 0 420px;
   }
   /* Gallery's hero holds only a title and subtitle, so the shared 420px
      editorial space leaves it almost empty on phones. */
@@ -122,7 +129,7 @@
     padding-bottom: 280px;
   }
   .page-fv > .scroll-guide {
-    left: 22px;
+    left: 0;
   }
   .gallery-page .gallery {
     --gallery-content-gutter: var(--layout-gutter-mobile);
