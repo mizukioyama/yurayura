@@ -186,46 +186,39 @@
   text-align: left;
 }
 
-/* Keep the Contact submit control on the same glass surface as every other button. */
-body.top-page .contact-form .send-btn.liquid-control {
+/* Keep the Contact submit control (TOP section and Contact page) on the same glass surface as every other button. */
+body:is(.top-page, .contact-page) .contact-form .send-btn.liquid-control {
   min-width: 310px;
   min-height: clamp(2.5rem, calc(0.3vw + 2.35rem), 2.75rem);
   padding:
     clamp(0.5rem, calc(0.2vw + 0.4rem), 0.65rem)
     clamp(1rem, calc(0.4vw + 0.8rem), 1.25rem);
   border: 0;
-  border-radius: var(--liquid-radius);
+  border-radius: 999px;
   color: var(--color-txt, #303a05);
   appearance: none;
   -webkit-appearance: none;
   overflow: hidden;
   isolation: isolate;
-  /* background: rgba(255, 255, 255, 0.22); */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.14));
   backdrop-filter: blur(30px) saturate(180%);
   -webkit-backdrop-filter: blur(30px) saturate(180%);
   box-shadow:
-    0 25px 40px rgba(0, 0, 0, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.12),
     inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -10px 20px rgba(0, 0, 0, 0.05);
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.04);
   opacity: 1;
 }
 
-body.top-page .contact-form .send-btn.liquid-control:hover,
-body.top-page .contact-form .send-btn.liquid-control:focus-visible {
-  color: #f8faec;
-  background:
-    radial-gradient(
-      circle at var(--mx, 50%) var(--my, 50%),
-      rgba(93, 105, 20, 0.88),
-      rgba(60, 70, 6, 0.82) 48%,
-      rgba(60, 70, 6, 0.72) 100%
-    ),
-    rgba(60, 70, 6, 0.82);
+body:is(.top-page, .contact-page) .contact-form .send-btn.liquid-control:hover,
+body:is(.top-page, .contact-page) .contact-form .send-btn.liquid-control:focus-visible {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.24));
   transform: translateY(-3px) scale(1.02);
 }
 
 @media screen and (max-width: 480px) {
-  body.top-page .contact-form .send-btn.liquid-control {
+  body:is(.top-page, .contact-page) .contact-form .send-btn.liquid-control {
     width: 100%;
     min-width: 0;
   }
