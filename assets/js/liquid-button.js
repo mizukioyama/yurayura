@@ -347,7 +347,22 @@ customElements.define(
 );
 
 function bindLiquidControls() {
-  document.querySelectorAll("button:not(.js-menu):not(.faq-sub-question)").forEach((control) => {
+  // gallery.html links liquid.css but deliberately does not load
+  // this script: its buttons are styled by the gallery stylesheets
+  // (and gallery.js adds the liquid classes to the pagination it
+  // builds). A fresh gallery load therefore never binds anything.
+  // Under the page transition's in-place swap, however, this
+  // DOMContentLoaded listener survives from whichever page loaded
+  // the script and re-fires on the swapped-in gallery DOM — where
+  // it glassed the transparent full-card hit-area buttons
+  // (.gallery-card__open), whose backdrop-filter then blurred
+  // every artwork image under a sheet of "glass". Never bind on
+  // the gallery page; if gallery ever loads this script itself,
+  // remove this guard together with that change.
+  if (document.body.classList.contains("gallery-page")) return;
+  // Transparent hit-area buttons must never receive the glass
+  // styling (backdrop-filter, shadows, pseudo layers), on any page.
+  document.querySelectorAll("button:not(.js-menu):not(.faq-sub-question):not(.gallery-card__open)").forEach((control) => {
     control.classList.add("liquid-control");
 
     if (control.classList.contains("gallery-filter")) {

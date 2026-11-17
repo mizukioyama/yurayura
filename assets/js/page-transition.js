@@ -15,10 +15,9 @@
    runs the same covered swap and restores the scroll position
    kept in history.state.
 
-   Classic mode (fallback): when a swap is not safe — the
-   contact page (the site's only form), a dirty form, an open
-   modal, a non-canonical or query-string target, a failed
-   fetch — the transition falls back to the original
+   Classic mode (fallback): when a swap is not safe — a dirty
+   form, an open modal, a non-canonical or query-string target,
+   a failed fetch — the transition falls back to the original
    two-document handoff: cover, real navigation, and the
    destination page — pre-covered by the inline bootstrap in
    its <head> — lets the fog recede. One former fallback case
@@ -86,10 +85,17 @@
   const OCTAVES_MOBILE = 3;
 
   /* Pages the in-place swap covers: the canonical pages from
-     SITE_MAP.md. contact.html is deliberately excluded in both
-     directions (see swapAllowed): it carries the site's only
-     form, an external POST and focus-trapped dialogs, so it
-     keeps the classic two-document transition. */
+     SITE_MAP.md, contact.html included. The contact form is
+     swap-safe by construction: form.js initialises against the
+     swapped-in DOM through the re-fired DOMContentLoaded and
+     tears its session down on the pagehide the swap dispatches
+     before replacing the body, and the guards in swapAllowed
+     still force the classic route whenever the form holds
+     unsent input or one of its dialogs is open — and whenever
+     the session's Content-Security-Policy would block the
+     form's endpoint (see formEndpointAllowedByCsp). Any failure
+     during a contact swap falls back to the classic
+     two-document transition as before. */
   const CANONICAL_SEGMENTS = new Set([
     "index.html",
     "concept.html",
@@ -104,8 +110,6 @@
     "contact.html",
     "policy.html"
   ]);
-  const SWAP_EXCLUDED_SEGMENTS = new Set(["contact.html"]);
-
   /* Script handling for swapped-in pages. Scripts found in the
      fetched document fall into three groups, keyed by pathname:
      - SKIP: shared scripts that are already running and must
@@ -734,13 +738,50 @@
     return false;
   }
 
-  // A swap is only attempted when both pages are canonical, the
-  // contact page is not involved, no menu/modal is open and no
-  // form holds unsent input. Anything else keeps the classic
-  // two-document transition. The click handler closes an open
-  // header menu before consulting this for header menu links
-  // (see closeHeaderMenuForLink), so the is-open check below
-  // still guards every other path — popstate included.
+  /* The contact form posts to an external endpoint through
+     fetch, which the document's Content-Security-Policy must
+     permit. A swapped document keeps the policy of the page the
+     session started on: the CSP meta is not swapped (policies
+     delivered by meta cannot be relaxed after the fact — neither
+     editing nor replacing the element lifts the original), and
+     two pages (concept, policy) carry a narrower policy whose
+     connect-src omits the form endpoint. Arriving on contact
+     under such a policy would leave the form unable to submit,
+     so the swap into contact is only attempted when the live
+     policy permits the endpoint. Otherwise the classic route
+     loads contact under its own policy, exactly as before. The
+     meta in the live document is precisely the policy in force,
+     because a swap never adds, removes or edits it. */
+  const FORM_ENDPOINT_ORIGIN = "https://script.google.com";
+
+  function formEndpointAllowedByCsp() {
+    const meta = document.querySelector(
+      'meta[http-equiv="Content-Security-Policy" i]'
+    );
+    if (!meta) return true; // no policy in force
+    const directives = new Map();
+    for (const part of (meta.getAttribute("content") || "").split(";")) {
+      const tokens = part.trim().split(/\s+/).filter(Boolean);
+      if (tokens.length > 1) directives.set(tokens[0].toLowerCase(), tokens.slice(1));
+    }
+    const sources =
+      directives.get("connect-src") || directives.get("default-src");
+    if (!sources) return true;
+    return sources.some(
+      source =>
+        source === "*" ||
+        source === "https:" ||
+        source === FORM_ENDPOINT_ORIGIN
+    );
+  }
+
+  // A swap is only attempted when both pages are canonical, no
+  // menu/modal is open and no form holds unsent input. Anything
+  // else keeps the classic two-document transition. The click
+  // handler closes an open header menu before consulting this
+  // for header menu links (see closeHeaderMenuForLink), so the
+  // is-open check below still guards every other path —
+  // popstate included.
   function swapAllowed(url) {
     if (url.search) return false;
     const from = pathSegment(window.location.pathname);
@@ -748,9 +789,7 @@
     if (!CANONICAL_SEGMENTS.has(from) || !CANONICAL_SEGMENTS.has(to)) {
       return false;
     }
-    if (SWAP_EXCLUDED_SEGMENTS.has(from) || SWAP_EXCLUDED_SEGMENTS.has(to)) {
-      return false;
-    }
+    if (to === "contact.html" && !formEndpointAllowedByCsp()) return false;
     if (document.querySelector(".header.is-open")) return false;
     if (document.body.classList.contains("is-modal-open")) return false;
     if (document.querySelector(".modal.active")) return false;
@@ -1249,9 +1288,9 @@
         // The menu is closed. Hold further clicks for the one
         // frame allmenu needs to restore the scroll position,
         // then decide exactly as for any other link — swap for
-        // canonical targets, classic for the rest (contact
-        // included: the menu still closes first, as it does
-        // when allmenu handles the click itself).
+        // canonical targets (contact included), classic for the
+        // rest. The menu still closes first, as it does when
+        // allmenu handles the click itself.
         navigating = true;
         afterNextFrame(() => {
           navigating = false;
