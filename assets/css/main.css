@@ -316,7 +316,8 @@ section.section--concept {
   z-index: 1;
   margin-bottom: 30px;
   text-align: center;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
 }
 
 .section--contact .h2_ttl,
@@ -557,7 +558,7 @@ section.section--concept {
 ======================================== */
 
 .section--concept .h2_ttl {
-  letter-spacing: 0.8rem;
+  letter-spacing: 0.08em;
   z-index: 1;
 }
 
@@ -912,6 +913,15 @@ Access
   white-space: normal;
   line-height: 2;
   letter-spacing: 0.08em;
+}
+
+/* L-01: section headings share the unified heading line-height.
+   Body text in the same sections keeps its own line-height above. */
+.section--concept .h2_ttl,
+.section--artists .h2_ttl,
+.section--contact .h2_ttl,
+.section--access .h2_ttl {
+  line-height: 1.8;
 }
 
 /* ========================================
