@@ -116,6 +116,11 @@
     width: 100%;
     padding: 120px var(--layout-gutter-mobile) 420px;
   }
+  /* Gallery's hero holds only a title and subtitle, so the shared 420px
+     editorial space leaves it almost empty on phones. */
+  .gallery-page .page-fv .page-fv__inner {
+    padding-bottom: 280px;
+  }
   .page-fv > .scroll-guide {
     left: 22px;
   }
@@ -137,6 +142,9 @@
     padding: 0;
     display: block;
     transform: none;
+  }
+  .gallery-page .page-fv .page-fv__inner {
+    padding: 0;
   }
 }
 @media (min-width: 1200px) {
