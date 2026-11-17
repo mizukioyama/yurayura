@@ -1276,10 +1276,25 @@
     "click",
     event => {
       if (reducedMotion.matches || navigating) return;
-      const anchor =
-        event.target && event.target.closest
-          ? event.target.closest("a[href]")
-          : null;
+      // Anchors inside shadow DOM (e.g. <liquid-button>) are invisible
+      // to event.target.closest(): the click is retargeted to the host
+      // element. Walk the composed path first so those links receive
+      // the same transition handling as plain anchors.
+      let anchor = null;
+      if (typeof event.composedPath === "function") {
+        for (const node of event.composedPath()) {
+          if (
+            node instanceof HTMLAnchorElement &&
+            node.hasAttribute("href")
+          ) {
+            anchor = node;
+            break;
+          }
+        }
+      }
+      if (!anchor && event.target && event.target.closest) {
+        anchor = event.target.closest("a[href]");
+      }
       if (!anchor) return;
       const url = eligibleUrl(anchor, event);
       if (!url) return;
