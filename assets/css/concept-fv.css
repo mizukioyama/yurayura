@@ -11,7 +11,7 @@
   overflow: visible;
   z-index: 2;
   background: transparent;
-  width: min(calc(100% - 2rem), 1320px);
+  width: min(100%, 1080px);
   margin-inline: auto;
 }
 .page-fv .page-fv__inner {
@@ -68,20 +68,20 @@
 .concept-page :is(#fog-scene, .vanta-wrap, #vanta-bg, .smoke-twist) {
   pointer-events: none;
 }
-/* Match the header/footer frame under 1024px so the FV title, the
-   scroll guide and the header share one left edge at every width. */
-@media (max-width: 1023px) {
+/* Keep the FV frame at 88% on phones so the FV title, the scroll
+   guide and the header share one left edge at mobile widths. */
+@media (max-width: 767px) {
   .page-fv {
     width: 88%;
   }
 }
 @media (max-width: 1199px) {
   .page-fv .page-fv__inner {
-    left: 0;
+    left: 10vw;
     top: 28vmin;
   }
   .page-fv > .scroll-guide {
-    left: 0;
+    left: 10vw;
   }
   /* Move the existing content gutter off Gallery's parent so the FV has
      the same viewport frame as Concept; artwork columns retain their gutter. */
@@ -101,7 +101,7 @@
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .page-fv .page-fv__inner {
-    left: 0;
+    left: var(--layout-gutter-tablet);
   }
   .gallery-page .gallery {
     --gallery-content-gutter: var(--layout-gutter-tablet);
