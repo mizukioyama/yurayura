@@ -1,10 +1,36 @@
 /**
  * Contact Form
  * Client-side validation and accessible dialogs.
+ *
+ * The page transition swaps the contact page in and out without
+ * a document reload, so initialisation runs once per swapped-in
+ * DOM through DOMContentLoaded, while the document-level
+ * listeners are registered exactly once here and delegate to
+ * whichever session is current. The swap dispatches pagehide
+ * before replacing the body (and the browser fires it on a real
+ * unload); the session is disposed there, so dialog state, a
+ * focus trap or a late fetch response can never leak into the
+ * next page's document. A BFCache freeze (a persisted pagehide)
+ * keeps the session, because the DOM it belongs to is restored
+ * together with it.
  */
-document.addEventListener("DOMContentLoaded", () => {
+let contactSession = null;
+
+document.addEventListener("keydown", (event) => {
+  contactSession?.handleKeydown(event);
+});
+
+window.addEventListener("pagehide", (event) => {
+  if (event.persisted) return;
+  contactSession?.dispose();
+});
+
+document.addEventListener("DOMContentLoaded", initContactForm);
+
+function initContactForm() {
   const contactForm = document.getElementById("contactForm");
   if (!contactForm) return;
+  if (contactForm.dataset.formSessionReady === "true") return;
 
   const resultModal = document.getElementById("modal");
   const policyModal = document.getElementById("contactPolicyModal");
@@ -34,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("Contact form elements are incomplete; form submission is disabled.");
     return;
   }
+  contactForm.dataset.formSessionReady = "true";
 
   function focusableElements(dialog) {
     return Array.from(dialog.querySelectorAll(
@@ -90,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.addEventListener("keydown", (event) => {
+  function handleKeydown(event) {
     if (!activeDialog) return;
     if (event.key === "Escape") {
       closeDialog();
@@ -112,7 +139,24 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       first.focus();
     }
-  });
+  }
+
+  // Publish this DOM's session as the current one. Disposal runs
+  // on pagehide (see the top of this file): any open dialog is
+  // closed without restoring focus — its elements are about to
+  // be discarded — and the modal classes come off the shared
+  // <html>/<body>, which a swap does not replace for <html>.
+  const session = {
+    disposed: false,
+    handleKeydown,
+    dispose() {
+      if (session.disposed) return;
+      session.disposed = true;
+      if (contactSession === session) contactSession = null;
+      if (activeDialog) closeDialog(false);
+    }
+  };
+  contactSession = session;
 
   function selectedTypes() {
     return typeCheckboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value);
@@ -197,6 +241,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await parseResponse(response);
       if (!response.ok || result.status !== "success") throw new Error("Contact submission failed");
 
+      // The visitor may have been swapped to another page while
+      // the request was in flight; the submission itself stands,
+      // but no dialog may be opened into the new document.
+      if (session.disposed) return;
+
       contactForm.reset();
       typeCheckboxes.forEach((checkbox) => checkbox.setAttribute("aria-invalid", "false"));
       openResult(
@@ -206,10 +255,12 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     } catch (error) {
       console.error("Contact submission failed.", error);
-      openResult("送信できませんでした", genericErrorMessage, submitButton);
+      if (!session.disposed) {
+        openResult("送信できませんでした", genericErrorMessage, submitButton);
+      }
     } finally {
       isSubmitting = false;
       setSubmitting(false);
     }
   });
-});
+}
