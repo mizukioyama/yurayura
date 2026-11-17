@@ -111,7 +111,7 @@ body.gallery-page button {
   flex-wrap: wrap !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 0.25rem 0.625rem !important;
+  gap: 0.25rem 0.5rem !important;
   width: 100% !important;
   min-width: 0 !important;
 }
