@@ -285,9 +285,6 @@ h1.fv__ttl {
 }
 
 /* gallery.css: typography only; layout remains in the component stylesheet. */
-body.gallery-page {
-  font-size: var(--type-body-size) !important;
-}
 @media (min-width: 1200px) {
   .gallery-page .h1-text h1 {
     font-size: var(--type-page-title-size);
@@ -522,6 +519,10 @@ body.gallery-page {
   font-size: var(--type-heading-2-size);
 }
 .path-card h3 {
+  font-size: var(--type-heading-3-size);
+}
+.participation-editorial .path-prose h3,
+.participation-editorial .participation-guide__content h3 {
   font-size: var(--type-heading-3-size);
 }
 .path-card p {

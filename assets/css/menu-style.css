@@ -396,6 +396,7 @@ body.is-loaded {
 .footer-policy-link {
   display: inline-block;
   margin-inline-start: 0.75rem;
+  padding-block: 2px;
   color: inherit;
   font: inherit;
   writing-mode: horizontal-tb;
