@@ -1,4 +1,5 @@
 /* Support catalog layout. Shared path components own gutters, type and links. */
+.support-page .path-section { padding-block: var(--space-6); }
 .support-page .support-intro .path-prose { max-width: var(--path-reading); }
 .support-page .support-index {
   display: grid;

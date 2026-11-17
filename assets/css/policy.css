@@ -41,8 +41,8 @@
 }
 
 .policy-page .policy-section + .policy-section {
-  margin-top: clamp(32px, 3vw, 40px);
-  padding-top: clamp(32px, 3vw, 40px) !important;
+  margin-top: var(--space-6);
+  padding-top: var(--space-6) !important;
   border-top: 1px solid rgba(48, 58, 5, 0.16);
 }
 
@@ -78,8 +78,8 @@
   }
 
   .policy-page .policy-section + .policy-section {
-    margin-top: 32px;
-    padding-top: 32px !important;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6) !important;
   }
 }
 
