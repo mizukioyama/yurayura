@@ -63,6 +63,9 @@ test('public preparation notice matches its source on all four static pages', ()
 });
 
 test('approved second-show details are synchronized without opening reception', () => {
+  // Second-show recruitment terms were approved on 2026-11-18: fee 20,000 yen,
+  // 6 artists, max 6 works, F4 guide, 2026-11-28 11:00 to 2027-01-15 20:00 JST.
+  // The receiver is not verified yet, so reception must still not open.
   const header = read('assets/parts/header.html');
   assert(header.includes('次回開催：岩手県 2027年3月中旬開催'));
 
@@ -90,15 +93,21 @@ test('approved second-show details are synchronized without opening reception', 
       'すべての作品の展示を保証するものではありません'
     ]) assert(text.includes(value), name + ': ' + value);
     assert(text.includes('参考：第1回（2026年10月・横浜）の募集条件'), name + ': first-show reference section');
-    assert(text.indexOf('参考：第1回（2026年10月・横浜）の募集条件') < text.indexOf('20,000円'), name + ': first-show values stay in the reference section');
-    assert(text.includes('未定（確定次第、正式な募集要項でご案内します）'), name + ': next-show overview values undecided');
-    assert(text.includes('展示作品数、作品サイズは未定です'), name + ': next-show detail limits undecided');
+    const overview = text.slice(0, text.indexOf('参考：第1回（2026年10月・横浜）の募集条件'));
+    for (const value of ['20,000円', '募集人数 6名', '1人最大6点 ※総作品数で変動します。', 'F4号を目安', '2026年11月28日 11:00', '2027年1月15日 20:00']) assert(overview.includes(value), name + ': second-show overview decided: ' + value);
+    const reference = text.slice(text.indexOf('参考：第1回（2026年10月・横浜）の募集条件'));
+    for (const value of ['20,000円', '6名', '2027年1月29日 20:00']) assert(reference.includes(value), name + ': first-show reference keeps: ' + value);
+    assert(!text.includes('未定（確定次第、正式な募集要項でご案内します）'), name + ': next-show overview values decided');
+    assert(text.includes('展示作品数は1人最大6点（総作品数で変動します）'), name + ': next-show detail limits decided');
     assert(!text.includes('展示作品数は1人最大8点'), name + ': stale prior limit');
     assert(!/2027年4〜5月|2027年4月|2027-01-16|岩手県または栃木県/.test(text), name);
     assert(!/datetime="2027-03-\d{2}/.test(html), name + ': exact event date must not be inferred');
     assert(html.includes('出展申し込みの受付は停止中です') || html.includes('受付停止中'), name);
     if (name === 'apply.html') {
-      assert(!/<form\b/i.test(html), 'public Apply must not contain a form');
+      assert(/<form\b[^>]*id="applicationForm"/i.test(html), 'public Apply carries the application form');
+      assert(html.includes('data-application-endpoint=""'), 'receiver endpoint stays unconfigured until verified');
+      assert(!html.includes('script.google.com/macros'), 'no receiver URL is published before verification');
+      assert(html.includes('data-application-form-wrap hidden'), 'application form stays hidden until the state opens');
       assert(html.includes('target="_blank" rel="noopener noreferrer">会場イメージ写真'), 'public venue-photo link must use safe new-tab attributes');
     } else {
       assert(html.includes('送信・保存されません'), 'review demo remains explicitly non-sending');
@@ -108,7 +117,9 @@ test('approved second-show details are synchronized without opening reception', 
   }
 
   const events = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/exhibitions.json'), 'utf8'));
-  assert(events.every(event => !event.recruitment), 'no recruitment receiver configuration is published');
+  const second = events.find(event => event.id === 'yurayura-02');
+  assert.deepEqual(second.recruitment, {published: true, startsAt: '2026-11-28T11:00:00+09:00', endsAt: '2027-01-15T20:00:00+09:00', receiverVerified: false}, 'second-show recruitment is published with an unverified receiver');
+  assert(!events.find(event => event.id === 'yurayura-01').recruitment, 'first show has no recruitment');
 });
 
 test('sync detects a stale TOP notice and repairs only the temporary fixture', () => {
@@ -152,10 +163,12 @@ test('application and review overview and venue information remain synchronized'
 test('displayed JST dates never open the real receiver before, during or after recruitment', () => {
   const state = require('../assets/js/exhibition-state.js');
   const events = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/exhibitions.json'), 'utf8'));
-  for (const iso of ['2026-11-28T10:59:59+09:00', '2026-11-28T11:00:00+09:00', '2026-12-15T12:00:00+09:00', '2027-01-29T19:59:59+09:00', '2027-01-29T20:00:00+09:00', '2027-01-30T12:00:00+09:00']) {
+  for (const iso of ['2026-11-28T10:59:59+09:00', '2026-11-28T11:00:00+09:00', '2026-12-15T12:00:00+09:00', '2027-01-15T19:59:59+09:00', '2027-01-15T20:00:00+09:00', '2027-01-30T12:00:00+09:00']) {
     const view = state.recruitmentView(state.visibleEvents(events), Date.parse(iso));
     assert.notEqual(view.state, 'open', iso);
     assert(!view.applicationUrl, iso);
   }
-  assert(!/<form\b/i.test(read('apply.html')));
+  const applyHtml = read('apply.html');
+  assert(applyHtml.includes('data-application-endpoint=""'), 'unverified receiver keeps the form unsubmittable');
+  assert(!applyHtml.includes('script.google.com/macros'), 'no receiver URL is published before verification');
 });

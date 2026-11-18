@@ -47,6 +47,12 @@
         "ja": "2027年3月中旬に岩手県盛岡市のLife Art Gallery auswahiで開催する、第2回グループ展「ゆらゆら」の案内です。",
         "en": "Information on the 2nd Yurayura group exhibition, to be held in mid-March 2027 at Life Art Gallery auswahi in Morioka, Iwate."
       }
+    },
+    "recruitment": {
+      "published": true,
+      "startsAt": "2026-11-28T11:00:00+09:00",
+      "endsAt": "2027-01-15T20:00:00+09:00",
+      "receiverVerified": false
     }
   }
 ]
