@@ -89,7 +89,7 @@ function publicEvents(rows) {
     const recruitment = event.recruitment;
     if (recruitment?.published === true) {
       if (!Number.isFinite(instant(recruitment.startsAt)) || !Number.isFinite(instant(recruitment.endsAt)) || instant(recruitment.endsAt) <= instant(recruitment.startsAt)) throw new Error('Invalid recruitment');
-      row.recruitment = { published: true, startsAt: recruitment.startsAt, endsAt: recruitment.endsAt, receiverVerified: false };
+      row.recruitment = { published: true, startsAt: recruitment.startsAt, endsAt: recruitment.endsAt, receiverVerified: recruitment.receiverVerified === true };
     }
     return row;
   });

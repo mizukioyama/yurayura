@@ -52,7 +52,7 @@
       "published": true,
       "startsAt": "2026-11-28T11:00:00+09:00",
       "endsAt": "2027-01-15T20:00:00+09:00",
-      "receiverVerified": false
+      "receiverVerified": true
     }
   }
 ]
