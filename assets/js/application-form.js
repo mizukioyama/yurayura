@@ -90,14 +90,36 @@
       el.classList.add("application-enter");
     }
 
-    function composeFormat() {
-      var hidden = form.querySelector("#application-format");
-      var chosen = Array.from(form.querySelectorAll('input[name="formatChoice"]:checked')).map(function (el) { return el.value; });
+    function composeChoices(name, hiddenId) {
+      var hidden = form.querySelector(hiddenId);
+      var chosen = Array.from(form.querySelectorAll('input[name="' + name + '"]:checked')).map(function (el) { return el.value; });
       hidden.value = chosen.join("、");
+      return chosen;
+    }
+
+    function composeWorks() {
+      var count = form.querySelector("#application-works-count").value;
+      var size = form.querySelector('input[name="sizeChoice"]:checked');
+      var hidden = form.querySelector("#application-works");
+      hidden.value = count && size ? count + "（" + size.value + "）" : "";
+      return hidden.value;
     }
 
     reviewButton.addEventListener("click", function () {
-      composeFormat();
+      var genre = composeChoices("genreChoice", "#application-genre");
+      composeChoices("formatChoice", "#application-format");
+      composeChoices("deliveryChoice", "#application-delivery");
+      var works = composeWorks();
+      if (!genre.length) {
+        errorBox.textContent = "作品ジャンルを選択してください。";
+        form.querySelector('input[name="genreChoice"]').focus();
+        return;
+      }
+      if (!works) {
+        errorBox.textContent = "予定作品数とサイズの目安を選択してください。";
+        form.querySelector("#application-works-count").focus();
+        return;
+      }
       var invalid = Array.from(form.querySelectorAll("input, textarea")).filter(function (el) { return !el.checkValidity(); });
       form.querySelectorAll("input, textarea").forEach(function (el) {
         el.setAttribute("aria-invalid", String(invalid.includes(el)));
@@ -118,7 +140,8 @@
         if (el.name === "website") return;
         var label = form.querySelector('label[for="' + el.id + '"]');
         var dt = document.createElement("dt");
-        dt.textContent = label ? label.textContent : (el.name === "format" ? "展示形式" : el.name);
+        var fallbackLabels = { format: "展示形式", genre: "作品ジャンル", works: "予定作品数・サイズ", delivery: "搬入方法の希望" };
+        dt.textContent = label ? label.textContent : (fallbackLabels[el.name] || el.name);
         var dd = document.createElement("dd");
         dd.textContent = el.value || "未入力";
         valuesList.append(dt, dd);
@@ -153,9 +176,11 @@
       sendButton.disabled = true;
       sendButton.textContent = "送信中...";
       try {
+        var body = new FormData(form);
+        ["genreChoice", "formatChoice", "sizeChoice", "deliveryChoice"].forEach(function (key) { body.delete(key); });
         var response = await fetch(form.dataset.applicationEndpoint, {
           method: "POST",
-          body: new FormData(form),
+          body: body,
           headers: { Accept: "application/json" }
         });
         var result = await response.json().catch(function () { return { status: "error" }; });
