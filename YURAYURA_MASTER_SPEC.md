@@ -228,7 +228,7 @@ Conceptから支援者・支援会場・参加申し込み・主催者プロフ�
 
 ### 募集状態表示と更新手順（PR #44最終調整）
 
-参加ページのdata-recruitment-statusとdata-recruitment-copyは、exhibition-state.jsのrecruitmentViewを共通の正本とする。情報なし/準備中/受付開始前/受付中/終了/取得失敗を分け、応募方法・FAQ・募集条件の文言も同時に切り替える。HTMLの初期値は受付停止・未定という安全なfallbackで、JavaScript無効/読込前にも受付中としない。2026-11-18に第2回の募集情報を公開JSONへ登録した（published:true、2026-11-28T11:00+09:00〜2027-01-15T20:00+09:00、当初receiverVerified:false）。2026-11-21に申込専用Google Apps Scriptの受信先を接続し、期間外の送信がサーバー側で拒否されることを実地に確認したため、receiverVerified:trueへ更新した。表示は開始時刻までは受付開始前のままで、期間内だけ受付中になる。
+参加ページのdata-recruitment-statusとdata-recruitment-copyは、exhibition-state.jsのrecruitmentViewを共通の正本とする。情報なし/準備中/受付開始前/受付中/終了/取得失敗を分け、応募方法・FAQ・募集条件の文言も同時に切り替える。HTMLの初期値は受付停止・未定という安全なfallbackで、JavaScript無効/読込前にも受付中としない。2026-11-18に第2回の募集情報を公開JSONへ登録した（published:true、2026-11-28T11:00+09:00〜2027-01-15T20:00+09:00、当初receiverVerified:false）。2026-11-21に申込専用Google Apps Scriptの受信先を接続し、期間外の送信がサーバー側で拒否されることを実地に確認したため、receiverVerified:trueへ更新した。表示は開始時刻までは受付開始前のままで、期間内だけ受付中になる。2026-11-21に主催者の指示で、開始前は本番のApplyページにフォームを表示するが送信ボタンは無効化する表示確認モードを追加した（入力と確認画面は確認でき、送信は行われない。受信先も期間外は拒否する）。開始時刻以降は自動で通常の受付になる。
 
 受付中の必要条件は公開承認済みの開催・募集、offset付きの有効な開始/終了日時、開始時刻以上/終了時刻未満、receiverVerifiedがboolean trueであること。開催または募集データの不正/取得失敗/未確認受信先では受付中にしない。過去の募集準備データが確認済みの受付中データを隠さないよう選択する。状態が変わらない場合はDOMを書き換えず、ライブ領域の重複読み上げを避ける。
 

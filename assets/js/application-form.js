@@ -37,15 +37,27 @@
       return;
     }
 
+    var previewOnly = false;
     if (view.state === "upcoming") {
-      notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。";
-      return;
+      if (!form.dataset.applicationEndpoint) {
+        notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。";
+        return;
+      }
+      // Display-only preview before the window opens (organizer
+      // request, 2026-11-21): the form is shown on the public page
+      // so it can be checked, but the send button stays disabled
+      // and no submission is made. The receiver also rejects
+      // early submissions server-side. From 2026-11-28T11:00+09:00
+      // the state becomes "open" and the same code accepts real
+      // applications with no further change.
+      previewOnly = true;
+      notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。現在はフォームの表示確認用で、送信はできません。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。";
     }
     if (view.state === "closed") {
       notice.textContent = "第2回の申込受付は終了しました。";
       return;
     }
-    if (view.state !== "open") {
+    if (view.state !== "open" && !previewOnly) {
       notice.textContent = "現在、出展申し込みは受け付けていません。受付期間は2026年11月28日 11:00〜2027年1月15日 20:00（日本時間・JST）です。";
       return;
     }
@@ -55,7 +67,9 @@
       notice.textContent = "受付準備中です。申込フォームの準備が整うまで、もうしばらくお待ちください。";
       return;
     }
-    notice.textContent = "出展者を募集しています。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。下記のフォームからお申し込みください。";
+    if (!previewOnly) {
+      notice.textContent = "出展者を募集しています。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。下記のフォームからお申し込みください。";
+    }
     wrap.hidden = false;
 
     var confirmSection = root.querySelector("#application-confirm");
@@ -107,8 +121,13 @@
       form.querySelector("input").focus();
     });
 
+    if (previewOnly) {
+      sendButton.disabled = true;
+      sendButton.textContent = "送信は11月28日 11:00から";
+    }
+
     sendButton.addEventListener("click", async function () {
-      if (sending) return;
+      if (previewOnly || sending) return;
       if (honeypot.value.trim() !== "" || performance.now() - formReadyAt < 1000) {
         errorBox.textContent = "送信できませんでした。時間をおいて、もう一度お試しください。";
         confirmSection.hidden = true;
