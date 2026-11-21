@@ -136,7 +136,7 @@
       }
       errorBox.textContent = "";
       valuesList.replaceChildren();
-      form.querySelectorAll("input:not([type=checkbox]), textarea").forEach(function (el) {
+      form.querySelectorAll("input:not([type=checkbox]):not([type=radio]), textarea").forEach(function (el) {
         if (el.name === "website") return;
         var label = form.querySelector('label[for="' + el.id + '"]');
         var dt = document.createElement("dt");
