@@ -589,6 +589,7 @@ nav.path-section {
 .participate-page .application-form .application-field:nth-of-type(10) {animation-delay:.36s}
 .participate-page .application-form .application-field:nth-of-type(11) {animation-delay:.4s}
 .participate-page .application-enter {animation:application-rise .35s ease both}
+.participate-page .application-explain-fields:not([hidden]) {animation:application-rise .35s ease both}
 @media (prefers-reduced-motion: reduce) {
 .participate-page .application-form .application-field, .participate-page .application-enter {animation:none}
 .participate-page .application-form-wrap :is(input,textarea,button), .participate-page .application-choice {transition:none}
