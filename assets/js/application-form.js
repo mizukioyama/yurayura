@@ -6,13 +6,16 @@
  * receiver also enforces the recruitment window server-side;
  * this display gate is not the deadline control.
  *
- * Stage 2: set APPLICATION_ENDPOINT to the deployed Google Apps
- * Script web-app URL (/exec) for applications, then flip
- * recruitment.receiverVerified to true in the same change.
+ * Stage 2 (done 2026-11-21): APPLICATION_ENDPOINT is the deployed
+ * application-only Google Apps Script web-app URL (/exec), and
+ * recruitment.receiverVerified is true in exhibitions.json. The
+ * receiver was verified live before the window: a pre-window POST
+ * returns the server-side "before opening" error, so nothing is
+ * accepted until 2026-11-28T11:00+09:00.
  */
 (function () {
   "use strict";
-  var APPLICATION_ENDPOINT = "";
+  var APPLICATION_ENDPOINT = "https://script.google.com/macros/s/AKfycbxd5YXXw9f6T85w6GD_fm3sVOzwst348OQ5W0p8O5KRxxINXhU5suCY_hhkqFQfmK8DNQ/exec";
 
   document.addEventListener("DOMContentLoaded", async function () {
     var root = document.querySelector("[data-application]");

@@ -118,7 +118,7 @@ test('approved second-show details are synchronized without opening reception', 
 
   const events = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/exhibitions.json'), 'utf8'));
   const second = events.find(event => event.id === 'yurayura-02');
-  assert.deepEqual(second.recruitment, {published: true, startsAt: '2026-11-28T11:00:00+09:00', endsAt: '2027-01-15T20:00:00+09:00', receiverVerified: false}, 'second-show recruitment is published with an unverified receiver');
+  assert.deepEqual(second.recruitment, {published: true, startsAt: '2026-11-28T11:00:00+09:00', endsAt: '2027-01-15T20:00:00+09:00', receiverVerified: true}, 'second-show recruitment is published with a verified receiver');
   assert(!events.find(event => event.id === 'yurayura-01').recruitment, 'first show has no recruitment');
 });
 
@@ -160,15 +160,18 @@ test('application and review overview and venue information remain synchronized'
   assert.equal(section(read('apply.html')), section(read('review-apply.html')));
 });
 
-test('displayed JST dates never open the real receiver before, during or after recruitment', () => {
+test('displayed JST dates open the verified receiver only inside the recruitment window', () => {
   const state = require('../assets/js/exhibition-state.js');
   const events = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/exhibitions.json'), 'utf8'));
-  for (const iso of ['2026-11-28T10:59:59+09:00', '2026-11-28T11:00:00+09:00', '2026-12-15T12:00:00+09:00', '2027-01-15T19:59:59+09:00', '2027-01-15T20:00:00+09:00', '2027-01-30T12:00:00+09:00']) {
-    const view = state.recruitmentView(state.visibleEvents(events), Date.parse(iso));
-    assert.notEqual(view.state, 'open', iso);
-    assert(!view.applicationUrl, iso);
-  }
+  const at = iso => state.recruitmentView(state.visibleEvents(events), Date.parse(iso)).state;
+  assert.equal(at('2026-11-28T10:59:59+09:00'), 'upcoming');
+  assert.equal(at('2026-11-28T11:00:00+09:00'), 'open');
+  assert.equal(at('2026-12-15T12:00:00+09:00'), 'open');
+  assert.equal(at('2027-01-15T19:59:59+09:00'), 'open');
+  assert.equal(at('2027-01-15T20:00:00+09:00'), 'closed');
+  assert.equal(at('2027-01-30T12:00:00+09:00'), 'closed');
   const applyHtml = read('apply.html');
-  assert(applyHtml.includes('data-application-endpoint=""'), 'unverified receiver keeps the form unsubmittable');
-  assert(!applyHtml.includes('script.google.com/macros'), 'no receiver URL is published before verification');
+  assert(applyHtml.includes('data-application-endpoint=""'), 'endpoint is injected by application-form.js, not hardcoded in HTML');
+  const formJs = read('assets/js/application-form.js');
+  assert(formJs.includes('script.google.com/macros/s/'), 'verified receiver URL is configured in application-form.js');
 });
