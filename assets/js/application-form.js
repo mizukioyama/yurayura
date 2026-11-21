@@ -110,9 +110,21 @@
       composeChoices("formatChoice", "#application-format");
       composeChoices("deliveryChoice", "#application-delivery");
       var works = composeWorks();
+      var gallery = composeChoices("galleryChoice", "#application-gallery-consent");
+      var pr = composeChoices("prChoice", "#application-pr-consent");
       if (!genre.length) {
         errorBox.textContent = "作品ジャンルを選択してください。";
         form.querySelector('input[name="genreChoice"]').focus();
+        return;
+      }
+      if (!gallery.length) {
+        errorBox.textContent = "公式サイトへの掲載希望を選択してください。";
+        form.querySelector('input[name="galleryChoice"]').focus();
+        return;
+      }
+      if (!pr.length) {
+        errorBox.textContent = "告知での作品画像の使用について選択してください。";
+        form.querySelector('input[name="prChoice"]').focus();
         return;
       }
       if (!works) {
@@ -140,7 +152,7 @@
         if (el.name === "website") return;
         var label = form.querySelector('label[for="' + el.id + '"]');
         var dt = document.createElement("dt");
-        var fallbackLabels = { format: "展示形式", genre: "作品ジャンル", works: "予定作品数・サイズ", delivery: "搬入方法の希望" };
+        var fallbackLabels = { format: "展示形式", genre: "作品ジャンル", works: "予定作品数・サイズ", delivery: "搬入方法の希望", galleryConsent: "公式サイトへの掲載", prConsent: "告知での作品画像の使用" };
         dt.textContent = label ? label.textContent : (fallbackLabels[el.name] || el.name);
         var dd = document.createElement("dd");
         dd.textContent = el.value || "未入力";
@@ -177,7 +189,7 @@
       sendButton.textContent = "送信中...";
       try {
         var body = new FormData(form);
-        ["genreChoice", "formatChoice", "sizeChoice", "deliveryChoice"].forEach(function (key) { body.delete(key); });
+        ["genreChoice", "formatChoice", "sizeChoice", "deliveryChoice", "galleryChoice", "prChoice"].forEach(function (key) { body.delete(key); });
         var response = await fetch(form.dataset.applicationEndpoint, {
           method: "POST",
           body: body,
