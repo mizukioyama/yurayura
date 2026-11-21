@@ -53,8 +53,8 @@ test('changed shared assets and the shared fragments use content-matched cache i
   }
 });
 
-test('public preparation notice matches its source on all four static pages', () => {
-  for (const name of ['index.html', 'information.html', 'apply.html', 'review-apply.html']) {
+test('public preparation notice matches its source on all three static pages', () => {
+  for (const name of ['index.html', 'information.html', 'apply.html']) {
     const html = read(name);
     const matches = [...html.matchAll(/<!-- INFORMATION:PLANNING:START -->([\s\S]*?)<!-- INFORMATION:PLANNING:END -->/g)];
     assert.equal(matches.length, 1, name);
@@ -74,7 +74,7 @@ test('approved second-show details are synchronized without opening reception', 
     assert(information.includes(value), 'information.html: ' + value);
   }
 
-  for (const name of ['apply.html', 'review-apply.html']) {
+  for (const name of ['apply.html']) {
     const html = read(name);
     const text = visibleText(html);
     for (const value of [
@@ -109,10 +109,6 @@ test('approved second-show details are synchronized without opening reception', 
       assert(!html.includes('script.google.com/macros'), 'no receiver URL is published before verification');
       assert(html.includes('data-application-form-wrap hidden'), 'application form stays hidden until the state opens');
       assert(html.includes('target="_blank" rel="noopener noreferrer">会場イメージ写真'), 'public venue-photo link must use safe new-tab attributes');
-    } else {
-      assert(html.includes('送信・保存されません'), 'review demo remains explicitly non-sending');
-      assert(/<form\b/i.test(html), 'review-only demo stays available');
-      assert(!/<form[^>]+action=/i.test(html), 'review demo must not have a receiver');
     }
   }
 
@@ -153,11 +149,6 @@ test('changing only the footer part refreshes the shared parts cache identifier'
   assert.equal(run().status, 0);
   assert.notEqual(versionOf(fs.readFileSync(loaderPath, 'utf8')), before, 'a footer-only change must change PARTS_VERSION');
   assert.equal(run('--check').status, 0);
-});
-
-test('application and review overview and venue information remain synchronized', () => {
-  const section = html => html.slice(html.indexOf('<h3>開催概要</h3>'), html.indexOf('<h2>次回展示の開催別条件</h2>'));
-  assert.equal(section(read('apply.html')), section(read('review-apply.html')));
 });
 
 test('displayed JST dates open the verified receiver only inside the recruitment window', () => {

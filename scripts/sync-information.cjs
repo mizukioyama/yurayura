@@ -45,7 +45,7 @@ const versions=new Map(assets.map(asset=>[asset,crypto.createHash('sha256').upda
 for(const name of fs.readdirSync(root).filter(name=>name.endsWith('.html'))) {
  const target=path.join(root,name), before=fs.readFileSync(target,'utf8');
  let after=name==='information.html'?html:before;
- // Sync the same public notice into TOP, Information and application pages, including review.
+ // Sync the same public notice into TOP, Information and application pages.
  after=after.replace(/(<!-- INFORMATION:PLANNING:START -->)[\s\S]*?(<!-- INFORMATION:PLANNING:END -->)/g, (_,start,end)=>start+content.planningNotice(name==='information.html'?'information':undefined)+end);
  for(const [asset,hash] of versions) {
    const escaped=asset.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');

@@ -30,11 +30,8 @@ GitHub PagesのrootにあるHTMLは、noindexであってもURLを知る人が�
 | プロフィール / `profile.html` | 企画に込めた想いを読む | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/profile.html` | included |
 | Exhibition / `exhibitions.html` | 開催中・過去展示作品への入口 | CANONICAL / public | indexable | `https://mizukioyama.github.io/yurayura/exhibitions.html` | included |
 | 参加申込 / `apply.html` | 開催別条件と受付停止の案内 | CANONICAL / public | noindex,nofollow,noimageindex | `https://mizukioyama.github.io/yurayura/apply.html` | excluded |
-| `review-participate.html` / `review-apply.html` | 本人確認用レビュー | DEV_ONLY / public URL | noindex,nofollow,noimageindex | review URL | excluded |
 | `artist.html` | 出展者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
 | `gust.html` | 施術参加者募集の旧ページ | LEGACY / public URL | `noindex,follow` | not set | excluded |
-| `github-manual.html` | GitHubコマンドの開発用手順 | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
-| `test.html` | Fog Holeの検証用ページ | DEV_ONLY / public URL | `noindex,follow` | not set | excluded |
 | `top.html` | TOPへ転送する旧URL | LEGACY / public redirect | `noindex,follow` | `https://mizukioyama.github.io/yurayura/` | excluded |
 
 正式な検索対象はCANONICALの11ページ。主要ナビゲーションはTOP・Concept・Gallery・Information・Contact。noindex対象や転送URLを正式なサイト導線・indexableページとして扱わない。

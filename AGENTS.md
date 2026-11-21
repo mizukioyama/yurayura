@@ -103,7 +103,7 @@ Discover → Plan → Execute → Verify → Iterate
 6. GitHub Pages設定
 を確認する。
 
-`backups/`、`reports/`、`test.html`、`top.html`、`github-manual.html`、`.DS_Store` 等は整理候補だが、監査前に削除しない。
+`backups/`、`reports/`、`top.html`、`.DS_Store` 等は整理候補だが、監査前に削除しない。（`test.html`、`github-manual.html` は2026-11-21の監査と承認を経て削除済み。）
 
 ### 外部操作
 問い合わせ送信など、実データを外部へ送るテストは原則モックで行う。
