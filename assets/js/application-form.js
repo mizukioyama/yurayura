@@ -84,7 +84,20 @@
     var formReadyAt = performance.now();
     var sending = false;
 
+    function enter(el) {
+      el.classList.remove("application-enter");
+      void el.offsetWidth;
+      el.classList.add("application-enter");
+    }
+
+    function composeFormat() {
+      var hidden = form.querySelector("#application-format");
+      var chosen = Array.from(form.querySelectorAll('input[name="formatChoice"]:checked')).map(function (el) { return el.value; });
+      hidden.value = chosen.join("、");
+    }
+
     reviewButton.addEventListener("click", function () {
+      composeFormat();
       var invalid = Array.from(form.querySelectorAll("input, textarea")).filter(function (el) { return !el.checkValidity(); });
       form.querySelectorAll("input, textarea").forEach(function (el) {
         el.setAttribute("aria-invalid", String(invalid.includes(el)));
@@ -105,19 +118,21 @@
         if (el.name === "website") return;
         var label = form.querySelector('label[for="' + el.id + '"]');
         var dt = document.createElement("dt");
-        dt.textContent = label ? label.textContent : el.name;
+        dt.textContent = label ? label.textContent : (el.name === "format" ? "展示形式" : el.name);
         var dd = document.createElement("dd");
         dd.textContent = el.value || "未入力";
         valuesList.append(dt, dd);
       });
       form.hidden = true;
       confirmSection.hidden = false;
+      enter(confirmSection);
       confirmSection.focus();
     });
 
     editButton.addEventListener("click", function () {
       confirmSection.hidden = true;
       form.hidden = false;
+      enter(form);
       form.querySelector("input").focus();
     });
 
@@ -147,6 +162,7 @@
         if (!response.ok || result.status !== "success") throw new Error("submission failed");
         confirmSection.hidden = true;
         completeSection.hidden = false;
+        enter(completeSection);
         completeSection.focus();
         form.reset();
       } catch (error) {

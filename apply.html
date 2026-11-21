@@ -102,9 +102,9 @@
   <link rel="stylesheet" href="./assets/css/page-transition.css?v=f4830c6695bc" />
     <script src="./assets/js/page-transition.js?v=86d0b3bd7626" defer></script>
   <script src="./assets/js/liquid-button.js?v=e436e98eab4c" defer></script>
-  <link rel="stylesheet" href="./assets/css/participation.css?v=ecbb83480e4e">
+  <link rel="stylesheet" href="./assets/css/participation.css?v=d874d8f66614">
   <script src="./assets/js/exhibition-state.js?v=945292b62280" defer></script>
-  <script src="./assets/js/application-form.js?v=8698b33987f9" defer></script>
+  <script src="./assets/js/application-form.js?v=abc9b519d215" defer></script>
   <link rel="stylesheet" href="./assets/css/visual-shared.css?v=7a6a76f33f3e">
   <script src="./assets/js/slide.js?v=1b3fb3d6179f" defer></script>
   <script src="./assets/js/participation-accordion.js?v=c9f0f1600257" defer></script>
@@ -281,15 +281,15 @@
               <form id="applicationForm" class="application-form" method="POST" data-application-endpoint="" aria-describedby="application-error">
                 <div class="application-field"><label for="application-artist">Artist名・活動名（必須）</label><input id="application-artist" name="artist" required maxlength="2000" type="text" autocomplete="off"></div>
                 <div class="application-field"><label for="application-name">氏名（必須）</label><input id="application-name" name="name" required maxlength="2000" type="text" autocomplete="name"></div>
-                <div class="application-field"><label for="application-email">メールアドレス（必須）</label><input id="application-email" name="email" required maxlength="2000" type="email" autocomplete="email"></div>
-                <div class="application-field"><label for="application-portfolio">SNS・Portfolio URL（任意）</label><input id="application-portfolio" name="portfolio" maxlength="2000" type="url"></div>
-                <div class="application-field"><label for="application-genre">作品ジャンル（必須）</label><input id="application-genre" name="genre" required maxlength="2000" type="text"></div>
-                <div class="application-field"><label for="application-works">予定作品数・サイズ（必須）</label><input id="application-works" name="works" required maxlength="2000" type="text"></div>
-                <div class="application-field"><label for="application-format">展示形式（任意・候補から選択できます）</label><input id="application-format" name="format" type="text" list="application-display-formats" maxlength="200"><datalist id="application-display-formats"><option value="平面作品"></option><option value="立体作品"></option><option value="吊るし展示"></option><option value="その他"></option></datalist></div>
-                <div class="application-field"><label for="application-installation">特殊な設置方法・必要備品（任意）</label><textarea id="application-installation" name="installation" rows="4" maxlength="2000"></textarea></div>
-                <div class="application-field"><label for="application-description">作品情報（必須）</label><textarea id="application-description" name="description" required maxlength="2000" rows="4"></textarea></div>
-                <div class="application-field"><label for="application-delivery">搬入方法の希望（任意）</label><input id="application-delivery" name="delivery" maxlength="2000" type="text"></div>
-                <div class="application-field"><label for="application-notes">参加理由・備考（任意）</label><textarea id="application-notes" name="notes" maxlength="2000" rows="4"></textarea></div>
+                <div class="application-field"><label for="application-email">メールアドレス（必須）</label><input id="application-email" name="email" required maxlength="2000" type="email" autocomplete="email" inputmode="email"></div>
+                <div class="application-field"><label for="application-portfolio">SNS・Portfolio URL（任意）</label><input id="application-portfolio" name="portfolio" maxlength="2000" type="url" inputmode="url" placeholder="https://"></div>
+                <div class="application-field"><label for="application-genre">作品ジャンル（必須）</label><input id="application-genre" name="genre" required maxlength="2000" type="text" list="application-genres" placeholder="候補から選択、または自由に入力"><datalist id="application-genres"><option value="抽象画"></option><option value="絵画"></option><option value="ドローイング"></option><option value="版画"></option><option value="写真"></option><option value="立体"></option><option value="工芸"></option><option value="映像"></option><option value="その他"></option></datalist></div>
+                <div class="application-field"><label for="application-works">予定作品数・サイズ（必須）</label><input id="application-works" name="works" required maxlength="2000" type="text" placeholder="例：F4号 3点、F6号 2点（合計5点）"></div>
+                <div class="application-field"><span class="application-field-label" id="application-format-label">展示形式（任意・複数選択可）</span><div class="application-choices" role="group" aria-labelledby="application-format-label"><label class="application-choice"><input type="checkbox" name="formatChoice" value="平面作品"><span>平面作品</span></label><label class="application-choice"><input type="checkbox" name="formatChoice" value="立体作品"><span>立体作品</span></label><label class="application-choice"><input type="checkbox" name="formatChoice" value="吊るし展示"><span>吊るし展示</span></label><label class="application-choice"><input type="checkbox" name="formatChoice" value="映像・メディア"><span>映像・メディア</span></label><label class="application-choice"><input type="checkbox" name="formatChoice" value="インスタレーション"><span>インスタレーション</span></label><label class="application-choice"><input type="checkbox" name="formatChoice" value="その他"><span>その他</span></label></div><input id="application-format" name="format" type="hidden" value=""></div>
+                <div class="application-field"><label for="application-installation">特殊な設置方法・必要備品（任意）</label><textarea id="application-installation" name="installation" rows="4" maxlength="2000" placeholder="例：吊るし展示用のワイヤー、電源、台座など必要なものがあれば"></textarea></div>
+                <div class="application-field"><label for="application-description">作品情報（必須）</label><textarea id="application-description" name="description" required maxlength="2000" rows="4" placeholder="作品の技法・素材・サイズ感など、分かる範囲でご記入ください"></textarea></div>
+                <div class="application-field"><label for="application-delivery">搬入方法の希望（任意）</label><input id="application-delivery" name="delivery" maxlength="2000" type="text" list="application-delivery-options" placeholder="候補から選択、または自由に入力"><datalist id="application-delivery-options"><option value="直接搬入"></option><option value="配送（宅配便）"></option><option value="その他・応相談"></option></datalist></div>
+                <div class="application-field"><label for="application-notes">参加理由・備考（任意）</label><textarea id="application-notes" name="notes" maxlength="2000" rows="4" placeholder="参加理由や、運営への連絡事項があればご記入ください"></textarea></div>
                 <div class="application-trap" aria-hidden="true"><label for="applicationWebsite">Website</label><input type="text" id="applicationWebsite" name="website" tabindex="-1" autocomplete="off" maxlength="200"></div>
                 <label class="application-consent"><input type="checkbox" id="application-consent" name="consent" value="同意済み" required><span><a href="./policy.html">個人情報の取り扱い</a>を確認し、同意します</span></label>
                 <p id="application-error" role="alert"></p>
