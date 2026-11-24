@@ -566,6 +566,8 @@ nav.path-section {
 .participate-page .application-hint {margin:0;opacity:.85}
 .participate-page .application-group-title {font-weight:700;margin:40px 0 4px;padding-bottom:8px;border-bottom:1px solid var(--path-rule)}
 .participate-page .application-group-title:first-of-type {margin-top:8px}
+.participate-page .application-field :is(label, .application-field-label):has(.application-required) {font-weight:700}
+.participate-page .application-required {display:inline-block;margin-inline-start:8px;padding:1px 10px;border-radius:999px;background:var(--color-txt);color:var(--color-bg);font-weight:700;letter-spacing:.08em;vertical-align:2px}
 .participate-page .application-works-inputs {display:flex;align-items:center;gap:12px}
 .participate-page .application-works-inputs select {max-width:240px}
 .participate-page .application-choices {display:flex;flex-wrap:wrap;gap:8px}
