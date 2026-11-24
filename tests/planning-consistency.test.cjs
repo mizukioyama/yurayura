@@ -68,6 +68,9 @@ test('approved second-show details are synchronized across pages', () => {
   // The exhibition dates were decided on 2026-11-24: 2027-03-20 to 2027-03-28.
   const header = read('assets/parts/header.html');
   assert(header.includes('次回開催：岩手県 2027年3月20日〜28日開催'));
+  // The footer is loaded from footer.xml (allmenu.js), not footer.html.
+  const footer = read('assets/parts/footer.xml');
+  assert(footer.includes('次回開催：岩手県 2027年3月20日〜28日開催'));
 
   const information = visibleText(read('information.html'));
   for (const value of ['企画検討中', '岩手県盛岡市', '2027年3月20日', 'Life Art Gallery auswahi', '東北堂大通ビル']) {
