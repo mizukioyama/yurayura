@@ -128,9 +128,9 @@ body.gallery-page button {
   padding: 0.2rem 0.5rem !important;
   border: 0 !important;
   background: transparent !important;
-  color: #505050 !important;
+  color: #444 !important;
   font: inherit !important;
-  opacity: 0.78 !important;
+  opacity: 1 !important;
   transition: color 160ms ease, opacity 160ms ease, text-decoration-color 160ms ease;
   white-space: nowrap !important;
 }

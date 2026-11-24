@@ -258,6 +258,7 @@ body.gallery-page .gallery-sidebar .gallery-filter.liquid-control:focus-visible 
 }
 
 body.gallery-page .gallery-page-button.liquid-control {
+  color: var(--color-txt);
   min-width: 5rem;
   min-height: max(44px, clamp(2.25rem, calc(0.4vw + 2rem), 2.75rem));
   padding:
