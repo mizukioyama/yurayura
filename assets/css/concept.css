@@ -104,6 +104,10 @@
   text-align: center;
 }
 
+.concept-gallery-link liquid-button + .section__txt {
+  margin-top: 2.4rem;
+}
+
 .concept-gallery-link__button,
 #concept .concept-link {
   position: relative;
