@@ -2,10 +2,10 @@
 (function (root) {
   'use strict';
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  // Public-approved generic notice only; private plans stay outside this source.
+  // Public notice with the decided facts (dates and venue decided 2026-11-24); undecided details stay outside this source.
   const planningNotice = (page) => escape(page === 'information'
-    ? '次回は岩手県盛岡市での開催に向けて準備を進めています。会場・時期の詳細は、このページで順次お知らせします。'
-    : '次回は岩手県盛岡市での開催に向けて準備を進めています。会場・時期の詳細はINFORMATIONをご確認ください。');
+    ? '次回は2027年3月20日（土）〜28日（日）、岩手県盛岡市の Life Art Gallery auswahi で開催します。詳細は、このページをご確認ください。'
+    : '次回は2027年3月20日（土）〜28日（日）、岩手県盛岡市の Life Art Gallery auswahi で開催します。詳細はINFORMATIONをご確認ください。');
   const day = value => new Intl.DateTimeFormat('ja-JP', {timeZone:'Asia/Tokyo', year:'numeric', month:'long', day:'numeric'}).format(new Date(value));
   const year = event => new Intl.DateTimeFormat('en', {timeZone:'Asia/Tokyo', year:'numeric'}).format(new Date(event.startsAt));
   const isoDay = value => new Intl.DateTimeFormat('sv-SE', {timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));

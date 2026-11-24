@@ -268,9 +268,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const targetSelector = [
     ".top-page .fv__inner",
-    ".top-page #concept .h2_ttl",
-    ".top-page #concept .section__txt",
-    ".top-page #concept .concept-link-wrap",
+    ".top-page #about-yurayura .h2_ttl",
+    ".top-page #about-yurayura .section__txt",
+    ".top-page #about-yurayura .concept-link-wrap",
     ".top-page #artists .section__inner > .h2_ttl",
     ".top-page #artists .section__inner > .section__txt",
     ".top-page #artists .member-track .card",
