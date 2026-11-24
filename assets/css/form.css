@@ -189,7 +189,7 @@
 .contact-form input[type="text"]::placeholder,
 .contact-form input[type="email"]::placeholder,
 .contact-form textarea::placeholder {
-  color: #9f9b8e;
+  color: #6d685a;
 }
 
 .contact-form textarea {
@@ -250,7 +250,7 @@
 .form-row textarea:focus + .form-label,
 .form-row textarea:not(:placeholder-shown) + .form-label {
   top: 0.8rem;
-  opacity: 0.5;
+  opacity: 0.8;
   transform: translateY(-26px);
 }
 
@@ -441,9 +441,9 @@ body.contact-page .contact-policy-trigger:focus-visible {
 .send-btn {
   min-width: 310px;
   padding: 10px 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 4px;
-  color: #f4f2ea;
+  border: 0;
+  border-radius: var(--liquid-radius, 42px);
+  color: var(--color-txt);
   font-family: var(--font-jp);
   letter-spacing: 4px;
   cursor: pointer;

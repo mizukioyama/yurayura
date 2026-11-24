@@ -5,8 +5,8 @@
   position: relative;
   display: block;
   height: auto;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 82vh;
+  min-height: 82svh;
   padding: 0;
   overflow: visible;
   z-index: 2;
@@ -16,7 +16,7 @@
 }
 .page-fv .page-fv__inner {
   position: absolute;
-  inset: 26vmin auto auto 0;
+  inset: 22vmin auto auto 0;
   z-index: 90;
   display: block;
   width: auto;
@@ -78,7 +78,7 @@
 @media (max-width: 1199px) {
   .page-fv .page-fv__inner {
     left: 10vw;
-    top: 28vmin;
+    top: 24vmin;
   }
   .page-fv > .scroll-guide {
     left: 10vw;
@@ -96,7 +96,7 @@
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   .page-fv {
-    min-height: max(100svh, 640px);
+    min-height: max(82svh, 560px);
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -159,7 +159,7 @@
     display: contents;
   }
   .page-fv--gallery .page-fv__inner {
-    padding-top: 26vmin;
+    padding-top: 22vmin;
   }
   .page-fv--gallery .page-fv__title {
     line-height: inherit;

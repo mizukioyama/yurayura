@@ -416,6 +416,7 @@ nav.path-section {
 .participation-editorial .recruit-overview {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  align-items: start;
   gap: var(--space-3);
   margin-block: var(--space-4);
 }
@@ -557,6 +558,7 @@ nav.path-section {
 .participate-page .application-form-wrap [hidden] {display:none}
 .participate-page .application-field {display:grid;gap:8px;margin-block:24px}
 .participate-page .application-field :is(input,textarea,select) {width:100%;box-sizing:border-box;min-width:0;padding:12px;border:1px solid var(--path-rule);background:var(--color-bg);color:inherit;font:inherit}
+.participate-page .application-field :is(input,textarea)::placeholder {color:#6d685a}
 .participate-page .application-form-wrap button {min-height:48px;padding:12px 24px;border:1px solid var(--path-rule);background:transparent;color:inherit;font:inherit;cursor:pointer;margin:8px 8px 8px 0}
 .participate-page .application-form-wrap :is(input,textarea,select,button):focus-visible {outline:2px solid currentColor;outline-offset:4px}
 .participate-page .application-form-wrap [aria-invalid="true"] {border:2px solid currentColor}
