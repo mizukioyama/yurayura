@@ -7,7 +7,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const PARTS_PATH = "./assets/parts/";
-  const PARTS_VERSION = "cc8bfe65a235";
+  const PARTS_VERSION = "c91b10953749";
   const selectors = { header: "#js-header", footer: "#js-footer" };
 
   async function loadHTML(url, targetSelector) {

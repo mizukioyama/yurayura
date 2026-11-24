@@ -62,15 +62,15 @@ test('public preparation notice matches its source on all three static pages', (
   }
 });
 
-test('approved second-show details are synchronized without opening reception', () => {
+test('approved second-show details are synchronized across pages', () => {
   // Second-show recruitment terms were approved on 2026-11-18: fee 20,000 yen,
   // 6 artists, max 6 works, F4 guide, 2026-11-28 11:00 to 2027-01-15 20:00 JST.
-  // The receiver is not verified yet, so reception must still not open.
+  // The exhibition dates were decided on 2026-11-24: 2027-03-20 to 2027-03-28.
   const header = read('assets/parts/header.html');
-  assert(header.includes('次回開催：岩手県 2027年3月中旬開催'));
+  assert(header.includes('次回開催：岩手県 2027年3月20日〜28日開催'));
 
   const information = visibleText(read('information.html'));
-  for (const value of ['企画検討中', '岩手県盛岡市', '2027年3月中旬', 'Life Art Gallery auswahi', '東北堂大通ビル']) {
+  for (const value of ['企画検討中', '岩手県盛岡市', '2027年3月20日', 'Life Art Gallery auswahi', '東北堂大通ビル']) {
     assert(information.includes(value), 'information.html: ' + value);
   }
 
@@ -78,7 +78,7 @@ test('approved second-show details are synchronized without opening reception', 
     const html = read(name);
     const text = visibleText(html);
     for (const value of [
-      '2027年3月中旬',
+      '2027年3月20日（土）〜28日（日）',
       '岩手県盛岡市',
       'Life Art Gallery auswahi',
       '東北堂大通ビル',
@@ -87,21 +87,20 @@ test('approved second-show details are synchronized without opening reception', 
       '1人最大6点 ※総作品数で変動します。',
       'F4号を目安',
       '2026年11月28日 11:00',
-      '2027年1月29日 20:00',
+      '2027年1月15日 20:00',
       '68.33㎡',
       '使用可能な展示面積・壁面面積ではありません',
       'すべての作品の展示を保証するものではありません'
     ]) assert(text.includes(value), name + ': ' + value);
-    assert(text.includes('参考：第1回（2026年10月・横浜）の募集条件'), name + ': first-show reference section');
-    const overview = text.slice(0, text.indexOf('参考：第1回（2026年10月・横浜）の募集条件'));
-    for (const value of ['20,000円', '募集人数 6名', '1人最大6点 ※総作品数で変動します。', 'F4号を目安', '2026年11月28日 11:00', '2027年1月15日 20:00']) assert(overview.includes(value), name + ': second-show overview decided: ' + value);
-    const reference = text.slice(text.indexOf('参考：第1回（2026年10月・横浜）の募集条件'));
-    for (const value of ['20,000円', '6名', '2027年1月29日 20:00']) assert(reference.includes(value), name + ': first-show reference keeps: ' + value);
+    // Apply carries no past-show information or records (decided 2026-11-24):
+    // no first-show reference section and no first-show recruitment window.
+    assert(!text.includes('参考：第1回'), name + ': no first-show reference section');
+    assert(!text.includes('第1回'), name + ': no past-show information');
+    assert(!text.includes('2027年1月29日'), name + ': no first-show recruitment window');
     assert(!text.includes('未定（確定次第、正式な募集要項でご案内します）'), name + ': next-show overview values decided');
     assert(text.includes('展示作品数は1人最大6点（総作品数で変動します）'), name + ': next-show detail limits decided');
     assert(!text.includes('展示作品数は1人最大8点'), name + ': stale prior limit');
     assert(!/2027年4〜5月|2027年4月|2027-01-16|岩手県または栃木県/.test(text), name);
-    assert(!/datetime="2027-03-\d{2}/.test(html), name + ': exact event date must not be inferred');
     assert(html.includes('出展申し込みの受付は停止中です') || html.includes('受付停止中'), name);
     if (name === 'apply.html') {
       assert(/<form\b[^>]*id="applicationForm"/i.test(html), 'public Apply carries the application form');
