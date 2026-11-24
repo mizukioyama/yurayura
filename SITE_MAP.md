@@ -79,7 +79,7 @@ Public treeへ日付付きsource backupを追加しない。runtime依存が見�
 `assets/parts/header.html`  
 `assets/parts/footer.xml`
 
-`assets/js/allmenu.js` がcanonical pagesへfetchして挿入する。`assets/parts/footer.html` は旧include.js経由のlegacy source。
+`assets/js/allmenu.js` がcanonical pagesへfetchして挿入する。`assets/parts/footer.html` は旧include.js経由のlegacy sourceだったため、2026-11-24に削除した（footer.xml と内容が重複し、旧文言の残存原因になった）。
 
 正式ナビゲーション：
 - TOP
