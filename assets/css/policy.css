@@ -98,9 +98,24 @@
   border-block: 1px solid var(--path-rule, rgba(48, 58, 5, .2));
 }
 .policy-page .policy-index summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   min-height: 48px;
   padding-block: 12px;
+  list-style: none;
   cursor: pointer;
+}
+.policy-page .policy-index summary::-webkit-details-marker {
+  display: none;
+}
+.policy-page .policy-index summary::after {
+  content: "+";
+  flex: none;
+}
+.policy-page .policy-index[open] summary::after {
+  content: "−";
 }
 .policy-page .policy-index ol {
   display: grid;

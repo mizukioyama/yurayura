@@ -542,6 +542,12 @@ h1.fv__ttl {
 .participate-page .path-details summary::after {
   font-size: 1.25em;
 }
+.faq-item summary::after {
+  font-size: 1.25em;
+}
+.policy-page .policy-index summary::after {
+  font-size: 1.25em;
+}
 
 /* visual-shared.css: typography only; layout remains in the component stylesheet. */
 @media (orientation: landscape) and (max-height: 720px) {
