@@ -41,17 +41,12 @@
   position: absolute;
   top: 50%;
   right: 1.35rem;
-  width: 0.65rem;
-  height: 0.65rem;
-  border-right: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  content: "";
-  transform: translateY(-70%) rotate(45deg);
-  transition: transform 250ms ease;
+  content: "+";
+  transform: translateY(-50%);
 }
 
 .faq-item[open] summary::after {
-  transform: translateY(-25%) rotate(225deg);
+  content: "−";
 }
 
 .faq-item summary:focus-visible {
