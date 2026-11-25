@@ -113,8 +113,9 @@
     function composeWorks() {
       var count = form.querySelector("#application-works-count").value;
       var size = form.querySelector('input[name="sizeChoice"]:checked');
+      var change = form.querySelector('input[name="worksChangeChoice"]:checked');
       var hidden = form.querySelector("#application-works");
-      hidden.value = count && size ? count + "（" + size.value + "）" : "";
+      hidden.value = count && size && change ? count + "（" + size.value + "）／変更の可能性：" + (change.value === "変わる可能性がある" ? "あり" : "なし") : "";
       return hidden.value;
     }
 
@@ -153,7 +154,7 @@
         return;
       }
       if (!works) {
-        errorBox.textContent = "予定作品数とサイズの目安を選択してください。";
+        errorBox.textContent = "予定作品数とサイズの目安、変更の可能性を選択してください。";
         form.querySelector("#application-works-count").focus();
         return;
       }
@@ -215,7 +216,7 @@
       sendButton.textContent = "送信中...";
       try {
         var body = new FormData(form);
-        ["genreChoice", "formatChoice", "sizeChoice", "deliveryChoice", "galleryChoice", "prChoice", "explainChoice"].forEach(function (key) { body.delete(key); });
+        ["genreChoice", "formatChoice", "sizeChoice", "worksChangeChoice", "deliveryChoice", "galleryChoice", "prChoice", "explainChoice"].forEach(function (key) { body.delete(key); });
         var response = await fetch(form.dataset.applicationEndpoint, {
           method: "POST",
           body: body,
