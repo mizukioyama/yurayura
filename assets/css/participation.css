@@ -540,13 +540,18 @@ nav.path-section {
 }
 
 
-.participation-editorial .path-prose > ul {
+.participation-editorial .path-prose > ul,
+.venues-page .path-prose > ul {
   list-style: disc;
   padding-inline-start: 1.5em;
   margin-block: var(--space-3);
 }
-.participation-editorial .path-prose > ul > li + li {
+.participation-editorial .path-prose > ul > li + li,
+.venues-page .path-prose > ul > li + li {
   margin-top: 8px;
+}
+.participation-editorial .path-prose > ul + p {
+  padding-inline-start: 1.5em;
 }
 .participation-editorial .path-prose > :is(ul, dl) + h3 {
   margin-top: var(--space-5);
