@@ -4,7 +4,7 @@
   --path-reading: 680px;
   --path-gap: var(--space-4);
   --path-section-space: var(--space-7);
-  --path-rule: color-mix(in srgb, var(--color-txt) 28%, transparent);
+  --path-rule: color-mix(in srgb, var(--color-txt) 40%, transparent);
 }
 section.path-section,
 nav.path-section {
