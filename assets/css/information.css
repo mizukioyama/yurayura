@@ -78,8 +78,8 @@
 .information-page .information-page-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-self: flex-start;
+  justify-content: center;
+  align-self: center;
   gap: 8px 24px;
   margin-block: 24px 32px;
 }
@@ -122,7 +122,7 @@
 .information-page .information-news-item time { display: block; margin-bottom: 8px; }
 .information-page :is(.information-facts dd, .information-news-item, .information-record-links a) { overflow-wrap: anywhere; }
 @media (max-width: 767px) {
-  .information-page .information-page-nav { justify-content: flex-start; }
+  .information-page .information-page-nav { justify-content: center; }
   .information-page .information-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .information-page .information-section-lead { text-align: left; }
 }
