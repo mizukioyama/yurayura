@@ -133,6 +133,13 @@
   align-self: stretch;
 }
 
+/* The upcoming events wrapper is the same kind of flex item and shrank
+   to its content too (595px with narrower font metrics); stretch it to
+   the content column as well, like the archive wrapper. */
+.information-page .information-next .section__inner > div {
+  align-self: stretch;
+}
+
 /* The archive lead follows the same column width as the upcoming lead. */
 .information-page .information-section-lead {
   width: min(100%, 42.5rem);
