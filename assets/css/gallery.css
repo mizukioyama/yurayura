@@ -378,6 +378,7 @@ body.gallery-page button {
   margin: 0;
   color: inherit;
   background: none;
+  text-wrap: balance;
 }
 .gallery-page .gallery-content .work-img,
 .gallery-page .gallery-content .work-img > img {
