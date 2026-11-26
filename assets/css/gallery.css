@@ -380,6 +380,9 @@ body.gallery-page button {
   background: none;
   text-wrap: balance;
 }
+.gallery-page .gallery-work-link .nowrap {
+  white-space: nowrap;
+}
 .gallery-page .gallery-content .work-img,
 .gallery-page .gallery-content .work-img > img {
   display: block;
