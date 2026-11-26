@@ -139,3 +139,10 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .policy-page .policy-content__inner {
+    width: min(100%, 864px);
+  }
+}

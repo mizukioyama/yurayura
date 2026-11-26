@@ -125,3 +125,10 @@
   .information-page .information-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .information-page .information-section-lead { text-align: left; }
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .information-archive-note {
+    max-width: 54rem;
+  }
+}

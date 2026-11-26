@@ -608,3 +608,15 @@ nav.path-section {
 .participate-page .application-form .application-field, .participate-page .application-enter {animation:none}
 .participate-page .application-form-wrap :is(input,textarea,button), .participate-page .application-choice {transition:none}
 }
+
+/* PC content width unification (2026-11-26): the reading column is 864px
+   on wide screens; forms keep the narrower 680px measure. */
+@media (min-width: 1200px) {
+  :root {
+    --path-reading: 864px;
+  }
+  .participate-page .application-form-wrap {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+}
