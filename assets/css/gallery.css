@@ -88,6 +88,7 @@ body.gallery-page button {
   display: block !important;
   margin: 0 0 0.35rem !important;
   font: inherit !important;
+  font-family: var(--font-jp) !important;
   letter-spacing: 0.06em !important;
 }
 .gallery-scroll-hint {
@@ -103,7 +104,7 @@ body.gallery-page button {
 .gallery-page .gallery-filter-title {
   margin: 0 !important;
   font: inherit !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter-options {

@@ -36,9 +36,9 @@
     padding: 0 !important;
     align-self: start !important;
     font: inherit !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     line-height: 2.7rem !important;
-    color: #444 !important;
+    color: var(--color-txt) !important;
     white-space: nowrap !important;
   }
   .gallery-page [data-filter-group="artist"],
