@@ -131,7 +131,9 @@
   .page-fv > .scroll-guide {
     left: 0;
   }
-  .gallery-page .gallery {
+  /* Same specificity as the <=1199px rule above, so the mobile gutter
+     wins again on phones (it was overridden by the body-prefixed rule). */
+  body.gallery-page .gallery {
     --gallery-content-gutter: var(--layout-gutter-mobile);
   }
 }
