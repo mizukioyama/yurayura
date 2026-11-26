@@ -188,17 +188,6 @@ h1.fv__ttl {
 .card__btn {
   font-size: clamp(12px, calc(0.4vw + 10px), 16px);
 }
-@media screen and (min-width: 768px) {
-  .h2_ttl,
-  .section--concept .h2_ttl,
-  .section--artists .h2_ttl,
-  .section--contact .h2_ttl,
-  .section--faq .h2_ttl,
-  .section--access .h2_ttl {
-    font-size: clamp(20px, calc(1vw + 16px), 28px);
-  }
-}
-
 /* form.css: typography only; layout remains in the component stylesheet. */
 .kinds {
   font-size: 16px;
@@ -318,11 +307,6 @@ h1.fv__ttl {
 }
 
 /* gallery-pc-restore.css: typography only; layout remains in the component stylesheet. */
-@media screen and (min-width: 1200px) {
-  .gallery-page .h1-text h1 {
-    font-size: clamp(2.5rem, 3.1vw, 4rem);
-  }
-}
 @media screen and (min-width: 1200px) {
   .gallery-page .gallery-sidebar__label {
     font-size: 1.08rem !important;
