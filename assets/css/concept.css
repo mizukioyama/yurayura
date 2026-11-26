@@ -323,12 +323,12 @@
   }
 }
 
-/* PC content width unification (2026-11-26). */
+/* PC content width (2026-11-26): 680px columns. */
 @media (min-width: 1200px) {
   .concept-texture .section__inner {
-    width: min(100%, 864px);
+    width: min(100%, 680px);
   }
   .concept-page main section:not(.fv):not(:where(.page-fv)) .section__txt {
-    width: min(100%, 864px);
+    width: min(100%, 680px);
   }
 }

@@ -126,9 +126,10 @@
   .information-page .information-section-lead { text-align: left; }
 }
 
-/* PC content width unification (2026-11-26). */
+/* PC content width (2026-11-26): the archive year wrapper is a flex item
+   that shrank to its content (560px); stretch it to the content column. */
 @media (min-width: 1200px) {
-  .information-archive-note {
-    max-width: 54rem;
+  .information-page .information-archive .section__inner > div {
+    align-self: stretch;
   }
 }

@@ -76,18 +76,10 @@
   text-underline-offset: 0.2em;
 }
 
-/* PC form width (2026-11-26): the form stays narrower than the 864px
-   content column. */
+/* PC form width (2026-11-26): the form follows the 680px column. */
 @media (min-width: 1200px) {
   .contact-page .contact-form-section .contact-form {
     max-width: 680px;
     margin-inline: auto;
-  }
-}
-
-/* PC lead width (2026-11-26): the form intro follows the 864px column. */
-@media (min-width: 1200px) {
-  .contact-page .contact-form-section .section__txt {
-    max-width: 54rem;
   }
 }
