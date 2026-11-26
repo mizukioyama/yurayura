@@ -126,12 +126,15 @@
   .information-page .information-section-lead { text-align: left; }
 }
 
-/* PC content width (2026-11-26): the archive year wrapper is a flex item
-   that shrank to its content (560px); stretch it to the content column. */
-@media (min-width: 1200px) {
-  .information-page .information-archive .section__inner > div {
-    align-self: stretch;
-  }
+/* The archive year wrapper is a flex item that shrank to its content
+   (560px); stretch it to the content column at every width. */
+.information-page .information-archive .section__inner > div {
+  align-self: stretch;
+}
+
+/* The archive lead follows the same column width as the upcoming lead. */
+.information-page .information-section-lead {
+  width: min(100%, 42.5rem);
 }
 
 /* Event cards read left-aligned in both the upcoming and the archive
