@@ -103,7 +103,7 @@ body.gallery-page button {
 .gallery-page .gallery-filter-title {
   margin: 0 !important;
   font: inherit !important;
-  font-weight: 300 !important;
+  font-weight: 700 !important;
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter-options {
@@ -295,9 +295,11 @@ body.gallery-page button {
     text-align: center !important;
   }
   .gallery-page .gallery-sidebar__label,
-  .gallery-page .gallery-filter-title,
   .gallery-page .gallery-filter {
     color: #444 !important;
+  }
+  .gallery-page .gallery-filter-title {
+    color: var(--color-txt) !important;
   }
   .gallery-page .gallery-filter.is-active {
     color: #1f1f1f !important;
