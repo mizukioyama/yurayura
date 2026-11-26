@@ -327,3 +327,10 @@
 .top-page section.top-summary > .section__inner {
   height: auto;
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .top-page .section--concept .section__txt {
+    width: min(100%, 864px);
+  }
+}

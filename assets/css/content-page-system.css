@@ -154,3 +154,25 @@
     padding-inline: var(--layout-gutter-tablet);
   }
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .information-page .information-main .section__inner.inner,
+  .contact-page .contact-main .section__inner.inner {
+    width: min(100%, 864px);
+  }
+}
+
+/* PC lead width (2026-11-26): lead/intro blocks follow the same 864px
+   column as the body content. */
+@media (min-width: 1200px) {
+  .information-page .information-main .information-next .section__txt,
+  .information-page .information-main .information-contact-cta .section__txt,
+  .information-page .information-main .information-next .information-hero__lead,
+  .contact-page .contact-main .contact-form-section > .section__inner > .section__txt,
+  .contact-page .contact-main .contact-faq-section .information-hero__lead,
+  .policy-page main section.policy-content .policy-intro,
+  .information-page .information-main .section--faq > .section__inner > .information-archive-note {
+    width: min(100%, 54rem);
+  }
+}

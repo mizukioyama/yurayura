@@ -565,3 +565,13 @@ body
 main#main {
   scroll-margin-top: var(--site-header-size);
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .concept-statement__copy {
+    width: min(100%, 864px);
+  }
+  .information-planning {
+    width: min(100%, 864px);
+  }
+}

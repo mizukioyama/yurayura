@@ -322,3 +322,13 @@
     padding-inline: var(--layout-gutter-tablet);
   }
 }
+
+/* PC content width unification (2026-11-26). */
+@media (min-width: 1200px) {
+  .concept-texture .section__inner {
+    width: min(100%, 864px);
+  }
+  .concept-page main section:not(.fv):not(:where(.page-fv)) .section__txt {
+    width: min(100%, 864px);
+  }
+}

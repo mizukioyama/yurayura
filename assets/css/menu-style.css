@@ -744,3 +744,11 @@ body.is-loaded {
     transition: none;
   }
 }
+
+/* PC content width unification (2026-11-26): keep the shared reading
+   token in sync with participation.css. */
+@media (min-width: 1200px) {
+  :root {
+    --path-reading: 864px;
+  }
+}

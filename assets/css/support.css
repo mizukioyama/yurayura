@@ -52,3 +52,11 @@
   .support-page .support-facts > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .support-page .support-index { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: var(--space-5); }
 }
+
+/* PC content width unification (2026-11-26): centre the intro prose in
+   the same column as the other path pages. */
+@media (min-width: 1200px) {
+  .support-page .support-intro .path-prose {
+    margin-inline: auto;
+  }
+}
