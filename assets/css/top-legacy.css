@@ -156,7 +156,7 @@
   min-height: 280px;
   padding: 0;
   background: var(--color-bg);
-  mix-blend-mode: plus-lighter;
+  mix-blend-mode: normal;
 }
 
 .top-page #artists .section__btn {
