@@ -78,7 +78,8 @@
 .information-page .information-page-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  align-self: flex-start;
   gap: 8px 24px;
   margin-block: 24px 32px;
 }
