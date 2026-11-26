@@ -619,4 +619,8 @@ nav.path-section {
     max-width: 680px;
     margin-inline: auto;
   }
+  /* The bottom "paths" card row follows the 864px content column. */
+  .path-inner:has(> .path-grid) {
+    width: min(100%, 864px);
+  }
 }
