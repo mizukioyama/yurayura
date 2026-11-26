@@ -132,3 +132,11 @@
     max-width: 54rem;
   }
 }
+
+/* PC content width (2026-11-26): the archive year wrapper is a flex item
+   that shrank to its content (560px); stretch it to the 864px column. */
+@media (min-width: 1200px) {
+  .information-page .information-archive .section__inner > div {
+    align-self: stretch;
+  }
+}
