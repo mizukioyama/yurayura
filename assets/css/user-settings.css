@@ -47,10 +47,10 @@
   --type-body-size: clamp(0.875rem, 0.85rem + 0.13vw, 1rem);
 
   /* Base H2 formula: 20–30px. The <=767px scale is independently overridden below. */
-  --type-heading-2-size: clamp(20px, calc(16.4789px + 0.939vw), 30px);
+  --type-heading-2-size: clamp(20px, calc(16.5px + 0.66vw), 26px);
 
   /* H3: 19–24px on desktop; the existing compact formula is defined below. */
-  --type-heading-3-size: clamp(19px, calc(16.606px + 0.634vw), 24px);
+  --type-heading-3-size: clamp(19px, calc(16.2px + 0.4vw), 21px);
 
   /* 小見出し：375pxで15px → 1440pxで19px */
   --type-small-heading-size: clamp(15px, calc(13.38px + 0.423vw), 19px);
@@ -257,7 +257,7 @@ h1.fv__ttl {
   }
 }
 .top-page .section--concept .h2_ttl {
-  font-size: clamp(22px, calc(0.55vw + 20px), 32px);
+  font-size: clamp(22px, calc(0.42vw + 20px), 26px);
 }
 .top-page .section--concept .section__txt {
   font-size: var(--type-body-size);
