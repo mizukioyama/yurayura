@@ -172,3 +172,11 @@
     transition-delay: 0ms !important;
   }
 }
+
+/* PC content width (2026-11-26): the artists intro follows the 680px
+   content column. */
+@media (min-width: 1200px) {
+  .top-page .section--artists .section__txt {
+    width: min(100%, 680px);
+  }
+}
