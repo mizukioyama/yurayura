@@ -132,7 +132,17 @@
         if (gallery && Number.isInteger(event.artworkCount)) article.append(text("p", `${event.artworkCount}作品`));
         if (safeGallery(event.galleryUrl)) {
           const link = text("a", `第${event.edition}回の作品を見る ↗`); link.href = event.galleryUrl; article.append(link);
-        } else if (gallery) article.append(text("p", "作品情報は準備中です。"));
+        } else if (gallery) {
+          article.append(text("p", "作品情報は準備中です。"));
+          if (state === "upcoming") {
+            const infoParagraph = document.createElement("p");
+            const infoLink = text("a", "開催情報を見る ↗"); infoLink.href = "./information.html"; infoLink.className = "path-action"; infoParagraph.append(infoLink); article.append(infoParagraph);
+            if (event.recruitment?.published === true) {
+              const applyParagraph = document.createElement("p");
+              const applyLink = text("a", "参加申込について ↗"); applyLink.href = "./apply.html"; applyParagraph.append(applyLink); article.append(applyParagraph);
+            }
+          }
+        }
         section.append(article);
       }
       fragment.append(section);
