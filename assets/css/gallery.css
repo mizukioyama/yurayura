@@ -403,3 +403,16 @@ body.gallery-page button {
     transition-duration: 0.01ms;
   }
 }
+
+/* Phones: the work list keeps its previous narrower measure while the
+   surrounding text uses the shared 44px gutter. The offset restores the
+   former 22vmin-based inset exactly. */
+@media (max-width: 767px) {
+  .gallery-page #gallery-container {
+    width: calc(100% - 2 * (22vmin - var(--layout-gutter-mobile))) !important;
+    margin-inline: auto;
+  }
+  .gallery-page .gallery-pagination {
+    margin-inline: calc(22vmin - var(--layout-gutter-mobile));
+  }
+}
