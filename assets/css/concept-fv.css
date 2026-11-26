@@ -85,7 +85,7 @@
   }
   /* Move the existing content gutter off Gallery's parent so the FV has
      the same viewport frame as Concept; artwork columns retain their gutter. */
-  .gallery-page .gallery {
+  body.gallery-page .gallery {
     padding: 0;
     --gallery-content-gutter: 22vmin;
   }
