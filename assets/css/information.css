@@ -133,3 +133,12 @@
     align-self: stretch;
   }
 }
+
+/* Event cards read left-aligned in both the upcoming and the archive
+   sections; only the section headings and leads stay centred. */
+.information-page .information-next .information-past-event {
+  text-align: left;
+}
+.information-page .information-recruitment-note {
+  width: 100%;
+}
