@@ -59,4 +59,9 @@
   .support-page .support-intro .path-prose {
     margin-inline: auto;
   }
+  /* The whole Support content column is 864px, not the shared 960px
+     container. */
+  .support-page .path-inner {
+    width: min(100%, 864px);
+  }
 }
