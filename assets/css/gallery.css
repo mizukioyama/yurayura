@@ -104,8 +104,7 @@ body.gallery-page button {
 .gallery-page .gallery-filter-title {
   margin: 0 !important;
   font: inherit !important;
-  font-family: var(--font-jp) !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   white-space: nowrap !important;
 }
 .gallery-page .gallery-filter-options {
