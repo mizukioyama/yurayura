@@ -49,11 +49,11 @@
   /* Base H2 formula: 20–30px. The <=767px scale is independently overridden below. */
   --type-heading-2-size: clamp(20px, calc(16.4789px + 0.939vw), 30px);
 
-  /* H3: 16–18px on desktop; the existing compact formula is defined below. */
-  --type-heading-3-size: clamp(16px, calc(12.8873px + 0.5634vw), 18px);
+  /* H3: 19–24px on desktop; the existing compact formula is defined below. */
+  --type-heading-3-size: clamp(19px, calc(16.606px + 0.634vw), 24px);
 
-  /* 小見出し：375pxで13px → 1440pxで16px */
-  --type-small-heading-size: clamp(13px, calc(11.9437px + 0.2817vw), 16px);
+  /* 小見出し：375pxで15px → 1440pxで19px */
+  --type-small-heading-size: clamp(15px, calc(13.38px + 0.423vw), 19px);
 
   /* メニューロゴ：375pxで14px → 1440pxで19.2px */
   --type-menu-logo-size: clamp(14px, calc(12.169px + 0.4887vw), 19.2px);
@@ -443,8 +443,9 @@ h1.fv__ttl {
   :root {
     --type-body-size: 14.25px;
     --type-feature-heading-size: clamp(18.5px, 5.2vw, 24px);
-    --type-heading-2-size: clamp(18.5px, calc(15.245px + 0.8638vw), 27.75px);
-    --type-heading-3-size: clamp(14.25px, calc(12.243px + 0.5352vw), 19.95px);
+    --type-heading-2-size: clamp(19px, calc(15.9px + 0.88vw), 27.75px);
+    --type-heading-3-size: clamp(16.5px, calc(14.8px + 0.5vw), 20px);
+    --type-small-heading-size: clamp(15px, calc(14.2px + 0.28vw), 17px);
     --type-page-title-size: clamp(35.328px, calc(22.08px + 3.68vw), 79.488px);
   }
   .top-page :is(.section--concept, .section--artists, .section--contact, .section--access) .h2_ttl {
