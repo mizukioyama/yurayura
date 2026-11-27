@@ -386,11 +386,6 @@ body .path-card:active {
 body
   :is(
     .path-action,
-    .path-prose a,
-    .section__txt a,
-    .policy-content a,
-    .faq-item__answer a,
-    .contact-form-shortcut a,
     .footer-policy-link,
     .footer-related a,
     .footer-link .menu-en
@@ -409,11 +404,6 @@ body
   body
     :is(
       .path-action,
-      .path-prose a,
-      .section__txt a,
-      .policy-content a,
-      .faq-item__answer a,
-      .contact-form-shortcut a,
       .footer-policy-link,
       .footer-related a
     ) {
@@ -422,11 +412,6 @@ body
   body
     :is(
       .path-action,
-      .path-prose a,
-      .section__txt a,
-      .policy-content a,
-      .faq-item__answer a,
-      .contact-form-shortcut a,
       .footer-policy-link,
       .footer-related a
     ):hover,
@@ -439,11 +424,6 @@ body
 body
   :is(
     .path-action,
-    .path-prose a,
-    .section__txt a,
-    .policy-content a,
-    .faq-item__answer a,
-    .contact-form-shortcut a,
     .footer-policy-link,
     .footer-related a
   ):focus-visible,
@@ -454,11 +434,6 @@ body .footer-link:focus-visible .menu-en {
 body
   :is(
     .path-action,
-    .path-prose a,
-    .section__txt a,
-    .policy-content a,
-    .faq-item__answer a,
-    .contact-form-shortcut a,
     .footer-policy-link,
     .footer-related a
   ):active {
@@ -468,11 +443,6 @@ body
   body
     :is(
       .path-action,
-      .path-prose a,
-      .section__txt a,
-      .policy-content a,
-      .faq-item__answer a,
-      .contact-form-shortcut a,
       .footer-policy-link,
       .footer-related a,
       .footer-link .menu-en

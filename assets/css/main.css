@@ -1299,3 +1299,33 @@ section {
     padding-right: 20vmin !important;
   }
 }
+
+/* Prose text links (unified 2026-11-27): underline + arrow so links read as
+   links inside body copy. Classed action links keep their own style. */
+main p a:not([class]),
+main [data-event-groups] article > a:not([class]),
+main [data-gallery-groups] article > a:not([class]),
+main .path-prose nav a:not([class]),
+main label.application-consent a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+main p a:not([class])::after,
+main [data-event-groups] article > a:not([class])::after,
+main [data-gallery-groups] article > a:not([class])::after,
+main .path-prose nav a:not([class])::after,
+main label.application-consent a::after {
+  content: "↗";
+  margin-left: 0.2em;
+}
+
+main p a:not([class]):focus-visible,
+main [data-event-groups] article > a:not([class]):focus-visible,
+main [data-gallery-groups] article > a:not([class]):focus-visible,
+main .path-prose nav a:not([class]):focus-visible,
+main label.application-consent a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
