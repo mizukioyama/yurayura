@@ -1329,3 +1329,14 @@ main label.application-consent a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
+
+  /* Venue floor-plan figure on the Apply page (2026-11-27). */
+  .venue-plan {
+  margin: 2rem 0;
+}
+
+  .venue-plan img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
