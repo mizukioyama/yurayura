@@ -101,7 +101,7 @@ test('approved second-show details are synchronized across pages', () => {
     assert(!text.includes('第1回'), name + ': no past-show information');
     assert(!text.includes('2027年1月29日'), name + ': no first-show recruitment window');
     assert(!text.includes('未定（確定次第、正式な募集要項でご案内します）'), name + ': next-show overview values decided');
-    assert(text.includes('展示作品数は1人最大6点（総作品数で変動します）'), name + ': next-show detail limits decided');
+    assert(text.includes('1人最大6点 ※総作品数で変動します。'), name + ': next-show detail limits decided');
     assert(!text.includes('展示作品数は1人最大8点'), name + ': stale prior limit');
     assert(!/2027年4〜5月|2027年4月|2027-01-16|岩手県または栃木県/.test(text), name);
     assert(html.includes('出展申し込みの受付は停止中です') || html.includes('受付停止中'), name);

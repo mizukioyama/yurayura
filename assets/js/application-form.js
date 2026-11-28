@@ -40,7 +40,7 @@
     var previewOnly = false;
     if (view.state === "upcoming") {
       if (!form.dataset.applicationEndpoint) {
-        notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。";
+        notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。";
         return;
       }
       // Display-only preview before the window opens (organizer
@@ -51,14 +51,14 @@
       // the state becomes "open" and the same code accepts real
       // applications with no further change.
       previewOnly = true;
-      notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。現在はフォームの表示確認用で、送信はできません。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。";
+      notice.textContent = "出展申し込みの受付は2026年11月28日 11:00に開始します。現在はフォームの表示確認用で、送信はできません。";
     }
     if (view.state === "closed") {
       notice.textContent = "第2回の申込受付は終了しました。";
       return;
     }
     if (view.state !== "open" && !previewOnly) {
-      notice.textContent = "現在、出展申し込みは受け付けていません。受付期間は2026年11月28日 11:00〜2027年1月15日 20:00（日本時間・JST）です。";
+      notice.textContent = "現在、出展申し込みは受け付けていません。";
       return;
     }
     if (!form.dataset.applicationEndpoint) {
@@ -68,7 +68,7 @@
       return;
     }
     if (!previewOnly) {
-      notice.textContent = "出展者を募集しています。受付期間は2027年1月15日 20:00まで（日本時間・JST）です。下記のフォームからお申し込みください。";
+      notice.textContent = "出展者を募集しています。下記のフォームからお申し込みください。";
     }
     wrap.hidden = false;
 
