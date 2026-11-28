@@ -122,7 +122,7 @@
     reviewButton.addEventListener("click", function () {
       var genre = composeChoices("genreChoice", "#application-genre");
       composeChoices("formatChoice", "#application-format");
-      composeChoices("deliveryChoice", "#application-delivery");
+      var delivery = composeChoices("deliveryChoice", "#application-delivery");
       var works = composeWorks();
       composeChoices("explainChoice", "#application-explain-need");
       var gallery = composeChoices("galleryChoice", "#application-gallery-consent");
@@ -157,6 +157,11 @@
       if (!party.length) {
         errorBox.textContent = "交流パーティーへの参加について選択してください。";
         form.querySelector('input[name="partyChoice"]').focus();
+        return;
+      }
+      if (!delivery.length) {
+        errorBox.textContent = "搬入方法の希望を選択してください。";
+        form.querySelector('input[name="deliveryChoice"]').focus();
         return;
       }
       if (!works) {
